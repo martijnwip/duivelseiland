@@ -1,0 +1,27 @@
+{
+  "name": "duivelseiland",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "bun --bun next dev --turbopack",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "payload": "bunx payload"
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.41.0",
+    "@payloadcms/next": "^3.41.0",
+    "@payloadcms/richtext-lexical": "^3.41.0",
+    "@payloadcms/storage-vercel-blob": "^3.41.0",
+    "next": "^15.4.11",
+    "payload": "^3.41.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "dotenv": "^17.4.2",
+    "typescript": "^5.7.0"
+  }
+}

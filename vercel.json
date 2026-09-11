@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "app/**/*.ts": {
+      "bunVersion": "1.x"
+    }
+  }
+}

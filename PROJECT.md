@@ -84,3 +84,102 @@ Technisch beheerder.
   - `publishedOrLoggedIn` (query-constraint voor `read`: `{ status: { equals: 'published' } }` voor bezoekers)
 - Veldniveau access op `status`: `update` alleen voor redacteur/admin.
 - Veldniveau access op `users.role`: `update` alleen voor admin.
+
+# Techstack
+
+## Kern
+
+| Laag                       | Keuze                                             | Reden                                                                      |
+| -------------------------- | ------------------------------------------------- | -------------------------------------------------------------------------- |
+| Framework                  | Next.js (App Router, TypeScript)                  | Site en admin in één codebase en één deploy                                |
+| CMS                        | Payload CMS                                       | Draait in Next.js, rollen ingebouwd, admin op `/admin`                     |
+| Database                   | SQLite via Turso (libSQL)                         | SQLite-dialect, werkt serverless op Vercel                                 |
+| DB-adapter                 | `@payloadcms/db-sqlite`                           | Officiële Payload-adapter voor libSQL                                      |
+| Media                      | Vercel Blob via `@payloadcms/storage-vercel-blob` | Vercel heeft geen schrijfbaar bestandssysteem                              |
+| Hosting                    | Vercel                                            | Gratis tier, preview-deploys, Git-koppeling                                |
+| Runtime en package manager | Bun                                               | Lokaal en op Vercel (`bunVersion` in `vercel.json`); geen Node in de keten |
+| Styling                    | Tailwind CSS                                      | Weinig eigen CSS, geen componentbibliotheek nodig                          |
+
+## Bewust weggelaten
+
+- Geen aparte backend of API-server: Payload levert de REST- en Local API.
+- Geen ORM naast Payload: de adapter regelt schema en migraties.
+- Geen auth-library: Payload's ingebouwde users-collection met rollen.
+- Geen UI-kit, geen state-manager, geen i18n (site is Nederlandstalig).
+- Geen Docker; lokaal draait `bun dev` tegen een lokaal SQLite-bestand.
+- Geen Node en geen npm/pnpm; `bun.lock` is de enige lockfile.
+
+## Bun op Vercel
+
+- `vercel.json`: `{ "bunVersion": "1.x" }`. Vercel installeert Bun en draait Next.js-routes op de Bun-runtime.
+- `package.json`-scripts met `--bun`, anders valt `next` terug op Node:
+
+```json
+{
+  "scripts": {
+    "dev": "bun --bun next dev",
+    "build": "bun --bun next build",
+    "start": "bun --bun next start",
+    "payload": "bun --bun payload"
+  }
+}
+```
+
+- De Bun-runtime op Vercel is publieke bèta. Als Payload of `sharp` daar problemen geeft, is de terugvaloptie: `bunVersion` weghalen en `--bun` uit de scripts halen; Bun blijft dan alleen package manager en de app draait op Node. Dat kost geen codewijziging.
+
+## Omgevingen
+
+|                    | Database                      | Media               |
+| ------------------ | ----------------------------- | ------------------- |
+| Lokaal             | `file:./dev.db`               | lokale map `media/` |
+| Preview (Vercel)   | Turso, aparte branch-database | Vercel Blob         |
+| Productie (Vercel) | Turso, productie-database     | Vercel Blob         |
+
+## Environment variables
+
+```
+DATABASE_URI=libsql://<naam>.turso.io
+DATABASE_AUTH_TOKEN=<turso-token>
+PAYLOAD_SECRET=<lange-random-string>
+BLOB_READ_WRITE_TOKEN=<vercel-blob-token>
+NEXT_PUBLIC_SERVER_URL=https://<domein>
+```
+
+Lokaal: `DATABASE_URI=file:./dev.db`, token leeg laten.
+
+## Projectstructuur
+
+```
+src/
+  app/
+    (site)/          publieke pagina's
+    (payload)/       admin en API, gegenereerd door Payload
+  collections/       één bestand per collection
+  globals/           site-instellingen (menu, footer, contact)
+  access/            rol-functies (isAdmin, isRedacteurOrAdmin, ...)
+  payload.config.ts
+```
+
+## Collections
+
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`
+
+Buurtstatistieken staan buiten Payload als JSON in de repo (zie `statistieken.md`).
+
+Elke content-collection heeft `title`, `slug`, `status` (draft/published), `author`, `content` (rich text) en waar nodig `date`, `image`.
+
+## Data ophalen in de site
+
+Server components gebruiken de Payload Local API (`getPayload({ config })`), geen fetch naar de eigen REST-API. Pagina's zijn statisch met revalidatie; een Payload `afterChange`-hook roept `revalidatePath` aan, zodat een publicatie direct zichtbaar is.
+
+## Deploy
+
+1. Repo op GitHub, project koppelen in Vercel.
+2. Turso-database aanmaken, URL en token als env vars in Vercel zetten.
+3. Vercel Blob store aanmaken, token toevoegen.
+4. `vercel.json` met `bunVersion` committen; eerste deploy; migraties draaien via `bun payload migrate`.
+5. Eerste admin-account aanmaken op `/admin`.
+
+## Kosten
+
+Vercel Hobby, Turso Free en Vercel Blob Free volstaan voor deze omvang. Enige aandachtspunt: Blob-opslag en bandbreedte bij veel grote foto's; afbeeldingen bij upload verkleinen via Payload's `imageSizes`.
