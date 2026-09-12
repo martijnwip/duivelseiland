@@ -1,5 +1,23 @@
 # Wijkwebsite Amsterdam
 
+Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer informatie over de volgende onderwerpen:
+- Waar komt de naam vandaan?
+- Geschiedenis : 
+- Praktische info
+  - grof vuil
+  - melden overlast
+- Duivelse Kunst
+- Vakmensen
+- Interviews
+- Geschiedenis
+- Buurt Statistieken 👉 STATISTIEKEN.md
+- Nieuws
+- Agenda
+
+## Tweetalig
+Omdat er veel expats in de buurt wonen zal de public-facing site tweetalig worden gemaakt met een switch tussen Nederlands / Engels
+
+
 ## Stack
 
 - Next.js (App Router) op Vercel
