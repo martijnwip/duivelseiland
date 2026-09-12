@@ -4,6 +4,9 @@ import { setAuthor } from './shared/setAuthor';
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  access: {
+    read: () => true,
+  },
   hooks: {
     beforeChange: [setAuthor('uploadedBy')],
   },
@@ -19,6 +22,11 @@ export const Media: CollectionConfig = {
         name: 'card',
         width: 768,
         height: 1024,
+      },
+      {
+        name: 'hero',
+        width: 1920,
+        height: 1080,
       },
     ],
   },

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import { Agenda } from './collections/Agenda';
 import { DuivelseKunst } from './collections/DuivelseKunst';
 import { Geschiedenis } from './collections/Geschiedenis';
+import { HeroSlides } from './collections/HeroSlides';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
@@ -33,6 +34,7 @@ export default buildConfig({
     DuivelseKunst,
     Vakmensen,
     PraktischeInfo,
+    HeroSlides,
   ],
 
   globals: [SiteInstellingen],

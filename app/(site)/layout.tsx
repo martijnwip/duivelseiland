@@ -8,7 +8,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Wijkwebsite Amsterdam',
+  title: 'Duivelseiland',
   description: 'Wijkwebsite voor Amsterdam',
 };
 

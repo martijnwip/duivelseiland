@@ -1,4 +1,4 @@
-# Wijkwebsite Amsterdam
+# Duivelseiland
 
 Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer informatie over de volgende onderwerpen:
 - Waar komt de naam vandaan?
