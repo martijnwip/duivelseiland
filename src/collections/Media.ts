@@ -1,7 +1,12 @@
 import type { CollectionConfig } from 'payload';
+import { isRedacteurOrAdminField } from '../access/isAdmin';
+import { setAuthor } from './shared/setAuthor';
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  hooks: {
+    beforeChange: [setAuthor('uploadedBy')],
+  },
   upload: {
     mimeTypes: ['image/*'],
     imageSizes: [
@@ -26,6 +31,17 @@ export const Media: CollectionConfig = {
     {
       name: 'caption',
       type: 'text',
+    },
+    {
+      name: 'uploadedBy',
+      type: 'relationship',
+      relationTo: 'users',
+      admin: {
+        position: 'sidebar',
+      },
+      access: {
+        update: isRedacteurOrAdminField,
+      },
     },
   ],
 };

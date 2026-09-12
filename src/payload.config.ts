@@ -3,9 +3,18 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import { buildConfig } from 'payload';
 import path from 'path';
+import sharp from 'sharp';
 import { fileURLToPath } from 'url';
+import { Agenda } from './collections/Agenda';
+import { DuivelseKunst } from './collections/DuivelseKunst';
+import { Geschiedenis } from './collections/Geschiedenis';
+import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
+import { Nieuws } from './collections/Nieuws';
+import { PraktischeInfo } from './collections/PraktischeInfo';
 import { Users } from './collections/Users';
+import { Vakmensen } from './collections/Vakmensen';
+import { SiteInstellingen } from './globals/SiteInstellingen';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -14,7 +23,19 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
 
-  collections: [Users, Media],
+  collections: [
+    Users,
+    Media,
+    Nieuws,
+    Agenda,
+    Interviews,
+    Geschiedenis,
+    DuivelseKunst,
+    Vakmensen,
+    PraktischeInfo,
+  ],
+
+  globals: [SiteInstellingen],
 
   db: sqliteAdapter({
     client: {
@@ -25,6 +46,8 @@ export default buildConfig({
   }),
 
   editor: lexicalEditor(),
+
+  sharp,
 
   plugins: [
     vercelBlobStorage({
