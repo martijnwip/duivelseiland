@@ -1,32 +1,24 @@
-import { getPayloadHMR } from '@payloadcms/next/utilities';
-import { getPayload } from 'payload';
-import configPromise from '@payload-config';
 import type { Metadata } from 'next';
 
-export async function generateMetadata(): Promise<Metadata> {
-  const payload = await getPayload({ config: configPromise });
-  const { generatePageMetadata } = await import('@payloadcms/next/views');
-  return generatePageMetadata({ config: payload.config });
-}
+import config from '@payload-config';
+import { generatePageMetadata, RootPage } from '@payloadcms/next/views';
 
-export default async function AdminPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ segments?: string[] | undefined }>;
+import { importMap } from '../importMap.js';
+
+type Args = {
+  params: Promise<{
+    segments?: string[];
+  }>;
   searchParams: Promise<{ [key: string]: string | string[] }>;
-}) {
-  const { RootPage } = await import('@payloadcms/next/views');
-  const payload = await getPayload({ config: configPromise });
+};
 
-  const resolvedSearchParams = await searchParams;
-  const resolvedParams = await params;
-  const segments: string[] = resolvedParams?.segments ?? [];
+export const generateMetadata = ({ params, searchParams }: Args): Promise<Metadata> =>
+  generatePageMetadata({ config, params, searchParams });
 
-  return RootPage({
-    config: Promise.resolve(payload.config),
-    importMap: payload.importMap,
-    params: { segments: segments },
-    searchParams: resolvedSearchParams,
-  });
-}
+const Page = ({ params, searchParams }: Args) =>
+  // `RootPage`'s type requires `segments` to be present, but its own route-matching
+  // logic depends on it being `undefined` (not `[]`) for the bare `/admin` route —
+  // see the trailing-slash bug this file works around.
+  RootPage({ config, importMap, params: params as Promise<{ segments: string[] }>, searchParams });
+
+export default Page;

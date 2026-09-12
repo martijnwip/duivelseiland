@@ -11,13 +11,13 @@ export const metadata: Metadata = {
   description: 'Wijkwebsite voor Amsterdam',
 };
 
-export default function RootLayout({
+export default function SiteLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="nl" className={inter.className}>
       <body>{children}</body>
     </html>
   );

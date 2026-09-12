@@ -18,7 +18,8 @@ export default buildConfig({
 
   db: sqliteAdapter({
     client: {
-      url: process.env.DATABASE_URI || 'file:./dev.db',
+      url: process.env.DATABASE_URI || process.env.TURSO_DATABASE_URL || 'file:./dev.db',
+      authToken: process.env.DATABASE_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
     },
     autoIncrement: true,
   }),

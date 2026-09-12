@@ -1,7 +1,3 @@
 {
-  "functions": {
-    "app/**/*.ts": {
-      "bunVersion": "1.x"
-    }
-  }
+  "bunVersion": "1.4.x"
 }
