@@ -123,7 +123,7 @@ Technisch beheerder.
 - Geen aparte backend of API-server: Payload levert de REST- en Local API.
 - Geen ORM naast Payload: de adapter regelt schema en migraties.
 - Geen auth-library: Payload's ingebouwde users-collection met rollen.
-- Geen UI-kit, geen state-manager, geen i18n (site is Nederlandstalig).
+- Geen UI-kit, geen state-manager; i18n beperkt tot Payload localization + next-intl routing (zie "Tweetalig").
 - Geen Docker; lokaal draait `bun dev` tegen een lokaal SQLite-bestand.
 - Geen Node en geen npm/pnpm; `bun.lock` is de enige lockfile.
 
@@ -196,7 +196,70 @@ Server components gebruiken de Payload Local API (`getPayload({ config })`), gee
 2. Turso-database aanmaken, URL en token als env vars in Vercel zetten.
 3. Vercel Blob store aanmaken, token toevoegen.
 4. `vercel.json` met `bunVersion` committen; eerste deploy; migraties draaien via `bun payload migrate`.
-5. Eerste admin-account aanmaken op `/admin`.
+5. Eerste admin-account aanmaken op `/admin` (of lokaal via `bun run seed:admin`, zie hieronder).
+
+### Eerste admin-account lokaal aanmaken
+
+Payload toont automatisch een "eerste gebruiker aanmaken"-scherm op `/admin` zodra de `users`-collectie leeg is — een script is daar dus niet strikt voor nodig. Voor snel lokaal testen (bv. na een nieuwe worktree of een verse `dev.db`) is er wel `scripts/seed-admin.ts`:
+
+```bash
+bun run seed:admin                        # maakt test@test.nl / test aan, rol admin
+bun run seed:admin jij@voorbeeld.nl geheim # eigen e-mail/wachtwoord
+```
+
+Idempotent: bestaat het e-mailadres al, dan gebeurt er niets. Bedoeld voor lokale ontwikkeling — niet voor productie (zwak standaardwachtwoord).
+
+## Content vertalen (NL → EN)
+
+Voor het eenmalig/handmatig bootstrappen van Engelse vertalingen van bestaande NL-content is er een scriptketen: `scripts/export.ts` → `translate/translate.py` → `scripts/reseed.ts`. Deze vult **alleen lege Engelse velden** — bestaande (handmatig ingevoerde) Engelse tekst wordt nooit overschreven — en houdt bij `content` (rich text) de Lexical-opmaak (koppen, vet, lijsten) volledig intact; er wordt alleen tekst vertaald, geen structuur.
+
+### Waar de vertaalde tekst staat
+
+Elk gelokaliseerd veld (`localized: true`) staat niet in de hoofdtabel van de collectie/global, maar in een aparte `<naam>_locales`-tabel met kolommen `_locale` (`nl`/`en`) en `_parent_id` (verwijzing naar het hoofddocument). Bijvoorbeeld: de welkomstboodschap (`intro`-veld op de `SiteInstellingen`-global) staat in tabel `site_instellingen_locales`, kolom `intro`. Hetzelfde patroon geldt voor `title`/`content` van elke contentcollectie (bv. `nieuws_locales`) en `alt`/`caption` van `Media` (`media_locales`). Niet-gelokaliseerde velden (zoals `siteNaam`) staan gewoon in de hoofdtabel zelf.
+
+### Draaien
+
+Eenmalige Python-setup (per werkdirectory/worktree — `translate/.venv/` staat in `.gitignore`, dus dit moet opnieuw na elke nieuwe checkout/worktree):
+
+```bash
+bun run translate:setup
+```
+
+Lokaal (aanbevolen eerst, om te reviewen in `/admin` voordat productie wordt aangeraakt):
+
+```bash
+bun run export:local
+bun run translate data/export.local.<tijdstip>.json
+bun run reseed:local data/translated.export.local.<tijdstip>.json
+```
+
+Productie (pas na goedkeuring van de lokale run):
+
+```bash
+vercel link                                                    # eenmalig
+vercel env pull .env.production.local --environment=production
+bun run export:prod
+bun run translate data/export.prod.<tijdstip>.json
+bun run reseed:prod data/translated.export.prod.<tijdstip>.json
+```
+
+### Huidige vertaal-engine: MyMemory (via `deep-translator`)
+
+Oorspronkelijk stond dit op Google Translate, maar dat endpoint gaf vanaf onze eigen ontwikkelmachine aanhoudend HTTP 429 (rate-limited/geblokkeerd, geverifieerd met een directe `curl`-test) — dus omgezet naar MyMemory, dat op hetzelfde moment wel gewoon werkte. Nadelen om in de gaten te houden:
+
+- Ook een onofficieel/gratis endpoint (niet zo'n harde ToS-schending als Google's webendpoint, maar ook geen officiële garanties).
+- **Limiet van 500 tekens per aanroep** — langere tekstnodes in rich text (`content`-velden) kunnen daardoor falen; `translate.py` vangt dat af als een normale mislukking (zie `failed` in de samenvatting), het crasht niet, maar dat stukje tekst blijft dan onvertaald.
+- Gratis gebruik zonder account is beperkt tot ~5.000 woorden/dag.
+- Kan, net als Google, op elk moment zonder waarschuwing anders gaan reageren — het is en blijft een niet-gecontracteerde gratis dienst.
+
+### Alternatieven mocht MyMemory ook blokkeren
+
+`deep-translator` ondersteunt meerdere vertaal-backends via dezelfde interface, dus een switch is in `translate/translate.py` één regel (`_translator = MyMemoryTranslator(...)` vervangen), geen herschrijving:
+
+- **DeepL API Free** (aanbevolen upgrade) — officiële, gedocumenteerde API, gratis tot 500.000 tekens/maand, betere vertaalkwaliteit, geen 500-tekenlimiet. Vereist een gratis DeepL-account + API-key. `DeeplTranslator(api_key=..., source='nl', target='en')`.
+- **Argos Translate** — volledig offline/open-source, geen API-key, geen limiet, geen ToS-risico. Kwaliteit merkbaar lager dan Google/DeepL, maar geen netwerkafhankelijkheid.
+- **Google** (`GoogleTranslator`) — was de oorspronkelijke keuze, vanaf deze machine geblokkeerd; kan op een ander netwerk mogelijk wel werken.
+- **Handmatig** — de oorspronkelijke aanpak voor doorlopende redactie: zelf de Engelse tekst intypen per veld in `/admin`. Blijft altijd beschikbaar als terugvaloptie, ongeacht wat er met een vertaal-API gebeurt.
 
 ## Kosten
 

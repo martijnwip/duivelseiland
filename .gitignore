@@ -9,3 +9,5 @@ dev.db
 .pi
 .agents
 .vercel
+data/
+translate/.venv/

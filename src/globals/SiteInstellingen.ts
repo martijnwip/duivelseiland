@@ -17,6 +17,11 @@ export const SiteInstellingen: GlobalConfig = {
       required: true,
     },
     {
+      name: 'intro',
+      type: 'textarea',
+      localized: true,
+    },
+    {
       name: 'menu',
       type: 'array',
       fields: [
@@ -24,6 +29,7 @@ export const SiteInstellingen: GlobalConfig = {
           name: 'label',
           type: 'text',
           required: true,
+          localized: true,
         },
         {
           name: 'url',
@@ -35,6 +41,7 @@ export const SiteInstellingen: GlobalConfig = {
     {
       name: 'footer',
       type: 'textarea',
+      localized: true,
     },
     {
       name: 'contactgegevens',

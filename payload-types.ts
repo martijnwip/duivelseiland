@@ -100,14 +100,14 @@ export interface Config {
   db: {
     defaultIDType: number;
   };
-  fallbackLocale: null;
+  fallbackLocale: ('false' | 'none' | 'null') | false | null | ('nl' | 'en') | ('nl' | 'en')[];
   globals: {
     'site-instellingen': SiteInstellingen;
   };
   globalsSelect: {
     'site-instellingen': SiteInstellingenSelect<false> | SiteInstellingenSelect<true>;
   };
-  locale: null;
+  locale: 'nl' | 'en';
   widgets: {
     collections: CollectionsWidget;
   };
@@ -766,6 +766,7 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 export interface SiteInstellingen {
   id: number;
   siteNaam: string;
+  intro?: string | null;
   menu?:
     | {
         label: string;
@@ -788,6 +789,7 @@ export interface SiteInstellingen {
  */
 export interface SiteInstellingenSelect<T extends boolean = true> {
   siteNaam?: T;
+  intro?: T;
   menu?:
     | T
     | {
