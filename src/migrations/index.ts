@@ -3,6 +3,8 @@ import * as migration_20260912_094959_t9_content_collections from './20260912_09
 import * as migration_20260912_170239_localization from './20260912_170239_localization';
 import * as migration_20260912_172117_hero_slides from './20260912_172117_hero_slides';
 import * as migration_20260916_095659_intro_veld from './20260916_095659_intro_veld';
+import * as migration_20260916_130959_historische_fotos from './20260916_130959_historische_fotos';
+import * as migration_20260916_133300_slideshows from './20260916_133300_slideshows';
 
 export const migrations = [
   {
@@ -29,5 +31,15 @@ export const migrations = [
     up: migration_20260916_095659_intro_veld.up,
     down: migration_20260916_095659_intro_veld.down,
     name: '20260916_095659_intro_veld',
+  },
+  {
+    up: migration_20260916_130959_historische_fotos.up,
+    down: migration_20260916_130959_historische_fotos.down,
+    name: '20260916_130959_historische_fotos',
+  },
+  {
+    up: migration_20260916_133300_slideshows.up,
+    down: migration_20260916_133300_slideshows.down,
+    name: '20260916_133300_slideshows'
   },
 ];

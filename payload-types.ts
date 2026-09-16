@@ -77,6 +77,8 @@ export interface Config {
     vakmensen: Vakmensen;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
+    'historische-fotos': HistorischeFoto;
+    slideshows: Slideshow;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -94,6 +96,8 @@ export interface Config {
     vakmensen: VakmensenSelect<false> | VakmensenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
+    'historische-fotos': HistorischeFotosSelect<false> | HistorischeFotosSelect<true>;
+    slideshows: SlideshowsSelect<false> | SlideshowsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -463,6 +467,48 @@ export interface HeroSlide {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "historische-fotos".
+ */
+export interface HistorischeFoto {
+  id: number;
+  title: string;
+  description?: string | null;
+  geografischeAanduiding?: string | null;
+  /**
+   * Externe afbeeldings-URL (bijv. Stadsarchief beeldbank). Wordt rechtstreeks als <img src> gebruikt, niet gehost op deze site.
+   */
+  imageUrl: string;
+  /**
+   * Link naar de originele bronpagina (bronvermelding, later opnieuw importeren).
+   */
+  bronUrl: string;
+  status: 'draft' | 'published';
+  author?: (number | null) | User;
+  slideshows?: (number | Slideshow)[] | null;
+  /**
+   * Bepaalt de volgorde binnen een slideshow (samen met de order van HeroSlides).
+   */
+  order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "slideshows".
+ */
+export interface Slideshow {
+  id: number;
+  name: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -524,6 +570,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'hero-slides';
         value: number | HeroSlide;
+      } | null)
+    | ({
+        relationTo: 'historische-fotos';
+        value: number | HistorischeFoto;
+      } | null)
+    | ({
+        relationTo: 'slideshows';
+        value: number | Slideshow;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -765,6 +819,34 @@ export interface HeroSlidesSelect<T extends boolean = true> {
   order?: T;
   status?: T;
   author?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "historische-fotos_select".
+ */
+export interface HistorischeFotosSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  geografischeAanduiding?: T;
+  imageUrl?: T;
+  bronUrl?: T;
+  status?: T;
+  author?: T;
+  slideshows?: T;
+  order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "slideshows_select".
+ */
+export interface SlideshowsSelect<T extends boolean = true> {
+  name?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }

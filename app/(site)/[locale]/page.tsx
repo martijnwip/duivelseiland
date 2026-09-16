@@ -3,29 +3,65 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import config from '@payload-config';
 import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
 
-async function getHeroSlides(): Promise<HeroSlide[]> {
+const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
+
+async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
   const payload = await getPayload({ config });
 
-  const { docs } = await payload.find({
-    collection: 'hero-slides',
-    where: { status: { equals: 'published' } },
-    sort: 'order',
-    depth: 1,
-  });
+  const [{ docs: heroSlideDocs }, homepageSlideshow] = await Promise.all([
+    payload.find({
+      collection: 'hero-slides',
+      where: { status: { equals: 'published' } },
+      sort: 'order',
+      depth: 1,
+    }),
+    payload.find({
+      collection: 'slideshows',
+      where: { slug: { equals: HOMEPAGE_SLIDESHOW_SLUG } },
+      limit: 1,
+    }),
+  ]);
 
-  return docs
+  const heroSlides = heroSlideDocs
     .filter((slide) => typeof slide.image === 'object' && slide.image !== null)
     .map((slide) => {
       const image = slide.image as Exclude<typeof slide.image, number>;
       const imageUrl = image.sizes?.hero?.url ?? image.url ?? '';
 
       return {
-        id: String(slide.id),
+        id: `hero-slides-${slide.id}`,
+        order: slide.order,
         imageUrl,
         alt: image.alt,
         caption: image.caption ?? null,
       };
     });
+
+  const homepageSlideshowId = homepageSlideshow.docs[0]?.id;
+
+  const historischeFotos = homepageSlideshowId
+    ? (
+        await payload.find({
+          collection: 'historische-fotos',
+          where: {
+            status: { equals: 'published' },
+            slideshows: { contains: homepageSlideshowId },
+          },
+          sort: 'order',
+          locale: locale as 'nl' | 'en',
+        })
+      ).docs.map((foto) => ({
+        id: `historische-fotos-${foto.id}`,
+        order: foto.order ?? 0,
+        imageUrl: foto.imageUrl,
+        alt: foto.title,
+        caption: foto.description ?? null,
+      }))
+    : [];
+
+  return [...heroSlides, ...historischeFotos]
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map(({ id, imageUrl, alt, caption }) => ({ id, imageUrl, alt, caption }));
 }
 
 export default async function HomePage({
@@ -43,7 +79,7 @@ export default async function HomePage({
     locale: locale as 'nl' | 'en',
   });
 
-  const slides = await getHeroSlides();
+  const slides = await getHeroSlides(locale);
 
   return (
     <main>
