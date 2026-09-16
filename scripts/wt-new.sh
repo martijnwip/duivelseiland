@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Maakt een nieuwe git worktree + branch en zet de lokale (niet-in-git) bestanden
-# over die de agent-harness en de app nodig hebben: .agents, .claude, .env*.
+# over die de agent-harness en de app nodig hebben: .agents, .claude, .env*, dev.db.
 set -euo pipefail
 
 if [ $# -ne 1 ]; then
@@ -52,6 +52,15 @@ for f in "$REPO_ROOT"/.env*; do
   cp "$f" "$WORKTREE_DIR/"
 done
 shopt -u nullglob dotglob
+
+# dev.db (en eventuele -wal/-shm sidecars) meekopiëren zodat de nieuwe worktree
+# met dezelfde lokale content/test-users start in plaats van een lege database.
+shopt -s nullglob
+for f in "$REPO_ROOT"/dev.db*; do
+  echo "Kopiëren: $(basename "$f")"
+  cp "$f" "$WORKTREE_DIR/"
+done
+shopt -u nullglob
 
 echo "bun install draaien in $WORKTREE_DIR..."
 (cd "$WORKTREE_DIR" && bun install)
