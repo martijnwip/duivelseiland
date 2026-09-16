@@ -45,8 +45,12 @@ export default function StyleguidePage() {
 
         <StyleguideSection title="Typografie">
           <div>
-            <p className="text-sm text-muted">font-heading (Lexend)</p>
+            <p className="text-sm text-muted">font-serif (Fraunces) — alleen h1</p>
             <h1 className="text-4xl">Kop niveau 1 (h1)</h1>
+          </div>
+
+          <div>
+            <p className="text-sm text-muted">font-heading (Lexend) — h2 t/m h6</p>
             <h2 className="text-3xl">Kop niveau 2 (h2)</h2>
             <h3 className="text-2xl">Kop niveau 3 (h3)</h3>
             <h4 className="text-xl">Kop niveau 4 (h4)</h4>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Lexend, Source_Sans_3 } from 'next/font/google';
+import { Fraunces, Lexend, Source_Sans_3 } from 'next/font/google';
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { Header } from '@/components/site/Header';
@@ -18,6 +18,12 @@ const sourceSans = Source_Sans_3({
   variable: '--font-source-sans',
 });
 
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-fraunces',
+});
+
 export const metadata: Metadata = {
   title: 'Duivelseiland',
   description: 'Wijkwebsite voor Amsterdam',
@@ -34,7 +40,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
   const menu = site.menu ?? [];
 
   return (
-    <html lang="nl" className={`${lexend.variable} ${sourceSans.variable}`}>
+    <html lang="nl" className={`${lexend.variable} ${sourceSans.variable} ${fraunces.variable}`}>
       <body>
         <Header siteNaam={siteNaam} menu={menu} />
         {children}

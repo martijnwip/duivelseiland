@@ -21,7 +21,7 @@ export function Footer({
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mb-12 grid gap-12 md:grid-cols-3">
           <div>
-            <span className="font-heading text-xl font-bold">{siteNaam}</span>
+            <span className="font-serif text-xl font-bold">{siteNaam}</span>
           </div>
 
           {menu.length > 0 ? (
