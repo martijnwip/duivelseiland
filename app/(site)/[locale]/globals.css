@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Warm, archival community palette — crème/inkt basis (Stadsarchief-sfeer),
+     gedempt flessengroen als knipoog naar de Heineken-brouwerij, koper en
+     terracotta als warme accenten. Zie ook /styleguide. */
+  --color-primary: #3b5d42;
+  --color-secondary: #c99a46;
+  --color-cta: #b5482e;
+  --color-cta-hover: #9c3a24;
+  --color-background: #f5efe3;
+  --color-text: #2b241c;
+  --color-border: #e3d5be;
+  --color-muted: #6b5f4f;
+
+  --font-heading: var(--font-lexend);
+  --font-body: var(--font-source-sans);
+  /* Ondergeschikt serif-accent — alleen de h1 (paginatitel), zie /styleguide. */
+  --font-serif: var(--font-fraunces);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+h1 {
+  font-family: var(--font-serif);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}

@@ -76,6 +76,7 @@ export interface Config {
     'duivelse-kunst': DuivelseKunst;
     vakmensen: Vakmensen;
     'praktische-info': PraktischeInfo;
+    'hero-slides': HeroSlide;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -92,6 +93,7 @@ export interface Config {
     'duivelse-kunst': DuivelseKunstSelect<false> | DuivelseKunstSelect<true>;
     vakmensen: VakmensenSelect<false> | VakmensenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
+    'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -191,6 +193,14 @@ export interface Media {
       filename?: string | null;
     };
     card?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
+    hero?: {
       url?: string | null;
       width?: number | null;
       height?: number | null;
@@ -440,6 +450,19 @@ export interface PraktischeInfo {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero-slides".
+ */
+export interface HeroSlide {
+  id: number;
+  image: number | Media;
+  order: number;
+  status: 'draft' | 'published';
+  author?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -497,6 +520,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'praktische-info';
         value: number | PraktischeInfo;
+      } | null)
+    | ({
+        relationTo: 'hero-slides';
+        value: number | HeroSlide;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -596,6 +623,16 @@ export interface MediaSelect<T extends boolean = true> {
               filename?: T;
             };
         card?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
+        hero?:
           | T
           | {
               url?: T;
@@ -716,6 +753,18 @@ export interface PraktischeInfoSelect<T extends boolean = true> {
   content?: T;
   date?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero-slides_select".
+ */
+export interface HeroSlidesSelect<T extends boolean = true> {
+  image?: T;
+  order?: T;
+  status?: T;
+  author?: T;
   updatedAt?: T;
   createdAt?: T;
 }
