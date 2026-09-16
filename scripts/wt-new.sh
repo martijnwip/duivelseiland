@@ -56,5 +56,13 @@ shopt -u nullglob dotglob
 echo "bun install draaien in $WORKTREE_DIR..."
 (cd "$WORKTREE_DIR" && bun install)
 
+# translate:setup zet de Python-venv voor de vertaal-tooling op (translate/.venv
+# staat in .gitignore, dus dit moet per worktree opnieuw). Alleen relevant op
+# branches met de vertaalfeature; overgeslagen als het script niet bestaat.
+if grep -q '"translate:setup"' "$WORKTREE_DIR/package.json" 2>/dev/null; then
+  echo "translate:setup draaien in $WORKTREE_DIR..."
+  (cd "$WORKTREE_DIR" && bun run translate:setup)
+fi
+
 echo
 echo "Klaar. Worktree: $WORKTREE_DIR (branch: $NAME)"
