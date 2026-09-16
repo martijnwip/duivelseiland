@@ -1,1 +1,29 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-primary: #0891b2;
+  --color-secondary: #22d3ee;
+  --color-cta: #f97316;
+  --color-cta-hover: #ea580c;
+  --color-background: #ecfeff;
+  --color-text: #164e63;
+  --color-border: #a5f3fc;
+  --color-muted: #334155;
+
+  --font-heading: var(--font-lexend);
+  --font-body: var(--font-source-sans);
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}

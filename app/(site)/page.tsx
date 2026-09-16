@@ -1,6 +1,6 @@
 import { getPayload } from 'payload';
 import config from '@payload-config';
-import { HeroSlideshow, type HeroSlide } from '../../src/components/HeroSlideshow';
+import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
 
 async function getHeroSlides(): Promise<HeroSlide[]> {
   const payload = await getPayload({ config });
@@ -34,8 +34,8 @@ export default async function HomePage() {
     <main>
       <HeroSlideshow slides={slides} />
       <div className="mx-auto max-w-3xl px-4 py-8">
-        <h1 className="text-3xl font-bold">Duivelseiland</h1>
-        <p className="mt-2 text-gray-600">Deze site is in ontwikkeling.</p>
+        <h1 className="text-3xl font-bold text-primary">Duivelseiland</h1>
+        <p className="mt-2 text-muted">Deze site is in ontwikkeling.</p>
       </div>
     </main>
   );
