@@ -1,24 +1,8 @@
 import type { CollectionConfig } from 'payload';
-import { revalidatePath } from 'next/cache';
 import { isRedacteurOrAdminField } from '../access/isAdmin';
 import { editorOnlyContentAccess } from '../access/contentAccess';
 import { setAuthor } from './shared/setAuthor';
-import { routing } from '../i18n/routing';
-
-/**
- * revalidatePath needs an active Next.js request context (works from
- * /admin and /api), which isn't present when the Local API is invoked
- * from a standalone script (e.g. scripts/seed-hero-slides.ts).
- */
-function revalidateHome() {
-  try {
-    for (const locale of routing.locales) {
-      revalidatePath(locale === routing.defaultLocale ? '/' : `/${locale}`);
-    }
-  } catch {
-    // Not running inside a Next.js request — nothing to revalidate.
-  }
-}
+import { revalidateHome } from './shared/revalidateHome';
 
 export const HeroSlides: CollectionConfig = {
   slug: 'hero-slides',

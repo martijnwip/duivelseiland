@@ -9,10 +9,12 @@ import { Agenda } from './collections/Agenda';
 import { DuivelseKunst } from './collections/DuivelseKunst';
 import { Geschiedenis } from './collections/Geschiedenis';
 import { HeroSlides } from './collections/HeroSlides';
+import { HistorischeFotos } from './collections/HistorischeFotos';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
 import { PraktischeInfo } from './collections/PraktischeInfo';
+import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
 import { Vakmensen } from './collections/Vakmensen';
 import { SiteInstellingen } from './globals/SiteInstellingen';
@@ -35,6 +37,8 @@ export default buildConfig({
     Vakmensen,
     PraktischeInfo,
     HeroSlides,
+    HistorischeFotos,
+    Slideshows,
   ],
 
   globals: [SiteInstellingen],
