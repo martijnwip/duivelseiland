@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { Cross1Icon, HamburgerMenuIcon } from '@radix-ui/react-icons';
 
 export type MenuItem = { label: string; url: string };
 
@@ -38,9 +39,11 @@ export function Header({ siteNaam, menu }: { siteNaam: string; menu: MenuItem[] 
             aria-label="Menu openen of sluiten"
             onClick={() => setMobileOpen((open) => !open)}
           >
-            <svg className="h-6 w-6" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            {mobileOpen ? (
+              <Cross1Icon className="h-6 w-6" aria-hidden />
+            ) : (
+              <HamburgerMenuIcon className="h-6 w-6" aria-hidden />
+            )}
           </button>
         ) : null}
       </div>
