@@ -9,3 +9,6 @@ dev.db
 .claude
 .agents
 .vercel
+data/
+translate/.venv/
+__pycache__/

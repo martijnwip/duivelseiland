@@ -37,12 +37,24 @@ export default buildConfig({
 
   globals: [SiteInstellingen],
 
+  localization: {
+    locales: [
+      { label: 'Nederlands', code: 'nl' },
+      { label: 'English', code: 'en' },
+    ],
+    defaultLocale: 'nl',
+    fallback: true,
+  },
+
   db: sqliteAdapter({
     client: {
       url: process.env.DATABASE_URI || process.env.TURSO_DATABASE_URL || 'file:./dev.db',
       authToken: process.env.DATABASE_AUTH_TOKEN || process.env.TURSO_AUTH_TOKEN,
     },
     autoIncrement: true,
+    // Schema is managed by migrations (src/migrations); disable dev-mode
+    // auto-push so it doesn't drift from / conflict with applied migrations.
+    push: false,
   }),
 
   editor: lexicalEditor(),

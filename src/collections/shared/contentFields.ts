@@ -11,6 +11,7 @@ export const contentFields = (): Field[] => [
     name: 'title',
     type: 'text',
     required: true,
+    localized: true,
   },
   slugField(),
   {
@@ -37,6 +38,7 @@ export const contentFields = (): Field[] => [
   {
     name: 'content',
     type: 'richText',
+    localized: true,
   },
   {
     name: 'date',

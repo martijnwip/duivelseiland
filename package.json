@@ -6,7 +6,14 @@
     "dev": "bun --bun next dev",
     "build": "bun --bun node_modules/.bin/payload migrate --disable-transpile && bun --bun next build",
     "start": "bun --bun next start",
-    "payload": "bun --bun node_modules/.bin/payload --disable-transpile"
+    "payload": "bun --bun node_modules/.bin/payload --disable-transpile",
+    "seed:admin": "bun run scripts/seed-admin.ts",
+    "export:local": "bun run scripts/export.ts local",
+    "export:prod": "bun --env-file=.env.production.local run scripts/export.ts prod",
+    "reseed:local": "bun run scripts/reseed.ts",
+    "reseed:prod": "bun --env-file=.env.production.local run scripts/reseed.ts",
+    "translate": "translate/.venv/bin/python translate/translate.py",
+    "translate:setup": "/opt/homebrew/bin/python3 -m venv translate/.venv && translate/.venv/bin/pip install -r translate/requirements.txt"
   },
   "dependencies": {
     "@libsql/client": "^0.14.0",
@@ -15,6 +22,7 @@
     "@payloadcms/richtext-lexical": "3.89.0",
     "@payloadcms/storage-vercel-blob": "3.89.0",
     "next": "15.4.11",
+    "next-intl": "^4.14.4",
     "payload": "3.89.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
