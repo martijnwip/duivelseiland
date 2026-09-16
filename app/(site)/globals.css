@@ -1,14 +1,17 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-primary: #0891b2;
-  --color-secondary: #22d3ee;
-  --color-cta: #f97316;
-  --color-cta-hover: #ea580c;
-  --color-background: #ecfeff;
-  --color-text: #164e63;
-  --color-border: #a5f3fc;
-  --color-muted: #334155;
+  /* Warm, archival community palette — crème/inkt basis (Stadsarchief-sfeer),
+     gedempt flessengroen als knipoog naar de Heineken-brouwerij, koper en
+     terracotta als warme accenten. Zie ook /styleguide. */
+  --color-primary: #3b5d42;
+  --color-secondary: #c99a46;
+  --color-cta: #b5482e;
+  --color-cta-hover: #9c3a24;
+  --color-background: #f5efe3;
+  --color-text: #2b241c;
+  --color-border: #e3d5be;
+  --color-muted: #6b5f4f;
 
   --font-heading: var(--font-lexend);
   --font-body: var(--font-source-sans);
