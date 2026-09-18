@@ -13,6 +13,7 @@ import { DuivelseKunst } from './collections/DuivelseKunst';
 import { Geschiedenis } from './collections/Geschiedenis';
 import { HeroSlides } from './collections/HeroSlides';
 import { HistorischeFotos } from './collections/HistorischeFotos';
+import { InviteLinks } from './collections/InviteLinks';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
@@ -33,6 +34,7 @@ export default buildConfig({
 
   collections: [
     Users,
+    InviteLinks,
     Media,
     Nieuws,
     Agenda,

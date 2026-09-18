@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     users: User;
+    'invite-links': InviteLink;
     media: Media;
     nieuws: Nieuw;
     agenda: Agenda;
@@ -90,6 +91,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
+    'invite-links': InviteLinksSelect<false> | InviteLinksSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     nieuws: NieuwsSelect<false> | NieuwsSelect<true>;
     agenda: AgendaSelect<false> | AgendaSelect<true>;
@@ -167,6 +169,28 @@ export interface User {
   updatedAt: string;
   createdAt: string;
   collection: 'users';
+}
+/**
+ * Deelbare uitnodigingslinks (bijv. via WhatsApp) — de ontvanger vult zelf zijn e-mailadres in.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "invite-links".
+ */
+export interface InviteLink {
+  id: number;
+  token?: string | null;
+  /**
+   * Deel deze link (bijv. via WhatsApp).
+   */
+  inviteUrl?: string | null;
+  role: 'admin' | 'redacteur' | 'auteur';
+  status: 'pending' | 'accepted';
+  expiresAt?: string | null;
+  createdBy?: (number | null) | User;
+  acceptedBy?: (number | null) | User;
+  acceptedAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -588,6 +612,10 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null)
     | ({
+        relationTo: 'invite-links';
+        value: number | InviteLink;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -695,6 +723,22 @@ export interface UsersSelect<T extends boolean = true> {
   role?: T;
   email?: T;
   image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "invite-links_select".
+ */
+export interface InviteLinksSelect<T extends boolean = true> {
+  token?: T;
+  inviteUrl?: T;
+  role?: T;
+  status?: T;
+  expiresAt?: T;
+  createdBy?: T;
+  acceptedBy?: T;
+  acceptedAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }
