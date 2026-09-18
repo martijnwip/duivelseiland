@@ -17,6 +17,7 @@ import { PraktischeInfo } from './collections/PraktischeInfo';
 import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
 import { Vakmensen } from './collections/Vakmensen';
+import { OverDeNaam } from './globals/OverDeNaam';
 import { SiteInstellingen } from './globals/SiteInstellingen';
 
 const filename = fileURLToPath(import.meta.url);
@@ -41,7 +42,7 @@ export default buildConfig({
     Slideshows,
   ],
 
-  globals: [SiteInstellingen],
+  globals: [SiteInstellingen, OverDeNaam],
 
   localization: {
     locales: [

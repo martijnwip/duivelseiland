@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { Fraunces, Lexend, Source_Sans_3 } from 'next/font/google';
 import { getPayload } from 'payload';
+import { ThemeProvider } from 'next-themes';
 import config from '@payload-config';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/site/Header';
@@ -77,16 +78,20 @@ export default async function SiteLayout({
     <html
       lang={locale}
       className={`${lexend.variable} ${sourceSans.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
     >
       <body>
-        <Header siteNaam={siteNaam} menu={menu} />
-        {children}
-        <Footer
-          siteNaam={siteNaam}
-          menu={menu}
-          contactgegevens={site.contactgegevens}
-          footerTekst={site.footer}
-        />
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+          <Header siteNaam={siteNaam} menu={menu} locale={locale} />
+          {children}
+          <Footer
+            siteNaam={siteNaam}
+            menu={menu}
+            locale={locale}
+            contactgegevens={site.contactgegevens}
+            footerTekst={site.footer}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );

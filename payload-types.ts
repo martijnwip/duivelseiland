@@ -109,9 +109,11 @@ export interface Config {
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('nl' | 'en') | ('nl' | 'en')[];
   globals: {
     'site-instellingen': SiteInstellingen;
+    'over-de-naam': OverDeNaam;
   };
   globalsSelect: {
     'site-instellingen': SiteInstellingenSelect<false> | SiteInstellingenSelect<true>;
+    'over-de-naam': OverDeNaamSelect<false> | OverDeNaamSelect<true>;
   };
   locale: 'nl' | 'en';
   widgets: {
@@ -916,6 +918,31 @@ export interface SiteInstellingen {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "over-de-naam".
+ */
+export interface OverDeNaam {
+  id: number;
+  titel: string;
+  inhoud?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-instellingen_select".
  */
 export interface SiteInstellingenSelect<T extends boolean = true> {
@@ -936,6 +963,17 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
         telefoon?: T;
         adres?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "over-de-naam_select".
+ */
+export interface OverDeNaamSelect<T extends boolean = true> {
+  titel?: T;
+  inhoud?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

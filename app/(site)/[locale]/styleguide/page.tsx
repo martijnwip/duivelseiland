@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 // Tailwind's scanner needs full literal class names in the source — a
 // template-literal like `bg-${name}` would never be picked up and generated.
 const colors = [
-  { name: 'primary', hex: '#3b5d42', swatchClass: 'bg-primary' },
-  { name: 'secondary', hex: '#c99a46', swatchClass: 'bg-secondary' },
-  { name: 'cta', hex: '#b5482e', swatchClass: 'bg-cta' },
-  { name: 'cta-hover', hex: '#9c3a24', swatchClass: 'bg-cta-hover' },
-  { name: 'background', hex: '#f5efe3', swatchClass: 'bg-background' },
-  { name: 'text', hex: '#2b241c', swatchClass: 'bg-text' },
-  { name: 'border', hex: '#e3d5be', swatchClass: 'bg-border' },
-  { name: 'muted', hex: '#6b5f4f', swatchClass: 'bg-muted' },
+  { name: 'primary', hex: '#3b5d42', darkHex: '#6b9a73', swatchClass: 'bg-primary' },
+  { name: 'secondary', hex: '#c99a46', darkHex: '#e0b368', swatchClass: 'bg-secondary' },
+  { name: 'cta', hex: '#b5482e', darkHex: '#e2703f', swatchClass: 'bg-cta' },
+  { name: 'cta-hover', hex: '#9c3a24', darkHex: '#c85a2e', swatchClass: 'bg-cta-hover' },
+  { name: 'background', hex: '#f5efe3', darkHex: '#211c16', swatchClass: 'bg-background' },
+  { name: 'text', hex: '#2b241c', darkHex: '#f1e8d8', swatchClass: 'bg-text' },
+  { name: 'border', hex: '#e3d5be', darkHex: '#4a4136', swatchClass: 'bg-border' },
+  { name: 'muted', hex: '#6b5f4f', darkHex: '#a99a85', swatchClass: 'bg-muted' },
 ];
 
 export default function StyleguidePage() {
@@ -34,7 +34,9 @@ export default function StyleguidePage() {
               <div key={color.name}>
                 <div className={`h-16 rounded border border-border ${color.swatchClass}`} />
                 <p className="mt-2 text-sm font-medium">{color.name}</p>
-                <p className="text-xs text-muted">{color.hex}</p>
+                <p className="text-xs text-muted">
+                  licht {color.hex} · donker {color.darkHex}
+                </p>
                 <code className="text-xs text-muted">
                   bg-{color.name} / text-{color.name} / border-{color.name}
                 </code>

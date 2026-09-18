@@ -1,23 +1,26 @@
 import Link from 'next/link';
 import type { MenuItem } from './Header';
+import { localizedHref } from '@/i18n/localizedHref';
 
 export type ContactInfo = { email?: string | null; telefoon?: string | null; adres?: string | null };
 
 export function Footer({
   siteNaam,
   menu,
+  locale,
   contactgegevens,
   footerTekst,
 }: {
   siteNaam: string;
   menu: MenuItem[];
+  locale: string;
   contactgegevens?: ContactInfo;
   footerTekst?: string | null;
 }) {
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
   return (
-    <footer className="bg-text py-16 text-white">
+    <footer className="bg-[#2b241c] py-16 text-white">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mb-12 grid gap-12 md:grid-cols-3">
           <div>
@@ -30,7 +33,7 @@ export function Footer({
               <ul className="space-y-2 text-gray-300">
                 {menu.map((item) => (
                   <li key={item.url}>
-                    <Link href={item.url} className="transition-colors hover:text-white">
+                    <Link href={localizedHref(locale, item.url)} className="transition-colors hover:text-white">
                       {item.label}
                     </Link>
                   </li>

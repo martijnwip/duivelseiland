@@ -19,8 +19,22 @@
   --font-serif: var(--font-fraunces);
 }
 
+:root[data-theme='dark'] {
+  /* Zelfde warme archief-identiteit, aangepast voor voldoende contrast op een
+     donkere achtergrond. Zie /styleguide voor licht/donker naast elkaar. */
+  --color-primary: #6b9a73;
+  --color-secondary: #e0b368;
+  --color-cta: #e2703f;
+  --color-cta-hover: #c85a2e;
+  --color-background: #211c16;
+  --color-text: #f1e8d8;
+  --color-border: #4a4136;
+  --color-muted: #a99a85;
+}
+
 body {
   font-family: var(--font-body);
+  background-color: var(--color-background);
   color: var(--color-text);
 }
 
