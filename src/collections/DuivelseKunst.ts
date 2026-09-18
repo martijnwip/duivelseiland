@@ -7,6 +7,11 @@ export const DuivelseKunst: CollectionConfig = {
   slug: 'duivelse-kunst',
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: authoredContentAccess,
   hooks: {

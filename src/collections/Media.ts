@@ -4,6 +4,13 @@ import { setAuthor } from './shared/setAuthor';
 
 export const Media: CollectionConfig = {
   slug: 'media',
+  admin: {
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
+  },
   hooks: {
     beforeChange: [setAuthor('uploadedBy')],
   },

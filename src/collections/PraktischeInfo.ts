@@ -7,6 +7,11 @@ export const PraktischeInfo: CollectionConfig = {
   slug: 'praktische-info',
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: editorOnlyContentAccess,
   hooks: {

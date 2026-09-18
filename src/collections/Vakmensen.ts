@@ -7,6 +7,11 @@ export const Vakmensen: CollectionConfig = {
   slug: 'vakmensen',
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: authoredContentAccess,
   hooks: {
