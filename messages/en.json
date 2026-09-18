@@ -44,5 +44,19 @@
     "readMore": "Read more",
     "backToOverview": "Back to overview",
     "empty": "No content available yet."
+  },
+  "invite": {
+    "heading": "You've been invited",
+    "description": "Enter your email address to create an account for the Duivelseiland admin panel.",
+    "emailLabel": "Email address",
+    "emailPlaceholder": "name@example.com",
+    "submit": "Submit",
+    "submitting": "Submitting…",
+    "successHeading": "Check your email",
+    "successDescription": "We've sent a login link to your email address. Click it to log in.",
+    "invalidToken": "This invite link is invalid or could not be found.",
+    "usedToken": "This invite link has already been used.",
+    "expiredToken": "This invite link has expired.",
+    "genericError": "Something went wrong. Please try again later."
   }
 }

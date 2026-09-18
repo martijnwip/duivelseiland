@@ -7,6 +7,11 @@ export const Agenda: CollectionConfig = {
   slug: 'agenda',
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: authoredContentAccess,
   hooks: {

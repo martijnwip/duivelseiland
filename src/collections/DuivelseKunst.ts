@@ -11,6 +11,11 @@ export const DuivelseKunst: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: authoredContentAccess,
   hooks: {
