@@ -6,5 +6,19 @@
   "home": {
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "Deze site is in ontwikkeling."
+  },
+  "invite": {
+    "heading": "Je bent uitgenodigd",
+    "description": "Vul je e-mailadres in om een account aan te maken voor het Duivelseiland-beheerpaneel.",
+    "emailLabel": "E-mailadres",
+    "emailPlaceholder": "naam@voorbeeld.nl",
+    "submit": "Versturen",
+    "submitting": "Bezig…",
+    "successHeading": "Check je e-mail",
+    "successDescription": "We hebben een inloglink gestuurd naar je e-mailadres. Klik daarop om in te loggen.",
+    "invalidToken": "Deze uitnodigingslink is ongeldig of niet gevonden.",
+    "usedToken": "Deze uitnodigingslink is al gebruikt.",
+    "expiredToken": "Deze uitnodigingslink is verlopen.",
+    "genericError": "Er is iets misgegaan. Probeer het later opnieuw."
   }
 }

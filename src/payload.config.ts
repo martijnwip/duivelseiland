@@ -5,11 +5,15 @@ import { buildConfig } from 'payload';
 import path from 'path';
 import sharp from 'sharp';
 import { fileURLToPath } from 'url';
+import { betterAuth } from 'better-auth';
+import { betterAuthCollections, createBetterAuthPlugin, payloadAdapter } from '@delmaredigital/payload-better-auth';
+import { betterAuthOptions } from './lib/auth/config';
 import { Agenda } from './collections/Agenda';
 import { DuivelseKunst } from './collections/DuivelseKunst';
 import { Geschiedenis } from './collections/Geschiedenis';
 import { HeroSlides } from './collections/HeroSlides';
 import { HistorischeFotos } from './collections/HistorischeFotos';
+import { InviteLinks } from './collections/InviteLinks';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
@@ -23,9 +27,11 @@ import { SiteInstellingen } from './globals/SiteInstellingen';
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  serverURL,
 
   admin: {
     // Custom component paths like '/components/admin/TranslateButton#default'
@@ -38,6 +44,7 @@ export default buildConfig({
 
   collections: [
     Users,
+    InviteLinks,
     Media,
     Nieuws,
     Agenda,
@@ -80,6 +87,32 @@ export default buildConfig({
   sharp,
 
   plugins: [
+    betterAuthCollections({
+      betterAuthOptions,
+      skipCollections: ['user'],
+      // De eigen rol-logica (isAdminField, laatste-admin-hook) blijft de enige
+      // bron van waarheid voor wie admin wordt — zie access.create in Users.ts.
+      firstUserAdmin: false,
+    }),
+    createBetterAuthPlugin({
+      createAuth: (payload) =>
+        betterAuth({
+          ...betterAuthOptions,
+          database: payloadAdapter({ payloadClient: payload }),
+          advanced: { database: { generateId: 'serial' } },
+          baseURL: serverURL,
+          secret: process.env.BETTER_AUTH_SECRET,
+          trustedOrigins: [serverURL],
+        }),
+      admin: {
+        login: {
+          // Alle drie de rollen (auteur/redacteur/admin) loggen in op /admin;
+          // de plugin's eigen default (alleen 'admin') zou de andere twee blokkeren.
+          requiredRole: null,
+          enableSignUp: false,
+        },
+      },
+    }),
     vercelBlobStorage({
       collections: {
         media: true,
