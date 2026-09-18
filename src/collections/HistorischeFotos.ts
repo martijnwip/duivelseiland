@@ -11,6 +11,9 @@ export const HistorischeFotos: CollectionConfig = {
     useAsTitle: 'title',
     components: {
       beforeListTable: ['/collections/HistorischeFotosImportButton#HistorischeFotosImportButton'],
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
     },
   },
   access: authoredContentAccess,
