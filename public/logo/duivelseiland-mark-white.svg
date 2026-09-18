@@ -1,0 +1,20 @@
+<svg viewBox="150 25 380 475" xmlns="http://www.w3.org/2000/svg">
+  <title>Duivelseiland devil-smiley mark — white (reverse)</title>
+  <defs>
+    <mask id="knockout" maskUnits="userSpaceOnUse" x="150" y="25" width="380" height="475">
+      <rect x="150" y="25" width="380" height="475" fill="#ffffff"/>
+      <ellipse cx="293.3" cy="226.7" rx="15" ry="30" fill="#000000"/>
+      <ellipse cx="386.7" cy="226.7" rx="15" ry="30" fill="#000000"/>
+      <path d="M270,289 C293,340 387,340 410,289" fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round"/>
+      <polygon points="281.5,307.0 300.9,320.0 276.0,336.1" fill="#000000"/>
+      <polygon points="379.1,320.0 398.5,307.0 404.0,336.1" fill="#000000"/>
+    </mask>
+  </defs>
+  <g mask="url(#knockout)">
+    <path d="M398.3,366.6 C448.8,417.2 413.9,471.6 332.2,460.0 C270.0,450.2 281.7,405.5 328.3,415.2 C359.4,421.1 351.6,448.3 390.5,456.1" fill="none" stroke="#ffffff" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+    <polygon points="390.5,438.7 417.7,456.1 386.7,475.6" fill="#ffffff"/>
+    <polygon points="212.4,166.0 178.0,73.6 304.3,147.6" fill="#ffffff"/>
+    <polygon points="467.6,166.0 502.0,73.6 375.7,147.6" fill="#ffffff"/>
+    <circle cx="340" cy="250" r="140" fill="#ffffff"/>
+  </g>
+</svg>
