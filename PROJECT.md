@@ -226,6 +226,8 @@ Rechten: `redacteur`/`admin` voor content en Media, alleen `admin` voor `SiteIns
 
 **LibreTranslate was overwogen als terugval-engine, maar bleek niet bruikbaar**: hun publieke demo vereist inmiddels een betaalde API-key (geen gratis laag meer — bevestigd via hun eigen prijzenpagina, `$29`/maand minimaal). Er is dus bewust **geen terugval-engine**; bij een mislukte of onbetrouwbare vertaling blijft het veld leeg voor handmatige invulling.
 
+MyMemory accepteert maximaal ~500 tekens per aanroep. Lange tekst (bv. een alinea zonder opmaak-onderbrekingen, dus één lange Lexical-tekstnode) wordt daarom automatisch in stukken van ~450 tekens geknipt op zinsgrenzen, apart vertaald en weer samengevoegd (`splitIntoChunks` in `engines.ts`) — de editor merkt hier niets van, behalve dat het even iets langer duurt. Als één van de stukken mislukt, blijft het hele veld onvertaald (liever niets dan een deels Engelse/deels Nederlandse mix).
+
 ### Offline scriptketen (handmatig terugvalalternatief)
 
 Voor een volledige bulkvertaling buiten de site om (bv. alle productie-content in één keer, zonder de admin te openen) is er een losstaande scriptketen: `scripts/export.ts` → `translate/translate.py` → `scripts/reseed.ts`. Deze vult **alleen lege Engelse velden** — bestaande (handmatig ingevoerde) Engelse tekst wordt nooit overschreven — en houdt bij `content` (rich text) de Lexical-opmaak (koppen, vet, lijsten) volledig intact; er wordt alleen tekst vertaald, geen structuur.
