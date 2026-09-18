@@ -7,6 +7,44 @@
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "Deze site is in ontwikkeling."
   },
+  "pages": {
+    "overDeNaam": {
+      "heading": "Waar komt de naam vandaan?"
+    },
+    "praktischeInfo": {
+      "heading": "Praktische info"
+    },
+    "fotos": {
+      "heading": "Foto's (Gallerij)"
+    },
+    "duivelseKunst": {
+      "heading": "Duivelse Kunst"
+    },
+    "vakmensen": {
+      "heading": "Vakmensen"
+    },
+    "interviews": {
+      "heading": "Interviews"
+    },
+    "geschiedenis": {
+      "heading": "Geschiedenis"
+    },
+    "buurtStatistieken": {
+      "heading": "Buurt statistieken",
+      "comingSoon": "Deze pagina is in ontwikkeling. Binnenkort meer cijfers over de buurt."
+    },
+    "nieuws": {
+      "heading": "Nieuws"
+    },
+    "agenda": {
+      "heading": "Agenda"
+    }
+  },
+  "content": {
+    "readMore": "Lees meer",
+    "backToOverview": "Terug naar overzicht",
+    "empty": "Nog geen content beschikbaar."
+  },
   "invite": {
     "heading": "Je bent uitgenodigd",
     "description": "Vul je e-mailadres in om een account aan te maken voor het Duivelseiland-beheerpaneel.",

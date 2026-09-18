@@ -10,7 +10,7 @@ export const HistorischeFotos: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     components: {
-      beforeListTable: ['/src/collections/HistorischeFotosImportButton#HistorischeFotosImportButton'],
+      beforeListTable: ['/collections/HistorischeFotosImportButton#HistorischeFotosImportButton'],
     },
   },
   access: authoredContentAccess,
@@ -56,7 +56,7 @@ export const HistorischeFotos: CollectionConfig = {
       type: 'ui',
       admin: {
         components: {
-          Field: '/src/collections/HistorischeFotosImagePreview#HistorischeFotosImagePreview',
+          Field: '/collections/HistorischeFotosImagePreview#HistorischeFotosImagePreview',
         },
       },
     },

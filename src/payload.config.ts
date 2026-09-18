@@ -21,6 +21,7 @@ import { PraktischeInfo } from './collections/PraktischeInfo';
 import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
 import { Vakmensen } from './collections/Vakmensen';
+import { OverDeNaam } from './globals/OverDeNaam';
 import { translateDocEndpoint } from './endpoints/translateDoc';
 import { SiteInstellingen } from './globals/SiteInstellingen';
 
@@ -58,7 +59,7 @@ export default buildConfig({
     Slideshows,
   ],
 
-  globals: [SiteInstellingen],
+  globals: [SiteInstellingen, OverDeNaam],
 
   endpoints: [translateDocEndpoint],
 

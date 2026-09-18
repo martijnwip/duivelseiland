@@ -6,6 +6,7 @@ import * as migration_20260916_095659_intro_veld from './20260916_095659_intro_v
 import * as migration_20260916_130959_historische_fotos from './20260916_130959_historische_fotos';
 import * as migration_20260916_133300_slideshows from './20260916_133300_slideshows';
 import * as migration_20260918_090608_magic_link_auth from './20260918_090608_magic_link_auth';
+import * as migration_20260918_092651_over_de_naam from './20260918_092651_over_de_naam';
 import * as migration_20260918_092814_invite_links from './20260918_092814_invite_links';
 
 export const migrations = [
@@ -48,6 +49,11 @@ export const migrations = [
     up: migration_20260918_090608_magic_link_auth.up,
     down: migration_20260918_090608_magic_link_auth.down,
     name: '20260918_090608_magic_link_auth',
+  },
+  {
+    up: migration_20260918_092651_over_de_naam.up,
+    down: migration_20260918_092651_over_de_naam.down,
+    name: '20260918_092651_over_de_naam',
   },
   {
     up: migration_20260918_092814_invite_links.up,
