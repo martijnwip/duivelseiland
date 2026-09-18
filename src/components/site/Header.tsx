@@ -25,8 +25,13 @@ export function Header({
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
         <Link
           href={localizedHref(locale, "/")}
-          className="font-serif text-3xl font-bold tracking-tight text-primary"
+          className="flex items-center gap-2 font-serif text-3xl font-bold tracking-tight text-primary"
         >
+          <img
+            src="/logo/duivelseiland-mark-color.svg"
+            alt=""
+            className="h-9 w-auto shrink-0"
+          />
           {siteNaam}
         </Link>
 

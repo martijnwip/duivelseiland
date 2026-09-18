@@ -41,6 +41,15 @@ export default buildConfig({
     importMap: {
       baseDir: dirname,
     },
+    components: {
+      graphics: {
+        // Vervangt het "home"-icoontje voor de breadcrumb (StepNav) op elke
+        // ingelogde admin-pagina. Het standaard graphics.Logo-slot (login-pagina)
+        // wordt niet gebruikt: de better-auth login view heeft zijn eigen
+        // AuthCard en raadpleegt dat slot niet.
+        Icon: '/components/admin/AdminIcon#default',
+      },
+    },
   },
 
   collections: [
@@ -106,6 +115,11 @@ export default buildConfig({
           trustedOrigins: [serverURL],
         }),
       admin: {
+        // Dunne wrapper om de plugin's eigen LoginViewWrapper die alleen een
+        // logo toevoegt (position: fixed, los van AuthCard's layout) — de
+        // plugin geeft zelf geen `logo`-prop door aan die view, dus dit is
+        // de enige plek om er zonder te forken alsnog een te tonen.
+        loginViewComponent: '/components/admin/LoginViewWithLogo#default',
         login: {
           // Alle drie de rollen (auteur/redacteur/admin) loggen in op /admin;
           // de plugin's eigen default (alleen 'admin') zou de andere twee blokkeren.
