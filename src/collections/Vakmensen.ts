@@ -5,6 +5,10 @@ import { setAuthor } from './shared/setAuthor';
 
 export const Vakmensen: CollectionConfig = {
   slug: 'vakmensen',
+  labels: {
+    singular: 'Vakmensen',
+    plural: 'Vakmensen',
+  },
   admin: {
     useAsTitle: 'title',
   },

@@ -5,6 +5,10 @@ import { setAuthor } from './shared/setAuthor';
 
 export const PraktischeInfo: CollectionConfig = {
   slug: 'praktische-info',
+  labels: {
+    singular: 'Praktische info',
+    plural: 'Praktische info',
+  },
   admin: {
     useAsTitle: 'title',
   },

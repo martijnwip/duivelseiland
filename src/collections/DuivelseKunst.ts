@@ -5,6 +5,10 @@ import { setAuthor } from './shared/setAuthor';
 
 export const DuivelseKunst: CollectionConfig = {
   slug: 'duivelse-kunst',
+  labels: {
+    singular: 'Duivelse Kunst',
+    plural: 'Duivelse Kunst',
+  },
   admin: {
     useAsTitle: 'title',
   },

@@ -77,9 +77,8 @@ export interface Config {
     vakmensen: Vakmensen;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
-    sessions: Session;
-    accounts: Account;
-    verifications: Verification;
+    'historische-fotos': HistorischeFoto;
+    slideshows: Slideshow;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -97,9 +96,8 @@ export interface Config {
     vakmensen: VakmensenSelect<false> | VakmensenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
-    sessions: SessionsSelect<false> | SessionsSelect<true>;
-    accounts: AccountsSelect<false> | AccountsSelect<true>;
-    verifications: VerificationsSelect<false> | VerificationsSelect<true>;
+    'historische-fotos': HistorischeFotosSelect<false> | HistorischeFotosSelect<true>;
+    slideshows: SlideshowsSelect<false> | SlideshowsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -149,19 +147,24 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
-  name?: string | null;
-  emailVerified?: boolean | null;
   role: 'admin' | 'redacteur' | 'auteur';
-  /**
-   * Auto-added by Better Auth (email)
-   */
-  email: string;
-  /**
-   * Auto-added by Better Auth (image)
-   */
-  image?: string | null;
   updatedAt: string;
   createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
   collection: 'users';
 }
 /**
@@ -463,53 +466,44 @@ export interface HeroSlide {
   createdAt: string;
 }
 /**
- * Auto-generated from Better Auth schema (session)
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sessions".
+ * via the `definition` "historische-fotos".
  */
-export interface Session {
+export interface HistorischeFoto {
   id: number;
-  expiresAt: string;
-  token: string;
-  ipAddress?: string | null;
-  userAgent?: string | null;
-  user: number | User;
+  title: string;
+  description?: string | null;
+  geografischeAanduiding?: string | null;
+  /**
+   * Externe afbeeldings-URL (bijv. Stadsarchief beeldbank). Wordt rechtstreeks als <img src> gebruikt, niet gehost op deze site.
+   */
+  imageUrl: string;
+  /**
+   * Link naar de originele bronpagina (bronvermelding, later opnieuw importeren).
+   */
+  bronUrl: string;
+  status: 'draft' | 'published';
+  author?: (number | null) | User;
+  slideshows?: (number | Slideshow)[] | null;
+  /**
+   * Bepaalt de volgorde binnen een slideshow (samen met de order van HeroSlides).
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
 /**
- * Auto-generated from Better Auth schema (account)
- *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "accounts".
+ * via the `definition` "slideshows".
  */
-export interface Account {
+export interface Slideshow {
   id: number;
-  accountId: string;
-  providerId: string;
-  user: number | User;
-  accessToken?: string | null;
-  refreshToken?: string | null;
-  idToken?: string | null;
-  accessTokenExpiresAt?: string | null;
-  refreshTokenExpiresAt?: string | null;
-  scope?: string | null;
-  password?: string | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * Auto-generated from Better Auth schema (verification)
- *
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "verifications".
- */
-export interface Verification {
-  id: number;
-  identifier: string;
-  value: string;
-  expiresAt: string;
+  name: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -578,16 +572,12 @@ export interface PayloadLockedDocument {
         value: number | HeroSlide;
       } | null)
     | ({
-        relationTo: 'sessions';
-        value: number | Session;
+        relationTo: 'historische-fotos';
+        value: number | HistorischeFoto;
       } | null)
     | ({
-        relationTo: 'accounts';
-        value: number | Account;
-      } | null)
-    | ({
-        relationTo: 'verifications';
-        value: number | Verification;
+        relationTo: 'slideshows';
+        value: number | Slideshow;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -636,13 +626,23 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  name?: T;
-  emailVerified?: T;
   role?: T;
-  email?: T;
-  image?: T;
   updatedAt?: T;
   createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -824,43 +824,29 @@ export interface HeroSlidesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "sessions_select".
+ * via the `definition` "historische-fotos_select".
  */
-export interface SessionsSelect<T extends boolean = true> {
-  expiresAt?: T;
-  token?: T;
-  ipAddress?: T;
-  userAgent?: T;
-  user?: T;
+export interface HistorischeFotosSelect<T extends boolean = true> {
+  title?: T;
+  description?: T;
+  geografischeAanduiding?: T;
+  imageUrl?: T;
+  bronUrl?: T;
+  status?: T;
+  author?: T;
+  slideshows?: T;
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "accounts_select".
+ * via the `definition` "slideshows_select".
  */
-export interface AccountsSelect<T extends boolean = true> {
-  accountId?: T;
-  providerId?: T;
-  user?: T;
-  accessToken?: T;
-  refreshToken?: T;
-  idToken?: T;
-  accessTokenExpiresAt?: T;
-  refreshTokenExpiresAt?: T;
-  scope?: T;
-  password?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "verifications_select".
- */
-export interface VerificationsSelect<T extends boolean = true> {
-  identifier?: T;
-  value?: T;
-  expiresAt?: T;
+export interface SlideshowsSelect<T extends boolean = true> {
+  name?: T;
+  generateSlug?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
