@@ -1,6 +1,8 @@
 import type { BetterAuthOptions } from 'better-auth';
 import { magicLink } from 'better-auth/plugins';
 import { Resend } from 'resend';
+import { writeFileSync } from 'fs';
+import path from 'path';
 
 async function sendMagicLink({
   email,
@@ -23,6 +25,14 @@ async function sendMagicLink({
     console.log(
       `[magic-link] RESEND_API_KEY ontbreekt, ${isInvite ? 'uitnodiging' : 'inloglink'} voor ${email}: ${url}`,
     );
+    // Dev-only bijeffect (deze tak is alleen actief zonder RESEND_API_KEY,
+    // wat in productie nooit het geval is): de link ook wegschrijven zodat
+    // `scripts/dev-login.ts` 'm kan oppikken zonder in de logs te zoeken.
+    try {
+      writeFileSync(path.join(process.cwd(), '.dev-magic-link'), url);
+    } catch {
+      // Best-effort — als wegschrijven faalt, blijft de console.log hierboven over.
+    }
     return;
   }
 

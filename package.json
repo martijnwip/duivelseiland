@@ -8,6 +8,7 @@
     "start": "bun --bun next start",
     "payload": "bun --bun node_modules/.bin/payload --disable-transpile",
     "seed:admin": "bun run scripts/seed-admin.ts",
+    "dev:login": "bun run scripts/dev-login.ts",
     "export:local": "bun run scripts/export.ts local",
     "export:prod": "bun --env-file=.env.production.local run scripts/export.ts prod",
     "reseed:local": "bun run scripts/reseed.ts",
