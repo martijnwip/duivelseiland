@@ -11,6 +11,11 @@ export const Vakmensen: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: authoredContentAccess,
   hooks: {

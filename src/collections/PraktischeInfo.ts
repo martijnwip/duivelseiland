@@ -11,6 +11,11 @@ export const PraktischeInfo: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
   },
   access: editorOnlyContentAccess,
   hooks: {

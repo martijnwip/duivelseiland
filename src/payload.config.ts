@@ -17,6 +17,7 @@ import { PraktischeInfo } from './collections/PraktischeInfo';
 import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
 import { Vakmensen } from './collections/Vakmensen';
+import { translateDocEndpoint } from './endpoints/translateDoc';
 import { SiteInstellingen } from './globals/SiteInstellingen';
 
 const filename = fileURLToPath(import.meta.url);
@@ -25,6 +26,15 @@ const dirname = path.dirname(filename);
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   serverURL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+
+  admin: {
+    // Custom component paths like '/components/admin/TranslateButton#default'
+    // resolve relative to src/ (this config's own directory), not the
+    // project root, matching where our components actually live.
+    importMap: {
+      baseDir: dirname,
+    },
+  },
 
   collections: [
     Users,
@@ -42,6 +52,8 @@ export default buildConfig({
   ],
 
   globals: [SiteInstellingen],
+
+  endpoints: [translateDocEndpoint],
 
   localization: {
     locales: [

@@ -4,6 +4,13 @@ import { hasRoleAtLeast } from '../access/roles';
 
 export const SiteInstellingen: GlobalConfig = {
   slug: 'site-instellingen',
+  admin: {
+    components: {
+      elements: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
+  },
   access: {
     // Public/anonymous requests and admins can read; a logged-in auteur or
     // redacteur cannot (PROJECT.md prose: only Admin manages site settings).

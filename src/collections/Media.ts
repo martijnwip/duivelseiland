@@ -7,6 +7,13 @@ export const Media: CollectionConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
+      },
+    },
+  },
   hooks: {
     beforeChange: [setAuthor('uploadedBy')],
   },

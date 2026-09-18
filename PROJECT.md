@@ -211,7 +211,24 @@ Idempotent: bestaat het e-mailadres al, dan gebeurt er niets. Bedoeld voor lokal
 
 ## Content vertalen (NL → EN)
 
-Voor het eenmalig/handmatig bootstrappen van Engelse vertalingen van bestaande NL-content is er een scriptketen: `scripts/export.ts` → `translate/translate.py` → `scripts/reseed.ts`. Deze vult **alleen lege Engelse velden** — bestaande (handmatig ingevoerde) Engelse tekst wordt nooit overschreven — en houdt bij `content` (rich text) de Lexical-opmaak (koppen, vet, lijsten) volledig intact; er wordt alleen tekst vertaald, geen structuur.
+### Live "Vertaal naar Engels"-knop in de admin (primaire aanpak)
+
+Elk contentdocument (Nieuws, Agenda, Interviews, Geschiedenis, Duivelse Kunst, Vakmensen, Praktische info, Media) en de `SiteInstellingen`-global heeft in `/admin` een knop **"Vertaal naar Engels"** naast de standaard document-knoppen. Bij een klik:
+
+- ontdekt de server **dynamisch** (door `payload.config`'s velddefinities te doorlopen, niet via een handmatige lijst) welke `localized: true`-velden op dat document een lege Engelse waarde hebben terwijl de Nederlandse wel gevuld is — werkt dus automatisch mee met nieuwe collecties/velden, ook als het schema nog verandert;
+- vertaalt die velden via MyMemory (zie hieronder), inclusief rich text (`content`) met behoud van opmaak (koppen, vet, lijsten — alleen de tekst verandert);
+- schrijft alleen de vertaalde velden terug, met een tweede check vlak vóór het schrijven of het Engelse veld nog steeds leeg is (beschermt tegen een handmatige wijziging die tussendoor is gebeurd);
+- toont een melding met het aantal vertaalde/mislukte velden.
+
+Rechten: `redacteur`/`admin` voor content en Media, alleen `admin` voor `SiteInstellingen` (zelfde als de bestaande update-rechten). De endpoint zit op `POST /api/translate-doc` (`src/endpoints/translateDoc.ts`); de kernlogica staat in `src/lib/translate-live/` (`engines.ts`, `lexical.ts`, `field-walker.ts`).
+
+**Vertaal-engine: MyMemory, met een kwaliteitsdrempel.** MyMemory is een vertaalgeheugen (geeft de best-passende eerder-vertaalde zin uit zijn database terug, geen zuivere neurale vertaler) en kan bij korte/generieke tekstfragmenten — vaak het geval in rich text, waar een zin per opmaak-run in meerdere tekstnodes wordt opgesplitst — een compleet ongerelateerd resultaat teruggeven. Concreet voorbeeld tijdens het testen: "Dit weekend is er een groot feest voor de buurt" kwam een keer terug als *"There is a TV, radio and CD-player. One big party! for the neighborhood."* MyMemory geeft per resultaat een `match`-kwaliteitsscore (0–1) mee; onder de 0,7 wordt het resultaat nu als mislukt behandeld (veld blijft leeg voor handmatige aanvulling) in plaats van de rommelige tekst te gebruiken.
+
+**LibreTranslate was overwogen als terugval-engine, maar bleek niet bruikbaar**: hun publieke demo vereist inmiddels een betaalde API-key (geen gratis laag meer — bevestigd via hun eigen prijzenpagina, `$29`/maand minimaal). Er is dus bewust **geen terugval-engine**; bij een mislukte of onbetrouwbare vertaling blijft het veld leeg voor handmatige invulling.
+
+### Offline scriptketen (handmatig terugvalalternatief)
+
+Voor een volledige bulkvertaling buiten de site om (bv. alle productie-content in één keer, zonder de admin te openen) is er een losstaande scriptketen: `scripts/export.ts` → `translate/translate.py` → `scripts/reseed.ts`. Deze vult **alleen lege Engelse velden** — bestaande (handmatig ingevoerde) Engelse tekst wordt nooit overschreven — en houdt bij `content` (rich text) de Lexical-opmaak (koppen, vet, lijsten) volledig intact; er wordt alleen tekst vertaald, geen structuur.
 
 ### Waar de vertaalde tekst staat
 
