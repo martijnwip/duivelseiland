@@ -1,7 +1,7 @@
 import { getClient } from './lib/payload-client';
 
 const email = process.argv[2] ?? 'test@test.nl';
-const password = process.argv[3] ?? 'test';
+const name = process.argv[3] ?? 'Test Admin';
 
 async function run() {
   const payload = await getClient();
@@ -18,18 +18,19 @@ async function run() {
     process.exit(0);
   }
 
+  // Geen wachtwoord meer: inloggen gaat uitsluitend via magic link naar dit e-mailadres.
   const user = await payload.create({
     collection: 'users',
     overrideAccess: true,
     data: {
       email,
-      password,
+      name,
       role: 'admin',
     },
   });
 
   console.log(`[seed-admin] admin aangemaakt: ${user.email} (id ${user.id})`);
-  console.log('[seed-admin] LET OP: dit is een zwak testwachtwoord, alleen bedoeld voor lokale ontwikkeling.');
+  console.log('[seed-admin] Inloggen kan alleen via magic link naar dit e-mailadres.');
   process.exit(0);
 }
 
