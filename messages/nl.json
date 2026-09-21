@@ -5,7 +5,14 @@
   },
   "home": {
     "heading": "Duivelseiland - Amsterdam",
-    "underConstruction": "Deze site is in ontwikkeling."
+    "underConstruction": "Deze site is in ontwikkeling.",
+    "stats": {
+      "title": "De buurt in cijfers",
+      "intro": "Een buurt van 6 hectare in het Museumkwartier, in een paar cijfers. Van het aantal inwoners tot de waarde van de woningen.",
+      "source": "CBS, {year}",
+      "readMore": "Lees meer",
+      "readMoreContext": "over de buurt in cijfers"
+    }
   },
   "pages": {
     "overDeNaam": {

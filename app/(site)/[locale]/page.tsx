@@ -2,6 +2,7 @@ import { getPayload } from 'payload';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import config from '@payload-config';
 import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
+import { HomeStats } from '@/components/stats/HomeStats';
 
 const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
 
@@ -88,6 +89,7 @@ export default async function HomePage({
         <h1 className="text-3xl font-bold text-primary">{t('heading')}</h1>
         <p className="mt-2 text-muted">{siteInstellingen.intro || t('underConstruction')}</p>
       </div>
+      <HomeStats locale={locale} />
     </main>
   );
 }
