@@ -92,8 +92,11 @@
         "estimateText": "Figures from the RIVM come from a survey of a sample of residents. They therefore carry the label “Estimate” and are less precise than counts.",
         "roundedTitle": "Rounded",
         "roundedText": "Statistics Netherlands (CBS) rounds neighbourhood figures to multiples of five. The age groups therefore add up to 1,375 instead of 1,381.",
-        "useTitle": "Reference date and use",
-        "useText": "Data collected on {date}. CBS figures fall under CC BY 4.0; credit the original source when reusing them.",
+        "viaTitle": "Collected via",
+        "viaLead": "The figures were collected via",
+        "viaTail": ", which bundles data from the sources above (reference date {date}). The original source is stated with each chart.",
+        "useTitle": "Reuse",
+        "useText": "CBS figures fall under CC BY 4.0; credit the original source when reusing them.",
         "rows": [
           {
             "name": "CBS",

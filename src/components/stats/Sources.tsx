@@ -47,8 +47,21 @@ export function Sources({ ctx }: { ctx: Ctx }) {
           <p className="m-0 text-[15px] leading-[1.55] text-text">{t('sources.estimateText')}</p>
           <h3 className="m-0 text-[15px] font-semibold text-text">{t('sources.roundedTitle')}</h3>
           <p className="m-0 text-[15px] leading-[1.55] text-text">{t('sources.roundedText')}</p>
+          <h3 className="m-0 text-[15px] font-semibold text-text">{t('sources.viaTitle')}</h3>
+          <p className="m-0 text-[15px] leading-[1.55] text-text">
+            {t('sources.viaLead')}{' '}
+            <a
+              href={stats.vindplaats}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-primary underline underline-offset-3 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              allecijfers.nl
+            </a>
+            {t('sources.viaTail', { date })}
+          </p>
           <h3 className="m-0 text-[15px] font-semibold text-text">{t('sources.useTitle')}</h3>
-          <p className="m-0 text-[15px] leading-[1.55] text-text">{t('sources.useText', { date })}</p>
+          <p className="m-0 text-[15px] leading-[1.55] text-text">{t('sources.useText')}</p>
         </div>
       </div>
     </section>

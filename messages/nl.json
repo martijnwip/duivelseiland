@@ -92,8 +92,11 @@
         "estimateText": "Cijfers van het RIVM komen uit een enquête onder een steekproef van inwoners. Ze dragen daarom het label “Schatting” en zijn minder precies dan tellingen.",
         "roundedTitle": "Afgerond",
         "roundedText": "Het CBS rondt buurtcijfers af op vijftallen. De leeftijdsgroepen tellen daardoor op tot 1.375 in plaats van 1.381.",
-        "useTitle": "Peildatum en gebruik",
-        "useText": "Gegevens verzameld op {date}. CBS-cijfers vallen onder CC BY 4.0; noem bij hergebruik de oorspronkelijke bron.",
+        "viaTitle": "Verzameld via",
+        "viaLead": "De cijfers zijn verzameld via",
+        "viaTail": ", dat gegevens van de bovenstaande bronnen bundelt (peildatum {date}). Per grafiek staat de oorspronkelijke bron vermeld.",
+        "useTitle": "Hergebruik",
+        "useText": "CBS-cijfers vallen onder CC BY 4.0; noem bij hergebruik de oorspronkelijke bron.",
         "rows": [
           {
             "name": "CBS",

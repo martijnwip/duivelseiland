@@ -7,7 +7,7 @@
   "oppervlakte_ha": 6,
   "peildatum_bron": "2026-09-18",
   "vindplaats": "https://allecijfers.nl/buurt/duivelseiland-amsterdam/",
-  "licentie_noot": "Onderliggende bronnen: CBS (CC BY 4.0), RIVM, Politie, RDW, RVO, Kadaster, Rijkswaterstaat, Kiesraad. Vermeld de oorspronkelijke bron, niet allecijfers.nl.",
+  "licentie_noot": "Onderliggende bronnen: CBS (CC BY 4.0), RIVM, Politie, RDW, RVO, Kadaster, Rijkswaterstaat, Kiesraad. Verzameld via allecijfers.nl (noem ook die vindplaats); vermeld daarnaast de oorspronkelijke bron.",
   "themas": [
     {
       "id": "kerncijfers",
