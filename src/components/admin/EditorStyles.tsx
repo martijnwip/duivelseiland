@@ -1,6 +1,6 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import type { ReactElement, ReactNode } from 'react';
 import { Fraunces, Lexend, Source_Sans_3 } from 'next/font/google';
 import './editor.css';
 
@@ -12,7 +12,7 @@ const sourceSans = Source_Sans_3({ subsets: ['latin'], display: 'swap', variable
 const fraunces = Fraunces({ subsets: ['latin'], display: 'swap', variable: '--font-fraunces' });
 
 /** Provider die de font-variabelen beschikbaar maakt voor de hele admin. */
-export default function EditorStyles({ children }: { children?: ReactNode }) {
+export default function EditorStyles({ children }: { children?: ReactNode }): ReactElement {
   return (
     <div className={`${lexend.variable} ${sourceSans.variable} ${fraunces.variable}`} style={{ display: 'contents' }}>
       {children}
