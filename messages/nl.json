@@ -31,7 +31,445 @@
     },
     "buurtStatistieken": {
       "heading": "Buurt statistieken",
-      "comingSoon": "Deze pagina is in ontwikkeling. Binnenkort meer cijfers over de buurt."
+      "metaDescription": "Cijfers en grafieken over Duivelseiland: inwoners, wonen, werk en geld, mobiliteit, veiligheid, gezondheid en voorzieningen.",
+      "hero": {
+        "eyebrow": "Duivelseiland · Museumkwartier · Amsterdam-Zuid",
+        "intro": "Een buurt van 6 hectare in het Museumkwartier, verteld in acht hoofdstukken. Scroll door het verhaal; onder elke grafiek staat de bron.",
+        "start": "Begin bij hoofdstuk 1"
+      },
+      "ui": {
+        "source": "Bron: {bron}, {jaar}",
+        "estimateSource": "Schatting, bron: {bron}, {jaar}",
+        "estimate": "Schatting",
+        "showTable": "Toon als tabel",
+        "showChart": "Toon als grafiek",
+        "more": "Meer cijfers ({n})",
+        "hectare": "ha",
+        "kpiSource": "{bron}, {jaar}",
+        "chapterLabel": "Hoofdstuk"
+      },
+      "nav": {
+        "nav": "Hoofdstukken",
+        "contents": "Inhoud",
+        "chapterOf": "Hoofdstuk {n} van {total}",
+        "sources": "Bronnen"
+      },
+      "marks": {
+        "peak": "Piek {year}: {value}",
+        "birth": "Geboorte {n}",
+        "death": "Sterfte {n}"
+      },
+      "stackedArea": {
+        "gap": "geen uitsplitsing in de bron"
+      },
+      "ongevallen": {
+        "annot1": "{year}: {total} ongevallen",
+        "annot2": "{mat} materiële schade, {injury} letsel, {fatal} dodelijk"
+      },
+      "verbruik": {
+        "gas": "Gas (m³ per woning)",
+        "power": "Stroom (kWh per woning)"
+      },
+      "inkomen": {
+        "mainLabel": "gemiddeld inkomen per inwoner, {year}"
+      },
+      "dichtheid": {
+        "bevolking": "Inwoners per km²",
+        "adressen": "Adressen per km²",
+        "autos": "Auto’s per km²"
+      },
+      "scatter": {
+        "x": "Gemiddelde WOZ-waarde →",
+        "y": "65-plus, aandeel ↑"
+      },
+      "sources": {
+        "title": "Bronnen en toelichting",
+        "tableTitle": "Bronnen en peiljaren",
+        "colSource": "Bron",
+        "colWhat": "Waarvoor",
+        "colPeriod": "Peiljaar",
+        "estimateTitle": "Schatting",
+        "estimateText": "Cijfers van het RIVM komen uit een enquête onder een steekproef van inwoners. Ze dragen daarom het label “Schatting” en zijn minder precies dan tellingen.",
+        "roundedTitle": "Afgerond",
+        "roundedText": "Het CBS rondt buurtcijfers af op vijftallen. De leeftijdsgroepen tellen daardoor op tot 1.375 in plaats van 1.381.",
+        "useTitle": "Peildatum en gebruik",
+        "useText": "Gegevens verzameld op {date}. CBS-cijfers vallen onder CC BY 4.0; noem bij hergebruik de oorspronkelijke bron.",
+        "rows": [
+          {
+            "name": "CBS",
+            "what": "Inwoners, huishoudens, wonen, inkomen, werk, voorzieningen",
+            "period": "2013 tot 2026"
+          },
+          {
+            "name": "Kadaster (BAG)",
+            "what": "Adressen, woningtype, bouwperiode, gebruiksdoelen",
+            "period": "2026"
+          },
+          {
+            "name": "RVO / EP-online",
+            "what": "Energielabels",
+            "period": "2026"
+          },
+          {
+            "name": "RDW",
+            "what": "Voertuigen en elektrische auto’s",
+            "period": "september 2026"
+          },
+          {
+            "name": "Politie (data.politie.nl)",
+            "what": "Geregistreerde misdrijven",
+            "period": "2012 tot 2025"
+          },
+          {
+            "name": "Rijkswaterstaat (BRON)",
+            "what": "Verkeersongevallen",
+            "period": "2003 tot 2025"
+          },
+          {
+            "name": "RIVM Gezondheidsmonitor",
+            "what": "Gezondheid, welzijn, tevredenheid (schatting)",
+            "period": "2024"
+          },
+          {
+            "name": "Kiesraad",
+            "what": "Gemeenteraadsverkiezingen",
+            "period": "18 maart 2026"
+          }
+        ]
+      },
+      "chapters": {
+        "mensen": {
+          "name": "Mensen",
+          "message": "Jong, veel alleenstaanden, steeds internationaler",
+          "factBig": "45%",
+          "factText": "heeft herkomst Nederland; in 2013 was dat nog 66%.",
+          "more": "Mannen en vrouwen · Burgerlijke staat · Geboorteland · Geboorte en sterfte"
+        },
+        "wonen": {
+          "name": "Wonen",
+          "message": "Bijna iedereen woont in een appartement uit vóór 1945",
+          "factBig": "950",
+          "factText": "van de 960 adressen dateert van vóór 1925.",
+          "more": "Soort woningen · Bewoond en onbewoond · Gebruiksdoelen"
+        },
+        "werk": {
+          "name": "Werk en geld",
+          "message": "Hoge inkomens, veel zakelijke dienstverlening",
+          "factBig": "€ 58.400",
+          "factText": "gemiddeld inkomen per inwoner; Nederland: € 34.900.",
+          "more": "Werk · Personen met een uitkering"
+        },
+        "mobiliteit": {
+          "name": "Mobiliteit",
+          "message": "Weinig auto’s per huishouden, elektrisch groeit snel",
+          "factBig": "63",
+          "factText": "elektrische auto’s in september 2026; in maart 2022 waren het er 16."
+        },
+        "veiligheid": {
+          "name": "Veiligheid",
+          "message": "Zeer dicht bebouwd; fietsendiefstal is de grootste post",
+          "factBig": "39",
+          "factText": "van de 115 misdrijven in 2025 waren fietsen-, brom- of snorfietsdiefstal.",
+          "more": "Misdrijven per 1.000 inwoners"
+        },
+        "gezondheid": {
+          "name": "Gezondheid en welzijn",
+          "message": "Goed ervaren gezondheid en tevreden met de omgeving",
+          "factBig": "90%",
+          "factText": "is tevreden met de woonomgeving (schatting).",
+          "more": "Alcohol en roken · Geluidhinder"
+        },
+        "voorzieningen": {
+          "name": "Voorzieningen en onderwijs",
+          "message": "Alles binnen loopafstand, behalve de school in de buurt zelf",
+          "factBig": "0,1 km",
+          "factText": "gemiddeld naar het dichtstbijzijnde restaurant; supermarkt en huisarts 0,3 km.",
+          "more": "Leerlingen en studenten · Opleidingsniveau"
+        },
+        "vergelijking": {
+          "name": "Vergelijking",
+          "message": "Wat Duivelseiland anders maakt dan de rest van Nederland",
+          "factBig": "43×",
+          "factText": "zo dicht bevolkt als het Nederlandse gemiddelde.",
+          "more": "Woningwaarde en aandeel 65-plussers"
+        }
+      },
+      "kpi": {
+        "inwoners": "Inwoners",
+        "huishoudens": "Huishoudens",
+        "woningen": "Woningen",
+        "gemiddelde-woz-waarde": "Gemiddelde WOZ-waarde",
+        "oppervlakte": "Oppervlakte",
+        "inwoners-per-km": "Inwoners per km²"
+      },
+      "words": {
+        "nederland": "Nederland",
+        "europa": "Europa",
+        "buitenEuropa": "Buiten Europa",
+        "duivelseiland": "Duivelseiland",
+        "amsterdam": "Amsterdam",
+        "museumkwartier": "Museumkwartier",
+        "wijkMuseumkwartier": "Wijk Museumkwartier",
+        "otherNeighbourhoods": "Andere buurten",
+        "otherAreas": "Overige gebieden",
+        "households": "huishoudens",
+        "residents": "inwoners",
+        "homes": "woningen",
+        "birth": "Geboorte",
+        "death": "Sterfte",
+        "bornNl": "Geboren in Nederland",
+        "bornAbroad": "Geboren buiten Nederland",
+        "originNl": "Herkomst Nederland",
+        "originEu": "Herkomst Europa",
+        "originNonEu": "Herkomst buiten Europa",
+        "from1950": "1950 en later (6 periodes)",
+        "accidents": "ongevallen",
+        "carsCbs": "Personenauto’s (CBS)",
+        "netherlandsValue": "Nederland: {n}",
+        "higherEducated": "hoger opgeleid",
+        "derived": "afgeleid"
+      },
+      "legend": {
+        "deathDashed": "Sterfte (streepjes)",
+        "propertyDamage": "Materiële schade",
+        "injury": "Letsel",
+        "fatal": "Dodelijk",
+        "age18to65": "18 tot 65 jaar",
+        "age65plus": "65 jaar of ouder",
+        "age18plus": "18 jaar of ouder",
+        "age18plusDashed": "18 jaar of ouder (streepjes)"
+      },
+      "table": {
+        "year": "Jaar",
+        "age": "Leeftijd",
+        "count": "Aantal",
+        "share": "Aandeel",
+        "type": "Soort",
+        "residents": "Inwoners",
+        "woz": "Gemiddelde WOZ-waarde",
+        "period": "Periode",
+        "addresses": "Adressen",
+        "label": "Label",
+        "use": "Gebruik",
+        "sector": "Sector",
+        "value": "Waarde",
+        "area": "Gebied",
+        "incomePerResident": "Inkomen per inwoner",
+        "percentage": "Percentage",
+        "month": "Maand",
+        "total": "Totaal",
+        "crimes": "Misdrijven",
+        "per1000": "Per 1.000 inwoners",
+        "source": "Bron",
+        "facility": "Voorziening",
+        "km": "Afstand (km)",
+        "party": "Partij",
+        "votes": "Stemmen",
+        "share65": "Aandeel 65-plus",
+        "homes": "Woningen",
+        "energySource": "Energiebron"
+      },
+      "cards": {
+        "herkomst": {
+          "title": "Herkomst van inwoners per jaar",
+          "sub": "Het aandeel met herkomst Nederland daalde van 66% (2013) naar 45% (2025).",
+          "note": "2022: de bron heeft geen uitsplitsing naar Europa en buiten Europa. Dat jaar is gemarkeerd als ontbrekend, niet als nul.",
+          "aria": "Gestapeld vlakdiagram: herkomst van inwoners 2013 tot 2025; het aandeel Nederland daalt van 66% naar 45%"
+        },
+        "leeftijd": {
+          "title": "Inwoners naar leeftijd",
+          "sub": "De helft van de bewoners is 25 tot 45 jaar.",
+          "note": "Het CBS rondt af op vijftallen; de groepen tellen daardoor op tot 1.375 in plaats van 1.381."
+        },
+        "inwoners": {
+          "title": "Inwoners per jaar",
+          "sub": "Vrijwel stabiel rond 1.400; sinds 2024 licht dalend.",
+          "note": "De verticale as begint bij 1.300, zodat de kleine schommelingen zichtbaar zijn.",
+          "aria": "Lijndiagram: inwoners per jaar 2013 tot 2026, vrijwel stabiel rond 1.400"
+        },
+        "huishoudens": {
+          "title": "Huishoudens",
+          "sub": "59% woont alleen; gemiddeld 1,6 personen per huishouden.",
+          "note": "Afgerond op vijftallen; de groepen tellen op tot 855 van 860.",
+          "aria": "Cirkeldiagram: huishoudens naar type; 59% is een eenpersoonshuishouden"
+        },
+        "geslacht": {
+          "title": "Mannen en vrouwen",
+          "aria": "Cirkeldiagram: mannen en vrouwen"
+        },
+        "burgerlijk": {
+          "title": "Burgerlijke staat"
+        },
+        "geboorte": {
+          "title": "Geboorte en sterfte per 1.000 inwoners",
+          "note": "In 2025: 15 geboorten en 5 sterfgevallen in absolute aantallen.",
+          "aria": "Lijndiagram: geboorte en sterfte per 1.000 inwoners, 2013 tot 2025"
+        },
+        "sankey": {
+          "title": "Geboorteland en herkomst",
+          "sub": "820 inwoners zijn in Nederland geboren, 570 daarbuiten.",
+          "aria": "Van geboorteland naar herkomst: 820 in Nederland geboren, 570 buiten Nederland"
+        },
+        "woz": {
+          "title": "Gemiddelde WOZ-waarde per jaar",
+          "sub": "Van € 290.000 naar € 611.000: meer dan verdubbeld (+111%) sinds 2013.",
+          "aria": "Lijndiagram: gemiddelde WOZ-waarde 2013 tot 2025, van € 290.000 naar € 611.000"
+        },
+        "eigendom": {
+          "title": "Koop en huur",
+          "sub": "Ruim de helft is huur bij een particuliere verhuurder.",
+          "aria": "Cirkeldiagram: koop en huur; 35% koop, 65% huur"
+        },
+        "bouw": {
+          "title": "Bouwperiode van de adressen",
+          "sub": "Alle woningen zijn van vóór 1945.",
+          "note": "Aantal adressen per bouwperiode van het pand; vanaf 1950 is het aantal 0."
+        },
+        "energie": {
+          "title": "Energielabels",
+          "sub": "Label C komt het meest voor; 194 adressen hebben label G.",
+          "note": "Labels A+++ en hoger komen niet voor. 38 adressen hebben geen label, 152 een voorlopig label.",
+          "aria": "Staafdiagram: energielabels van adressen; label C komt het meest voor, 194 adressen hebben label G"
+        },
+        "verbruik": {
+          "title": "Gas en stroom per woning",
+          "sub": "Gasverbruik daalde van 1.100 m³ (2013) naar 640 m³ (2024).",
+          "note": "Twee aparte grafieken, elk met een eigen eenheid en as."
+        },
+        "bewoning": {
+          "title": "Bewoond en onbewoond",
+          "aria": "Cirkeldiagram: bewoonde en onbewoonde woningen"
+        },
+        "woningtype": {
+          "title": "Soort woningen"
+        },
+        "gebruiksdoelen": {
+          "title": "Waarvoor worden adressen gebruikt",
+          "note": "Alleen functies met minstens één adres; de overige (bijvoorbeeld sport en logies) zijn 0."
+        },
+        "inkomen": {
+          "title": "Inkomen",
+          "sub": "Anderhalf keer zoveel als het Nederlandse gemiddelde (€ 34.900).",
+          "aria": "Gemiddeld inkomen per inwoner: Duivelseiland € 58.400, Amsterdam € 41.000, Nederland € 34.900"
+        },
+        "ikvergelijk": {
+          "title": "Inkomen per inwoner in de buurten van het Museumkwartier",
+          "sub": "Nederland: € 34.900. Amsterdam: € 41.000.",
+          "aria": "Staafdiagram: gemiddeld inkomen per inwoner per buurt in het Museumkwartier"
+        },
+        "bedrijven": {
+          "title": "Bedrijfsvestigingen per sector",
+          "sub": "Van de 405 vestigingen is een derde zakelijke dienstverlening."
+        },
+        "arbeid": {
+          "title": "Werk"
+        },
+        "uitkeringen": {
+          "title": "Personen met een uitkering"
+        },
+        "voertuigen": {
+          "title": "Voertuigen op naam van bewoners",
+          "sub": "717 voertuigen, waarvan 575 personenauto’s.",
+          "note": "De RDW telt alle voertuigen op naam van buurtadressen. De CBS-telling hieronder is een andere reeks; zet ze niet naast elkaar."
+        },
+        "autohh": {
+          "title": "Auto’s per huishouden"
+        },
+        "elektrisch": {
+          "title": "Elektrische auto’s per maand",
+          "sub": "Van 16 (maart 2022) naar 63 (september 2026).",
+          "note": "63 elektrische auto’s: 60 personenauto’s en 3 bedrijfsauto’s. De 106 in de brandstofgrafiek bevat ook 43 elektrische bromfietsen.",
+          "aria": "Lijndiagram: elektrische auto’s per maand, van 16 in maart 2022 naar 63 in september 2026"
+        },
+        "ongevallen": {
+          "title": "Verkeersongevallen per jaar",
+          "sub": "14 ongevallen in 2025: 11 met materiële schade, 3 met letsel, 0 dodelijk.",
+          "aria": "Gestapeld staafdiagram: verkeersongevallen per jaar 2003 tot 2025; in 2025 14 ongevallen"
+        },
+        "dichtheid": {
+          "title": "Dichtheid per km²",
+          "sub": "Duivelseiland is 43 keer zo dicht bevolkt als Nederland.",
+          "note": "Elke rij heeft een eigen schaal; de grijze balk is Nederland."
+        },
+        "misdaadjaren": {
+          "title": "Geregistreerde misdrijven per jaar",
+          "sub": "Sinds 2015 rond de 110 per jaar; 115 in 2025.",
+          "aria": "Lijndiagram: geregistreerde misdrijven per jaar 2012 tot 2025; sinds 2015 rond de 110"
+        },
+        "misdaadsoorten": {
+          "title": "Meest voorkomende misdrijven in 2025",
+          "sub": "39 van de 115 misdrijven waren fietsen-, brom- of snorfietsdiefstal.",
+          "note": "Top 10 van soorten."
+        },
+        "misdaad1000": {
+          "title": "Misdrijven per 1.000 inwoners",
+          "sub": "In totaal 83 per 1.000 inwoners."
+        },
+        "tevreden": {
+          "title": "Tevreden met wonen",
+          "sub": "90% is tevreden met de woonomgeving."
+        },
+        "leefstijl": {
+          "title": "Bewegen en gewicht"
+        },
+        "gezondheid": {
+          "title": "Inwoners met een goede gezondheid",
+          "sub": "In 2024: 82% van de 18- tot 65-jarigen.",
+          "note": "Enquêtegebaseerd (steekproef), daarom een schatting.",
+          "aria": "Lijndiagram: aandeel inwoners met een goede gezondheid per leeftijdsgroep, 2012 tot 2024"
+        },
+        "welzijn": {
+          "title": "Welzijn en eenzaamheid",
+          "sub": "93% krijgt steun van anderen; 48% voelt zich eenzaam."
+        },
+        "alcohol": {
+          "title": "Alcohol en roken"
+        },
+        "geluid": {
+          "title": "Ernstige geluidhinder door"
+        },
+        "voorzieningen": {
+          "title": "Gemiddelde afstand tot voorzieningen",
+          "sub": "Bijna alles binnen een kilometer; alleen het treinstation ligt verder weg (2,1 km).",
+          "note": "Gemiddelde afstand over de weg vanaf een adres in de buurt.",
+          "aria": "Gemiddelde afstand tot voorzieningen in kilometers; dichtbij links"
+        },
+        "school": {
+          "title": "Afstand tot scholen en opvang (km)",
+          "sub": "Voortgezet onderwijs ligt gemiddeld 0,4 km weg; in Nederland 2,5 km.",
+          "note": "In de buurt zelf staat geen school of kinderopvang."
+        },
+        "leerlingen": {
+          "title": "Leerlingen en studenten die in de buurt wonen",
+          "sub": "180 in totaal; WO-studenten vormen de grootste groep (70)."
+        },
+        "opleiding": {
+          "title": "Opleidingsniveau (15 tot 75 jaar)",
+          "sub": "940 van de 1.230 inwoners is hoger opgeleid.",
+          "note": "Het percentage 76% is afgeleid van de aantallen; de bron toont hier ten onrechte 100%. Jaargangen verschillen (2023 en 2024).",
+          "aria": "Cirkeldiagram: opleidingsniveau van inwoners van 15 tot 75 jaar; 76% is hoger opgeleid"
+        },
+        "bereik": {
+          "title": "Binnen bereik",
+          "sub": "Gemiddeld aantal binnen 1 of 5 kilometer."
+        },
+        "onderscheid": {
+          "title": "Wat Duivelseiland onderscheidt van Nederland",
+          "sub": "Elke rij heeft een eigen schaal.",
+          "note": "Hoger opgeleid: 76% is afgeleid van de aantallen (940 van 1.230); de bron toont hier ten onrechte 100%.",
+          "aria": "Duivelseiland vergeleken met Amsterdam en Nederland op vijf kenmerken"
+        },
+        "verkiezingen": {
+          "title": "Gemeenteraadsverkiezingen, 18 maart 2026",
+          "sub": "Aantal stemmen, geordend op stemmen. Eén kleur voor alle partijen.",
+          "note": "Som van de twee stembureaus in de buurt. {count} kleinere partijen zijn niet getoond ({votes} stemmen). Aandeel is zelf berekend uit {total} stemmen."
+        },
+        "scatter": {
+          "title": "Woningwaarde en aandeel 65-plussers",
+          "note": "Museumplein en Vondelpark-Oost hebben minder dan 10 woningen en zijn statistisch onbetrouwbaar (gestippelde cirkels).",
+          "aria": "Spreidingsdiagram: woningwaarde tegenover aandeel 65-plussers per buurt"
+        }
+      }
     },
     "nieuws": {
       "heading": "Nieuws"

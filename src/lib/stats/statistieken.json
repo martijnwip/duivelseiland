@@ -1,0 +1,3217 @@
+{
+  "buurt": "Duivelseiland",
+  "buurtcode": null,
+  "wijk": "Museumkwartier",
+  "stadsdeel": "Zuid",
+  "gemeente": "Amsterdam",
+  "oppervlakte_ha": 6,
+  "peildatum_bron": "2026-09-18",
+  "vindplaats": "https://allecijfers.nl/buurt/duivelseiland-amsterdam/",
+  "licentie_noot": "Onderliggende bronnen: CBS (CC BY 4.0), RIVM, Politie, RDW, RVO, Kadaster, Rijkswaterstaat, Kiesraad. Vermeld de oorspronkelijke bron, niet allecijfers.nl.",
+  "themas": [
+    {
+      "id": "kerncijfers",
+      "titel": "Duivelseiland in cijfers"
+    },
+    {
+      "id": "mensen",
+      "titel": "Mensen"
+    },
+    {
+      "id": "wonen",
+      "titel": "Wonen"
+    },
+    {
+      "id": "werk-geld",
+      "titel": "Werk en geld"
+    },
+    {
+      "id": "mobiliteit",
+      "titel": "Mobiliteit"
+    },
+    {
+      "id": "veiligheid",
+      "titel": "Veiligheid"
+    },
+    {
+      "id": "gezondheid",
+      "titel": "Gezondheid en welzijn"
+    },
+    {
+      "id": "voorzieningen",
+      "titel": "Voorzieningen"
+    },
+    {
+      "id": "onderwijs",
+      "titel": "Onderwijs"
+    },
+    {
+      "id": "democratie",
+      "titel": "Democratie"
+    },
+    {
+      "id": "vergelijking",
+      "titel": "Vergelijking"
+    }
+  ],
+  "secties": [
+    {
+      "id": "kerncijfers",
+      "thema": "kerncijfers",
+      "titel": "Duivelseiland in cijfers",
+      "type": "kpi",
+      "bron": "CBS",
+      "jaar": 2026,
+      "schatting": false,
+      "data": [
+        {
+          "key": "inwoners",
+          "label": "Inwoners",
+          "waarde": 1381,
+          "eenheid": "aantal",
+          "jaar": 2026
+        },
+        {
+          "key": "huishoudens",
+          "label": "Huishoudens",
+          "waarde": 860,
+          "eenheid": "aantal",
+          "jaar": 2025
+        },
+        {
+          "key": "woningen",
+          "label": "Woningen",
+          "waarde": 885,
+          "eenheid": "aantal",
+          "jaar": 2025
+        },
+        {
+          "key": "gemiddelde-woz-waarde",
+          "label": "Gemiddelde WOZ-waarde",
+          "waarde": 611000,
+          "eenheid": "€",
+          "jaar": 2025
+        },
+        {
+          "key": "oppervlakte",
+          "label": "Oppervlakte",
+          "waarde": 6,
+          "eenheid": "ha",
+          "jaar": 2025
+        },
+        {
+          "key": "inwoners-per-km",
+          "label": "Inwoners per km²",
+          "waarde": 23167,
+          "eenheid": "per km²",
+          "jaar": 2025
+        }
+      ]
+    },
+    {
+      "id": "inwoners-trend",
+      "thema": "mensen",
+      "titel": "Inwoners per jaar",
+      "type": "line",
+      "bron": "CBS",
+      "jaar": "2013-2026",
+      "schatting": false,
+      "opvallend": "Piek in 2024 met 1.405 inwoners; sindsdien licht dalend.",
+      "data": [
+        {
+          "key": "2013",
+          "label": "2013",
+          "waarde": 1325,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2014",
+          "label": "2014",
+          "waarde": 1330,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2015",
+          "label": "2015",
+          "waarde": 1360,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2016",
+          "label": "2016",
+          "waarde": 1345,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2017",
+          "label": "2017",
+          "waarde": 1375,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2018",
+          "label": "2018",
+          "waarde": 1385,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2019",
+          "label": "2019",
+          "waarde": 1380,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2020",
+          "label": "2020",
+          "waarde": 1385,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2021",
+          "label": "2021",
+          "waarde": 1360,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2022",
+          "label": "2022",
+          "waarde": 1360,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2023",
+          "label": "2023",
+          "waarde": 1380,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2024",
+          "label": "2024",
+          "waarde": 1405,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2025",
+          "label": "2025",
+          "waarde": 1390,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2026",
+          "label": "2026",
+          "waarde": 1381,
+          "eenheid": "aantal"
+        }
+      ]
+    },
+    {
+      "id": "leeftijd",
+      "thema": "mensen",
+      "titel": "Inwoners naar leeftijd",
+      "type": "bar",
+      "bron": "CBS",
+      "jaar": 2026,
+      "schatting": false,
+      "eenheid": "aantal",
+      "noot": "CBS rondt af op vijftallen; de groepen tellen daardoor op tot 1.375 in plaats van 1.381.",
+      "data": [
+        {
+          "key": "0-15",
+          "label": "0-15",
+          "waarde": 115,
+          "aandeel": 8.3
+        },
+        {
+          "key": "15-25",
+          "label": "15-25",
+          "waarde": 165,
+          "aandeel": 12
+        },
+        {
+          "key": "25-45",
+          "label": "25-45",
+          "waarde": 695,
+          "aandeel": 50
+        },
+        {
+          "key": "45-65",
+          "label": "45-65",
+          "waarde": 275,
+          "aandeel": 20
+        },
+        {
+          "key": "65",
+          "label": "65+",
+          "waarde": 125,
+          "aandeel": 9.1
+        }
+      ]
+    },
+    {
+      "id": "geslacht",
+      "thema": "mensen",
+      "titel": "Mannen en vrouwen",
+      "type": "donut",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "data": [
+        {
+          "key": "mannen",
+          "label": "Mannen",
+          "waarde": 670,
+          "aandeel": 48
+        },
+        {
+          "key": "vrouwen",
+          "label": "Vrouwen",
+          "waarde": 720,
+          "aandeel": 52
+        }
+      ]
+    },
+    {
+      "id": "huishoudens",
+      "thema": "mensen",
+      "titel": "Huishoudens",
+      "type": "donut",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "totaal": 860,
+      "gemiddelde_grootte": 1.6,
+      "noot": "Afgerond op vijftallen; de groepen tellen op tot 855 van 860.",
+      "data": [
+        {
+          "key": "eenpersoons",
+          "label": "Eenpersoons",
+          "waarde": 505,
+          "aandeel": 59
+        },
+        {
+          "key": "meerpersoons-zonder-kinderen",
+          "label": "Meerpersoons zonder kinderen",
+          "waarde": 225,
+          "aandeel": 26
+        },
+        {
+          "key": "meerpersoons-met-kinderen",
+          "label": "Meerpersoons met kinderen",
+          "waarde": 125,
+          "aandeel": 15
+        }
+      ]
+    },
+    {
+      "id": "burgerlijke-staat",
+      "thema": "mensen",
+      "titel": "Burgerlijke staat",
+      "type": "bar",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "data": [
+        {
+          "key": "ongehuwd",
+          "label": "Ongehuwd",
+          "waarde": 1000,
+          "aandeel": 72
+        },
+        {
+          "key": "gehuwd",
+          "label": "Gehuwd",
+          "waarde": 300,
+          "aandeel": 22
+        },
+        {
+          "key": "gescheiden",
+          "label": "Gescheiden",
+          "waarde": 75,
+          "aandeel": 5.4
+        },
+        {
+          "key": "verweduwd",
+          "label": "Verweduwd",
+          "waarde": 20,
+          "aandeel": 1.43
+        }
+      ]
+    },
+    {
+      "id": "herkomst-trend",
+      "thema": "mensen",
+      "titel": "Herkomst van inwoners per jaar",
+      "type": "stackedArea",
+      "bron": "CBS",
+      "jaar": "2013-2025",
+      "schatting": false,
+      "eenheid": "aantal",
+      "noot": "2022 heeft in de bron geen uitsplitsing Europa / buiten Europa (staat op 0); hier als ontbrekend (null) opgenomen. Herkomst Nederland 2013: 66%, 2025: 45%.",
+      "data": [
+        {
+          "jaar": 2013,
+          "nederland": 874,
+          "europa": 226,
+          "buiten_europa": 224
+        },
+        {
+          "jaar": 2014,
+          "nederland": 864,
+          "europa": 235,
+          "buiten_europa": 231
+        },
+        {
+          "jaar": 2015,
+          "nederland": 875,
+          "europa": 244,
+          "buiten_europa": 241
+        },
+        {
+          "jaar": 2016,
+          "nederland": 830,
+          "europa": 259,
+          "buiten_europa": 256
+        },
+        {
+          "jaar": 2017,
+          "nederland": 815,
+          "europa": 282,
+          "buiten_europa": 278
+        },
+        {
+          "jaar": 2018,
+          "nederland": 795,
+          "europa": 297,
+          "buiten_europa": 293
+        },
+        {
+          "jaar": 2019,
+          "nederland": 775,
+          "europa": 305,
+          "buiten_europa": 300
+        },
+        {
+          "jaar": 2020,
+          "nederland": 765,
+          "europa": 312,
+          "buiten_europa": 308
+        },
+        {
+          "jaar": 2021,
+          "nederland": 735,
+          "europa": 315,
+          "buiten_europa": 310
+        },
+        {
+          "jaar": 2022,
+          "nederland": 695,
+          "europa": null,
+          "buiten_europa": null
+        },
+        {
+          "jaar": 2023,
+          "nederland": 655,
+          "europa": 365,
+          "buiten_europa": 360
+        },
+        {
+          "jaar": 2024,
+          "nederland": 640,
+          "europa": 360,
+          "buiten_europa": 405
+        },
+        {
+          "jaar": 2025,
+          "nederland": 630,
+          "europa": 380,
+          "buiten_europa": 380
+        }
+      ]
+    },
+    {
+      "id": "geboorteland",
+      "thema": "mensen",
+      "titel": "Geboorteland en herkomst",
+      "type": "sankey",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "totalen": {
+        "geboren_in_nederland": 820,
+        "geboren_buiten_nederland": 570
+      },
+      "data": [
+        {
+          "key": "geboren-in-nederland-herkomst-nederland",
+          "label": "Geboren in Nederland - herkomst Nederland",
+          "waarde": 630
+        },
+        {
+          "key": "geboren-in-nederland-herkomst-europa",
+          "label": "Geboren in Nederland - herkomst Europa",
+          "waarde": 60
+        },
+        {
+          "key": "geboren-in-nederland-herkomst-buiten-europa",
+          "label": "Geboren in Nederland - herkomst buiten Europa",
+          "waarde": 130
+        },
+        {
+          "key": "geboren-buiten-nederland-herkomst-europa",
+          "label": "Geboren buiten Nederland - herkomst Europa",
+          "waarde": 320
+        },
+        {
+          "key": "geboren-buiten-nederland-herkomst-buiten-europa",
+          "label": "Geboren buiten Nederland - herkomst buiten Europa",
+          "waarde": 250
+        }
+      ]
+    },
+    {
+      "id": "geboorte-sterfte",
+      "thema": "mensen",
+      "titel": "Geboorte en sterfte per 1.000 inwoners",
+      "type": "line",
+      "bron": "CBS",
+      "jaar": "2013-2025",
+      "schatting": false,
+      "eenheid": "per 1.000 inwoners",
+      "absoluut_2025": {
+        "geboorten": 15,
+        "sterfgevallen": 5
+      },
+      "data": [
+        {
+          "jaar": 2013,
+          "geboorte": 18,
+          "sterfte": 3
+        },
+        {
+          "jaar": 2014,
+          "geboorte": 20,
+          "sterfte": 3
+        },
+        {
+          "jaar": 2015,
+          "geboorte": 17,
+          "sterfte": 3
+        },
+        {
+          "jaar": 2016,
+          "geboorte": 19,
+          "sterfte": 2
+        },
+        {
+          "jaar": 2017,
+          "geboorte": 20,
+          "sterfte": 3
+        },
+        {
+          "jaar": 2018,
+          "geboorte": 14,
+          "sterfte": 6
+        },
+        {
+          "jaar": 2019,
+          "geboorte": 16,
+          "sterfte": 2
+        },
+        {
+          "jaar": 2020,
+          "geboorte": 9,
+          "sterfte": 2
+        },
+        {
+          "jaar": 2021,
+          "geboorte": 13,
+          "sterfte": 4
+        },
+        {
+          "jaar": 2022,
+          "geboorte": 8,
+          "sterfte": 1
+        },
+        {
+          "jaar": 2023,
+          "geboorte": 11,
+          "sterfte": 7
+        },
+        {
+          "jaar": 2024,
+          "geboorte": 11,
+          "sterfte": 5
+        },
+        {
+          "jaar": 2025,
+          "geboorte": 10,
+          "sterfte": 0
+        }
+      ]
+    },
+    {
+      "id": "woningwaarde",
+      "thema": "wonen",
+      "titel": "Gemiddelde WOZ-waarde per jaar",
+      "type": "line",
+      "bron": "CBS",
+      "jaar": "2013-2025",
+      "schatting": false,
+      "opvallend": "Van € 290.000 in 2013 naar € 611.000 in 2025 (+111%); piek van € 642.000 in 2023.",
+      "data": [
+        {
+          "key": "2013",
+          "label": "2013",
+          "waarde": 290000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2014",
+          "label": "2014",
+          "waarde": 283000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2015",
+          "label": "2015",
+          "waarde": 292000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2016",
+          "label": "2016",
+          "waarde": 321000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2017",
+          "label": "2017",
+          "waarde": 381000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2018",
+          "label": "2018",
+          "waarde": 437000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2019",
+          "label": "2019",
+          "waarde": 485000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2020",
+          "label": "2020",
+          "waarde": 530000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2021",
+          "label": "2021",
+          "waarde": 528000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2022",
+          "label": "2022",
+          "waarde": 540000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2023",
+          "label": "2023",
+          "waarde": 642000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2024",
+          "label": "2024",
+          "waarde": 598000,
+          "eenheid": "€"
+        },
+        {
+          "key": "2025",
+          "label": "2025",
+          "waarde": 611000,
+          "eenheid": "€"
+        }
+      ]
+    },
+    {
+      "id": "eigendom",
+      "thema": "wonen",
+      "titel": "Koop en huur",
+      "type": "donut",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "totaal": 885,
+      "data": [
+        {
+          "key": "koopwoningen",
+          "label": "Koopwoningen",
+          "waarde": 310,
+          "aandeel": 35
+        },
+        {
+          "key": "huur-woningcorporatie",
+          "label": "Huur - woningcorporatie",
+          "waarde": 97,
+          "aandeel": 11
+        },
+        {
+          "key": "huur-overige-verhuurders",
+          "label": "Huur - overige verhuurders",
+          "waarde": 478,
+          "aandeel": 54
+        }
+      ]
+    },
+    {
+      "id": "bewoning",
+      "thema": "wonen",
+      "titel": "Bewoond en onbewoond",
+      "type": "donut",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "data": [
+        {
+          "key": "bewoond",
+          "label": "Bewoond",
+          "waarde": 788,
+          "aandeel": 89
+        },
+        {
+          "key": "onbewoond",
+          "label": "Onbewoond",
+          "waarde": 97,
+          "aandeel": 11
+        }
+      ]
+    },
+    {
+      "id": "woningtype",
+      "thema": "wonen",
+      "titel": "Soort woningen",
+      "type": "bar",
+      "bron": "Kadaster BAG",
+      "jaar": 2026,
+      "schatting": false,
+      "eenheid": "aantal",
+      "data": [
+        {
+          "key": "appartementen",
+          "label": "Appartementen",
+          "waarde": 888
+        },
+        {
+          "key": "tussenwoningen",
+          "label": "Tussenwoningen",
+          "waarde": 1
+        },
+        {
+          "key": "hoekwoningen",
+          "label": "Hoekwoningen",
+          "waarde": 1
+        }
+      ]
+    },
+    {
+      "id": "bouwperiode",
+      "thema": "wonen",
+      "titel": "Bouwperiode (adressen)",
+      "type": "bar",
+      "bron": "Kadaster BAG",
+      "jaar": 2026,
+      "schatting": false,
+      "noot": "Aantal adressen per bouwperiode van het pand; 0 vanaf 1950. Alle woningen (100%) dateren van vóór 1945.",
+      "data": [
+        {
+          "key": "voor-1700",
+          "label": "Voor 1700",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1700-tot-1900",
+          "label": "1700 tot 1900",
+          "waarde": 510,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1900-tot-1925",
+          "label": "1900 tot 1925",
+          "waarde": 440,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1925-tot-1950",
+          "label": "1925 tot 1950",
+          "waarde": 8,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1950-tot-1970",
+          "label": "1950 tot 1970",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1970-tot-1980",
+          "label": "1970 tot 1980",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1980-tot-1990",
+          "label": "1980 tot 1990",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "1990-tot-2000",
+          "label": "1990 tot 2000",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2000-tot-2010",
+          "label": "2000 tot 2010",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2010-tot-2020",
+          "label": "2010 tot 2020",
+          "waarde": 0,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "2020-en-later",
+          "label": "2020 en later",
+          "waarde": 0,
+          "eenheid": "aantal"
+        }
+      ]
+    },
+    {
+      "id": "gebruiksdoelen",
+      "thema": "wonen",
+      "titel": "Waarvoor worden adressen gebruikt",
+      "type": "barHorizontal",
+      "bron": "Kadaster BAG",
+      "jaar": 2026,
+      "schatting": false,
+      "totaal": 960,
+      "data": [
+        {
+          "key": "woonfunctie",
+          "label": "Woonfunctie",
+          "waarde": 890,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "winkelfunctie",
+          "label": "Winkelfunctie",
+          "waarde": 28,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "bijeenkomstfunctie",
+          "label": "Bijeenkomstfunctie",
+          "waarde": 16,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "kantoorfunctie",
+          "label": "Kantoorfunctie",
+          "waarde": 13,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "industriefunctie",
+          "label": "Industriefunctie",
+          "waarde": 8,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "overige-gebruiksfunctie",
+          "label": "Overige gebruiksfunctie",
+          "waarde": 7,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "gezondheidszorgfunctie",
+          "label": "Gezondheidszorgfunctie",
+          "waarde": 2,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "onderwijsfunctie",
+          "label": "Onderwijsfunctie",
+          "waarde": 1,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "celfunctie",
+          "label": "Celfunctie",
+          "waarde": 0,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "logiesfunctie",
+          "label": "Logiesfunctie",
+          "waarde": 0,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "sportfunctie",
+          "label": "Sportfunctie",
+          "waarde": 0,
+          "eenheid": "adressen"
+        }
+      ]
+    },
+    {
+      "id": "energielabels",
+      "thema": "wonen",
+      "titel": "Energielabels",
+      "type": "bar",
+      "bron": "RVO / EP-online",
+      "jaar": 2026,
+      "schatting": false,
+      "verdeling": {
+        "geen_label": 38,
+        "voorlopig": 152,
+        "definitief": 770
+      },
+      "data": [
+        {
+          "key": "a",
+          "label": "A+++++",
+          "waarde": 0,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "a",
+          "label": "A++++",
+          "waarde": 0,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "a",
+          "label": "A+++",
+          "waarde": 0,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "a",
+          "label": "A++",
+          "waarde": 5,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "a",
+          "label": "A+",
+          "waarde": 13,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "a",
+          "label": "A",
+          "waarde": 112,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "b",
+          "label": "B",
+          "waarde": 100,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "c",
+          "label": "C",
+          "waarde": 233,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "d",
+          "label": "D",
+          "waarde": 146,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "e",
+          "label": "E",
+          "waarde": 78,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "f",
+          "label": "F",
+          "waarde": 41,
+          "eenheid": "adressen"
+        },
+        {
+          "key": "g",
+          "label": "G",
+          "waarde": 194,
+          "eenheid": "adressen"
+        }
+      ]
+    },
+    {
+      "id": "energieverbruik",
+      "thema": "wonen",
+      "titel": "Gas- en stroomverbruik per woning",
+      "type": "line",
+      "bron": "CBS",
+      "jaar": "2013-2024",
+      "schatting": false,
+      "eenheid": {
+        "gas": "m³",
+        "stroom": "kWh"
+      },
+      "per_woningtype": [
+        {
+          "label": "Appartement",
+          "gas_m3": 660,
+          "stroom_kwh": 1750,
+          "jaar": 2023
+        },
+        {
+          "label": "Koopwoning",
+          "gas_m3": 730,
+          "stroom_kwh": 2220,
+          "jaar": 2023
+        },
+        {
+          "label": "Huurwoning",
+          "gas_m3": 640,
+          "stroom_kwh": 1540,
+          "jaar": 2023
+        }
+      ],
+      "extra": {
+        "zonnestroom_pct": 2,
+        "aardgasvrij_pct": 0,
+        "teruglevering_kwh": 20
+      },
+      "data": [
+        {
+          "jaar": 2013,
+          "gas_m3": 1100,
+          "stroom_kwh": 2100
+        },
+        {
+          "jaar": 2014,
+          "gas_m3": 800,
+          "stroom_kwh": 2000
+        },
+        {
+          "jaar": 2015,
+          "gas_m3": 860,
+          "stroom_kwh": 1980
+        },
+        {
+          "jaar": 2016,
+          "gas_m3": 910,
+          "stroom_kwh": 1970
+        },
+        {
+          "jaar": 2017,
+          "gas_m3": 860,
+          "stroom_kwh": 1970
+        },
+        {
+          "jaar": 2018,
+          "gas_m3": 870,
+          "stroom_kwh": 1930
+        },
+        {
+          "jaar": 2019,
+          "gas_m3": 820,
+          "stroom_kwh": 1870
+        },
+        {
+          "jaar": 2020,
+          "gas_m3": 800,
+          "stroom_kwh": 1990
+        },
+        {
+          "jaar": 2021,
+          "gas_m3": 930,
+          "stroom_kwh": 2050
+        },
+        {
+          "jaar": 2022,
+          "gas_m3": 740,
+          "stroom_kwh": 1900
+        },
+        {
+          "jaar": 2023,
+          "gas_m3": 660,
+          "stroom_kwh": 1750
+        },
+        {
+          "jaar": 2024,
+          "gas_m3": 640,
+          "stroom_kwh": 1780
+        }
+      ]
+    },
+    {
+      "id": "bedrijven",
+      "thema": "werk-geld",
+      "titel": "Bedrijfsvestigingen",
+      "type": "barHorizontal",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "totaal": 405,
+      "data": [
+        {
+          "key": "landbouw-bosbouw-en-visserij",
+          "label": "Landbouw, bosbouw en visserij",
+          "waarde": 0,
+          "aandeel": 0,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "nijverheid-en-energie",
+          "label": "Nijverheid en energie",
+          "waarde": 20,
+          "aandeel": 4.94,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "handel-en-horeca",
+          "label": "Handel en horeca",
+          "waarde": 50,
+          "aandeel": 12,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "vervoer-informatie-en-communicatie",
+          "label": "Vervoer, informatie en communicatie",
+          "waarde": 35,
+          "aandeel": 8.6,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "financi-le-diensten-en-onroerend-goed",
+          "label": "Financiële diensten en onroerend goed",
+          "waarde": 20,
+          "aandeel": 4.94,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "zakelijke-dienstverlening",
+          "label": "Zakelijke dienstverlening",
+          "waarde": 135,
+          "aandeel": 33,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "overheid-onderwijs-en-zorg",
+          "label": "Overheid, onderwijs en zorg",
+          "waarde": 90,
+          "aandeel": 22,
+          "eenheid": "vestigingen"
+        },
+        {
+          "key": "cultuur-recreatie-en-overig",
+          "label": "Cultuur, recreatie en overig",
+          "waarde": 55,
+          "aandeel": 14,
+          "eenheid": "vestigingen"
+        }
+      ]
+    },
+    {
+      "id": "inkomen",
+      "thema": "werk-geld",
+      "titel": "Inkomen",
+      "type": "kpi",
+      "bron": "CBS",
+      "jaar": 2023,
+      "schatting": false,
+      "data": [
+        {
+          "key": "gemiddeld-inkomen-per-inwoner",
+          "label": "Gemiddeld inkomen per inwoner",
+          "waarde": 58400,
+          "eenheid": "€",
+          "jaar": 2023,
+          "nederland": 34900,
+          "amsterdam": 41000
+        },
+        {
+          "key": "gemiddeld-inkomen-per-inkomensontvanger",
+          "label": "Gemiddeld inkomen per inkomensontvanger",
+          "waarde": 67400,
+          "eenheid": "€",
+          "jaar": 2023
+        },
+        {
+          "key": "gemiddeld-huishoudinkomen",
+          "label": "Gemiddeld huishoudinkomen",
+          "waarde": 51000,
+          "eenheid": "€",
+          "jaar": 2023
+        },
+        {
+          "key": "mediaan-vermogen-huishoudens",
+          "label": "Mediaan vermogen huishoudens",
+          "waarde": 33000,
+          "eenheid": "€",
+          "jaar": 2024
+        },
+        {
+          "key": "personen-in-armoede",
+          "label": "Personen in armoede",
+          "waarde": 6.6,
+          "eenheid": "%",
+          "jaar": 2024
+        },
+        {
+          "key": "huishoudens-met-laag-inkomen",
+          "label": "Huishoudens met laag inkomen",
+          "waarde": 8.3,
+          "eenheid": "%",
+          "jaar": 2023
+        },
+        {
+          "key": "huishoudens-onder-of-rond-sociaal-minimum",
+          "label": "Huishoudens onder of rond sociaal minimum",
+          "waarde": 9.5,
+          "eenheid": "%",
+          "jaar": 2023
+        }
+      ]
+    },
+    {
+      "id": "inkomen-vergelijking",
+      "thema": "werk-geld",
+      "titel": "Gemiddeld inkomen per inwoner: buurten in het Museumkwartier",
+      "type": "barHorizontal",
+      "bron": "CBS",
+      "jaar": 2023,
+      "schatting": false,
+      "referentie": {
+        "nederland": 34900,
+        "amsterdam": 41000
+      },
+      "data": [
+        {
+          "key": "harmoniehofbuurt",
+          "label": "Harmoniehofbuurt",
+          "waarde": 41400,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "duivelseiland",
+          "label": "Duivelseiland",
+          "waarde": 58400,
+          "eenheid": "€",
+          "is_duivelseiland": true,
+          "is_wijk": false
+        },
+        {
+          "key": "museumplein",
+          "label": "Museumplein",
+          "waarde": 64600,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "hondecoeterbuurt",
+          "label": "Hondecoeterbuurt",
+          "waarde": 73300,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "johannes-vermeerbuurt",
+          "label": "Johannes Vermeerbuurt",
+          "waarde": 79100,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "museumkwartier",
+          "label": "Museumkwartier",
+          "waarde": 79800,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": true
+        },
+        {
+          "key": "concertgebouwbuurt",
+          "label": "Concertgebouwbuurt",
+          "waarde": 82400,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "banpleinbuurt",
+          "label": "Banpleinbuurt",
+          "waarde": 83100,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "cornelis-schuytbuurt",
+          "label": "Cornelis Schuytbuurt",
+          "waarde": 92900,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        },
+        {
+          "key": "p-c-hooftbuurt",
+          "label": "P.C. Hooftbuurt",
+          "waarde": 100300,
+          "eenheid": "€",
+          "is_duivelseiland": false,
+          "is_wijk": false
+        }
+      ]
+    },
+    {
+      "id": "arbeid",
+      "thema": "werk-geld",
+      "titel": "Werk",
+      "type": "bar",
+      "bron": "CBS",
+      "jaar": 2024,
+      "schatting": false,
+      "werkzame_beroepsbevolking": 950,
+      "data": [
+        {
+          "key": "netto-arbeidsparticipatie",
+          "label": "Netto arbeidsparticipatie",
+          "waarde": 79,
+          "eenheid": "%"
+        },
+        {
+          "key": "werknemers-met-vaste-arbeidsrelatie",
+          "label": "Werknemers met vaste arbeidsrelatie",
+          "waarde": 51,
+          "eenheid": "%"
+        },
+        {
+          "key": "werknemers-met-flexibele-arbeidsrelatie",
+          "label": "Werknemers met flexibele arbeidsrelatie",
+          "waarde": 28,
+          "eenheid": "%"
+        },
+        {
+          "key": "zelfstandigen",
+          "label": "Zelfstandigen",
+          "waarde": 21,
+          "eenheid": "%"
+        }
+      ]
+    },
+    {
+      "id": "uitkeringen",
+      "thema": "werk-geld",
+      "titel": "Personen met een uitkering",
+      "type": "bar",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "aantal",
+      "data": [
+        {
+          "key": "bijstand",
+          "label": "Bijstand",
+          "waarde": 10,
+          "aandeel": 1
+        },
+        {
+          "key": "arbeidsongeschiktheid-ao",
+          "label": "Arbeidsongeschiktheid (AO)",
+          "waarde": 30,
+          "aandeel": 2
+        },
+        {
+          "key": "werkloosheid-ww",
+          "label": "Werkloosheid (WW)",
+          "waarde": 20,
+          "aandeel": 1
+        },
+        {
+          "key": "aow",
+          "label": "AOW",
+          "waarde": 130,
+          "aandeel": 9
+        }
+      ]
+    },
+    {
+      "id": "voertuigen",
+      "thema": "mobiliteit",
+      "titel": "Voertuigen op naam van bewoners",
+      "type": "bar",
+      "bron": "RDW",
+      "jaar": "sep 2026",
+      "schatting": false,
+      "totaal": 717,
+      "per_energiebron": [
+        {
+          "key": "benzine",
+          "label": "Benzine",
+          "waarde": 407,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "diesel",
+          "label": "Diesel",
+          "waarde": 65,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "elektriciteit",
+          "label": "Elektriciteit",
+          "waarde": 106,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "hybride",
+          "label": "Hybride",
+          "waarde": 128,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "hybride-met-stekker",
+          "label": "Hybride met stekker",
+          "waarde": 8,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "lpg",
+          "label": "LPG",
+          "waarde": 3,
+          "eenheid": "voertuigen"
+        }
+      ],
+      "noot": "RDW telt alle op naam van buurtadressen geregistreerde voertuigen (575 personenauto's); het CBS telt voor 2025 295 personenauto's, dus de twee reeksen niet naast elkaar zetten. 'Elektriciteit' bevat ook 43 elektrische bromfietsen.",
+      "data": [
+        {
+          "key": "bedrijfsauto",
+          "label": "Bedrijfsauto",
+          "waarde": 45,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "bromfiets",
+          "label": "Bromfiets",
+          "waarde": 72,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "motorfiets",
+          "label": "Motorfiets",
+          "waarde": 25,
+          "eenheid": "voertuigen"
+        },
+        {
+          "key": "personenauto",
+          "label": "Personenauto",
+          "waarde": 575,
+          "eenheid": "voertuigen"
+        }
+      ]
+    },
+    {
+      "id": "elektrische-autos",
+      "thema": "mobiliteit",
+      "titel": "Elektrische auto's per maand",
+      "type": "line",
+      "bron": "RDW",
+      "jaar": "mrt 2022 - sep 2026",
+      "schatting": false,
+      "eenheid": "voertuigen",
+      "noot": "63 elektrische auto's in september 2026 (60 personenauto's en 3 bedrijfsauto's).",
+      "data": [
+        {
+          "key": "mrt-22",
+          "label": "mrt ’22",
+          "waarde": 16
+        },
+        {
+          "key": "apr-22",
+          "label": "apr ’22",
+          "waarde": 17
+        },
+        {
+          "key": "mei-22",
+          "label": "mei ’22",
+          "waarde": 17
+        },
+        {
+          "key": "jun-22",
+          "label": "jun ’22",
+          "waarde": 18
+        },
+        {
+          "key": "jul-22",
+          "label": "jul ’22",
+          "waarde": 19
+        },
+        {
+          "key": "aug-22",
+          "label": "aug ’22",
+          "waarde": 19
+        },
+        {
+          "key": "sep-22",
+          "label": "sep ’22",
+          "waarde": 19
+        },
+        {
+          "key": "okt-22",
+          "label": "okt ’22",
+          "waarde": 20
+        },
+        {
+          "key": "nov-22",
+          "label": "nov ’22",
+          "waarde": 20
+        },
+        {
+          "key": "dec-22",
+          "label": "dec ’22",
+          "waarde": 21
+        },
+        {
+          "key": "jan-23",
+          "label": "jan ’23",
+          "waarde": 21
+        },
+        {
+          "key": "feb-23",
+          "label": "feb ’23",
+          "waarde": 22
+        },
+        {
+          "key": "mrt-23",
+          "label": "mrt ’23",
+          "waarde": 22
+        },
+        {
+          "key": "apr-23",
+          "label": "apr ’23",
+          "waarde": 23
+        },
+        {
+          "key": "mei-23",
+          "label": "mei ’23",
+          "waarde": 23
+        },
+        {
+          "key": "jun-23",
+          "label": "jun ’23",
+          "waarde": 25
+        },
+        {
+          "key": "jul-23",
+          "label": "jul ’23",
+          "waarde": 25
+        },
+        {
+          "key": "aug-23",
+          "label": "aug ’23",
+          "waarde": 25
+        },
+        {
+          "key": "sep-23",
+          "label": "sep ’23",
+          "waarde": 25
+        },
+        {
+          "key": "okt-23",
+          "label": "okt ’23",
+          "waarde": 26
+        },
+        {
+          "key": "nov-23",
+          "label": "nov ’23",
+          "waarde": 27
+        },
+        {
+          "key": "dec-23",
+          "label": "dec ’23",
+          "waarde": 27
+        },
+        {
+          "key": "jan-24",
+          "label": "jan ’24",
+          "waarde": 27
+        },
+        {
+          "key": "feb-24",
+          "label": "feb ’24",
+          "waarde": 28
+        },
+        {
+          "key": "mrt-24",
+          "label": "mrt ’24",
+          "waarde": 28
+        },
+        {
+          "key": "apr-24",
+          "label": "apr ’24",
+          "waarde": 30
+        },
+        {
+          "key": "mei-24",
+          "label": "mei ’24",
+          "waarde": 30
+        },
+        {
+          "key": "jun-24",
+          "label": "jun ’24",
+          "waarde": 31
+        },
+        {
+          "key": "jul-24",
+          "label": "jul ’24",
+          "waarde": 32
+        },
+        {
+          "key": "aug-24",
+          "label": "aug ’24",
+          "waarde": 33
+        },
+        {
+          "key": "sep-24",
+          "label": "sep ’24",
+          "waarde": 33
+        },
+        {
+          "key": "okt-24",
+          "label": "okt ’24",
+          "waarde": 34
+        },
+        {
+          "key": "nov-24",
+          "label": "nov ’24",
+          "waarde": 35
+        },
+        {
+          "key": "dec-24",
+          "label": "dec ’24",
+          "waarde": 36
+        },
+        {
+          "key": "jan-25",
+          "label": "jan ’25",
+          "waarde": 37
+        },
+        {
+          "key": "feb-25",
+          "label": "feb ’25",
+          "waarde": 38
+        },
+        {
+          "key": "mrt-25",
+          "label": "mrt ’25",
+          "waarde": 38
+        },
+        {
+          "key": "apr-25",
+          "label": "apr ’25",
+          "waarde": 39
+        },
+        {
+          "key": "mei-25",
+          "label": "mei ’25",
+          "waarde": 38
+        },
+        {
+          "key": "jun-25",
+          "label": "jun ’25",
+          "waarde": 39
+        },
+        {
+          "key": "jul-25",
+          "label": "jul ’25",
+          "waarde": 39
+        },
+        {
+          "key": "aug-25",
+          "label": "aug ’25",
+          "waarde": 49
+        },
+        {
+          "key": "sep-25",
+          "label": "sep ’25",
+          "waarde": 49
+        },
+        {
+          "key": "okt-25",
+          "label": "okt ’25",
+          "waarde": 49
+        },
+        {
+          "key": "nov-25",
+          "label": "nov ’25",
+          "waarde": 50
+        },
+        {
+          "key": "dec-25",
+          "label": "dec ’25",
+          "waarde": 50
+        },
+        {
+          "key": "jan-26",
+          "label": "jan ’26",
+          "waarde": 51
+        },
+        {
+          "key": "feb-26",
+          "label": "feb ’26",
+          "waarde": 51
+        },
+        {
+          "key": "mrt-26",
+          "label": "mrt ’26",
+          "waarde": 43
+        },
+        {
+          "key": "apr-26",
+          "label": "apr ’26",
+          "waarde": 44
+        },
+        {
+          "key": "mei-26",
+          "label": "mei ’26",
+          "waarde": 45
+        },
+        {
+          "key": "jun-26",
+          "label": "jun ’26",
+          "waarde": 49
+        },
+        {
+          "key": "jul-26",
+          "label": "jul ’26",
+          "waarde": 62
+        },
+        {
+          "key": "aug-26",
+          "label": "aug ’26",
+          "waarde": 61
+        },
+        {
+          "key": "sep-26",
+          "label": "sep ’26",
+          "waarde": 63
+        }
+      ]
+    },
+    {
+      "id": "vervoer-cbs",
+      "thema": "mobiliteit",
+      "titel": "Auto's per huishouden",
+      "type": "kpi",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "data": [
+        {
+          "key": "personenauto-s",
+          "label": "Personenauto's",
+          "waarde": 295,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "personenauto-s-per-huishouden",
+          "label": "Personenauto's per huishouden",
+          "waarde": 0.34,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "motorfietsen",
+          "label": "Motorfietsen",
+          "waarde": 20,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "personenauto-s-per-km",
+          "label": "Personenauto's per km²",
+          "waarde": 4917,
+          "eenheid": "per km²",
+          "nederland": 275
+        }
+      ]
+    },
+    {
+      "id": "verkeersongevallen",
+      "thema": "mobiliteit",
+      "titel": "Verkeersongevallen per jaar",
+      "type": "stackedBar",
+      "bron": "Rijkswaterstaat (BRON)",
+      "jaar": "2003-2025",
+      "schatting": false,
+      "eenheid": "ongevallen",
+      "opvallend": "14 ongevallen in 2025: 11 met materiële schade, 3 met letsel, 0 dodelijk.",
+      "data": [
+        {
+          "jaar": 2003,
+          "totaal": 13,
+          "materiele_schade": 10,
+          "letselschade": 3,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2004,
+          "totaal": 12,
+          "materiele_schade": 10,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2005,
+          "totaal": 4,
+          "materiele_schade": 1,
+          "letselschade": 3,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2006,
+          "totaal": 6,
+          "materiele_schade": 5,
+          "letselschade": 1,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2007,
+          "totaal": 8,
+          "materiele_schade": 5,
+          "letselschade": 3,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2008,
+          "totaal": 6,
+          "materiele_schade": 4,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2009,
+          "totaal": 6,
+          "materiele_schade": 5,
+          "letselschade": 1,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2010,
+          "totaal": 10,
+          "materiele_schade": 10,
+          "letselschade": 0,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2011,
+          "totaal": 2,
+          "materiele_schade": 2,
+          "letselschade": 0,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2012,
+          "totaal": 9,
+          "materiele_schade": 8,
+          "letselschade": 1,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2013,
+          "totaal": 10,
+          "materiele_schade": 7,
+          "letselschade": 3,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2014,
+          "totaal": 8,
+          "materiele_schade": 6,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2015,
+          "totaal": 5,
+          "materiele_schade": 4,
+          "letselschade": 1,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2016,
+          "totaal": 9,
+          "materiele_schade": 7,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2017,
+          "totaal": 10,
+          "materiele_schade": 6,
+          "letselschade": 4,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2018,
+          "totaal": 12,
+          "materiele_schade": 10,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2019,
+          "totaal": 11,
+          "materiele_schade": 7,
+          "letselschade": 4,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2020,
+          "totaal": 0,
+          "materiele_schade": 0,
+          "letselschade": 0,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2021,
+          "totaal": 7,
+          "materiele_schade": 5,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2022,
+          "totaal": 5,
+          "materiele_schade": 4,
+          "letselschade": 1,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2023,
+          "totaal": 6,
+          "materiele_schade": 4,
+          "letselschade": 2,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2024,
+          "totaal": 8,
+          "materiele_schade": 5,
+          "letselschade": 3,
+          "dodelijk": 0
+        },
+        {
+          "jaar": 2025,
+          "totaal": 14,
+          "materiele_schade": 11,
+          "letselschade": 3,
+          "dodelijk": 0
+        }
+      ]
+    },
+    {
+      "id": "dichtheid",
+      "thema": "mobiliteit",
+      "titel": "Dichtheid per km²",
+      "type": "barCompare",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "eenheid": "per km²",
+      "data": [
+        {
+          "key": "bevolking",
+          "label": "Bevolking",
+          "nederland": 536,
+          "duivelseiland": 23167
+        },
+        {
+          "key": "adressen",
+          "label": "Adressen",
+          "nederland": 2093,
+          "duivelseiland": 9115
+        },
+        {
+          "key": "autos",
+          "label": "Autos",
+          "nederland": 275,
+          "duivelseiland": 4917
+        }
+      ]
+    },
+    {
+      "id": "misdaad-jaren",
+      "thema": "veiligheid",
+      "titel": "Geregistreerde misdrijven per jaar",
+      "type": "line",
+      "bron": "Politie (data.politie.nl)",
+      "jaar": "2012-2025",
+      "schatting": false,
+      "maanden": [
+        {
+          "key": "mrt-2025",
+          "label": "mrt 2025",
+          "waarde": 7,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "apr-2025",
+          "label": "apr 2025",
+          "waarde": 7,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "mei-2025",
+          "label": "mei 2025",
+          "waarde": 10,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "jun-2025",
+          "label": "jun 2025",
+          "waarde": 8,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "jul-2025",
+          "label": "jul 2025",
+          "waarde": 10,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "aug-2025",
+          "label": "aug 2025",
+          "waarde": 7,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "sep-2025",
+          "label": "sep 2025",
+          "waarde": 9,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "okt-2025",
+          "label": "okt 2025",
+          "waarde": 15,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "nov-2025",
+          "label": "nov 2025",
+          "waarde": 13,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "dec-2025",
+          "label": "dec 2025",
+          "waarde": 6,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "jan-2026",
+          "label": "jan 2026",
+          "waarde": 13,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "feb-2026",
+          "label": "feb 2026",
+          "waarde": 4,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "mrt-2026",
+          "label": "mrt 2026",
+          "waarde": 10,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "apr-2026",
+          "label": "apr 2026",
+          "waarde": 6,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "mei-2026",
+          "label": "mei 2026",
+          "waarde": 9,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "jun-2026",
+          "label": "jun 2026",
+          "waarde": 8,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "jul-2026",
+          "label": "jul 2026",
+          "waarde": 9,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "aug-2026",
+          "label": "aug 2026",
+          "waarde": 7,
+          "eenheid": "misdrijven"
+        }
+      ],
+      "totaal_2012_2025": 1693,
+      "data": [
+        {
+          "key": "2012",
+          "label": "2012",
+          "waarde": 152,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2013",
+          "label": "2013",
+          "waarde": 159,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2014",
+          "label": "2014",
+          "waarde": 141,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2015",
+          "label": "2015",
+          "waarde": 114,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2016",
+          "label": "2016",
+          "waarde": 125,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2017",
+          "label": "2017",
+          "waarde": 108,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2018",
+          "label": "2018",
+          "waarde": 105,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2019",
+          "label": "2019",
+          "waarde": 109,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2020",
+          "label": "2020",
+          "waarde": 110,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2021",
+          "label": "2021",
+          "waarde": 106,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2022",
+          "label": "2022",
+          "waarde": 118,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2023",
+          "label": "2023",
+          "waarde": 119,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2024",
+          "label": "2024",
+          "waarde": 112,
+          "eenheid": "misdrijven"
+        },
+        {
+          "key": "2025",
+          "label": "2025",
+          "waarde": 115,
+          "eenheid": "misdrijven"
+        }
+      ]
+    },
+    {
+      "id": "misdaad-soorten",
+      "thema": "veiligheid",
+      "titel": "Meest voorkomende misdrijven",
+      "type": "barHorizontal",
+      "bron": "Politie (data.politie.nl)",
+      "jaar": 2025,
+      "schatting": false,
+      "totaal": 115,
+      "noot": "Top 10 van soorten; het totaal in 2025 is 115.",
+      "data": [
+        {
+          "key": "diefstal-van-brom-snor-fietsen",
+          "label": "Diefstal van brom-, snor-, fietsen",
+          "waarde": 39,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "ongevallen-weg",
+          "label": "Ongevallen (weg)",
+          "waarde": 15,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "diefstal-uit-vanaf-motorvoertuigen",
+          "label": "Diefstal uit/vanaf motorvoertuigen",
+          "waarde": 9,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "onder-invloed-weg",
+          "label": "Onder invloed (weg)",
+          "waarde": 7,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "mishandeling",
+          "label": "Mishandeling",
+          "waarde": 6,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "diefstal-af-uit-van-ov-voertuigen",
+          "label": "Diefstal af/uit/van ov. voertuigen",
+          "waarde": 6,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "overige-vermogensdelicten",
+          "label": "Overige vermogensdelicten",
+          "waarde": 6,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "horizontale-fraude",
+          "label": "Horizontale fraude",
+          "waarde": 6,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "vernieling-cq-zaakbeschadiging",
+          "label": "Vernieling cq. zaakbeschadiging",
+          "waarde": 5,
+          "eenheid": "delicten"
+        },
+        {
+          "key": "diefstal-inbraak-woning",
+          "label": "Diefstal/inbraak woning",
+          "waarde": 3,
+          "eenheid": "delicten"
+        }
+      ]
+    },
+    {
+      "id": "misdaad-per-1000",
+      "thema": "veiligheid",
+      "titel": "Misdrijven per 1.000 inwoners",
+      "type": "barHorizontal",
+      "bron": "Politie / CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "totaal_per_1000": 83,
+      "data": [
+        {
+          "key": "diefstal",
+          "label": "Diefstal",
+          "waarde": 49,
+          "eenheid": "per 1.000 inwoners"
+        },
+        {
+          "key": "geweld-en-seksmisdrijven",
+          "label": "Geweld en seksmisdrijven",
+          "waarde": 6,
+          "eenheid": "per 1.000 inwoners"
+        },
+        {
+          "key": "milieu-overtredingen",
+          "label": "Milieu overtredingen",
+          "waarde": 0,
+          "eenheid": "per 1.000 inwoners"
+        },
+        {
+          "key": "oplichting",
+          "label": "Oplichting",
+          "waarde": 6,
+          "eenheid": "per 1.000 inwoners"
+        },
+        {
+          "key": "verkeersovertredingen",
+          "label": "Verkeersovertredingen",
+          "waarde": 17,
+          "eenheid": "per 1.000 inwoners"
+        },
+        {
+          "key": "vernieling",
+          "label": "Vernieling",
+          "waarde": 4,
+          "eenheid": "per 1.000 inwoners"
+        },
+        {
+          "key": "overige-misdrijven",
+          "label": "Overige misdrijven",
+          "waarde": 2,
+          "eenheid": "per 1.000 inwoners"
+        }
+      ]
+    },
+    {
+      "id": "gezondheid-trend",
+      "thema": "gezondheid",
+      "titel": "Inwoners met een goede gezondheid",
+      "type": "line",
+      "bron": "RIVM Gezondheidsmonitor",
+      "jaar": "2012-2024",
+      "schatting": true,
+      "eenheid": "%",
+      "schatting_reden": "Enquêtegebaseerd (steekproef), daarom een schatting.",
+      "data": [
+        {
+          "jaar": 2012,
+          "van_18_tot_65": 88,
+          "vanaf_18": 86,
+          "vanaf_65": 62
+        },
+        {
+          "jaar": 2016,
+          "van_18_tot_65": 86,
+          "vanaf_18": 84,
+          "vanaf_65": 61
+        },
+        {
+          "jaar": 2020,
+          "van_18_tot_65": 88,
+          "vanaf_18": 86,
+          "vanaf_65": 65
+        },
+        {
+          "jaar": 2022,
+          "van_18_tot_65": 78,
+          "vanaf_18": 76,
+          "vanaf_65": 59
+        },
+        {
+          "jaar": 2024,
+          "van_18_tot_65": 82,
+          "vanaf_18": 80,
+          "vanaf_65": 63
+        }
+      ]
+    },
+    {
+      "id": "alcohol-roken",
+      "thema": "gezondheid",
+      "titel": "Alcohol en roken",
+      "type": "groupedBar",
+      "bron": "RIVM Gezondheidsmonitor",
+      "jaar": 2024,
+      "schatting": true,
+      "eenheid": "%",
+      "data": [
+        {
+          "label": "Rookt tabak",
+          "18 jaar of ouder": 24,
+          "18 tot 65 jaar": 25,
+          "65 jaar of ouder": 18
+        },
+        {
+          "label": "Voldoet aan de alcoholrichtlijn",
+          "18 jaar of ouder": 20,
+          "18 tot 65 jaar": 18,
+          "65 jaar of ouder": 34
+        },
+        {
+          "label": "Drinken",
+          "18 jaar of ouder": 91,
+          "18 tot 65 jaar": 92,
+          "65 jaar of ouder": 84
+        },
+        {
+          "label": "Zwaar drinken",
+          "18 jaar of ouder": 19,
+          "18 tot 65 jaar": 20,
+          "65 jaar of ouder": 10
+        },
+        {
+          "label": "Overmatig drinken",
+          "18 jaar of ouder": 11,
+          "18 tot 65 jaar": 10,
+          "65 jaar of ouder": 15
+        }
+      ]
+    },
+    {
+      "id": "leefstijl",
+      "thema": "gezondheid",
+      "titel": "Bewegen en gewicht",
+      "type": "meters",
+      "bron": "RIVM Gezondheidsmonitor",
+      "jaar": 2024,
+      "schatting": true,
+      "data": [
+        {
+          "key": "voldoet-aan-de-beweegrichtlijn",
+          "label": "Voldoet aan de beweegrichtlijn",
+          "waarde": 71,
+          "eenheid": "%"
+        },
+        {
+          "key": "wekelijks-sporten",
+          "label": "Wekelijks sporten",
+          "waarde": 74,
+          "eenheid": "%"
+        },
+        {
+          "key": "lopen-en-of-fietsen-naar-school-of-werk",
+          "label": "Lopen en/of fietsen naar school of werk",
+          "waarde": 79,
+          "eenheid": "%"
+        },
+        {
+          "key": "overgewicht",
+          "label": "Overgewicht",
+          "waarde": 30,
+          "eenheid": "%"
+        },
+        {
+          "key": "ernstig-overgewicht-obesitas",
+          "label": "Ernstig overgewicht (obesitas)",
+          "waarde": 7,
+          "eenheid": "%"
+        }
+      ]
+    },
+    {
+      "id": "welzijn",
+      "thema": "gezondheid",
+      "titel": "Welzijn en eenzaamheid",
+      "type": "meters",
+      "bron": "RIVM Gezondheidsmonitor",
+      "jaar": 2024,
+      "schatting": true,
+      "data": [
+        {
+          "key": "eenzaam",
+          "label": "Eenzaam",
+          "waarde": 48,
+          "eenheid": "%"
+        },
+        {
+          "key": "ernstig-eenzaam",
+          "label": "Ernstig eenzaam",
+          "waarde": 15,
+          "eenheid": "%"
+        },
+        {
+          "key": "emotioneel-eenzaam",
+          "label": "Emotioneel eenzaam",
+          "waarde": 34,
+          "eenheid": "%"
+        },
+        {
+          "key": "sociaal-eenzaam",
+          "label": "Sociaal eenzaam",
+          "waarde": 32,
+          "eenheid": "%"
+        },
+        {
+          "key": "hoge-veerkracht",
+          "label": "Hoge veerkracht",
+          "waarde": 54,
+          "eenheid": "%"
+        },
+        {
+          "key": "lage-veerkracht",
+          "label": "Lage veerkracht",
+          "waarde": 15,
+          "eenheid": "%"
+        },
+        {
+          "key": "heel-veel-stress-in-afgelopen-4-weken",
+          "label": "(Heel) veel stress in afgelopen 4 weken",
+          "waarde": 29,
+          "eenheid": "%"
+        },
+        {
+          "key": "hoog-risico-op-angst-of-depressie",
+          "label": "Hoog risico op angst of depressie",
+          "waarde": 10,
+          "eenheid": "%"
+        },
+        {
+          "key": "krijgt-steun-van-anderen",
+          "label": "Krijgt steun van anderen",
+          "waarde": 93,
+          "eenheid": "%"
+        },
+        {
+          "key": "vrijwilligerswerk",
+          "label": "Vrijwilligerswerk",
+          "waarde": 20,
+          "eenheid": "%"
+        },
+        {
+          "key": "mantelzorger",
+          "label": "Mantelzorger",
+          "waarde": 7,
+          "eenheid": "%"
+        }
+      ]
+    },
+    {
+      "id": "tevredenheid",
+      "thema": "gezondheid",
+      "titel": "Tevreden met wonen",
+      "type": "meters",
+      "bron": "RIVM Gezondheidsmonitor",
+      "jaar": 2024,
+      "schatting": true,
+      "data": [
+        {
+          "key": "tevreden-met-de-woning",
+          "label": "Tevreden met de woning",
+          "waarde": 86,
+          "eenheid": "%"
+        },
+        {
+          "key": "tevreden-met-de-woonomgeving",
+          "label": "Tevreden met de woonomgeving",
+          "waarde": 90,
+          "eenheid": "%"
+        },
+        {
+          "key": "tevreden-met-het-groen-in-de-omgeving",
+          "label": "Tevreden met het groen in de omgeving",
+          "waarde": 72,
+          "eenheid": "%"
+        }
+      ]
+    },
+    {
+      "id": "geluidhinder",
+      "thema": "gezondheid",
+      "titel": "Ernstige geluidhinder door",
+      "type": "barHorizontal",
+      "bron": "RIVM Gezondheidsmonitor",
+      "jaar": 2024,
+      "schatting": true,
+      "data": [
+        {
+          "key": "buren",
+          "label": "buren",
+          "waarde": 10,
+          "eenheid": "%"
+        },
+        {
+          "key": "wegverkeer",
+          "label": "wegverkeer",
+          "waarde": 9,
+          "eenheid": "%"
+        },
+        {
+          "key": "vliegverkeer",
+          "label": "vliegverkeer",
+          "waarde": 4,
+          "eenheid": "%"
+        },
+        {
+          "key": "treinverkeer",
+          "label": "treinverkeer",
+          "waarde": 1,
+          "eenheid": "%"
+        },
+        {
+          "key": "windturbines",
+          "label": "windturbines",
+          "waarde": 0,
+          "eenheid": "%"
+        }
+      ]
+    },
+    {
+      "id": "voorzieningen",
+      "thema": "voorzieningen",
+      "titel": "Afstand tot voorzieningen",
+      "type": "distance",
+      "bron": "CBS / Kadaster",
+      "jaar": "2024-2025",
+      "schatting": false,
+      "meer": [
+        {
+          "key": "apotheek",
+          "label": "Apotheek",
+          "waarde": 0.6,
+          "eenheid": "km",
+          "jaar": 2025
+        },
+        {
+          "key": "caf",
+          "label": "Café",
+          "waarde": 0.2,
+          "eenheid": "km",
+          "jaar": 2025
+        },
+        {
+          "key": "cafetaria",
+          "label": "Cafetaria",
+          "waarde": 0.2,
+          "eenheid": "km",
+          "jaar": 2025
+        },
+        {
+          "key": "hotel",
+          "label": "Hotel",
+          "waarde": 0.3,
+          "eenheid": "km",
+          "jaar": 2025
+        },
+        {
+          "key": "zwembad",
+          "label": "Zwembad",
+          "waarde": 0.7,
+          "eenheid": "km",
+          "jaar": 2025
+        },
+        {
+          "key": "brandweerkazerne",
+          "label": "Brandweerkazerne",
+          "waarde": 1,
+          "eenheid": "km",
+          "jaar": 2025
+        },
+        {
+          "key": "podiumkunsten",
+          "label": "Podiumkunsten",
+          "waarde": 1,
+          "eenheid": "km",
+          "jaar": 2024
+        },
+        {
+          "key": "poppodium",
+          "label": "Poppodium",
+          "waarde": 1.5,
+          "eenheid": "km",
+          "jaar": 2024
+        },
+        {
+          "key": "openbaar-groen",
+          "label": "Openbaar groen",
+          "waarde": 0.5,
+          "eenheid": "km",
+          "jaar": 2017
+        }
+      ],
+      "binnen_5_km": [
+        {
+          "key": "restaurants-binnen-1-km",
+          "label": "Restaurants binnen 1 km",
+          "waarde": 115,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "caf-s-binnen-1-km",
+          "label": "Cafés binnen 1 km",
+          "waarde": 22,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "supermarkten-binnen-1-km",
+          "label": "Supermarkten binnen 1 km",
+          "waarde": 7.3,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "musea-binnen-5-km",
+          "label": "Musea binnen 5 km",
+          "waarde": 41,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "podiumkunsten-binnen-5-km",
+          "label": "Podiumkunsten binnen 5 km",
+          "waarde": 36,
+          "eenheid": "aantal"
+        },
+        {
+          "key": "bioscopen-binnen-5-km",
+          "label": "Bioscopen binnen 5 km",
+          "waarde": 11,
+          "eenheid": "aantal"
+        }
+      ],
+      "noot": "Gemiddelde afstand over de weg vanaf een adres in de buurt.",
+      "data": [
+        {
+          "key": "huisartsenpraktijk",
+          "label": "Huisartsenpraktijk",
+          "waarde": 0.3,
+          "eenheid": "km"
+        },
+        {
+          "key": "supermarkt",
+          "label": "Supermarkt",
+          "waarde": 0.3,
+          "eenheid": "km"
+        },
+        {
+          "key": "restaurant",
+          "label": "Restaurant",
+          "waarde": 0.1,
+          "eenheid": "km"
+        },
+        {
+          "key": "basisonderwijs",
+          "label": "Basisonderwijs",
+          "waarde": 0.8,
+          "eenheid": "km"
+        },
+        {
+          "key": "voortgezet-onderwijs",
+          "label": "Voortgezet onderwijs",
+          "waarde": 0.4,
+          "eenheid": "km"
+        },
+        {
+          "key": "bibliotheek",
+          "label": "Bibliotheek",
+          "waarde": 0.4,
+          "eenheid": "km"
+        },
+        {
+          "key": "treinstation",
+          "label": "Treinstation",
+          "waarde": 2.1,
+          "eenheid": "km"
+        },
+        {
+          "key": "sportterrein",
+          "label": "Sportterrein",
+          "waarde": 0.7,
+          "eenheid": "km"
+        },
+        {
+          "key": "bioscoop",
+          "label": "Bioscoop",
+          "waarde": 0.9,
+          "eenheid": "km"
+        },
+        {
+          "key": "museum",
+          "label": "Museum",
+          "waarde": 0.6,
+          "eenheid": "km"
+        }
+      ]
+    },
+    {
+      "id": "leerlingen",
+      "thema": "onderwijs",
+      "titel": "Leerlingen en studenten die in de buurt wonen",
+      "type": "bar",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "totaal": 180,
+      "data": [
+        {
+          "key": "leerlingen-po",
+          "label": "Leerlingen PO",
+          "waarde": 50,
+          "eenheid": "personen"
+        },
+        {
+          "key": "leerlingen-vo",
+          "label": "Leerlingen VO",
+          "waarde": 30,
+          "eenheid": "personen"
+        },
+        {
+          "key": "studenten-mbo",
+          "label": "Studenten MBO",
+          "waarde": 10,
+          "eenheid": "personen"
+        },
+        {
+          "key": "studenten-hbo",
+          "label": "Studenten HBO",
+          "waarde": 20,
+          "eenheid": "personen"
+        },
+        {
+          "key": "studenten-wo",
+          "label": "Studenten WO",
+          "waarde": 70,
+          "eenheid": "personen"
+        }
+      ]
+    },
+    {
+      "id": "opleidingsniveau",
+      "thema": "onderwijs",
+      "titel": "Opleidingsniveau (15 tot 75 jaar)",
+      "type": "donut",
+      "bron": "CBS",
+      "jaar": "2023-2024",
+      "schatting": false,
+      "eenheid": "aantal",
+      "noot": "De bron toont '100%' bij hoger opgeleid; dat is onjuist. 940 van de 1.230 is 76%. Gebruik deze afgeleide 76% of laat het percentage weg. Jaargangen verschillen (2023 en 2024).",
+      "hoger_aandeel_afgeleid": 76,
+      "data": [
+        {
+          "key": "praktisch",
+          "label": "Praktisch",
+          "waarde": 100,
+          "jaar": 2023
+        },
+        {
+          "key": "middelbaar",
+          "label": "Middelbaar",
+          "waarde": 190,
+          "jaar": 2023
+        },
+        {
+          "key": "hoger",
+          "label": "Hoger",
+          "waarde": 940,
+          "jaar": 2024
+        }
+      ]
+    },
+    {
+      "id": "school-afstand",
+      "thema": "onderwijs",
+      "titel": "Afstand tot scholen (km)",
+      "type": "groupedBar",
+      "bron": "CBS",
+      "jaar": "2024-2025",
+      "schatting": false,
+      "eenheid": "km",
+      "opvallend": "Voortgezet onderwijs ligt gemiddeld 0,4 km weg; in Nederland 2,5 km. In de buurt zelf staat geen school of kinderopvang.",
+      "data": [
+        {
+          "label": "Kinderdagverblijf",
+          "duivelseiland": 0.6,
+          "museumkwartier": 0.3,
+          "amsterdam": 0.4,
+          "nederland": 0.7
+        },
+        {
+          "label": "Buitenschoolse opvang",
+          "duivelseiland": 0.9,
+          "museumkwartier": 0.5,
+          "amsterdam": 0.5,
+          "nederland": 0.7
+        },
+        {
+          "label": "Basisonderwijs",
+          "duivelseiland": 0.8,
+          "museumkwartier": 0.6,
+          "amsterdam": 0.6,
+          "nederland": 0.8
+        },
+        {
+          "label": "Voortgezet onderwijs",
+          "duivelseiland": 0.4,
+          "museumkwartier": 0.6,
+          "amsterdam": 1.1,
+          "nederland": 2.5
+        },
+        {
+          "label": "VMBO",
+          "duivelseiland": 0.4,
+          "museumkwartier": 0.8,
+          "amsterdam": 1.1,
+          "nederland": 2.6
+        },
+        {
+          "label": "HAVO/VWO",
+          "duivelseiland": 0.4,
+          "museumkwartier": 0.6,
+          "amsterdam": 1.3,
+          "nederland": 3.4
+        }
+      ]
+    },
+    {
+      "id": "verkiezingen",
+      "thema": "democratie",
+      "titel": "Gemeenteraadsverkiezingen 18 maart 2026",
+      "type": "barHorizontal",
+      "bron": "Kiesraad",
+      "jaar": 2026,
+      "schatting": false,
+      "per_stembureau": {
+        "Oud-Katholieke parochies Amsterdam": {
+          "D66": 272,
+          "VVD": 243,
+          "GroenLinks": 200,
+          "PvdA": 152,
+          "Volt": 98,
+          "PvdD": 54,
+          "JA21": 53,
+          "CDA": 48,
+          "FvD": 41,
+          "SP": 29,
+          "BIJ1": 27,
+          "De Vonk": 12,
+          "CU": 8,
+          "De Stem Van Amsterdam": 7,
+          "DENK": 6
+        },
+        "The Collegehotel": {
+          "D66": 246,
+          "VVD": 227,
+          "GroenLinks": 169,
+          "PvdA": 148,
+          "JA21": 71,
+          "Volt": 67,
+          "CDA": 50,
+          "PvdD": 48,
+          "BIJ1": 26,
+          "FvD": 23,
+          "SP": 17,
+          "De Vonk": 10,
+          "De Stem Van Amsterdam": 6,
+          "50PLUS": 5,
+          "Hart voor Amsterdam/Partij van de Ouderen": 5
+        }
+      },
+      "totaal_stemmen": 2368,
+      "noot": "Som van de twee stembureaus in de buurt (Oud-Katholieke parochies Amsterdam en The Collegehotel); alleen partijen die in de bron staan. Aandeel is zelf berekend.",
+      "data": [
+        {
+          "key": "d66",
+          "label": "D66",
+          "waarde": 518,
+          "aandeel": 21.9,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "vvd",
+          "label": "VVD",
+          "waarde": 470,
+          "aandeel": 19.8,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "groenlinks",
+          "label": "GroenLinks",
+          "waarde": 369,
+          "aandeel": 15.6,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "pvda",
+          "label": "PvdA",
+          "waarde": 300,
+          "aandeel": 12.7,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "volt",
+          "label": "Volt",
+          "waarde": 165,
+          "aandeel": 7.0,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "ja21",
+          "label": "JA21",
+          "waarde": 124,
+          "aandeel": 5.2,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "pvdd",
+          "label": "PvdD",
+          "waarde": 102,
+          "aandeel": 4.3,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "cda",
+          "label": "CDA",
+          "waarde": 98,
+          "aandeel": 4.1,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "fvd",
+          "label": "FvD",
+          "waarde": 64,
+          "aandeel": 2.7,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "bij1",
+          "label": "BIJ1",
+          "waarde": 53,
+          "aandeel": 2.2,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "sp",
+          "label": "SP",
+          "waarde": 46,
+          "aandeel": 1.9,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "de-vonk",
+          "label": "De Vonk",
+          "waarde": 22,
+          "aandeel": 0.9,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "de-stem-van-amsterdam",
+          "label": "De Stem Van Amsterdam",
+          "waarde": 13,
+          "aandeel": 0.5,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "cu",
+          "label": "CU",
+          "waarde": 8,
+          "aandeel": 0.3,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "denk",
+          "label": "DENK",
+          "waarde": 6,
+          "aandeel": 0.3,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "50plus",
+          "label": "50PLUS",
+          "waarde": 5,
+          "aandeel": 0.2,
+          "eenheid": "stemmen"
+        },
+        {
+          "key": "hart-voor-amsterdam-partij-van-de-ouderen",
+          "label": "Hart voor Amsterdam/Partij van de Ouderen",
+          "waarde": 5,
+          "aandeel": 0.2,
+          "eenheid": "stemmen"
+        }
+      ]
+    },
+    {
+      "id": "vergelijk-woz-65plus",
+      "thema": "vergelijking",
+      "titel": "Woningwaarde en aandeel 65-plussers",
+      "type": "scatter",
+      "bron": "CBS",
+      "jaar": 2025,
+      "schatting": false,
+      "noot": "Museumplein en Vondelpark-Oost hebben minder dan 10 woningen en zijn statistisch onbetrouwbaar.",
+      "data": [
+        {
+          "label": "Nederland",
+          "woz": 398000,
+          "aandeel_65plus": 21,
+          "woningen": 8274513,
+          "soort": "Nederland"
+        },
+        {
+          "label": "Provincie Noord-Holland",
+          "woz": 480147,
+          "aandeel_65plus": 19,
+          "woningen": 1420068,
+          "soort": "Provincie Noord-Holland"
+        },
+        {
+          "label": "Gemeente Amsterdam",
+          "woz": 518000,
+          "aandeel_65plus": 14,
+          "woningen": 486769,
+          "soort": "Gemeente Amsterdam"
+        },
+        {
+          "label": "Woonplaats Amsterdam",
+          "woz": 518000,
+          "aandeel_65plus": 14,
+          "woningen": 486769,
+          "soort": "Woonplaats"
+        },
+        {
+          "label": "Woonplaats Weesp",
+          "woz": 521765,
+          "aandeel_65plus": 17,
+          "woningen": 10399,
+          "soort": "Woonplaats"
+        },
+        {
+          "label": "Wijk Museumkwartier",
+          "woz": 1153000,
+          "aandeel_65plus": 20,
+          "woningen": 7116,
+          "soort": "Wijk Museumkwartier"
+        },
+        {
+          "label": "Buurt Duivelseiland",
+          "woz": 611000,
+          "aandeel_65plus": 9,
+          "woningen": 885,
+          "soort": "Buurt Duivelseiland"
+        },
+        {
+          "label": "P.C. Hooftbuurt",
+          "woz": 1234000,
+          "aandeel_65plus": 18,
+          "woningen": 524,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Cornelis Schuytbuurt",
+          "woz": 1491000,
+          "aandeel_65plus": 15,
+          "woningen": 1524,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Harmoniehofbuurt",
+          "woz": 649000,
+          "aandeel_65plus": 52,
+          "woningen": 883,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Concertgebouwbuurt",
+          "woz": 1348000,
+          "aandeel_65plus": 15,
+          "woningen": 1041,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Buurt Museumplein",
+          "woz": 607000,
+          "aandeel_65plus": 0,
+          "woningen": 5,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Buurt Vondelpark-Oost",
+          "woz": 607000,
+          "aandeel_65plus": 0,
+          "woningen": 3,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Johannes Vermeerbuurt",
+          "woz": 1218000,
+          "aandeel_65plus": 19,
+          "woningen": 810,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Banpleinbuurt",
+          "woz": 1761000,
+          "aandeel_65plus": 29,
+          "woningen": 357,
+          "soort": "Buurt"
+        },
+        {
+          "label": "Hondecoeterbuurt",
+          "woz": 1069000,
+          "aandeel_65plus": 19,
+          "woningen": 1084,
+          "soort": "Buurt"
+        }
+      ]
+    },
+    {
+      "id": "onderscheidend",
+      "thema": "vergelijking",
+      "titel": "Wat Duivelseiland onderscheidt van Nederland",
+      "type": "compare",
+      "bron": "CBS",
+      "jaar": "2025-2026",
+      "schatting": false,
+      "data": [
+        {
+          "label": "Inwoners per km²",
+          "duivelseiland": 23167,
+          "nederland": 536,
+          "amsterdam": 4968
+        },
+        {
+          "label": "Adressen per km²",
+          "duivelseiland": 9115,
+          "nederland": 2093,
+          "amsterdam": 6138
+        },
+        {
+          "label": "Hoger opgeleid (%)",
+          "duivelseiland": null,
+          "nederland": 33,
+          "amsterdam": 50,
+          "noot": "Bron toont 100% voor Duivelseiland; zie sectie opleidingsniveau (76% afgeleid)."
+        },
+        {
+          "label": "Inkomen per inwoner (€)",
+          "duivelseiland": 58400,
+          "nederland": 34900,
+          "amsterdam": 41000
+        },
+        {
+          "label": "Woningen van vóór 1945 (%)",
+          "duivelseiland": 100,
+          "nederland": 18,
+          "amsterdam": 37
+        }
+      ]
+    }
+  ]
+}

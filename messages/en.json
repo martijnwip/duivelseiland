@@ -31,7 +31,628 @@
     },
     "buurtStatistieken": {
       "heading": "Neighborhood Statistics",
-      "comingSoon": "This page is under construction. More neighborhood statistics coming soon."
+      "metaDescription": "Figures and charts about Duivelseiland: residents, housing, work and money, mobility, safety, health and facilities.",
+      "hero": {
+        "eyebrow": "Duivelseiland · Museumkwartier · Amsterdam South",
+        "intro": "A neighbourhood of 6 hectares in the Museumkwartier, told in eight chapters. Scroll through the story; the source is under every chart.",
+        "start": "Start at chapter 1"
+      },
+      "ui": {
+        "source": "Source: {bron}, {jaar}",
+        "estimateSource": "Estimate, source: {bron}, {jaar}",
+        "estimate": "Estimate",
+        "showTable": "Show as table",
+        "showChart": "Show as chart",
+        "more": "More figures ({n})",
+        "hectare": "ha",
+        "kpiSource": "{bron}, {jaar}",
+        "chapterLabel": "Chapter"
+      },
+      "nav": {
+        "nav": "Chapters",
+        "contents": "Contents",
+        "chapterOf": "Chapter {n} of {total}",
+        "sources": "Sources"
+      },
+      "marks": {
+        "peak": "Peak {year}: {value}",
+        "birth": "Births {n}",
+        "death": "Deaths {n}"
+      },
+      "stackedArea": {
+        "gap": "no breakdown in the source"
+      },
+      "ongevallen": {
+        "annot1": "{year}: {total} accidents",
+        "annot2": "{mat} property damage, {injury} injury, {fatal} fatal"
+      },
+      "verbruik": {
+        "gas": "Gas (m³ per home)",
+        "power": "Electricity (kWh per home)"
+      },
+      "inkomen": {
+        "mainLabel": "average income per resident, {year}"
+      },
+      "dichtheid": {
+        "bevolking": "Residents per km²",
+        "adressen": "Addresses per km²",
+        "autos": "Cars per km²"
+      },
+      "scatter": {
+        "x": "Average property value (WOZ) →",
+        "y": "65+, share ↑"
+      },
+      "sources": {
+        "title": "Sources and notes",
+        "tableTitle": "Sources and reference years",
+        "colSource": "Source",
+        "colWhat": "Used for",
+        "colPeriod": "Reference year",
+        "estimateTitle": "Estimate",
+        "estimateText": "Figures from the RIVM come from a survey of a sample of residents. They therefore carry the label “Estimate” and are less precise than counts.",
+        "roundedTitle": "Rounded",
+        "roundedText": "Statistics Netherlands (CBS) rounds neighbourhood figures to multiples of five. The age groups therefore add up to 1,375 instead of 1,381.",
+        "useTitle": "Reference date and use",
+        "useText": "Data collected on {date}. CBS figures fall under CC BY 4.0; credit the original source when reusing them.",
+        "rows": [
+          {
+            "name": "CBS",
+            "what": "Residents, households, housing, income, work, facilities",
+            "period": "2013 to 2026"
+          },
+          {
+            "name": "Kadaster (BAG)",
+            "what": "Addresses, home type, construction period, address uses",
+            "period": "2026"
+          },
+          {
+            "name": "RVO / EP-online",
+            "what": "Energy labels",
+            "period": "2026"
+          },
+          {
+            "name": "RDW",
+            "what": "Vehicles and electric cars",
+            "period": "September 2026"
+          },
+          {
+            "name": "Politie (data.politie.nl)",
+            "what": "Registered crimes",
+            "period": "2012 to 2025"
+          },
+          {
+            "name": "Rijkswaterstaat (BRON)",
+            "what": "Traffic accidents",
+            "period": "2003 to 2025"
+          },
+          {
+            "name": "RIVM Gezondheidsmonitor",
+            "what": "Health, well-being, satisfaction (estimate)",
+            "period": "2024"
+          },
+          {
+            "name": "Kiesraad",
+            "what": "Municipal elections",
+            "period": "18 March 2026"
+          }
+        ]
+      },
+      "chapters": {
+        "mensen": {
+          "name": "People",
+          "message": "Young, many single-person households, increasingly international",
+          "factBig": "45%",
+          "factText": "has Dutch origin; in 2013 that was still 66%.",
+          "more": "Men and women · Marital status · Country of birth · Births and deaths"
+        },
+        "wonen": {
+          "name": "Housing",
+          "message": "Almost everyone lives in an apartment from before 1945",
+          "factBig": "950",
+          "factText": "of the 960 addresses date from before 1925.",
+          "more": "Types of homes · Occupied and vacant · Address uses"
+        },
+        "werk": {
+          "name": "Work and money",
+          "message": "High incomes, lots of business services",
+          "factBig": "€ 58,400",
+          "factText": "average income per resident; Netherlands: € 34,900.",
+          "more": "Work · People receiving benefits"
+        },
+        "mobiliteit": {
+          "name": "Mobility",
+          "message": "Few cars per household, electric is growing fast",
+          "factBig": "63",
+          "factText": "electric cars in September 2026; in March 2022 there were 16."
+        },
+        "veiligheid": {
+          "name": "Safety",
+          "message": "Very densely built; bicycle theft is the largest item",
+          "factBig": "39",
+          "factText": "of the 115 crimes in 2025 were thefts of bicycles, mopeds or scooters.",
+          "more": "Crimes per 1,000 residents"
+        },
+        "gezondheid": {
+          "name": "Health and well-being",
+          "message": "Good perceived health and satisfied with the surroundings",
+          "factBig": "90%",
+          "factText": "is satisfied with the living environment (estimate).",
+          "more": "Alcohol and smoking · Noise nuisance"
+        },
+        "voorzieningen": {
+          "name": "Facilities and education",
+          "message": "Everything within walking distance, except a school in the neighbourhood itself",
+          "factBig": "0.1 km",
+          "factText": "on average to the nearest restaurant; supermarket and GP 0.3 km.",
+          "more": "Pupils and students · Education level"
+        },
+        "vergelijking": {
+          "name": "Comparison",
+          "message": "What makes Duivelseiland different from the rest of the Netherlands",
+          "factBig": "43×",
+          "factText": "as densely populated as the Dutch average.",
+          "more": "Property value and share of over-65s"
+        }
+      },
+      "kpi": {
+        "inwoners": "Residents",
+        "huishoudens": "Households",
+        "woningen": "Homes",
+        "gemiddelde-woz-waarde": "Average property value (WOZ)",
+        "oppervlakte": "Area",
+        "inwoners-per-km": "Residents per km²"
+      },
+      "words": {
+        "nederland": "Netherlands",
+        "europa": "Europe",
+        "buitenEuropa": "Outside Europe",
+        "duivelseiland": "Duivelseiland",
+        "amsterdam": "Amsterdam",
+        "museumkwartier": "Museumkwartier",
+        "wijkMuseumkwartier": "Museumkwartier district",
+        "otherNeighbourhoods": "Other neighbourhoods",
+        "otherAreas": "Other areas",
+        "households": "households",
+        "residents": "residents",
+        "homes": "homes",
+        "birth": "Births",
+        "death": "Deaths",
+        "bornNl": "Born in the Netherlands",
+        "bornAbroad": "Born abroad",
+        "originNl": "Dutch origin",
+        "originEu": "European origin",
+        "originNonEu": "Non-European origin",
+        "from1950": "1950 and later (6 periods)",
+        "accidents": "accidents",
+        "carsCbs": "Passenger cars (CBS)",
+        "netherlandsValue": "Netherlands: {n}",
+        "higherEducated": "higher educated",
+        "derived": "derived"
+      },
+      "legend": {
+        "deathDashed": "Deaths (dashed)",
+        "propertyDamage": "Property damage",
+        "injury": "Injury",
+        "fatal": "Fatal",
+        "age18to65": "Ages 18 to 65",
+        "age65plus": "Aged 65 or older",
+        "age18plus": "Aged 18 or older",
+        "age18plusDashed": "Aged 18 or older (dashed)"
+      },
+      "table": {
+        "year": "Year",
+        "age": "Age",
+        "count": "Number",
+        "share": "Share",
+        "type": "Type",
+        "residents": "Residents",
+        "woz": "Average property value (WOZ)",
+        "period": "Period",
+        "addresses": "Addresses",
+        "label": "Label",
+        "use": "Use",
+        "sector": "Sector",
+        "value": "Value",
+        "area": "Area",
+        "incomePerResident": "Income per resident",
+        "percentage": "Percentage",
+        "month": "Month",
+        "total": "Total",
+        "crimes": "Crimes",
+        "per1000": "Per 1,000 residents",
+        "source": "Source",
+        "facility": "Facility",
+        "km": "Distance (km)",
+        "party": "Party",
+        "votes": "Votes",
+        "share65": "Share 65+",
+        "homes": "Homes",
+        "energySource": "Energy source"
+      },
+      "cards": {
+        "herkomst": {
+          "title": "Origin of residents by year",
+          "sub": "The share of residents with Dutch origin fell from 66% (2013) to 45% (2025).",
+          "note": "2022: the source has no breakdown into Europe and outside Europe. That year is marked as missing, not as zero.",
+          "aria": "Stacked area chart: origin of residents 2013 to 2025; the Dutch share falls from 66% to 45%"
+        },
+        "leeftijd": {
+          "title": "Residents by age",
+          "sub": "Half of the residents are between 25 and 45 years old.",
+          "note": "Statistics Netherlands (CBS) rounds to multiples of five; the groups therefore add up to 1,375 instead of 1,381."
+        },
+        "inwoners": {
+          "title": "Residents per year",
+          "sub": "Roughly stable around 1,400; slightly declining since 2024.",
+          "note": "The vertical axis starts at 1,300 so that the small fluctuations are visible.",
+          "aria": "Line chart: residents per year 2013 to 2026, roughly stable around 1,400"
+        },
+        "huishoudens": {
+          "title": "Households",
+          "sub": "59% live alone; on average 1.6 people per household.",
+          "note": "Rounded to multiples of five; the groups add up to 855 of 860.",
+          "aria": "Donut chart: households by type; 59% are single-person households"
+        },
+        "geslacht": {
+          "title": "Men and women",
+          "aria": "Donut chart: men and women"
+        },
+        "burgerlijk": {
+          "title": "Marital status"
+        },
+        "geboorte": {
+          "title": "Births and deaths per 1,000 residents",
+          "note": "In 2025: 15 births and 5 deaths in absolute numbers.",
+          "aria": "Line chart: births and deaths per 1,000 residents, 2013 to 2025"
+        },
+        "sankey": {
+          "title": "Country of birth and origin",
+          "sub": "820 residents were born in the Netherlands, 570 elsewhere.",
+          "aria": "From country of birth to origin: 820 born in the Netherlands, 570 abroad"
+        },
+        "woz": {
+          "title": "Average property value (WOZ) per year",
+          "sub": "From € 290,000 to € 611,000: more than doubled (+111%) since 2013.",
+          "aria": "Line chart: average property value 2013 to 2025, from € 290,000 to € 611,000"
+        },
+        "eigendom": {
+          "title": "Owned and rented",
+          "sub": "More than half is rented from a private landlord.",
+          "aria": "Donut chart: owned and rented; 35% owned, 65% rented"
+        },
+        "bouw": {
+          "title": "Construction period of the addresses",
+          "sub": "All homes date from before 1945.",
+          "note": "Number of addresses per construction period of the building; from 1950 the number is 0."
+        },
+        "energie": {
+          "title": "Energy labels",
+          "sub": "Label C is the most common; 194 addresses have label G.",
+          "note": "Labels A+++ and higher do not occur. 38 addresses have no label, 152 have a provisional label.",
+          "aria": "Bar chart: energy labels of addresses; label C is the most common, 194 addresses have label G"
+        },
+        "verbruik": {
+          "title": "Gas and electricity per home",
+          "sub": "Gas use fell from 1,100 m³ (2013) to 640 m³ (2024).",
+          "note": "Two separate charts, each with its own unit and axis."
+        },
+        "bewoning": {
+          "title": "Occupied and vacant",
+          "aria": "Donut chart: occupied and vacant homes"
+        },
+        "woningtype": {
+          "title": "Types of homes"
+        },
+        "gebruiksdoelen": {
+          "title": "What addresses are used for",
+          "note": "Only functions with at least one address; the others (for example sports and lodging) are 0."
+        },
+        "inkomen": {
+          "title": "Income",
+          "sub": "One and a half times the Dutch average (€ 34,900).",
+          "aria": "Average income per resident: Duivelseiland € 58,400, Amsterdam € 41,000, Netherlands € 34,900"
+        },
+        "ikvergelijk": {
+          "title": "Income per resident in the neighbourhoods of the Museumkwartier",
+          "sub": "Netherlands: € 34,900. Amsterdam: € 41,000.",
+          "aria": "Bar chart: average income per resident per neighbourhood in the Museumkwartier"
+        },
+        "bedrijven": {
+          "title": "Business establishments by sector",
+          "sub": "Of the 405 establishments, a third are business services."
+        },
+        "arbeid": {
+          "title": "Work"
+        },
+        "uitkeringen": {
+          "title": "People receiving benefits"
+        },
+        "voertuigen": {
+          "title": "Vehicles registered to residents",
+          "sub": "717 vehicles, of which 575 passenger cars.",
+          "note": "The RDW counts all vehicles registered at addresses in the neighbourhood. The CBS count below is a different series; do not compare them."
+        },
+        "autohh": {
+          "title": "Cars per household"
+        },
+        "elektrisch": {
+          "title": "Electric cars per month",
+          "sub": "From 16 (March 2022) to 63 (September 2026).",
+          "note": "63 electric cars: 60 passenger cars and 3 company vehicles. The 106 in the fuel chart also includes 43 electric mopeds.",
+          "aria": "Line chart: electric cars per month, from 16 in March 2022 to 63 in September 2026"
+        },
+        "ongevallen": {
+          "title": "Traffic accidents per year",
+          "sub": "14 accidents in 2025: 11 with property damage, 3 with injury, 0 fatal.",
+          "aria": "Stacked bar chart: traffic accidents per year 2003 to 2025; 14 accidents in 2025"
+        },
+        "dichtheid": {
+          "title": "Density per km²",
+          "sub": "Duivelseiland is 43 times as densely populated as the Netherlands.",
+          "note": "Each row has its own scale; the grey bar is the Netherlands."
+        },
+        "misdaadjaren": {
+          "title": "Registered crimes per year",
+          "sub": "Around 110 per year since 2015; 115 in 2025.",
+          "aria": "Line chart: registered crimes per year 2012 to 2025; around 110 since 2015"
+        },
+        "misdaadsoorten": {
+          "title": "Most common crimes in 2025",
+          "sub": "39 of the 115 crimes were thefts of bicycles, mopeds or scooters.",
+          "note": "Top 10 types."
+        },
+        "misdaad1000": {
+          "title": "Crimes per 1,000 residents",
+          "sub": "In total 83 per 1,000 residents."
+        },
+        "tevreden": {
+          "title": "Satisfied with living",
+          "sub": "90% are satisfied with their living environment."
+        },
+        "leefstijl": {
+          "title": "Exercise and weight"
+        },
+        "gezondheid": {
+          "title": "Residents in good health",
+          "sub": "In 2024: 82% of those aged 18 to 65.",
+          "note": "Based on a survey (sample), hence an estimate.",
+          "aria": "Line chart: share of residents in good health by age group, 2012 to 2024"
+        },
+        "welzijn": {
+          "title": "Well-being and loneliness",
+          "sub": "93% receive support from others; 48% feel lonely."
+        },
+        "alcohol": {
+          "title": "Alcohol and smoking"
+        },
+        "geluid": {
+          "title": "Severe noise nuisance from"
+        },
+        "voorzieningen": {
+          "title": "Average distance to facilities",
+          "sub": "Almost everything within a kilometre; only the train station is further away (2.1 km).",
+          "note": "Average road distance from an address in the neighbourhood.",
+          "aria": "Average distance to facilities in kilometres; nearby on the left"
+        },
+        "school": {
+          "title": "Distance to schools and childcare (km)",
+          "sub": "Secondary education is on average 0.4 km away; in the Netherlands 2.5 km.",
+          "note": "There is no school or childcare in the neighbourhood itself."
+        },
+        "leerlingen": {
+          "title": "Pupils and students living in the neighbourhood",
+          "sub": "180 in total; university students are the largest group (70)."
+        },
+        "opleiding": {
+          "title": "Education level (ages 15 to 75)",
+          "sub": "940 of the 1,230 residents have a higher education level.",
+          "note": "The 76% is derived from the counts; the source wrongly shows 100% here. The years differ (2023 and 2024).",
+          "aria": "Donut chart: education level of residents aged 15 to 75; 76% have a higher level"
+        },
+        "bereik": {
+          "title": "Within reach",
+          "sub": "Average number within 1 or 5 kilometres."
+        },
+        "onderscheid": {
+          "title": "What sets Duivelseiland apart from the Netherlands",
+          "sub": "Each row has its own scale.",
+          "note": "Higher educated: 76% is derived from the counts (940 of 1,230); the source wrongly shows 100% here.",
+          "aria": "Duivelseiland compared with Amsterdam and the Netherlands on five characteristics"
+        },
+        "verkiezingen": {
+          "title": "Municipal elections, 18 March 2026",
+          "sub": "Number of votes, ordered by votes. One colour for all parties.",
+          "note": "Sum of the two polling stations in the neighbourhood. {count} smaller parties are not shown ({votes} votes). Share is calculated from {total} votes."
+        },
+        "scatter": {
+          "title": "Property value and share of over-65s",
+          "note": "Museumplein and Vondelpark-Oost have fewer than 10 homes and are statistically unreliable (dotted circles).",
+          "aria": "Scatter chart: property value against share of over-65s per neighbourhood"
+        }
+      },
+      "labels": {
+        "mannen": "Men",
+        "vrouwen": "Women",
+        "eenpersoons": "Single-person",
+        "meerpersoons-zonder-kinderen": "Multi-person without children",
+        "meerpersoons-met-kinderen": "Multi-person with children",
+        "ongehuwd": "Unmarried",
+        "gehuwd": "Married",
+        "gescheiden": "Divorced",
+        "verweduwd": "Widowed",
+        "geboren-in-nederland-herkomst-nederland": "Born in the Netherlands, Dutch origin",
+        "geboren-in-nederland-herkomst-europa": "Born in the Netherlands, European origin",
+        "geboren-in-nederland-herkomst-buiten-europa": "Born in the Netherlands, non-European origin",
+        "geboren-buiten-nederland-herkomst-europa": "Born abroad, European origin",
+        "geboren-buiten-nederland-herkomst-buiten-europa": "Born abroad, non-European origin",
+        "koopwoningen": "Owner-occupied",
+        "huur-woningcorporatie": "Rented, housing association",
+        "huur-overige-verhuurders": "Rented, other landlords",
+        "bewoond": "Occupied",
+        "onbewoond": "Vacant",
+        "appartementen": "Apartments",
+        "tussenwoningen": "Terraced homes",
+        "hoekwoningen": "Corner homes",
+        "voor-1700": "Before 1700",
+        "1700-tot-1900": "1700 to 1900",
+        "1900-tot-1925": "1900 to 1925",
+        "1925-tot-1950": "1925 to 1950",
+        "1950-tot-1970": "1950 to 1970",
+        "1970-tot-1980": "1970 to 1980",
+        "1980-tot-1990": "1980 to 1990",
+        "1990-tot-2000": "1990 to 2000",
+        "2000-tot-2010": "2000 to 2010",
+        "2010-tot-2020": "2010 to 2020",
+        "2020-en-later": "2020 and later",
+        "woonfunctie": "Residential",
+        "winkelfunctie": "Retail",
+        "bijeenkomstfunctie": "Assembly",
+        "kantoorfunctie": "Office",
+        "industriefunctie": "Industrial",
+        "overige-gebruiksfunctie": "Other use",
+        "gezondheidszorgfunctie": "Healthcare",
+        "onderwijsfunctie": "Education",
+        "celfunctie": "Detention",
+        "logiesfunctie": "Lodging",
+        "sportfunctie": "Sports",
+        "landbouw-bosbouw-en-visserij": "Agriculture, forestry and fishing",
+        "nijverheid-en-energie": "Industry and energy",
+        "handel-en-horeca": "Trade and hospitality",
+        "vervoer-informatie-en-communicatie": "Transport, information and communication",
+        "financiele-diensten-en-onroerend-goed": "Financial services and real estate",
+        "zakelijke-dienstverlening": "Business services",
+        "overheid-onderwijs-en-zorg": "Government, education and healthcare",
+        "cultuur-recreatie-en-overig": "Culture, recreation and other",
+        "gemiddeld-inkomen-per-inwoner": "Average income per resident",
+        "gemiddeld-inkomen-per-inkomensontvanger": "Average income per income recipient",
+        "gemiddeld-huishoudinkomen": "Average household income",
+        "mediaan-vermogen-huishoudens": "Median household wealth",
+        "personen-in-armoede": "People in poverty",
+        "huishoudens-met-laag-inkomen": "Households with a low income",
+        "huishoudens-onder-of-rond-sociaal-minimum": "Households at or around the social minimum",
+        "netto-arbeidsparticipatie": "Net labour participation",
+        "werknemers-met-vaste-arbeidsrelatie": "Employees with a permanent contract",
+        "werknemers-met-flexibele-arbeidsrelatie": "Employees with a flexible contract",
+        "zelfstandigen": "Self-employed",
+        "bijstand": "Social assistance",
+        "arbeidsongeschiktheid-ao": "Disability (AO)",
+        "werkloosheid-ww": "Unemployment (WW)",
+        "aow": "State pension (AOW)",
+        "bedrijfsauto": "Company vehicle",
+        "bromfiets": "Moped",
+        "motorfiets": "Motorcycle",
+        "personenauto": "Passenger car",
+        "benzine": "Petrol",
+        "diesel": "Diesel",
+        "elektriciteit": "Electric",
+        "hybride": "Hybrid",
+        "hybride-met-stekker": "Plug-in hybrid",
+        "lpg": "LPG",
+        "personenauto-s": "Passenger cars",
+        "personenauto-s-per-huishouden": "Passenger cars per household",
+        "motorfietsen": "Motorcycles",
+        "personenauto-s-per-km": "Passenger cars per km²",
+        "diefstal-van-brom-snor-fietsen": "Theft of mopeds, scooters, bicycles",
+        "ongevallen-weg": "Accidents (road)",
+        "diefstal-uit-vanaf-motorvoertuigen": "Theft from/of motor vehicles",
+        "onder-invloed-weg": "Under the influence (road)",
+        "mishandeling": "Assault",
+        "diefstal-af-uit-van-ov-voertuigen": "Theft from/of other vehicles",
+        "overige-vermogensdelicten": "Other property crimes",
+        "horizontale-fraude": "Horizontal fraud",
+        "vernieling-cq-zaakbeschadiging": "Vandalism and property damage",
+        "diefstal-inbraak-woning": "Burglary (home)",
+        "diefstal": "Theft",
+        "geweld-en-seksmisdrijven": "Violence and sexual offences",
+        "milieu-overtredingen": "Environmental offences",
+        "oplichting": "Fraud",
+        "verkeersovertredingen": "Traffic offences",
+        "vernieling": "Vandalism",
+        "overige-misdrijven": "Other crimes",
+        "rookt-tabak": "Smokes tobacco",
+        "voldoet-aan-de-alcoholrichtlijn": "Meets the alcohol guideline",
+        "drinken": "Drinks alcohol",
+        "zwaar-drinken": "Heavy drinking",
+        "overmatig-drinken": "Excessive drinking",
+        "voldoet-aan-de-beweegrichtlijn": "Meets the exercise guideline",
+        "wekelijks-sporten": "Plays sports weekly",
+        "lopen-en-of-fietsen-naar-school-of-werk": "Walks and/or cycles to school or work",
+        "overgewicht": "Overweight",
+        "ernstig-overgewicht-obesitas": "Severe overweight (obesity)",
+        "eenzaam": "Lonely",
+        "ernstig-eenzaam": "Severely lonely",
+        "emotioneel-eenzaam": "Emotionally lonely",
+        "sociaal-eenzaam": "Socially lonely",
+        "hoge-veerkracht": "High resilience",
+        "lage-veerkracht": "Low resilience",
+        "heel-veel-stress-in-afgelopen-4-weken": "(Very) stressed in the past 4 weeks",
+        "hoog-risico-op-angst-of-depressie": "High risk of anxiety or depression",
+        "krijgt-steun-van-anderen": "Receives support from others",
+        "vrijwilligerswerk": "Volunteering",
+        "mantelzorger": "Informal carer",
+        "tevreden-met-de-woning": "Satisfied with the home",
+        "tevreden-met-de-woonomgeving": "Satisfied with the living environment",
+        "tevreden-met-het-groen-in-de-omgeving": "Satisfied with the greenery nearby",
+        "buren": "Neighbours",
+        "wegverkeer": "Road traffic",
+        "vliegverkeer": "Air traffic",
+        "treinverkeer": "Rail traffic",
+        "windturbines": "Wind turbines",
+        "huisartsenpraktijk": "GP practice",
+        "supermarkt": "Supermarket",
+        "restaurant": "Restaurant",
+        "basisonderwijs": "Primary school",
+        "voortgezet-onderwijs": "Secondary school",
+        "bibliotheek": "Library",
+        "treinstation": "Train station",
+        "sportterrein": "Sports field",
+        "bioscoop": "Cinema",
+        "museum": "Museum",
+        "apotheek": "Pharmacy",
+        "cafe": "Café",
+        "cafetaria": "Snack bar",
+        "hotel": "Hotel",
+        "zwembad": "Swimming pool",
+        "brandweerkazerne": "Fire station",
+        "podiumkunsten": "Performing arts",
+        "poppodium": "Pop venue",
+        "openbaar-groen": "Public green space",
+        "restaurants-binnen-1-km": "Restaurants within 1 km",
+        "cafes-binnen-1-km": "Cafés within 1 km",
+        "supermarkten-binnen-1-km": "Supermarkets within 1 km",
+        "musea-binnen-5-km": "Museums within 5 km",
+        "podiumkunsten-binnen-5-km": "Performing-arts venues within 5 km",
+        "bioscopen-binnen-5-km": "Cinemas within 5 km",
+        "leerlingen-po": "Primary pupils",
+        "leerlingen-vo": "Secondary pupils",
+        "studenten-mbo": "Vocational students (MBO)",
+        "studenten-hbo": "Applied-sciences students (HBO)",
+        "studenten-wo": "University students (WO)",
+        "praktisch": "Practical",
+        "middelbaar": "Intermediate",
+        "hoger": "Higher",
+        "kinderdagverblijf": "Daycare",
+        "buitenschoolse-opvang": "After-school care",
+        "vmbo": "VMBO",
+        "havo-vwo": "HAVO/VWO",
+        "inwoners-per-km": "Residents per km²",
+        "adressen-per-km": "Addresses per km²",
+        "hoger-opgeleid": "Higher educated (%)",
+        "inkomen-per-inwoner": "Income per resident (€)",
+        "woningen-van-voor-1945": "Homes from before 1945 (%)",
+        "18-jaar-of-ouder": "Aged 18 or older",
+        "18-tot-65-jaar": "Ages 18 to 65",
+        "65-jaar-of-ouder": "Aged 65 or older",
+        "wijk-museumkwartier": "Museumkwartier district",
+        "buurt-museumplein": "Museumplein",
+        "buurt-vondelpark-oost": "Vondelpark-Oost",
+        "buurt-duivelseiland": "Duivelseiland",
+        "gemeente-amsterdam": "Amsterdam municipality",
+        "nederland": "Netherlands",
+        "provincie-noord-holland": "North Holland province",
+        "woonplaats-amsterdam": "Amsterdam (town)",
+        "woonplaats-weesp": "Weesp (town)"
+      }
     },
     "nieuws": {
       "heading": "News"

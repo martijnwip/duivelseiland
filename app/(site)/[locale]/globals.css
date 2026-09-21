@@ -16,6 +16,15 @@
   --color-border: #e3d5be;
   --color-muted: #6b5f4f;
 
+  /* Grafiekkleuren (buurt statistieken): afgeleid van het merkpalet.
+     card = kaartachtergrond, -mid/-soft = tinten van dezelfde kleur. */
+  --color-card: #faf6ee;
+  --color-primary-mid: #7f9a84;
+  --color-primary-soft: #b7c6b8;
+  --color-secondary-soft: #e0c48f;
+  --color-cta-soft: #d99a86;
+  --color-muted-soft: #c9bda9;
+
   --font-heading: var(--font-lexend);
   --font-body: var(--font-source-sans);
   /* Ondergeschikt serif-accent — alleen de h1 (paginatitel), zie /styleguide. */
@@ -35,6 +44,12 @@
   --color-text: #f1e8d8;
   --color-border: #4a4136;
   --color-muted: #a99a85;
+  --color-card: #2a241d;
+  --color-primary-mid: #4f7358;
+  --color-primary-soft: #3c5142;
+  --color-secondary-soft: #8d7443;
+  --color-cta-soft: #8f5236;
+  --color-muted-soft: #4f463a;
 }
 
 body {
@@ -53,4 +68,69 @@ h4,
 h5,
 h6 {
   font-family: var(--font-heading);
+}
+
+/* ---- Buurt statistieken: SVG-tekststijlen en animatie ---- */
+.stats-t {
+  font: 400 12px var(--font-body);
+  fill: var(--color-muted);
+}
+.stats-tt {
+  font: 400 13px var(--font-body);
+  fill: var(--color-text);
+}
+.stats-v {
+  font: 600 12px var(--font-heading);
+  fill: var(--color-text);
+}
+.stats-vb {
+  font: 600 14px var(--font-heading);
+  fill: var(--color-text);
+}
+.stats-on-card {
+  fill: var(--color-card);
+}
+
+/* Lijnen tekenen zich (800 ms) zodra de grafiek in beeld komt. Zonder JS of
+   met prefers-reduced-motion staat direct de eindstand op het scherm. */
+@keyframes stats-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes stats-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-anim='pre'] .stats-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+  }
+  [data-anim='pre'] .stats-fade {
+    opacity: 0;
+  }
+  [data-anim='go'] .stats-draw {
+    stroke-dasharray: 1;
+    animation: stats-draw 800ms ease-out both;
+  }
+  [data-anim='go'] .stats-fade {
+    animation: stats-fade 800ms ease-out both;
+  }
+}
+
+/* Focus en aanwijzen op grafiekelementen met tooltip. */
+.stats-mark {
+  outline: none;
+}
+.stats-mark:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
