@@ -1,3 +1,5 @@
+import { checkTranslation, translationCheckEnabled } from './verify';
+
 const MYMEMORY_URL = 'https://api.mymemory.translated.net/get';
 const MYMEMORY_MAX_CHARS = 500;
 // Target size per chunk when splitting long text, kept safely under
@@ -139,7 +141,7 @@ async function translateSegment(text: string): Promise<string | null> {
  * chunk rejoin used a single space, silently collapsing every paragraph
  * break in text over ~450 characters.)
  */
-export async function translateText(text: string): Promise<string | null> {
+async function translateUnchecked(text: string): Promise<string | null> {
   if (!text || !text.trim()) return text;
 
   const parts = text.split(/(\n+)/);
@@ -156,4 +158,15 @@ export async function translateText(text: string): Promise<string | null> {
     translatedParts.push(translated);
   }
   return translatedParts.join('');
+}
+
+/**
+ * Translate NL -> EN (see translateUnchecked). Met TRANSLATION_CHECK=on wordt het resultaat
+ * daarna beoordeeld: onbetrouwbare vertalingen worden null, eigennamen en adressen blijven
+ * ongewijzigd. Uit, of bij een fout in de controle, is het gedrag gelijk aan translateUnchecked.
+ */
+export async function translateText(text: string): Promise<string | null> {
+  const translated = await translateUnchecked(text);
+  if (translated === null || !translationCheckEnabled()) return translated;
+  return checkTranslation(text, translated);
 }
