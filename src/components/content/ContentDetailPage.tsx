@@ -2,7 +2,7 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { RichText } from '@payloadcms/richtext-lexical/react';
+import { RichTextContent } from '@/components/site/RichTextContent';
 import { localizedHref } from '@/i18n/localizedHref';
 import type { ContentCollectionSlug } from './collections';
 
@@ -52,11 +52,7 @@ export async function ContentDetailPage({
         <img src={imageUrl} alt={image?.alt ?? ''} className="mt-6 w-full rounded object-cover" />
       ) : null}
 
-      {doc.content ? (
-        <div className="mt-6 space-y-4 text-text">
-          <RichText data={doc.content} />
-        </div>
-      ) : null}
+      {doc.content ? <RichTextContent data={doc.content} className="mt-6" /> : null}
     </main>
   );
 }

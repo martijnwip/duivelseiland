@@ -6,7 +6,15 @@
   "home": {
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "This site is under construction.",
-    "loading": "Loading images…",
+    "hero": {
+      "region": "Featured photos",
+      "loading": "Loading images…",
+      "previous": "Previous slide",
+      "next": "Next slide",
+      "pause": "Pause slideshow",
+      "play": "Play slideshow",
+      "goToSlide": "Go to slide {number}"
+    },
     "stats": {
       "title": "The neighbourhood in numbers",
       "intro": "A neighbourhood of 6 hectares in the Museumkwartier, in a few numbers. From the number of residents to the value of the homes.",

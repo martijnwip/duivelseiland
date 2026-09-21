@@ -1,21 +1,12 @@
 import { getPayload } from 'payload';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import config from '@payload-config';
-import { RichText } from '@payloadcms/richtext-lexical/react';
 import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
+import { RichTextContent } from '@/components/site/RichTextContent';
 import { HomeStats } from '@/components/stats/HomeStats';
+import { hasRichTextContent } from '@/lib/richtext';
 
 const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
-
-type LexicalNode = { [key: string]: unknown };
-
-/** True als de Lexical-boom minstens één niet-lege tekst bevat. */
-function hasRichTextContent(value: { root: LexicalNode } | null | undefined): boolean {
-  const hasText = (node: LexicalNode): boolean =>
-    (typeof node.text === 'string' && node.text.trim() !== '') ||
-    (Array.isArray(node.children) && (node.children as LexicalNode[]).some(hasText));
-  return value ? hasText(value.root) : false;
-}
 
 async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
   const payload = await getPayload({ config });
@@ -76,36 +67,38 @@ async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
     .map(({ id, imageUrl, alt, caption }) => ({ id, imageUrl, alt, caption }));
 }
 
-export default async function HomePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'home' });
 
   const payload = await getPayload({ config });
-  const siteInstellingen = await payload.findGlobal({
-    slug: 'site-instellingen',
-    locale: locale as 'nl' | 'en',
-  });
-
-  const slides = await getHeroSlides(locale);
-
-  // Een leeggemaakt richText-veld laat een lege alinea achter; dan de fallback tonen.
-  const hasIntro = hasRichTextContent(siteInstellingen.intro);
+  // Onafhankelijke queries parallel, niet na elkaar.
+  const [siteInstellingen, slides] = await Promise.all([
+    payload.findGlobal({ slug: 'site-instellingen', locale: locale as 'nl' | 'en' }),
+    getHeroSlides(locale),
+  ]);
+  const { intro } = siteInstellingen;
 
   return (
     <main>
-      <HeroSlideshow slides={slides} loadingLabel={t('loading')} />
+      <HeroSlideshow
+        slides={slides}
+        labels={{
+          region: t('hero.region'),
+          loading: t('hero.loading'),
+          previous: t('hero.previous'),
+          next: t('hero.next'),
+          pause: t('hero.pause'),
+          play: t('hero.play'),
+          // Sjabloon met {number}; de client vult het slidenummer in.
+          goToSlide: t.raw('hero.goToSlide'),
+        }}
+      />
       <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8">
         <h1 className="m-0 text-4xl leading-[1.1] font-bold text-primary xl:text-5xl">{t('heading')}</h1>
-        {hasIntro ? (
-          <RichText
-            data={siteInstellingen.intro!}
-            className="max-w-[640px] space-y-3 text-lg leading-[1.5] text-text [&_a]:underline [&_ol]:list-decimal [&_ol]:pl-6 [&_ul]:list-disc [&_ul]:pl-6"
-          />
+        {hasRichTextContent(intro) ? (
+          <RichTextContent data={intro} className="max-w-[640px] text-lg leading-[1.5]" />
         ) : (
           <p className="m-0 max-w-[640px] text-lg leading-[1.5] text-text">{t('underConstruction')}</p>
         )}
