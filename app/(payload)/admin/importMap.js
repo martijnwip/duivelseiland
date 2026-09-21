@@ -27,6 +27,7 @@ import { HistorischeFotosImagePreview as HistorischeFotosImagePreview_e82e146055
 import { HistorischeFotosImportButton as HistorischeFotosImportButton_e0ba2067b23a4918db3f39c8b4f744d0 } from '../../../src/collections/HistorischeFotosImportButton'
 import { LogoutButton as LogoutButton_aa8e4427b70b37c7820895ace344eb78 } from '@delmaredigital/payload-better-auth/components'
 import { default as default_7be396d0766c6c490887ef074dd0ced4 } from '../../../src/components/admin/AdminIcon'
+import { default as default_e39c6f04fbc3d800d62da1b240b44247 } from '../../../src/components/admin/EditorStyles'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 import { default as default_aacf6d6dc94957d485c631f551d68c45 } from '../../../src/components/admin/LoginViewWithLogo'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
@@ -62,6 +63,7 @@ export const importMap = {
   "/collections/HistorischeFotosImportButton#HistorischeFotosImportButton": HistorischeFotosImportButton_e0ba2067b23a4918db3f39c8b4f744d0,
   "@delmaredigital/payload-better-auth/components#LogoutButton": LogoutButton_aa8e4427b70b37c7820895ace344eb78,
   "/components/admin/AdminIcon#default": default_7be396d0766c6c490887ef074dd0ced4,
+  "/components/admin/EditorStyles#default": default_e39c6f04fbc3d800d62da1b240b44247,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
   "/components/admin/LoginViewWithLogo#default": default_aacf6d6dc94957d485c631f551d68c45,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1

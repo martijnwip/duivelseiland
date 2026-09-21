@@ -1,0 +1,33 @@
+/* Rich text-editor in de admin: zelfde lettertypen als de site (zie /styleguide)
+   en een duidelijkere rand. De rest van de admin blijft de Payload-standaard.
+   Payload zet zijn eigen CSS in `@layer payload-default`; deze regels staan
+   buiten een layer en winnen dus zonder extra specificiteit. */
+
+.rich-text-lexical .editor-container {
+  /* Payload gebruikt hier standaard een serif. */
+  font-family: var(--font-source-sans), var(--font-body), sans-serif;
+  letter-spacing: normal;
+  background: var(--theme-input-bg);
+  border: 1px solid var(--theme-elevation-400);
+  border-radius: var(--style-radius-s);
+  padding-block: 8px;
+  padding-inline-end: 12px;
+  transition: border-color 0.1s;
+}
+
+.rich-text-lexical .editor-container:hover {
+  border-color: var(--theme-elevation-600);
+}
+
+.rich-text-lexical .editor-container:focus-within {
+  border-color: var(--theme-elevation-800);
+}
+
+/* Koppen zoals op de site: h1 Fraunces, h2 t/m h6 Lexend. */
+.rich-text-lexical .editor-container h1 {
+  font-family: var(--font-fraunces), serif;
+}
+
+.rich-text-lexical .editor-container :is(h2, h3, h4, h5, h6) {
+  font-family: var(--font-lexend), var(--font-body), sans-serif;
+}

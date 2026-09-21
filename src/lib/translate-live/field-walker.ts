@@ -7,12 +7,20 @@ export type TranslatableLeaf = {
   nl: unknown;
 };
 
+const hasLexicalText = (node: { text?: unknown; children?: unknown }): boolean =>
+  (typeof node.text === 'string' && node.text.trim() !== '') ||
+  (Array.isArray(node.children) && node.children.some(hasLexicalText));
+
+/**
+ * Een opgeslagen "leeg" richText-veld bevat nog één lege alinea, dus telt een
+ * Lexical-boom pas als gevuld als er echt tekst in staat.
+ */
 const isEmptyValue = (value: unknown): boolean => {
   if (value === null || value === undefined) return true;
   if (typeof value === 'string') return value.trim() === '';
-  if (typeof value === 'object' && value !== null && 'root' in (value as Record<string, unknown>)) {
-    const root = (value as { root?: { children?: unknown[] } }).root;
-    return !root || !Array.isArray(root.children) || root.children.length === 0;
+  if (typeof value === 'object' && 'root' in value) {
+    const root = (value as { root?: { children?: unknown } }).root;
+    return !root || !hasLexicalText(root);
   }
   return false;
 };
@@ -20,8 +28,8 @@ const isEmptyValue = (value: unknown): boolean => {
 /**
  * Recursively walks a Payload field config against the matching slice of a
  * `locale: 'all'`-fetched document, collecting every `localized: true`
- * text/textarea/richText leaf whose English value is empty (missing, null,
- * or "") while its Dutch value is not.
+ * text/textarea/richText leaf that has Dutch text. An existing English value
+ * is deliberately overwritten: the Dutch text is the single source of truth.
  */
 export function findTranslatableLeaves(
   fields: Field[],
@@ -39,7 +47,7 @@ export function findTranslatableLeaves(
         if (!field.localized || !('name' in field)) break;
         const value = sibling[field.name] as { nl?: unknown; en?: unknown } | undefined;
         if (!value || typeof value !== 'object') break;
-        if (isEmptyValue(value.en) && !isEmptyValue(value.nl)) {
+        if (!isEmptyValue(value.nl)) {
           out.push({
             path: [...basePath, field.name],
             kind: field.type === 'richText' ? 'lexical' : 'string',

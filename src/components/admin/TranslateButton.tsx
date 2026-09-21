@@ -27,7 +27,7 @@ export default function TranslateButton() {
         return;
       }
       if (json.translated === 0 && json.failed === 0) {
-        toast.info('Niets te vertalen — Engelse velden zijn al ingevuld.');
+        toast.info('Niets te vertalen — er staat nog geen Nederlandse tekst.');
       } else if (json.failed > 0) {
         toast.warning(`Vertaald: ${json.translated}, mislukt: ${json.failed} (zie server-log).`);
       } else {

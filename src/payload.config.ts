@@ -42,6 +42,8 @@ export default buildConfig({
       baseDir: dirname,
     },
     components: {
+      // Laadt de site-lettertypen en de rand-styling voor de rich text-editor.
+      providers: ['/components/admin/EditorStyles#default'],
       graphics: {
         // Vervangt het "home"-icoontje voor de breadcrumb (StepNav) op elke
         // ingelogde admin-pagina. Het standaard graphics.Logo-slot (login-pagina)
