@@ -1,6 +1,9 @@
+import type { ComponentProps } from 'react';
 import Link from 'next/link';
+import { RichText } from '@payloadcms/richtext-lexical/react';
 import type { MenuItem } from './Header';
 import { localizedHref } from '@/i18n/localizedHref';
+import { hasRichTextContent } from '@/lib/richtext';
 
 export type ContactInfo = { email?: string | null; telefoon?: string | null; adres?: string | null };
 
@@ -15,7 +18,7 @@ export function Footer({
   menu: MenuItem[];
   locale: string;
   contactgegevens?: ContactInfo;
-  footerTekst?: string | null;
+  footerTekst?: ComponentProps<typeof RichText>['data'] | null;
 }) {
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
@@ -54,8 +57,13 @@ export function Footer({
           ) : null}
         </div>
 
-        {footerTekst ? (
-          <div className="border-t border-gray-700 pt-8 text-sm text-gray-400">{footerTekst}</div>
+        {hasRichTextContent(footerTekst) ? (
+          <div className="border-t border-gray-700 pt-8 text-sm text-gray-400">
+            <RichText
+              data={footerTekst}
+              className="space-y-2 [&_a]:underline [&_a]:transition-colors [&_a:hover]:text-white"
+            />
+          </div>
         ) : null}
       </div>
     </footer>

@@ -1,16 +1,7 @@
 import type { GlobalConfig } from 'payload';
-import {
-  BoldFeature,
-  InlineToolbarFeature,
-  ItalicFeature,
-  LinkFeature,
-  lexicalEditor,
-  OrderedListFeature,
-  ParagraphFeature,
-  UnorderedListFeature,
-} from '@payloadcms/richtext-lexical';
 import { isAdmin } from '../access/isAdmin';
 import { hasRoleAtLeast } from '../access/roles';
+import { footerEditor, introEditor } from './editors';
 import { revalidateSite } from './revalidateSite';
 
 export const SiteInstellingen: GlobalConfig = {
@@ -41,19 +32,7 @@ export const SiteInstellingen: GlobalConfig = {
       name: 'intro',
       type: 'richText',
       localized: true,
-      // Bewust beperkt: alinea's, vet/cursief, links en lijsten. De lijsten
-      // zorgen ook dat het /-menu een paar nuttige opties heeft.
-      editor: lexicalEditor({
-        features: [
-          ParagraphFeature(),
-          BoldFeature(),
-          ItalicFeature(),
-          LinkFeature(),
-          UnorderedListFeature(),
-          OrderedListFeature(),
-          InlineToolbarFeature(),
-        ],
-      }),
+      editor: introEditor,
     },
     {
       name: 'menu',
@@ -74,8 +53,9 @@ export const SiteInstellingen: GlobalConfig = {
     },
     {
       name: 'footer',
-      type: 'textarea',
+      type: 'richText',
       localized: true,
+      editor: footerEditor,
     },
     {
       name: 'contactgegevens',

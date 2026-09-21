@@ -10,9 +10,12 @@ export type LexicalDocument = { root: LexicalNode };
 
 async function translateLexicalNode(node: LexicalNode): Promise<boolean> {
   if (node.type === 'text' && typeof node.text === 'string') {
-    const translated = await translateText(node.text);
+    // De engine geeft getrimde tekst terug; spaties aan de randen (bijv. "website by "
+    // vóór een link) zijn betekenisvol en moeten blijven staan.
+    const [, leading = '', content = '', trailing = ''] = /^(\s*)([\s\S]*?)(\s*)$/.exec(node.text) ?? [];
+    const translated = await translateText(content);
     if (translated === null) return false;
-    node.text = translated;
+    node.text = leading + translated + trailing;
     return true;
   }
 
@@ -28,9 +31,7 @@ async function translateLexicalNode(node: LexicalNode): Promise<boolean> {
  * only `text` on `type: 'text'` leaves. TS port of translate_lexical_field /
  * translate_lexical_node in translate/translate.py.
  */
-export async function translateLexicalField(
-  value: LexicalDocument,
-): Promise<{ value: LexicalDocument; ok: boolean }> {
+export async function translateLexicalField(value: LexicalDocument): Promise<{ value: LexicalDocument; ok: boolean }> {
   const cloned: LexicalDocument = structuredClone(value);
   if (!cloned?.root) return { value: cloned, ok: false };
   const ok = await translateLexicalNode(cloned.root);

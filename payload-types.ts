@@ -1061,7 +1061,21 @@ export interface SiteInstellingen {
         id?: string | null;
       }[]
     | null;
-  footer?: string | null;
+  footer?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   contactgegevens?: {
     email?: string | null;
     telefoon?: string | null;

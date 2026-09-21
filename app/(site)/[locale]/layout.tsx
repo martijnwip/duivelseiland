@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Fraunces, Lexend, Source_Sans_3 } from 'next/font/google';
 import { getPayload } from 'payload';
 import { ThemeProvider } from 'next-themes';
+import { Analytics } from '@vercel/analytics/next';
 import config from '@payload-config';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/site/Header';
@@ -92,6 +93,7 @@ export default async function SiteLayout({
             footerTekst={site.footer}
           />
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
