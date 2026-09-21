@@ -12,7 +12,7 @@ export type HeroSlide = {
 };
 
 const arrowClassName =
-  'flex h-9 w-9 items-center justify-center rounded-full bg-white/70 text-text transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50';
+  'flex h-9 w-9 items-center justify-center rounded-full bg-white/70 text-[#2b241c] transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50';
 
 export function HeroSlideshow({ slides }: { slides: HeroSlide[] }) {
   if (slides.length === 0) {

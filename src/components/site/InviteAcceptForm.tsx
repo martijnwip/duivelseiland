@@ -65,7 +65,7 @@ export function InviteAcceptForm({ token, strings }: { token: string; strings: S
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder={strings.emailPlaceholder}
-          className="mt-1 w-full rounded-lg border border-border px-3 py-2 text-text focus:border-primary focus:outline-none"
+          className="mt-1 w-full rounded-lg border border-input-border px-3 py-2 text-text focus:border-primary focus:outline-none"
         />
       </div>
 
@@ -74,7 +74,7 @@ export function InviteAcceptForm({ token, strings }: { token: string; strings: S
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="rounded-lg bg-cta px-4 py-2 font-medium text-white transition-colors hover:bg-cta-hover disabled:opacity-60"
+        className="rounded-lg bg-cta px-4 py-2 font-medium text-on-cta transition-colors hover:bg-cta-hover disabled:opacity-60"
       >
         {status === 'submitting' ? strings.submitting : strings.submit}
       </button>

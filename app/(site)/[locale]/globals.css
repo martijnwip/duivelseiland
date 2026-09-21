@@ -8,6 +8,9 @@
   --color-secondary: #c99a46;
   --color-cta: #b5482e;
   --color-cta-hover: #9c3a24;
+  /* Tekst op cta-vlakken en de rand van invoervelden (3:1 tegen background). */
+  --color-on-cta: #ffffff;
+  --color-input-border: #8f836f;
   --color-background: #f5efe3;
   --color-text: #2b241c;
   --color-border: #e3d5be;
@@ -25,7 +28,9 @@
   --color-primary: #6b9a73;
   --color-secondary: #e0b368;
   --color-cta: #e2703f;
-  --color-cta-hover: #c85a2e;
+  --color-cta-hover: #eb8a5c;
+  --color-on-cta: #211c16;
+  --color-input-border: #857868;
   --color-background: #211c16;
   --color-text: #f1e8d8;
   --color-border: #4a4136;
