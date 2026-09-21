@@ -1,4 +1,5 @@
 import type { Field } from 'payload';
+import { hasLexicalText } from '../richtext';
 
 export type TranslatableLeaf = {
   /** e.g. ['title'] or ['menu', 0, 'label'] */
@@ -7,10 +8,6 @@ export type TranslatableLeaf = {
   nl: unknown;
 };
 
-const hasLexicalText = (node: { text?: unknown; children?: unknown }): boolean =>
-  (typeof node.text === 'string' && node.text.trim() !== '') ||
-  (Array.isArray(node.children) && node.children.some(hasLexicalText));
-
 /**
  * Een opgeslagen "leeg" richText-veld bevat nog één lege alinea, dus telt een
  * Lexical-boom pas als gevuld als er echt tekst in staat.
@@ -18,10 +15,7 @@ const hasLexicalText = (node: { text?: unknown; children?: unknown }): boolean =
 const isEmptyValue = (value: unknown): boolean => {
   if (value === null || value === undefined) return true;
   if (typeof value === 'string') return value.trim() === '';
-  if (typeof value === 'object' && 'root' in value) {
-    const root = (value as { root?: { children?: unknown } }).root;
-    return !root || !hasLexicalText(root);
-  }
+  if (typeof value === 'object' && 'root' in value) return !hasLexicalText(value.root);
   return false;
 };
 
@@ -69,11 +63,7 @@ export function findTranslatableLeaves(
         const items = Array.isArray(sibling[field.name]) ? (sibling[field.name] as unknown[]) : [];
         items.forEach((item, index) => {
           out.push(
-            ...findTranslatableLeaves(
-              field.fields,
-              item as Record<string, unknown>,
-              [...basePath, field.name, index],
-            ),
+            ...findTranslatableLeaves(field.fields, item as Record<string, unknown>, [...basePath, field.name, index]),
           );
         });
         break;
@@ -156,12 +146,10 @@ export function projectDocumentForLocale(
       case 'group': {
         const name = 'name' in field ? field.name : undefined;
         if (name) {
-          out[name] = projectDocumentForLocale(
-            field.fields,
-            sibling[name] as Record<string, unknown>,
-            overrides,
-            [...basePath, name],
-          );
+          out[name] = projectDocumentForLocale(field.fields, sibling[name] as Record<string, unknown>, overrides, [
+            ...basePath,
+            name,
+          ]);
         } else {
           Object.assign(out, projectDocumentForLocale(field.fields, sibling, overrides, basePath));
         }
@@ -171,12 +159,11 @@ export function projectDocumentForLocale(
       case 'array': {
         const items = Array.isArray(sibling[field.name]) ? (sibling[field.name] as unknown[]) : [];
         out[field.name] = items.map((item, index) =>
-          projectDocumentForLocale(
-            field.fields,
-            item as Record<string, unknown>,
-            overrides,
-            [...basePath, field.name, index],
-          ),
+          projectDocumentForLocale(field.fields, item as Record<string, unknown>, overrides, [
+            ...basePath,
+            field.name,
+            index,
+          ]),
         );
         break;
       }
@@ -199,12 +186,10 @@ export function projectDocumentForLocale(
         for (const tab of field.tabs) {
           const name = 'name' in tab ? tab.name : undefined;
           if (name) {
-            out[name] = projectDocumentForLocale(
-              tab.fields,
-              sibling[name] as Record<string, unknown>,
-              overrides,
-              [...basePath, name],
-            );
+            out[name] = projectDocumentForLocale(tab.fields, sibling[name] as Record<string, unknown>, overrides, [
+              ...basePath,
+              name,
+            ]);
           } else {
             Object.assign(out, projectDocumentForLocale(tab.fields, sibling, overrides, basePath));
           }

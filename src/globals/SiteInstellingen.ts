@@ -11,6 +11,7 @@ import {
 } from '@payloadcms/richtext-lexical';
 import { isAdmin } from '../access/isAdmin';
 import { hasRoleAtLeast } from '../access/roles';
+import { revalidateSite } from './revalidateSite';
 
 export const SiteInstellingen: GlobalConfig = {
   slug: 'site-instellingen',
@@ -26,6 +27,9 @@ export const SiteInstellingen: GlobalConfig = {
     // redacteur cannot (PROJECT.md prose: only Admin manages site settings).
     read: ({ req }) => !req.user || hasRoleAtLeast(req.user.role, 'admin'),
     update: isAdmin,
+  },
+  hooks: {
+    afterChange: [revalidateSite],
   },
   fields: [
     {
