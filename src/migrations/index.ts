@@ -10,6 +10,7 @@ import * as migration_20260918_092651_over_de_naam from './20260918_092651_over_
 import * as migration_20260918_092814_invite_links from './20260918_092814_invite_links';
 import * as migration_20260921_114535_intro_richtext from './20260921_114535_intro_richtext';
 import * as migration_20260921_132141_footer_richtext from './20260921_132141_footer_richtext';
+import * as migration_20260921_142717_footer_richtext_repair from './20260921_142717_footer_richtext_repair';
 
 export const migrations = [
   {
@@ -70,6 +71,11 @@ export const migrations = [
   {
     up: migration_20260921_132141_footer_richtext.up,
     down: migration_20260921_132141_footer_richtext.down,
-    name: '20260921_132141_footer_richtext'
+    name: '20260921_132141_footer_richtext',
+  },
+  {
+    up: migration_20260921_142717_footer_richtext_repair.up,
+    down: migration_20260921_142717_footer_richtext_repair.down,
+    name: '20260921_142717_footer_richtext_repair'
   },
 ];

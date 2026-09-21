@@ -5,14 +5,14 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-sqlite';
 // Bestaande tekst kan letterlijke <a href="...">-tags bevatten (zo werd een link
 // tot nu toe "ondersteund"); die worden echte links.
 
-type Row = { id: number; footer: string };
+export type Row = { id: number; footer: string };
 
 const isRecord = (value: unknown): value is Record<string, unknown> => typeof value === 'object' && value !== null;
 
 const isRow = (value: unknown): value is Row =>
   isRecord(value) && typeof value.id === 'number' && typeof value.footer === 'string' && value.footer !== '';
 
-const isLexicalJson = (value: string) => value.trimStart().startsWith('{"root"');
+export const isLexicalJson = (value: string) => value.trimStart().startsWith('{"root"');
 
 const textNode = (text: string) => ({
   type: 'text',
@@ -83,7 +83,7 @@ function lineToNodes(line: string): unknown[] {
 }
 
 /** Lege regel = nieuwe alinea, enkele regeleinde = linebreak binnen de alinea. */
-function plainTextToLexical(text: string): string {
+export function plainTextToLexical(text: string): string {
   const paragraphs = text
     .replace(/\r\n/g, '\n')
     .split(/\n{2,}/)
@@ -124,7 +124,7 @@ function lexicalToPlainText(json: string): string {
   return Array.isArray(children) ? children.map(nodeToPlainText).join('\n\n') : '';
 }
 
-async function readRows(db: MigrateUpArgs['db']): Promise<Row[]> {
+export async function readRows(db: MigrateUpArgs['db']): Promise<Row[]> {
   const rows: unknown[] = await db.all(
     sql`SELECT id, footer FROM \`site_instellingen_locales\` WHERE footer IS NOT NULL`,
   );
