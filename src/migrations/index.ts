@@ -14,6 +14,7 @@ import * as migration_20260921_142717_footer_richtext_repair from './20260921_14
 import * as migration_20260922_105605_agenda_recurrence from './20260922_105605_agenda_recurrence';
 import * as migration_20260922_132036_agenda_rich_layout from './20260922_132036_agenda_rich_layout';
 import * as migration_20260922_135352_agenda_schedule_title_optional from './20260922_135352_agenda_schedule_title_optional';
+import * as migration_20260922_141111_agenda_whatsapp_number from './20260922_141111_agenda_whatsapp_number';
 
 export const migrations = [
   {
@@ -94,6 +95,11 @@ export const migrations = [
   {
     up: migration_20260922_135352_agenda_schedule_title_optional.up,
     down: migration_20260922_135352_agenda_schedule_title_optional.down,
-    name: '20260922_135352_agenda_schedule_title_optional'
+    name: '20260922_135352_agenda_schedule_title_optional',
+  },
+  {
+    up: migration_20260922_141111_agenda_whatsapp_number.up,
+    down: migration_20260922_141111_agenda_whatsapp_number.down,
+    name: '20260922_141111_agenda_whatsapp_number'
   },
 ];

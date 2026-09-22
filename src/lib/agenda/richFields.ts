@@ -18,5 +18,6 @@ export type AgendaRichFields = {
   intro?: string | null;
   schedule?: AgendaScheduleStep[] | null;
   ctaLabel?: string | null;
+  whatsappNumber?: string | null;
   ctaUrl?: string | null;
 };

@@ -115,7 +115,16 @@ export const Agenda: CollectionConfig = {
           localized: true,
           admin: {
             width: '50%',
-            description: 'Tekst op de knop, bijv. "Doe mee via de WhatsApp-groep".',
+            description: 'Tekst op de knop, bijv. "Join WhatsApp group".',
+          },
+        },
+        {
+          name: 'whatsappNumber',
+          type: 'text',
+          admin: {
+            width: '50%',
+            description:
+              'Telefoonnummer voor de WhatsApp-knop, bijv. 0612345678 — wordt automatisch omgezet naar een wa.me-link. Heb je liever een kant-en-klare link (bijv. een groepsuitnodiging)? Vul die dan hieronder in bij "Link" in plaats van dit veld.',
           },
         },
         {
@@ -123,7 +132,7 @@ export const Agenda: CollectionConfig = {
           type: 'text',
           admin: {
             width: '50%',
-            description: 'Link waar de knop naartoe gaat, bijv. een WhatsApp-uitnodigingslink.',
+            description: 'Link waar de knop naartoe gaat (alleen gebruikt als hierboven geen WhatsApp-nummer is ingevuld).',
           },
         },
       ],

@@ -331,11 +331,15 @@ export interface Agenda {
       }[]
     | null;
   /**
-   * Tekst op de knop, bijv. "Doe mee via de WhatsApp-groep".
+   * Tekst op de knop, bijv. "Join WhatsApp group".
    */
   ctaLabel?: string | null;
   /**
-   * Link waar de knop naartoe gaat, bijv. een WhatsApp-uitnodigingslink.
+   * Telefoonnummer voor de WhatsApp-knop, bijv. 0612345678 — wordt automatisch omgezet naar een wa.me-link. Heb je liever een kant-en-klare link (bijv. een groepsuitnodiging)? Vul die dan hieronder in bij "Link" in plaats van dit veld.
+   */
+  whatsappNumber?: string | null;
+  /**
+   * Link waar de knop naartoe gaat (alleen gebruikt als hierboven geen WhatsApp-nummer is ingevuld).
    */
   ctaUrl?: string | null;
   updatedAt: string;
@@ -872,6 +876,7 @@ export interface AgendaSelect<T extends boolean = true> {
         id?: T;
       };
   ctaLabel?: T;
+  whatsappNumber?: T;
   ctaUrl?: T;
   updatedAt?: T;
   createdAt?: T;

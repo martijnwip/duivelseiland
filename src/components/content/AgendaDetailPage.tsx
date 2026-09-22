@@ -8,6 +8,7 @@ import { AgendaDateTile } from './AgendaDateTile';
 import { ScheduleIcon } from './AgendaScheduleIcons';
 import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from '@/lib/agenda/nextOccurrence';
 import type { AgendaRichFields } from '@/lib/agenda/richFields';
+import { buildWhatsAppLink } from '@/lib/agenda/whatsapp';
 
 export async function AgendaDetailPage({
   slug,
@@ -47,7 +48,9 @@ export async function AgendaDetailPage({
   const richFields = doc as typeof doc & AgendaRichFields;
   const schedule = (richFields.schedule ?? []).filter((step) => step.title);
   const hasRichLayout = schedule.length > 0 || Boolean(richFields.intro);
-  const hasCta = Boolean(richFields.ctaLabel && richFields.ctaUrl);
+  // Een los WhatsApp-nummer heeft voorrang boven een kant-en-klare link.
+  const ctaHref = buildWhatsAppLink(richFields.whatsappNumber) ?? richFields.ctaUrl;
+  const hasCta = Boolean(richFields.ctaLabel && ctaHref);
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
@@ -105,7 +108,7 @@ export async function AgendaDetailPage({
 
       {hasCta ? (
         <a
-          href={richFields.ctaUrl!}
+          href={ctaHref!}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex rounded-lg bg-cta px-4 py-2 font-medium text-on-cta transition-colors hover:bg-cta-hover"
