@@ -21,6 +21,14 @@
       "source": "CBS, {year}",
       "readMore": "Lees meer",
       "readMoreContext": "over de buurt in cijfers"
+    },
+    "duivelseSchoonmaak": {
+      "title": "Doe mee met de buurt",
+      "intro": "Elke eerste zondag van de maand ruimen buurtgenoten samen het zwerfafval op Duivelseiland op. Iedereen is welkom.",
+      "readMore": "Bekijk het agenda-item",
+      "readMoreContext": "over de Duivelse Schoonmaak",
+      "eyebrow": "Elke maand",
+      "factText": "keer per maand, altijd de eerste zondag"
     }
   },
   "pages": {
@@ -501,7 +509,9 @@
     "readMore": "Lees meer",
     "backToOverview": "Terug naar overzicht",
     "empty": "Nog geen content beschikbaar.",
-    "recurringMonthly": "Herhaalt elke maand"
+    "recurringMonthly": "Elke eerste zondag van de maand",
+    "schedule": "Programma",
+    "upcoming": "Eerstvolgende"
   },
   "invite": {
     "heading": "Je bent uitgenodigd",

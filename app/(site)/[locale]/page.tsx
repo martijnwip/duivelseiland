@@ -4,6 +4,7 @@ import config from '@payload-config';
 import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
 import { RichTextContent } from '@/components/site/RichTextContent';
 import { HomeStats } from '@/components/stats/HomeStats';
+import { HomeDuivelseSchoonmaak } from '@/components/content/HomeDuivelseSchoonmaak';
 import { hasRichTextContent } from '@/lib/richtext';
 
 const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
@@ -104,6 +105,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         )}
       </div>
       <HomeStats locale={locale} />
+      <HomeDuivelseSchoonmaak locale={locale as 'nl' | 'en'} />
     </main>
   );
 }

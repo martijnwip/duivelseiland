@@ -12,6 +12,8 @@ import * as migration_20260921_114535_intro_richtext from './20260921_114535_int
 import * as migration_20260921_132141_footer_richtext from './20260921_132141_footer_richtext';
 import * as migration_20260921_142717_footer_richtext_repair from './20260921_142717_footer_richtext_repair';
 import * as migration_20260922_105605_agenda_recurrence from './20260922_105605_agenda_recurrence';
+import * as migration_20260922_132036_agenda_rich_layout from './20260922_132036_agenda_rich_layout';
+import * as migration_20260922_135352_agenda_schedule_title_optional from './20260922_135352_agenda_schedule_title_optional';
 
 export const migrations = [
   {
@@ -82,6 +84,16 @@ export const migrations = [
   {
     up: migration_20260922_105605_agenda_recurrence.up,
     down: migration_20260922_105605_agenda_recurrence.down,
-    name: '20260922_105605_agenda_recurrence'
+    name: '20260922_105605_agenda_recurrence',
+  },
+  {
+    up: migration_20260922_132036_agenda_rich_layout.up,
+    down: migration_20260922_132036_agenda_rich_layout.down,
+    name: '20260922_132036_agenda_rich_layout',
+  },
+  {
+    up: migration_20260922_135352_agenda_schedule_title_optional.up,
+    down: migration_20260922_135352_agenda_schedule_title_optional.down,
+    name: '20260922_135352_agenda_schedule_title_optional'
   },
 ];

@@ -311,6 +311,33 @@ export interface Agenda {
    * Tijdstip van het event, bijv. 12:30
    */
   recurrenceTime?: string | null;
+  /**
+   * Korte introductiezin bovenaan de pagina, onder de titel.
+   */
+  intro?: string | null;
+  /**
+   * De stappen van het programma, in volgorde (bijv. verzamelen, opruimen, koffie).
+   */
+  schedule?:
+    | {
+        /**
+         * Bijv. 12:30 (mag leeg blijven)
+         */
+        time?: string | null;
+        icon?: ('meeting' | 'cleanup' | 'coffee' | 'none') | null;
+        title?: string | null;
+        description?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Tekst op de knop, bijv. "Doe mee via de WhatsApp-groep".
+   */
+  ctaLabel?: string | null;
+  /**
+   * Link waar de knop naartoe gaat, bijv. een WhatsApp-uitnodigingslink.
+   */
+  ctaUrl?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -834,6 +861,18 @@ export interface AgendaSelect<T extends boolean = true> {
   image?: T;
   recurrence?: T;
   recurrenceTime?: T;
+  intro?: T;
+  schedule?:
+    | T
+    | {
+        time?: T;
+        icon?: T;
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  ctaLabel?: T;
+  ctaUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

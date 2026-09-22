@@ -1,5 +1,10 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { ContentListPage } from '@/components/content/ContentListPage';
+import { AgendaListPage } from '@/components/content/AgendaListPage';
+
+// Agenda-items kunnen maandelijks terugkeren (zie src/lib/agenda/nextOccurrence.ts):
+// de "eerstvolgende zondag" wordt bij elk bezoek opnieuw berekend, dus deze
+// pagina mag niet statisch bevriezen op het moment van de laatste deploy.
+export const dynamic = 'force-dynamic';
 
 export default async function AgendaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -8,14 +13,12 @@ export default async function AgendaPage({ params }: { params: Promise<{ locale:
   const tc = await getTranslations({ locale, namespace: 'content' });
 
   return (
-    <ContentListPage
-      collection="agenda"
-      routeSegment="agenda"
+    <AgendaListPage
       locale={locale as 'nl' | 'en'}
       heading={t('heading')}
       emptyText={tc('empty')}
-      sortByEventDate
       recurringLabel={tc('recurringMonthly')}
+      upcomingLabel={tc('upcoming')}
     />
   );
 }

@@ -21,6 +21,14 @@
       "source": "CBS, {year}",
       "readMore": "Read more",
       "readMoreContext": "about the neighbourhood in numbers"
+    },
+    "duivelseSchoonmaak": {
+      "title": "Join the neighbourhood",
+      "intro": "On the first Sunday of every month, neighbours clear the litter from Duivelseiland together. Everyone is welcome.",
+      "readMore": "View the agenda item",
+      "readMoreContext": "about the Duivelse Schoonmaak",
+      "eyebrow": "Every month",
+      "factText": "time a month, always the first Sunday"
     }
   },
   "pages": {
@@ -684,7 +692,9 @@
     "readMore": "Read more",
     "backToOverview": "Back to overview",
     "empty": "No content available yet.",
-    "recurringMonthly": "Repeats every month"
+    "recurringMonthly": "Every first Sunday of the month",
+    "schedule": "Schedule",
+    "upcoming": "Next up"
   },
   "invite": {
     "heading": "You've been invited",
