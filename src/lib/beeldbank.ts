@@ -4,10 +4,30 @@ export type BeeldbankMetadata = {
   imageUrl: string;
 };
 
+const NAMED_ENTITIES: Record<string, string> = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ' };
+
+function decodeEntities(value: string): string {
+  return value.replace(/&(?:#(\d+)|#x([0-9a-f]+)|([a-z]+));/gi, (whole, dec, hex, name) => {
+    if (dec || hex) return String.fromCodePoint(dec ? Number(dec) : parseInt(hex, 16));
+    return NAMED_ENTITIES[name.toLowerCase()] ?? whole;
+  });
+}
+
+// Attribuutwaarde tussen dubbele of enkele aanhalingstekens; de andere soort mag erin voorkomen.
+const ATTRIBUTE_RE = /([^\s"'<>/=]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g;
+
 function extractMetaContent(html: string, property: string): string | undefined {
-  const pattern = new RegExp(`<meta[^>]+property=["']${property}["'][^>]+content=["']([^"']*)["']`, 'i');
-  const match = html.match(pattern);
-  return match?.[1];
+  for (const [tag] of html.matchAll(/<meta\s[^>]*>/gi)) {
+    const attributes = new Map<string, string>();
+    for (const [, name, double, single] of tag.matchAll(ATTRIBUTE_RE)) {
+      attributes.set(name.toLowerCase(), double ?? single);
+    }
+    if (attributes.get('property')?.toLowerCase() === property.toLowerCase()) {
+      const content = attributes.get('content');
+      if (content !== undefined) return decodeEntities(content);
+    }
+  }
+  return undefined;
 }
 
 export async function fetchBeeldbankMetadata(link: string): Promise<BeeldbankMetadata> {
