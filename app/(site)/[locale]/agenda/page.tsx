@@ -14,6 +14,8 @@ export default async function AgendaPage({ params }: { params: Promise<{ locale:
       locale={locale as 'nl' | 'en'}
       heading={t('heading')}
       emptyText={tc('empty')}
+      sortByEventDate
+      recurringLabel={tc('recurringMonthly')}
     />
   );
 }

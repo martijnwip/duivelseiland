@@ -306,6 +306,11 @@ export interface Agenda {
   } | null;
   date?: string | null;
   image?: (number | null) | Media;
+  recurrence?: ('none' | 'monthly-first-sunday') | null;
+  /**
+   * Tijdstip van het event, bijv. 12:30
+   */
+  recurrenceTime?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -827,6 +832,8 @@ export interface AgendaSelect<T extends boolean = true> {
   content?: T;
   date?: T;
   image?: T;
+  recurrence?: T;
+  recurrenceTime?: T;
   updatedAt?: T;
   createdAt?: T;
 }

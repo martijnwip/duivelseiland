@@ -683,7 +683,8 @@
   "content": {
     "readMore": "Read more",
     "backToOverview": "Back to overview",
-    "empty": "No content available yet."
+    "empty": "No content available yet.",
+    "recurringMonthly": "Repeats every month"
   },
   "invite": {
     "heading": "You've been invited",

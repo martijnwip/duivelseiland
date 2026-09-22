@@ -500,7 +500,8 @@
   "content": {
     "readMore": "Lees meer",
     "backToOverview": "Terug naar overzicht",
-    "empty": "Nog geen content beschikbaar."
+    "empty": "Nog geen content beschikbaar.",
+    "recurringMonthly": "Herhaalt elke maand"
   },
   "invite": {
     "heading": "Je bent uitgenodigd",

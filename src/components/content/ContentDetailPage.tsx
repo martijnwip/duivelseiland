@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { RichTextContent } from '@/components/site/RichTextContent';
 import { localizedHref } from '@/i18n/localizedHref';
 import type { ContentCollectionSlug } from './collections';
+import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from '@/lib/agenda/nextOccurrence';
 
 export async function ContentDetailPage({
   collection,
@@ -12,12 +13,15 @@ export async function ContentDetailPage({
   slug,
   locale,
   backLabel,
+  recurringLabel,
 }: {
   collection: ContentCollectionSlug;
   routeSegment: string;
   slug: string;
   locale: 'nl' | 'en';
   backLabel: string;
+  /** Label shown when the item is a recurring event, e.g. "Herhaalt elke maand". */
+  recurringLabel?: string;
 }) {
   const payload = await getPayload({ config });
 
@@ -37,6 +41,10 @@ export async function ContentDetailPage({
   const image = typeof doc.image === 'object' && doc.image !== null ? doc.image : null;
   const imageUrl = image?.sizes?.hero?.url ?? image?.url ?? null;
 
+  const recurrenceFields = doc as typeof doc & AgendaRecurrenceFields;
+  const effectiveDate = getAgendaEffectiveDate(recurrenceFields);
+  const recurring = isRecurring(recurrenceFields);
+
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
       <Link href={localizedHref(locale, `/${routeSegment}`)} className="text-sm text-primary hover:underline">
@@ -45,7 +53,13 @@ export async function ContentDetailPage({
 
       <h1 className="mt-4 text-3xl font-bold text-primary">{doc.title}</h1>
 
-      {doc.date ? <p className="mt-1 text-sm text-muted">{new Date(doc.date).toLocaleDateString(locale)}</p> : null}
+      {effectiveDate ? (
+        <p className="mt-1 text-sm text-muted">
+          {effectiveDate.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' })}
+          {recurrenceFields.recurrenceTime ? ` · ${recurrenceFields.recurrenceTime}` : ''}
+        </p>
+      ) : null}
+      {recurring && recurringLabel ? <p className="mt-0.5 text-xs font-medium text-primary">{recurringLabel}</p> : null}
 
       {imageUrl ? (
         // eslint-disable-next-line @next/next/no-img-element

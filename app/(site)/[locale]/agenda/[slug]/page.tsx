@@ -17,6 +17,7 @@ export default async function AgendaDetailPage({
       slug={slug}
       locale={locale as 'nl' | 'en'}
       backLabel={t('backToOverview')}
+      recurringLabel={t('recurringMonthly')}
     />
   );
 }
