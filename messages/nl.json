@@ -510,7 +510,8 @@
       "hero": {
         "eyebrow": "Duivelseiland · schoon en heel",
         "intro": "Afval naast de container en bankstellen op de stoep: het zorgt voor veel ergernis in de buurt. Hier lees je hoe het werkt, waar je wat kwijt kunt en waar het vaak misgaat. Alle cijfers komen live uit open data van de gemeente.",
-        "start": "Naar grof afval"
+        "start": "Naar grof afval",
+        "card": "Instructiekaart (om te printen)"
       },
       "kpi": {
         "containers": "containers in de buurt",
@@ -741,6 +742,147 @@
         ],
         "updated": "Opgehaald op {date}."
       }
+    },
+    "afvalInstructie": {
+      "heading": "Instructiekaart afval & grof vuil",
+      "metaDescription": "De afvalregels van Duivelseiland op één kaart: restafval, karton en grof vuil. Wanneer, hoeveel, waar, en wat wel en niet. Ook om af te drukken.",
+      "back": "Terug naar Afval & grof vuil",
+      "print": "Afdrukken",
+      "eyebrow": "Duivelseiland · Instructiekaart",
+      "title": "Afval & grof vuil",
+      "intro": "Zo houden we samen de buurt schoon.",
+      "rest": {
+        "title": "Restafval",
+        "ok": "Zak in de container",
+        "okCaption": "Container vol? Loop door naar de volgende container verderop in de straat.",
+        "no": "Nooit naast de container",
+        "noCaption": "Een zak naast de container trekt ratten aan."
+      },
+      "karton": {
+        "title": "Karton",
+        "ok": "In de papiercontainer",
+        "okCaption": "Karton en papier gaan in de papiercontainer.",
+        "big": "Grote dozen: maak ze klein",
+        "bigCaption": "Dozen van een fiets, tv of keuken? Snijd ze in stukken en gooi ze door het grote vak onderaan de container."
+      },
+      "grof": {
+        "title": "Grof vuil buitenzetten",
+        "when": {
+          "label": "Wanneer",
+          "big": "Zo 21:00 → Ma 07:00",
+          "zondag": "zondag",
+          "maandag": "maandag",
+          "teVroeg": "te vroeg",
+          "buiten": "buitenzetten",
+          "teLaat": "te laat",
+          "text": "Alleen van zondagavond 21.00 tot maandagochtend 07.00 uur. Om 07.00 uur moet het buiten staan."
+        },
+        "how": {
+          "label": "Hoeveel",
+          "or": "of",
+          "text": "Maximaal 2 kubieke meter per keer. Bijvoorbeeld 2 wasmachines of een driezitsbank."
+        },
+        "where": {
+          "label": "Waar",
+          "text": "Op de vaste plek voor grof afval. Is die er niet, dan aan de rand van de stoep. Altijd een paar meter van containers, bomen en parkeerplaatsen, zodat de grijper van de vuilniswagen erbij kan.",
+          "plek": "vaste plek",
+          "afstand": "paar meter"
+        }
+      },
+      "welniet": {
+        "title": "Grof vuil: wat wel en wat niet"
+      },
+      "wel": {
+        "title": "Dit halen we op",
+        "items": [
+          {
+            "icon": "bank",
+            "label": "Banken"
+          },
+          {
+            "icon": "bed",
+            "label": "Bedden en matrassen"
+          },
+          {
+            "icon": "koelkast",
+            "label": "Grote elektrische apparaten, zoals een koelkast of tv"
+          },
+          {
+            "icon": "kast",
+            "label": "Kasten"
+          },
+          {
+            "icon": "plank",
+            "label": "Planken"
+          },
+          {
+            "icon": "snoeiafval",
+            "label": "Snoeiafval"
+          },
+          {
+            "icon": "stoel",
+            "label": "Stoelen"
+          },
+          {
+            "icon": "tapijt",
+            "label": "Tapijt en vloerbedekking"
+          },
+          {
+            "icon": "tuinstoel",
+            "label": "Tuinmeubels"
+          }
+        ]
+      },
+      "niet": {
+        "title": "Dit halen we niet op",
+        "items": [
+          {
+            "icon": "puin",
+            "label": "Bouw- en sloopafval, zoals puin en een toiletpot"
+          },
+          {
+            "icon": "ijzer",
+            "label": "IJzer"
+          },
+          {
+            "icon": "doos",
+            "label": "Karton"
+          },
+          {
+            "icon": "accu",
+            "label": "Klein chemisch afval, zoals een accu of verf"
+          },
+          {
+            "icon": "apparaat",
+            "label": "Kleine elektrische apparaten"
+          },
+          {
+            "icon": "spiegel",
+            "label": "Glasplaten en spiegels"
+          },
+          {
+            "icon": "tegel",
+            "label": "Tuintegels"
+          },
+          {
+            "icon": "band",
+            "label": "Autobanden"
+          },
+          {
+            "icon": "onderdeel",
+            "label": "Auto-onderdelen"
+          },
+          {
+            "icon": "motor",
+            "label": "Overige motoren"
+          },
+          {
+            "icon": "zand",
+            "label": "Stenen, zand en aarde"
+          }
+        ]
+      },
+      "footer": "Containers, cijfers en de regels voor jouw adres:"
     }
   },
   "content": {

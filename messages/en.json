@@ -693,7 +693,8 @@
       "hero": {
         "eyebrow": "Duivelseiland · clean and tidy",
         "intro": "Rubbish next to containers and sofas on the pavement are a major source of irritation in the neighbourhood. Here you can read how it works, where things go and where it often goes wrong. All figures come live from the City of Amsterdam's open data.",
-        "start": "Go to bulky waste"
+        "start": "Go to bulky waste",
+        "card": "Instruction card (printable)"
       },
       "kpi": {
         "containers": "containers in the neighbourhood",
@@ -924,6 +925,147 @@
         ],
         "updated": "Retrieved on {date}."
       }
+    },
+    "afvalInstructie": {
+      "heading": "Waste & bulky rubbish instruction card",
+      "metaDescription": "Duivelseiland's waste rules on one card: residual waste, cardboard and bulky rubbish. When, how much, where, and what is and isn't collected. Printable.",
+      "back": "Back to Waste & bulky rubbish",
+      "print": "Print",
+      "eyebrow": "Duivelseiland · Instruction card",
+      "title": "Waste & bulky rubbish",
+      "intro": "How we keep the neighbourhood clean together.",
+      "rest": {
+        "title": "Residual waste",
+        "ok": "Bag in the container",
+        "okCaption": "Container full? Walk on to the next container further down the street.",
+        "no": "Never next to the container",
+        "noCaption": "A bag next to the container attracts rats."
+      },
+      "karton": {
+        "title": "Cardboard",
+        "ok": "In the paper container",
+        "okCaption": "Cardboard and paper go in the paper container.",
+        "big": "Big boxes: make them small",
+        "bigCaption": "Boxes from a bike, TV or kitchen? Cut them into pieces and put them through the large opening at the bottom of the container."
+      },
+      "grof": {
+        "title": "Putting out bulky rubbish",
+        "when": {
+          "label": "When",
+          "big": "Sun 21:00 → Mon 07:00",
+          "zondag": "Sunday",
+          "maandag": "Monday",
+          "teVroeg": "too early",
+          "buiten": "put it out",
+          "teLaat": "too late",
+          "text": "Only from Sunday 9 pm until Monday 7 am. It must be outside by 7 am."
+        },
+        "how": {
+          "label": "How much",
+          "or": "or",
+          "text": "Up to 2 cubic metres at a time. For example 2 washing machines or a three-seater sofa."
+        },
+        "where": {
+          "label": "Where",
+          "text": "At the fixed spot for bulky waste. If there isn't one, at the edge of the pavement. Always a few metres from containers, trees and parking spaces, so the truck's grabber can reach it.",
+          "plek": "fixed spot",
+          "afstand": "a few metres"
+        }
+      },
+      "welniet": {
+        "title": "Bulky rubbish: what is and isn't collected"
+      },
+      "wel": {
+        "title": "We collect",
+        "items": [
+          {
+            "icon": "bank",
+            "label": "Sofas"
+          },
+          {
+            "icon": "bed",
+            "label": "Beds and mattresses"
+          },
+          {
+            "icon": "koelkast",
+            "label": "Large electrical appliances, such as a fridge or TV"
+          },
+          {
+            "icon": "kast",
+            "label": "Cupboards"
+          },
+          {
+            "icon": "plank",
+            "label": "Planks"
+          },
+          {
+            "icon": "snoeiafval",
+            "label": "Pruning waste"
+          },
+          {
+            "icon": "stoel",
+            "label": "Chairs"
+          },
+          {
+            "icon": "tapijt",
+            "label": "Carpets and floor covering"
+          },
+          {
+            "icon": "tuinstoel",
+            "label": "Garden furniture"
+          }
+        ]
+      },
+      "niet": {
+        "title": "We don't collect",
+        "items": [
+          {
+            "icon": "puin",
+            "label": "Construction and demolition waste, such as rubble and a toilet bowl"
+          },
+          {
+            "icon": "ijzer",
+            "label": "Iron"
+          },
+          {
+            "icon": "doos",
+            "label": "Cardboard"
+          },
+          {
+            "icon": "accu",
+            "label": "Small chemical waste, such as a battery or paint"
+          },
+          {
+            "icon": "apparaat",
+            "label": "Small electrical appliances"
+          },
+          {
+            "icon": "spiegel",
+            "label": "Glass panes and mirrors"
+          },
+          {
+            "icon": "tegel",
+            "label": "Garden tiles"
+          },
+          {
+            "icon": "band",
+            "label": "Car tyres"
+          },
+          {
+            "icon": "onderdeel",
+            "label": "Car parts"
+          },
+          {
+            "icon": "motor",
+            "label": "Other engines"
+          },
+          {
+            "icon": "zand",
+            "label": "Stones, sand and soil"
+          }
+        ]
+      },
+      "footer": "Containers, figures and the rules for your address:"
     }
   },
   "content": {

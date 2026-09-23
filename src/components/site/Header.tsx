@@ -21,7 +21,7 @@ export function Header({
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 h-20 border-b border-border bg-background/95 backdrop-blur-sm">
+    <header className="sticky top-0 z-50 print:hidden h-20 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 md:px-6 lg:px-8">
         <Link
           href={localizedHref(locale, "/")}

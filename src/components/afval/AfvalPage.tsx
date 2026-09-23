@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { localizedHref } from '@/i18n/localizedHref';
 import { makeFormatters } from '@/lib/stats/format';
 import type { Tone } from '@/lib/stats/scale';
 import { ChapterNav } from '@/components/stats/ChapterNav';
@@ -171,6 +173,9 @@ export async function AfvalPage({ locale }: { locale: string }) {
           {t('grof.afspraakCta')}
         </External>
       </div>
+      <Link href={localizedHref(locale, '/afval/instructie')} className={`${linkCls} border-t border-border pt-4`}>
+        {t('hero.card')}
+      </Link>
     </div>
   );
 
@@ -461,12 +466,20 @@ export async function AfvalPage({ locale }: { locale: string }) {
             <div className="text-[13px] font-semibold tracking-[0.08em] text-muted uppercase">{t('hero.eyebrow')}</div>
             <h1 className="m-0 text-[46px] leading-[1.02] font-bold tracking-[-0.02em] text-primary xl:text-[84px]">{t('heading')}</h1>
             <p className="m-0 max-w-[680px] text-[19px] leading-[1.45] text-text xl:text-[22px]">{t('hero.intro')}</p>
-            <a
-              href="#grof"
-              className="inline-flex min-h-11 items-center gap-2.5 text-[15px] font-medium text-text no-underline hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              {t('hero.start')} <span aria-hidden>↓</span>
-            </a>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+              <a
+                href="#grof"
+                className="inline-flex min-h-11 items-center gap-2.5 text-[15px] font-medium text-text no-underline hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {t('hero.start')} <span aria-hidden>↓</span>
+              </a>
+              <Link
+                href={localizedHref(locale, '/afval/instructie')}
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-4 text-[15px] font-semibold text-background no-underline hover:bg-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              >
+                {t('hero.card')} <span aria-hidden>→</span>
+              </Link>
+            </div>
           </div>
           <div className="grid grid-cols-2 gap-x-6 border-t-2 border-b border-text xl:grid-cols-4 xl:gap-x-0">
             {kpis.map((k) => (

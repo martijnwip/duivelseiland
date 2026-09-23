@@ -23,7 +23,7 @@ export function Footer({
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
   return (
-    <footer className="bg-[#2b241c] py-16 text-white">
+    <footer className="bg-[#2b241c] py-16 text-white print:hidden">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mb-12 grid gap-12 md:grid-cols-3">
           <div>

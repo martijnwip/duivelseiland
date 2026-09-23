@@ -147,3 +147,38 @@ h6 {
   stroke-width: 3px;
   stroke-linejoin: round;
 }
+
+/* ---- Printen (instructiekaart afval): A4 staand, altijd lichte kleuren ---- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm;
+  }
+  :root,
+  :root[data-theme='dark'] {
+    --color-primary: #3b5d42;
+    --color-secondary: #c99a46;
+    --color-cta: #b5482e;
+    --color-on-cta: #ffffff;
+    --color-input-border: #8f836f;
+    --color-background: #f5efe3;
+    --color-text: #2b241c;
+    --color-border: #e3d5be;
+    --color-muted: #6b5f4f;
+    --color-card: #ffffff;
+    --color-primary-mid: #7f9a84;
+    --color-primary-soft: #b7c6b8;
+    --color-secondary-soft: #e0c48f;
+    --color-cta-soft: #d99a86;
+    --color-muted-soft: #c9bda9;
+    --color-water: #c9d5d4;
+  }
+  body {
+    background: #ffffff;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+  .instructie-kaart {
+    zoom: 0.68;
+  }
+}
