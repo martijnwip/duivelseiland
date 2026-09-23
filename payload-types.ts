@@ -1111,6 +1111,10 @@ export interface SiteInstellingen {
     | {
         label: string;
         url: string;
+        /**
+         * Uitvinken om het item (tijdelijk) te verbergen, bv. als de pagina nog niet klaar is.
+         */
+        zichtbaar?: boolean | null;
         id?: string | null;
       }[]
     | null;
@@ -1195,6 +1199,7 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
     | {
         label?: T;
         url?: T;
+        zichtbaar?: T;
         id?: T;
       };
   footer?: T;

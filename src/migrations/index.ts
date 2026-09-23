@@ -16,6 +16,7 @@ import * as migration_20260922_132036_agenda_rich_layout from './20260922_132036
 import * as migration_20260922_135352_agenda_schedule_title_optional from './20260922_135352_agenda_schedule_title_optional';
 import * as migration_20260922_141111_agenda_whatsapp_number from './20260922_141111_agenda_whatsapp_number';
 import * as migration_20260923_121226_buurtborrel from './20260923_121226_buurtborrel';
+import * as migration_20260923_141050_menu_zichtbaar from './20260923_141050_menu_zichtbaar';
 
 export const migrations = [
   {
@@ -106,6 +107,11 @@ export const migrations = [
   {
     up: migration_20260923_121226_buurtborrel.up,
     down: migration_20260923_121226_buurtborrel.down,
-    name: '20260923_121226_buurtborrel'
+    name: '20260923_121226_buurtborrel',
+  },
+  {
+    up: migration_20260923_141050_menu_zichtbaar.up,
+    down: migration_20260923_141050_menu_zichtbaar.down,
+    name: '20260923_141050_menu_zichtbaar'
   },
 ];

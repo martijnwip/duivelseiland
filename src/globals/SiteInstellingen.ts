@@ -49,6 +49,15 @@ export const SiteInstellingen: GlobalConfig = {
           type: 'text',
           required: true,
         },
+        {
+          name: 'zichtbaar',
+          type: 'checkbox',
+          defaultValue: true,
+          admin: {
+            description:
+              'Uitvinken om het item (tijdelijk) te verbergen, bv. als de pagina nog niet klaar is.',
+          },
+        },
       ],
     },
     {

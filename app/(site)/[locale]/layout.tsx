@@ -73,7 +73,7 @@ export default async function SiteLayout({
 
   const site = await getSiteInstellingen(locale);
   const siteNaam = site.siteNaam || 'Duivelseiland';
-  const menu = site.menu ?? [];
+  const menu = (site.menu ?? []).filter((item) => item.zichtbaar !== false);
 
   return (
     <html
