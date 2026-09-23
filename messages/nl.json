@@ -8,7 +8,7 @@
     "underConstruction": "Deze site is in ontwikkeling.",
     "mapAlt": "Kaart van Duivelseiland, tussen het Roelof Hartplein en de Hobbemakade",
     "hero": {
-      "region": "Uitgelichte foto\u2019s",
+      "region": "Uitgelichte foto’s",
       "loading": "Afbeeldingen laden…",
       "previous": "Vorige dia",
       "next": "Volgende dia",
@@ -79,7 +79,7 @@
     },
     "praktischeInfo": {
       "heading": "Praktische info",
-      "metaDescription": "Praktische info voor Duivelseiland: de dichtstbijzijnde brievenbussen en waar de buurt-AED hangt."
+      "metaDescription": "Praktische info voor Duivelseiland: de dichtstbijzijnde brievenbussen, waar de buurt-AED hangt en voorzieningen in de buurt."
     },
     "fotos": {
       "heading": "Foto's (Gallerij)"
@@ -1113,7 +1113,7 @@
     "intro": {
       "eyebrow": "Duivelseiland · handig om te weten",
       "title": "Praktische info",
-      "lead": "Waar post je een kaart, en waar hangt de AED? De praktische dingen van de buurt op een rij."
+      "lead": "Waar post je een kaart, waar hangt de AED en wat is er in de buurt? De praktische dingen van de buurt op een rij."
     },
     "brievenbussen": {
       "eyebrow": "Post",
@@ -1153,6 +1153,19 @@
         "knop": "Bel 112"
       },
       "hartslagnu": "Wil je zelf burgerhulpverlener worden? Meld je aan bij <link>HartslagNu</link>."
+    },
+    "inDeBuurt": {
+      "eyebrow": "In de buurt",
+      "title": "Voorzieningen in de buurt",
+      "intro": "Plekken in en rond Duivelseiland die het kennen waard zijn.",
+      "link": "Naar de website",
+      "items": {
+        "kerk": {
+          "naam": "Oud-Katholieke Kerk",
+          "adres": "Ruysdaelstraat 39",
+          "tekst": "Zondagse viering, open kerk op zaterdagmiddag, koffie-inloop en zaalverhuur. Kijk voor tijden en activiteiten op hun website."
+        }
+      }
     },
     "kaart": {
       "eyebrow": "Kaart",

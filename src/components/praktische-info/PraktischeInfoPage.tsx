@@ -8,6 +8,10 @@ const AED_KAARTEN = [
   { key: 'pincode', icon: 'slot' },
 ] as const satisfies readonly { key: string; icon: PraktischeInfoIconName }[];
 
+const IN_DE_BUURT = [
+  { key: 'kerk', icon: 'kerk', url: 'https://amsterdam.oudkatholiek.nl/' },
+] as const satisfies readonly { key: string; icon: PraktischeInfoIconName; url: string }[];
+
 export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
   const t = await getTranslations({ locale, namespace: 'praktischeInfo' });
 
@@ -89,6 +93,33 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
             ),
           })}
         </p>
+      </Section>
+
+      <Section id="praktisch-in-de-buurt">
+        <SectionHead
+          id="praktisch-in-de-buurt"
+          eyebrow={t('inDeBuurt.eyebrow')}
+          title={t('inDeBuurt.title')}
+          intro={t('inDeBuurt.intro')}
+        />
+        <ul className="mt-8 grid list-none gap-4 p-0 md:grid-cols-2">
+          {IN_DE_BUURT.map(({ key, icon, url }) => (
+            <li key={key} className={boxCls}>
+              <div className="flex items-start gap-4">
+                <Icon name={icon} className="size-10 flex-none text-primary" />
+                <div>
+                  <h3 className="m-0 text-lg leading-[1.3] font-semibold text-text">{t(`inDeBuurt.items.${key}.naam`)}</h3>
+                  <p className="mt-1 mb-0 leading-[1.5] text-muted">{t(`inDeBuurt.items.${key}.adres`)}</p>
+                  <p className="mt-3 mb-0 leading-[1.5] text-text">{t(`inDeBuurt.items.${key}.tekst`)}</p>
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-medium text-primary underline">
+                    {t('inDeBuurt.link')}
+                    <span className="sr-only"> ({t('nieuwVenster')})</span>
+                  </a>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
       </Section>
 
       <Section id="praktisch-kaart">

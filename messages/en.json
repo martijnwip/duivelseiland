@@ -79,7 +79,7 @@
     },
     "praktischeInfo": {
       "heading": "Practical Information",
-      "metaDescription": "Practical information for Duivelseiland: the nearest post boxes and where to find the neighbourhood AED."
+      "metaDescription": "Practical information for Duivelseiland: the nearest post boxes, where to find the neighbourhood AED and local amenities."
     },
     "fotos": {
       "heading": "Photos (Gallery)"
@@ -1296,7 +1296,7 @@
     "intro": {
       "eyebrow": "Duivelseiland · good to know",
       "title": "Practical Information",
-      "lead": "Where can you post a card, and where is the AED? The practical things of the neighbourhood, all in one place."
+      "lead": "Where can you post a card, where is the AED and what is nearby? The practical things of the neighbourhood, all in one place."
     },
     "brievenbussen": {
       "eyebrow": "Post",
@@ -1336,6 +1336,19 @@
         "knop": "Call 112"
       },
       "hartslagnu": "Want to become a citizen responder yourself? Sign up with <link>HartslagNu</link>."
+    },
+    "inDeBuurt": {
+      "eyebrow": "Nearby",
+      "title": "Local amenities",
+      "intro": "Places in and around Duivelseiland worth knowing about.",
+      "link": "Visit the website",
+      "items": {
+        "kerk": {
+          "naam": "Old Catholic Church",
+          "adres": "Ruysdaelstraat 39",
+          "tekst": "Sunday service, open church on Saturday afternoons, a drop-in coffee morning and rooms for hire. See their website for times and activities."
+        }
+      }
     },
     "kaart": {
       "eyebrow": "Map",

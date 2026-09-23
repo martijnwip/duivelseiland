@@ -33,6 +33,15 @@ const ICONS = {
   telefoon: (
     <path d="M14 7l6 9-4 4a24 24 0 0 0 12 12l4-4 9 6-3 6c-2 2-5 2-8 1A36 36 0 0 1 9 20c-1-3-1-6 1-8z" />
   ),
+  kerk: (
+    <>
+      <path d="M24 5v8M20 9h8" />
+      <path d="M14 42V24l10-11 10 11v18" />
+      <path d="M8 42V30l6-6M40 42V30l-6-6" />
+      <path d="M6 42h36" />
+      <path d="M20 42v-8a4 4 0 0 1 8 0v8" />
+    </>
+  ),
 } as const;
 
 export type PraktischeInfoIconName = keyof typeof ICONS;
