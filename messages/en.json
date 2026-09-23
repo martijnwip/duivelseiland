@@ -1283,6 +1283,10 @@
     "afsluiting": {
       "groet": "Best wishes from the Duivelse Organisatie,",
       "namen": "Marie Claire, Sylvia and Nathalie"
+    },
+    "kaart": {
+      "label": "Map of Roelof Hartplein with a marker on the green between Café Wildschut and Balthasar Floriszstraat, at the edge of Duivelseiland.",
+      "bijschrift": "The green at Roelof Hartplein, where we get together."
     }
   }
 }

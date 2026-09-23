@@ -6,6 +6,7 @@ import { buildWhatsAppLink } from '@/lib/whatsapp';
 import type { AgendaRichFields } from '@/lib/agenda/richFields';
 import { BuurtborrelForm } from './BuurtborrelForm';
 import { Icon, WhatsAppIcon, type BuurtborrelIconName } from './icons';
+import { PlantsoenKaart } from './PlantsoenKaart';
 
 // Het Schoonmaak-nummer staat al bij het agenda-item (zie HomeDuivelseSchoonmaak).
 const SCHOONMAAK_SLUG = 'duivelse-schoonmaak';
@@ -132,6 +133,10 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
             </li>
           ))}
         </ol>
+        <figure className={`${boxCls} mt-4 mb-0`}>
+          <PlantsoenKaart label={t('kaart.label')} />
+          <figcaption className="text-sm leading-[1.4] text-muted">{t('kaart.bijschrift')}</figcaption>
+        </figure>
         <p className="mt-6 mb-0 flex items-center gap-2 font-medium text-text">
           <Icon name="pijl" className="size-6 text-primary" />
           {t('terugblik.vervolg')}
