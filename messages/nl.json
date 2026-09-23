@@ -78,7 +78,8 @@
       "heading": "Waar komt de naam vandaan?"
     },
     "praktischeInfo": {
-      "heading": "Praktische info"
+      "heading": "Praktische info",
+      "metaDescription": "Praktische info voor Duivelseiland: de dichtstbijzijnde brievenbussen en waar de buurt-AED hangt."
     },
     "fotos": {
       "heading": "Foto's (Gallerij)"
@@ -1105,6 +1106,52 @@
     "kaart": {
       "label": "Kaart van het Roelof Hartplein met een marker op het plantsoen tussen Café Wildschut en de Balthasar Floriszstraat, aan de rand van Duivelseiland.",
       "bijschrift": "Het plantsoen aan het Roelof Hartplein, waar we elkaar treffen."
+    }
+  },
+  "praktischeInfo": {
+    "nieuwVenster": "opent in een nieuw venster",
+    "intro": {
+      "eyebrow": "Duivelseiland · handig om te weten",
+      "title": "Praktische info",
+      "lead": "Waar post je een kaart, en waar hangt de AED? De praktische dingen van de buurt op een rij."
+    },
+    "brievenbussen": {
+      "eyebrow": "Post",
+      "title": "Dichtstbijzijnde brievenbussen",
+      "intro": "Drie brievenbussen op loopafstand.",
+      "items": {
+        "terborg": {
+          "adres": "Gerard Terborgstraat 44",
+          "bij": "Tegenover Atalmedial"
+        },
+        "janSteen": {
+          "adres": "Eerste Jan Steenstraat 53",
+          "bij": "Bij de Albert Heijn"
+        },
+        "vermeer": {
+          "adres": "Johannes Vermeerstraat / Teniersstraat",
+          "bij": "Op de hoek"
+        }
+      }
+    },
+    "aed": {
+      "eyebrow": "Noodgeval",
+      "title": "Buurt-AED",
+      "intro": "Er hangt een AED in de buurt. Goed om te weten waar, en hoe je hem openkrijgt.",
+      "locatie": {
+        "title": "Waar hangt hij?",
+        "text": "Op de gevel van de Oud-Katholieke Kerk aan de Ruysdaelstraat."
+      },
+      "pincode": {
+        "title": "Je hebt een pincode nodig",
+        "text": "De AED-kast gaat open met een pincode. Die krijg je als je bij een hartstilstand via 112 wordt opgeroepen als burgerhulpverlener van HartslagNu. De code staat dan in de HartslagNu-app of in het sms- of alarmeringsbericht."
+      },
+      "noodgeval": {
+        "title": "Geen burgerhulpverlener?",
+        "text": "Bel bij een echte noodsituatie eerst 112. De meldkamer geeft je instructies. Sommige AED-kasten kunnen op afstand worden geopend, of via het telefoonnummer op de kast.",
+        "knop": "Bel 112"
+      },
+      "hartslagnu": "Wil je zelf burgerhulpverlener worden? Meld je aan bij <link>HartslagNu</link>."
     }
   }
 }

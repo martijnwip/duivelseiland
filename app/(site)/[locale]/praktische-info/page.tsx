@@ -1,19 +1,15 @@
+import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import { ContentListPage } from '@/components/content/ContentListPage';
+import { PraktischeInfoPage } from '@/components/praktische-info/PraktischeInfoPage';
 
-export default async function PraktischeInfoPage({ params }: { params: Promise<{ locale: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pages.praktischeInfo' });
+  return { title: t('heading'), description: t('metaDescription') };
+}
+
+export default async function PraktischeInfoRoute({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'pages.praktischeInfo' });
-  const tc = await getTranslations({ locale, namespace: 'content' });
-
-  return (
-    <ContentListPage
-      collection="praktische-info"
-      routeSegment="praktische-info"
-      locale={locale as 'nl' | 'en'}
-      heading={t('heading')}
-      emptyText={tc('empty')}
-    />
-  );
+  return <PraktischeInfoPage locale={locale as 'nl' | 'en'} />;
 }

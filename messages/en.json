@@ -78,7 +78,8 @@
       "heading": "Where does the name come from?"
     },
     "praktischeInfo": {
-      "heading": "Practical Information"
+      "heading": "Practical Information",
+      "metaDescription": "Practical information for Duivelseiland: the nearest post boxes and where to find the neighbourhood AED."
     },
     "fotos": {
       "heading": "Photos (Gallery)"
@@ -1288,6 +1289,52 @@
     "kaart": {
       "label": "Map of Roelof Hartplein with a marker on the green between Café Wildschut and Balthasar Floriszstraat, at the edge of Duivelseiland.",
       "bijschrift": "The green at Roelof Hartplein, where we get together."
+    }
+  },
+  "praktischeInfo": {
+    "nieuwVenster": "opens in a new window",
+    "intro": {
+      "eyebrow": "Duivelseiland · good to know",
+      "title": "Practical Information",
+      "lead": "Where can you post a card, and where is the AED? The practical things of the neighbourhood, all in one place."
+    },
+    "brievenbussen": {
+      "eyebrow": "Post",
+      "title": "Nearest post boxes",
+      "intro": "Three post boxes within walking distance.",
+      "items": {
+        "terborg": {
+          "adres": "Gerard Terborgstraat 44",
+          "bij": "Opposite Atalmedial"
+        },
+        "janSteen": {
+          "adres": "Eerste Jan Steenstraat 53",
+          "bij": "By the Albert Heijn"
+        },
+        "vermeer": {
+          "adres": "Johannes Vermeerstraat / Teniersstraat",
+          "bij": "On the corner"
+        }
+      }
+    },
+    "aed": {
+      "eyebrow": "Emergency",
+      "title": "Neighbourhood AED",
+      "intro": "There is an AED in the neighbourhood. Good to know where it is, and how to open it.",
+      "locatie": {
+        "title": "Where is it?",
+        "text": "On the front of the Old Catholic Church on Ruysdaelstraat."
+      },
+      "pincode": {
+        "title": "You need a PIN code",
+        "text": "The AED cabinet opens with a PIN code. You receive it when you are called out via 112 as a HartslagNu citizen responder during a cardiac arrest. The code is then shown in the HartslagNu app or in the text or alert message."
+      },
+      "noodgeval": {
+        "title": "Not a citizen responder?",
+        "text": "In a real emergency, call 112 first. The dispatcher will give you instructions. Some AED cabinets can be opened remotely, or via the phone number on the cabinet.",
+        "knop": "Call 112"
+      },
+      "hartslagnu": "Want to become a citizen responder yourself? Sign up with <link>HartslagNu</link>."
     }
   }
 }
