@@ -62,6 +62,14 @@
       "source": "Live source: City of Amsterdam open data",
       "statsCta": "All figures and maps",
       "statsCtaContext": "about waste in Duivelseiland"
+    },
+    "buurtborrel": {
+      "eyebrow": "Together",
+      "title": "Neighbourhood drinks",
+      "intro": "What started with fire baskets and mulled wine in the snow became a sunny afternoon on the green. There will be a next one, and you're welcome.",
+      "factText": "neighbourhood drinks on the green so far, and we want more",
+      "readMore": "About the neighbourhood drinks",
+      "readMoreContext": "and how to sign up"
     }
   },
   "pages": {
@@ -1152,6 +1160,10 @@
         "fileName": "duivelseiland-waste-bulky-rubbish.png",
         "heading": "Instruction card as image"
       }
+    },
+    "buurtborrel": {
+      "heading": "Neighbourhood drinks",
+      "metaDescription": "Duivelseiland's neighbourhood drinks: raising a glass on the green and getting to know your neighbours. Join the mailing list or the neighbourhood app group."
     }
   },
   "content": {
@@ -1175,5 +1187,102 @@
     "usedToken": "This invite link has already been used.",
     "expiredToken": "This invite link has expired.",
     "genericError": "Something went wrong. Please try again later."
+  },
+  "buurtborrel": {
+    "nieuwVenster": "opens WhatsApp in a new window",
+    "intro": {
+      "eyebrow": "Duivelseiland · together",
+      "title": "Neighbourhood drinks",
+      "lead": "What began last winter with fire baskets and mulled wine in the snow became a lively afternoon in the sun on Sunday 6 September, on that same green. A huge turnout for neighbourhood drinks, and such a good time!",
+      "doel": "The idea is to do this more often. Not just for the party, but mainly to get to know each other: the neighbours three doors down, across the street, around the square. And to give that some continuity.",
+      "factText": "times we've gathered on the green at Roelof Hartplein"
+    },
+    "terugblik": {
+      "eyebrow": "Looking back",
+      "title": "Two editions, one green",
+      "winter": {
+        "wanneer": "Winter · New Year edition",
+        "title": "Fire baskets in the snow",
+        "text": "Mulled wine in hand around the fire baskets on the green. A first, tentative get-together that left us wanting more."
+      },
+      "zomer": {
+        "wanneer": "Sunday 6 September · summer edition",
+        "title": "Drinks in the sun",
+        "text": "A sun-drenched afternoon on the green at Roelof Hartplein, with drinks from Café Wildschut, pancakes for the kids and lots of neighbours talking for the first time."
+      },
+      "vervolg": "There will be a next one. If you're on the mailing list, you'll hear about it."
+    },
+    "ideeen": {
+      "eyebrow": "What else?",
+      "title": "Ideas for next time",
+      "intro": "We've made a start and the enthusiasm is there. What comes next is still open.",
+      "items": {
+        "nieuwjaarstoast": "New Year's toast",
+        "picknick": "Spring potluck picnic",
+        "paasbrunch": "Easter brunch",
+        "koningsdag": "King's Day bingo",
+        "ruilbeurs": "Swap market for clothes, books and toys",
+        "jouwIdee": "Or your idea?"
+      },
+      "motto": "We do it for each other, and with each other."
+    },
+    "doeMee": {
+      "eyebrow": "Join in",
+      "title": "Stay in the loop",
+      "intro": "The mailing list tells you when the next drinks are. Spontaneous things often go through the app groups.",
+      "lijst": {
+        "title": "Mailing list",
+        "text": "Leave your email address and you'll get the next invitation. If you no longer want to be emailed, unsubscribe here."
+      },
+      "burenApp": {
+        "title": "Buren-app Duivelseiland",
+        "text": "The neighbourhood WhatsApp group for spontaneous announcements and news.",
+        "knop": "Ask to join",
+        "bericht": "Hi! I'd like to join the Buren-app Duivelseiland. My name is "
+      },
+      "schoonmaak": {
+        "title": "Duivelse Schoonmaak",
+        "text": "Every month neighbours pick up litter together. If you'd like to join, you'll be added to the app group.",
+        "knop": "Message to join",
+        "bericht": "Hi! I'd like to join the Duivelse Schoonmaak and its app group. My name is "
+      }
+    },
+    "form": {
+      "legend": "What would you like to do?",
+      "aanmelden": "Sign up",
+      "afmelden": "Unsubscribe",
+      "emailLabel": "Your email address",
+      "emailPlaceholder": "name@example.com",
+      "berichtLabel": "Message (optional)",
+      "berichtHint": "Got an idea, or want to organise something yourself? Tell us what you enjoy or what you're good at.",
+      "submitAanmelden": "Sign up",
+      "submitAfmelden": "Unsubscribe",
+      "submitting": "Sending…",
+      "successAanmelden": "Thank you! You're on the list. See you next time.",
+      "successAfmelden": "You've been unsubscribed. Hope to see you on the green anyway.",
+      "error": "That didn't work. Check your email address and try again."
+    },
+    "dank": {
+      "eyebrow": "With thanks to",
+      "title": "We make it together",
+      "items": {
+        "wildschut": "<b>Café Wildschut</b>, for the drinks and the service on the green.",
+        "hendrik": "<b>Hendrik</b>, for the pancakes and the happy kids.",
+        "bistrot": "<b>Bistrot des Alpes</b>, for the tables and chairs and the lovely food on their terrace. It felt like we'd ended up in a French village.",
+        "kerk": "<b>Michael of the Old Catholic Church</b>, the one true Duivelseiland church, for the crockery and the high tables.",
+        "schoonmaakploeg": "<b>The Duivelse Schoonmaak crew</b>, who turn out to be good at carrying things too.",
+        "iedereen": "<b>Everyone</b> who lent a hand."
+      },
+      "barry": {
+        "title": "And Barry!",
+        "text": "What a cook. Barry also does catering: message him if you're throwing a party soon.",
+        "knop": "Message Barry",
+        "bericht": "Hi Barry! I saw you on the Duivelseiland website and have a question about catering."
+      }
+    },
+    "afsluiting": {
+      "groet": "Best wishes from the Duivelse Organisatie,",
+      "namen": "Marie Claire, Sylvia and Nathalie"
+    }
   }
 }

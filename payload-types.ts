@@ -118,10 +118,12 @@ export interface Config {
   globals: {
     'site-instellingen': SiteInstellingen;
     'over-de-naam': OverDeNaam;
+    buurtborrel: Buurtborrel;
   };
   globalsSelect: {
     'site-instellingen': SiteInstellingenSelect<false> | SiteInstellingenSelect<true>;
     'over-de-naam': OverDeNaamSelect<false> | OverDeNaamSelect<true>;
+    buurtborrel: BuurtborrelSelect<false> | BuurtborrelSelect<true>;
   };
   locale: 'nl' | 'en';
   widgets: {
@@ -1162,6 +1164,27 @@ export interface OverDeNaam {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "buurtborrel".
+ */
+export interface Buurtborrel {
+  id: number;
+  /**
+   * Hier komen aan- en afmeldingen voor de mailinglijst binnen.
+   */
+  aanmeldEmail: string;
+  /**
+   * Telefoonnummer van de beheerder van de Buren-app Duivelseiland (WhatsApp). Leeg = geen knop.
+   */
+  burenAppNummer?: string | null;
+  /**
+   * Telefoonnummer van Barry (catering, WhatsApp). Leeg = geen knop.
+   */
+  barryNummer?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-instellingen_select".
  */
 export interface SiteInstellingenSelect<T extends boolean = true> {
@@ -1193,6 +1216,18 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
 export interface OverDeNaamSelect<T extends boolean = true> {
   titel?: T;
   inhoud?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "buurtborrel_select".
+ */
+export interface BuurtborrelSelect<T extends boolean = true> {
+  aanmeldEmail?: T;
+  burenAppNummer?: T;
+  barryNummer?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

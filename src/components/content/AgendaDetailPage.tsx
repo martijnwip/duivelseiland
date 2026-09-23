@@ -8,7 +8,7 @@ import { AgendaDateTile } from './AgendaDateTile';
 import { ScheduleIcon } from './AgendaScheduleIcons';
 import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from '@/lib/agenda/nextOccurrence';
 import type { AgendaRichFields } from '@/lib/agenda/richFields';
-import { buildWhatsAppLink } from '@/lib/agenda/whatsapp';
+import { buildWhatsAppLink } from '@/lib/whatsapp';
 
 export async function AgendaDetailPage({
   slug,

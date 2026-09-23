@@ -62,6 +62,14 @@
       "source": "Live bron: open data gemeente Amsterdam",
       "statsCta": "Alle cijfers en kaarten",
       "statsCtaContext": "over afval in Duivelseiland"
+    },
+    "buurtborrel": {
+      "eyebrow": "Samen",
+      "title": "Buurtborrel",
+      "intro": "Wat begon met vuurkorven en Glühwein in de sneeuw, werd een zonnige borrel op het plantsoen. Er komt een vervolg, en je bent welkom.",
+      "factText": "keer een buurtborrel op het plantsoen, en het smaakt naar meer",
+      "readMore": "Over de Buurtborrel",
+      "readMoreContext": "en hoe je je aanmeldt"
     }
   },
   "pages": {
@@ -969,6 +977,10 @@
         "fileName": "duivelseiland-afval-grof-vuil.png",
         "heading": "Instructiekaart als afbeelding"
       }
+    },
+    "buurtborrel": {
+      "heading": "Buurtborrel",
+      "metaDescription": "De Buurtborrel van Duivelseiland: samen proosten op het plantsoen, buren leren kennen. Meld je aan voor de mailinglijst of kom in de buurt-appgroep."
     }
   },
   "content": {
@@ -992,5 +1004,102 @@
     "usedToken": "Deze uitnodigingslink is al gebruikt.",
     "expiredToken": "Deze uitnodigingslink is verlopen.",
     "genericError": "Er is iets misgegaan. Probeer het later opnieuw."
+  },
+  "buurtborrel": {
+    "nieuwVenster": "opent WhatsApp in een nieuw venster",
+    "intro": {
+      "eyebrow": "Duivelseiland · samen",
+      "title": "Buurtborrel",
+      "lead": "Wat afgelopen winter begon met vuurkorven en Glühwein in de sneeuw, werd op zondag 6 september op datzelfde plantsoen een bruisende borrel in de zon. Een enorme opkomst voor een buurtborrel, en wat was het gezellig!",
+      "doel": "Het idee is om dit vaker te doen. Niet voor het feest alleen, maar vooral om elkaar te leren kennen: de buren van drie deuren verderop, van de overkant, van het plein. En om daar een beetje continuïteit in te brengen.",
+      "factText": "keer samengekomen op het plantsoen aan het Roelof Hartplein"
+    },
+    "terugblik": {
+      "eyebrow": "Terugblik",
+      "title": "Twee edities, één plantsoen",
+      "winter": {
+        "wanneer": "Winter · nieuwjaarseditie",
+        "title": "Vuurkorven in de sneeuw",
+        "text": "Met Glühwein in de hand rond de vuurkorven op het plantsoen. Een eerste, voorzichtige kennismaking, die naar meer smaakte."
+      },
+      "zomer": {
+        "wanneer": "Zondag 6 september · zomereditie",
+        "title": "Een borrel in de zon",
+        "text": "Een zonovergoten middag op het plantsoen aan het Roelof Hartplein, met drankjes van Café Wildschut, pannenkoeken voor de kinderen en veel buren die elkaar voor het eerst spraken."
+      },
+      "vervolg": "Er komt een vervolg. Sta je op de mailinglijst, dan hoor je het vanzelf."
+    },
+    "ideeen": {
+      "eyebrow": "Wat nog meer?",
+      "title": "Ideeën voor de volgende keer",
+      "intro": "De kop is eraf en het enthousiasme is er. Wat het volgende moment wordt, is nog open.",
+      "items": {
+        "nieuwjaarstoast": "Nieuwjaarstoast",
+        "picknick": "Lente-potluckpicknick",
+        "paasbrunch": "Paasbrunch",
+        "koningsdag": "Koningsdag-bingo",
+        "ruilbeurs": "Ruilbeurs voor kleding, boeken en speelgoed",
+        "jouwIdee": "Of jouw idee?"
+      },
+      "motto": "We doen het voor elkaar, én met elkaar."
+    },
+    "doeMee": {
+      "eyebrow": "Doe mee",
+      "title": "Blijf op de hoogte",
+      "intro": "Via de mailinglijst hoor je wanneer de volgende borrel is. Spontane dingen gaan vaak via de appgroepen.",
+      "lijst": {
+        "title": "Mailinglijst",
+        "text": "Laat je e-mailadres achter en je krijgt de volgende uitnodiging. Wil je niet meer gemaild worden, meld je dan hier af."
+      },
+      "burenApp": {
+        "title": "Buren-app Duivelseiland",
+        "text": "De WhatsApp-groep voor spontane aankondigingen en berichten uit de buurt.",
+        "knop": "Vraag om toegang",
+        "bericht": "Hoi! Ik wil graag in de Buren-app Duivelseiland. Mijn naam is "
+      },
+      "schoonmaak": {
+        "title": "Duivelse Schoonmaak",
+        "text": "Elke maand ruimen buren samen het zwerfafval op. Doe je mee, dan kom je in de appgroep.",
+        "knop": "App voor de appgroep",
+        "bericht": "Hoi! Ik doe graag mee met de Duivelse Schoonmaak en wil in de appgroep. Mijn naam is "
+      }
+    },
+    "form": {
+      "legend": "Wat wil je doen?",
+      "aanmelden": "Aanmelden",
+      "afmelden": "Afmelden",
+      "emailLabel": "Je e-mailadres",
+      "emailPlaceholder": "naam@voorbeeld.nl",
+      "berichtLabel": "Bericht (optioneel)",
+      "berichtHint": "Heb je een idee, of wil je zelf iets organiseren? Laat weten wat je leuk vindt of waar je goed in bent.",
+      "submitAanmelden": "Aanmelden",
+      "submitAfmelden": "Afmelden",
+      "submitting": "Bezig met versturen…",
+      "successAanmelden": "Dank je! Je staat op de lijst. Tot de volgende keer.",
+      "successAfmelden": "Je bent afgemeld. Jammer, en wie weet tot ziens op het plantsoen.",
+      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens."
+    },
+    "dank": {
+      "eyebrow": "Met dank aan",
+      "title": "Samen maken we het",
+      "items": {
+        "wildschut": "<b>Café Wildschut</b>, voor de drankjes en de bediening op het plantsoen.",
+        "hendrik": "<b>Hendrik</b>, voor de pannenkoeken en de blije kinderen.",
+        "bistrot": "<b>Bistrot des Alpes</b>, voor de tafels en stoeltjes en het heerlijke eten op het terras. Het leek alsof we in een Frans dorp waren beland.",
+        "kerk": "<b>Michael van de Oud-Katholieke Kerk</b>, de enige echte Duivelseiland-kerk, voor het servies en de statafels.",
+        "schoonmaakploeg": "<b>De Duivelse Schoonmaakploeg</b>, die ook blijkt te kunnen sjouwen.",
+        "iedereen": "<b>Iedereen</b> die een handje hielp."
+      },
+      "barry": {
+        "title": "En Barry!",
+        "text": "Wat kan hij lekker koken. Barry doet ook catering: app hem als je binnenkort een feestje geeft.",
+        "knop": "App Barry",
+        "bericht": "Hoi Barry! Ik zag je op de site van Duivelseiland en heb een vraag over catering."
+      }
+    },
+    "afsluiting": {
+      "groet": "Groetjes van de Duivelse Organisatie,",
+      "namen": "Marie Claire, Sylvia en Nathalie"
+    }
   }
 }

@@ -15,6 +15,7 @@ import * as migration_20260922_105605_agenda_recurrence from './20260922_105605_
 import * as migration_20260922_132036_agenda_rich_layout from './20260922_132036_agenda_rich_layout';
 import * as migration_20260922_135352_agenda_schedule_title_optional from './20260922_135352_agenda_schedule_title_optional';
 import * as migration_20260922_141111_agenda_whatsapp_number from './20260922_141111_agenda_whatsapp_number';
+import * as migration_20260923_121226_buurtborrel from './20260923_121226_buurtborrel';
 
 export const migrations = [
   {
@@ -100,6 +101,11 @@ export const migrations = [
   {
     up: migration_20260922_141111_agenda_whatsapp_number.up,
     down: migration_20260922_141111_agenda_whatsapp_number.down,
-    name: '20260922_141111_agenda_whatsapp_number'
+    name: '20260922_141111_agenda_whatsapp_number',
+  },
+  {
+    up: migration_20260923_121226_buurtborrel.up,
+    down: migration_20260923_121226_buurtborrel.down,
+    name: '20260923_121226_buurtborrel'
   },
 ];
