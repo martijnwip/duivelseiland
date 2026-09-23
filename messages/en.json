@@ -958,7 +958,8 @@
           "teVroeg": "too early",
           "buiten": "put it out",
           "teLaat": "too late",
-          "text": "Only from Sunday 9 pm until Monday 7 am. It must be outside by 7 am."
+          "text": "Only from Sunday 9 pm until Monday 7 am. It must be outside by 7 am.",
+          "clock": "Clock: put bulky rubbish out between 21:00 and 07:00"
         },
         "how": {
           "label": "How much",

@@ -775,7 +775,8 @@
           "teVroeg": "te vroeg",
           "buiten": "buitenzetten",
           "teLaat": "te laat",
-          "text": "Alleen van zondagavond 21.00 tot maandagochtend 07.00 uur. Om 07.00 uur moet het buiten staan."
+          "text": "Alleen van zondagavond 21.00 tot maandagochtend 07.00 uur. Om 07.00 uur moet het buiten staan.",
+          "clock": "Klok: grof vuil buitenzetten tussen 21:00 en 07:00 uur"
         },
         "how": {
           "label": "Hoeveel",

@@ -18,6 +18,55 @@ function At({ name, x, y, size = 30 }: { name: 'maan' | 'zon'; x: number; y: num
 }
 
 /**
+ * Analoge klok als extra pictogram: het venster 21:00–07:00 is een groene taartpunt
+ * (van de 9 met de klok mee tot de 7), de rest gearceerd. Maan en zon markeren begin en eind.
+ */
+export function Klok({ label, className = 'size-24' }: { label: string; className?: string }) {
+  const C = 86;
+  const R = 50;
+  const pt = (h: number, r = R) => {
+    const a = ((h % 12) / 12) * 2 * Math.PI - Math.PI / 2;
+    return [C + r * Math.cos(a), C + r * Math.sin(a)] as const;
+  };
+  const [sx, sy] = pt(9);
+  const [ex, ey] = pt(7);
+  const icon = (name: 'maan' | 'zon', h: number) => {
+    const [x, y] = pt(h, R + 21);
+    return (
+      <svg x={x - 15} y={y - 15} width={30} height={30} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={3.5} strokeLinecap="round" strokeLinejoin="round" className="text-text">
+        {ICONS[name]}
+      </svg>
+    );
+  };
+  return (
+    <svg viewBox="0 0 172 172" role="img" aria-label={label} className={`${className} flex-none`}>
+      <title>{label}</title>
+      <defs>
+        <pattern id="klok-arcering" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <rect width="6" height="6" className="fill-card" />
+          <path d="M0 0v6" strokeWidth={2.5} className="stroke-cta-soft" />
+        </pattern>
+      </defs>
+      <circle cx={C} cy={C} r={R} fill="url(#klok-arcering)" />
+      {/* 21:00 → 07:00 = 10 uur met de klok mee: grote boog */}
+      <path d={`M${C} ${C}L${sx} ${sy}A${R} ${R} 0 1 1 ${ex} ${ey}Z`} className="fill-primary" />
+      <circle cx={C} cy={C} r={R} fill="none" strokeWidth={4} className="stroke-text" />
+      {Array.from({ length: 12 }, (_, h) => {
+        const [x1, y1] = pt(h, R - (h % 3 === 0 ? 10 : 6));
+        const [x2, y2] = pt(h, R - 2);
+        return <path key={h} d={`M${x1} ${y1}L${x2} ${y2}`} strokeWidth={h % 3 === 0 ? 3 : 1.75} strokeLinecap="round" className="stroke-background" />;
+      })}
+      {/* Wijzers op 21:00: kleine wijzer op de 9, grote op de 12 */}
+      <path d={`M${C} ${C}L${pt(9, R - 22).join(' ')}`} strokeWidth={6} strokeLinecap="round" className="stroke-background" />
+      <path d={`M${C} ${C}L${pt(0, R - 12).join(' ')}`} strokeWidth={4} strokeLinecap="round" className="stroke-background" />
+      <circle cx={C} cy={C} r={5} className="fill-background" />
+      {icon('maan', 9)}
+      {icon('zon', 7)}
+    </svg>
+  );
+}
+
+/**
  * Tijdlijn zondag 18:00 → maandag 09:00 met het venster 21:00–07:00 waarin grof vuil buiten mag.
  * Mobiel krijgt een smallere tekening (minder uren), zodat de tekst leesbaar blijft.
  */

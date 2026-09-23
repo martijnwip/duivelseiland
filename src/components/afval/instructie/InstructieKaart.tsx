@@ -4,7 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import type { T } from '@/components/stats/cards/card';
 import { localizedHref } from '@/i18n/localizedHref';
 import { ICONS, Icon, Mark, type IconName } from './icons';
-import { Tijdvak } from './Tijdvak';
+import { Klok, Tijdvak } from './Tijdvak';
 import { PrintButton } from './PrintButton';
 
 type Item = { icon: IconName; label: string };
@@ -168,7 +168,10 @@ export async function InstructieKaart({ locale }: { locale: string }) {
             <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] print:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.when.label')}</h3>
-                <p className="m-0 font-heading text-[26px] leading-none font-bold whitespace-nowrap text-primary sm:text-[30px] xl:text-[40px] print:text-[30px]">{t('grof.when.big')}</p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <Klok label={t('grof.when.clock')} className="size-24 xl:size-28 print:size-24" />
+                  <p className="m-0 font-heading text-[26px] leading-none font-bold whitespace-nowrap text-primary sm:text-[30px] xl:text-[34px] print:text-[30px]">{t('grof.when.big')}</p>
+                </div>
                 <Tijdvak
                   labels={{
                     zondag: t('grof.when.zondag'),
