@@ -106,13 +106,17 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           goToSlide: t.raw('hero.goToSlide'),
         }}
       />
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-4 py-8">
-        <h1 className="m-0 text-4xl leading-[1.1] font-bold text-primary xl:text-5xl">{t('heading')}</h1>
-        {hasRichTextContent(intro) ? (
-          <RichTextContent data={intro} className="max-w-[640px] text-lg leading-[1.5]" />
-        ) : (
-          <p className="m-0 max-w-[640px] text-lg leading-[1.5] text-text">{t('underConstruction')}</p>
-        )}
+      <div className="mx-auto grid max-w-5xl items-start gap-8 px-4 py-8 md:grid-cols-2">
+        <div className="flex flex-col gap-3">
+          <h1 className="m-0 text-4xl leading-[1.1] font-bold text-primary xl:text-5xl">{t('heading')}</h1>
+          {hasRichTextContent(intro) ? (
+            <RichTextContent data={intro} className="max-w-[640px] text-lg leading-[1.5]" />
+          ) : (
+            <p className="m-0 max-w-[640px] text-lg leading-[1.5] text-text">{t('underConstruction')}</p>
+          )}
+        </div>
+        {/* Gegenereerd met `bun run kaart:locatie` (scripts/locatiekaart.ts). */}
+        <img src="/kaart/duivelseiland.svg" alt={t('mapAlt')} width={1320} height={960} className="h-auto w-full rounded-md border border-border" />
       </div>
       <HomeStats locale={locale} />
       <HomeDuivelseSchoonmaak locale={locale as 'nl' | 'en'} />
