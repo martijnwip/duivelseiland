@@ -1119,6 +1119,7 @@
       "eyebrow": "Post",
       "title": "Dichtstbijzijnde brievenbussen",
       "intro": "Drie brievenbussen op loopafstand.",
+      "nummer": "Nummer op de kaart:",
       "items": {
         "terborg": {
           "adres": "Gerard Terborgstraat 44",
@@ -1152,6 +1153,12 @@
         "knop": "Bel 112"
       },
       "hartslagnu": "Wil je zelf burgerhulpverlener worden? Meld je aan bij <link>HartslagNu</link>."
+    },
+    "kaart": {
+      "eyebrow": "Kaart",
+      "title": "Alles op de kaart",
+      "label": "Kaart van Duivelseiland en omgeving met de drie brievenbussen, genummerd 1 tot en met 3: Gerard Terborgstraat, Eerste Jan Steenstraat en de hoek Johannes Vermeerstraat en Teniersstraat. De AED hangt aan de Ruysdaelstraat, bij de Oud-Katholieke Kerk.",
+      "bijschrift": "De nummers horen bij de brievenbussen hierboven. De stippellijn is de grens van Duivelseiland."
     }
   }
 }

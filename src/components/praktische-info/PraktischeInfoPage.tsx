@@ -1,8 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { Icon, type PraktischeInfoIconName } from './icons';
-
-const BRIEVENBUSSEN = ['terborg', 'janSteen', 'vermeer'] as const;
+import { BRIEVENBUSSEN, PraktischeKaart } from './PraktischeKaart';
 
 const AED_KAARTEN = [
   { key: 'locatie', icon: 'locatie' },
@@ -30,9 +29,15 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
           intro={t('brievenbussen.intro')}
         />
         <ul className="mt-8 grid list-none gap-4 p-0 md:grid-cols-3">
-          {BRIEVENBUSSEN.map((key) => (
+          {BRIEVENBUSSEN.map((key, i) => (
             <li key={key} className={boxCls}>
-              <Icon name="brievenbus" className="size-10 text-primary" />
+              <div className="flex items-center justify-between">
+                <Icon name="brievenbus" className="size-10 text-primary" />
+                <span className="flex size-8 items-center justify-center rounded-full bg-primary text-sm font-bold text-card">
+                  <span className="sr-only">{t('brievenbussen.nummer')} </span>
+                  {i + 1}
+                </span>
+              </div>
               <div>
                 <h3 className="m-0 text-lg leading-[1.3] font-semibold text-text">{t(`brievenbussen.items.${key}.adres`)}</h3>
                 <p className="mt-1 mb-0 leading-[1.5] text-muted">{t(`brievenbussen.items.${key}.bij`)}</p>
@@ -84,6 +89,14 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
             ),
           })}
         </p>
+      </Section>
+
+      <Section id="praktisch-kaart">
+        <SectionHead id="praktisch-kaart" eyebrow={t('kaart.eyebrow')} title={t('kaart.title')} />
+        <figure className={`${boxCls} mt-8 mb-0`}>
+          <PraktischeKaart label={t('kaart.label')} />
+          <figcaption className="text-sm leading-[1.4] text-muted">{t('kaart.bijschrift')}</figcaption>
+        </figure>
       </Section>
     </main>
   );

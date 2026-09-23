@@ -1302,6 +1302,7 @@
       "eyebrow": "Post",
       "title": "Nearest post boxes",
       "intro": "Three post boxes within walking distance.",
+      "nummer": "Number on the map:",
       "items": {
         "terborg": {
           "adres": "Gerard Terborgstraat 44",
@@ -1335,6 +1336,12 @@
         "knop": "Call 112"
       },
       "hartslagnu": "Want to become a citizen responder yourself? Sign up with <link>HartslagNu</link>."
+    },
+    "kaart": {
+      "eyebrow": "Map",
+      "title": "Everything on the map",
+      "label": "Map of Duivelseiland and surroundings with the three post boxes, numbered 1 to 3: Gerard Terborgstraat, Eerste Jan Steenstraat and the corner of Johannes Vermeerstraat and Teniersstraat. The AED is on Ruysdaelstraat, at the Old Catholic Church.",
+      "bijschrift": "The numbers match the post boxes above. The dotted line is the boundary of Duivelseiland."
     }
   }
 }
