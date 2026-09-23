@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getPayload } from 'payload';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import config from '@payload-config';
@@ -5,6 +6,7 @@ import { HeroSlideshow, type HeroSlide } from '@/components/HeroSlideshow';
 import { RichTextContent } from '@/components/site/RichTextContent';
 import { HomeStats } from '@/components/stats/HomeStats';
 import { HomeDuivelseSchoonmaak } from '@/components/content/HomeDuivelseSchoonmaak';
+import { HomeAfval, HomeAfvalSkeleton } from '@/components/afval/HomeAfval';
 import { hasRichTextContent } from '@/lib/richtext';
 
 const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
@@ -113,6 +115,10 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       </div>
       <HomeStats locale={locale} />
       <HomeDuivelseSchoonmaak locale={locale as 'nl' | 'en'} />
+      {/* Live data van de gemeente: bij een koude cache duurt dat even, de rest van de pagina wacht er niet op. */}
+      <Suspense fallback={<HomeAfvalSkeleton locale={locale} />}>
+        <HomeAfval locale={locale} />
+      </Suspense>
     </main>
   );
 }

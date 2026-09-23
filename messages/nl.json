@@ -29,6 +29,39 @@
       "readMoreContext": "over de Duivelse Schoonmaak",
       "eyebrow": "Elke maand",
       "factText": "keer per maand, altijd de eerste zondag"
+    },
+    "afval": {
+      "eyebrow": "Schoon en netjes",
+      "title": "Afval & grof vuil",
+      "intro": "Zakken naast de container en bankstellen op de stoep: het zorgt voor veel ergernis. Met een paar simpele regels houden we de buurt samen schoon.",
+      "factBig": "Maandag",
+      "factText": "wordt grof vuil opgehaald. Buitenzetten mag van zondag 21:00 tot maandag 07:00.",
+      "whenLabel": "Grof vuil buitenzetten",
+      "when": "Zo 21:00 → Ma 07:00",
+      "rules": {
+        "rest": {
+          "title": "Restafval in de container",
+          "text": "Vol? Loop door naar de volgende. Nooit ernaast, dat trekt ratten aan."
+        },
+        "karton": {
+          "title": "Karton klein maken",
+          "text": "Grote dozen in stukken, door het grote vak onderaan de papiercontainer."
+        },
+        "grof": {
+          "title": "Maximaal 2 m³ grof vuil",
+          "text": "Op de vaste plek of aan de stoeprand, een paar meter van containers en bomen."
+        }
+      },
+      "cardCta": "Bekijk de instructiekaart",
+      "cardCtaContext": "over afval en grof vuil (ook om te printen)",
+      "kpi": {
+        "containers": "afvalcontainers in de buurt",
+        "bijplaatsingen": "keer afval naast een container, afgelopen 12 maanden",
+        "meldingen": "meldingen over afval, afgelopen 3 maanden"
+      },
+      "source": "Live bron: open data gemeente Amsterdam",
+      "statsCta": "Alle cijfers en kaarten",
+      "statsCtaContext": "over afval in Duivelseiland"
     }
   },
   "pages": {
@@ -508,7 +541,7 @@
       "heading": "Afval & grof vuil",
       "metaDescription": "Wanneer mag grof afval buiten in Duivelseiland, waar staan de containers en waar gaat het mis? Met live data van de gemeente Amsterdam.",
       "hero": {
-        "eyebrow": "Duivelseiland · schoon en heel",
+        "eyebrow": "Duivelseiland · schoon en netjes",
         "intro": "Afval naast de container en bankstellen op de stoep: het zorgt voor veel ergernis in de buurt. Hier lees je hoe het werkt, waar je wat kwijt kunt en waar het vaak misgaat. Alle cijfers komen live uit open data van de gemeente.",
         "start": "Naar grof afval",
         "card": "Instructiekaart (om te printen)"

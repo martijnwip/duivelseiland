@@ -29,6 +29,39 @@
       "readMoreContext": "about the Duivelse Schoonmaak",
       "eyebrow": "Every month",
       "factText": "time a month, always the first Sunday"
+    },
+    "afval": {
+      "eyebrow": "Clean and tidy",
+      "title": "Waste & bulky rubbish",
+      "intro": "Bags next to containers and sofas on the pavement are a major source of irritation. With a few simple rules we keep the neighbourhood clean together.",
+      "factBig": "Monday",
+      "factText": "is bulky rubbish collection day. Put it out from Sunday 21:00 until Monday 07:00.",
+      "whenLabel": "Putting out bulky rubbish",
+      "when": "Sun 21:00 → Mon 07:00",
+      "rules": {
+        "rest": {
+          "title": "Residual waste in the container",
+          "text": "Full? Walk on to the next one. Never next to it, that attracts rats."
+        },
+        "karton": {
+          "title": "Make cardboard small",
+          "text": "Cut big boxes into pieces and use the large opening at the bottom of the paper container."
+        },
+        "grof": {
+          "title": "Up to 2 m³ of bulky rubbish",
+          "text": "At the fixed spot or the kerb, a few metres from containers and trees."
+        }
+      },
+      "cardCta": "View the instruction card",
+      "cardCtaContext": "about waste and bulky rubbish (printable)",
+      "kpi": {
+        "containers": "waste containers in the neighbourhood",
+        "bijplaatsingen": "times rubbish was left next to a container, last 12 months",
+        "meldingen": "reports about waste, last 3 months"
+      },
+      "source": "Live source: City of Amsterdam open data",
+      "statsCta": "All figures and maps",
+      "statsCtaContext": "about waste in Duivelseiland"
     }
   },
   "pages": {
