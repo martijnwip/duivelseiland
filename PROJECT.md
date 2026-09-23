@@ -190,6 +190,19 @@ Elke content-collection heeft `title`, `slug`, `status` (draft/published), `auth
 
 Server components gebruiken de Payload Local API (`getPayload({ config })`), geen fetch naar de eigen REST-API. Pagina's zijn statisch met revalidatie; een Payload `afterChange`-hook roept `revalidatePath` aan, zodat een publicatie direct zichtbaar is.
 
+## Git worktrees
+
+Voor parallel werken aan meerdere branches (bv. losse agent-sessies) zonder steeds te hoeven stashen: `scripts/wt-new.sh` en `scripts/wt-remove.sh`. Los van `package.json`, rechtstreeks draaien.
+
+`scripts/wt-new.sh <naam>` doet meer dan alleen `git worktree add`: het maakt de worktree + branch aan op `../duivelseiland-<naam>` én kopieert wat git zelf niet meeneemt omdat het niet in de repo zit — `.agents`, `.claude` (project-skills/agent-config), alle `.env*`-bestanden, en `dev.db` (+ eventuele `-wal`/`-shm`-sidecars, zodat de nieuwe worktree met dezelfde lokale content/testgebruikers start in plaats van een lege database). Draait daarna zelf `bun install`, en `bun run translate:setup` als dat script op die branch bestaat.
+
+`scripts/wt-remove.sh <naam>` verwijdert een worktree weer volledig (map, git-worktree-registratie en branch), met een expliciete `yes`/`force`-bevestiging voor je iets kwijtraakt.
+
+```bash
+./scripts/wt-new.sh mijn-feature
+./scripts/wt-remove.sh mijn-feature
+```
+
 ## Deploy
 
 1. Repo op GitHub, project koppelen in Vercel.

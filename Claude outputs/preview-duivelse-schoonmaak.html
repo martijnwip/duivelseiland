@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — Duivelse Schoonmaak (agenda-detailpagina)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Lexend:wght@500;600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-primary: #3b5d42;
+    --color-secondary: #c99a46;
+    --color-cta: #b5482e;
+    --color-cta-hover: #9c3a24;
+    --color-on-cta: #ffffff;
+    --color-background: #f5efe3;
+    --color-text: #2b241c;
+    --color-border: #e3d5be;
+    --color-muted: #6b5f4f;
+    --color-card: #faf6ee;
+    --font-heading: 'Lexend', sans-serif;
+    --font-body: 'Source Sans 3', sans-serif;
+    --font-serif: 'Fraunces', serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--color-background);
+    color: var(--color-text);
+  }
+  .note {
+    background: #fff8e8;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 13px;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .note strong { color: var(--color-text); }
+  header.site {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--color-primary);
+  }
+  .wordmark .mark {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--color-secondary);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 14px;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+  .back {
+    color: var(--color-primary);
+    font-size: 14px;
+    text-decoration: none;
+  }
+  .back:hover { text-decoration: underline; }
+  .header-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .date-tile {
+    flex: none;
+    width: 60px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .date-tile-month {
+    background: var(--color-primary);
+    color: var(--color-background);
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 4px 0;
+  }
+  .date-tile-day {
+    background: var(--color-card);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px 0;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1;
+  }
+  h1 {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    font-size: 34px;
+    margin: 0 0 4px;
+  }
+  .meta {
+    margin: 4px 0 0;
+    color: var(--color-muted);
+    font-size: 14px;
+    text-transform: capitalize;
+  }
+  .badge {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  .intro {
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--color-text);
+  }
+  .schedule {
+    margin-top: 32px;
+    list-style: none;
+    padding: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .schedule::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--color-border);
+  }
+  .schedule li {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .icon {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    color: var(--color-primary);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-card {
+    flex: 1;
+    border: 1px solid var(--color-border);
+    background: var(--color-card);
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .step-time {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin: 0;
+  }
+  .step-title {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 18px;
+    margin: 2px 0 0;
+  }
+  .step-desc {
+    margin: 4px 0 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--color-muted);
+  }
+  .cta {
+    display: inline-flex;
+    margin-top: 32px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    background: var(--color-cta);
+    color: var(--color-on-cta);
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .cta-wrap {
+    margin-top: 32px;
+  }
+  .cta-todo {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin-top: 6px;
+  }
+  footer.site {
+    background: var(--color-text);
+    color: #d1d5db;
+    padding: 32px 24px;
+    margin-top: 40px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+  <div class="note">Statische preview van het ontwerp — geen live data. Ziet er zo uit zodra <code>bun dev</code> draait en het item geseed is. <strong>WhatsApp-link nog leeg</strong> → knop hieronder is een voorbeeld.</div>
+
+  <header class="site">
+    <div class="wordmark"><span class="mark">😈</span> Duivelseiland</div>
+    <div style="color: var(--color-muted); font-size: 20px;">☰</div>
+  </header>
+
+  <main>
+    <a class="back" href="#">← Terug naar overzicht</a>
+
+    <div class="header-row">
+      <div class="date-tile">
+        <div class="date-tile-month">OKT</div>
+        <div class="date-tile-day">4</div>
+      </div>
+      <div>
+        <h1>Duivelse Schoonmaak</h1>
+        <p class="meta">zondag · 12:30</p>
+        <p class="badge">Elke eerste zondag van de maand</p>
+      </div>
+    </div>
+
+    <p class="intro">Elke eerste zondag van de maand ruimen buurtgenoten samen het zwerfafval op Duivelseiland op — daarna is er nog tijd voor een kopje koffie.</p>
+
+    <ol class="schedule">
+      <li>
+        <span class="icon">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 1.5c-2.2 0-4 1.7-4 4 0 3 4 8 4 8s4-5 4-8c0-2.3-1.8-4-4-4Z"/><circle cx="7.5" cy="5.5" r="1.4"/></svg>
+        </span>
+        <div class="step-card">
+          <p class="step-time">12:30</p>
+          <p class="step-title">Verzamelen bij de kerk</p>
+          <p class="step-desc">We spreken af bij de kerk voordat we aan de slag gaan.</p>
+        </div>
+      </li>
+      <li>
+        <span class="icon">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11.8 1 6.3 6.8"/><path d="M6.3 6.8 2.7 8.3 3.6 13 7.7 10.5Z"/><path d="M5.1 8.4 4.3 11.8"/><path d="M1.3 10.8c-.5.35-.75.85-.7 1.4"/><path d="M0.3 12.6c-.4.25-.6.6-.55 1"/></svg>
+        </span>
+        <div class="step-card">
+          <p class="step-title">Zwerfafval opruimen</p>
+          <p class="step-desc">Met z'n allen Duivelseiland zwerfafvalvrij maken.</p>
+        </div>
+      </li>
+      <li>
+        <span class="icon">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5.5h8v4a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3v-4Z"/><path d="M10 6.5h1a1.8 1.8 0 0 1 0 3.6h-1"/><path d="M4.5 3c0-.6.5-.8.5-1.4S4.5 .6 4.5 0"/><path d="M6.8 3c0-.6.5-.8.5-1.4S6.8.6 6.8 0"/></svg>
+        </span>
+        <div class="step-card">
+          <p class="step-time">14:00</p>
+          <p class="step-title">Koffie bij de Spar</p>
+          <p class="step-desc">Daarna is er nog tijd voor een gezellig kopje koffie bij de Spar.</p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="cta-wrap">
+      <a class="cta" href="#">Doe mee via de WhatsApp-groep</a>
+      <p class="cta-todo">↑ voorbeeld — verschijnt pas als ctaUrl is ingevuld</p>
+    </div>
+  </main>
+
+  <footer class="site">
+    Duivelseiland · website by martijnwip.nl
+  </footer>
+</body>
+</html>
