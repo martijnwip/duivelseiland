@@ -686,6 +686,244 @@
     },
     "agenda": {
       "heading": "Agenda"
+    },
+    "afval": {
+      "heading": "Waste & bulky rubbish",
+      "metaDescription": "When can bulky waste go out in Duivelseiland, where are the containers and where do things go wrong? With live data from the City of Amsterdam.",
+      "hero": {
+        "eyebrow": "Duivelseiland · clean and tidy",
+        "intro": "Rubbish next to containers and sofas on the pavement are a major source of irritation in the neighbourhood. Here you can read how it works, where things go and where it often goes wrong. All figures come live from the City of Amsterdam's open data.",
+        "start": "Go to bulky waste"
+      },
+      "kpi": {
+        "containers": "containers in the neighbourhood",
+        "ophaaldag": "bulky waste collection day",
+        "bijplaatsingen": "times rubbish was left next to a container, last 12 months",
+        "meldingen": "reports about waste, last 3 months",
+        "sourceGemeente": "City of Amsterdam",
+        "sourceAfvalwijzer": "Afvalwijzer",
+        "sourceMeldingen": "Meldingen Amsterdam"
+      },
+      "ui": {
+        "chapterLabel": "Chapter",
+        "showTable": "Show as table",
+        "showChart": "Show as chart",
+        "showMap": "Show as map",
+        "source": "Source: {bron}",
+        "unavailable": "This data is temporarily unavailable from the city. Please try again later.",
+        "external": "(opens an external website)"
+      },
+      "nav": {
+        "nav": "Chapters",
+        "contents": "Contents",
+        "chapterOf": "Chapter {n} of {total}",
+        "sources": "Sources"
+      },
+      "chapters": {
+        "grof": {
+          "name": "Bulky waste",
+          "message": "Bulky waste may go out once a week, only during the time slot. Or take it to a Recycling Point yourself, free of charge.",
+          "factText": "{window}"
+        },
+        "containers": {
+          "name": "Containers",
+          "message": "Residual waste, paper and glass go in the street containers. In Duivelseiland, plastic and organic waste go with the residual waste.",
+          "factText": "containers in the neighbourhood: {list}"
+        },
+        "bijplaatsingen": {
+          "name": "Where it goes wrong",
+          "message": "City inspectors record every time rubbish is left next to a container. This shows where and when things go wrong.",
+          "factText": "times rubbish was left next to a container in the last 12 months. The 12 months before that: {vorig}."
+        },
+        "meldingen": {
+          "name": "Reported now",
+          "message": "See rubbish on the street? Report it to the city. The more reports, the better the city knows where to act.",
+          "factText": "reports about waste and litter in and around the neighbourhood, last 3 months"
+        }
+      },
+      "fracties": {
+        "GA": "Bulky waste",
+        "Rest": "Residual waste",
+        "GFT": "Organic waste (food and garden)",
+        "Plastic": "Plastic",
+        "Papier": "Paper and cardboard",
+        "Glas": "Glass",
+        "Textiel": "Textiles"
+      },
+      "containerFracties": {
+        "Rest": "Residual waste",
+        "Papier": "Paper and cardboard",
+        "Glas": "Glass",
+        "Textiel": "Textiles",
+        "GFE": "Organic waste",
+        "Plastic": "Plastic"
+      },
+      "regelLabels": {
+        "dagen": "Collection day",
+        "buitenzetten": "Put out",
+        "waar": "Where"
+      },
+      "grof": {
+        "pickupTitle": "Putting it out",
+        "pickupSub": "According to the Afvalwijzer for almost all homes in Duivelseiland",
+        "next": "Next collection day:",
+        "where": "Where",
+        "otherRule": "{n} addresses have a different rule: {rule}. Check your own address below.",
+        "tipsTitle": "How to avoid a messy pavement",
+        "tips": [
+          "Only put bulky waste out when the time slot starts, not earlier.",
+          "Place it neatly at the kerb or the fixed spot, not against a container.",
+          "Does it fit in a rubbish bag? Then it is residual waste and belongs in the container.",
+          "Container full? Take your bag back home and report it. Don't leave it next to the container.",
+          "Putting rubbish out too early or next to a container can result in a fine."
+        ],
+        "afspraakTitle": "Have it collected or drop it off",
+        "afspraakText": "Can't make the collection day, or is it a lot or heavy? Book an appointment to have bulky waste collected, or take it to a Recycling Point yourself. It's free for Amsterdam residents; bring your ID.",
+        "afspraakCta": "Bulky waste on amsterdam.nl",
+        "recycleTitle": "Recycling Points",
+        "recycleSub": "Sorted by straight-line distance from Duivelseiland",
+        "distance": "{km} km",
+        "noBusiness": "no business waste",
+        "site": "Opening hours",
+        "regelsTitle": "What goes where?",
+        "regelsSub": "The Afvalwijzer rules for homes in Duivelseiland (in Dutch)",
+        "share": "{n} of {total} addresses"
+      },
+      "adres": {
+        "title": "Check your own address",
+        "intro": "Not every address has the same rules. Enter your postcode and house number to see what applies to you.",
+        "postcode": "Postcode",
+        "huisnummer": "House number",
+        "toevoeging": "Addition",
+        "submit": "Check",
+        "loading": "Loading…",
+        "invalid": "Enter a valid postcode (for example 1071 TS) and a house number.",
+        "notFound": "This address is not in the Afvalwijzer. Please check the postcode and house number.",
+        "unavailable": "The Afvalwijzer is currently unreachable. Please try again later.",
+        "resultFor": "Rules for"
+      },
+      "cards": {
+        "containerMap": {
+          "title": "All containers in the neighbourhood",
+          "sub": "Each square is one container; the dashed line is the neighbourhood boundary",
+          "label": "Map of Duivelseiland with {n} waste containers"
+        },
+        "hotspotMap": {
+          "title": "Where is rubbish most often left next to a container?",
+          "sub": "The bigger the circle, the more often, since {start}",
+          "label": "Map of the spots where rubbish is most often left next to a container"
+        },
+        "straten": {
+          "title": "By street",
+          "sub": "Observations of rubbish next to a container, since {start}",
+          "label": "Observations by street; most in {top}"
+        },
+        "jaren": {
+          "title": "By year",
+          "sub": "Number of times rubbish was left next to a container",
+          "note": "2020 starts on {start}; {jaar} runs up to and including {end}. The count also depends on how often inspectors visit.",
+          "label": "Observations by year"
+        },
+        "soorten": {
+          "title": "What was left?",
+          "sub": "Share of all observations; more than one type can be present at once",
+          "label": "Types of rubbish next to the container"
+        },
+        "crow": {
+          "title": "How clean was it?",
+          "sub": "Rating of the spot on the national CROW scale",
+          "note": "A+ is very clean, D is very dirty. A D means a lot of rubbish around the container.",
+          "label": "Distribution of CROW scores"
+        },
+        "meldingMap": {
+          "title": "Reports in and around the neighbourhood",
+          "sub": "Last 3 months, from the public reports map",
+          "label": "Map with {n} recent reports about waste"
+        },
+        "meldingCat": {
+          "title": "What are the reports about?",
+          "sub": "Last 3 months (categories in Dutch)",
+          "label": "Reports by category"
+        }
+      },
+      "table": {
+        "fractie": "Type",
+        "aantal": "Count",
+        "plek": "Spot",
+        "sinds": "Total",
+        "recent": "Last 12 months",
+        "straat": "Street",
+        "jaar": "Year",
+        "soort": "Type",
+        "aandeel": "Share",
+        "score": "Score",
+        "categorie": "Category",
+        "datum": "Date"
+      },
+      "soorten": {
+        "grof": "Bulky waste",
+        "karton": "Cardboard",
+        "huisvuil": "Bags of household waste",
+        "zwerfafval": "Litter"
+      },
+      "crow": {
+        "A+": "A+ very clean",
+        "A": "A clean",
+        "B": "B fair",
+        "C": "C dirty",
+        "D": "D very dirty"
+      },
+      "legend": {
+        "grof": "Bulky waste",
+        "overig": "Other reports"
+      },
+      "tip": {
+        "hotspot": "{plek}\n{n} times · {recent} in last 12 mo",
+        "melding": "{datum}\n{categorie}"
+      },
+      "meldingen": {
+        "ctaTitle": "See rubbish on the street?",
+        "ctaText": "Report it to the city via the website or the app. Bulky waste next to a container, a full container or a dumped sofa: every report counts.",
+        "cta": "Make a report",
+        "mapLink": "View the reports map"
+      },
+      "sources": {
+        "title": "Sources",
+        "intro": "All data on this page comes live from the City of Amsterdam's open data. Containers and rules are refreshed daily, observations and reports every hour.",
+        "rows": [
+          {
+            "name": "Waste containers",
+            "what": "Location and type of all active containers in the neighbourhood",
+            "api": "api.data.amsterdam.nl · huishoudelijkafval/container"
+          },
+          {
+            "name": "Dumped waste",
+            "what": "Inspectors' observations of rubbish next to containers, since mid-2020",
+            "api": "api.data.amsterdam.nl · huishoudelijkafval/bijplaatsingen"
+          },
+          {
+            "name": "Afvalwijzer",
+            "what": "Collection days and rules per address (CC-BY, City of Amsterdam)",
+            "api": "api.data.amsterdam.nl · afvalwijzer"
+          },
+          {
+            "name": "Recycling Points",
+            "what": "Addresses of the Recycling Points",
+            "api": "kaart.amsterdam.nl · recyclepunten"
+          },
+          {
+            "name": "Reports",
+            "what": "Recent reports about waste and litter on the public reports map",
+            "api": "api.meldingen.amsterdam.nl"
+          },
+          {
+            "name": "Map",
+            "what": "Neighbourhood boundary, building blocks, water and street names (BAG, BGT)",
+            "api": "api.data.amsterdam.nl · gebieden, bgt"
+          }
+        ],
+        "updated": "Retrieved on {date}."
+      }
     }
   },
   "content": {

@@ -503,6 +503,244 @@
     },
     "agenda": {
       "heading": "Agenda"
+    },
+    "afval": {
+      "heading": "Afval & grof vuil",
+      "metaDescription": "Wanneer mag grof afval buiten in Duivelseiland, waar staan de containers en waar gaat het mis? Met live data van de gemeente Amsterdam.",
+      "hero": {
+        "eyebrow": "Duivelseiland · schoon en heel",
+        "intro": "Afval naast de container en bankstellen op de stoep: het zorgt voor veel ergernis in de buurt. Hier lees je hoe het werkt, waar je wat kwijt kunt en waar het vaak misgaat. Alle cijfers komen live uit open data van de gemeente.",
+        "start": "Naar grof afval"
+      },
+      "kpi": {
+        "containers": "containers in de buurt",
+        "ophaaldag": "ophaaldag grof afval",
+        "bijplaatsingen": "keer afval naast een container, afgelopen 12 maanden",
+        "meldingen": "meldingen over afval, afgelopen 3 maanden",
+        "sourceGemeente": "Gemeente Amsterdam",
+        "sourceAfvalwijzer": "Afvalwijzer",
+        "sourceMeldingen": "Meldingen Amsterdam"
+      },
+      "ui": {
+        "chapterLabel": "Hoofdstuk",
+        "showTable": "Toon als tabel",
+        "showChart": "Toon als grafiek",
+        "showMap": "Toon als kaart",
+        "source": "Bron: {bron}",
+        "unavailable": "Deze gegevens zijn nu even niet beschikbaar bij de gemeente. Probeer het later nog eens.",
+        "external": "(opent een externe website)"
+      },
+      "nav": {
+        "nav": "Hoofdstukken",
+        "contents": "Inhoud",
+        "chapterOf": "Hoofdstuk {n} van {total}",
+        "sources": "Bronnen"
+      },
+      "chapters": {
+        "grof": {
+          "name": "Grof afval",
+          "message": "Grof afval mag één keer per week buiten, alleen in het tijdvak. Of breng het zelf gratis naar een Recyclepunt.",
+          "factText": "{window}"
+        },
+        "containers": {
+          "name": "Containers",
+          "message": "Restafval, papier en glas gaan in de containers in de straat. Plastic en gft horen in Duivelseiland bij het restafval.",
+          "factText": "containers in de buurt: {list}"
+        },
+        "bijplaatsingen": {
+          "name": "Waar gaat het mis",
+          "message": "Toezichthouders van de gemeente noteren elke keer dat er afval naast een container staat. Zo zie je waar en wanneer het misgaat.",
+          "factText": "keer afval naast een container in de afgelopen 12 maanden. De 12 maanden daarvoor waren het er {vorig}."
+        },
+        "meldingen": {
+          "name": "Nu gemeld",
+          "message": "Zie je afval op straat? Meld het bij de gemeente. Hoe meer meldingen, hoe beter de gemeente weet waar ze moet ingrijpen.",
+          "factText": "meldingen over afval en zwerfvuil in en rond de buurt, afgelopen 3 maanden"
+        }
+      },
+      "fracties": {
+        "GA": "Grof afval",
+        "Rest": "Restafval",
+        "GFT": "Gft (groente, fruit, etensresten, tuin)",
+        "Plastic": "Plastic",
+        "Papier": "Papier en karton",
+        "Glas": "Glas",
+        "Textiel": "Textiel"
+      },
+      "containerFracties": {
+        "Rest": "Restafval",
+        "Papier": "Papier en karton",
+        "Glas": "Glas",
+        "Textiel": "Textiel",
+        "GFE": "Gft",
+        "Plastic": "Plastic"
+      },
+      "regelLabels": {
+        "dagen": "Ophaaldag",
+        "buitenzetten": "Buiten zetten",
+        "waar": "Waar"
+      },
+      "grof": {
+        "pickupTitle": "Buiten zetten",
+        "pickupSub": "Volgens de Afvalwijzer voor bijna alle woonadressen in Duivelseiland",
+        "next": "Eerstvolgende ophaaldag:",
+        "where": "Waar",
+        "otherRule": "{n} adressen hebben een andere regel: {rule}. Check je eigen adres hieronder.",
+        "tipsTitle": "Zo voorkom je een rommelige stoep",
+        "tips": [
+          "Zet grof afval pas buiten als het tijdvak begint, niet eerder.",
+          "Zet het netjes op de stoeprand of de vaste plek, niet tegen een container.",
+          "Past het in een vuilniszak? Dan is het restafval en hoort het in de container.",
+          "Is de container vol? Neem je zak weer mee en meld het. Zet hem er niet naast.",
+          "Te vroeg buiten zetten of naast een container zetten kan een boete opleveren."
+        ],
+        "afspraakTitle": "Laten ophalen of wegbrengen",
+        "afspraakText": "Kun je niet op de ophaaldag, of is het veel of zwaar? Maak een afspraak om grof afval te laten ophalen, of breng het zelf naar een Recyclepunt. Voor Amsterdammers is dat gratis; neem je legitimatie mee.",
+        "afspraakCta": "Grof afval op amsterdam.nl",
+        "recycleTitle": "Recyclepunten",
+        "recycleSub": "Gesorteerd op afstand hemelsbreed vanaf Duivelseiland",
+        "distance": "{km} km",
+        "noBusiness": "geen bedrijfsafval",
+        "site": "Openingstijden",
+        "regelsTitle": "Wat moet waar?",
+        "regelsSub": "De regels uit de Afvalwijzer voor woonadressen in Duivelseiland",
+        "share": "{n} van {total} adressen"
+      },
+      "adres": {
+        "title": "Check je eigen adres",
+        "intro": "Niet elk adres heeft dezelfde regels. Vul je postcode en huisnummer in en zie wat voor jou geldt.",
+        "postcode": "Postcode",
+        "huisnummer": "Huisnummer",
+        "toevoeging": "Toevoeging",
+        "submit": "Bekijk",
+        "loading": "Bezig…",
+        "invalid": "Vul een geldige postcode (bijvoorbeeld 1071 TS) en een huisnummer in.",
+        "notFound": "Dit adres staat niet in de Afvalwijzer. Controleer de postcode en het huisnummer.",
+        "unavailable": "De Afvalwijzer is nu niet bereikbaar. Probeer het later nog eens.",
+        "resultFor": "Regels voor"
+      },
+      "cards": {
+        "containerMap": {
+          "title": "Alle containers in de buurt",
+          "sub": "Elk vierkantje is één container; de stippellijn is de buurtgrens",
+          "label": "Kaart van Duivelseiland met {n} afvalcontainers"
+        },
+        "hotspotMap": {
+          "title": "Waar staat het vaakst afval naast de container?",
+          "sub": "Hoe groter de cirkel, hoe vaker, sinds {start}",
+          "label": "Kaart met de plekken waar het vaakst afval naast een container staat"
+        },
+        "straten": {
+          "title": "Per straat",
+          "sub": "Waarnemingen van afval naast een container, sinds {start}",
+          "label": "Waarnemingen per straat; de meeste in de {top}"
+        },
+        "jaren": {
+          "title": "Per jaar",
+          "sub": "Aantal keer afval naast een container",
+          "note": "2020 begint op {start}; {jaar} loopt tot en met {end}. Het aantal hangt ook af van hoe vaak toezichthouders langskomen.",
+          "label": "Waarnemingen per jaar"
+        },
+        "soorten": {
+          "title": "Wat lag er?",
+          "sub": "Aandeel van alle waarnemingen; er kan meer dan één soort tegelijk liggen",
+          "label": "Soorten afval naast de container"
+        },
+        "crow": {
+          "title": "Hoe schoon was het?",
+          "sub": "Beoordeling van de plek volgens de landelijke CROW-meetlat",
+          "note": "A+ is zeer schoon, D is zeer vuil. Een D betekent veel afval rond de container.",
+          "label": "Verdeling van de CROW-scores"
+        },
+        "meldingMap": {
+          "title": "Meldingen in en rond de buurt",
+          "sub": "Afgelopen 3 maanden, van de openbare meldingenkaart",
+          "label": "Kaart met {n} recente meldingen over afval"
+        },
+        "meldingCat": {
+          "title": "Waarover gaan de meldingen?",
+          "sub": "Afgelopen 3 maanden",
+          "label": "Meldingen per categorie"
+        }
+      },
+      "table": {
+        "fractie": "Soort",
+        "aantal": "Aantal",
+        "plek": "Plek",
+        "sinds": "Totaal",
+        "recent": "Afgelopen 12 maanden",
+        "straat": "Straat",
+        "jaar": "Jaar",
+        "soort": "Soort",
+        "aandeel": "Aandeel",
+        "score": "Score",
+        "categorie": "Categorie",
+        "datum": "Datum"
+      },
+      "soorten": {
+        "grof": "Grof afval",
+        "karton": "Karton",
+        "huisvuil": "Zakken huisvuil",
+        "zwerfafval": "Zwerfafval"
+      },
+      "crow": {
+        "A+": "A+ zeer schoon",
+        "A": "A schoon",
+        "B": "B redelijk",
+        "C": "C vuil",
+        "D": "D zeer vuil"
+      },
+      "legend": {
+        "grof": "Grof afval",
+        "overig": "Overige meldingen"
+      },
+      "tip": {
+        "hotspot": "{plek}\n{n} keer · {recent} afgelopen 12 mnd",
+        "melding": "{datum}\n{categorie}"
+      },
+      "meldingen": {
+        "ctaTitle": "Zie je afval op straat?",
+        "ctaText": "Meld het bij de gemeente via de website of de app. Grof afval naast een container, een volle container of een gedumpte bank: elke melding telt.",
+        "cta": "Doe een melding",
+        "mapLink": "Bekijk de meldingenkaart"
+      },
+      "sources": {
+        "title": "Bronnen",
+        "intro": "Alle gegevens op deze pagina komen live uit open data van de gemeente Amsterdam. Containers en regels verversen we dagelijks, waarnemingen en meldingen elk uur.",
+        "rows": [
+          {
+            "name": "Afvalcontainers",
+            "what": "Locatie en soort van alle actieve containers in de buurt",
+            "api": "api.data.amsterdam.nl · huishoudelijkafval/container"
+          },
+          {
+            "name": "Bijplaatsingen",
+            "what": "Waarnemingen van toezichthouders van afval naast containers, sinds medio 2020",
+            "api": "api.data.amsterdam.nl · huishoudelijkafval/bijplaatsingen"
+          },
+          {
+            "name": "Afvalwijzer",
+            "what": "Ophaaldagen en regels per adres (CC-BY, gemeente Amsterdam)",
+            "api": "api.data.amsterdam.nl · afvalwijzer"
+          },
+          {
+            "name": "Recyclepunten",
+            "what": "Adressen van de Recyclepunten",
+            "api": "kaart.amsterdam.nl · recyclepunten"
+          },
+          {
+            "name": "Meldingen",
+            "what": "Recente meldingen over afval en zwerfvuil op de openbare meldingenkaart",
+            "api": "api.meldingen.amsterdam.nl"
+          },
+          {
+            "name": "Kaart",
+            "what": "Buurtgrens, bouwblokken, water en straatnamen (BAG, BGT)",
+            "api": "api.data.amsterdam.nl · gebieden, bgt"
+          }
+        ],
+        "updated": "Opgehaald op {date}."
+      }
     }
   },
   "content": {

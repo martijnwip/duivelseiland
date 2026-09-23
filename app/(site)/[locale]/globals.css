@@ -24,6 +24,8 @@
   --color-secondary-soft: #e0c48f;
   --color-cta-soft: #d99a86;
   --color-muted-soft: #c9bda9;
+  /* Water op de afvalkaart: gedempt grijsblauw dat bij het crème past. */
+  --color-water: #c9d5d4;
 
   --font-heading: var(--font-lexend);
   --font-body: var(--font-source-sans);
@@ -50,6 +52,7 @@
   --color-secondary-soft: #8d7443;
   --color-cta-soft: #8f5236;
   --color-muted-soft: #4f463a;
+  --color-water: #2e3b3c;
 }
 
 body {
@@ -133,4 +136,14 @@ h6 {
 .stats-mark:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* ---- Afvalpagina: straatnamen op de SVG-kaart ---- */
+.afval-label {
+  font: 500 11px var(--font-body);
+  fill: var(--color-muted);
+  paint-order: stroke;
+  stroke: var(--color-card);
+  stroke-width: 3px;
+  stroke-linejoin: round;
 }
