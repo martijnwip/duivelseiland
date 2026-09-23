@@ -13,3 +13,5 @@ data/
 translate/.venv/
 __pycache__/
 .dev-magic-link
+
+*.tsbuildinfo
