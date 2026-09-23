@@ -6,6 +6,7 @@ import { localizedHref } from '@/i18n/localizedHref';
 import { ICONS, Icon, Mark, type IconName } from './icons';
 import { Klok, Tijdvak } from './Tijdvak';
 import { PrintButton } from './PrintButton';
+import { ShareImageButton } from './ShareImageButton';
 
 type Item = { icon: IconName; label: string };
 
@@ -117,7 +118,16 @@ export async function InstructieKaart({ locale }: { locale: string }) {
         >
           <span aria-hidden>←</span> {t('back')}
         </Link>
-        <PrintButton label={t('print')} />
+        <div className="flex flex-wrap items-center gap-3">
+          <ShareImageButton
+            src={`/afval/instructiekaart-${locale === 'en' ? 'en' : 'nl'}.png`}
+            fileName={t('share.fileName')}
+            title={t('share.shareTitle')}
+            text={t('share.shareText')}
+            label={t('share.button')}
+          />
+          <PrintButton label={t('print')} />
+        </div>
       </div>
 
       <article className="instructie-kaart overflow-hidden rounded-2xl border-[3px] border-text bg-card">

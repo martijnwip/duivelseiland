@@ -182,3 +182,19 @@ h6 {
     zoom: 0.68;
   }
 }
+
+/* ---- Deelbare afbeelding (instructiekaart): altijd lichte kleuren, ook als de site donker staat ---- */
+.deelkaart-licht {
+  --color-primary: #3b5d42;
+  --color-cta: #b5482e;
+  --color-on-cta: #ffffff;
+  --color-input-border: #8f836f;
+  --color-background: #f5efe3;
+  --color-text: #2b241c;
+  --color-border: #e3d5be;
+  --color-muted: #6b5f4f;
+  --color-card: #faf6ee;
+  --color-cta-soft: #d99a86;
+  --color-muted-soft: #c9bda9;
+  color: var(--color-text);
+}

@@ -831,39 +831,48 @@
         "items": [
           {
             "icon": "bank",
-            "label": "Banken"
+            "label": "Banken",
+            "short": "Banken"
           },
           {
             "icon": "bed",
-            "label": "Bedden en matrassen"
+            "label": "Bedden en matrassen",
+            "short": "Bedden, matrassen"
           },
           {
             "icon": "koelkast",
-            "label": "Grote elektrische apparaten, zoals een koelkast of tv"
+            "label": "Grote elektrische apparaten, zoals een koelkast of tv",
+            "short": "Koelkast, tv"
           },
           {
             "icon": "kast",
-            "label": "Kasten"
+            "label": "Kasten",
+            "short": "Kasten"
           },
           {
             "icon": "plank",
-            "label": "Planken"
+            "label": "Planken",
+            "short": "Planken"
           },
           {
             "icon": "snoeiafval",
-            "label": "Snoeiafval"
+            "label": "Snoeiafval",
+            "short": "Snoeiafval"
           },
           {
             "icon": "stoel",
-            "label": "Stoelen"
+            "label": "Stoelen",
+            "short": "Stoelen"
           },
           {
             "icon": "tapijt",
-            "label": "Tapijt en vloerbedekking"
+            "label": "Tapijt en vloerbedekking",
+            "short": "Tapijt"
           },
           {
             "icon": "tuinstoel",
-            "label": "Tuinmeubels"
+            "label": "Tuinmeubels",
+            "short": "Tuinmeubels"
           }
         ]
       },
@@ -872,51 +881,94 @@
         "items": [
           {
             "icon": "puin",
-            "label": "Bouw- en sloopafval, zoals puin en een toiletpot"
+            "label": "Bouw- en sloopafval, zoals puin en een toiletpot",
+            "short": "Puin, toilet"
           },
           {
             "icon": "ijzer",
-            "label": "IJzer"
+            "label": "IJzer",
+            "short": "IJzer"
           },
           {
             "icon": "doos",
-            "label": "Karton"
+            "label": "Karton",
+            "short": "Karton"
           },
           {
             "icon": "accu",
-            "label": "Klein chemisch afval, zoals een accu of verf"
+            "label": "Klein chemisch afval, zoals een accu of verf",
+            "short": "Accu, verf"
           },
           {
             "icon": "apparaat",
-            "label": "Kleine elektrische apparaten"
+            "label": "Kleine elektrische apparaten",
+            "short": "Klein elektrisch"
           },
           {
             "icon": "spiegel",
-            "label": "Glasplaten en spiegels"
+            "label": "Glasplaten en spiegels",
+            "short": "Glas, spiegels"
           },
           {
             "icon": "tegel",
-            "label": "Tuintegels"
+            "label": "Tuintegels",
+            "short": "Tuintegels"
           },
           {
             "icon": "band",
-            "label": "Autobanden"
+            "label": "Autobanden",
+            "short": "Autobanden"
           },
           {
             "icon": "onderdeel",
-            "label": "Auto-onderdelen"
+            "label": "Auto-onderdelen",
+            "short": "Auto-onderdelen"
           },
           {
             "icon": "motor",
-            "label": "Overige motoren"
+            "label": "Overige motoren",
+            "short": "Motoren"
           },
           {
             "icon": "zand",
-            "label": "Stenen, zand en aarde"
+            "label": "Stenen, zand en aarde",
+            "short": "Zand, stenen"
           }
         ]
       },
-      "footer": "Containers, cijfers en de regels voor jouw adres:"
+      "footer": "Containers, cijfers en de regels voor jouw adres:",
+      "share": {
+        "subtitle": "Zo houden we Duivelseiland samen schoon",
+        "whenLabel": "Grof vuil buitenzetten",
+        "whenNote": "Alleen van zondagavond 21:00 tot maandagochtend 07:00.",
+        "tiles": {
+          "rest": {
+            "title": "Zak in de container",
+            "text": "Vol? Loop door naar de volgende. Nooit ernaast: ratten!"
+          },
+          "karton": {
+            "title": "Karton klein maken",
+            "text": "In stukken, door het grote vak onderaan."
+          },
+          "hoeveel": {
+            "title": "Max. 2 m³ per keer",
+            "text": "Bijvoorbeeld 2 wasmachines of een driezitsbank."
+          },
+          "waar": {
+            "title": "Op de vaste plek",
+            "text": "Of aan de stoeprand, een paar meter van containers en bomen."
+          }
+        },
+        "wel": "Grof vuil: dit wel",
+        "niet": "Dit niet",
+        "footer": "Meer info en de regels voor jouw adres",
+        "site": "duivelseiland.amsterdam",
+        "button": "Deel als afbeelding",
+        "shareTitle": "Afval & grof vuil in Duivelseiland",
+        "shareText": "Afval & grof vuil in Duivelseiland: zo doen we het. Meer info: https://duivelseiland.amsterdam/afval",
+        "fileName": "duivelseiland-afval-grof-vuil.png",
+        "heading": "Instructiekaart als afbeelding"
+      }
     }
   },
   "content": {

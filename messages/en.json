@@ -1014,39 +1014,48 @@
         "items": [
           {
             "icon": "bank",
-            "label": "Sofas"
+            "label": "Sofas",
+            "short": "Sofas"
           },
           {
             "icon": "bed",
-            "label": "Beds and mattresses"
+            "label": "Beds and mattresses",
+            "short": "Beds, mattresses"
           },
           {
             "icon": "koelkast",
-            "label": "Large electrical appliances, such as a fridge or TV"
+            "label": "Large electrical appliances, such as a fridge or TV",
+            "short": "Fridge, TV"
           },
           {
             "icon": "kast",
-            "label": "Cupboards"
+            "label": "Cupboards",
+            "short": "Cupboards"
           },
           {
             "icon": "plank",
-            "label": "Planks"
+            "label": "Planks",
+            "short": "Planks"
           },
           {
             "icon": "snoeiafval",
-            "label": "Pruning waste"
+            "label": "Pruning waste",
+            "short": "Pruning waste"
           },
           {
             "icon": "stoel",
-            "label": "Chairs"
+            "label": "Chairs",
+            "short": "Chairs"
           },
           {
             "icon": "tapijt",
-            "label": "Carpets and floor covering"
+            "label": "Carpets and floor covering",
+            "short": "Carpet"
           },
           {
             "icon": "tuinstoel",
-            "label": "Garden furniture"
+            "label": "Garden furniture",
+            "short": "Garden furniture"
           }
         ]
       },
@@ -1055,51 +1064,94 @@
         "items": [
           {
             "icon": "puin",
-            "label": "Construction and demolition waste, such as rubble and a toilet bowl"
+            "label": "Construction and demolition waste, such as rubble and a toilet bowl",
+            "short": "Rubble, toilet"
           },
           {
             "icon": "ijzer",
-            "label": "Iron"
+            "label": "Iron",
+            "short": "Iron"
           },
           {
             "icon": "doos",
-            "label": "Cardboard"
+            "label": "Cardboard",
+            "short": "Cardboard"
           },
           {
             "icon": "accu",
-            "label": "Small chemical waste, such as a battery or paint"
+            "label": "Small chemical waste, such as a battery or paint",
+            "short": "Battery, paint"
           },
           {
             "icon": "apparaat",
-            "label": "Small electrical appliances"
+            "label": "Small electrical appliances",
+            "short": "Small electrics"
           },
           {
             "icon": "spiegel",
-            "label": "Glass panes and mirrors"
+            "label": "Glass panes and mirrors",
+            "short": "Glass, mirrors"
           },
           {
             "icon": "tegel",
-            "label": "Garden tiles"
+            "label": "Garden tiles",
+            "short": "Garden tiles"
           },
           {
             "icon": "band",
-            "label": "Car tyres"
+            "label": "Car tyres",
+            "short": "Car tyres"
           },
           {
             "icon": "onderdeel",
-            "label": "Car parts"
+            "label": "Car parts",
+            "short": "Car parts"
           },
           {
             "icon": "motor",
-            "label": "Other engines"
+            "label": "Other engines",
+            "short": "Engines"
           },
           {
             "icon": "zand",
-            "label": "Stones, sand and soil"
+            "label": "Stones, sand and soil",
+            "short": "Sand, stones"
           }
         ]
       },
-      "footer": "Containers, figures and the rules for your address:"
+      "footer": "Containers, figures and the rules for your address:",
+      "share": {
+        "subtitle": "How we keep Duivelseiland clean together",
+        "whenLabel": "Putting out bulky rubbish",
+        "whenNote": "Only from Sunday 9 pm until Monday 7 am.",
+        "tiles": {
+          "rest": {
+            "title": "Bag in the container",
+            "text": "Full? Walk on to the next one. Never next to it: rats!"
+          },
+          "karton": {
+            "title": "Cut up cardboard",
+            "text": "Cut it up, through the large opening at the bottom."
+          },
+          "hoeveel": {
+            "title": "Max. 2 m³ at a time",
+            "text": "For example 2 washing machines or a three-seater sofa."
+          },
+          "waar": {
+            "title": "At the fixed spot",
+            "text": "Or at the kerb, a few metres from containers and trees."
+          }
+        },
+        "wel": "Bulky rubbish: yes",
+        "niet": "Not this",
+        "footer": "More info and the rules for your address",
+        "site": "duivelseiland.amsterdam",
+        "button": "Share as image",
+        "shareTitle": "Waste & bulky rubbish in Duivelseiland",
+        "shareText": "Waste & bulky rubbish in Duivelseiland: how we do it. More info: https://duivelseiland.amsterdam/en/afval",
+        "fileName": "duivelseiland-waste-bulky-rubbish.png",
+        "heading": "Instruction card as image"
+      }
     }
   },
   "content": {
