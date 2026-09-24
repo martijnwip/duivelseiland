@@ -25,6 +25,7 @@ import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { HistorischeFotosImagePreview as HistorischeFotosImagePreview_e82e1460554cf5f8b64916e5d057f678 } from '../../../src/collections/HistorischeFotosImagePreview'
 import { HistorischeFotosImportButton as HistorischeFotosImportButton_e0ba2067b23a4918db3f39c8b4f744d0 } from '../../../src/collections/HistorischeFotosImportButton'
+import { TijdvakRowLabel as TijdvakRowLabel_d7f9671ad3837163194671c2d8885372 } from '../../../src/globals/TijdvakRowLabel'
 import { LogoutButton as LogoutButton_aa8e4427b70b37c7820895ace344eb78 } from '@delmaredigital/payload-better-auth/components'
 import { default as default_7be396d0766c6c490887ef074dd0ced4 } from '../../../src/components/admin/AdminIcon'
 import { default as default_e39c6f04fbc3d800d62da1b240b44247 } from '../../../src/components/admin/EditorStyles'
@@ -61,6 +62,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "/collections/HistorischeFotosImagePreview#HistorischeFotosImagePreview": HistorischeFotosImagePreview_e82e1460554cf5f8b64916e5d057f678,
   "/collections/HistorischeFotosImportButton#HistorischeFotosImportButton": HistorischeFotosImportButton_e0ba2067b23a4918db3f39c8b4f744d0,
+  "/globals/TijdvakRowLabel#TijdvakRowLabel": TijdvakRowLabel_d7f9671ad3837163194671c2d8885372,
   "@delmaredigital/payload-better-auth/components#LogoutButton": LogoutButton_aa8e4427b70b37c7820895ace344eb78,
   "/components/admin/AdminIcon#default": default_7be396d0766c6c490887ef074dd0ced4,
   "/components/admin/EditorStyles#default": default_e39c6f04fbc3d800d62da1b240b44247,

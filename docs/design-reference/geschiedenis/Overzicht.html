@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<title>Geschiedenis — overzicht mockups</title>
+<style>
+body{margin:0;padding:24px;background:#eee;font:15px/1.4 system-ui,sans-serif;color:#202020}
+h1{font-size:22px;margin:0 0 4px}p{margin:0 0 24px;color:#555}
+.rij{display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;margin-bottom:40px}
+.bord{display:flex;flex-direction:column;gap:8px}
+.bord b{font-size:14px}
+iframe{border:1px solid #bbb;background:#fff;border-radius:8px}
+.m{width:375px;height:812px}
+.d{width:1280px;height:900px;transform:scale(.6);transform-origin:0 0}
+.dwrap{width:768px;height:540px;overflow:hidden}
+</style>
+</head>
+<body>
+<h1>Geschiedenis van Duivelseiland — mockups</h1>
+<p>Elk bord is dezelfde responsieve pagina (<a href="Pagina.html">Pagina.html</a>), in een ander formaat en thema. Scroll binnen een bord. Brief: <code>docs/design-brief-geschiedenis.md</code>.</p>
+<div class="rij">
+  <div class="bord"><b>Mobiel · licht (375)</b><iframe class="m" src="Pagina.html?theme=light" title="Mobiel licht"></iframe></div>
+  <div class="bord"><b>Mobiel · donker (375)</b><iframe class="m" src="Pagina.html?theme=dark" title="Mobiel donker"></iframe></div>
+</div>
+<div class="rij">
+  <div class="bord"><b>Desktop · licht (1280, 60%)</b><div class="dwrap"><iframe class="d" src="Pagina.html?theme=light" title="Desktop licht"></iframe></div></div>
+  <div class="bord"><b>Desktop · donker (1280, 60%)</b><div class="dwrap"><iframe class="d" src="Pagina.html?theme=dark" title="Desktop donker"></iframe></div></div>
+</div>
+</body>
+</html>

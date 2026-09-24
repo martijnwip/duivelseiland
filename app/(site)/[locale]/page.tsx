@@ -59,6 +59,7 @@ async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
           collection: 'historische-fotos',
           where: {
             status: { equals: 'published' },
+            rechten: { not_equals: 'toestemming' },
             slideshows: { contains: homepageSlideshowId },
           },
           sort: 'order',

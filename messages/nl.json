@@ -75,7 +75,8 @@
   },
   "pages": {
     "overDeNaam": {
-      "heading": "Waar komt de naam vandaan?"
+      "heading": "Waar komt de naam vandaan?",
+      "verhaalLink": "Lees het hele verhaal op de geschiedenispagina →"
     },
     "praktischeInfo": {
       "heading": "Praktische info",
@@ -94,7 +95,204 @@
       "heading": "Interviews"
     },
     "geschiedenis": {
-      "heading": "Geschiedenis"
+      "heading": "Geschiedenis",
+      "metaDescription": "Hoe een stinkende uithoek aan de Boerenwetering Duivelseiland werd: de geschiedenis van de buurt als tijdlijn.",
+      "ui": {
+        "eyebrow": "Duivelseiland · Museumkwartier · Amsterdam-Zuid",
+        "readStory": "Lees het verhaal",
+        "kerncijfers": "Kerncijfers",
+        "tijdlijn": "Tijdlijn",
+        "beeldbank": "Bekijk in de Beeldbank",
+        "bron": "Stadsarchief Amsterdam",
+        "beschermd": "Auteursrechtelijk beschermd — bekijk de foto in de Beeldbank",
+        "archief": "Uit het archief",
+        "archiefLead": "Nog meer beelden van de buurt en de omgeving.",
+        "vorige": "Vorige",
+        "volgende": "Volgende",
+        "scrollbaar": "{naam}, horizontaal scrollbaar",
+        "onbekend": "Wat we (nog) niet weten",
+        "deelVerhaal": "Deel je verhaal",
+        "bronnen": "Bronnen",
+        "meer": "Meer verhalen",
+        "schematisch": "Schematisch, niet op schaal.",
+        "rechtenOnbekend": "Rechten nog niet bekend — bekijk de foto in de Beeldbank"
+      },
+      "ig": {
+        "groeit": {
+          "title": "De buurt groeit",
+          "lead": "Dezelfde uitsnede in vier jaren. Rechts de Boerenwetering, linksonder het Roelof Hartplein.",
+          "caption": "Schematisch, niet op schaal: de ligging van huizen en fabriek is bij benadering.",
+          "fabriek": "fabriek",
+          "hbs": "HBS",
+          "hobbemakade": "Hobbemakade",
+          "jaren": [
+            {
+              "jaar": "1896",
+              "tekst": "Losse houten huisjes. Eén brug, bij de Ruysdaelstraat. De fabriek ernaast."
+            },
+            {
+              "jaar": "1906",
+              "tekst": "Meer huisjes op het zand. De fabriek wordt gesloopt; de Hobbemakade kan worden aangelegd."
+            },
+            {
+              "jaar": "1930",
+              "tekst": "Gesloten bouwblokken, het Roelof Hartplein is af. Een tweede brug bij de Roelof Hartstraat."
+            },
+            {
+              "jaar": "Nu",
+              "tekst": "Buurt KD09 in het Museumkwartier: ca. 60.000 m² tussen vijf straten."
+            }
+          ]
+        },
+        "eilanden": {
+          "title": "Twee eilanden, één tijdlijn",
+          "lead": "Het Duivelseiland van Dreyfus en het Duivelseiland van Amsterdam bestonden even lang — en verdwenen allebei in 1906.",
+          "desc": "Twee tijdlijnen van 1894 tot 1906. Dreyfus: 1894 veroordeeld, 1895 verbannen naar het Duivelseiland, 1899 gratie, 1906 eerherstel. Amsterdam: 1894 HBS geopend, 1896 annexatie, van 1896 tot 1906 de bijnaam Duivelseiland, 1906 fabriek gesloopt.",
+          "dreyfus": "Alfred Dreyfus",
+          "dreyfusSub": "Duivelseiland, Frans-Guyana",
+          "amsterdam": "Duivelseiland",
+          "amsterdamSub": "Amsterdam-Zuid",
+          "veroordeeld": "veroordeeld",
+          "verbannen": "verbannen",
+          "opEiland": "op het eiland",
+          "gratie": "gratie",
+          "eerherstel": "eerherstel",
+          "hbs": "HBS geopend",
+          "annexatie": "annexatie",
+          "bijnaam": "bijnaam \"Duivelseiland\": afgelegen, één brug, stank van de fabriek",
+          "fabriekWeg": "fabriek weg",
+          "afstand": "ca. 7.400 km",
+          "van": "Amsterdam",
+          "naar": "Île du Diable"
+        },
+        "fabriek": {
+          "title": "De fabriek in getallen",
+          "bedrag": "ƒ1.000.000",
+          "bedragTekst": "vroeg de fabriek voor haar grond. Te veel, vond de stad.",
+          "feiten": [
+            {
+              "jaar": "1896",
+              "tekst": "De grond wordt Amsterdams, de fabriek blijft."
+            },
+            {
+              "jaar": "1896–1906",
+              "tekst": "Rondom geen villa's, maar een circus, een fietsschool en een brandweerkazerne."
+            },
+            {
+              "jaar": "1906",
+              "tekst": "De stad koopt de fabriek en sloopt die. (Een andere bron noemt 1910.)"
+            },
+            {
+              "jaar": "daarna",
+              "tekst": "Een tweede toegang langs de Boerenwetering: de Hobbemakade."
+            }
+          ],
+          "desc": "Dwarsdoorsnede van noord naar zuid: de fabriek met schoorsteen, de Ruysdaelstraat en de huisjes van Duivelseiland. Een stankwolk drijft van de schoorsteen over de huisjes; afvalwater loopt de Boerenwetering in.",
+          "noord": "noord",
+          "zuid": "zuid",
+          "stank": "stank",
+          "afvalwater": "afvalwater",
+          "fabriek": "Waskaarsenfabriek",
+          "straat": "Ruysdaelstraat",
+          "buurt": "Duivelseiland",
+          "wetering": "Boerenwetering",
+          "caption": "Schematische doorsnede, niet op schaal."
+        },
+        "omDeHoek": {
+          "title": "Langs de Hobbemakade, rond 1900",
+          "lead": "Van het Rijksmuseum tot aan Duivelseiland, schematisch.",
+          "desc": "Langs de Hobbemakade van noord naar zuid: 1 Rijksnormaalschool, de Hobbemastraat, 2 fietsschool Velox, 3 brandweerkazerne, de Honthorststraat, 4 Circus Arena, de waskaarsenfabriek, de Ruysdaelstraat en daarna Duivelseiland.",
+          "rijksmuseum": "← Rijksmuseum",
+          "duivelseiland": "Duivelseiland →",
+          "wetering": "Boerenwetering",
+          "kade": "Hobbemakade (tot 1898: Ruysdaelkade)",
+          "fabriek": "fabriek",
+          "straten": [
+            "Hobbemastraat",
+            "Honthorststraat",
+            "Ruysdaelstraat"
+          ],
+          "gebouwen": [
+            {
+              "titel": "Rijksnormaalschool",
+              "items": [
+                {
+                  "jaar": "1881",
+                  "tekst": "school voor tekenleraren"
+                },
+                {
+                  "jaar": "nu",
+                  "tekst": "Academie voor Beeldende Vorming"
+                }
+              ]
+            },
+            {
+              "titel": "Velox → Zuiderbad",
+              "items": [
+                {
+                  "jaar": "1898",
+                  "tekst": "overdekte fietsschool, 50 × 30 m, met kussens tegen de muren"
+                },
+                {
+                  "jaar": "1906",
+                  "tekst": "showroom"
+                },
+                {
+                  "jaar": "1912",
+                  "tekst": "het Zuiderbad, dat er nog steeds is"
+                }
+              ]
+            },
+            {
+              "titel": "Brandweerkazerne",
+              "items": [
+                {
+                  "jaar": "1896",
+                  "tekst": "besluit: een nieuwe hoofdwacht"
+                },
+                {
+                  "jaar": "1900",
+                  "tekst": "open, met stoombrandspuiten"
+                }
+              ]
+            },
+            {
+              "titel": "Circus Arena",
+              "items": [
+                {
+                  "jaar": "1895",
+                  "tekst": "houten circus, 3000 plaatsen"
+                },
+                {
+                  "jaar": "1897",
+                  "tekst": "zondagse dubbeltjesconcerten"
+                },
+                {
+                  "jaar": "1900",
+                  "tekst": "afgebroken"
+                }
+              ]
+            }
+          ]
+        },
+        "maten": {
+          "title": "Duivelseiland in maten",
+          "desc": "Omtrek van de buurt met de vijf grensstraten: Ruysdaelstraat, Hobbemakade, Roelof Hartstraat, Roelof Hartplein en Van Baerlestraat.",
+          "buurt": "Duivelseiland",
+          "straten": {
+            "noord": "Ruysdaelstraat",
+            "oost": "Hobbemakade",
+            "zuid": "Roelof Hartstraat",
+            "west": "Van Baerlestraat",
+            "plein": "Roelof Hartplein"
+          },
+          "wetering": "Boerenwetering",
+          "velden": "Negen voetbalvelden, waarvan ongeveer acht en een half gevuld",
+          "oppervlak": "ca. 60.000 m²",
+          "tekst": "nog geen negen voetbalvelden · buurt KD09",
+          "link": "Zo ziet de buurt er nu uit in cijfers →"
+        }
+      }
     },
     "buurtStatistieken": {
       "heading": "De buurt in cijfers",

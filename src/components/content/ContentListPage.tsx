@@ -29,6 +29,7 @@ export async function ContentListPage({
   emptyText,
   sortByEventDate = false,
   recurringLabel,
+  embedded = false,
 }: {
   collection: ContentCollectionSlug;
   routeSegment: string;
@@ -39,6 +40,8 @@ export async function ContentListPage({
   sortByEventDate?: boolean;
   /** Label shown next to a recurring item's date, e.g. "Herhaalt elke maand". */
   recurringLabel?: string;
+  /** Render as a section with an h2 below other page content (e.g. under the history story); hidden when empty. */
+  embedded?: boolean;
 }) {
   const payload = await getPayload({ config });
 
@@ -76,9 +79,14 @@ export async function ContentListPage({
       .sort((a, b) => (a.displayDate ? new Date(a.displayDate).getTime() : 0) - (b.displayDate ? new Date(b.displayDate).getTime() : 0));
   }
 
+  if (embedded && items.length === 0) return null;
+
+  const Wrapper = embedded ? 'section' : 'main';
+  const Heading = embedded ? 'h2' : 'h1';
+
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-text">{heading}</h1>
+    <Wrapper className="mx-auto max-w-3xl px-4 py-10">
+      <Heading className="text-3xl font-bold text-text">{heading}</Heading>
 
       {items.length === 0 ? (
         <p className="mt-6 text-muted">{emptyText}</p>
@@ -91,7 +99,11 @@ export async function ContentListPage({
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={item.imageUrl} alt="" className="mb-3 h-48 w-full rounded object-cover" />
                 ) : null}
-                <h2 className="text-xl font-semibold text-text group-hover:text-primary">{item.title}</h2>
+                {embedded ? (
+                  <h3 className="text-xl font-semibold text-text group-hover:text-primary">{item.title}</h3>
+                ) : (
+                  <h2 className="text-xl font-semibold text-text group-hover:text-primary">{item.title}</h2>
+                )}
                 {item.displayDate ? (
                   <p className="mt-1 text-sm text-muted">
                     {new Date(item.displayDate).toLocaleDateString(locale, {
@@ -110,6 +122,6 @@ export async function ContentListPage({
           ))}
         </ul>
       )}
-    </main>
+    </Wrapper>
   );
 }

@@ -211,3 +211,233 @@ h6 {
   --color-water: #d6ecf7;
   color: var(--color-text);
 }
+
+/* ---- Geschiedenis: tijdlijn en infographics (zie docs/design-brief-geschiedenis.md) ---- */
+.gs-kop {
+  position: relative;
+  padding-left: 56px;
+}
+.gs-kop::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 4px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 5px var(--gs-band);
+}
+.gs-as {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.gs-as::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: 15px;
+  width: 10px;
+  border-radius: 5px;
+  background: var(--gs-band);
+}
+.gs-as::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: 19px;
+  width: 2px;
+  background: var(--color-primary);
+}
+.gs-as > li {
+  position: relative;
+  padding: 0 0 28px 56px;
+}
+.gs-knoop {
+  position: absolute;
+  left: 2px;
+  top: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  background: var(--color-card);
+  color: var(--color-text);
+}
+.gs-breuk::before {
+  content: '≈';
+  position: absolute;
+  left: 8px;
+  top: -2px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 30px;
+  background: var(--color-background);
+  color: var(--color-muted);
+  font: 600 22px var(--font-heading);
+}
+.gs-breuk span {
+  position: relative;
+  z-index: 1;
+  padding: 2px 6px;
+  background: var(--color-background);
+}
+@media (min-width: 1024px) {
+  .gs-kop {
+    padding: 36px 0 0;
+    text-align: center;
+  }
+  .gs-kop::before {
+    left: calc(50% - 8px);
+    top: 0;
+  }
+  .gs-as::before {
+    left: calc(50% - 5px);
+  }
+  .gs-as::after {
+    left: calc(50% - 1px);
+  }
+  .gs-as > li {
+    width: calc(50% - 40px);
+    padding: 0 0 40px;
+  }
+  .gs-as > li.gs-links {
+    text-align: right;
+  }
+  .gs-as > li.gs-links .gs-knoop {
+    left: auto;
+    right: -58px;
+  }
+  .gs-as > li.gs-rechts {
+    margin-left: calc(50% + 40px);
+  }
+  .gs-as > li.gs-rechts .gs-knoop {
+    left: -58px;
+  }
+  .gs-as > li.gs-breuk {
+    width: 100%;
+    margin: 0;
+    padding: 0 0 40px;
+    text-align: center;
+  }
+  .gs-breuk::before {
+    left: calc(50% - 12px);
+  }
+  .gs-breuk span {
+    display: inline-block;
+    margin-top: 30px;
+  }
+}
+
+/* SVG-stijlen van de infographics */
+.gs-t {
+  font: 400 13px var(--font-body);
+  fill: var(--color-muted);
+}
+.gs-tt {
+  font: 400 14px var(--font-body);
+  fill: var(--color-text);
+}
+.gs-tb {
+  font: 600 14px var(--font-heading);
+  fill: var(--color-text);
+}
+.gs-tbig {
+  font: 700 30px var(--font-heading);
+}
+.gs-tsm {
+  font: 600 10px var(--font-body);
+  fill: var(--color-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.gs-tlab {
+  font: 600 11px var(--font-body);
+  fill: var(--color-text);
+}
+.gs-water {
+  fill: var(--color-water);
+  stroke: var(--color-secondary);
+  stroke-width: 1;
+}
+.gs-buurt-o {
+  fill: none;
+  stroke: var(--color-muted);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+.gs-buurt-f {
+  fill: var(--color-primary-soft);
+  stroke: var(--color-primary);
+  stroke-width: 1.5;
+}
+.gs-oud {
+  fill: var(--color-muted-soft);
+  stroke: var(--color-muted);
+  stroke-width: 0.8;
+}
+.gs-blauw {
+  fill: var(--color-secondary-soft);
+  stroke: var(--color-muted);
+  stroke-width: 0.8;
+}
+.gs-fabriek {
+  fill: var(--color-accent-soft);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+.gs-nieuw {
+  fill: var(--color-primary-soft);
+  stroke: var(--color-primary);
+  stroke-width: 1;
+}
+.gs-straat {
+  fill: none;
+  stroke: var(--color-card);
+  stroke-width: 4;
+}
+.gs-rood {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.gs-groen {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.gs-veld {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 105 / 68;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-primary-soft) var(--p, 100%), transparent var(--p, 100%));
+}
+.gs-veld::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  border-left: 1.5px solid var(--color-primary);
+}
+.gs-veld::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 26%;
+  aspect-ratio: 1;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}

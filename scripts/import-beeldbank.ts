@@ -12,7 +12,7 @@ if (!link || !geografischeAanduiding) {
 }
 
 async function run() {
-  const { title, description, imageUrl } = await fetchBeeldbankMetadata(link);
+  const { title, description, imageUrl, datering, vervaardiger, rechten } = await fetchBeeldbankMetadata(link);
 
   const payload = await getClient();
 
@@ -23,6 +23,9 @@ async function run() {
       title,
       description,
       imageUrl,
+      datering,
+      vervaardiger,
+      rechten,
       bronUrl: link,
       geografischeAanduiding,
       status: 'draft',
