@@ -7,6 +7,7 @@ import { RichTextContent } from '@/components/site/RichTextContent';
 import { HomeStats } from '@/components/stats/HomeStats';
 import { HomeDuivelseSchoonmaak } from '@/components/content/HomeDuivelseSchoonmaak';
 import { HomeAfval, HomeAfvalSkeleton } from '@/components/afval/HomeAfval';
+import { HomeGeschiedenis } from '@/components/geschiedenis/HomeGeschiedenis';
 import { HomeBuurtborrel } from '@/components/buurtborrel/HomeBuurtborrel';
 import { hasRichTextContent } from '@/lib/richtext';
 
@@ -59,6 +60,7 @@ async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
           collection: 'historische-fotos',
           where: {
             status: { equals: 'published' },
+            rechten: { not_equals: 'toestemming' },
             slideshows: { contains: homepageSlideshowId },
           },
           sort: 'order',
@@ -118,6 +120,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         {/* Gegenereerd met `bun run kaart:locatie` (scripts/locatiekaart.ts). */}
         <img src="/kaart/duivelseiland.svg" alt={t('mapAlt')} width={1320} height={960} className="h-auto w-full rounded-md border border-border" />
       </div>
+      <HomeGeschiedenis locale={locale as 'nl' | 'en'} />
       <HomeStats locale={locale} />
       <HomeDuivelseSchoonmaak locale={locale as 'nl' | 'en'} />
       <HomeBuurtborrel locale={locale} />

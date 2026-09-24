@@ -11,7 +11,8 @@ export default async function FotosPage({ params }: { params: Promise<{ locale: 
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: 'historische-fotos',
-    where: { status: { equals: 'published' } },
+    // Foto's waarvoor toestemming nodig is tonen we niet (zie het veld `rechten`).
+    where: { status: { equals: 'published' }, rechten: { not_equals: 'toestemming' } },
     sort: 'order',
     locale: locale as 'nl' | 'en',
   });

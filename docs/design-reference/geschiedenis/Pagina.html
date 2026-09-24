@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geschiedenis — mockup</title>
+<script>
+  // ?theme=dark of ?theme=light forceert het thema (voor Overzicht.html).
+  (function () {
+    var t = new URLSearchParams(location.search).get('theme');
+    if (t) document.documentElement.dataset.theme = t;
+  })();
+  // ?shift=N: verschuift de pagina N px omhoog (alleen voor screenshots).
+  (function () {
+    var n = new URLSearchParams(location.search).get('shift');
+    if (n) document.documentElement.style.setProperty('--shift', '-' + n + 'px');
+  })();
+</script>
+<style>
+@font-face{font-family:"Fraunces";src:url(../Fraunces-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Lexend";src:url(../Lexend-Variable.woff2) format("woff2");font-weight:100 900;font-display:swap}
+@font-face{font-family:"Source Sans 3";src:url(../SourceSans3-Variable.woff2) format("woff2");font-weight:200 900;font-display:swap}
+
+/* Tokens: kopie van app/(site)/[locale]/globals.css */
+:root{
+  --color-primary:#00893c;--color-primary-hover:#10552b;--color-on-primary:#fff;
+  --color-accent:#ec0000;--color-accent-hover:#b70000;--color-secondary:#009de6;
+  --color-background:#fff;--color-text:#202020;--color-border:#d1d1d1;--color-muted:#767676;
+  --color-card:#fff;--color-primary-mid:#66b88a;--color-primary-soft:#bfe2cc;
+  --color-secondary-soft:#b3e2f7;--color-accent-soft:#f7b3b3;--color-muted-soft:#e8e8e8;--color-water:#d6ecf7;
+  --font-heading:"Lexend",system-ui,sans-serif;--font-body:"Source Sans 3",system-ui,sans-serif;--font-serif:"Fraunces",Georgia,serif;
+}
+:root[data-theme="dark"]{
+  --color-primary:#2fbf6a;--color-primary-hover:#5fd08e;--color-on-primary:#181818;
+  --color-accent:#ff5c5c;--color-accent-hover:#ff8080;--color-secondary:#3fbef5;
+  --color-background:#181818;--color-text:#ededed;--color-border:#3a3a3a;--color-muted:#a8a8a8;
+  --color-card:#232323;--color-primary-mid:#237a47;--color-primary-soft:#1c3d2a;
+  --color-secondary-soft:#1d4a5e;--color-accent-soft:#6b2626;--color-muted-soft:#2e2e2e;--color-water:#1f3440;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;margin-top:var(--shift,0);background:var(--color-background);color:var(--color-text);font:400 18px/1.55 var(--font-body)}
+a{color:var(--color-primary)}a:hover{color:var(--color-primary-hover)}
+h1{font-family:var(--font-serif)}h2,h3,h4{font-family:var(--font-heading)}
+img{max-width:100%;display:block}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+@media (min-width:768px){.wrap{padding:0 32px}}
+.eyebrow{font:600 13px var(--font-body);letter-spacing:.08em;text-transform:uppercase;color:var(--color-muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---- header ---- */
+.site-header{position:sticky;top:0;z-index:20;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;border-bottom:1px solid var(--color-border);background:color-mix(in srgb,var(--color-background) 94%,transparent);backdrop-filter:blur(6px)}
+.brand{display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--color-primary);font:700 24px var(--font-serif)}
+.brand img{height:32px;width:32px}
+.hbtn{min-width:44px;height:44px;border:0;border-radius:8px;background:transparent;color:var(--color-text);font:600 14px var(--font-body);cursor:pointer}
+.hbtn:hover{background:var(--color-muted-soft)}
+
+/* ---- hero ---- */
+.hero{padding:40px 0 32px;display:grid;gap:32px}
+@media (min-width:1024px){.hero{grid-template-columns:1.1fr .9fr;align-items:center;padding:72px 0 48px;gap:56px}}
+.hero h1{margin:12px 0 12px;font:700 clamp(44px,8vw,84px)/1.02 var(--font-serif);letter-spacing:-.02em;color:var(--color-primary)}
+.hero .sub{margin:0 0 20px;font:400 clamp(19px,2.4vw,22px)/1.45 var(--font-body);max-width:34ch}
+.hero .opening{margin:0 0 16px;font:600 20px/1.35 var(--font-heading);color:var(--color-accent)}
+.hero .intro{margin:0;max-width:62ch}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:16px;color:var(--color-text);font-weight:600;text-decoration:none}
+.fig{margin:0}
+.fig img{width:100%;height:auto;border-radius:4px;background:var(--color-muted-soft);filter:grayscale(1)}
+.fig figcaption{margin-top:8px;font-size:14px;line-height:1.4;color:var(--color-muted)}
+.fig figcaption b{color:var(--color-text);font-weight:600}
+.fig figcaption a{white-space:nowrap}
+
+.kerncijfers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:2px solid var(--color-text);border-bottom:1px solid var(--color-text);margin:8px 0 56px}
+@media (min-width:768px){.kerncijfers{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.kerncijfers div{padding:16px 16px 16px 0;display:flex;flex-direction:column;gap:2px}
+.kerncijfers div+div{border-left:0}
+@media (min-width:768px){.kerncijfers div+div{padding-left:20px;border-left:1px solid var(--color-border)}}
+.kerncijfers b{font:600 clamp(30px,4vw,40px)/1.05 var(--font-heading);font-variant-numeric:tabular-nums}
+.kerncijfers span{font-size:15px;line-height:1.35;color:var(--color-muted)}
+
+/* ---- tijdlijn ---- */
+.jaarteller{position:fixed;z-index:15;top:72px;right:12px;padding:4px 10px;border-radius:999px;background:var(--color-primary);color:var(--color-on-primary);font:600 15px var(--font-heading);font-variant-numeric:tabular-nums;opacity:0;transition:opacity .2s}
+.jaarteller.on{opacity:1}
+@media (min-width:1024px){.jaarteller{top:auto;bottom:24px;left:24px;right:auto;font-size:22px;padding:6px 14px}}
+
+.tijdvak{position:relative;padding:24px 0 8px}
+.tijdvak-kop{position:relative;padding-left:56px;margin-bottom:24px}
+.tijdvak-kop .band{display:inline-block;padding:2px 10px;border-radius:999px;background:var(--band);color:var(--color-text);font:600 14px var(--font-heading);font-variant-numeric:tabular-nums}
+.tijdvak-kop h2{margin:8px 0 6px;font:600 clamp(28px,4vw,40px)/1.12 var(--font-heading)}
+.tijdvak-kop .kernzin{margin:0 0 12px;font:600 20px/1.4 var(--font-body);color:var(--color-primary)}
+.tijdvak-kop .tekst{margin:0;max-width:62ch}
+.tijdvak-kop .tekst+.tekst{margin-top:12px}
+.tijdvak-kop::before{content:"";position:absolute;left:12px;top:4px;width:16px;height:16px;border-radius:50%;background:var(--color-primary);box-shadow:0 0 0 5px var(--band)}
+
+.as{list-style:none;margin:0;padding:0;position:relative}
+.as::before{content:"";position:absolute;top:0;bottom:0;left:15px;width:10px;background:var(--band);border-radius:5px}
+.as::after{content:"";position:absolute;top:0;bottom:0;left:19px;width:2px;background:var(--color-primary)}
+.as>li{position:relative;padding:0 0 28px 56px}
+.knoop{position:absolute;left:2px;top:0;width:36px;height:36px;border-radius:50%;background:var(--color-card);border:2px solid var(--color-primary);display:grid;place-items:center;z-index:1;color:var(--color-text)}
+.knoop svg{width:20px;height:20px}
+.gebeurtenis time{display:block;font:600 15px var(--font-heading);color:var(--color-primary);font-variant-numeric:tabular-nums;padding-top:6px}
+.gebeurtenis h3{margin:2px 0 4px;font:600 19px/1.3 var(--font-heading)}
+.gebeurtenis p{margin:0;font-size:17px;line-height:1.5;max-width:52ch}
+.gebeurtenis .fig{margin-top:12px;max-width:420px}
+.breuk{padding:4px 0 28px 56px}
+.breuk::before{content:"≈";position:absolute;left:8px;top:-2px;width:24px;height:30px;display:grid;place-items:center;background:var(--color-background);color:var(--color-muted);font:600 22px var(--font-heading);z-index:1}
+.breuk span{position:relative;z-index:1;font-size:14px;color:var(--color-muted);font-style:italic;background:var(--color-background);padding:2px 6px}
+
+@media (min-width:1024px){
+  .tijdvak-kop{padding-left:0;text-align:center;max-width:720px;margin:0 auto 40px;padding-top:36px}
+  .tijdvak-kop::before{left:calc(50% - 8px);top:0}
+  .tijdvak-kop .tekst{margin-left:auto;margin-right:auto;text-align:left}
+  .as::before{left:calc(50% - 5px)}
+  .as::after{left:calc(50% - 1px)}
+  .as>li{width:calc(50% - 40px);padding:0 0 40px}
+  .as>li:nth-child(odd){text-align:right}
+  .as>li:nth-child(odd) p,.as>li:nth-child(odd) .fig{margin-left:auto}
+  .as>li:nth-child(odd) .knoop{left:auto;right:-58px}
+  .as>li:nth-child(even){margin-left:calc(50% + 40px)}
+  .as>li:nth-child(even) .knoop{left:-58px}
+  .as>li.breuk{width:100%;margin:0;text-align:center;padding:0 0 40px}
+  .breuk::before{left:calc(50% - 12px)}
+  .breuk span{display:inline-block;margin-top:30px}
+}
+
+/* kaders */
+.kader{margin:8px 0 32px 56px;padding:20px;border:1px solid var(--color-border);border-left:4px solid var(--color-accent);border-radius:4px;background:var(--color-card);max-width:640px}
+.kader h3{margin:0 0 8px;font:600 20px var(--font-heading)}
+.kader p{margin:0;font-size:17px}
+@media (min-width:1024px){.kader{margin:0 auto 48px}}
+.groot{margin:8px 0 32px 56px}
+.groot b{display:block;font:700 clamp(48px,9vw,96px)/1 var(--font-heading);color:var(--color-accent);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.groot span{font-size:17px;color:var(--color-muted)}
+@media (min-width:1024px){.groot{text-align:center;margin:0 auto 48px}}
+
+/* archiefkaart (rechten niet vrij) */
+.archiefkaart{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1.5px dashed var(--color-border);border-radius:4px;background:var(--color-card);text-align:left;max-width:420px;margin-top:12px}
+.archiefkaart svg{flex:none;width:28px;height:28px;color:var(--color-muted)}
+.archiefkaart b{display:block;font:600 16px/1.3 var(--font-heading)}
+.archiefkaart small{display:block;color:var(--color-muted);font-size:14px;line-height:1.4;margin-top:2px}
+.archiefrij{display:grid;gap:12px;grid-template-columns:1fr;margin:0 0 32px 56px}
+@media (min-width:640px){.archiefrij{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.archiefrij{margin:0 auto 48px;max-width:880px}}
+.archiefrij .archiefkaart{margin:0;max-width:none}
+
+/* ---- infographics ---- */
+.info{margin:48px 0 56px;padding-top:16px;border-top:2px solid var(--color-text)}
+.info>header{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;margin-bottom:20px}
+.info h2{margin:0;font:600 clamp(24px,3vw,32px)/1.2 var(--font-heading)}
+.info .lead{margin:6px 0 0;max-width:62ch;color:var(--color-muted);font-size:17px}
+.info figcaption.onder{margin-top:12px;font-size:14px;color:var(--color-muted);max-width:80ch}
+.scroll-x{overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:8px}
+.scroll-x:focus-visible{outline:2px solid var(--color-primary);outline-offset:4px}
+svg text{font-family:var(--font-body)}
+.t{font:400 13px var(--font-body);fill:var(--color-muted)}
+.tt{font:400 14px var(--font-body);fill:var(--color-text)}
+.tb{font:600 14px var(--font-heading);fill:var(--color-text)}
+.tbig{font:700 30px var(--font-heading);fill:var(--color-text)}
+.tsm{font:600 10px var(--font-body);fill:var(--color-muted);letter-spacing:.06em;text-transform:uppercase}
+.tlab{font:600 11px var(--font-body);fill:var(--color-text)}
+.lead-l{stroke:var(--color-muted);stroke-width:1;fill:none}
+.water{fill:var(--color-water);stroke:var(--color-secondary);stroke-width:1}
+.buurt-o{fill:none;stroke:var(--color-muted);stroke-width:1.2;stroke-dasharray:4 3}
+.buurt-f{fill:var(--color-primary-soft);stroke:var(--color-primary);stroke-width:1.5}
+.oud{fill:var(--color-muted-soft);stroke:var(--color-muted);stroke-width:.8}
+.fabriek{fill:var(--color-accent-soft);stroke:var(--color-accent);stroke-width:1.5}
+.nieuw{fill:var(--color-primary-soft);stroke:var(--color-primary);stroke-width:1}
+.straat{stroke:var(--color-card);stroke-width:4;fill:none}
+.brug{fill:var(--color-text)}
+.rood{stroke:var(--color-accent);fill:none;stroke-width:2.5;stroke-linecap:round}
+.groen{stroke:var(--color-primary);fill:none;stroke-width:2.5;stroke-linecap:round}
+.dot-r{fill:var(--color-card);stroke:var(--color-accent);stroke-width:2.5}
+.dot-g{fill:var(--color-card);stroke:var(--color-primary);stroke-width:2.5}
+.band-r{fill:var(--color-accent-soft)}
+.band-g{fill:var(--color-primary-soft)}
+.as-l{stroke:var(--color-border);stroke-width:1}
+.hl{fill:var(--color-muted-soft)}
+
+/* twee eilanden */
+.eilanden svg{min-width:760px;width:100%;height:auto}
+/* kaartreeks */
+.kaartreeks{display:grid;grid-auto-flow:column;grid-auto-columns:78%;gap:16px}
+@media (min-width:768px){.kaartreeks{grid-auto-columns:calc(50% - 8px)}}
+@media (min-width:1024px){.kaartreeks{grid-auto-flow:row;grid-template-columns:repeat(4,1fr)}}
+.kaartreeks figure{margin:0;scroll-snap-align:start;border:1px solid var(--color-border);border-radius:8px;background:var(--color-card);padding:12px}
+.kaartreeks figure b{display:block;font:600 24px var(--font-heading);font-variant-numeric:tabular-nums}
+.kaartreeks figure p{margin:4px 0 0;font-size:15px;line-height:1.4;color:var(--color-muted)}
+.kaartreeks svg{width:100%;height:auto;margin-top:8px}
+/* fabriek */
+.fabriek-grid{display:grid;gap:24px}
+@media (min-width:1024px){.fabriek-grid{grid-template-columns:.8fr 1.2fr;align-items:center}}
+.fabriek-grid .groot{margin:0;text-align:left}
+.fabriek-grid svg{width:100%;height:auto}
+.feiten{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--color-border)}
+.feiten li{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--color-border);font-size:16px}
+.feiten li b{font:600 16px var(--font-heading);min-width:6.2em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.onzeker{color:var(--color-accent);font-weight:600;white-space:nowrap}
+/* om de hoek */
+.omdehoek svg{min-width:760px;width:100%;height:auto}
+.gebouwen{display:grid;gap:12px;margin-top:16px}
+@media (min-width:640px){.gebouwen{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.gebouwen{grid-template-columns:repeat(4,1fr)}}
+.gebouw{border:1px solid var(--color-border);border-radius:8px;padding:14px;background:var(--color-card)}
+.gebouw .nr{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--color-text);color:var(--color-background);font:700 14px var(--font-heading);margin-right:6px}
+.gebouw h3{display:inline;font:600 17px var(--font-heading)}
+.mini{list-style:none;margin:12px 0 0;padding:0 0 0 14px;border-left:2px solid var(--color-primary)}
+.mini li{position:relative;font-size:15px;line-height:1.4;padding:0 0 8px}
+.mini li::before{content:"";position:absolute;left:-20px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--color-card);border:2px solid var(--color-primary)}
+.mini li b{font:600 14px var(--font-heading);font-variant-numeric:tabular-nums;margin-right:6px}
+.gebouw .fig{margin-top:12px}
+/* maten */
+.maten{display:grid;gap:24px}
+@media (min-width:1024px){.maten{grid-template-columns:1fr 1fr;align-items:center}}
+.maten svg{width:100%;height:auto}
+.velden{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:360px}
+.veld{aspect-ratio:105/68;border:1.5px solid var(--color-primary);border-radius:2px;position:relative;overflow:hidden;background:linear-gradient(90deg,var(--color-primary-soft) var(--p,100%),transparent var(--p,100%))}
+.veld::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1.5px solid var(--color-primary)}
+.veld::after{content:"";position:absolute;left:50%;top:50%;width:26%;aspect-ratio:1;border:1.5px solid var(--color-primary);border-radius:50%;transform:translate(-50%,-50%)}
+.maten .groot{margin:16px 0 0;text-align:left}
+.maten .groot b{color:var(--color-primary)}
+
+/* archief-slideshow */
+.slides{display:grid;grid-auto-flow:column;grid-auto-columns:85%;gap:16px}
+@media (min-width:768px){.slides{grid-auto-columns:calc(40% - 8px)}}
+.slides .fig{scroll-snap-align:start}
+.slides .fig img{aspect-ratio:4/3;object-fit:cover}
+.slide-knoppen{display:flex;gap:8px;margin-top:8px}
+.slide-knoppen button{min-width:44px;height:44px;border:1px solid var(--color-border);border-radius:8px;background:var(--color-card);color:var(--color-text);font:600 18px var(--font-heading);cursor:pointer}
+
+/* onbekend + bronnen */
+.onbekend{margin:56px 0;padding:24px;border:2px dashed var(--color-muted);border-radius:8px;background:var(--color-card)}
+.onbekend h2{margin:0 0 12px;font:600 28px var(--font-heading)}
+.onbekend ul{margin:0 0 16px;padding-left:20px}
+.onbekend li{margin-bottom:4px}
+.knop{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:8px;background:var(--color-primary);color:var(--color-on-primary);font:600 16px var(--font-body);text-decoration:none}
+.knop:hover{background:var(--color-primary-hover);color:var(--color-on-primary)}
+.bronnen{margin:0 0 56px;padding-top:16px;border-top:1px solid var(--color-border);font-size:15px;color:var(--color-muted)}
+.bronnen h2{font:600 20px var(--font-heading);color:var(--color-text);margin:0 0 8px}
+.bronnen ol{margin:0;padding-left:20px}
+.meer{margin:0 0 80px}
+.meer h2{font:600 28px var(--font-heading);margin:0 0 16px}
+.meer ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+@media (min-width:768px){.meer ul{grid-template-columns:repeat(3,1fr)}}
+.meer li{border:1px solid var(--color-border);border-radius:8px;padding:16px;background:var(--color-card)}
+.meer li b{display:block;font:600 17px var(--font-heading)}
+.meer li span{font-size:14px;color:var(--color-muted)}
+.mock-noot{background:var(--color-secondary-soft);color:var(--color-text);font-size:14px;padding:8px 16px;text-align:center}
+
+/* intekenen (hergebruik stats-draw idee) */
+@media (prefers-reduced-motion:no-preference){
+  .js [data-anim] .draw{stroke-dasharray:1;stroke-dashoffset:1}
+  .js [data-anim="go"] .draw{animation:draw 900ms ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+}
+</style>
+</head>
+<body>
+<script>document.body.classList.add('js')</script>
+
+<!-- Iconenset (20×20, lijn 1,5) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-school" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5 10 4.5l7.5 4M4.5 8v8.5h11V8M8.5 16.5v-4h3v4"/></g>
+    <g id="i-brandweer" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5c.8 3 4.5 4.3 4.5 8.5a4.5 4.5 0 0 1-9 0c0-2.2 1.2-3.4 2.2-4.3 0 2 1 3.1 2.1 3.1 0-3-1.1-4.4.2-7.3z"/></g>
+    <g id="i-kaart" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 5 4.5-2 6 2 4.5-2v12l-4.5 2-6-2-4.5 2zM7 3v12M13 5v12"/></g>
+    <g id="i-brug" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 12.5h17M3.5 12.5c0-4 3-6.5 6.5-6.5s6.5 2.5 6.5 6.5M5.5 12.5V16M14.5 12.5V16M1.5 16.5c1.5-.8 2.5-.8 4 0s2.5.8 4 0 2.5-.8 4 0 2.5.8 4 0"/></g>
+    <g id="i-eiland" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 15c2-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 2 .8 3.5 0M4.5 13c1-3 3-4.5 5.5-4.5s4.5 1.5 5.5 4.5M10 8.5V3l4 1.5-4 1.5"/></g>
+    <g id="i-duivel" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17c5 0 7-3.5 7-7s2-6.5 6-6.5M13.5 1.5 17 3.5l-2.5 3"/></g>
+    <g id="i-camera" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5h3.5l1.5-2h5l1.5 2h3.5v10h-15z"/><circle cx="10" cy="11" r="3"/></g>
+    <g id="i-fabriek" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17.5V9l4 2.5V9l4 2.5V9l4 2.5V3h3.5v14.5zM6 14.5h1.5M10 14.5h1.5"/></g>
+    <g id="i-circus" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 16.5 10 5l7.5 11.5zM10 5V1.5l3 1.2-3 1.2M8 16.5l2-4.5 2 4.5"/></g>
+    <g id="i-fiets" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="13" r="3.5"/><circle cx="15" cy="13" r="3.5"/><path d="M5 13 8 7h6l1 6M8 7 10 13h5M7 5h3"/></g>
+    <g id="i-zwemmer" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 15.5c2-1 3-1 4.5 0s3 1 4.5 0 3-1 4.5 0 2 .8 3.5 0M4 12.5l4.5-4 3 2.5 3-2"/><circle cx="14" cy="5.5" r="1.8"/></g>
+    <g id="i-huis" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 9.5 10 3l7.5 6.5M4.5 8.5v9h11v-9M8.5 17.5v-5h3v5"/></g>
+    <g id="i-kroon" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 15 1-8.5 4 4 2-6 2 6 4-4 1 8.5zM3 17.5h14"/></g>
+  </defs>
+</svg>
+
+<div class="mock-noot">Mockup — Geschiedenis van Duivelseiland · inhoud: GESCHIEDENIS.md (concepttekst v1) · brief: docs/design-brief-geschiedenis.md</div>
+
+<header class="site-header">
+  <a class="brand" href="#top"><img src="../../../public/logo/duivelseiland-badge.svg" alt="">Duivelseiland</a>
+  <div>
+    <button class="hbtn" type="button" aria-label="Taal wijzigen">NL</button>
+    <button class="hbtn" type="button" id="themaknop" aria-label="Thema wijzigen">◐</button>
+  </div>
+</header>
+
+<div class="jaarteller" id="jaarteller" aria-hidden="true">1896</div>
+
+<main id="top">
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="titel">
+    <div>
+      <div class="eyebrow">Duivelseiland · Museumkwartier · Amsterdam-Zuid</div>
+      <h1 id="titel">Een eiland zonder water</h1>
+      <p class="sub">Hoe een stinkende uithoek aan de Boerenwetering een van de rustigste buurten van Zuid werd.</p>
+      <p class="opening">In 1906 rook het hier nog naar kaarsvet.</p>
+      <p class="intro">Duivelseiland is geen eiland. Er is geen water omheen, er is nooit een veerpont geweest. Toch noemden Amsterdammers dit stukje stad rond 1900 naar het beruchtste eiland ter wereld: de strafkolonie in Frans-Guyana waar de Franse officier Alfred Dreyfus onschuldig gevangenzat. Dit is het verhaal van hoe dat kwam — en hoe het weer goed kwam.</p>
+      <a class="hero-cta" href="#grens">Lees het verhaal <span aria-hidden="true">↓</span></a>
+    </div>
+    <figure class="fig">
+      <img src="https://images.memorix.nl/ams/thumb/mediabank-horizontal/fbbafe50-d102-e70f-a95b-13d9d2d580b5.jpg" width="640" height="480" alt="De Koninklijke Waskaarsenfabriek aan de Hobbemakade, gezien over de Boerenwetering">
+      <figcaption><b>De Koninklijke Waskaarsenfabriek aan de Hobbemakade</b>, gezien vanaf de Ruysdaelkade. Ca. 1905 · Stadsarchief Amsterdam · <a href="https://archief.amsterdam/beeldbank/detail/d47f4bf8-11d2-a9af-6f52-fb15d76e2b7b">Beeldbank ↗</a></figcaption>
+    </figure>
+  </section>
+
+  <div class="kerncijfers" role="list" aria-label="Kerncijfers">
+    <div role="listitem"><b>1896</b><span>Amsterdam neemt het gebied over van Nieuwer-Amstel</span></div>
+    <div role="listitem"><b>ƒ1 mln</b><span>vraagprijs van de kaarsenfabriek voor haar grond</span></div>
+    <div role="listitem"><b>1906</b><span>de fabriek verdwijnt — en Dreyfus wordt in ere hersteld</span></div>
+    <div role="listitem"><b>7.400 km</b><span>naar het echte Duivelseiland, in Frans-Guyana</span></div>
+  </div>
+
+  <!-- TIJDVAK 1 -->
+  <section class="tijdvak" id="grens" style="--band:var(--color-muted-soft)" aria-labelledby="t1">
+    <div class="tijdvak-kop">
+      <span class="band">tot 1896</span>
+      <h2 id="t1">Aan de rand van twee gemeenten</h2>
+      <p class="kernzin">Tot 1896 was hier geen Amsterdam, maar Nieuwer-Amstel.</p>
+      <p class="tekst">De Boerenwetering was eeuwenlang gewoon een poldersloot. Aan de ene kant groeide Amsterdam, aan de andere kant lag Nieuwer-Amstel — de gemeente die we nu als Amstelveen kennen. Precies op die grens stond de Koninklijke Waskaarsenfabriek. Nieuwer-Amstel wist dat de grote stad het gebied wilde inlijven, en bouwde snel nog wat het zelf nodig vond.</p>
+    </div>
+    <ol class="as">
+      <li class="gebeurtenis" data-year="1882">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-brug"/></svg></span>
+        <time datetime="1882">1882</time>
+        <h3>Een kade die verdween</h3>
+        <p>De eerste Hobbemakade wordt gegraven — en meteen weer gedempt. De naam komt later terug, op een andere plek.</p>
+      </li>
+      <li class="breuk" aria-hidden="true"><span>12 jaar later</span></li>
+      <li class="gebeurtenis" data-year="1894">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-school"/></svg></span>
+        <time datetime="1894">1894</time>
+        <h3>De HBS van Nieuwer-Amstel</h3>
+        <p>Vlak voor de annexatie opent Nieuwer-Amstel een HBS aan het latere Roelof Hartplein. Tegenwoordig is het The College Hotel.</p>
+        <figure class="fig">
+          <img src="https://images.memorix.nl/ams/thumb/640x480/7cab04e0-a785-13f7-91d4-5a8984ca6e35.jpg" width="640" height="480" loading="lazy" alt="De Tweede Hogere Burgerschool aan de Roelof Hartstraat, met een tramabri op de voorgrond">
+          <figcaption><b>De HBS, toen Tweede Hogere Burgerschool</b>, met tramabri op het Roelof Hartplein. Ca. 1931 · Vereenigde Fotobureaux · Stadsarchief Amsterdam</figcaption>
+        </figure>
+      </li>
+      <li class="gebeurtenis" data-year="1895">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-brandweer"/></svg></span>
+        <time datetime="1895">1894–1896</time>
+        <h3>Een post voor brandweer en politie</h3>
+        <p>Nieuwer-Amstel bouwt aan de Roelof Hartstraat nog een brandweer- en politiepost. Amsterdam vindt hem meteen te klein.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1896">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-kaart"/></svg></span>
+        <time datetime="1896">1896</time>
+        <h3>Amsterdam neemt over</h3>
+        <p>Het gebied tussen Singelgracht en Van Baerlestraat wordt bij Amsterdam gevoegd. De Schagerlaan heet voortaan Ruysdaelstraat.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- INFOGRAPHIC: DE BUURT GROEIT -->
+  <figure class="info" data-anim="pre" aria-labelledby="ig-groeit">
+    <header>
+      <h2 id="ig-groeit">De buurt groeit</h2>
+      <p class="lead">Dezelfde uitsnede in vier jaren. Schematisch — rechts de Boerenwetering, linksonder het Roelof Hartplein.</p>
+    </header>
+    <div class="scroll-x" tabindex="0" aria-label="Vier kaartjes: 1896, 1906, 1930 en nu. Scroll horizontaal.">
+      <div class="kaartreeks">
+        <figure>
+          <b>1896</b><p>Losse houten huisjes. Eén brug, bij de Ruysdaelstraat. De fabriek ernaast.</p>
+          <svg viewBox="0 0 240 200" role="img" aria-label="Kaartje 1896">
+            <rect class="water" x="206" y="0" width="18" height="200"/>
+            <polygon class="buurt-o" points="25,188 58,88 200,66 200,152"/>
+            <rect class="fabriek" x="146" y="14" width="54" height="40"/>
+            <text class="tlab" x="173" y="38" text-anchor="middle">fabriek</text>
+            <rect class="brug" x="200" y="63" width="30" height="5"/>
+            <rect class="nieuw" x="34" y="160" width="16" height="12"/>
+            <text class="t" x="36" y="186" style="font-size:10px">HBS</text>
+            <g class="oud"><rect x="80" y="122" width="8" height="6"/><rect x="98" y="100" width="8" height="6"/><rect x="150" y="92" width="8" height="6"/><rect x="170" y="112" width="8" height="6"/><rect x="122" y="140" width="8" height="6"/></g>
+          </svg>
+        </figure>
+        <figure>
+          <b>1906</b><p>Meer huisjes op het zand. De fabriek wordt gekocht en gesloopt; de Hobbemakade kan worden aangelegd.</p>
+          <svg viewBox="0 0 240 200" role="img" aria-label="Kaartje 1906">
+            <rect class="water" x="206" y="0" width="18" height="200"/>
+            <polygon class="buurt-o" points="25,188 58,88 200,66 200,152"/>
+            <rect class="fabriek" x="146" y="14" width="54" height="40" style="fill-opacity:.35;stroke-dasharray:4 3"/>
+            <path class="rood" d="M150 18l46 32M196 18l-46 32"/>
+            <rect class="brug" x="200" y="63" width="30" height="5"/>
+            <rect class="nieuw" x="34" y="160" width="16" height="12"/>
+            <g class="oud"><rect x="80" y="122" width="8" height="6"/><rect x="98" y="100" width="8" height="6"/><rect x="150" y="92" width="8" height="6"/><rect x="170" y="112" width="8" height="6"/><rect x="122" y="140" width="8" height="6"/><rect x="72" y="146" width="8" height="6"/><rect x="112" y="116" width="8" height="6"/><rect x="138" y="118" width="8" height="6"/><rect x="178" y="84" width="8" height="6"/><rect x="92" y="160" width="8" height="6"/></g>
+            <path class="groen draw" pathLength="1" d="M202 4V60"/><path class="groen" d="M197 52l5 8 5-8"/>
+            <text class="tlab" x="194" y="10" text-anchor="end">Hobbemakade</text>
+          </svg>
+        </figure>
+        <figure>
+          <b>1930</b><p>Gesloten bouwblokken, het Roelof Hartplein is af. Een tweede brug bij de Roelof Hartstraat.</p>
+          <svg viewBox="0 0 240 200" role="img" aria-label="Kaartje 1930">
+            <rect class="water" x="206" y="0" width="18" height="200"/>
+            <polygon class="buurt-f" points="25,188 58,88 200,66 200,152"/>
+            <path class="straat" d="M44 140 200 112M66 112 200 90M128 78 112 170"/>
+            <g class="nieuw"><rect x="150" y="16" width="46" height="44"/></g>
+            <rect class="brug" x="200" y="63" width="30" height="5"/>
+            <rect class="brug" x="200" y="149" width="30" height="5"/>
+          </svg>
+        </figure>
+        <figure>
+          <b>Nu</b><p>Buurt KD09 in het Museumkwartier: ca. 60.000 m² tussen vijf straten.</p>
+          <svg viewBox="0 0 240 200" role="img" aria-label="Kaartje nu">
+            <rect class="water" x="206" y="0" width="18" height="200"/>
+            <polygon class="buurt-f" points="25,188 58,88 200,66 200,152"/>
+            <path class="straat" d="M44 140 200 112M66 112 200 90M128 78 112 170"/>
+            <polygon points="25,188 58,88 200,66 200,152" fill="none" stroke="var(--color-accent)" stroke-width="2" stroke-dasharray="6 4"/>
+            <rect class="brug" x="200" y="63" width="30" height="5"/>
+            <rect class="brug" x="200" y="149" width="30" height="5"/>
+            <text class="tb" x="115" y="135" text-anchor="middle">KD09</text>
+          </svg>
+        </figure>
+      </div>
+    </div>
+    <figcaption class="onder">Schematisch, niet op schaal. De ligging van huisjes en fabriek wordt voor de definitieve versie nagetekend van de kaart van Publieke Werken (1900) en oude kadasterkaarten.</figcaption>
+  </figure>
+
+  <!-- TIJDVAK 2 -->
+  <section class="tijdvak" id="naam" style="--band:var(--color-accent-soft)" aria-labelledby="t2">
+    <div class="tijdvak-kop">
+      <span class="band">1896–1906</span>
+      <h2 id="t2">Een eiland zonder water</h2>
+      <p class="kernzin">Afgelegen, slecht bereikbaar en met de stank van de fabriek in de lucht: de bijnaam lag voor het oprapen.</p>
+      <p class="tekst">Na de annexatie kwamen er in de hoek achter het Roelof Hartplein eenvoudige huizen, veel soberder dan in de rest van de nieuwe Museumbuurt. Er stonden houten huisjes en schuren op opgehoogd zand. Je kwam er alleen via die ene brug bij de Ruysdaelstraat. Tegelijk ging in Frankrijk een verhaal de wereld over: kapitein Alfred Dreyfus, onterecht veroordeeld voor spionage, zat vast op het Île du Diable — het Duivelseiland.</p>
+    </div>
+    <ol class="as">
+      <li class="gebeurtenis" data-year="1895">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-eiland"/></svg></span>
+        <time datetime="1895">1895</time>
+        <h3>Dreyfus naar het Duivelseiland</h3>
+        <p>De Franse kapitein wordt verbannen naar een strafkolonie in Frans-Guyana. De wereld kijkt mee.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1897">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-duivel"/></svg></span>
+        <time>ca. 1896–1906</time>
+        <h3>Een buurt krijgt een bijnaam</h3>
+        <p>Geïsoleerd, slecht bereikbaar en stinkend: Amsterdammers noemen het hoekje achter het Roelof Hartplein "Duivelseiland".</p>
+      </li>
+      <li class="gebeurtenis" data-year="1899">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-eiland"/></svg></span>
+        <time datetime="1899">1899</time>
+        <h3>Gratie voor Dreyfus</h3>
+        <p>Dreyfus mag terug naar Frankrijk, maar is nog niet vrijgesproken.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1906">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-camera"/></svg></span>
+        <time datetime="1906-01-17">17 januari 1906</time>
+        <h3>Een fotograaf komt kijken</h3>
+        <p>J.L. Scherpenisse fotografeert zand, houten huizen en rennende kinderen — de beste momentopname van het "eiland" die we hebben.</p>
+      </li>
+    </ol>
+    <div class="archiefrij">
+      <a class="archiefkaart" href="https://archief.amsterdam/beeldbank/detail/dbe86bfe-8ae0-548f-5d8a-9823ce77ed3b">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-camera"/></svg>
+        <span><b>Duivelseiland gezien vanaf Hobbemakade</b><small>Rennende kinderen op het zand · 17 jan. 1906 · J.L. Scherpenisse. Auteursrechtelijk beschermd — bekijk in de Beeldbank ↗</small></span>
+      </a>
+      <a class="archiefkaart" href="https://archief.amsterdam/beeldbank/detail/fb44c672-c837-c15b-c667-b668bf8ddba8">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-camera"/></svg>
+        <span><b>Duivelseiland (thans Gerard Terborgstraat)</b><small>Huis van C.J. Schouten, bloemist en tuinman · 17 jan. 1906 · J.L. Scherpenisse. Auteursrechtelijk beschermd — bekijk in de Beeldbank ↗</small></span>
+      </a>
+    </div>
+    <aside class="kader" aria-labelledby="k-dreyfus">
+      <h3 id="k-dreyfus">Wie was Dreyfus?</h3>
+      <p>Alfred Dreyfus (1859–1935) was een Joodse officier in het Franse leger. In 1894 werd hij ten onrechte veroordeeld voor spionage voor Duitsland en in 1895 verbannen naar het Duivelseiland, een rotsachtig eilandje voor de kust van Frans-Guyana, ruim 7.000 km van Amsterdam. De zaak verdeelde Frankrijk en haalde kranten over de hele wereld. In 1899 kreeg hij gratie; pas in 1906 werd hij volledig in ere hersteld.</p>
+    </aside>
+  </section>
+
+  <!-- INFOGRAPHIC: TWEE EILANDEN -->
+  <figure class="info eilanden" data-anim="pre" aria-labelledby="ig-eilanden">
+    <header>
+      <h2 id="ig-eilanden">Twee eilanden, één tijdlijn</h2>
+      <p class="lead">Het Duivelseiland van Dreyfus en het Duivelseiland van Amsterdam bestonden precies even lang — en verdwenen allebei in 1906.</p>
+    </header>
+    <div class="scroll-x" tabindex="0" aria-label="Tijdlijn 1894 tot 1906, horizontaal scrollbaar">
+      <svg viewBox="0 0 1000 330" role="img" aria-labelledby="eil-desc">
+        <desc id="eil-desc">Twee parallelle tijdlijnen van 1894 tot 1906. Dreyfus: 1894 veroordeeld, 1895 verbannen naar het Duivelseiland, 1899 gratie, 1906 eerherstel. Amsterdam: 1894 HBS geopend, 1896 annexatie, van 1896 tot 1906 de bijnaam Duivelseiland, 1906 fabriek gesloopt.</desc>
+        <!-- 1906-band -->
+        <rect class="hl" x="896" y="30" width="48" height="250" rx="4"/>
+        <text class="tbig" x="920" y="24" text-anchor="middle" style="fill:var(--color-accent)">1906</text>
+        <!-- jaarschaal -->
+        <g>
+          <line class="as-l" x1="200" y1="280" x2="920" y2="280"/>
+          <g class="t" text-anchor="middle">
+            <text x="200" y="302">1894</text><text x="260" y="302">'95</text><text x="320" y="302">'96</text><text x="380" y="302">'97</text><text x="440" y="302">'98</text><text x="500" y="302">'99</text><text x="560" y="302">1900</text><text x="620" y="302">'01</text><text x="680" y="302">'02</text><text x="740" y="302">'03</text><text x="800" y="302">'04</text><text x="860" y="302">'05</text>
+          </g>
+          <g class="as-l"><line x1="200" y1="276" x2="200" y2="284"/><line x1="260" y1="276" x2="260" y2="284"/><line x1="320" y1="276" x2="320" y2="284"/><line x1="380" y1="276" x2="380" y2="284"/><line x1="440" y1="276" x2="440" y2="284"/><line x1="500" y1="276" x2="500" y2="284"/><line x1="560" y1="276" x2="560" y2="284"/><line x1="620" y1="276" x2="620" y2="284"/><line x1="680" y1="276" x2="680" y2="284"/><line x1="740" y1="276" x2="740" y2="284"/><line x1="800" y1="276" x2="800" y2="284"/><line x1="860" y1="276" x2="860" y2="284"/></g>
+        </g>
+        <!-- Dreyfus -->
+        <text class="tb" x="16" y="96">Alfred Dreyfus</text>
+        <text class="t" x="16" y="114">Duivelseiland, Frans-Guyana</text>
+        <rect class="band-r" x="260" y="92" width="240" height="16" rx="8"/>
+        <text class="tlab" x="380" y="84" text-anchor="middle" style="fill:var(--color-accent)">op het eiland</text>
+        <line class="rood draw" pathLength="1" x1="200" y1="100" x2="920" y2="100"/>
+        <circle class="dot-r" cx="200" cy="100" r="7"/><circle class="dot-r" cx="260" cy="100" r="7"/><circle class="dot-r" cx="500" cy="100" r="7"/><circle class="dot-r" cx="920" cy="100" r="9" style="fill:var(--color-accent)"/>
+        <text class="tt" x="200" y="76" text-anchor="middle">veroordeeld</text>
+        <text class="tt" x="266" y="136">verbannen</text>
+        <text class="tt" x="500" y="76" text-anchor="middle">gratie</text>
+        <text class="tb" x="920" y="76" text-anchor="middle">eerherstel</text>
+        <!-- Amsterdam -->
+        <text class="tb" x="16" y="206">Duivelseiland</text>
+        <text class="t" x="16" y="224">Amsterdam-Zuid</text>
+        <rect class="band-g" x="320" y="202" width="600" height="16" rx="8"/>
+        <text class="tlab" x="620" y="244" text-anchor="middle" style="fill:var(--color-primary)">bijnaam "Duivelseiland" — geïsoleerd, één brug, stank van de fabriek</text>
+        <line class="groen draw" pathLength="1" x1="200" y1="210" x2="920" y2="210"/>
+        <circle class="dot-g" cx="200" cy="210" r="7"/><circle class="dot-g" cx="320" cy="210" r="7"/><circle class="dot-g" cx="920" cy="210" r="9" style="fill:var(--color-primary)"/>
+        <text class="tt" x="200" y="186" text-anchor="middle">HBS geopend</text>
+        <text class="tt" x="320" y="246" text-anchor="middle">annexatie</text>
+        <text class="tb" x="920" y="246" text-anchor="middle">fabriek weg</text>
+        <!-- afstand -->
+        <g transform="translate(560 30)">
+          <circle cx="0" cy="18" r="4" fill="var(--color-primary)"/><circle cx="220" cy="18" r="4" fill="var(--color-accent)"/>
+          <path d="M0 18Q110 -8 220 18" fill="none" stroke="var(--color-muted)" stroke-width="1.2" stroke-dasharray="3 3"/>
+          <text class="t" x="110" y="4" text-anchor="middle">ca. 7.400 km</text>
+          <text class="tsm" x="0" y="38" text-anchor="middle">Amsterdam</text>
+          <text class="tsm" x="220" y="38" text-anchor="middle">Île du Diable</text>
+        </g>
+      </svg>
+    </div>
+  </figure>
+
+  <!-- TIJDVAK 3 -->
+  <section class="tijdvak" id="fabriek" style="--band:var(--color-accent-soft)" aria-labelledby="t3">
+    <div class="tijdvak-kop">
+      <span class="band">tot 1906</span>
+      <h2 id="t3">De fabriek die alles tegenhield</h2>
+      <p class="kernzin">Eén fabriek hield een hele stadsuitbreiding tien jaar lang tegen.</p>
+      <p class="tekst">De Koninklijke Waskaarsenfabriek stond aan de Boerenwetering, op de oude gemeentegrens. Ze verspreidde een walgelijke stank, en haar afvalwater maakte de wetering er niet schoner op. Amsterdam wilde rond het nieuwe Rijksmuseum een chique buurt met villa's — maar wie wil er wonen naast zo'n fabriek?</p>
+    </div>
+  </section>
+
+  <!-- INFOGRAPHIC: FABRIEK -->
+  <figure class="info" data-anim="pre" aria-labelledby="ig-fabriek">
+    <header><h2 id="ig-fabriek">De fabriek in getallen</h2></header>
+    <div class="fabriek-grid">
+      <div>
+        <div class="groot"><b>ƒ1.000.000</b><span>vroeg de fabriek voor haar grond. Te veel, vond de stad.</span></div>
+        <ul class="feiten">
+          <li><b>1896</b>De grond wordt Amsterdams — de fabriek blijft.</li>
+          <li><b>1896–1906</b>Rondom geen villa's: alleen een circus, een fietsschool, een brandweerkazerne.</li>
+          <li><b>1906</b>De stad koopt de fabriek en sloopt die. <span class="onzeker">[? of 1910]</span></li>
+          <li><b>daarna</b>Een tweede toegang langs de Boerenwetering: de Hobbemakade.</li>
+        </ul>
+      </div>
+      <svg viewBox="0 0 640 260" role="img" aria-labelledby="fab-desc">
+        <desc id="fab-desc">Dwarsdoorsnede van noord naar zuid: de fabriek met schoorsteen, dan de Ruysdaelstraat, dan de huisjes van Duivelseiland. Een stankwolk drijft van de schoorsteen over de huisjes; afvalwater loopt de Boerenwetering in.</desc>
+        <text class="tsm" x="10" y="20">noord</text><text class="tsm" x="630" y="20" text-anchor="end">zuid</text>
+        <!-- stank -->
+        <path class="rood" d="M190 46C250 0 330 10 390 44S520 80 600 64" style="stroke-dasharray:8 6"/>
+        <path d="M592 58l10 6-10 6" class="rood"/>
+        <g fill="var(--color-accent-soft)" stroke="var(--color-accent)" stroke-width="1"><circle cx="232" cy="26" r="10"/><circle cx="300" cy="18" r="13"/><circle cx="370" cy="34" r="11"/><circle cx="450" cy="56" r="12"/><circle cx="530" cy="64" r="10"/></g>
+        <text class="tlab" x="300" y="56" text-anchor="middle" style="fill:var(--color-accent)">stank</text>
+        <!-- fabriek -->
+        <rect x="176" y="50" width="18" height="88" class="fabriek"/>
+        <path class="fabriek" d="M40 200V120l40 22v-22l40 22v-22l40 22v-22l40 22v58z"/>
+        <text class="tb" x="150" y="228" text-anchor="middle">Waskaarsenfabriek</text>
+        <!-- straat -->
+        <rect x="262" y="194" width="36" height="6" fill="var(--color-muted)"/>
+        <text class="t" x="280" y="226" text-anchor="middle">Ruysdaelstraat</text>
+        <!-- huisjes -->
+        <g class="oud"><path d="M330 200v-28l16-14 16 14v28z"/><path d="M380 200v-24l14-12 14 12v24z"/><path d="M430 200v-30l18-15 18 15v30z"/><path d="M490 200v-24l14-12 14 12v24z"/><path d="M540 200v-28l16-14 16 14v28z"/></g>
+        <text class="tb" x="455" y="226" text-anchor="middle">Duivelseiland</text>
+        <!-- grond + wetering -->
+        <line x1="10" y1="200" x2="630" y2="200" stroke="var(--color-text)" stroke-width="1.5"/>
+        <rect class="water" x="10" y="236" width="620" height="16" rx="2"/>
+        <text class="tlab" x="620" y="248" text-anchor="end">Boerenwetering</text>
+        <path class="rood" d="M24 204v28" style="stroke-width:1.5;stroke-dasharray:3 3"/><path class="rood" d="M19 226l5 7 5-7" style="stroke-width:1.5"/>
+        <text class="t" x="30" y="214" style="font-size:11px;fill:var(--color-accent)">afvalwater</text>
+      </svg>
+    </div>
+    <figcaption class="onder">Schematische doorsnede, niet op schaal. Piet Mondriaan schilderde de fabriek meerdere keren <span class="onzeker">[? aantal en titels]</span>.</figcaption>
+  </figure>
+
+  <!-- TIJDVAK 4 -->
+  <section class="tijdvak" id="om-de-hoek" style="--band:var(--color-secondary-soft)" aria-labelledby="t4">
+    <div class="tijdvak-kop">
+      <span class="band">1881–1912</span>
+      <h2 id="t4">Om de hoek: wat er kwam in plaats van huizen</h2>
+      <p class="kernzin">Zolang de fabriek er stond, wilde niemand hier wonen. Dus kwamen er een circus, een fietsschool en een brandweerkazerne.</p>
+      <p class="tekst">De stad verhuurde de grond aan de Hobbemakade voor korte tijd, of verkocht die aan wie geen keus had of de stank voor lief nam. Tussen Rijksmuseum en Ruysdaelstraat kwam maar één blok woonhuizen; de rest was utiliteitsbouw.</p>
+    </div>
+  </section>
+
+  <!-- INFOGRAPHIC: OM DE HOEK -->
+  <figure class="info omdehoek" data-anim="pre" aria-labelledby="ig-hoek">
+    <header><h2 id="ig-hoek">Langs de Hobbemakade, rond 1900</h2><p class="lead">Van het Rijksmuseum tot aan Duivelseiland — schematisch.</p></header>
+    <div class="scroll-x" tabindex="0" aria-label="Kaartje Hobbemakade, horizontaal scrollbaar">
+      <svg viewBox="0 0 1000 200" role="img" aria-labelledby="hoek-desc">
+        <desc id="hoek-desc">Langs de Hobbemakade van noord naar zuid: 1 Rijksnormaalschool, Hobbemastraat, 2 fietsschool Velox, 3 brandweerkazerne, Honthorststraat, 4 Circus Arena, de waskaarsenfabriek, de Ruysdaelstraat en daarna Duivelseiland.</desc>
+        <text class="tsm" x="10" y="20">← Rijksmuseum</text>
+        <text class="tsm" x="990" y="20" text-anchor="end">Duivelseiland →</text>
+        <line x1="10" y1="120" x2="990" y2="120" stroke="var(--color-text)" stroke-width="1.5"/>
+        <rect class="water" x="10" y="128" width="980" height="24"/>
+        <text class="tlab" x="500" y="144" text-anchor="middle">Boerenwetering</text>
+        <text class="t" x="500" y="174" text-anchor="middle" style="font-size:11px">Hobbemakade (tot 1898: Ruysdaelkade)</text>
+        <!-- straten -->
+        <g class="t" style="font-size:10px"><text x="228" y="114" text-anchor="middle" transform="rotate(-90 228 100)">Hobbemastraat</text><text x="566" y="114" text-anchor="middle" transform="rotate(-90 566 100)">Honthorststraat</text><text x="906" y="114" text-anchor="middle" transform="rotate(-90 906 100)">Ruysdaelstraat</text></g>
+        <!-- gebouwen -->
+        <rect class="oud" x="80" y="74" width="120" height="46"/>
+        <rect class="nieuw" x="252" y="62" width="150" height="58"/>
+        <rect class="oud" x="440" y="80" width="100" height="40" style="fill:var(--color-secondary-soft)"/>
+        <path class="oud" d="M600 120V84l20-22h60l20 22v36z" style="fill:var(--color-secondary-soft)"/>
+        <rect class="fabriek" x="720" y="56" width="160" height="64"/>
+        <text class="tlab" x="800" y="94" text-anchor="middle">fabriek</text>
+        <polygon points="926,120 926,70 990,60 990,120" fill="none" stroke="var(--color-primary)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        <!-- nummers -->
+        <g font-family="Lexend" font-weight="700" font-size="14" text-anchor="middle">
+          <circle cx="140" cy="46" r="14" fill="var(--color-text)"/><text x="140" y="51" fill="var(--color-background)">1</text>
+          <circle cx="327" cy="36" r="14" fill="var(--color-text)"/><text x="327" y="41" fill="var(--color-background)">2</text>
+          <circle cx="490" cy="54" r="14" fill="var(--color-text)"/><text x="490" y="59" fill="var(--color-background)">3</text>
+          <circle cx="650" cy="40" r="14" fill="var(--color-text)"/><text x="650" y="45" fill="var(--color-background)">4</text>
+        </g>
+      </svg>
+    </div>
+    <div class="gebouwen">
+      <article class="gebouw">
+        <span class="nr">1</span><h3>Rijksnormaalschool</h3>
+        <ul class="mini"><li><b>1881</b>school voor tekenleraren</li><li><b>nu</b>Academie voor Beeldende Vorming</li></ul>
+      </article>
+      <article class="gebouw">
+        <span class="nr">2</span><h3>Velox → Zuiderbad</h3>
+        <ul class="mini"><li><b>1898</b>overdekte fietsschool, 50 × 30 m, kussens tegen de muren</li><li><b>1906</b>showroom</li><li><b>1912</b>het Zuiderbad — er nog steeds</li></ul>
+      </article>
+      <article class="gebouw">
+        <span class="nr">3</span><h3>Brandweerkazerne</h3>
+        <ul class="mini"><li><b>1896</b>besluit: nieuwe hoofdwacht</li><li><b>1900</b>open, met stoombrandspuiten</li></ul>
+      </article>
+      <article class="gebouw">
+        <span class="nr">4</span><h3>Circus Arena</h3>
+        <ul class="mini"><li><b>1895</b>houten circus, 3000 plaatsen</li><li><b>1897</b>zondagse dubbeltjesconcerten</li><li><b>1900</b>afgebroken</li></ul>
+        <figure class="fig">
+          <img src="https://images.memorix.nl/ams/thumb/640x480/c5ed9c26-abeb-505f-3d94-83491bdd09d2.jpg" width="640" height="480" loading="lazy" alt="Het houten circusgebouw van Maatschappij Arena aan de Hobbemakade">
+          <figcaption>1895–1900 · Atlas Dreesmann · Stadsarchief Amsterdam</figcaption>
+        </figure>
+      </article>
+    </div>
+  </figure>
+
+  <!-- TIJDVAK 5 -->
+  <section class="tijdvak" id="keerpunt" style="--band:var(--color-primary-soft)" aria-labelledby="t5">
+    <div class="tijdvak-kop">
+      <span class="band">1906–1930</span>
+      <h2 id="t5">Het keerpunt</h2>
+      <p class="kernzin">Zodra de fabriek weg was, groeide het eiland vast aan de stad.</p>
+      <p class="tekst">Na de sloop kon er langs de Boerenwetering een tweede toegang komen. Het duurde tot na de Eerste Wereldoorlog voordat de buurt af was, maar wie in 1930 over het Roelof Hartplein liep, stond in een modern stuk Amsterdam-Zuid — met een tramhalte voor de deur.</p>
+    </div>
+    <ol class="as">
+      <li class="gebeurtenis" data-year="1906">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-fabriek"/></svg></span>
+        <time datetime="1906">1906</time>
+        <h3>De fabriek gaat weg</h3>
+        <p>De stad koopt de waskaarsenfabriek en sloopt die. In hetzelfde jaar wordt Dreyfus in ere hersteld.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1907">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-brug"/></svg></span>
+        <time>na 1906</time>
+        <h3>Een tweede toegang</h3>
+        <p>Langs de Boerenwetering wordt de Hobbemakade aangelegd. Het eiland is geen eiland meer.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1920">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-huis"/></svg></span>
+        <time>ca. 1920</time>
+        <h3>Het Roelof Hartplein is af</h3>
+        <p>Huize Lydia en de andere gebouwen rond het plein zijn klaar: het begin van Nieuw-Zuid.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1927">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-huis"/></svg></span>
+        <time datetime="1927">1927</time>
+        <h3>De Ruysdaelstraat wordt breder</h3>
+        <p>De oude bebouwing van de Schagerlaan verdwijnt.</p>
+      </li>
+      <li class="gebeurtenis" data-year="1930">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-kroon"/></svg></span>
+        <time datetime="1930-05-21">21 mei 1930</time>
+        <h3>Koninklijk bezoek</h3>
+        <p>Koningin Wilhelmina en prinses Juliana bezoeken Huize Lydia. Dertig jaar eerder wilde "geen net mens" hier komen.</p>
+        <figure class="fig">
+          <img src="https://images.memorix.nl/ams/thumb/640x480/8a498d97-1fae-b614-3cfe-ec975d418e2b.jpg" width="640" height="480" loading="lazy" alt="Bezoek van koningin Wilhelmina en prinses Juliana aan Huize Lydia, Roelof Hartplein 2">
+          <figcaption><b>Bezoek aan Huize Lydia</b>, Roelof Hartplein 2. 21 mei 1930 · Vereenigde Fotobureaux · Stadsarchief Amsterdam</figcaption>
+        </figure>
+      </li>
+      <li class="breuk" aria-hidden="true"><span>bijna een eeuw later</span></li>
+    </ol>
+  </section>
+
+  <!-- TIJDVAK 6 -->
+  <section class="tijdvak" id="nu" style="--band:var(--color-primary-soft)" aria-labelledby="t6">
+    <div class="tijdvak-kop">
+      <span class="band">nu</span>
+      <h2 id="t6">Duivelseiland nu</h2>
+      <p class="kernzin">Alleen de naam herinnert nog aan het eiland.</p>
+      <p class="tekst">Duivelseiland is nu een buurt in het Museumkwartier, ingeklemd tussen de Pijp en de Concertgebouwbuurt. Wie goed kijkt, ziet de geschiedenis nog terug.</p>
+    </div>
+    <ol class="as">
+      <li class="gebeurtenis" data-year="2026">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-school"/></svg></span>
+        <time>spoor 1</time><h3>The College Hotel</h3><p>De HBS van Nieuwer-Amstel uit 1894, aan het Roelof Hartplein.</p>
+      </li>
+      <li class="gebeurtenis" data-year="2026">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-zwemmer"/></svg></span>
+        <time>spoor 2</time><h3>Het Zuiderbad</h3><p>Een zwembad in een fietsschool uit 1898.</p>
+      </li>
+      <li class="gebeurtenis" data-year="2026">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-brug"/></svg></span>
+        <time>spoor 3</time><h3>De knik bij de Albert Cuypstraat</h3><p>Amsterdam wilde de brug elders, maar alleen de Ruysdaelstraat was breed genoeg.</p>
+      </li>
+      <li class="gebeurtenis" data-year="2026">
+        <span class="knoop"><svg viewBox="0 0 20 20"><use href="#i-kaart"/></svg></span>
+        <time>spoor 4</time><h3>De Hobbemakade</h3><p>De tweede toegang, die pas na de sloop van de fabriek kon komen.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- INFOGRAPHIC: MATEN -->
+  <figure class="info" aria-labelledby="ig-maten">
+    <header><h2 id="ig-maten">Duivelseiland in maten</h2></header>
+    <div class="maten">
+      <svg viewBox="0 0 400 280" role="img" aria-labelledby="maten-desc">
+        <desc id="maten-desc">Omtrek van de buurt met de vijf grensstraten: Ruysdaelstraat, Hobbemakade, Roelof Hartstraat, Roelof Hartplein en Van Baerlestraat.</desc>
+        <rect class="water" x="330" y="10" width="22" height="260"/>
+        <text class="tlab" x="341" y="140" text-anchor="middle" transform="rotate(-90 341 140)">Boerenwetering</text>
+        <polygon class="buurt-f" points="50,240 100,95 320,60 320,195"/>
+        <text class="tb" x="200" y="160" text-anchor="middle" transform="rotate(-10 200 160)" style="letter-spacing:.15em">DUIVELSEILAND</text>
+        <g class="t" style="font-size:12px;fill:var(--color-text)">
+          <text x="210" y="66" text-anchor="middle" transform="rotate(-9 210 66)">Ruysdaelstraat</text>
+          <text x="312" y="128" text-anchor="middle" transform="rotate(-90 312 128)">Hobbemakade</text>
+          <text x="190" y="236" text-anchor="middle" transform="rotate(-9.5 190 236)">Roelof Hartstraat</text>
+          <text x="62" y="162" text-anchor="middle" transform="rotate(-71 62 162)">Van Baerlestraat</text>
+        </g>
+        <circle cx="50" cy="240" r="9" fill="var(--color-card)" stroke="var(--color-primary)" stroke-width="2"/>
+        <text class="tlab" x="64" y="266">Roelof Hartplein</text>
+      </svg>
+      <div>
+        <div class="velden" role="img" aria-label="Negen voetbalvelden, waarvan ongeveer acht en een half gevuld">
+          <span class="veld"></span><span class="veld"></span><span class="veld"></span><span class="veld"></span><span class="veld"></span><span class="veld"></span><span class="veld"></span><span class="veld"></span><span class="veld" style="--p:40%"></span>
+        </div>
+        <div class="groot"><b>ca. 60.000 m²</b><span>nog geen negen voetbalvelden · buurt KD09 · <a href="#">zo ziet de buurt er nu uit in cijfers →</a></span></div>
+      </div>
+    </div>
+  </figure>
+
+  <!-- UIT HET ARCHIEF -->
+  <section class="info" aria-labelledby="archief">
+    <header><h2 id="archief">Uit het archief</h2><p class="lead">Nog meer beelden van het Roelof Hartplein en omgeving.</p></header>
+    <div class="scroll-x" tabindex="0" aria-label="Archieffoto's, horizontaal scrollbaar" id="slides">
+      <div class="slides">
+        <figure class="fig"><img src="https://images.memorix.nl/ams/thumb/640x480/d9a235a0-409c-f053-1284-53712f2a83a0.jpg" loading="lazy" width="640" height="480" alt="Het Roelof Hartplein rond 1930"><figcaption><b>Roelof Hartplein</b> · ca. 1930 · Stadsarchief Amsterdam</figcaption></figure>
+        <figure class="fig"><img src="https://images.memorix.nl/ams/thumb/640x480/e6dffeab-048b-86ff-8ba5-f75fe170dc63.jpg" loading="lazy" width="640" height="480" alt="Vlaggendag van de AVRO op het Roelof Hartplein"><figcaption><b>Vlaggendag AVRO-actie</b> · mei 1931 · Stadsarchief Amsterdam</figcaption></figure>
+        <figure class="fig"><img src="https://images.memorix.nl/ams/thumb/640x480/c219d17f-bcb8-9738-2695-bea3bf9cf02d.jpg" loading="lazy" width="640" height="480" alt="Roelof Hartplein 6, gezien naar de Roelof Hartstraat"><figcaption><b>Roelof Hartplein 6</b> · aug. 1931 · Stadsarchief Amsterdam</figcaption></figure>
+        <figure class="fig"><img src="https://images.memorix.nl/ams/thumb/640x480/c5ed9c26-abeb-505f-3d94-83491bdd09d2.jpg" loading="lazy" width="640" height="480" alt="Het circusgebouw van Maatschappij Arena"><figcaption><b>Circus Arena ("Circus Renz")</b> · 1895–1900 · Stadsarchief Amsterdam</figcaption></figure>
+      </div>
+    </div>
+    <div class="slide-knoppen"><button type="button" data-dir="-1" aria-label="Vorige">←</button><button type="button" data-dir="1" aria-label="Volgende">→</button></div>
+  </section>
+
+  <!-- ONBEKEND -->
+  <section class="onbekend" aria-labelledby="onbekend">
+    <h2 id="onbekend">Wat we (nog) niet weten</h2>
+    <p>Niet alles over Duivelseiland is zeker.</p>
+    <ul>
+      <li>Werd de fabriek in 1906 of in 1910 gesloopt?</li>
+      <li>Klopt het verhaal over kinderarbeid?</li>
+      <li>Waar komt de aanduiding "wijk 50" vandaan die je soms leest?</li>
+    </ul>
+    <p>Heeft u oude foto's, verhalen of documenten over de buurt? We horen het graag.</p>
+    <a class="knop" href="#">Deel je verhaal</a>
+  </section>
+
+  <section class="bronnen" aria-labelledby="bronnen">
+    <h2 id="bronnen">Bronnen</h2>
+    <ol>
+      <li>Stadsarchief Amsterdam, Beeldbank.</li>
+      <li>Theo Bakker, <i>Annexaties en stadsuitbreidingen</i> en <i>Het Museumkwartier en de Koninklijke Fabriek van Waskaarsen</i> (theobakker.net).</li>
+      <li><i>Duivelseiland</i>, onh.nl.</li>
+      <li>Wijkkrant nr. 1 (2025), Buurthuis Lydia.</li>
+    </ol>
+  </section>
+
+  <section class="meer" aria-labelledby="meer">
+    <h2 id="meer">Meer verhalen</h2>
+    <ul><li><b>Voorbeeld-item</b><span>Geschiedenis-item van een auteur</span></li><li><b>Voorbeeld-item</b><span>Geschiedenis-item van een auteur</span></li><li><b>Voorbeeld-item</b><span>Geschiedenis-item van een auteur</span></li></ul>
+  </section>
+
+</div>
+</main>
+
+<script>
+  // Thema-knop
+  document.getElementById('themaknop').addEventListener('click', function () {
+    var r = document.documentElement;
+    r.dataset.theme = r.dataset.theme === 'dark' ? 'light' : 'dark';
+  });
+
+  // Sticky jaarteller: toont het jaar van de laatst gepasseerde knoop.
+  var teller = document.getElementById('jaarteller');
+  var items = Array.prototype.slice.call(document.querySelectorAll('[data-year]'));
+  var zicht = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        var y = e.target.dataset.year;
+        teller.textContent = y === '2026' ? 'nu' : y;
+        teller.classList.add('on');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  items.forEach(function (el) { zicht.observe(el); });
+  new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) teller.classList.remove('on');
+  }).observe(document.querySelector('.hero'));
+
+  // Infographics tekenen zich in zodra ze in beeld komen.
+  var anim = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.dataset.anim = 'go'; anim.unobserve(e.target); }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('[data-anim]').forEach(function (el) { anim.observe(el); });
+
+  // Slideshow-knoppen
+  var slides = document.getElementById('slides');
+  document.querySelectorAll('.slide-knoppen button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      slides.scrollBy({ left: slides.clientWidth * 0.8 * Number(b.dataset.dir), behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>

@@ -23,6 +23,7 @@ import { Users } from './collections/Users';
 import { Vakmensen } from './collections/Vakmensen';
 import { Buurtborrel } from './globals/Buurtborrel';
 import { OverDeNaam } from './globals/OverDeNaam';
+import { GeschiedenisVerhaal } from './globals/GeschiedenisVerhaal';
 import { translateDocEndpoint } from './endpoints/translateDoc';
 import { SiteInstellingen } from './globals/SiteInstellingen';
 
@@ -71,7 +72,7 @@ export default buildConfig({
     Slideshows,
   ],
 
-  globals: [SiteInstellingen, OverDeNaam, Buurtborrel],
+  globals: [SiteInstellingen, OverDeNaam, GeschiedenisVerhaal, Buurtborrel],
 
   endpoints: [translateDocEndpoint],
 

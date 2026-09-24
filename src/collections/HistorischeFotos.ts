@@ -3,6 +3,7 @@ import { authoredContentAccess } from '../access/contentAccess';
 import { isRedacteurOrAdminField } from '../access/isAdmin';
 import { setAuthor } from './shared/setAuthor';
 import { revalidateHome } from './shared/revalidateHome';
+import { revalidateGeschiedenis } from './shared/revalidateGeschiedenis';
 import { historischeFotosImportEndpoint } from './HistorischeFotosImportEndpoint';
 
 export const HistorischeFotos: CollectionConfig = {
@@ -26,8 +27,8 @@ export const HistorischeFotos: CollectionConfig = {
   ],
   hooks: {
     beforeChange: [setAuthor('author')],
-    afterChange: [revalidateHome],
-    afterDelete: [revalidateHome],
+    afterChange: [revalidateHome, revalidateGeschiedenis],
+    afterDelete: [revalidateHome, revalidateGeschiedenis],
   },
   fields: [
     {
@@ -69,6 +70,35 @@ export const HistorischeFotos: CollectionConfig = {
       required: true,
       admin: {
         description: 'Link naar de originele bronpagina (bronvermelding, later opnieuw importeren).',
+      },
+    },
+    {
+      name: 'datering',
+      type: 'text',
+      admin: { description: 'Zoals het Stadsarchief het vermeldt, bijv. "17 januari 1906" of "ca. 1930".' },
+    },
+    {
+      name: 'vervaardiger',
+      type: 'text',
+      admin: { description: 'Fotograaf of tekenaar, zoals vermeld in de Beeldbank.' },
+    },
+    {
+      name: 'rechten',
+      type: 'select',
+      defaultValue: 'onbekend',
+      required: true,
+      options: [
+        { label: 'Vrij te gebruiken', value: 'vrij' },
+        { label: 'Toestemming nodig', value: 'toestemming' },
+        { label: 'Onbekend', value: 'onbekend' },
+      ],
+      admin: {
+        position: 'sidebar',
+        description:
+          'Bij "Toestemming nodig" toont de site de foto niet, alleen een link naar de Beeldbank. De geschiedenispagina toont alleen "Vrij te gebruiken".',
+      },
+      access: {
+        update: isRedacteurOrAdminField,
       },
     },
     {

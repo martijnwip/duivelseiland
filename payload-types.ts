@@ -118,11 +118,13 @@ export interface Config {
   globals: {
     'site-instellingen': SiteInstellingen;
     'over-de-naam': OverDeNaam;
+    'geschiedenis-verhaal': GeschiedenisVerhaal;
     buurtborrel: Buurtborrel;
   };
   globalsSelect: {
     'site-instellingen': SiteInstellingenSelect<false> | SiteInstellingenSelect<true>;
     'over-de-naam': OverDeNaamSelect<false> | OverDeNaamSelect<true>;
+    'geschiedenis-verhaal': GeschiedenisVerhaalSelect<false> | GeschiedenisVerhaalSelect<true>;
     buurtborrel: BuurtborrelSelect<false> | BuurtborrelSelect<true>;
   };
   locale: 'nl' | 'en';
@@ -547,6 +549,18 @@ export interface HistorischeFoto {
    * Link naar de originele bronpagina (bronvermelding, later opnieuw importeren).
    */
   bronUrl: string;
+  /**
+   * Zoals het Stadsarchief het vermeldt, bijv. "17 januari 1906" of "ca. 1930".
+   */
+  datering?: string | null;
+  /**
+   * Fotograaf of tekenaar, zoals vermeld in de Beeldbank.
+   */
+  vervaardiger?: string | null;
+  /**
+   * Bij "Toestemming nodig" toont de site de foto niet, alleen een link naar de Beeldbank. De geschiedenispagina toont alleen "Vrij te gebruiken".
+   */
+  rechten: 'vrij' | 'toestemming' | 'onbekend';
   status: 'draft' | 'published';
   author?: (number | null) | User;
   slideshows?: (number | Slideshow)[] | null;
@@ -985,6 +999,9 @@ export interface HistorischeFotosSelect<T extends boolean = true> {
   geografischeAanduiding?: T;
   imageUrl?: T;
   bronUrl?: T;
+  datering?: T;
+  vervaardiger?: T;
+  rechten?: T;
   status?: T;
   author?: T;
   slideshows?: T;
@@ -1167,6 +1184,146 @@ export interface OverDeNaam {
   createdAt?: string | null;
 }
 /**
+ * Het verhaal op de pagina Geschiedenis. Losse geschiedenis-items verschijnen daaronder als "Meer verhalen".
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "geschiedenis-verhaal".
+ */
+export interface GeschiedenisVerhaal {
+  id: number;
+  titel: string;
+  ondertitel?: string | null;
+  /**
+   * Eén korte, opvallende zin, in het rood onder de ondertitel.
+   */
+  openingszin?: string | null;
+  intro?: string | null;
+  /**
+   * Alleen foto's met rechten "Vrij te gebruiken" worden getoond.
+   */
+  heroFoto?: (number | null) | HistorischeFoto;
+  kerncijfers?:
+    | {
+        waarde: string;
+        label: string;
+        id?: string | null;
+      }[]
+    | null;
+  tijdvakken?:
+    | {
+        /**
+         * Voor links, bijv. "naam" → /geschiedenis#naam.
+         */
+        anker: string;
+        /**
+         * Periode op de tijdlijn, bijv. "1896–1906".
+         */
+        band: string;
+        kleur?: ('grijs' | 'rood' | 'blauw' | 'groen') | null;
+        titel: string;
+        kernzin?: string | null;
+        tekst?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        /**
+         * De knopen op de tijdlijn.
+         */
+        gebeurtenissen?:
+          | {
+              /**
+               * Zoals getoond, bijv. "ca. 1920".
+               */
+              datum: string;
+              /**
+               * Voor de jaarteller; leeg laten mag.
+               */
+              jaar?: number | null;
+              icoon:
+                | 'school'
+                | 'brandweer'
+                | 'kaart'
+                | 'brug'
+                | 'eiland'
+                | 'duivel'
+                | 'camera'
+                | 'fabriek'
+                | 'circus'
+                | 'fiets'
+                | 'zwemmer'
+                | 'huis'
+                | 'kroon';
+              titel: string;
+              tekst?: string | null;
+              foto?: (number | null) | HistorischeFoto;
+              /**
+               * Optioneel: toont vóór deze gebeurtenis een onderbroken as, bijv. "12 jaar later".
+               */
+              breukLabel?: string | null;
+              id?: string | null;
+            }[]
+          | null;
+        /**
+         * Extra foto's onder de tijdlijn van dit tijdvak.
+         */
+        fotos?: (number | HistorischeFoto)[] | null;
+        /**
+         * Optioneel uitlegkader, bijv. "Wie was Dreyfus?".
+         */
+        kader?: {
+          titel?: string | null;
+          tekst?: string | null;
+        };
+        /**
+         * Vaste infographic die na dit tijdvak komt.
+         */
+        infographic?: ('groeit' | 'eilanden' | 'fabriek' | 'omDeHoek' | 'maten') | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Slideshow "Uit het archief". Alleen foto's met rechten "Vrij te gebruiken" worden getoond.
+   */
+  archief?: (number | HistorischeFoto)[] | null;
+  /**
+   * Blok "Wat we (nog) niet weten".
+   */
+  onbekendTekst?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  bronnen?:
+    | {
+        tekst: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "buurtborrel".
  */
@@ -1221,6 +1378,66 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
 export interface OverDeNaamSelect<T extends boolean = true> {
   titel?: T;
   inhoud?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "geschiedenis-verhaal_select".
+ */
+export interface GeschiedenisVerhaalSelect<T extends boolean = true> {
+  titel?: T;
+  ondertitel?: T;
+  openingszin?: T;
+  intro?: T;
+  heroFoto?: T;
+  kerncijfers?:
+    | T
+    | {
+        waarde?: T;
+        label?: T;
+        id?: T;
+      };
+  tijdvakken?:
+    | T
+    | {
+        anker?: T;
+        band?: T;
+        kleur?: T;
+        titel?: T;
+        kernzin?: T;
+        tekst?: T;
+        gebeurtenissen?:
+          | T
+          | {
+              datum?: T;
+              jaar?: T;
+              icoon?: T;
+              titel?: T;
+              tekst?: T;
+              foto?: T;
+              breukLabel?: T;
+              id?: T;
+            };
+        fotos?: T;
+        kader?:
+          | T
+          | {
+              titel?: T;
+              tekst?: T;
+            };
+        infographic?: T;
+        id?: T;
+      };
+  archief?: T;
+  onbekendTekst?: T;
+  bronnen?:
+    | T
+    | {
+        tekst?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

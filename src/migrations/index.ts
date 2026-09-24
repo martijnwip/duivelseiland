@@ -17,6 +17,7 @@ import * as migration_20260922_135352_agenda_schedule_title_optional from './202
 import * as migration_20260922_141111_agenda_whatsapp_number from './20260922_141111_agenda_whatsapp_number';
 import * as migration_20260923_121226_buurtborrel from './20260923_121226_buurtborrel';
 import * as migration_20260923_141050_menu_zichtbaar from './20260923_141050_menu_zichtbaar';
+import * as migration_20260924_121946_geschiedenis_verhaal from './20260924_121946_geschiedenis_verhaal';
 
 export const migrations = [
   {
@@ -112,6 +113,11 @@ export const migrations = [
   {
     up: migration_20260923_141050_menu_zichtbaar.up,
     down: migration_20260923_141050_menu_zichtbaar.down,
-    name: '20260923_141050_menu_zichtbaar'
+    name: '20260923_141050_menu_zichtbaar',
+  },
+  {
+    up: migration_20260924_121946_geschiedenis_verhaal.up,
+    down: migration_20260924_121946_geschiedenis_verhaal.down,
+    name: '20260924_121946_geschiedenis_verhaal'
   },
 ];

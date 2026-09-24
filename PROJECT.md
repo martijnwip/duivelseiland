@@ -2,7 +2,7 @@
 
 Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer informatie over de volgende onderwerpen:
 - Waar komt de naam vandaan?
-- Geschiedenis : 
+- Geschiedenis 👉 GESCHIEDENIS.md
 - Praktische info
   - grof vuil
   - melden overlast
@@ -223,6 +223,17 @@ bun run seed:admin jij@voorbeeld.nl geheim # eigen e-mail/wachtwoord
 ```
 
 Idempotent: bestaat het e-mailadres al, dan gebeurt er niets. Bedoeld voor lokale ontwikkeling — niet voor productie (zwak standaardwachtwoord).
+
+### Geschiedenisverhaal vullen
+
+De pagina `/geschiedenis` toont het verhaal uit de global `geschiedenis-verhaal` (tijdvakken, gebeurtenissen, vaste infographics); ontwerp in `docs/design-brief-geschiedenis.md`, bronmateriaal in `GESCHIEDENIS.md`. Het script vult de concepttekst in NL en EN en importeert de archieffoto's uit de Beeldbank (met datering, maker en rechten):
+
+```bash
+bun run seed:geschiedenis          # niets als het verhaal al een titel heeft
+bun run seed:geschiedenis --force  # verhaal overschrijven
+```
+
+Foto's met rechten "Toestemming nodig" worden nergens op de site getoond, alleen gelinkt.
 
 ## Content vertalen (NL → EN)
 
