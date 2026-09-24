@@ -2,6 +2,7 @@ import type { GlobalConfig } from 'payload';
 import { isRedacteurOrAdmin } from '../access/isAdmin';
 import { revalidateGeschiedenis } from '../collections/shared/revalidateGeschiedenis';
 import { introEditor } from './editors';
+import { revalidateHome } from '../collections/shared/revalidateHome';
 
 /** Iconen voor de knopen op de tijdlijn; de tekeningen staan in src/components/geschiedenis/icons.tsx. */
 export const TIJDLIJN_ICONEN = [
@@ -52,6 +53,7 @@ export const GeschiedenisVerhaal: GlobalConfig = {
     afterChange: [
       ({ doc, req }) => {
         revalidateGeschiedenis({ req });
+        if (!req.context?.disableRevalidate) revalidateHome();
         return doc;
       },
     ],

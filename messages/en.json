@@ -71,6 +71,14 @@
       "factText": "neighbourhood drinks on the green so far, and we want more",
       "readMore": "About the neighbourhood drinks",
       "readMoreContext": "and how to sign up"
+    },
+    "geschiedenis": {
+      "eyebrow": "History",
+      "factBig": "1906",
+      "factText": "the year the smelly factory disappeared — and Dreyfus was exonerated",
+      "tijdlijn": "Timeline of the history",
+      "readMore": "Read the story",
+      "readMoreContext": "about the history of Duivelseiland"
     }
   },
   "pages": {
