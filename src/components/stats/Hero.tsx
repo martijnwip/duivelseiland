@@ -54,7 +54,7 @@ export function Hero({ ctx }: { ctx: Ctx }) {
           </a>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo/duivelseiland-mark-color.svg" alt="" className="h-24 w-auto flex-none xl:h-44" />
+        <img src="/logo/duivelseiland-embleem.svg" alt="" className="h-24 w-auto flex-none xl:h-44" />
       </div>
       <KpiStrip ctx={ctx} />
     </section>

@@ -26,7 +26,9 @@ export function Footer({
     <footer className="bg-[#202020] py-16 text-white print:hidden">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mb-12 grid gap-12 md:grid-cols-3">
-          <div>
+          <div className="flex flex-col items-start gap-4">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo/duivelseiland-embleem.svg" alt="" width={96} height={93} className="h-24 w-auto" />
             <span className="font-serif text-xl font-bold">{siteNaam}</span>
           </div>
 

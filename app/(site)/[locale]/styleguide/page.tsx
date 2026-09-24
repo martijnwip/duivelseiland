@@ -48,11 +48,61 @@ const spacing = [
   { name: '16', px: 64, className: 'w-16', usage: 'Footer padding boven/onder' },
 ];
 
-const logos = [
-  { file: 'duivelseiland-mark-color.svg', label: 'Kleur', panelClass: 'bg-background' },
-  { file: 'duivelseiland-mark-black.svg', label: 'Zwart', panelClass: 'bg-white' },
-  { file: 'duivelseiland-mark-white.svg', label: 'Wit (reverse)', panelClass: 'bg-text' },
+type Logo = { file: string; label: string; panelClass: string };
+
+// Vaste donkere ondergrond voor witte varianten (bg-text wordt licht in het donkere thema).
+// Officieel logo: webversie van het embleem (merkkleuren, zonder traceer-spikkels).
+const logos: Logo[] = [
+  { file: 'duivelseiland-embleem.svg', label: 'Embleem op licht', panelClass: 'bg-white' },
+  { file: 'duivelseiland-embleem.svg', label: 'Embleem op donker', panelClass: 'bg-[#202020]' },
+  { file: 'duivelseiland-badge.svg', label: 'Badge op licht (header)', panelClass: 'bg-white' },
+  { file: 'duivelseiland-badge.svg', label: 'Badge op donker (header)', panelClass: 'bg-[#202020]' },
 ];
+
+const emblem: Logo[] = [
+  { file: 'Duivelseiland_logo_vector.svg', label: 'Origineel (bron)', panelClass: 'bg-white' },
+  { file: 'duivelseiland-embleem.svg', label: 'Webversie (gebruik deze)', panelClass: 'bg-white' },
+  { file: 'duivelseiland-badge.svg', label: 'Badge (zonder ringtekst)', panelClass: 'bg-white' },
+];
+
+const oldLogos: Logo[] = [
+  { file: 'duivelseiland-mark-color.svg', label: 'Kleur', panelClass: 'bg-white' },
+  { file: 'duivelseiland-mark-black.svg', label: 'Zwart', panelClass: 'bg-white' },
+  { file: 'duivelseiland-mark-white.svg', label: 'Wit (reverse)', panelClass: 'bg-[#202020]' },
+];
+
+// Sub-logo's, gegenereerd uit het embleem met scripts/extract-logo.ts.
+const duivels: Logo[] = [
+  { file: 'duivel-rood.svg', label: 'Duivel rood', panelClass: 'bg-white' },
+  { file: 'duivel-groen.svg', label: 'Duivel groen', panelClass: 'bg-white' },
+  { file: 'duivel-zwart.svg', label: 'Duivel zwart', panelClass: 'bg-white' },
+  { file: 'duivel-wit.svg', label: 'Duivel wit (reverse)', panelClass: 'bg-[#00893c]' },
+];
+
+const kaarten: Logo[] = [
+  { file: 'kaart-kleur.svg', label: 'Kaart kleur', panelClass: 'bg-[#00893c]' },
+  { file: 'kaart-rood.svg', label: 'Kaart rood', panelClass: 'bg-white' },
+  { file: 'kaart-groen.svg', label: 'Kaart groen', panelClass: 'bg-white' },
+  { file: 'kaart-zwart.svg', label: 'Kaart zwart', panelClass: 'bg-white' },
+  { file: 'kaart-wit.svg', label: 'Kaart wit (reverse)', panelClass: 'bg-[#202020]' },
+];
+
+function LogoGrid({ items, columns }: { items: Logo[]; columns: string }) {
+  return (
+    <div className={`grid grid-cols-1 gap-6 ${columns}`}>
+      {items.map((logo) => (
+        <div key={logo.label}>
+          <div className={`flex h-56 items-center justify-center rounded-lg border border-border ${logo.panelClass}`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/logo/${logo.file}`} alt="" className="h-44 w-auto" />
+          </div>
+          <p className="mt-2 text-sm font-medium">{logo.label}</p>
+          <code className="text-xs break-all text-muted">/logo/{logo.file}</code>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function StyleguidePage() {
   return (
@@ -134,20 +184,42 @@ export default function StyleguidePage() {
         </StyleguideSection>
 
         <StyleguideSection title="Logo">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {logos.map((logo) => (
-              <div key={logo.file}>
-                <div
-                  className={`flex h-56 items-center justify-center rounded-lg border border-border ${logo.panelClass}`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/logo/${logo.file}`} alt="" className="h-44 w-auto" />
-                </div>
-                <p className="mt-2 text-sm font-medium">{logo.label}</p>
-                <code className="text-xs text-muted">/logo/{logo.file}</code>
-              </div>
-            ))}
-          </div>
+          <LogoGrid items={logos} columns="sm:grid-cols-2" />
+          <ul className="list-disc space-y-1 pl-5">
+            <li>
+              <strong>Vanaf ongeveer 96px: het embleem</strong> (footer, hero, afvalkaarten). De ringtekst is pas vanaf
+              ongeveer 200px echt leesbaar.
+            </li>
+            <li>
+              <strong>Ongeveer 40–96px: de badge</strong>, het embleem zonder ringtekst en met een groter kaartje (header).
+              Zet er een woordmerk naast als de naam leesbaar moet zijn.
+            </li>
+            <li>
+              <strong>Kleiner dan ongeveer 40px: het duivelskopje</strong> (favicon, admin-icoon).
+            </li>
+            <li>
+              Het embleem heeft een eigen ring en werkt op licht, donker en gekleurde vlakken; niet hercoloreren.
+            </li>
+          </ul>
+        </StyleguideSection>
+
+        <StyleguideSection title="Embleem en sub-logo's">
+          <p>
+            De webversie en de sub-logo's (duivelskopje en kaartje) worden gegenereerd uit het origineel. Opnieuw
+            genereren na een wijziging aan het embleem:{' '}
+            <code>bun run scripts/extract-logo.ts</code>.
+          </p>
+          <LogoGrid items={emblem} columns="sm:grid-cols-3" />
+          <LogoGrid items={duivels} columns="sm:grid-cols-4" />
+          <LogoGrid items={kaarten} columns="sm:grid-cols-3" />
+          <p className="text-sm text-muted">
+            Gebruik de witte varianten op groene, rode of donkere vlakken, en de kleurversie van het kaartje op groen
+            of donker.
+          </p>
+        </StyleguideSection>
+
+        <StyleguideSection title="Vorig logo (niet meer gebruiken)">
+          <LogoGrid items={oldLogos} columns="sm:grid-cols-3" />
         </StyleguideSection>
 
         <StyleguideSection title="Typografie">

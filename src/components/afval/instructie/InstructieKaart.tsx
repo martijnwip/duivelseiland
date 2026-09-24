@@ -138,7 +138,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
             <p className="m-0 text-[16px] leading-[1.35] opacity-90 xl:text-[18px] print:text-[14px]">{t('intro')}</p>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo/duivelseiland-mark-white.svg" alt="" className="h-16 w-auto flex-none xl:h-24 print:h-16" />
+          <img src="/logo/duivelseiland-embleem.svg" alt="" className="h-16 w-auto flex-none xl:h-24 print:h-16" />
         </header>
 
         <div className="grid md:grid-cols-2 print:grid-cols-2">

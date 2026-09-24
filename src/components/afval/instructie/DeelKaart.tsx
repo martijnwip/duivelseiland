@@ -63,7 +63,7 @@ export async function DeelKaart({ locale }: { locale: string }) {
           <span className="text-[32px] leading-[1.2] opacity-90">{s('subtitle')}</span>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo/duivelseiland-mark-white.svg" alt="" className="h-[130px] w-auto flex-none" />
+        <img src="/logo/duivelseiland-embleem.svg" alt="" className="h-[130px] w-auto flex-none" />
       </header>
 
       <div className="flex flex-1 flex-col justify-between gap-5 px-12 pt-8 pb-8">

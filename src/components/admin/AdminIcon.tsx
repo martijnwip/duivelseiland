@@ -4,16 +4,16 @@ export default function AdminIcon() {
   return (
     <>
       {/* Payload zet data-theme="dark"/"light" op <html> (los van de site's
-          eigen next-themes); mark-black is onzichtbaar op de donkere
-          achtergrond, dus wisselen naar mark-white in dat thema. */}
+          eigen next-themes); het zwarte duivelskopje is onzichtbaar op de
+          donkere achtergrond, dus wisselen naar het witte in dat thema. */}
       <style style={{ display: 'none' }}>{`
         .admin-icon--light { display: block; }
         .admin-icon--dark { display: none; }
         :root[data-theme='dark'] .admin-icon--light { display: none; }
         :root[data-theme='dark'] .admin-icon--dark { display: block; }
       `}</style>
-      <img className="admin-icon--light" src="/logo/duivelseiland-mark-black.svg" alt="" style={imgStyle} />
-      <img className="admin-icon--dark" src="/logo/duivelseiland-mark-white.svg" alt="" style={imgStyle} />
+      <img className="admin-icon--light" src="/logo/duivel-zwart.svg" alt="" style={imgStyle} />
+      <img className="admin-icon--dark" src="/logo/duivel-wit.svg" alt="" style={imgStyle} />
     </>
   );
 }

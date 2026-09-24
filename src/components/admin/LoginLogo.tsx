@@ -1,5 +1,3 @@
-import AdminIcon from './AdminIcon';
-
 export default function LoginLogo() {
   return (
     <div
@@ -11,7 +9,7 @@ export default function LoginLogo() {
         // AuthCard zijn kaart ook zelf omheen centreert — i.p.v. een vaste
         // afstand vanaf de bovenkant, zodat de marge boven de kaart klopt
         // op elke schermhoogte.
-        transform: 'translate(-50%, calc(-50% - 230px))',
+        transform: 'translate(-50%, calc(-50% - 258px))',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -19,9 +17,8 @@ export default function LoginLogo() {
         zIndex: 1,
       }}
     >
-      <div style={{ width: 48, height: 60 }}>
-        <AdminIcon />
-      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/logo/duivelseiland-embleem.svg" alt="" width={120} height={116} />
       <span
         style={{
           fontSize: 'var(--font-size-h4, 1.25rem)',
