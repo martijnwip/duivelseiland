@@ -27,7 +27,7 @@ Omdat er veel expats in de buurt wonen zal de public-facing site tweetalig worde
 
 ## Buiten het CMS
 
-Statistieken over de buurt staan niet in Payload maar als JSON in de repo; zie `statistieken.md`. Uitwerking volgt later.
+Statistieken over de buurt staan niet in Payload maar als JSON in de repo; zie `STATISTIEKEN.md`. Uitwerking volgt later.
 
 ## Rollen
 
@@ -182,7 +182,7 @@ src/
 
 `users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`
 
-Buurtstatistieken staan buiten Payload als JSON in de repo (zie `statistieken.md`).
+Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
 Elke content-collection heeft `title`, `slug`, `status` (draft/published), `author`, `content` (rich text) en waar nodig `date`, `image`.
 
