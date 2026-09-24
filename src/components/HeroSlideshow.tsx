@@ -19,7 +19,7 @@ export type HeroSlide = {
 
 // Bewust vaste kleuren: de pijl is een lichte pil op de foto, in beide thema's.
 const controlClassName =
-  'flex size-9 items-center justify-center rounded-full bg-white/70 text-[#2b241c] transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50';
+  'flex size-9 items-center justify-center rounded-full bg-white/70 text-[#202020] transition-colors hover:bg-white disabled:cursor-not-allowed disabled:opacity-50';
 
 // De library tekent de stip als ::before in vast zwart met opacity .25 (actief .75): onzichtbaar in het
 // donkere thema. Themakleur en meer contrast; `!` omdat de library-selectors specifieker zijn.

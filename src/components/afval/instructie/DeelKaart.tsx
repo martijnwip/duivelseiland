@@ -31,7 +31,7 @@ function Tile({ ok = true, title, text, children }: { ok?: boolean; title: strin
 
 function Grid({ items, ok, title }: { items: Item[]; ok: boolean; title: string }) {
   return (
-    <div className={`flex flex-col gap-4 rounded-[28px] border-[4px] bg-card px-5 py-5 ${ok ? 'border-primary' : 'border-cta'}`}>
+    <div className={`flex flex-col gap-4 rounded-[28px] border-[4px] bg-card px-5 py-5 ${ok ? 'border-primary' : 'border-accent'}`}>
       <div className="flex items-center gap-3">
         <Mark ok={ok} className="size-[44px]" />
         <span className="font-heading text-[34px] font-bold text-text">{title}</span>
@@ -39,7 +39,7 @@ function Grid({ items, ok, title }: { items: Item[]; ok: boolean; title: string 
       <ul className="m-0 grid list-none grid-cols-3 gap-x-2 gap-y-4 p-0">
         {items.map((it) => (
           <li key={it.icon} className="flex flex-col items-center gap-1 text-center">
-            <Icon name={it.icon} className={`size-[58px] ${ok ? 'text-primary' : 'text-cta'}`} />
+            <Icon name={it.icon} className={`size-[58px] ${ok ? 'text-primary' : 'text-accent'}`} />
             <span className="text-[25px] leading-[1.1] font-semibold text-text">{it.short}</span>
           </li>
         ))}
@@ -63,7 +63,7 @@ export async function DeelKaart({ locale }: { locale: string }) {
           <span className="text-[32px] leading-[1.2] opacity-90">{s('subtitle')}</span>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo/duivelseiland-mark-white.svg" alt="" className="h-[130px] w-auto flex-none" />
+        <img src="/logo/duivelseiland-embleem.svg" alt="" className="h-[130px] w-auto flex-none" />
       </header>
 
       <div className="flex flex-1 flex-col justify-between gap-5 px-12 pt-8 pb-8">
@@ -85,7 +85,7 @@ export async function DeelKaart({ locale }: { locale: string }) {
           <Tile title={s('tiles.rest.title')} text={s('tiles.rest.text')}>
             <Icon name="zak" className="size-[64px]" />
             <Icon name="container" className="size-[84px]" />
-            <Icon name="rat" className="size-[60px] text-cta" strike />
+            <Icon name="rat" className="size-[60px] text-accent" strike />
           </Tile>
           <Tile title={s('tiles.karton.title')} text={s('tiles.karton.text')}>
             <Icon name="doos" className="size-[60px]" />

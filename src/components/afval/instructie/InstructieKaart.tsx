@@ -31,7 +31,7 @@ function Panel({ n, title, children, wide = false }: { n: number; title: string;
 /** Eén situatie: goed (groen, ✓) of fout (terracotta, ✗), met pictogrammen en korte uitleg. */
 function Scene({ ok, title, caption, children }: { ok: boolean; title: string; caption?: string; children: ReactNode }) {
   return (
-    <figure className={`m-0 flex min-w-0 flex-col gap-2 rounded-lg border-2 bg-background p-3 break-inside-avoid ${ok ? 'border-primary' : 'border-cta'}`}>
+    <figure className={`m-0 flex min-w-0 flex-col gap-2 rounded-lg border-2 bg-background p-3 break-inside-avoid ${ok ? 'border-primary' : 'border-accent'}`}>
       <div className="flex items-center gap-2">
         <Mark ok={ok} />
         <span className="font-heading text-[16px] leading-tight font-semibold text-text">{title}</span>
@@ -99,7 +99,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
     <ul className="m-0 grid list-none grid-cols-1 gap-x-4 gap-y-2 p-0 sm:grid-cols-2 print:grid-cols-2">
       {items.map((it) => (
         <li key={it.label} className="flex items-center gap-2.5 text-[15px] leading-[1.25] text-text print:text-[13px]">
-          <span className={`flex size-10 flex-none items-center justify-center rounded-md bg-background print:size-8 ${ok ? 'text-primary' : 'text-cta'}`}>
+          <span className={`flex size-10 flex-none items-center justify-center rounded-md bg-background print:size-8 ${ok ? 'text-primary' : 'text-accent'}`}>
             <Icon name={it.icon} className="size-7 print:size-6" />
           </span>
           <span className="sr-only">{ok ? '✓' : '✗'}</span>
@@ -138,7 +138,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
             <p className="m-0 text-[16px] leading-[1.35] opacity-90 xl:text-[18px] print:text-[14px]">{t('intro')}</p>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo/duivelseiland-mark-white.svg" alt="" className="h-16 w-auto flex-none xl:h-24 print:h-16" />
+          <img src="/logo/duivelseiland-embleem.svg" alt="" className="h-16 w-auto flex-none xl:h-24 print:h-16" />
         </header>
 
         <div className="grid md:grid-cols-2 print:grid-cols-2">
@@ -152,7 +152,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
               <Scene ok={false} title={t('rest.no')} caption={t('rest.noCaption')}>
                 <Icon name="container" className="size-14" />
                 <Icon name="zak" className="size-10" />
-                <Icon name="rat" className="size-13 text-cta" />
+                <Icon name="rat" className="size-13 text-accent" />
               </Scene>
             </div>
           </Panel>
@@ -230,7 +230,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
                 </h3>
                 {itemList(wel, true)}
               </div>
-              <div className="flex flex-col gap-3 rounded-lg border-2 border-cta bg-card p-3">
+              <div className="flex flex-col gap-3 rounded-lg border-2 border-accent bg-card p-3">
                 <h3 className="m-0 flex items-center gap-2 text-[17px] font-semibold text-text">
                   <Mark ok={false} /> {t('niet.title')}
                 </h3>

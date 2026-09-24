@@ -111,7 +111,7 @@ export async function HomeAfval({ locale }: { locale: string }) {
             <Regel icons={icon('kubus', 'size-10 text-primary')} title={t('rules.grof.title')} text={t('rules.grof.text')} />
           </ul>
           <div className="px-4 pb-4">
-            <Link href={localizedHref(locale, '/afval/instructie')} className={`${buttonCls} bg-cta text-on-cta hover:bg-cta-hover`}>
+            <Link href={localizedHref(locale, '/afval/instructie')} className={`${buttonCls} bg-primary text-on-primary hover:bg-primary-hover`}>
               {t('cardCta')}
               <span className="sr-only"> {t('cardCtaContext')}</span>
               {ARROW}

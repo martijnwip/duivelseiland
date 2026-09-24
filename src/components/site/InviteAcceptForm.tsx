@@ -46,7 +46,7 @@ export function InviteAcceptForm({ token, strings }: { token: string; strings: S
   if (status === 'success') {
     return (
       <div>
-        <h2 className="text-xl font-semibold text-primary">{strings.successHeading}</h2>
+        <h2 className="text-xl font-semibold text-text">{strings.successHeading}</h2>
         <p className="mt-2 text-muted">{strings.successDescription}</p>
       </div>
     );
@@ -69,12 +69,12 @@ export function InviteAcceptForm({ token, strings }: { token: string; strings: S
         />
       </div>
 
-      {error && <p className="text-sm text-cta">{error}</p>}
+      {error && <p className="text-sm text-accent">{error}</p>}
 
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="rounded-lg bg-cta px-4 py-2 font-medium text-on-cta transition-colors hover:bg-cta-hover disabled:opacity-60"
+        className="rounded-lg bg-primary px-4 py-2 font-medium text-on-primary transition-colors hover:bg-primary-hover disabled:opacity-60"
       >
         {status === 'submitting' ? strings.submitting : strings.submit}
       </button>

@@ -33,7 +33,7 @@ function WhatsAppButton({ href, label, context, note }: { href: string; label: s
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex min-h-11 items-center gap-2 self-start rounded-lg bg-cta px-5 py-2 font-medium text-on-cta no-underline transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+      className="inline-flex min-h-11 items-center gap-2 self-start rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
     >
       <WhatsAppIcon />
       {label}
@@ -76,7 +76,7 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
         <div className="flex flex-col gap-3 xl:grid xl:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] xl:items-end xl:gap-12">
           <div className="flex flex-col gap-4">
             <div className="text-[13px] font-semibold tracking-[0.08em] text-muted uppercase">{t('intro.eyebrow')}</div>
-            <h1 className="m-0 text-4xl leading-[1.1] font-bold text-primary xl:text-5xl">{t('intro.title')}</h1>
+            <h1 className="m-0 text-4xl leading-[1.1] font-bold text-text xl:text-5xl">{t('intro.title')}</h1>
             <p className="m-0 max-w-[620px] text-lg leading-[1.5] text-text">{t('intro.lead')}</p>
             <p className="m-0 max-w-[620px] text-lg leading-[1.5] text-text">{t('intro.doel')}</p>
           </div>

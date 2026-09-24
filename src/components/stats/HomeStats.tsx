@@ -51,7 +51,7 @@ export async function HomeStats({ locale }: { locale: string }) {
 
       <Link
         href={localizedHref(locale, '/buurt-statistieken')}
-        className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-cta px-5 py-2 font-medium text-on-cta no-underline transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       >
         {t('readMore')}
         <span className="sr-only"> {t('readMoreContext')}</span>

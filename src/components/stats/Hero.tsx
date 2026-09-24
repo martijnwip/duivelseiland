@@ -44,7 +44,7 @@ export function Hero({ ctx }: { ctx: Ctx }) {
       <div className="flex flex-col-reverse items-start justify-between gap-6 xl:flex-row xl:items-center xl:gap-16">
         <div className="flex min-w-0 flex-col gap-4 xl:gap-5">
           <div className="text-[13px] font-semibold tracking-[0.08em] text-muted uppercase">{t('hero.eyebrow')}</div>
-          <h1 className="m-0 text-[46px] leading-[1.02] font-bold tracking-[-0.02em] text-primary xl:text-[84px]">{t('heading')}</h1>
+          <h1 className="m-0 text-[46px] leading-[1.02] font-bold tracking-[-0.02em] text-text xl:text-[84px]">{t('heading')}</h1>
           <p className="m-0 max-w-[640px] text-[19px] leading-[1.45] text-text xl:text-[22px]">{t('hero.intro')}</p>
           <a
             href="#mensen"
@@ -54,7 +54,7 @@ export function Hero({ ctx }: { ctx: Ctx }) {
           </a>
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo/duivelseiland-mark-color.svg" alt="" className="h-24 w-auto flex-none xl:h-44" />
+        <img src="/logo/duivelseiland-embleem.svg" alt="" className="h-24 w-auto flex-none xl:h-44" />
       </div>
       <KpiStrip ctx={ctx} />
     </section>

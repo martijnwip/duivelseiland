@@ -32,7 +32,7 @@ export function RegelItem({ regel, naam, locale, labels, share }: { regel: Regel
           </span>
         )}
         {regel.opmerking && <span className="text-sm leading-[1.45] text-muted">{regel.opmerking}</span>}
-        {regel.melding && <span className="rounded-md border border-cta px-2.5 py-1.5 text-sm text-text">{regel.melding}</span>}
+        {regel.melding && <span className="rounded-md border border-accent px-2.5 py-1.5 text-sm text-text">{regel.melding}</span>}
       </div>
     </li>
   );

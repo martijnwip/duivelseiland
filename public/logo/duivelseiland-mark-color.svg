@@ -1,20 +1,13 @@
 <svg viewBox="150 25 380 475" xmlns="http://www.w3.org/2000/svg">
   <title>Duivelseiland devil-smiley mark</title>
-  <defs>
-    <radialGradient id="faceGlow" cx="42%" cy="36%" r="75%">
-      <stop offset="0%" stop-color="#dfc290"/>
-      <stop offset="50%" stop-color="#c99a46"/>
-      <stop offset="100%" stop-color="#a17b38"/>
-    </radialGradient>
-  </defs>
-  <path d="M398.3,366.6 C448.8,417.2 413.9,471.6 332.2,460.0 C270.0,450.2 281.7,405.5 328.3,415.2 C359.4,421.1 351.6,448.3 390.5,456.1" fill="none" stroke="#b5482e" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
-  <polygon points="390.5,438.7 417.7,456.1 386.7,475.6" fill="#b5482e"/>
-  <polygon points="212.4,166.0 178.0,73.6 304.3,147.6" fill="#b5482e"/>
-  <polygon points="467.6,166.0 502.0,73.6 375.7,147.6" fill="#b5482e"/>
-  <circle cx="340" cy="250" r="140" fill="url(#faceGlow)" stroke="#b5482e" stroke-width="19"/>
-  <ellipse cx="293.3" cy="226.7" rx="15" ry="30" fill="#2b241c"/>
-  <ellipse cx="386.7" cy="226.7" rx="15" ry="30" fill="#2b241c"/>
-  <path d="M270,289 C293,340 387,340 410,289" fill="none" stroke="#2b241c" stroke-width="10" stroke-linecap="round"/>
-  <polygon points="281.5,307.0 300.9,320.0 276.0,336.1" fill="#ffffff"/>
-  <polygon points="379.1,320.0 398.5,307.0 404.0,336.1" fill="#ffffff"/>
+  <path d="M398.3,366.6 C448.8,417.2 413.9,471.6 332.2,460.0 C270.0,450.2 281.7,405.5 328.3,415.2 C359.4,421.1 351.6,448.3 390.5,456.1" fill="none" stroke="#ec0000" stroke-width="19" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="390.5,438.7 417.7,456.1 386.7,475.6" fill="#ec0000"/>
+  <polygon points="212.4,166.0 178.0,73.6 304.3,147.6" fill="#ec0000"/>
+  <polygon points="467.6,166.0 502.0,73.6 375.7,147.6" fill="#ec0000"/>
+  <circle cx="340" cy="250" r="140" fill="#ffffff" stroke="#ec0000" stroke-width="19"/>
+  <ellipse cx="293.3" cy="226.7" rx="15" ry="30" fill="#202020"/>
+  <ellipse cx="386.7" cy="226.7" rx="15" ry="30" fill="#202020"/>
+  <path d="M270,289 C293,340 387,340 410,289" fill="none" stroke="#202020" stroke-width="10" stroke-linecap="round"/>
+  <polygon points="281.5,307.0 300.9,320.0 276.0,336.1" fill="#ffffff" stroke="#202020" stroke-width="4" stroke-linejoin="round"/>
+  <polygon points="379.1,320.0 398.5,307.0 404.0,336.1" fill="#ffffff" stroke="#202020" stroke-width="4" stroke-linejoin="round"/>
 </svg>

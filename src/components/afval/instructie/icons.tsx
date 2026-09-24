@@ -220,7 +220,7 @@ export function Icon({ name, className = 'size-10', strike = false }: { name: Ic
   return (
     <svg viewBox="0 0 48 48" className={className} fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
       {ICONS[name]}
-      {strike && <path d="M6 6l36 36" strokeWidth={4} className="stroke-cta" />}
+      {strike && <path d="M6 6l36 36" strokeWidth={4} className="stroke-accent" />}
     </svg>
   );
 }
@@ -229,7 +229,7 @@ export function Icon({ name, className = 'size-10', strike = false }: { name: Ic
 export function Mark({ ok, className = 'size-7' }: { ok: boolean; className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={`${className} flex-none`} aria-hidden>
-      <circle cx="12" cy="12" r="12" className={ok ? 'fill-primary' : 'fill-cta'} />
+      <circle cx="12" cy="12" r="12" className={ok ? 'fill-primary' : 'fill-accent'} />
       <path
         d={ok ? 'M6.5 12.5l3.5 3.5 7.5-8' : 'M7.5 7.5l9 9M16.5 7.5l-9 9'}
         fill="none"

@@ -97,7 +97,7 @@ export function BuurtborrelForm({ strings }: { strings: Strings }) {
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-lg bg-cta px-5 py-2 font-medium text-on-cta transition-colors hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60"
+        className="inline-flex min-h-11 items-center justify-center gap-2 self-start rounded-lg bg-primary px-5 py-2 font-medium text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60"
       >
         {pending ? strings.submitting : mode === 'aanmelden' ? strings.submitAanmelden : strings.submitAfmelden}
       </button>
@@ -108,7 +108,7 @@ export function BuurtborrelForm({ strings }: { strings: Strings }) {
             {state.mode === 'aanmelden' ? strings.successAanmelden : strings.successAfmelden}
           </span>
         ) : state.status === 'error' ? (
-          <span className="text-cta">{strings.error}</span>
+          <span className="text-accent">{strings.error}</span>
         ) : null}
       </p>
     </form>

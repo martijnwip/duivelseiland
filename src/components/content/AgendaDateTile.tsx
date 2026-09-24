@@ -2,7 +2,7 @@
  * Kalenderblaadje-icoon voor een agenda-datum: maand boven (band in
  * primary-kleur), dag eronder groot. text-background op de band buigt vanzelf
  * mee met licht/donker (background is crème in licht, bijna zwart in donker —
- * zelfde truc als on-cta, maar dan voor een primary-vlak).
+ * zelfde truc als on-primary, maar dan voor een primary-vlak).
  */
 export function AgendaDateTile({ date, locale }: { date: Date; locale: 'nl' | 'en' }) {
   const day = date.toLocaleDateString(locale, { day: 'numeric' });

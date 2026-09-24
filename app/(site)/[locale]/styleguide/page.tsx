@@ -9,22 +9,27 @@ export const metadata: Metadata = {
 // Tailwind's scanner needs full literal class names in the source — a
 // template-literal like `bg-${name}` would never be picked up and generated.
 const colors = [
-  { name: 'primary', hex: '#3b5d42', darkHex: '#6b9a73', swatchClass: 'bg-primary' },
-  { name: 'secondary', hex: '#c99a46', darkHex: '#e0b368', swatchClass: 'bg-secondary' },
-  { name: 'cta', hex: '#b5482e', darkHex: '#e2703f', swatchClass: 'bg-cta' },
-  { name: 'cta-hover', hex: '#9c3a24', darkHex: '#c85a2e', swatchClass: 'bg-cta-hover' },
-  { name: 'background', hex: '#f5efe3', darkHex: '#211c16', swatchClass: 'bg-background' },
-  { name: 'text', hex: '#2b241c', darkHex: '#f1e8d8', swatchClass: 'bg-text' },
-  { name: 'border', hex: '#e3d5be', darkHex: '#4a4136', swatchClass: 'bg-border' },
-  { name: 'muted', hex: '#6b5f4f', darkHex: '#a99a85', swatchClass: 'bg-muted' },
+  { name: 'primary', hex: '#00893c', darkHex: '#2fbf6a', swatchClass: 'bg-primary', usage: 'Links, knoppen, focus, iconen' },
+  { name: 'primary-hover', hex: '#10552b', darkHex: '#5fd08e', swatchClass: 'bg-primary-hover', usage: 'Hover op knoppen en links' },
+  { name: 'on-primary', hex: '#ffffff', darkHex: '#181818', swatchClass: 'bg-on-primary', usage: 'Tekst op een groen vlak' },
+  { name: 'accent', hex: '#ec0000', darkHex: '#ff5c5c', swatchClass: 'bg-accent', usage: 'Merkrood, fouten, waarschuwingen' },
+  { name: 'accent-hover', hex: '#b70000', darkHex: '#ff8080', swatchClass: 'bg-accent-hover', usage: 'Hover op rode elementen' },
+  { name: 'secondary', hex: '#009de6', darkHex: '#3fbef5', swatchClass: 'bg-secondary', usage: 'Grafieken en badges, geen tekst' },
+  { name: 'background', hex: '#ffffff', darkHex: '#181818', swatchClass: 'bg-background', usage: 'Pagina' },
+  { name: 'card', hex: '#ffffff', darkHex: '#232323', swatchClass: 'bg-card', usage: 'Kaartvlakken (met rand)' },
+  { name: 'text', hex: '#202020', darkHex: '#ededed', swatchClass: 'bg-text', usage: 'Tekst en koppen' },
+  { name: 'muted', hex: '#767676', darkHex: '#a8a8a8', swatchClass: 'bg-muted', usage: 'Ondersteunende tekst' },
+  { name: 'border', hex: '#d1d1d1', darkHex: '#3a3a3a', swatchClass: 'bg-border', usage: 'Scheidingslijnen' },
+  { name: 'input-border', hex: '#767676', darkHex: '#8a8a8a', swatchClass: 'bg-input-border', usage: 'Rand invoerveld (≥3:1)' },
 ];
 
-// Grijzen die alleen in de donkere footer (bg-text) worden gebruikt; geen onderdeel van het thema.
+// Vaste kleuren in de footer (altijd donker, ook in het lichte thema); Amsterdam-neutralen.
 const onDarkColors = [
+  { name: 'neutral-100', hex: '#202020', swatchClass: 'bg-[#202020]', usage: 'Footerachtergrond' },
   { name: 'white', hex: '#ffffff', swatchClass: 'bg-white', usage: 'Wordmark en kolomkoppen' },
-  { name: 'gray-300', hex: '#d1d5db', swatchClass: 'bg-gray-300', usage: 'Links en contactregels' },
-  { name: 'gray-400', hex: '#9ca3af', swatchClass: 'bg-gray-400', usage: 'Kleine lettertjes' },
-  { name: 'gray-700', hex: '#374151', swatchClass: 'bg-gray-700', usage: 'Scheidingslijn' },
+  { name: 'neutral-20', hex: '#d1d1d1', swatchClass: 'bg-[#d1d1d1]', usage: 'Links en contactregels' },
+  { name: '#a8a8a8', hex: '#a8a8a8', swatchClass: 'bg-[#a8a8a8]', usage: 'Kleine lettertjes' },
+  { name: 'neutral-60', hex: '#767676', swatchClass: 'bg-[#767676]', usage: 'Scheidingslijn' },
 ];
 
 const radii = [
@@ -43,21 +48,107 @@ const spacing = [
   { name: '16', px: 64, className: 'w-16', usage: 'Footer padding boven/onder' },
 ];
 
-const logos = [
-  { file: 'duivelseiland-mark-color.svg', label: 'Kleur', panelClass: 'bg-background' },
-  { file: 'duivelseiland-mark-black.svg', label: 'Zwart', panelClass: 'bg-white' },
-  { file: 'duivelseiland-mark-white.svg', label: 'Wit (reverse)', panelClass: 'bg-text' },
+type Logo = { file: string; label: string; panelClass: string };
+
+// Vaste donkere ondergrond voor witte varianten (bg-text wordt licht in het donkere thema).
+// Officieel logo: webversie van het embleem (merkkleuren, zonder traceer-spikkels).
+const logos: Logo[] = [
+  { file: 'duivelseiland-embleem.svg', label: 'Embleem op licht', panelClass: 'bg-white' },
+  { file: 'duivelseiland-embleem.svg', label: 'Embleem op donker', panelClass: 'bg-[#202020]' },
+  { file: 'duivelseiland-badge.svg', label: 'Badge op licht (header)', panelClass: 'bg-white' },
+  { file: 'duivelseiland-badge.svg', label: 'Badge op donker (header)', panelClass: 'bg-[#202020]' },
 ];
+
+const emblem: Logo[] = [
+  { file: 'Duivelseiland_logo_vector.svg', label: 'Origineel (bron)', panelClass: 'bg-white' },
+  { file: 'duivelseiland-embleem.svg', label: 'Webversie (gebruik deze)', panelClass: 'bg-white' },
+  { file: 'duivelseiland-badge.svg', label: 'Badge (zonder ringtekst)', panelClass: 'bg-white' },
+];
+
+const oldLogos: Logo[] = [
+  { file: 'duivelseiland-mark-color.svg', label: 'Kleur', panelClass: 'bg-white' },
+  { file: 'duivelseiland-mark-black.svg', label: 'Zwart', panelClass: 'bg-white' },
+  { file: 'duivelseiland-mark-white.svg', label: 'Wit (reverse)', panelClass: 'bg-[#202020]' },
+];
+
+// Sub-logo's, gegenereerd uit het embleem met scripts/extract-logo.ts.
+const duivels: Logo[] = [
+  { file: 'duivel-rood.svg', label: 'Duivel rood', panelClass: 'bg-white' },
+  { file: 'duivel-groen.svg', label: 'Duivel groen', panelClass: 'bg-white' },
+  { file: 'duivel-zwart.svg', label: 'Duivel zwart', panelClass: 'bg-white' },
+  { file: 'duivel-wit.svg', label: 'Duivel wit (reverse)', panelClass: 'bg-[#00893c]' },
+];
+
+const kaarten: Logo[] = [
+  { file: 'kaart-kleur.svg', label: 'Kaart kleur', panelClass: 'bg-[#00893c]' },
+  { file: 'kaart-rood.svg', label: 'Kaart rood', panelClass: 'bg-white' },
+  { file: 'kaart-groen.svg', label: 'Kaart groen', panelClass: 'bg-white' },
+  { file: 'kaart-zwart.svg', label: 'Kaart zwart', panelClass: 'bg-white' },
+  { file: 'kaart-wit.svg', label: 'Kaart wit (reverse)', panelClass: 'bg-[#202020]' },
+];
+
+function LogoGrid({ items, columns }: { items: Logo[]; columns: string }) {
+  return (
+    <div className={`grid grid-cols-1 gap-6 ${columns}`}>
+      {items.map((logo) => (
+        <div key={logo.label}>
+          <div className={`flex h-56 items-center justify-center rounded-lg border border-border ${logo.panelClass}`}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={`/logo/${logo.file}`} alt="" className="h-44 w-auto" />
+          </div>
+          <p className="mt-2 text-sm font-medium">{logo.label}</p>
+          <code className="text-xs break-all text-muted">/logo/{logo.file}</code>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function StyleguidePage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-primary">Styleguide</h1>
+      <h1 className="text-3xl font-bold text-text">Styleguide</h1>
       <p className="mt-2 text-muted">
         Interne referentiepagina voor kleuren, typografie en (later) componenten.
       </p>
 
       <div className="mt-8">
+        <StyleguideSection title="Gebaseerd op het Amsterdam Design System">
+          <p>
+            De kleuren komen uit het{' '}
+            <a
+              href="https://designsystem.amsterdam/?path=/docs/brand-design-tokens-colour--docs"
+              className="text-primary underline underline-offset-3 hover:text-primary-hover"
+            >
+              Amsterdam Design System
+            </a>
+            . We gebruiken twee primaire kleuren: groen (green-60) en rood (red-60), met hun level 80 als hover.
+          </p>
+          <ul className="list-disc space-y-1 pl-5">
+            <li>
+              <strong>Groen is interactief</strong>: links, knoppen en focus. Het neemt de rol over die Amsterdam aan blauw
+              geeft.
+            </li>
+            <li>
+              <strong>Rood is merk- en foutkleur</strong>: logo, accenten, foutmeldingen, &lsquo;niet toegestaan&rsquo;.
+            </li>
+            <li>Koppen en tekst zijn neutraal (#202020). Groen betekent &lsquo;klikbaar&rsquo;.</li>
+            <li>Op wit: tekst #202020, links groen. Op een groen of rood vlak: tekst en links wit (&lsquo;inverse&rsquo;).</li>
+            <li>
+              Rood en groen hebben onderling contrast 1:1 en zijn voor kleurenblinden niet te onderscheiden. Gebruik
+              kleur daarom nooit als enige verschil: zorg ook voor een icoon, label, doorstreping of lijnstijl.
+            </li>
+            <li>
+              Kaartvlakken zijn wit met een rand: op een grijze tint haalt groen/rood/grijs geen 4,5:1 meer. Azure
+              (secondary) haalt als tekst geen 4,5:1 en wordt alleen voor vlakken gebruikt.
+            </li>
+          </ul>
+          <p className="text-sm text-muted">
+            Amsterdam heeft geen donkere modus; de donkere waarden zijn van dezelfde kleuren afgeleid en halen
+            minimaal 4,5:1 op <code>card</code>.
+          </p>
+        </StyleguideSection>
+
         <StyleguideSection title="Kleuren">
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
             {colors.map((color) => (
@@ -67,6 +158,7 @@ export default function StyleguidePage() {
                 <p className="text-xs text-muted">
                   licht {color.hex} · donker {color.darkHex}
                 </p>
+                <p className="text-xs text-muted">{color.usage}</p>
                 <code className="text-xs text-muted">
                   bg-{color.name} / text-{color.name} / border-{color.name}
                 </code>
@@ -76,7 +168,7 @@ export default function StyleguidePage() {
         </StyleguideSection>
 
         <StyleguideSection title="Kleuren op donker (footer)">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
             {onDarkColors.map((color) => (
               <div key={color.name}>
                 <div className={`h-16 rounded border border-border ${color.swatchClass}`} />
@@ -87,25 +179,47 @@ export default function StyleguidePage() {
             ))}
           </div>
           <p className="text-sm text-muted">
-            Standaard Tailwind-grijzen op de <code>bg-text</code>-ondergrond van de footer.
+            Vaste waarden: de footer blijft donker, ook als de site in het lichte thema staat.
           </p>
         </StyleguideSection>
 
         <StyleguideSection title="Logo">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-            {logos.map((logo) => (
-              <div key={logo.file}>
-                <div
-                  className={`flex h-56 items-center justify-center rounded-lg border border-border ${logo.panelClass}`}
-                >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={`/logo/${logo.file}`} alt="" className="h-44 w-auto" />
-                </div>
-                <p className="mt-2 text-sm font-medium">{logo.label}</p>
-                <code className="text-xs text-muted">/logo/{logo.file}</code>
-              </div>
-            ))}
-          </div>
+          <LogoGrid items={logos} columns="sm:grid-cols-2" />
+          <ul className="list-disc space-y-1 pl-5">
+            <li>
+              <strong>Vanaf ongeveer 96px: het embleem</strong> (footer, hero, afvalkaarten). De ringtekst is pas vanaf
+              ongeveer 200px echt leesbaar.
+            </li>
+            <li>
+              <strong>Ongeveer 40–96px: de badge</strong>, het embleem zonder ringtekst en met een groter kaartje (header).
+              Zet er een woordmerk naast als de naam leesbaar moet zijn.
+            </li>
+            <li>
+              <strong>Kleiner dan ongeveer 40px: het duivelskopje</strong> (favicon, admin-icoon).
+            </li>
+            <li>
+              Het embleem heeft een eigen ring en werkt op licht, donker en gekleurde vlakken; niet hercoloreren.
+            </li>
+          </ul>
+        </StyleguideSection>
+
+        <StyleguideSection title="Embleem en sub-logo's">
+          <p>
+            De webversie en de sub-logo's (duivelskopje en kaartje) worden gegenereerd uit het origineel. Opnieuw
+            genereren na een wijziging aan het embleem:{' '}
+            <code>bun run scripts/extract-logo.ts</code>.
+          </p>
+          <LogoGrid items={emblem} columns="sm:grid-cols-3" />
+          <LogoGrid items={duivels} columns="sm:grid-cols-4" />
+          <LogoGrid items={kaarten} columns="sm:grid-cols-3" />
+          <p className="text-sm text-muted">
+            Gebruik de witte varianten op groene, rode of donkere vlakken, en de kleurversie van het kaartje op groen
+            of donker.
+          </p>
+        </StyleguideSection>
+
+        <StyleguideSection title="Vorig logo (niet meer gebruiken)">
+          <LogoGrid items={oldLogos} columns="sm:grid-cols-3" />
         </StyleguideSection>
 
         <StyleguideSection title="Typografie">
@@ -136,10 +250,13 @@ export default function StyleguidePage() {
           <div className="flex flex-col items-start gap-4">
             <button
               type="button"
-              className="rounded-lg bg-cta px-4 py-2 font-medium text-on-cta transition-colors hover:bg-cta-hover"
+              className="rounded-lg bg-primary px-4 py-2 font-medium text-on-primary transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
             >
               Versturen
             </button>
+            <a href="#" className="text-primary underline underline-offset-3 hover:text-primary-hover">
+              Tekstlink
+            </a>
             <label className="block w-full max-w-xs text-sm font-medium text-text">
               E-mailadres
               <input
@@ -147,6 +264,19 @@ export default function StyleguidePage() {
                 placeholder="naam@voorbeeld.nl"
                 className="mt-1 w-full rounded-lg border border-input-border px-3 py-2 text-text focus:border-primary focus:outline-none"
               />
+            </label>
+            <label className="block w-full max-w-xs text-sm font-medium text-text">
+              Postcode
+              <input
+                type="text"
+                defaultValue="1234"
+                aria-invalid="true"
+                aria-describedby="sg-postcode-fout"
+                className="mt-1 w-full rounded-lg border-2 border-accent px-3 py-2 text-text focus:outline-none"
+              />
+              <span id="sg-postcode-fout" className="mt-1 block text-accent">
+                Vul een geldige postcode in, bijvoorbeeld 1071 AB.
+              </span>
             </label>
           </div>
         </StyleguideSection>

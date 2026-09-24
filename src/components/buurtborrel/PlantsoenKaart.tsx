@@ -71,7 +71,7 @@ export function PlantsoenKaart({ label }: { label: string }) {
         <path
           d={`M${mx},${my}c-2-4-7-8-7-13a7,7 0 0 1 14,0c0,5-5,9-7,13z`}
           strokeWidth={1}
-          className="fill-cta stroke-card"
+          className="fill-accent stroke-card"
         />
         <circle cx={mx} cy={my - 13} r={2.6} className="fill-card" />
       </g>
