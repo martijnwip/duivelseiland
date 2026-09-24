@@ -161,7 +161,7 @@ export async function AfvalPage({ locale }: { locale: string }) {
       <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
         {(t.raw('grof.tips') as string[]).map((tip) => (
           <li key={tip} className="flex gap-3 text-[15px] leading-[1.45] text-text">
-            <span aria-hidden className="mt-2 size-1.5 flex-none rounded-full bg-cta" />
+            <span aria-hidden className="mt-2 size-1.5 flex-none rounded-full bg-accent" />
             {tip}
           </li>
         ))}
@@ -389,7 +389,7 @@ export async function AfvalPage({ locale }: { locale: string }) {
         <External
           href={LINKS.melding}
           note={note}
-          className="inline-flex min-h-11 items-center rounded-md bg-cta px-5 text-[15px] font-semibold text-on-cta no-underline hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
+          className="inline-flex min-h-11 items-center rounded-md bg-background px-5 text-[15px] font-semibold text-text no-underline hover:bg-muted-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background"
         >
           {t('meldingen.cta')}
         </External>
@@ -464,7 +464,7 @@ export async function AfvalPage({ locale }: { locale: string }) {
         <section className="flex flex-col gap-8 pt-8 pb-10 xl:gap-14 xl:pt-20 xl:pb-16">
           <div className="flex flex-col gap-4 xl:gap-5">
             <div className="text-[13px] font-semibold tracking-[0.08em] text-muted uppercase">{t('hero.eyebrow')}</div>
-            <h1 className="m-0 text-[46px] leading-[1.02] font-bold tracking-[-0.02em] text-primary xl:text-[84px]">{t('heading')}</h1>
+            <h1 className="m-0 text-[46px] leading-[1.02] font-bold tracking-[-0.02em] text-text xl:text-[84px]">{t('heading')}</h1>
             <p className="m-0 max-w-[680px] text-[19px] leading-[1.45] text-text xl:text-[22px]">{t('hero.intro')}</p>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               <a
@@ -475,7 +475,7 @@ export async function AfvalPage({ locale }: { locale: string }) {
               </a>
               <Link
                 href={localizedHref(locale, '/afval/instructie')}
-                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-4 text-[15px] font-semibold text-background no-underline hover:bg-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-4 text-[15px] font-semibold text-on-primary no-underline hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 {t('hero.card')} <span aria-hidden>→</span>
               </Link>

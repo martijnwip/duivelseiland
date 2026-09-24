@@ -23,7 +23,7 @@ export function Footer({
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
   return (
-    <footer className="bg-[#2b241c] py-16 text-white print:hidden">
+    <footer className="bg-[#202020] py-16 text-white print:hidden">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
         <div className="mb-12 grid gap-12 md:grid-cols-3">
           <div>
@@ -33,7 +33,7 @@ export function Footer({
           {menu.length > 0 ? (
             <div>
               <h4 className="mb-4 text-lg font-bold">Snel naar</h4>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2 text-[#d1d1d1]">
                 {menu.map((item) => (
                   <li key={item.url}>
                     <Link href={localizedHref(locale, item.url)} className="transition-colors hover:text-white">
@@ -48,7 +48,7 @@ export function Footer({
           {contactLines.length > 0 ? (
             <div>
               <h4 className="mb-4 text-lg font-bold">Contact</h4>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2 text-[#d1d1d1]">
                 {contactLines.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
@@ -58,7 +58,7 @@ export function Footer({
         </div>
 
         {hasRichTextContent(footerTekst) ? (
-          <div className="border-t border-gray-700 pt-8 text-sm text-gray-400">
+          <div className="border-t border-[#767676] pt-8 text-sm text-[#a8a8a8]">
             <RichText
               data={footerTekst}
               className="space-y-2 [&_a]:underline [&_a]:transition-colors [&_a:hover]:text-white"

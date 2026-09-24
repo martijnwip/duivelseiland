@@ -8,8 +8,8 @@ export const FILL: Record<Tone, string> = {
   p3: 'fill-primary-soft',
   s: 'fill-secondary',
   s5: 'fill-secondary-soft',
-  c: 'fill-cta',
-  c4: 'fill-cta-soft',
+  c: 'fill-accent',
+  c4: 'fill-accent-soft',
   m: 'fill-muted',
   m3: 'fill-muted-soft',
 };
@@ -20,8 +20,8 @@ export const STROKE: Record<Tone, string> = {
   p3: 'stroke-primary-soft',
   s: 'stroke-secondary',
   s5: 'stroke-secondary-soft',
-  c: 'stroke-cta',
-  c4: 'stroke-cta-soft',
+  c: 'stroke-accent',
+  c4: 'stroke-accent-soft',
   m: 'stroke-muted',
   m3: 'stroke-muted-soft',
 };
@@ -32,8 +32,8 @@ export const BG: Record<Tone, string> = {
   p3: 'bg-primary-soft',
   s: 'bg-secondary',
   s5: 'bg-secondary-soft',
-  c: 'bg-cta',
-  c4: 'bg-cta-soft',
+  c: 'bg-accent',
+  c4: 'bg-accent-soft',
   m: 'bg-muted',
   m3: 'bg-muted-soft',
 };

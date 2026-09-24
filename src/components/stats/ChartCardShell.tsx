@@ -63,7 +63,7 @@ export function ChartCardShell({
           {source}
           {badge && (
             <span className="inline-flex items-center gap-1.5 rounded-full border border-input-border px-2.5 py-px text-xs font-semibold whitespace-nowrap text-text">
-              <span aria-hidden className="size-1.5 rounded-full bg-cta" />
+              <span aria-hidden className="size-1.5 rounded-full bg-accent" />
               {badge}
             </span>
           )}

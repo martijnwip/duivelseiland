@@ -18,7 +18,7 @@ export default async function FotosPage({ params }: { params: Promise<{ locale: 
 
   return (
     <main className="mx-auto max-w-5xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-primary">{t('heading')}</h1>
+      <h1 className="text-3xl font-bold text-text">{t('heading')}</h1>
 
       {docs.length === 0 ? (
         <p className="mt-6 text-muted">{tc('empty')}</p>

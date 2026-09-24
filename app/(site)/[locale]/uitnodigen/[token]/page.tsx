@@ -32,7 +32,7 @@ export default async function InvitePage({
 
   return (
     <main className="mx-auto max-w-md px-4 py-16">
-      <h1 className="text-3xl font-bold text-primary">{t('heading')}</h1>
+      <h1 className="text-3xl font-bold text-text">{t('heading')}</h1>
 
       {state === 'pending' ? (
         <>
@@ -53,7 +53,7 @@ export default async function InvitePage({
           </div>
         </>
       ) : (
-        <p className="mt-4 text-cta">
+        <p className="mt-4 text-accent">
           {state === 'used' && t('usedToken')}
           {state === 'expired' && t('expiredToken')}
           {state === 'invalid' && t('invalidToken')}

@@ -51,7 +51,7 @@ export async function ContentDetailPage({
         ← {backLabel}
       </Link>
 
-      <h1 className="mt-4 text-3xl font-bold text-primary">{doc.title}</h1>
+      <h1 className="mt-4 text-3xl font-bold text-text">{doc.title}</h1>
 
       {effectiveDate ? (
         <p className="mt-1 text-sm text-muted">

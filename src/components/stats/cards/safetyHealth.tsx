@@ -153,7 +153,7 @@ export function safetyHealthCards(ctx: Ctx): Record<string, ReactNode> {
                 xs={yrs}
                 series={[
                   { vals: g.map((x) => x.van_18_tot_65), tone: 'p' },
-                  { vals: g.map((x) => x.vanaf_65), tone: 'c' },
+                  { vals: g.map((x) => x.vanaf_65), tone: 's' },
                   { vals: g.map((x) => x.vanaf_18), tone: 'm', dash: '5 4' },
                 ]}
                 ymin={50}
@@ -169,7 +169,7 @@ export function safetyHealthCards(ctx: Ctx): Record<string, ReactNode> {
             <Legend
               items={[
                 { label: names.a, tone: 'p' },
-                { label: names.b, tone: 'c' },
+                { label: names.b, tone: 's' },
                 { label: t('legend.age18plusDashed'), tone: 'm' },
               ]}
             />

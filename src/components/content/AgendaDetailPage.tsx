@@ -61,7 +61,7 @@ export async function AgendaDetailPage({
       <div className="mt-4 flex items-start gap-4">
         {effectiveDate ? <AgendaDateTile date={effectiveDate} locale={locale} /> : null}
         <div>
-          <h1 className="text-3xl font-bold text-primary">{doc.title}</h1>
+          <h1 className="text-3xl font-bold text-text">{doc.title}</h1>
 
           {effectiveDate ? (
             <p className="mt-1 text-sm text-muted capitalize">
@@ -111,7 +111,7 @@ export async function AgendaDetailPage({
           href={ctaHref!}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-8 inline-flex rounded-lg bg-cta px-4 py-2 font-medium text-on-cta transition-colors hover:bg-cta-hover"
+          className="mt-8 inline-flex rounded-lg bg-primary px-4 py-2 font-medium text-on-primary transition-colors hover:bg-primary-hover"
         >
           {richFields.ctaLabel}
         </a>

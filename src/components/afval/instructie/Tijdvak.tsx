@@ -44,7 +44,7 @@ export function Klok({ label, className = 'size-24' }: { label: string; classNam
       <defs>
         <pattern id="klok-arcering" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <rect width="6" height="6" className="fill-card" />
-          <path d="M0 0v6" strokeWidth={2.5} className="stroke-cta-soft" />
+          <path d="M0 0v6" strokeWidth={2.5} className="stroke-accent-soft" />
         </pattern>
       </defs>
       <circle cx={C} cy={C} r={R} fill="url(#klok-arcering)" />
@@ -94,7 +94,7 @@ function Lijn({ labels, W, hours }: { labels: Labels; W: number; hours: number[]
       <defs>
         <pattern id={`tijdvak-arcering-${W}`} width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
           <rect width="8" height="8" className="fill-card" />
-          <path d="M0 0v8" strokeWidth={3} className="stroke-cta-soft" />
+          <path d="M0 0v8" strokeWidth={3} className="stroke-accent-soft" />
         </pattern>
       </defs>
 

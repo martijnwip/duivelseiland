@@ -46,7 +46,7 @@ export function PraktischeKaart({ label }: { label: string }) {
       {/* AED: een druppel met de punt op de gevel, zoals de marker op de Buurtborrel-kaart. */}
       <g aria-hidden>
         <ellipse cx={ax} cy={ay} rx={6} ry={2.2} className="fill-text" opacity={0.25} />
-        <path d={`M${ax},${ay}c-3-6-10.5-12-10.5-19.5a10.5,10.5 0 0 1 21,0c0,7.5-7.5,13.5-10.5,19.5z`} strokeWidth={1.5} className="fill-cta stroke-card" />
+        <path d={`M${ax},${ay}c-3-6-10.5-12-10.5-19.5a10.5,10.5 0 0 1 21,0c0,7.5-7.5,13.5-10.5,19.5z`} strokeWidth={1.5} className="fill-accent stroke-card" />
         <circle cx={ax} cy={ay - 19.5} r={3.9} className="fill-card" />
         <text x={ax} y={ay - 36} textAnchor="middle" className="afval-label" style={{ fontSize: 14, fontWeight: 700, fill: 'var(--color-text)' }}>
           AED

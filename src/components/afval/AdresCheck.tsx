@@ -76,13 +76,13 @@ export function AdresCheck({ locale, labels }: { locale: string; labels: Labels 
         <button
           type="submit"
           disabled={state.kind === 'loading'}
-          className="col-span-2 min-h-11 cursor-pointer rounded-md border-0 bg-cta px-5 text-[15px] font-semibold text-on-cta hover:bg-cta-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60"
+          className="col-span-2 min-h-11 cursor-pointer rounded-md border-0 bg-primary px-5 text-[15px] font-semibold text-on-primary hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:opacity-60"
         >
           {state.kind === 'loading' ? labels.loading : labels.submit}
         </button>
       </form>
       <div aria-live="polite">
-        {state.kind === 'error' && <p className="m-0 text-sm text-cta">{state.msg}</p>}
+        {state.kind === 'error' && <p className="m-0 text-sm text-accent">{state.msg}</p>}
         {state.kind === 'done' && (
           <div className="flex flex-col gap-1">
             <p className="m-0 text-sm text-muted">
