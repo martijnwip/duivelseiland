@@ -334,8 +334,9 @@ Collectie J.L. Scherpenisse: foto's. © Peter Scherpenisse. Een serie van dezelf
 | # | Titel en beschrijving (Stadsarchief) | Datering | Maker / collectie | Rechten | Link |
 | --- | --- | --- | --- | --- | --- |
 | B1 | **Roelof Hartstraat 1, zijgevel in de Balthasar Floriszstraat, voormalige HBS van de gemeente Nieuwer Amstel uit 1894 van (vermoedelijk) W.J. de Groot. Links de uitbreiding uit 1897, in het midden de doorgang naar de binnenplaats** — Geheel rechts het Roelof Hartplein | 1988 | Collectie Bureau Monumentenzorg: negatiefvellen (BMAB00017000002_004) | Stadsarchief Amsterdam | [permalink](https://archief.amsterdam/beeldbank/detail/d10cd4b7-f622-adbc-d288-14da49f63199) |
+| B2 | **Roelof Hartstraat 1 met de Hoogere Burgerschool** — (geen beschrijving) | ca. 1900 | Onbekend | auteursrechtvrij | [permalink](https://archief.amsterdam/beeldbank/detail/1d372651-11fa-0e1c-1685-cae523f9e339) |
 
-**Relatie met de teksten:** dit bevestigt de HBS uit 1894 (bron 4), nu The College Hotel. Nieuw zijn de vermoedelijke architect W.J. de Groot en een **uitbreiding in 1897**. Dat is het enige "1897" dat we tot nu toe in een betrouwbare bron zien; Perplexity noemde 1897 als jaar van het opspuiten. Mogelijk toeval.
+**Relatie met de teksten:** B2 is de oudste foto van het gebouw en staat op de geschiedenispagina bij 1894. B1 bevestigt de HBS uit 1894 (bron 4), nu The College Hotel. Nieuw zijn de vermoedelijke architect W.J. de Groot en een **uitbreiding in 1897**. Dat is het enige "1897" dat we tot nu toe in een betrouwbare bron zien; Perplexity noemde 1897 als jaar van het opspuiten. Mogelijk toeval.
 
 ### C. Roelof Hartplein, jaren '30
 

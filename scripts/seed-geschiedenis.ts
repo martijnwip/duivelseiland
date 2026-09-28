@@ -18,7 +18,7 @@ const FOTOS = {
   fabriekPrent: 'd47f4bf8-11d2-a9af-6f52-fb15d76e2b7b',
   fabriekTekening: 'ccbad743-957a-393e-cda7-b4a817797ffe',
   circus: 'd86e0706-7e65-2f05-a9c0-598eabf1474c',
-  hbs1931: '552da911-da47-4f34-8de2-da12b24fd5b6',
+  hbs1900: '1d372651-11fa-0e1c-1685-cae523f9e339',
   hbs1988: 'd10cd4b7-f622-adbc-d288-14da49f63199',
   terborgstraat: 'fb44c672-c837-c15b-c667-b668bf8ddba8',
   roelofHartstraat1906: '993ce645-e37a-6f53-79ba-e2f7cfaf4d6b',
@@ -118,7 +118,7 @@ const tijdvakken: TijdvakInhoud[] = [
           'Vlak voor de annexatie opent Nieuwer-Amstel een HBS aan het latere Roelof Hartplein. Tegenwoordig is het The College Hotel.',
           'Just before the annexation, Nieuwer-Amstel opens a secondary school (HBS) on what later becomes the Roelof Hartplein. Today it is The College Hotel.',
         ),
-        foto: 'hbs1931',
+        foto: 'hbs1900',
         breuk: l('12 jaar later', '12 years later'),
       },
       {

@@ -235,6 +235,13 @@ bun run seed:geschiedenis --force  # verhaal overschrijven
 
 Foto's met rechten "Toestemming nodig" worden nergens op de site getoond, alleen gelinkt.
 
+Eén foto in het verhaal vervangen door een andere Beeldbank-foto, zonder de rest te overschrijven (importeert de nieuwe foto zo nodig; de oude blijft in Historische foto's staan):
+
+```bash
+bun run foto:vervang <oude-beeldbank-link> <nieuwe-beeldbank-link>
+bun run foto:vervang:prod <oude-beeldbank-link> <nieuwe-beeldbank-link>  # daarna het verhaal 1x opslaan in /admin
+```
+
 ## Content vertalen (NL → EN)
 
 ### Live "Vertaal naar Engels"-knop in de admin (primaire aanpak)
