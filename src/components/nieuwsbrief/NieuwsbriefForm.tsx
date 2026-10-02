@@ -7,6 +7,8 @@ export type NieuwsbriefFormStrings = {
   legend: string;
   aanmelden: string;
   afmelden: string;
+  naamLabel: string;
+  naamPlaceholder: string;
   emailLabel: string;
   emailPlaceholder: string;
   submitAanmelden: string;
@@ -49,6 +51,24 @@ export function NieuwsbriefForm({ locale, strings }: { locale: string; strings: 
           ))}
         </div>
       </fieldset>
+
+      {mode === 'aanmelden' ? (
+        <div>
+          <label htmlFor="nieuwsbrief-naam" className="block text-sm font-medium text-text">
+            {strings.naamLabel}
+          </label>
+          <input
+            id="nieuwsbrief-naam"
+            name="naam"
+            type="text"
+            maxLength={200}
+            autoComplete="name"
+            defaultValue={state.status === 'error' ? state.naam : undefined}
+            placeholder={strings.naamPlaceholder}
+            className={inputCls}
+          />
+        </div>
+      ) : null}
 
       <div>
         <label htmlFor="nieuwsbrief-email" className="block text-sm font-medium text-text">

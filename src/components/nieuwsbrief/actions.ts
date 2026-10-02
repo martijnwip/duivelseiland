@@ -5,11 +5,11 @@ import config from '@payload-config';
 import { sendNieuwsbriefMail, type NieuwsbriefMailKind } from '@/lib/nieuwsbrief/mail';
 import { EMAIL_RE, TOKEN_RE, nieuwToken } from '@/lib/nieuwsbrief/token';
 
-// Bij een fout gaat het ingevulde adres mee terug: React leegt het formulier na elke actie.
+// Bij een fout gaan het ingevulde adres en de naam mee terug: React leegt het formulier na elke actie.
 export type NieuwsbriefFormState =
   | { status: 'idle' }
   | { status: 'success'; mode: 'aanmelden' | 'afmelden' }
-  | { status: 'error'; email: string };
+  | { status: 'error'; email: string; naam: string };
 
 export type NieuwsbriefTokenState = { status: 'idle' | 'success' | 'invalid' };
 
@@ -31,8 +31,10 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
 
   const rawEmail = String(formData.get('email') ?? '');
   const email = rawEmail.trim().toLowerCase();
+  const rawNaam = String(formData.get('naam') ?? '');
+  const naam = rawNaam.trim().replace(/\s+/g, ' ').slice(0, 200);
   const locale = formData.get('locale') === 'en' ? 'en' : 'nl';
-  if (email.length > 254 || !EMAIL_RE.test(email)) return { status: 'error', email: rawEmail };
+  if (email.length > 254 || !EMAIL_RE.test(email)) return { status: 'error', email: rawEmail, naam: rawNaam };
 
   try {
     const payload = await getPayload({ config });
@@ -51,7 +53,7 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
         const token = nieuwToken();
         await payload.create({
           collection: 'nieuwsbrief-abonnees',
-          data: { email, status: 'pending', bron: 'formulier', locale, token, laatsteMailOp: now },
+          data: { email, naam: naam || null, status: 'pending', bron: 'formulier', locale, token, laatsteMailOp: now },
         });
         mail = { kind: 'bevestigen', token, locale };
       } else if (bestaand.status !== 'actief' && !recentGemaild(bestaand.laatsteMailOp)) {
@@ -60,7 +62,7 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
         await payload.update({
           collection: 'nieuwsbrief-abonnees',
           id: bestaand.id,
-          data: { status: 'pending', locale, token, laatsteMailOp: now },
+          data: { status: 'pending', locale, token, laatsteMailOp: now, ...(naam ? { naam } : {}) },
         });
         mail = { kind: 'bevestigen', token, locale };
       }
@@ -73,7 +75,7 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
     return { status: 'success', mode };
   } catch (error) {
     console.error(`[nieuwsbrief] ${mode} mislukt`, error);
-    return { status: 'error', email: rawEmail };
+    return { status: 'error', email: rawEmail, naam: rawNaam };
   }
 }
 

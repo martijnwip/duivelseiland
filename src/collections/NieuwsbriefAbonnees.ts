@@ -12,7 +12,7 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
   labels: { singular: 'Nieuwsbrief-abonnee', plural: 'Nieuwsbrief-abonnees' },
   admin: {
     useAsTitle: 'email',
-    defaultColumns: ['email', 'status', 'bron', 'locale', 'createdAt'],
+    defaultColumns: ['email', 'naam', 'status', 'bron', 'locale', 'createdAt'],
     components: {
       beforeListTable: ['/collections/NieuwsbriefImportForm#NieuwsbriefImportForm'],
     },
@@ -27,6 +27,12 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
   },
   endpoints: [{ method: 'post', path: '/import', handler: nieuwsbriefImportEndpoint }],
   fields: [
+    {
+      name: 'naam',
+      type: 'text',
+      maxLength: 200,
+      admin: { description: 'Vrije tekst; mag meerdere namen bevatten, bijv. "Guus en Henkje".' },
+    },
     { name: 'email', type: 'email', required: true, unique: true, index: true },
     {
       name: 'status',

@@ -95,6 +95,8 @@ export default async function SiteLayout({
             nieuwsbrief={{
               title: tNieuwsbrief('footer.title'),
               text: tNieuwsbrief('footer.text'),
+              naamLabel: tNieuwsbrief('form.naamLabel'),
+              naamPlaceholder: tNieuwsbrief('form.naamPlaceholder'),
               emailLabel: tNieuwsbrief('form.emailLabel'),
               emailPlaceholder: tNieuwsbrief('form.emailPlaceholder'),
               submit: tNieuwsbrief('footer.submit'),

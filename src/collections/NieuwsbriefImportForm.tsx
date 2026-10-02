@@ -4,8 +4,12 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth, useConfig, toast, Button } from '@payloadcms/ui';
 import type { NieuwsbriefImportResultaat } from './NieuwsbriefImportEndpoint';
+import { csvNaarRijen, type CsvResultaat } from '../lib/nieuwsbrief/csv';
 
-/** Boven de lijst met abonnees: adressen plakken en in één keer als actief toevoegen. Alleen voor admin. */
+/**
+ * Boven de lijst met abonnees: adressen plakken of een CSV kiezen en in één keer als actief toevoegen.
+ * De CSV wordt in de browser gelezen; alleen naam en e-mail gaan naar de server. Alleen voor admin.
+ */
 export function NieuwsbriefImportForm() {
   const {
     config: { routes, serverURL },
@@ -15,12 +19,29 @@ export function NieuwsbriefImportForm() {
 
   const [open, setOpen] = useState(false);
   const [tekst, setTekst] = useState('');
+  const [csv, setCsv] = useState<(CsvResultaat & { bestand: string }) | null>(null);
+  const [fileKey, setFileKey] = useState(0);
   const [locale, setLocale] = useState<'nl' | 'en'>('nl');
   const [toestemming, setToestemming] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultaat, setResultaat] = useState<NieuwsbriefImportResultaat | null>(null);
 
   if (user?.role !== 'admin') return null;
+
+  async function handleFile(file: File | undefined) {
+    if (!file) {
+      setCsv(null);
+      return;
+    }
+    const gelezen = csvNaarRijen(await file.text());
+    if (!gelezen || gelezen.rijen.length === 0) {
+      setCsv(null);
+      setFileKey((k) => k + 1);
+      toast.error('Geen e-mailadressen gevonden in dit bestand.');
+      return;
+    }
+    setCsv({ ...gelezen, bestand: file.name });
+  }
 
   async function handleImport() {
     if (!toestemming) {
@@ -33,7 +54,7 @@ export function NieuwsbriefImportForm() {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ tekst, locale, toestemming }),
+        body: JSON.stringify({ tekst, rijen: csv?.rijen ?? [], locale, toestemming }),
       });
       const result = await response.json();
       if (!response.ok) {
@@ -42,8 +63,10 @@ export function NieuwsbriefImportForm() {
       }
       const r = result as NieuwsbriefImportResultaat;
       setResultaat(r);
-      toast.success(`${r.toegevoegd} toegevoegd, ${r.geactiveerd} geactiveerd, ${r.alActief} stonden er al.`);
+      toast.success(`${r.toegevoegd} toegevoegd, ${r.geactiveerd} geactiveerd, ${r.alActief} stonden er al, ${r.naamAangevuld} namen aangevuld.`);
       setTekst('');
+      setCsv(null);
+      setFileKey((k) => k + 1);
       setToestemming(false);
       router.refresh();
     } catch {
@@ -80,9 +103,33 @@ export function NieuwsbriefImportForm() {
         Adressen importeren
       </label>
       <p style={{ margin: 0, color: 'var(--theme-elevation-500)' }}>
-        Plak e-mailadressen, gescheiden door enters, komma&apos;s of puntkomma&apos;s. &quot;Naam &lt;adres&gt;&quot; uit
-        Outlook werkt ook. Ze worden direct actief, zonder bevestigingsmail. Afgemelde adressen worden overgeslagen.
+        Kies een CSV-bestand of plak adressen, één per regel. Een naam op dezelfde regel (&quot;Naam &lt;adres&gt;&quot;,
+        &quot;Naam;adres&quot;) wordt meegenomen. Uit een CSV worden alleen de kolommen naam en e-mail gebruikt. Adressen
+        worden direct actief, zonder bevestigingsmail. Afgemelde adressen worden overgeslagen en bestaande namen niet
+        overschreven.
       </p>
+      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+        CSV-bestand:
+        <input key={fileKey} type="file" accept=".csv,text/csv" onChange={(e) => handleFile(e.target.files?.[0])} />
+      </label>
+      {csv ? (
+        <div style={{ fontSize: '0.9em' }}>
+          <p style={{ margin: 0 }}>
+            {csv.bestand}: {csv.rijen.length} adressen gevonden in kolom &quot;{csv.emailKolom}&quot;
+            {csv.naamKolom ? <>, namen uit &quot;{csv.naamKolom}&quot;</> : <>, geen naamkolom gevonden</>}
+            {csv.zonderAdres > 0 ? <>. {csv.zonderAdres} rijen zonder adres worden overgeslagen</> : null}.
+          </p>
+          <ul style={{ margin: '0.25rem 0 0', paddingLeft: '1.25rem' }}>
+            {csv.rijen.slice(0, 5).map((r) => (
+              <li key={r.email}>
+                {r.naam ? `${r.naam} — ` : ''}
+                {r.email}
+              </li>
+            ))}
+            {csv.rijen.length > 5 ? <li>…</li> : null}
+          </ul>
+        </div>
+      ) : null}
       <textarea
         id="nieuwsbrief-import-tekst"
         rows={8}
@@ -110,7 +157,7 @@ export function NieuwsbriefImportForm() {
         Deze mensen hebben toestemming gegeven om de nieuwsbrief te ontvangen.
       </label>
       <div style={{ display: 'flex', gap: '0.5rem' }}>
-        <Button onClick={handleImport} disabled={loading || !tekst.trim()}>
+        <Button onClick={handleImport} disabled={loading || (!tekst.trim() && !csv)}>
           {loading ? 'Importeren…' : 'Importeren'}
         </Button>
         <Button buttonStyle="secondary" onClick={() => setOpen(false)}>
@@ -122,7 +169,7 @@ export function NieuwsbriefImportForm() {
         <div style={{ fontSize: '0.9em' }}>
           <p style={{ margin: 0 }}>
             {resultaat.toegevoegd} toegevoegd, {resultaat.geactiveerd} van &quot;wacht op bevestiging&quot; naar actief,{' '}
-            {resultaat.alActief} stonden er al.
+            {resultaat.alActief} stonden er al, {resultaat.naamAangevuld} namen aangevuld.
           </p>
           {resultaat.afgemeldOvergeslagen.length > 0 ? (
             <p style={{ margin: 0 }}>

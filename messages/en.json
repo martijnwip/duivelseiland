@@ -1576,6 +1576,8 @@
       "legend": "What would you like to do?",
       "aanmelden": "Subscribe",
       "afmelden": "Unsubscribe",
+      "naamLabel": "Name (optional)",
+      "naamPlaceholder": "E.g. Guus and Henkje",
       "emailLabel": "Your email address",
       "emailPlaceholder": "name@example.com",
       "submitAanmelden": "Subscribe",

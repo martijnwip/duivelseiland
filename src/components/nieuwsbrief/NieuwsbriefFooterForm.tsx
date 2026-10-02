@@ -4,6 +4,8 @@ import { useActionState } from 'react';
 import { submitNieuwsbrief, type NieuwsbriefFormState } from './actions';
 
 export type NieuwsbriefFooterStrings = {
+  naamLabel: string;
+  naamPlaceholder: string;
   emailLabel: string;
   emailPlaceholder: string;
   submit: string;
@@ -22,6 +24,19 @@ export function NieuwsbriefFooterForm({ locale, strings }: { locale: string; str
     <form action={formAction} className="flex flex-col gap-2">
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="mode" value="aanmelden" />
+      <label htmlFor="footer-nieuwsbrief-naam" className="sr-only">
+        {strings.naamLabel}
+      </label>
+      <input
+        id="footer-nieuwsbrief-naam"
+        name="naam"
+        type="text"
+        maxLength={200}
+        autoComplete="name"
+        defaultValue={state.status === 'error' ? state.naam : undefined}
+        placeholder={strings.naamPlaceholder}
+        className="min-h-11 rounded-lg border border-[#767676] bg-[#2b2b2b] px-3 py-2 text-white placeholder:text-[#a8a8a8] focus:border-white focus:outline-none"
+      />
       <label htmlFor="footer-nieuwsbrief-email" className="sr-only">
         {strings.emailLabel}
       </label>

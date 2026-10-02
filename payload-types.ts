@@ -614,6 +614,10 @@ export interface IdeeLike {
  */
 export interface NieuwsbriefAbonnee {
   id: number;
+  /**
+   * Vrije tekst; mag meerdere namen bevatten, bijv. "Guus en Henkje".
+   */
+  naam?: string | null;
   email: string;
   status: 'pending' | 'actief' | 'afgemeld';
   /**
@@ -1088,6 +1092,7 @@ export interface IdeeLikesSelect<T extends boolean = true> {
  * via the `definition` "nieuwsbrief-abonnees_select".
  */
 export interface NieuwsbriefAbonneesSelect<T extends boolean = true> {
+  naam?: T;
   email?: T;
   status?: T;
   locale?: T;

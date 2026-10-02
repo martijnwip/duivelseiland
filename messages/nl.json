@@ -1393,6 +1393,8 @@
       "legend": "Wat wil je doen?",
       "aanmelden": "Aanmelden",
       "afmelden": "Afmelden",
+      "naamLabel": "Naam (optioneel)",
+      "naamPlaceholder": "Bijv. Guus en Henkje",
       "emailLabel": "Je e-mailadres",
       "emailPlaceholder": "naam@voorbeeld.nl",
       "submitAanmelden": "Aanmelden",
