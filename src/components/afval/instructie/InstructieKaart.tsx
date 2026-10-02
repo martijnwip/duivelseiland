@@ -246,6 +246,11 @@ export async function InstructieKaart({ locale }: { locale: string }) {
             {base ? `${base}${afvalHref}` : afvalHref}
           </Link>
         </footer>
+        <p className="m-0 bg-background px-5 pb-2 text-right text-[12px] text-muted xl:px-6 print:text-[10px]">
+          <a href="https://martijnwip.nl" className="text-muted no-underline hover:underline">
+            {t('credit')}
+          </a>
+        </p>
       </article>
     </main>
   );

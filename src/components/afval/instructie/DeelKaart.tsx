@@ -111,9 +111,12 @@ export async function DeelKaart({ locale }: { locale: string }) {
       </div>
 
       {/* Voetbalk met website in de hoek */}
-      <footer className="flex items-center justify-between gap-6 border-t-[4px] border-text bg-card px-14 py-7">
-        <span className="max-w-[440px] text-[26px] leading-[1.25] text-muted">{s('footer')}</span>
-        <span className="font-heading text-[46px] font-bold text-primary">{s('site')}</span>
+      <footer className="flex flex-col gap-3 border-t-[4px] border-text bg-card px-14 pt-7 pb-5">
+        <div className="flex items-center justify-between gap-6">
+          <span className="max-w-[440px] text-[26px] leading-[1.25] text-muted">{s('footer')}</span>
+          <span className="font-heading text-[46px] font-bold text-primary">{s('site')}</span>
+        </div>
+        <span className="text-right text-[22px] text-muted">{t('credit')}</span>
       </footer>
     </div>
   );
