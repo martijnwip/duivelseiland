@@ -1,11 +1,17 @@
 import type { CollectionConfig } from 'payload';
 import { isRedacteurOrAdminField } from '../access/isAdmin';
+import { isOwnerOrRedacteur } from '../access/isOwnerOrRedacteur';
 import { setAuthor } from './shared/setAuthor';
 
 export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: () => true,
+    // Iedere ingelogde gebruiker mag uploaden (ook een organisator, voor de eigen headerafbeelding);
+    // wijzigen en verwijderen alleen eigen uploads, of alles voor redacteur/admin (PROJECT.md, rechtenmatrix).
+    create: ({ req }) => Boolean(req.user),
+    update: isOwnerOrRedacteur('uploadedBy'),
+    delete: isOwnerOrRedacteur('uploadedBy'),
   },
   admin: {
     components: {

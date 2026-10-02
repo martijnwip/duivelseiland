@@ -20,6 +20,17 @@ export const Agenda: CollectionConfig = {
   fields: [
     ...contentFields(),
     {
+      // Gezet bij goedkeuring van een activiteit (src/lib/activiteiten/agenda.ts). Alleen agenda-items mét koppeling tonen
+      // een aanmeldknop naar de activiteit (docs/brief-activiteiten.md, flow 7).
+      name: 'activiteit',
+      type: 'relationship',
+      relationTo: 'activiteiten',
+      admin: {
+        position: 'sidebar',
+        description: 'Optioneel. Gekoppelde buurtactiviteit; bezoekers kunnen zich dan via dit agenda-item aanmelden.',
+      },
+    },
+    {
       name: 'recurrence',
       type: 'select',
       options: [

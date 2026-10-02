@@ -3,10 +3,17 @@ import { APIError } from 'payload';
 import type { PayloadWithAuth } from '@delmaredigital/payload-better-auth';
 import { betterAuthStrategy } from '@delmaredigital/payload-better-auth';
 import { isAdmin, isAdminField } from '../access/isAdmin';
+import { hasRoleAtLeast } from '../access/roles';
 import { betterAuthOptions } from '../lib/auth/config';
+import { adresboekHooks } from '../lib/adresboek';
+
+// Een gebruiker logt in via een magic link en heeft het adres daarmee bewezen.
+const adresboek = adresboekHooks<{ email: string }>((d) => d.email, () => true);
 
 const sendInviteEmail: CollectionAfterChangeHook = async ({ doc, operation, req }) => {
   if (operation !== 'create') return;
+  // Organisatoren krijgen bij goedkeuring van hun activiteit een eigen mail (src/lib/activiteiten/workflow.ts).
+  if (req.context?.skipInviteMail) return;
 
   const payload = req.payload as PayloadWithAuth<typeof betterAuthOptions>;
 
@@ -38,9 +45,23 @@ export const Users: CollectionConfig = {
     // Nodig omdat firstUserAdmin uitstaat: de plugin forceert de rol dan niet
     // zelf meer op de create-request, dus dit moet hier expliciet dicht.
     create: isAdmin,
+    // Redacteur en admin zien alle gebruikers (nodig voor auteur-relaties); auteur en organisator
+    // alleen het eigen profiel. Zonder deze regels gold Payload's standaard "elke ingelogde gebruiker".
+    read: ({ req }) => {
+      if (!req.user) return false;
+      if (hasRoleAtLeast(req.user.role, 'redacteur')) return true;
+      return { id: { equals: req.user.id } };
+    },
+    update: ({ req }) => {
+      if (!req.user) return false;
+      if (hasRoleAtLeast(req.user.role, 'admin')) return true;
+      return { id: { equals: req.user.id } };
+    },
+    delete: isAdmin,
   },
   hooks: {
-    afterChange: [sendInviteEmail],
+    afterChange: [sendInviteEmail, adresboek.afterChange],
+    afterDelete: [adresboek.afterDelete],
     beforeDelete: [
       async ({ req, id }) => {
         const doc = await req.payload.findByID({ collection: 'users', id, req });
@@ -73,7 +94,7 @@ export const Users: CollectionConfig = {
     {
       name: 'role',
       type: 'select',
-      options: ['admin', 'redacteur', 'auteur'],
+      options: ['admin', 'redacteur', 'auteur', 'organisator'],
       defaultValue: 'auteur',
       required: true,
       access: {

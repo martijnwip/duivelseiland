@@ -13,6 +13,7 @@ Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer
 - Buurt Statistieken 👉 STATISTIEKEN.md
 - Nieuws
 - Agenda
+- Activiteiten 👉 docs/brief-activiteiten.md
 
 ## Tweetalig
 Omdat er veel expats in de buurt wonen zal de public-facing site tweetalig worden gemaakt met een switch tussen Nederlands / Engels
@@ -31,13 +32,20 @@ Statistieken over de buurt staan niet in Payload maar als JSON in de repo; zie `
 
 ## Rollen
 
-Er zijn drie ingelogde rollen en één publieke rol. Een gebruiker heeft precies één rol, vastgelegd in het veld `role` op de collection `users`.
+Er zijn vier ingelogde rollen en één publieke rol. Een gebruiker heeft precies één rol, vastgelegd in het veld `role` op de collection `users`.
 
 ### Bezoeker (niet ingelogd)
 
 - Ziet alleen gepubliceerde content (`status = published`).
 - Kan niets aanmaken, wijzigen of verwijderen.
 - Heeft geen toegang tot `/admin`.
+
+### Organisator
+
+Buurtbewoner van wie een activiteitidee is goedgekeurd (zie `docs/brief-activiteiten.md`). Laagste rol, onder auteur.
+
+- Ziet en bewerkt alleen de eigen activiteit(en), de aanmeldingen daarvan en de berichten aan deelnemers.
+- Kan geen andere content aanmaken; ziet in `/admin` alleen Activiteiten, Aanmeldingen, Berichten, Media en het eigen profiel.
 
 ### Auteur
 
@@ -81,6 +89,11 @@ Technisch beheerder.
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
+| Activiteiten           | lezen (goedgekeurd/gaat-door/afgelopen), idee indienen via formulier | lezen (publiek) | alles + modereren | alles |
+| Aanmeldingen / Berichten | inschrijven/afmelden via formulier | geen                      | alles                        | alles |
+| E-mailadressen (adresboek) | geen            | geen                             | geen                         | alles |
+
+Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-door/afgelast/afgelopen), de aanmeldingen daarvan (lezen, verwijderen, CSV) en berichten aan die deelnemers (max. 3 per week).
 | Globals (instellingen) | lezen             | geen                             | lezen                        | alles |
 
 ## Regels die voor alle rollen gelden
@@ -93,7 +106,7 @@ Technisch beheerder.
 
 ## Implementatie in Payload (samenvatting)
 
-- `users.role`: select-veld met opties `admin`, `redacteur`, `auteur`; standaard `auteur`.
+- `users.role`: select-veld met opties `admin`, `redacteur`, `auteur`, `organisator`; standaard `auteur`.
 - Hulpfuncties in `access/`:
   - `isAdmin`
   - `isRedacteurOrAdmin`
@@ -180,7 +193,7 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 

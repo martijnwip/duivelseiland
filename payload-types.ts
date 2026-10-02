@@ -82,6 +82,10 @@ export interface Config {
     slideshows: Slideshow;
     'idee-likes': IdeeLike;
     'nieuwsbrief-abonnees': NieuwsbriefAbonnee;
+    activiteiten: Activiteiten;
+    'activiteit-inschrijvingen': ActiviteitInschrijvingen;
+    'activiteit-berichten': ActiviteitBerichten;
+    'email-adressen': EmailAdressen;
     sessions: Session;
     accounts: Account;
     verifications: Verification;
@@ -107,6 +111,10 @@ export interface Config {
     slideshows: SlideshowsSelect<false> | SlideshowsSelect<true>;
     'idee-likes': IdeeLikesSelect<false> | IdeeLikesSelect<true>;
     'nieuwsbrief-abonnees': NieuwsbriefAbonneesSelect<false> | NieuwsbriefAbonneesSelect<true>;
+    activiteiten: ActiviteitenSelect<false> | ActiviteitenSelect<true>;
+    'activiteit-inschrijvingen': ActiviteitInschrijvingenSelect<false> | ActiviteitInschrijvingenSelect<true>;
+    'activiteit-berichten': ActiviteitBerichtenSelect<false> | ActiviteitBerichtenSelect<true>;
+    'email-adressen': EmailAdressenSelect<false> | EmailAdressenSelect<true>;
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
     verifications: VerificationsSelect<false> | VerificationsSelect<true>;
@@ -167,7 +175,7 @@ export interface User {
   id: number;
   name?: string | null;
   emailVerified?: boolean | null;
-  role: 'admin' | 'redacteur' | 'auteur';
+  role: 'admin' | 'redacteur' | 'auteur' | 'organisator';
   /**
    * Auto-added by Better Auth (email)
    */
@@ -314,6 +322,10 @@ export interface Agenda {
   } | null;
   date?: string | null;
   image?: (number | null) | Media;
+  /**
+   * Optioneel. Gekoppelde buurtactiviteit; bezoekers kunnen zich dan via dit agenda-item aanmelden.
+   */
+  activiteit?: (number | null) | Activiteiten;
   recurrence?: ('none' | 'monthly-first-sunday') | null;
   /**
    * Tijdstip van het event, bijv. 12:30
@@ -350,6 +362,85 @@ export interface Agenda {
    * Link waar de knop naartoe gaat (alleen gebruikt als hierboven geen WhatsApp-nummer is ingevuld).
    */
   ctaUrl?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Ideeën en activiteiten van buurtbewoners. Nieuwe ideeën staan op "Wacht op goedkeuring": keur goed of wijs af met een reden (knoppen bovenaan het item). Na goedkeuring staat de activiteit online en kunnen buren zich aanmelden.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activiteiten".
+ */
+export interface Activiteiten {
+  id: number;
+  title: string;
+  /**
+   * Wat, voor wie, hoe vaak en waar ongeveer.
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  soort: 'eenmalig' | 'terugkerend';
+  /**
+   * Bijv. "elke eerste dinsdag van de maand".
+   */
+  soortToelichting?: string | null;
+  voorlopigeDatum?: string | null;
+  /**
+   * Nodig om de activiteit op de agenda te zetten.
+   */
+  datum?: string | null;
+  image?: (number | null) | Media;
+  /**
+   * De taal waarin aanvrager en organisator mails krijgen.
+   */
+  locale: 'nl' | 'en';
+  /**
+   * Goedkeuren en afwijzen doet de redactie (knoppen bovenaan). Daarna kiest de organisator: Gaat door, Afgelast of Afgelopen.
+   */
+  fase: 'onbevestigd' | 'ingediend' | 'afgewezen' | 'goedgekeurd' | 'gaat-door' | 'afgelast' | 'afgelopen';
+  /**
+   * Alleen invullen als je afkeurt; wordt naar de organisator gemaild.
+   */
+  afwijsReden?: string | null;
+  /**
+   * Adres van de pagina: /activiteiten/<slug>. Na goedkeuring niet meer wijzigen.
+   */
+  slug: string;
+  /**
+   * Staat na goedkeuring open. De organisator sluit hem als het vol is; de activiteit blijft dan zichtbaar.
+   */
+  inschrijving?: ('open' | 'gesloten') | null;
+  /**
+   * Optioneel. Bij dit aantal sluit de aanmelding vanzelf.
+   */
+  maxDeelnemers?: number | null;
+  toonAantal?: boolean | null;
+  meldingBijInschrijving?: boolean | null;
+  aanvragerNaam?: string | null;
+  /**
+   * Uit het aanmeldformulier, nooit publiek. Wordt bij goedkeuring automatisch de organisator.
+   */
+  aanvragerEmail?: string | null;
+  /**
+   * Gekoppeld bij goedkeuring. De redactie kan het eigenaarschap overdragen.
+   */
+  eigenaar?: (number | null) | User;
+  agendaItem?: (number | null) | Agenda;
+  token?: string | null;
+  laatsteMailOp?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -636,6 +727,69 @@ export interface NieuwsbriefAbonnee {
   createdAt: string;
 }
 /**
+ * Wie meedoet met een activiteit. Alleen "Actief" telt mee. Dit zijn persoonsgegevens: alleen gebruiken voor deze activiteit.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activiteit-inschrijvingen".
+ */
+export interface ActiviteitInschrijvingen {
+  id: number;
+  activiteit: number | Activiteiten;
+  voornaam: string;
+  email: string;
+  opmerking?: string | null;
+  status: 'pending' | 'actief' | 'afgemeld';
+  locale: 'nl' | 'en';
+  token: string;
+  bevestigdOp?: string | null;
+  afgemeldOp?: string | null;
+  laatsteMailOp?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Opslaan = versturen aan alle actieve deelnemers. Antwoorden komen bij jou binnen. Maximaal 3 berichten per 7 dagen per activiteit.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activiteit-berichten".
+ */
+export interface ActiviteitBerichten {
+  id: number;
+  activiteit: number | Activiteiten;
+  onderwerp: string;
+  /**
+   * Platte tekst; links mogen. Onder elke mail komt automatisch een afmeldlink.
+   */
+  tekst: string;
+  afzender?: (number | null) | User;
+  verzondenOp?: string | null;
+  aantalOntvangers?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Alle e-mailadressen op de site. Bevestigd = hoeft niet opnieuw per mail te bevestigen. Bevestigen zet wat nog wacht door (idee naar de redactie, aanmelding en nieuwsbrief actief). Niet bevestigd geldt alleen voor nieuwe aanmeldingen. Verwijderen haalt het adres overal weg (nieuwsbrief, aanmeldingen, niet goedgekeurde ideeën); gebruikersaccounts beheer je bij Users.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "email-adressen".
+ */
+export interface EmailAdressen {
+  id: number;
+  email: string;
+  /**
+   * Aan: geen bevestigingsmail meer nodig, en wat nog wacht gaat door.
+   */
+  bevestigd?: boolean | null;
+  bevestigdOp?: string | null;
+  /**
+   * Wordt automatisch bijgehouden.
+   */
+  lijsten?: string | null;
+  notitie?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Auto-generated from Better Auth schema (session)
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -769,6 +923,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'nieuwsbrief-abonnees';
         value: number | NieuwsbriefAbonnee;
+      } | null)
+    | ({
+        relationTo: 'activiteiten';
+        value: number | Activiteiten;
+      } | null)
+    | ({
+        relationTo: 'activiteit-inschrijvingen';
+        value: number | ActiviteitInschrijvingen;
+      } | null)
+    | ({
+        relationTo: 'activiteit-berichten';
+        value: number | ActiviteitBerichten;
+      } | null)
+    | ({
+        relationTo: 'email-adressen';
+        value: number | EmailAdressen;
       } | null)
     | ({
         relationTo: 'sessions';
@@ -936,6 +1106,7 @@ export interface AgendaSelect<T extends boolean = true> {
   content?: T;
   date?: T;
   image?: T;
+  activiteit?: T;
   recurrence?: T;
   recurrenceTime?: T;
   intro?: T;
@@ -1101,6 +1272,80 @@ export interface NieuwsbriefAbonneesSelect<T extends boolean = true> {
   bevestigdOp?: T;
   afgemeldOp?: T;
   laatsteMailOp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activiteiten_select".
+ */
+export interface ActiviteitenSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  soort?: T;
+  soortToelichting?: T;
+  voorlopigeDatum?: T;
+  datum?: T;
+  image?: T;
+  locale?: T;
+  fase?: T;
+  afwijsReden?: T;
+  slug?: T;
+  inschrijving?: T;
+  maxDeelnemers?: T;
+  toonAantal?: T;
+  meldingBijInschrijving?: T;
+  aanvragerNaam?: T;
+  aanvragerEmail?: T;
+  eigenaar?: T;
+  agendaItem?: T;
+  token?: T;
+  laatsteMailOp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activiteit-inschrijvingen_select".
+ */
+export interface ActiviteitInschrijvingenSelect<T extends boolean = true> {
+  activiteit?: T;
+  voornaam?: T;
+  email?: T;
+  opmerking?: T;
+  status?: T;
+  locale?: T;
+  token?: T;
+  bevestigdOp?: T;
+  afgemeldOp?: T;
+  laatsteMailOp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "activiteit-berichten_select".
+ */
+export interface ActiviteitBerichtenSelect<T extends boolean = true> {
+  activiteit?: T;
+  onderwerp?: T;
+  tekst?: T;
+  afzender?: T;
+  verzondenOp?: T;
+  aantalOntvangers?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "email-adressen_select".
+ */
+export interface EmailAdressenSelect<T extends boolean = true> {
+  email?: T;
+  bevestigd?: T;
+  bevestigdOp?: T;
+  lijsten?: T;
+  notitie?: T;
   updatedAt?: T;
   createdAt?: T;
 }

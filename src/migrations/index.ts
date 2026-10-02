@@ -21,7 +21,11 @@ import * as migration_20260924_121946_geschiedenis_verhaal from './20260924_1219
 import * as migration_20261002_093041_idee_likes from './20261002_093041_idee_likes';
 import * as migration_20261002_100644_nieuwsbrief_abonnees from './20261002_100644_nieuwsbrief_abonnees';
 import * as migration_20261002_104348_nieuwsbrief_bron from './20261002_104348_nieuwsbrief_bron';
+import * as migration_20261002_125350_activiteiten from './20261002_125350_activiteiten';
 import * as migration_20261002_131210_nieuwsbrief_naam from './20261002_131210_nieuwsbrief_naam';
+import * as migration_20261002_133220_adresboek from './20261002_133220_adresboek';
+import * as migration_20261002_140942_fase_goedgekeurd from './20261002_140942_fase_goedgekeurd';
+import * as migration_20261002_143838_merge_activiteiten_nieuwsbrief from './20261002_143838_merge_activiteiten_nieuwsbrief';
 
 export const migrations = [
   {
@@ -140,8 +144,28 @@ export const migrations = [
     name: '20261002_104348_nieuwsbrief_bron',
   },
   {
+    up: migration_20261002_125350_activiteiten.up,
+    down: migration_20261002_125350_activiteiten.down,
+    name: '20261002_125350_activiteiten',
+  },
+  {
     up: migration_20261002_131210_nieuwsbrief_naam.up,
     down: migration_20261002_131210_nieuwsbrief_naam.down,
-    name: '20261002_131210_nieuwsbrief_naam'
+    name: '20261002_131210_nieuwsbrief_naam',
+  },
+  {
+    up: migration_20261002_133220_adresboek.up,
+    down: migration_20261002_133220_adresboek.down,
+    name: '20261002_133220_adresboek',
+  },
+  {
+    up: migration_20261002_140942_fase_goedgekeurd.up,
+    down: migration_20261002_140942_fase_goedgekeurd.down,
+    name: '20261002_140942_fase_goedgekeurd',
+  },
+  {
+    up: migration_20261002_143838_merge_activiteiten_nieuwsbrief.up,
+    down: migration_20261002_143838_merge_activiteiten_nieuwsbrief.down,
+    name: '20261002_143838_merge_activiteiten_nieuwsbrief'
   },
 ];
