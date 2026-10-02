@@ -1433,7 +1433,9 @@
         "ruilbeurs": "Swap market for clothes, books and toys",
         "jouwIdee": "Or your idea?"
       },
-      "motto": "We do it for each other, and with each other."
+      "motto": "We do it for each other, and with each other.",
+      "likeHint": "Tap the heart on the ideas you like.",
+      "like": "{idee}: I like this ({count})"
     },
     "doeMee": {
       "eyebrow": "Join in",

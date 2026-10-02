@@ -80,6 +80,7 @@ export interface Config {
     'hero-slides': HeroSlide;
     'historische-fotos': HistorischeFoto;
     slideshows: Slideshow;
+    'idee-likes': IdeeLike;
     sessions: Session;
     accounts: Account;
     verifications: Verification;
@@ -103,6 +104,7 @@ export interface Config {
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
     'historische-fotos': HistorischeFotosSelect<false> | HistorischeFotosSelect<true>;
     slideshows: SlideshowsSelect<false> | SlideshowsSelect<true>;
+    'idee-likes': IdeeLikesSelect<false> | IdeeLikesSelect<true>;
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
     verifications: VerificationsSelect<false> | VerificationsSelect<true>;
@@ -587,6 +589,22 @@ export interface Slideshow {
   createdAt: string;
 }
 /**
+ * Hartjes bij de ideeën op de Buurtborrel-pagina. Filter op idee om het aantal te zien.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "idee-likes".
+ */
+export interface IdeeLike {
+  id: number;
+  idee: 'nieuwjaarstoast' | 'picknick' | 'paasbrunch' | 'koningsdag' | 'ruilbeurs';
+  /**
+   * Anonieme id van de browser; geen persoonsgegevens.
+   */
+  stemmer: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Auto-generated from Better Auth schema (session)
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -712,6 +730,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'slideshows';
         value: number | Slideshow;
+      } | null)
+    | ({
+        relationTo: 'idee-likes';
+        value: number | IdeeLike;
       } | null)
     | ({
         relationTo: 'sessions';
@@ -1017,6 +1039,16 @@ export interface SlideshowsSelect<T extends boolean = true> {
   name?: T;
   generateSlug?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "idee-likes_select".
+ */
+export interface IdeeLikesSelect<T extends boolean = true> {
+  idee?: T;
+  stemmer?: T;
   updatedAt?: T;
   createdAt?: T;
 }

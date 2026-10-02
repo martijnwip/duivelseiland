@@ -13,6 +13,7 @@ import { DuivelseKunst } from './collections/DuivelseKunst';
 import { Geschiedenis } from './collections/Geschiedenis';
 import { HeroSlides } from './collections/HeroSlides';
 import { HistorischeFotos } from './collections/HistorischeFotos';
+import { IdeeLikes } from './collections/IdeeLikes';
 import { InviteLinks } from './collections/InviteLinks';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
@@ -70,6 +71,7 @@ export default buildConfig({
     HeroSlides,
     HistorischeFotos,
     Slideshows,
+    IdeeLikes,
   ],
 
   globals: [SiteInstellingen, OverDeNaam, GeschiedenisVerhaal, Buurtborrel],

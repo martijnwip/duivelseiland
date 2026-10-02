@@ -1250,7 +1250,9 @@
         "ruilbeurs": "Ruilbeurs voor kleding, boeken en speelgoed",
         "jouwIdee": "Of jouw idee?"
       },
-      "motto": "We doen het voor elkaar, én met elkaar."
+      "motto": "We doen het voor elkaar, én met elkaar.",
+      "likeHint": "Tik op het hartje bij de ideeën die jij leuk vindt.",
+      "like": "{idee}: vind ik leuk ({count})"
     },
     "doeMee": {
       "eyebrow": "Doe mee",

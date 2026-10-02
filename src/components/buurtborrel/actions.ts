@@ -3,6 +3,8 @@
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { Resend } from 'resend';
+import { cookies } from 'next/headers';
+import { IDEE_KEYS, type IdeeKey } from '@/collections/IdeeLikes';
 
 // Bij een fout gaat het ingevulde adres mee terug: React leegt het formulier na elke actie.
 export type BuurtborrelFormState =
@@ -61,4 +63,56 @@ export async function submitBuurtborrel(_prev: BuurtborrelFormState, formData: F
     console.error('[buurtborrel] versturen mislukt', error);
     return { status: 'error', email };
   }
+}
+
+export type IdeeLikesState = { counts: Record<IdeeKey, number>; liked: IdeeKey[] };
+
+const STEMMER_COOKIE = 'db_stemmer';
+
+async function ideeLikesState(stemmer: string | undefined): Promise<IdeeLikesState> {
+  const payload = await getPayload({ config });
+  const totals = await Promise.all(
+    IDEE_KEYS.map((idee) => payload.count({ collection: 'idee-likes', where: { idee: { equals: idee } } })),
+  );
+  const counts = Object.fromEntries(IDEE_KEYS.map((idee, i) => [idee, totals[i].totalDocs])) as Record<IdeeKey, number>;
+  if (!stemmer) return { counts, liked: [] };
+  const { docs } = await payload.find({
+    collection: 'idee-likes',
+    where: { stemmer: { equals: stemmer } },
+    limit: IDEE_KEYS.length,
+    depth: 0,
+    pagination: false,
+  });
+  return { counts, liked: docs.map((d) => d.idee as IdeeKey) };
+}
+
+/** Tellingen per idee, plus de ideeën waar deze browser al een hartje bij zette. */
+export async function getIdeeLikes(): Promise<IdeeLikesState> {
+  return ideeLikesState((await cookies()).get(STEMMER_COOKIE)?.value);
+}
+
+/** Zet of haalt een hartje bij een idee. Eén per idee per browser: een graadmeter, geen stemming. */
+export async function toggleIdeeLike(idee: string): Promise<IdeeLikesState> {
+  const jar = await cookies();
+  if (!(IDEE_KEYS as readonly string[]).includes(idee)) return ideeLikesState(jar.get(STEMMER_COOKIE)?.value);
+
+  let stemmer = jar.get(STEMMER_COOKIE)?.value;
+  if (!stemmer || !/^[0-9a-f-]{36}$/.test(stemmer)) {
+    stemmer = crypto.randomUUID();
+    jar.set(STEMMER_COOKIE, stemmer, { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60 * 24 * 365, path: '/' });
+  }
+
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: 'idee-likes',
+    where: { and: [{ idee: { equals: idee } }, { stemmer: { equals: stemmer } }] },
+    limit: 10,
+    depth: 0,
+  });
+  if (docs.length) {
+    await payload.delete({ collection: 'idee-likes', where: { id: { in: docs.map((d) => d.id) } } });
+  } else {
+    await payload.create({ collection: 'idee-likes', data: { idee: idee as IdeeKey, stemmer } });
+  }
+  return ideeLikesState(stemmer);
 }

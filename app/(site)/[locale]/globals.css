@@ -98,6 +98,18 @@ h6 {
   fill: var(--color-card);
 }
 
+/* Hartje bij een buurtborrel-idee: kort "pop" bij aanzetten. */
+@keyframes idee-hart-pop {
+  50% {
+    transform: scale(1.35);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [aria-pressed='true'] .idee-hart {
+    animation: idee-hart-pop 250ms ease-out;
+  }
+}
+
 /* Lijnen tekenen zich (800 ms) zodra de grafiek in beeld komt. Zonder JS of
    met prefers-reduced-motion staat direct de eindstand op het scherm. */
 @keyframes stats-draw {
