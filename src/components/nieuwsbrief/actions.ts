@@ -3,6 +3,7 @@
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { sendNieuwsbriefMail, type NieuwsbriefMailKind } from '@/lib/nieuwsbrief/mail';
+import { EMAIL_RE, TOKEN_RE, nieuwToken } from '@/lib/nieuwsbrief/token';
 
 // Bij een fout gaat het ingevulde adres mee terug: React leegt het formulier na elke actie.
 export type NieuwsbriefFormState =
@@ -12,14 +13,8 @@ export type NieuwsbriefFormState =
 
 export type NieuwsbriefTokenState = { status: 'idle' | 'success' | 'invalid' };
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const TOKEN_RE = /^[0-9a-f]{64}$/;
 // Binnen deze tijd geen tweede mail naar hetzelfde adres, ook niet als iemand het formulier vaker verstuurt.
 const MAIL_INTERVAL_MS = 2 * 60 * 1000;
-
-function nieuwToken() {
-  return Array.from(crypto.getRandomValues(new Uint8Array(32)), (b) => b.toString(16).padStart(2, '0')).join('');
-}
 
 function recentGemaild(laatsteMailOp: string | null | undefined) {
   return Boolean(laatsteMailOp) && Date.now() - new Date(laatsteMailOp!).getTime() < MAIL_INTERVAL_MS;
@@ -56,7 +51,7 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
         const token = nieuwToken();
         await payload.create({
           collection: 'nieuwsbrief-abonnees',
-          data: { email, status: 'pending', locale, token, laatsteMailOp: now },
+          data: { email, status: 'pending', bron: 'formulier', locale, token, laatsteMailOp: now },
         });
         mail = { kind: 'bevestigen', token, locale };
       } else if (bestaand.status !== 'actief' && !recentGemaild(bestaand.laatsteMailOp)) {

@@ -4,9 +4,10 @@ import { getTranslations } from 'next-intl/server';
 import config from '@payload-config';
 import { localizedHref } from '@/i18n/localizedHref';
 import { NieuwsbriefTokenForm } from './NieuwsbriefTokenForm';
+import { TOKEN_RE } from '@/lib/nieuwsbrief/token';
 
 async function tokenBestaat(token: string) {
-  if (!/^[0-9a-f]{64}$/.test(token)) return false;
+  if (!TOKEN_RE.test(token)) return false;
   const payload = await getPayload({ config });
   const { totalDocs } = await payload.count({ collection: 'nieuwsbrief-abonnees', where: { token: { equals: token } } });
   return totalDocs > 0;

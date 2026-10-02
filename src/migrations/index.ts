@@ -20,6 +20,7 @@ import * as migration_20260923_141050_menu_zichtbaar from './20260923_141050_men
 import * as migration_20260924_121946_geschiedenis_verhaal from './20260924_121946_geschiedenis_verhaal';
 import * as migration_20261002_093041_idee_likes from './20261002_093041_idee_likes';
 import * as migration_20261002_100644_nieuwsbrief_abonnees from './20261002_100644_nieuwsbrief_abonnees';
+import * as migration_20261002_104348_nieuwsbrief_bron from './20261002_104348_nieuwsbrief_bron';
 
 export const migrations = [
   {
@@ -130,6 +131,11 @@ export const migrations = [
   {
     up: migration_20261002_100644_nieuwsbrief_abonnees.up,
     down: migration_20261002_100644_nieuwsbrief_abonnees.down,
-    name: '20261002_100644_nieuwsbrief_abonnees'
+    name: '20261002_100644_nieuwsbrief_abonnees',
+  },
+  {
+    up: migration_20261002_104348_nieuwsbrief_bron.up,
+    down: migration_20261002_104348_nieuwsbrief_bron.down,
+    name: '20261002_104348_nieuwsbrief_bron'
   },
 ];

@@ -620,6 +620,10 @@ export interface NieuwsbriefAbonnee {
    * Taal van de mails aan deze abonnee.
    */
   locale: 'nl' | 'en';
+  /**
+   * Import = toegevoegd zonder bevestigingsmail.
+   */
+  bron: 'formulier' | 'import';
   token: string;
   bevestigdOp?: string | null;
   afgemeldOp?: string | null;
@@ -1087,6 +1091,7 @@ export interface NieuwsbriefAbonneesSelect<T extends boolean = true> {
   email?: T;
   status?: T;
   locale?: T;
+  bron?: T;
   token?: T;
   bevestigdOp?: T;
   afgemeldOp?: T;
