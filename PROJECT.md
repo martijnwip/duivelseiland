@@ -92,9 +92,9 @@ Technisch beheerder.
 | Activiteiten           | lezen (goedgekeurd/gaat-door/afgelopen), idee indienen via formulier | lezen (publiek) | alles + modereren | alles |
 | Aanmeldingen / Berichten | inschrijven/afmelden via formulier | geen                      | alles                        | alles |
 | E-mailadressen (adresboek) | geen            | geen                             | geen                         | alles |
+| Globals (instellingen) | lezen             | geen                             | lezen                        | alles |
 
 Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-door/afgelast/afgelopen), de aanmeldingen daarvan (lezen, verwijderen, CSV) en berichten aan die deelnemers (max. 3 per week).
-| Globals (instellingen) | lezen             | geen                             | lezen                        | alles |
 
 ## Regels die voor alle rollen gelden
 
