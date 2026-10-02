@@ -16,12 +16,18 @@ export async function AgendaDetailPage({
   backLabel,
   recurringLabel,
   scheduleLabel,
+  activiteitLabel,
+  voorbehoudTekst,
 }: {
   slug: string;
   locale: 'nl' | 'en';
   backLabel: string;
   recurringLabel?: string;
   scheduleLabel: string;
+  /** Tekst van de knop naar een gekoppelde activiteit met open inschrijving. */
+  activiteitLabel?: string;
+  /** Uitleg bij een activiteit die nog niet zeker doorgaat. */
+  voorbehoudTekst?: string;
 }) {
   const payload = await getPayload({ config });
 
@@ -51,6 +57,14 @@ export async function AgendaDetailPage({
   // Een los WhatsApp-nummer heeft voorrang boven een kant-en-klare link.
   const ctaHref = buildWhatsAppLink(richFields.whatsappNumber) ?? richFields.ctaUrl;
   const hasCta = Boolean(richFields.ctaLabel && ctaHref);
+
+  // Alleen agenda-items die bij een activiteit horen krijgen een aanmeldknop, en alleen zolang je je
+  // daar nog kunt inschrijven (docs/brief-activiteiten.md, flow 7).
+  const activiteit = typeof doc.activiteit === 'object' ? doc.activiteit : null;
+  const activiteitHref =
+    activiteit && ['goedgekeurd', 'gaat-door'].includes(activiteit.fase) && activiteit.inschrijving === 'open'
+      ? localizedHref(locale, `/activiteiten/${activiteit.slug}`)
+      : null;
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
@@ -115,6 +129,21 @@ export async function AgendaDetailPage({
         >
           {richFields.ctaLabel}
         </a>
+      ) : null}
+
+      {activiteit?.fase === 'goedgekeurd' && voorbehoudTekst ? (
+        <p className="mt-8 rounded-lg border border-border bg-secondary-soft px-4 py-3 text-sm text-text">{voorbehoudTekst}</p>
+      ) : null}
+
+      {activiteitHref && activiteitLabel ? (
+        <p className="mt-4">
+          <Link
+            href={activiteitHref}
+            className="inline-flex rounded-lg bg-primary px-4 py-2 font-medium text-on-primary transition-colors hover:bg-primary-hover"
+          >
+            {activiteitLabel}
+          </Link>
+        </p>
       ) : null}
     </main>
   );

@@ -8,6 +8,11 @@ import { fileURLToPath } from 'url';
 import { betterAuth } from 'better-auth';
 import { betterAuthCollections, createBetterAuthPlugin, payloadAdapter } from '@delmaredigital/payload-better-auth';
 import { betterAuthOptions } from './lib/auth/config';
+import type { CollectionConfig, GlobalConfig } from 'payload';
+import { ActiviteitBerichten } from './collections/ActiviteitBerichten';
+import { Activiteiten } from './collections/Activiteiten';
+import { ActiviteitInschrijvingen } from './collections/ActiviteitInschrijvingen';
+import { EmailAdressen } from './collections/EmailAdressen';
 import { Agenda } from './collections/Agenda';
 import { DuivelseKunst } from './collections/DuivelseKunst';
 import { Geschiedenis } from './collections/Geschiedenis';
@@ -27,12 +32,30 @@ import { Buurtborrel } from './globals/Buurtborrel';
 import { OverDeNaam } from './globals/OverDeNaam';
 import { GeschiedenisVerhaal } from './globals/GeschiedenisVerhaal';
 import { translateDocEndpoint } from './endpoints/translateDoc';
+import { activiteitenOpruimenEndpoint } from './endpoints/activiteitenOpruimen';
 import { SiteInstellingen } from './globals/SiteInstellingen';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+
+// Een organisator ziet in /admin alleen wat bij de eigen activiteit hoort (plus Media en het eigen
+// profiel). Dit verbergt alleen de navigatie; de access-functies blijven de echte beveiliging.
+const ZICHTBAAR_VOOR_ORGANISATOR = new Set(['activiteiten', 'activiteit-inschrijvingen', 'activiteit-berichten', 'media', 'users']);
+
+function verbergVoorOrganisator<T extends CollectionConfig | GlobalConfig>(config: T): T {
+  if (ZICHTBAAR_VOOR_ORGANISATOR.has(config.slug)) return config;
+  const hidden = config.admin?.hidden;
+  return {
+    ...config,
+    admin: {
+      ...config.admin,
+      hidden: (args: { user: { role?: string } | null }) =>
+        args.user?.role === 'organisator' || (typeof hidden === 'function' ? hidden(args as never) : Boolean(hidden)),
+    },
+  };
+}
 
 export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
@@ -74,11 +97,15 @@ export default buildConfig({
     Slideshows,
     IdeeLikes,
     NieuwsbriefAbonnees,
-  ],
+    Activiteiten,
+    ActiviteitInschrijvingen,
+    ActiviteitBerichten,
+    EmailAdressen,
+  ].map(verbergVoorOrganisator),
 
-  globals: [SiteInstellingen, OverDeNaam, GeschiedenisVerhaal, Buurtborrel],
+  globals: [SiteInstellingen, OverDeNaam, GeschiedenisVerhaal, Buurtborrel].map(verbergVoorOrganisator),
 
-  endpoints: [translateDocEndpoint],
+  endpoints: [translateDocEndpoint, activiteitenOpruimenEndpoint],
 
   localization: {
     locales: [
@@ -129,7 +156,7 @@ export default buildConfig({
         // de enige plek om er zonder te forken alsnog een te tonen.
         loginViewComponent: '/components/admin/LoginViewWithLogo#default',
         login: {
-          // Alle drie de rollen (auteur/redacteur/admin) loggen in op /admin;
+          // Alle rollen (organisator/auteur/redacteur/admin) loggen in op /admin;
           // de plugin's eigen default (alleen 'admin') zou de andere twee blokkeren.
           requiredRole: null,
           enableSignUp: false,

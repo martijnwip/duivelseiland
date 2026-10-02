@@ -11,6 +11,7 @@ export default async function AgendaPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'pages.agenda' });
   const tc = await getTranslations({ locale, namespace: 'content' });
+  const ta = await getTranslations({ locale, namespace: 'activiteiten' });
 
   return (
     <AgendaListPage
@@ -18,6 +19,7 @@ export default async function AgendaPage({ params }: { params: Promise<{ locale:
       heading={t('heading')}
       emptyText={tc('empty')}
       recurringLabel={tc('recurringMonthly')}
+      voorbehoudLabel={ta('voorbehoudKort')}
       upcomingLabel={tc('upcoming')}
     />
   );

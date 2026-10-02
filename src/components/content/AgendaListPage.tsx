@@ -19,6 +19,8 @@ type ListItem = {
   effectiveDate: Date | null;
   recurrenceTime: string | null;
   isRecurring: boolean;
+  /** Gekoppelde activiteit die nog niet zeker doorgaat (fase goedgekeurd). */
+  voorbehoud: boolean;
   imageUrl: string | null;
   imageAlt: string;
 };
@@ -28,12 +30,14 @@ export async function AgendaListPage({
   heading,
   emptyText,
   recurringLabel,
+  voorbehoudLabel,
   upcomingLabel,
 }: {
   locale: 'nl' | 'en';
   heading: string;
   emptyText: string;
   recurringLabel: string;
+  voorbehoudLabel?: string;
   upcomingLabel: string;
 }) {
   const payload = await getPayload({ config });
@@ -62,6 +66,7 @@ export async function AgendaListPage({
         effectiveDate: getAgendaEffectiveDate(recurrenceFields, now),
         recurrenceTime: recurrenceFields.recurrenceTime ?? null,
         isRecurring: isRecurring(recurrenceFields),
+        voorbehoud: typeof doc.activiteit === 'object' && doc.activiteit?.fase === 'goedgekeurd',
         imageUrl: image?.sizes?.card?.url ?? image?.url ?? null,
         imageAlt: image?.alt ?? '',
       };
@@ -101,6 +106,7 @@ export async function AgendaListPage({
                     </p>
                   ) : null}
                   {item.isRecurring ? <p className="mt-0.5 text-xs font-medium text-primary">{recurringLabel}</p> : null}
+                  {item.voorbehoud && voorbehoudLabel ? <p className="mt-0.5 text-xs font-medium text-accent">{voorbehoudLabel}</p> : null}
                   {item.intro ? <p className="mt-1.5 line-clamp-2 text-sm text-muted">{item.intro}</p> : null}
                 </div>
 

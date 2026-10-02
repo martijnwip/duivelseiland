@@ -1,6 +1,9 @@
 import type { CollectionConfig } from 'payload';
 import { isRedacteurOrAdmin } from '../access/isAdmin';
+import { adresboekHooks } from '../lib/adresboek';
 import { nieuwsbriefImportEndpoint } from './NieuwsbriefImportEndpoint';
+
+const adresboek = adresboekHooks<{ email: string; status: string }>((d) => d.email, (d) => d.status === 'actief');
 
 /**
  * Aanmeldingen voor de nieuwsbrief, met dubbele opt-in. Aanmaken gaat alleen via de server actions
@@ -26,6 +29,10 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
     delete: isRedacteurOrAdmin,
   },
   endpoints: [{ method: 'post', path: '/import', handler: nieuwsbriefImportEndpoint }],
+  hooks: {
+    afterChange: [adresboek.afterChange],
+    afterDelete: [adresboek.afterDelete],
+  },
   fields: [
     { name: 'email', type: 'email', required: true, unique: true, index: true },
     {

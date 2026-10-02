@@ -14,6 +14,7 @@ export default async function AgendaDetailRoute({
   const { locale, slug } = await params;
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'content' });
+  const ta = await getTranslations({ locale, namespace: 'activiteiten' });
 
   return (
     <AgendaDetailPage
@@ -22,6 +23,8 @@ export default async function AgendaDetailRoute({
       backLabel={t('backToOverview')}
       recurringLabel={t('recurringMonthly')}
       scheduleLabel={t('schedule')}
+      activiteitLabel={ta('agendaAanmelden')}
+      voorbehoudTekst={ta('voorbehoud')}
     />
   );
 }

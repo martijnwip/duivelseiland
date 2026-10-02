@@ -1607,5 +1607,133 @@
       "invalid": "This link is not (or no longer) valid. Request a new unsubscribe link on the newsletter page."
     },
     "terug": "Go to the newsletter page"
+  },
+  "activiteiten": {
+    "eyebrow": "Activities",
+    "heading": "Doing things together in the neighbourhood",
+    "metaDescription": "Neighbourhood activities on Duivelseiland, organised by residents. Join in, or submit an idea yourself.",
+    "intro": "A book club, cooking club or sewing club: residents organise activities themselves to get to know each other. Join in, or start something yourself.",
+    "ctaAanmelden": "Got an idea? Submit it",
+    "leeg": "There are no activities yet. Will you start the first one?",
+    "fase": {
+      "goedgekeurd": "Open for sign-ups",
+      "gesloten": "Sign-ups closed",
+      "gaat-door": "Going ahead",
+      "afgelopen": "Finished"
+    },
+    "soort": {
+      "eenmalig": "One-off",
+      "terugkerend": "Recurring"
+    },
+    "voorlopig": "provisional",
+    "organisator": "Organised by {naam}",
+    "aantal": "{aantal, plural, one {# neighbour is joining} other {# neighbours are joining}}",
+    "terug": "All activities",
+    "afgelopenTekst": "This activity has finished.",
+    "opAgenda": "View on the calendar",
+    "aanmelden": {
+      "eyebrow": "Submit an idea",
+      "heading": "Organise an activity for the neighbourhood",
+      "metaDescription": "Submit an idea for a neighbourhood activity on Duivelseiland.",
+      "intro": "Fancy starting a book club, cooking club or walking group? Submit your idea. We put it online so neighbours can join.",
+      "stappenTitel": "How it works",
+      "stappen": [
+        "Submit your idea below. Nothing needs to exist yet: the idea is enough.",
+        "Within a week the editors check whether the idea fits the ground rules.",
+        "Once approved, it gets its own page. Neighbours sign up there and you're the organiser: you see who's joining, message the group and decide whether and when it goes ahead."
+      ],
+      "regelsTitel": "Ground rules",
+      "regelsIntro": "An activity is meant to connect neighbours. That's why it must be:",
+      "regels": [
+        "accessible: anyone can join, no experience or membership needed;",
+        "non-commercial: free, or just sharing costs (e.g. ingredients), with no profit;",
+        "inclusive: open to all residents, regardless of age, background or language;",
+        "held in or around the neighbourhood."
+      ],
+      "nietToegestaan": "Not allowed: selling or promotion, recruiting for a business, political or religious recruitment, and closed groups."
+    },
+    "ideeForm": {
+      "titel": "Name of the activity",
+      "titelPlaceholder": "E.g. Duivelseiland Book Club",
+      "omschrijving": "Description",
+      "omschrijvingHint": "What will you do, for whom, how often and roughly where?",
+      "soort": "One-off or recurring?",
+      "soortToelichting": "How often?",
+      "soortToelichtingPlaceholder": "E.g. every first Tuesday of the month",
+      "voorlopigeDatum": "Provisional date (optional)",
+      "afbeelding": "Image for the top of the page (optional)",
+      "afbeeldingHint": "JPG, PNG or WebP, max 4 MB. Only a photo you hold the rights to, without recognisable people who didn't give permission.",
+      "afbeeldingTeGroot": "This image is larger than 4 MB.",
+      "naam": "Your name (organiser)",
+      "naamHint": "Only your first name is shown on the site.",
+      "email": "Your email address (organiser)",
+      "emailHint": "You'll be the organiser. After approval you log in with this address to manage your activity. It's never shown on the site.",
+      "akkoord": "I've read the ground rules and agree to them.",
+      "submit": "Send idea",
+      "submitting": "Sending…",
+      "success": "Thank you! Check your inbox: you'll receive an email about your idea. Then the editors will take a look.",
+      "error": {
+        "velden": "Not all fields are filled in correctly. Check your name, description and email address.",
+        "afbeelding": "The image must be a JPG, PNG or WebP of at most 4 MB.",
+        "akkoord": "Please tick that you agree to the ground rules.",
+        "server": "Something went wrong. Please try again later."
+      },
+      "voorlopigeDatumHint": "You can change the date later; you'll agree the final date with your group."
+    },
+    "inschrijfForm": {
+      "titel": "Join in",
+      "legend": "What would you like to do?",
+      "aanmelden": "Sign up",
+      "afmelden": "Leave",
+      "voornaam": "Your first name",
+      "email": "Your email address",
+      "emailPlaceholder": "name@example.com",
+      "opmerking": "Note for the organiser (optional)",
+      "opmerkingPlaceholder": "E.g. I can only make it from 8 pm",
+      "submitAanmelden": "Sign up",
+      "submitAfmelden": "Send leave link",
+      "submitting": "Sending…",
+      "successAanmelden": "Check your inbox: you'll receive an email about your sign-up.",
+      "successAfmelden": "If this address is signed up, you'll receive an email with a link to leave.",
+      "gesloten": "Sign-ups are closed.",
+      "error": "That didn't work. Check your first name and email address and try again.",
+      "privacy": "Your first name, email address and note are visible to the organiser of this activity. You'll only receive email about this activity and can leave at any time."
+    },
+    "token": {
+      "submitting": "Working…",
+      "gesloten": "Sign-ups have closed or the activity is full. You have not been signed up.",
+      "idee-bevestigen": {
+        "heading": "Confirm idea",
+        "text": "Click the button to confirm your email address. Your idea then goes to the editors.",
+        "submit": "Confirm my idea",
+        "success": "Done! The editors will look at your idea within a week and let you know by email.",
+        "invalid": "This link is not (or no longer) valid."
+      },
+      "idee-intrekken": {
+        "heading": "Withdraw idea",
+        "text": "Click the button to withdraw the idea. It will be deleted completely.",
+        "submit": "Withdraw the idea",
+        "success": "The idea has been withdrawn and deleted.",
+        "invalid": "This link is not (or no longer) valid, or the idea has already been approved. Please contact the editors."
+      },
+      "inschrijving-bevestigen": {
+        "heading": "Confirm sign-up",
+        "text": "Click the button to confirm your sign-up.",
+        "submit": "Confirm sign-up",
+        "success": "Done! You're in. The organiser will keep you posted by email.",
+        "invalid": "This link is not (or no longer) valid. Sign up again via the activity page."
+      },
+      "inschrijving-afmelden": {
+        "heading": "Leave",
+        "text": "Click the button to leave this activity.",
+        "submit": "Leave",
+        "success": "You've left. You won't receive any more email about this activity.",
+        "invalid": "This link is not (or no longer) valid."
+      },
+      "terug": "Back to activities"
+    },
+    "agendaAanmelden": "Sign up for this activity",
+    "voorbehoud": "Subject to enough sign-ups: this activity goes ahead if enough people join.",
+    "voorbehoudKort": "Subject to sign-ups"
   }
 }
