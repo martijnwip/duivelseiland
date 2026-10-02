@@ -1565,5 +1565,47 @@
       "label": "Map of Duivelseiland and surroundings with the three post boxes, numbered 1 to 3: Gerard Terborgstraat, Eerste Jan Steenstraat and the corner of Johannes Vermeerstraat and Teniersstraat. The AED is on Ruysdaelstraat, at the Old Catholic Church.",
       "bijschrift": "The numbers match the post boxes above. The dotted line is the boundary of Duivelseiland."
     }
+  },
+  "nieuwsbrief": {
+    "metaDescription": "Subscribe to the Duivelseiland newsletter, or unsubscribe.",
+    "eyebrow": "Newsletter",
+    "heading": "Stay in the loop",
+    "intro": "News from the neighbourhood, upcoming events and stories about Duivelseiland, now and then in your inbox. You'll first get an email to confirm your subscription; you can unsubscribe at any time.",
+    "privacy": "We only use your email address for the newsletter and never share it.",
+    "form": {
+      "legend": "What would you like to do?",
+      "aanmelden": "Subscribe",
+      "afmelden": "Unsubscribe",
+      "emailLabel": "Your email address",
+      "emailPlaceholder": "name@example.com",
+      "submitAanmelden": "Subscribe",
+      "submitAfmelden": "Send unsubscribe link",
+      "submitting": "Sending…",
+      "successAanmelden": "Almost done! Check your inbox and click the link to confirm your subscription.",
+      "successAfmelden": "If this address is on the list, you'll receive an email with a link to unsubscribe.",
+      "error": "That didn't work. Please check your email address and try again."
+    },
+    "footer": {
+      "title": "Newsletter",
+      "text": "Neighbourhood news and events in your inbox.",
+      "submit": "Subscribe",
+      "success": "Check your inbox to confirm your subscription.",
+      "afmelden": "Unsubscribe"
+    },
+    "bevestigen": {
+      "heading": "Confirm subscription",
+      "text": "Click the button to confirm your newsletter subscription.",
+      "submit": "Confirm subscription",
+      "success": "Done! You'll now receive the Duivelseiland newsletter.",
+      "invalid": "This link is not (or no longer) valid. Please subscribe again on the newsletter page."
+    },
+    "afmelden": {
+      "heading": "Unsubscribe from the newsletter",
+      "text": "Click the button to unsubscribe. You won't receive the newsletter after that.",
+      "submit": "Unsubscribe",
+      "success": "You've been unsubscribed. You can subscribe again at any time.",
+      "invalid": "This link is not (or no longer) valid. Request a new unsubscribe link on the newsletter page."
+    },
+    "terug": "Go to the newsletter page"
   }
 }

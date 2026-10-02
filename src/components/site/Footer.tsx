@@ -4,6 +4,9 @@ import { RichText } from '@payloadcms/richtext-lexical/react';
 import type { MenuItem } from './Header';
 import { localizedHref } from '@/i18n/localizedHref';
 import { hasRichTextContent } from '@/lib/richtext';
+import { NieuwsbriefFooterForm, type NieuwsbriefFooterStrings } from '@/components/nieuwsbrief/NieuwsbriefFooterForm';
+
+export type NieuwsbriefFooter = NieuwsbriefFooterStrings & { title: string; text: string; afmelden: string };
 
 export type ContactInfo = { email?: string | null; telefoon?: string | null; adres?: string | null };
 
@@ -13,19 +16,21 @@ export function Footer({
   locale,
   contactgegevens,
   footerTekst,
+  nieuwsbrief,
 }: {
   siteNaam: string;
   menu: MenuItem[];
   locale: string;
   contactgegevens?: ContactInfo;
   footerTekst?: ComponentProps<typeof RichText>['data'] | null;
+  nieuwsbrief: NieuwsbriefFooter;
 }) {
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
   return (
     <footer className="bg-[#202020] py-16 text-white print:hidden">
       <div className="mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-        <div className="mb-12 grid gap-12 md:grid-cols-3">
+        <div className="mb-12 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex flex-col items-start gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logo/duivelseiland-embleem.svg" alt="" width={96} height={93} className="h-24 w-auto" />
@@ -57,6 +62,18 @@ export function Footer({
               </ul>
             </div>
           ) : null}
+
+          <div>
+            <h4 className="mb-4 text-lg font-bold">{nieuwsbrief.title}</h4>
+            <p className="mb-3 text-[#d1d1d1]">{nieuwsbrief.text}</p>
+            <NieuwsbriefFooterForm locale={locale} strings={nieuwsbrief} />
+            <Link
+              href={localizedHref(locale, '/nieuwsbrief')}
+              className="text-sm text-[#a8a8a8] underline transition-colors hover:text-white"
+            >
+              {nieuwsbrief.afmelden}
+            </Link>
+          </div>
         </div>
 
         {hasRichTextContent(footerTekst) ? (

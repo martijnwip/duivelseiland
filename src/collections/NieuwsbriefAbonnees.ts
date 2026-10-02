@@ -1,0 +1,55 @@
+import type { CollectionConfig } from 'payload';
+import { isRedacteurOrAdmin } from '../access/isAdmin';
+
+/**
+ * Aanmeldingen voor de nieuwsbrief, met dubbele opt-in. Aanmaken gaat alleen via de server actions
+ * (src/components/nieuwsbrief/actions.ts): eerst `pending`, na klik op de bevestigingslink `actief`.
+ * Het token zit in de bevestigings- en afmeldlink en blijft na bevestiging gelijk.
+ */
+export const NieuwsbriefAbonnees: CollectionConfig = {
+  slug: 'nieuwsbrief-abonnees',
+  labels: { singular: 'Nieuwsbrief-abonnee', plural: 'Nieuwsbrief-abonnees' },
+  admin: {
+    useAsTitle: 'email',
+    defaultColumns: ['email', 'status', 'locale', 'createdAt'],
+    description:
+      'Aanmeldingen voor de nieuwsbrief. Alleen "actief" heeft de aanmelding bevestigd. Dit zijn persoonsgegevens: alleen gebruiken voor de nieuwsbrief.',
+  },
+  access: {
+    read: isRedacteurOrAdmin,
+    create: () => false,
+    update: isRedacteurOrAdmin,
+    delete: isRedacteurOrAdmin,
+  },
+  fields: [
+    { name: 'email', type: 'email', required: true, unique: true, index: true },
+    {
+      name: 'status',
+      type: 'select',
+      required: true,
+      defaultValue: 'pending',
+      index: true,
+      options: [
+        { label: 'Wacht op bevestiging', value: 'pending' },
+        { label: 'Actief', value: 'actief' },
+        { label: 'Afgemeld', value: 'afgemeld' },
+      ],
+    },
+    {
+      name: 'locale',
+      type: 'select',
+      required: true,
+      defaultValue: 'nl',
+      options: [
+        { label: 'Nederlands', value: 'nl' },
+        { label: 'English', value: 'en' },
+      ],
+      admin: { description: 'Taal van de mails aan deze abonnee.' },
+    },
+    { name: 'token', type: 'text', required: true, unique: true, index: true, admin: { hidden: true } },
+    { name: 'bevestigdOp', type: 'date', admin: { readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
+    { name: 'afgemeldOp', type: 'date', admin: { readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
+    // Rem op het herhaald versturen van bevestigings- en afmeldmails naar hetzelfde adres.
+    { name: 'laatsteMailOp', type: 'date', admin: { hidden: true } },
+  ],
+};

@@ -1382,5 +1382,47 @@
       "label": "Kaart van Duivelseiland en omgeving met de drie brievenbussen, genummerd 1 tot en met 3: Gerard Terborgstraat, Eerste Jan Steenstraat en de hoek Johannes Vermeerstraat en Teniersstraat. De AED hangt aan de Ruysdaelstraat, bij de Oud-Katholieke Kerk.",
       "bijschrift": "De nummers horen bij de brievenbussen hierboven. De stippellijn is de grens van Duivelseiland."
     }
+  },
+  "nieuwsbrief": {
+    "metaDescription": "Meld je aan voor de nieuwsbrief van Duivelseiland, of meld je af.",
+    "eyebrow": "Nieuwsbrief",
+    "heading": "Blijf op de hoogte",
+    "intro": "Nieuws uit de buurt, de agenda en verhalen over Duivelseiland, af en toe in je mailbox. Je krijgt eerst een mail om je aanmelding te bevestigen; afmelden kan altijd.",
+    "privacy": "We gebruiken je e-mailadres alleen voor de nieuwsbrief en delen het met niemand.",
+    "form": {
+      "legend": "Wat wil je doen?",
+      "aanmelden": "Aanmelden",
+      "afmelden": "Afmelden",
+      "emailLabel": "Je e-mailadres",
+      "emailPlaceholder": "naam@voorbeeld.nl",
+      "submitAanmelden": "Aanmelden",
+      "submitAfmelden": "Stuur afmeldlink",
+      "submitting": "Bezig met versturen…",
+      "successAanmelden": "Bijna klaar! Check je mailbox en klik op de link om je aanmelding te bevestigen.",
+      "successAfmelden": "Als dit adres op de lijst staat, krijg je een mail met een link om je af te melden.",
+      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens."
+    },
+    "footer": {
+      "title": "Nieuwsbrief",
+      "text": "Buurtnieuws en de agenda in je mailbox.",
+      "submit": "Aanmelden",
+      "success": "Check je mailbox om je aanmelding te bevestigen.",
+      "afmelden": "Afmelden"
+    },
+    "bevestigen": {
+      "heading": "Aanmelding bevestigen",
+      "text": "Klik op de knop om je aanmelding voor de nieuwsbrief te bevestigen.",
+      "submit": "Bevestig aanmelding",
+      "success": "Gelukt! Je ontvangt voortaan de nieuwsbrief van Duivelseiland.",
+      "invalid": "Deze link is niet (meer) geldig. Meld je opnieuw aan via de nieuwsbriefpagina."
+    },
+    "afmelden": {
+      "heading": "Afmelden voor de nieuwsbrief",
+      "text": "Klik op de knop om je af te melden. Je ontvangt daarna geen nieuwsbrief meer.",
+      "submit": "Afmelden",
+      "success": "Je bent afgemeld. Je kunt je altijd opnieuw aanmelden.",
+      "invalid": "Deze link is niet (meer) geldig. Vraag een nieuwe afmeldlink aan via de nieuwsbriefpagina."
+    },
+    "terug": "Naar de nieuwsbriefpagina"
   }
 }

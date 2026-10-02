@@ -15,6 +15,7 @@ import { HeroSlides } from './collections/HeroSlides';
 import { HistorischeFotos } from './collections/HistorischeFotos';
 import { IdeeLikes } from './collections/IdeeLikes';
 import { InviteLinks } from './collections/InviteLinks';
+import { NieuwsbriefAbonnees } from './collections/NieuwsbriefAbonnees';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
@@ -72,6 +73,7 @@ export default buildConfig({
     HistorischeFotos,
     Slideshows,
     IdeeLikes,
+    NieuwsbriefAbonnees,
   ],
 
   globals: [SiteInstellingen, OverDeNaam, GeschiedenisVerhaal, Buurtborrel],

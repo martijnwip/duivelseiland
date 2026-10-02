@@ -81,6 +81,7 @@ export interface Config {
     'historische-fotos': HistorischeFoto;
     slideshows: Slideshow;
     'idee-likes': IdeeLike;
+    'nieuwsbrief-abonnees': NieuwsbriefAbonnee;
     sessions: Session;
     accounts: Account;
     verifications: Verification;
@@ -105,6 +106,7 @@ export interface Config {
     'historische-fotos': HistorischeFotosSelect<false> | HistorischeFotosSelect<true>;
     slideshows: SlideshowsSelect<false> | SlideshowsSelect<true>;
     'idee-likes': IdeeLikesSelect<false> | IdeeLikesSelect<true>;
+    'nieuwsbrief-abonnees': NieuwsbriefAbonneesSelect<false> | NieuwsbriefAbonneesSelect<true>;
     sessions: SessionsSelect<false> | SessionsSelect<true>;
     accounts: AccountsSelect<false> | AccountsSelect<true>;
     verifications: VerificationsSelect<false> | VerificationsSelect<true>;
@@ -605,6 +607,27 @@ export interface IdeeLike {
   createdAt: string;
 }
 /**
+ * Aanmeldingen voor de nieuwsbrief. Alleen "actief" heeft de aanmelding bevestigd. Dit zijn persoonsgegevens: alleen gebruiken voor de nieuwsbrief.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nieuwsbrief-abonnees".
+ */
+export interface NieuwsbriefAbonnee {
+  id: number;
+  email: string;
+  status: 'pending' | 'actief' | 'afgemeld';
+  /**
+   * Taal van de mails aan deze abonnee.
+   */
+  locale: 'nl' | 'en';
+  token: string;
+  bevestigdOp?: string | null;
+  afgemeldOp?: string | null;
+  laatsteMailOp?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Auto-generated from Better Auth schema (session)
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -734,6 +757,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'idee-likes';
         value: number | IdeeLike;
+      } | null)
+    | ({
+        relationTo: 'nieuwsbrief-abonnees';
+        value: number | NieuwsbriefAbonnee;
       } | null)
     | ({
         relationTo: 'sessions';
@@ -1049,6 +1076,21 @@ export interface SlideshowsSelect<T extends boolean = true> {
 export interface IdeeLikesSelect<T extends boolean = true> {
   idee?: T;
   stemmer?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nieuwsbrief-abonnees_select".
+ */
+export interface NieuwsbriefAbonneesSelect<T extends boolean = true> {
+  email?: T;
+  status?: T;
+  locale?: T;
+  token?: T;
+  bevestigdOp?: T;
+  afgemeldOp?: T;
+  laatsteMailOp?: T;
   updatedAt?: T;
   createdAt?: T;
 }
