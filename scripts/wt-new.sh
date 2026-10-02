@@ -71,7 +71,9 @@ echo "bun install draaien in $WORKTREE_DIR..."
 # branches met de vertaalfeature; overgeslagen als het script niet bestaat.
 if grep -q '"translate:setup"' "$WORKTREE_DIR/package.json" 2>/dev/null; then
   echo "translate:setup draaien in $WORKTREE_DIR..."
-  (cd "$WORKTREE_DIR" && bun run translate:setup)
+  # Niet fataal: zonder venv werkt alleen de offline vertaalscriptketen niet.
+  (cd "$WORKTREE_DIR" && bun run translate:setup) \
+    || echo "Waarschuwing: translate:setup mislukt; de worktree zelf staat klaar." >&2
 fi
 
 echo

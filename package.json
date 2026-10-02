@@ -20,7 +20,7 @@
     "afval:deelkaart": "bun run scripts/afval-deelkaart.ts",
     "kaart:locatie": "bun run scripts/locatiekaart.ts",
     "translate": "translate/.venv/bin/python translate/translate.py",
-    "translate:setup": "/opt/homebrew/bin/python3 -m venv translate/.venv && translate/.venv/bin/pip install -r translate/requirements.txt"
+    "translate:setup": "python3 -m venv translate/.venv && translate/.venv/bin/pip install -r translate/requirements.txt"
   },
   "dependencies": {
     "@delmaredigital/payload-better-auth": "0.13.0",
