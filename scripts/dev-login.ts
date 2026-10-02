@@ -5,16 +5,21 @@ import type { PayloadWithAuth } from '@delmaredigital/payload-better-auth';
 import type { betterAuthOptions } from '../src/lib/auth/config';
 import { getClient } from './lib/payload-client';
 
-// Lokale snelkoppeling: zorgt dat een test-admin bestaat, stuurt zichzelf een
-// magic link (die lokaal — zonder RESEND_API_KEY — naar .dev-magic-link wordt
-// weggeschreven i.p.v. gemaild, zie src/lib/auth/config.ts) en opent 'm meteen.
-// Werkt alleen lokaal: in productie is RESEND_API_KEY altijd gezet, dus dat
-// bestand wordt daar nooit geschreven.
+// Lokale snelkoppeling: zorgt dat een test-admin bestaat, maakt een magic link
+// aan en opent die in de standaardbrowser, zodat je meteen ingelogd bent op de
+// lokale dev-server. Er wordt nooit gemaild.
+//
+// De link wordt in dit proces aangemaakt (sendMagicLink in src/lib/auth/config.ts).
+// Zonder RESEND_API_KEY schrijft die 'm naar .dev-magic-link in plaats van te mailen;
+// bun laadt .env.local automatisch, dus de key hier altijd weghalen. De draaiende
+// dev-server merkt daar niets van.
+delete process.env.RESEND_API_KEY;
 
 const email = process.argv[2] ?? 'test@test.nl';
 const name = process.argv[3] ?? 'Test Admin';
 const linkFile = path.join(process.cwd(), '.dev-magic-link');
-const serverURL = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+// Altijd de lokale dev-server: NEXT_PUBLIC_SERVER_URL in .env.local kan het productiedomein zijn.
+const serverURL = process.env.DEV_SERVER_URL || 'http://localhost:3000';
 
 async function run() {
   try {
@@ -60,15 +65,26 @@ async function run() {
   try {
     url = readFileSync(linkFile, 'utf-8').trim();
   } catch {
-    console.error('[dev-login] geen .dev-magic-link gevonden — draait de dev-server, en is RESEND_API_KEY leeg?');
+    console.error('[dev-login] geen .dev-magic-link gevonden — is de inloglink wel aangemaakt?');
     process.exit(1);
   }
   rmSync(linkFile, { force: true });
+  // De link krijgt de serverURL uit payload.config (NEXT_PUBLIC_SERVER_URL); het token staat in de
+  // lokale database, dus de link moet naar de lokale dev-server wijzen.
+  const local = new URL(serverURL);
+  const link = new URL(url);
+  link.protocol = local.protocol;
+  link.host = local.host;
+  url = link.toString();
 
   console.log(`[dev-login] inloglink: ${url}`);
 
-  spawn('open', ['-a', 'Brave Browser', url], { stdio: 'ignore', detached: true }).unref();
-  console.log('[dev-login] Brave wordt geopend...');
+  // Standaardbrowser: opent als tab in een browser die al draait.
+  const opener = process.platform === 'darwin' ? 'open' : 'xdg-open';
+  spawn(opener, [url], { stdio: 'ignore', detached: true })
+    .on('error', () => console.log('[dev-login] kon geen browser openen — plak de link hierboven zelf.'))
+    .unref();
+  console.log('[dev-login] browser wordt geopend...');
 
   process.exit(0);
 }
