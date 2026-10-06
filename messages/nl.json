@@ -1250,7 +1250,9 @@
         "ruilbeurs": "Ruilbeurs voor kleding, boeken en speelgoed",
         "jouwIdee": "Of jouw idee?"
       },
-      "motto": "We doen het voor elkaar, én met elkaar."
+      "motto": "We doen het voor elkaar, én met elkaar.",
+      "likeHint": "Tik op het hartje bij de ideeën die jij leuk vindt.",
+      "like": "{idee}: vind ik leuk ({count})"
     },
     "doeMee": {
       "eyebrow": "Doe mee",
@@ -1380,5 +1382,178 @@
       "label": "Kaart van Duivelseiland en omgeving met de drie brievenbussen, genummerd 1 tot en met 3: Gerard Terborgstraat, Eerste Jan Steenstraat en de hoek Johannes Vermeerstraat en Teniersstraat. De AED hangt aan de Ruysdaelstraat, bij de Oud-Katholieke Kerk.",
       "bijschrift": "De nummers horen bij de brievenbussen hierboven. De stippellijn is de grens van Duivelseiland."
     }
+  },
+  "nieuwsbrief": {
+    "metaDescription": "Meld je aan voor de nieuwsbrief van Duivelseiland, of meld je af.",
+    "eyebrow": "Nieuwsbrief",
+    "heading": "Blijf op de hoogte",
+    "intro": "Nieuws uit de buurt, de agenda en verhalen over Duivelseiland, af en toe in je mailbox. Je krijgt eerst een mail om je aanmelding te bevestigen; afmelden kan altijd.",
+    "privacy": "We gebruiken je e-mailadres alleen voor de nieuwsbrief en delen het met niemand.",
+    "form": {
+      "legend": "Wat wil je doen?",
+      "aanmelden": "Aanmelden",
+      "afmelden": "Afmelden",
+      "naamLabel": "Naam (optioneel)",
+      "naamPlaceholder": "Bijv. Guus en Henkje",
+      "emailLabel": "Je e-mailadres",
+      "emailPlaceholder": "naam@voorbeeld.nl",
+      "submitAanmelden": "Aanmelden",
+      "submitAfmelden": "Stuur afmeldlink",
+      "submitting": "Bezig met versturen…",
+      "successAanmelden": "Bijna klaar! Check je mailbox en klik op de link om je aanmelding te bevestigen.",
+      "successAfmelden": "Als dit adres op de lijst staat, krijg je een mail met een link om je af te melden.",
+      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens."
+    },
+    "footer": {
+      "title": "Nieuwsbrief",
+      "text": "Buurtnieuws en de agenda in je mailbox.",
+      "submit": "Aanmelden",
+      "success": "Check je mailbox om je aanmelding te bevestigen.",
+      "afmelden": "Afmelden"
+    },
+    "bevestigen": {
+      "heading": "Aanmelding bevestigen",
+      "text": "Klik op de knop om je aanmelding voor de nieuwsbrief te bevestigen.",
+      "submit": "Bevestig aanmelding",
+      "success": "Gelukt! Je ontvangt voortaan de nieuwsbrief van Duivelseiland.",
+      "invalid": "Deze link is niet (meer) geldig. Meld je opnieuw aan via de nieuwsbriefpagina."
+    },
+    "afmelden": {
+      "heading": "Afmelden voor de nieuwsbrief",
+      "text": "Klik op de knop om je af te melden. Je ontvangt daarna geen nieuwsbrief meer.",
+      "submit": "Afmelden",
+      "success": "Je bent afgemeld. Je kunt je altijd opnieuw aanmelden.",
+      "invalid": "Deze link is niet (meer) geldig. Vraag een nieuwe afmeldlink aan via de nieuwsbriefpagina."
+    },
+    "terug": "Naar de nieuwsbriefpagina"
+  },
+  "activiteiten": {
+    "eyebrow": "Activiteiten",
+    "heading": "Samen iets doen in de buurt",
+    "metaDescription": "Buurtactiviteiten op Duivelseiland, georganiseerd door bewoners. Doe mee, of meld zelf een idee aan.",
+    "intro": "Een boekenclub, kookclub of naaiclub: bewoners organiseren zelf activiteiten om elkaar beter te leren kennen. Doe mee, of begin zelf iets.",
+    "ctaAanmelden": "Zelf een idee? Meld het aan",
+    "leeg": "Er zijn nog geen activiteiten. Begin jij de eerste?",
+    "archiefTitel": "Dit is er al gebeurd in de buurt",
+    "archiefIntro": "Activiteiten die bewoners eerder organiseerden. Zin om ook iets te beginnen?",
+    "fase": {
+      "goedgekeurd": "Open voor aanmelding",
+      "gesloten": "Aanmelding gesloten",
+      "gaat-door": "Gaat door",
+      "afgelopen": "Afgelopen"
+    },
+    "soort": {
+      "eenmalig": "Eenmalig",
+      "terugkerend": "Terugkerend"
+    },
+    "organisator": "Georganiseerd door {naam}",
+    "aantal": "{aantal, plural, one {# buur doet mee} other {# buren doen mee}}",
+    "terug": "Alle activiteiten",
+    "afgelopenTekst": "Deze activiteit is afgelopen.",
+    "opAgenda": "Bekijk op de agenda",
+    "aanmelden": {
+      "eyebrow": "Idee aanmelden",
+      "heading": "Organiseer een activiteit voor de buurt",
+      "metaDescription": "Meld een idee aan voor een buurtactiviteit op Duivelseiland.",
+      "intro": "Heb je zin om een boekenclub, kookclub of wandelgroep te beginnen? Meld je idee aan. Wij zetten het online, zodat buren zich kunnen aansluiten.",
+      "stappenTitel": "Zo werkt het",
+      "stappen": [
+        "Je meldt hieronder je idee aan. Er hoeft nog niets te bestaan: het idee is genoeg.",
+        "De redactie kijkt binnen een week of het idee past bij de spelregels.",
+        "Na goedkeuring komt er een eigen pagina. Buren melden zich daar aan en jij bent de organisator: je ziet wie meedoet, stuurt de groep berichten en beslist of en wanneer het doorgaat."
+      ],
+      "regelsTitel": "Spelregels",
+      "regelsIntro": "Een activiteit is bedoeld om buren met elkaar te verbinden. Daarom moet hij:",
+      "regels": [
+        "laagdrempelig zijn: iedereen kan meedoen, zonder ervaring of lidmaatschap;",
+        "niet-commercieel zijn: gratis, of alleen kosten delen (bijv. ingrediënten), zonder winst;",
+        "inclusief zijn: open voor alle buurtbewoners, ongeacht leeftijd, achtergrond of taal;",
+        "in of rond de buurt plaatsvinden."
+      ],
+      "nietToegestaan": "Niet toegestaan: verkoop of promotie, werving voor een bedrijf, politieke of religieuze werving en besloten groepen."
+    },
+    "ideeForm": {
+      "titel": "Naam van de activiteit",
+      "titelPlaceholder": "Bijv. Boekenclub Duivelseiland",
+      "omschrijving": "Omschrijving",
+      "omschrijvingHint": "Wat ga je doen, voor wie, hoe vaak en waar ongeveer?",
+      "soort": "Eenmalig of terugkerend?",
+      "soortToelichting": "Hoe vaak?",
+      "soortToelichtingPlaceholder": "Bijv. elke eerste dinsdag van de maand",
+      "datum": "Datum (optioneel)",
+      "afbeelding": "Afbeelding voor bovenaan de pagina (optioneel)",
+      "afbeeldingHint": "JPG, PNG of WebP, maximaal 4 MB. Alleen een foto waarvan je de rechten hebt, zonder herkenbare personen die geen toestemming gaven.",
+      "afbeeldingTeGroot": "Deze afbeelding is groter dan 4 MB.",
+      "naam": "Je naam (organisator)",
+      "naamHint": "Op de site staat alleen je voornaam.",
+      "email": "Je e-mailadres (organisator)",
+      "emailHint": "Jij wordt de organisator. Met dit adres log je na goedkeuring in om je activiteit te beheren. Het wordt nooit getoond op de site.",
+      "akkoord": "Ik heb de spelregels gelezen en ga ermee akkoord.",
+      "submit": "Idee versturen",
+      "submitting": "Bezig met versturen…",
+      "success": "Bedankt! Check je mailbox: je krijgt een mail over je idee. Daarna kijkt de redactie ernaar.",
+      "error": {
+        "velden": "Niet alle velden zijn goed ingevuld. Controleer naam, omschrijving en e-mailadres.",
+        "afbeelding": "De afbeelding moet een JPG, PNG of WebP van maximaal 4 MB zijn.",
+        "akkoord": "Vink aan dat je akkoord gaat met de spelregels.",
+        "server": "Er ging iets mis. Probeer het later nog eens."
+      },
+      "datumHint": "Je kunt de datum later altijd nog aanpassen."
+    },
+    "inschrijfForm": {
+      "titel": "Doe mee",
+      "legend": "Wat wil je doen?",
+      "aanmelden": "Aanmelden",
+      "afmelden": "Afmelden",
+      "voornaam": "Je voornaam",
+      "email": "Je e-mailadres",
+      "emailPlaceholder": "naam@voorbeeld.nl",
+      "opmerking": "Opmerking voor de organisator (optioneel)",
+      "opmerkingPlaceholder": "Bijv. ik kan pas vanaf 20:00",
+      "submitAanmelden": "Aanmelden",
+      "submitAfmelden": "Stuur afmeldlink",
+      "submitting": "Bezig met versturen…",
+      "successAanmelden": "Check je mailbox: je krijgt een mail over je aanmelding.",
+      "successAfmelden": "Als dit adres is aangemeld, krijg je een mail met een link om je af te melden.",
+      "gesloten": "De inschrijving is gesloten.",
+      "error": "Dat lukte niet. Controleer je voornaam en e-mailadres en probeer het nog eens.",
+      "privacy": "Je voornaam, e-mailadres en opmerking zijn zichtbaar voor de organisator van deze activiteit. Je krijgt alleen mail over deze activiteit en kunt je altijd afmelden."
+    },
+    "token": {
+      "submitting": "Bezig…",
+      "gesloten": "De inschrijving is inmiddels gesloten of de activiteit is vol. Je bent niet aangemeld.",
+      "idee-bevestigen": {
+        "heading": "Idee bevestigen",
+        "text": "Klik op de knop om je e-mailadres te bevestigen. Daarna gaat je idee naar de redactie.",
+        "submit": "Bevestig mijn idee",
+        "success": "Gelukt! De redactie kijkt binnen een week naar je idee en laat het je per mail weten.",
+        "invalid": "Deze link is niet (meer) geldig."
+      },
+      "idee-intrekken": {
+        "heading": "Idee intrekken",
+        "text": "Klik op de knop om het idee in te trekken. Het wordt dan helemaal verwijderd.",
+        "submit": "Trek het idee in",
+        "success": "Het idee is ingetrokken en verwijderd.",
+        "invalid": "Deze link is niet (meer) geldig, of het idee is al goedgekeurd. Neem dan contact op met de redactie."
+      },
+      "inschrijving-bevestigen": {
+        "heading": "Aanmelding bevestigen",
+        "text": "Klik op de knop om je aanmelding te bevestigen.",
+        "submit": "Bevestig aanmelding",
+        "success": "Gelukt! Je doet mee. De organisator houdt je per mail op de hoogte.",
+        "invalid": "Deze link is niet (meer) geldig. Meld je opnieuw aan via de pagina van de activiteit."
+      },
+      "inschrijving-afmelden": {
+        "heading": "Afmelden",
+        "text": "Klik op de knop om je af te melden voor deze activiteit.",
+        "submit": "Afmelden",
+        "success": "Je bent afgemeld. Je krijgt geen mail meer over deze activiteit.",
+        "invalid": "Deze link is niet (meer) geldig."
+      },
+      "terug": "Naar de activiteiten"
+    },
+    "agendaAanmelden": "Aanmelden voor deze activiteit",
+    "voorbehoud": "Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn.",
+    "voorbehoudKort": "Nog niet definitief"
   }
 }

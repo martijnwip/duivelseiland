@@ -6,6 +6,8 @@ import type { AgendaRichFields } from '@/lib/agenda/richFields';
 import { BuurtborrelForm } from './BuurtborrelForm';
 import { Icon, WhatsAppIcon, type BuurtborrelIconName } from './icons';
 import { PlantsoenKaart } from './PlantsoenKaart';
+import { IdeeLikes } from './IdeeLikes';
+import type { IdeeKey } from '@/collections/IdeeLikes';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 
 // Het Schoonmaak-nummer staat al bij het agenda-item (zie HomeDuivelseSchoonmaak).
@@ -22,8 +24,7 @@ const IDEEEN = [
   { key: 'paasbrunch', icon: 'ei' },
   { key: 'koningsdag', icon: 'kroon' },
   { key: 'ruilbeurs', icon: 'ruilen' },
-  { key: 'jouwIdee', icon: 'idee' },
-] as const satisfies readonly { key: string; icon: BuurtborrelIconName }[];
+] as const satisfies readonly { key: IdeeKey; icon: BuurtborrelIconName }[];
 
 const DANK = ['wildschut', 'hendrik', 'bistrot', 'kerk', 'schoonmaakploeg', 'iedereen'] as const;
 
@@ -117,18 +118,13 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
 
       <Section id="buurtborrel-ideeen">
         <SectionHead id="buurtborrel-ideeen" eyebrow={t('ideeen.eyebrow')} title={t('ideeen.title')} intro={t('ideeen.intro')} />
-        <ul className="mt-8 flex list-none flex-wrap gap-3 p-0">
-          {IDEEEN.map(({ key, icon }) => (
-            <li
-              key={key}
-              className={`flex items-center gap-2.5 rounded-full border py-2 pr-4 pl-2.5 text-[15px] font-medium ${
-                key === 'jouwIdee' ? 'border-dashed border-primary text-primary' : 'border-border bg-card text-text'
-              }`}
-            >
-              <Icon name={icon} className="size-6 text-primary" />
-              {t(`ideeen.items.${key}`)}
-            </li>
-          ))}
+        <p className="mt-4 mb-0 text-[15px] text-muted">{t('ideeen.likeHint')}</p>
+        <ul className="mt-6 flex list-none flex-wrap gap-3 p-0">
+          <IdeeLikes items={IDEEEN.map(({ key, icon }) => ({ key, icon, label: t(`ideeen.items.${key}`) }))} likeLabel={t.raw('ideeen.like')} />
+          <li className="flex items-center gap-2.5 rounded-full border border-dashed border-primary py-2 pr-4 pl-2.5 text-[15px] font-medium text-primary">
+            <Icon name="idee" className="size-6 text-primary" />
+            {t('ideeen.items.jouwIdee')}
+          </li>
         </ul>
         <p className="mt-6 mb-0 font-heading text-xl text-text italic">{t('ideeen.motto')}</p>
       </Section>

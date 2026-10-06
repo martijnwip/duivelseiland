@@ -18,6 +18,15 @@ import * as migration_20260922_141111_agenda_whatsapp_number from './20260922_14
 import * as migration_20260923_121226_buurtborrel from './20260923_121226_buurtborrel';
 import * as migration_20260923_141050_menu_zichtbaar from './20260923_141050_menu_zichtbaar';
 import * as migration_20260924_121946_geschiedenis_verhaal from './20260924_121946_geschiedenis_verhaal';
+import * as migration_20261002_093041_idee_likes from './20261002_093041_idee_likes';
+import * as migration_20261002_100644_nieuwsbrief_abonnees from './20261002_100644_nieuwsbrief_abonnees';
+import * as migration_20261002_104348_nieuwsbrief_bron from './20261002_104348_nieuwsbrief_bron';
+import * as migration_20261002_125350_activiteiten from './20261002_125350_activiteiten';
+import * as migration_20261002_131210_nieuwsbrief_naam from './20261002_131210_nieuwsbrief_naam';
+import * as migration_20261002_133220_adresboek from './20261002_133220_adresboek';
+import * as migration_20261002_140942_fase_goedgekeurd from './20261002_140942_fase_goedgekeurd';
+import * as migration_20261002_143838_merge_activiteiten_nieuwsbrief from './20261002_143838_merge_activiteiten_nieuwsbrief';
+import * as migration_20261006_111532_datum_samenvoegen from './20261006_111532_datum_samenvoegen';
 
 export const migrations = [
   {
@@ -118,6 +127,51 @@ export const migrations = [
   {
     up: migration_20260924_121946_geschiedenis_verhaal.up,
     down: migration_20260924_121946_geschiedenis_verhaal.down,
-    name: '20260924_121946_geschiedenis_verhaal'
+    name: '20260924_121946_geschiedenis_verhaal',
+  },
+  {
+    up: migration_20261002_093041_idee_likes.up,
+    down: migration_20261002_093041_idee_likes.down,
+    name: '20261002_093041_idee_likes',
+  },
+  {
+    up: migration_20261002_100644_nieuwsbrief_abonnees.up,
+    down: migration_20261002_100644_nieuwsbrief_abonnees.down,
+    name: '20261002_100644_nieuwsbrief_abonnees',
+  },
+  {
+    up: migration_20261002_104348_nieuwsbrief_bron.up,
+    down: migration_20261002_104348_nieuwsbrief_bron.down,
+    name: '20261002_104348_nieuwsbrief_bron',
+  },
+  {
+    up: migration_20261002_125350_activiteiten.up,
+    down: migration_20261002_125350_activiteiten.down,
+    name: '20261002_125350_activiteiten',
+  },
+  {
+    up: migration_20261002_131210_nieuwsbrief_naam.up,
+    down: migration_20261002_131210_nieuwsbrief_naam.down,
+    name: '20261002_131210_nieuwsbrief_naam',
+  },
+  {
+    up: migration_20261002_133220_adresboek.up,
+    down: migration_20261002_133220_adresboek.down,
+    name: '20261002_133220_adresboek',
+  },
+  {
+    up: migration_20261002_140942_fase_goedgekeurd.up,
+    down: migration_20261002_140942_fase_goedgekeurd.down,
+    name: '20261002_140942_fase_goedgekeurd',
+  },
+  {
+    up: migration_20261002_143838_merge_activiteiten_nieuwsbrief.up,
+    down: migration_20261002_143838_merge_activiteiten_nieuwsbrief.down,
+    name: '20261002_143838_merge_activiteiten_nieuwsbrief',
+  },
+  {
+    up: migration_20261006_111532_datum_samenvoegen.up,
+    down: migration_20261006_111532_datum_samenvoegen.down,
+    name: '20261006_111532_datum_samenvoegen'
   },
 ];

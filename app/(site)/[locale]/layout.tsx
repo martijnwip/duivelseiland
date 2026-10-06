@@ -74,6 +74,7 @@ export default async function SiteLayout({
   const site = await getSiteInstellingen(locale);
   const siteNaam = site.siteNaam || 'Duivelseiland';
   const menu = (site.menu ?? []).filter((item) => item.zichtbaar !== false);
+  const tNieuwsbrief = await getTranslations({ locale, namespace: 'nieuwsbrief' });
 
   return (
     <html
@@ -91,6 +92,19 @@ export default async function SiteLayout({
             locale={locale}
             contactgegevens={site.contactgegevens}
             footerTekst={site.footer}
+            nieuwsbrief={{
+              title: tNieuwsbrief('footer.title'),
+              text: tNieuwsbrief('footer.text'),
+              naamLabel: tNieuwsbrief('form.naamLabel'),
+              naamPlaceholder: tNieuwsbrief('form.naamPlaceholder'),
+              emailLabel: tNieuwsbrief('form.emailLabel'),
+              emailPlaceholder: tNieuwsbrief('form.emailPlaceholder'),
+              submit: tNieuwsbrief('footer.submit'),
+              submitting: tNieuwsbrief('form.submitting'),
+              success: tNieuwsbrief('footer.success'),
+              error: tNieuwsbrief('form.error'),
+              afmelden: tNieuwsbrief('footer.afmelden'),
+            }}
           />
         </ThemeProvider>
         <Analytics />
