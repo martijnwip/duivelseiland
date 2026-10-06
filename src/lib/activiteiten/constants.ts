@@ -6,8 +6,8 @@ export const FASE_LABELS: Record<Fase, string> = {
   onbevestigd: 'Wacht op e-mailbevestiging',
   ingediend: 'Wacht op goedkeuring',
   afgewezen: 'Afgewezen',
-  goedgekeurd: 'Goedgekeurd (open voor aanmelding)',
-  'gaat-door': 'Gaat door',
+  goedgekeurd: 'Goedgekeurd: online, nog niet definitief',
+  'gaat-door': 'Gaat door (besloten door organisator)',
   afgelast: 'Afgelast',
   afgelopen: 'Afgelopen',
 };
@@ -19,6 +19,8 @@ export const ACTIEVE_FASES: Fase[] = ['goedgekeurd', 'gaat-door'];
 /** Ideeën die nog bij de aanvrager of de redactie liggen. */
 export const OPEN_IDEE_FASES: Fase[] = ['onbevestigd', 'ingediend'];
 
+/** Fasen die een organisator in /admin kan kiezen. */
+export const ORGANISATOR_FASES: Fase[] = ['goedgekeurd', 'gaat-door', 'afgelast', 'afgelopen'];
 /** Overgangen die een organisator zelf mag maken. De redactie mag alles. */
 export const ORGANISATOR_OVERGANGEN: Partial<Record<Fase, Fase[]>> = {
   goedgekeurd: ['gaat-door', 'afgelast', 'afgelopen'],

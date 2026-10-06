@@ -2,7 +2,7 @@ import type { CollectionBeforeDeleteHook, CollectionConfig } from 'payload';
 import { isRedacteurOrAdmin, isRedacteurOrAdminField } from '../access/isAdmin';
 import { isOwnerOrRedacteur } from '../access/isOwnerOrRedacteur';
 import { readActiviteiten, redactieOfEigenaarField } from '../access/activiteiten';
-import { ACTIEVE_FASES, FASES, FASE_LABELS, GERESERVEERDE_SLUGS } from '../lib/activiteiten/constants';
+import { ACTIEVE_FASES, FASES, FASE_LABELS, GERESERVEERDE_SLUGS, ORGANISATOR_FASES } from '../lib/activiteiten/constants';
 import { activiteitAfterChange, activiteitBeforeChange } from '../lib/activiteiten/workflow';
 import { adresboekHooks } from '../lib/adresboek';
 
@@ -43,7 +43,7 @@ export const Activiteiten: CollectionConfig = {
     group: 'Activiteiten',
     defaultColumns: ['title', 'fase', 'aanvragerNaam', 'aanvragerEmail', 'inschrijving', 'updatedAt'],
     description:
-      'Ideeën en activiteiten van buurtbewoners. Nieuwe ideeën staan op "Wacht op goedkeuring": keur goed of wijs af met een reden (knoppen bovenaan het item). Na goedkeuring staat de activiteit online en kunnen buren zich aanmelden.',
+      'Ideeën en activiteiten van buurtbewoners. Nieuwe ideeën staan op "Wacht op goedkeuring": keur goed of wijs af met een reden (knoppen bovenaan het item). Goedkeuren is alleen toetsen aan de spelregels: daarna staat de activiteit online en kunnen buren zich aanmelden. Organisator: hier beheer je je eigen activiteit. Jij beslist of het doorgaat en wanneer, en ziet de aanmeldingen en berichten.',
     components: {
       edit: {
         beforeDocumentControls: [
@@ -109,7 +109,7 @@ export const Activiteiten: CollectionConfig = {
       admin: {
         date: { pickerAppearance: 'dayAndTime', displayFormat: 'd MMM yyyy HH:mm' },
         description:
-          'Kan altijd nog gewijzigd worden. Nodig om de activiteit op de agenda te zetten. Zolang de fase Goedgekeurd is, staat er "Nog niet definitief" bij.',
+          'Kan altijd nog gewijzigd worden; deelnemers krijgen dan automatisch een mail. Nodig voor de agenda en, bij een eenmalige activiteit, voor Gaat door. Zolang de fase Goedgekeurd is, staat er "Nog niet definitief" bij.',
       },
     },
     { name: 'image', label: 'Headerafbeelding', type: 'upload', relationTo: 'media' },
@@ -134,9 +134,18 @@ export const Activiteiten: CollectionConfig = {
       defaultValue: 'ingediend',
       index: true,
       options: FASES.map((value) => ({ value, label: FASE_LABELS[value] })),
+      // De organisator ziet alleen zijn eigen keuzes (plus de huidige fase); welke overgang mag, bewaakt de hook.
+      filterOptions: ({ options, req, data }) =>
+        req.user?.role === 'organisator'
+          ? options.filter((o) => {
+              const value = typeof o === 'string' ? o : o.value;
+              return ORGANISATOR_FASES.includes(value as never) || value === data?.fase;
+            })
+          : options,
       admin: {
         position: 'sidebar',
-        description: 'Goedkeuren en afwijzen doet de redactie (knoppen bovenaan). Daarna kiest de organisator: Gaat door, Afgelast of Afgelopen.',
+        description:
+          'Goedgekeurd betekent alleen dat het idee binnen de spelregels past. De organisator beslist daarna: Gaat door (eenmalig: met datum), Afgelast of Afgelopen. Goedkeuren en afwijzen doet de redactie (knoppen bovenaan).',
       },
     },
     {

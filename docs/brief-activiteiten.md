@@ -1,6 +1,6 @@
 # Brief: Activiteiten
 
-Bewoners kunnen via de site een idee voor een buurtactiviteit aanmelden, zoals een boekenclub, kookclub of naaiclub. Op het moment van aanmelden bestaat er nog niets: de site is de tussenpersoon die andere bewoners bij elkaar brengt. De redactie keurt het idee goed. Daarna wordt de aanvrager **organisator**: die is zelf verantwoordelijk voor het werven van deelnemers, het mailen van de groep en de beslissing of de activiteit doorgaat.
+Bewoners kunnen via de site een idee voor een buurtactiviteit aanmelden, zoals een boekenclub, kookclub of naaiclub. Op het moment van aanmelden bestaat er nog niets: de site is de tussenpersoon die andere bewoners bij elkaar brengt. De redactie toetst het idee alleen aan de spelregels (zodat er geen activiteiten komen die niet door de beugel kunnen) en keurt het goed. Goedgekeurd betekent dus nog niet dat het doorgaat. Daarna wordt de aanvrager **organisator**: die is zelf verantwoordelijk voor het werven van deelnemers, het mailen van de groep en de beslissing of de activiteit doorgaat.
 
 Routes: `/activiteiten` (overzicht), `/activiteiten/aanmelden` (idee aanmelden) en `/activiteiten/[slug]` (activiteitpagina met inschrijving). Allemaal in nl en en.
 
@@ -64,14 +64,14 @@ ingediend ──► afgewezen
 |---|---|---|
 | `ingediend` | E-mail bevestigd, wacht op moderatie | Nee |
 | `afgewezen` | Voldoet niet aan de spelregels | Nee |
-| `goedgekeurd` | Goedgekeurd door de redactie: online en open voor aanmelding | Ja |
-| `gaat-door` | Genoeg aanmeldingen, de organisator heeft besloten dat het doorgaat | Ja |
+| `goedgekeurd` | Past binnen de spelregels: online, op de agenda als "nog niet definitief" en open voor aanmelding | Ja |
+| `gaat-door` | De organisator heeft besloten dat het doorgaat. Bij een eenmalige activiteit is een datum verplicht | Ja |
 | `afgelast` | Gaat niet door | Nee (deelnemers krijgen een mail) |
 | `afgelopen` | Klaar | Optioneel als archief, zonder inschrijfformulier |
 
 Een idee dat nog niet bevestigd is, staat als `onbevestigd` in de database en is alleen voor admins zichtbaar. Na 7 dagen wordt het automatisch opgeruimd.
 
-**Goedkeuren** doet één redacteur of admin, met de knoppen **Goedkeuren** / **Afwijzen** bovenaan het item in `/admin`. Vanaf dat moment staat de activiteit online en kan iedereen zich aanmelden. Werven van deelnemers is daarna de taak van de organisator, niet van de redactie.
+**Goedkeuren** doet één redacteur of admin, met de knoppen **Goedkeuren** / **Afwijzen** bovenaan het item in `/admin`. Vanaf dat moment staat de activiteit online en kan iedereen zich aanmelden. Werven van deelnemers is daarna de taak van de organisator, niet van de redactie. De organisator beslist zelf of en wanneer het doorgaat; in `/admin` ziet die in de fase-keuzelijst alleen Goedgekeurd, Gaat door, Afgelast en Afgelopen.
 
 In `/admin` heten de fasen: Wacht op e-mailbevestiging, Wacht op goedkeuring, Afgewezen, Goedgekeurd (open voor aanmelding), Gaat door, Afgelast, Afgelopen. Op de site staat bij een goedgekeurde activiteit "Open voor aanmelding", of "Aanmelding gesloten" als de organisator de inschrijving heeft gesloten.
 
@@ -204,7 +204,7 @@ Rechten lopen via een query-constraint op `eigenaar`, volgens het patroon van `i
 
 De organisator kan:
 
-- titel, omschrijving, afbeelding, soort en datum wijzigen. Dat hoeft niet opnieuw langs de moderatie; de redactie kan altijd ingrijpen en depubliceren;
+- titel, omschrijving, afbeelding, soort en datum wijzigen. Dat hoeft niet opnieuw langs de moderatie; de redactie kan altijd ingrijpen en depubliceren. Bij een gewijzigde datum krijgen de deelnemers automatisch een mail;
 - de fase wijzigen (zie 3), de inschrijving open of dicht zetten en `maxDeelnemers` instellen;
 - de deelnemerslijst bekijken (voornaam, e-mail, opmerking, datum) en als CSV exporteren;
 - een inschrijving verwijderen, bv. bij misbruik of op verzoek;
@@ -229,7 +229,7 @@ Een collection `activiteit-berichten` met de velden onderwerp, tekst, activiteit
 - Alleen platte tekst; links zijn toegestaan.
 - De redactie kan alle berichten lezen. Bij misbruik kan de redactie de organisator blokkeren.
 
-**Automatische mails aan deelnemers:** bij `goedgekeurd` → `gaat-door` ("Het gaat door!", met de datum) en bij `afgelast`. Wil de organisator iets toelichten, dan stuurt die daarnaast een gewoon bericht.
+**Automatische mails aan deelnemers:** bij `goedgekeurd` → `gaat-door` ("Het gaat door!", met de datum), bij `afgelast`, en als de datum verandert terwijl de activiteit goedgekeurd is of doorgaat ("Datum gewijzigd", bij goedgekeurd met "nog niet definitief"). Wil de organisator iets toelichten, dan stuurt die daarnaast een gewoon bericht.
 
 ## 10. Flow 7: naar de agenda
 

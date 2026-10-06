@@ -127,13 +127,17 @@ export function ideeGoedgekeurdMail(to: string, locale: Locale, titel: string, s
     html: mailHtml({
       alineas: [
         t(locale, {
-          nl: `Goed nieuws: de redactie heeft <strong>${tt}</strong> goedgekeurd. De pagina staat online en buren kunnen zich aanmelden:`,
-          en: `Good news: the editors approved <strong>${tt}</strong>. The page is online and neighbours can sign up:`,
+          nl: `Goed nieuws: de redactie heeft <strong>${tt}</strong> getoetst aan de spelregels en goedgekeurd. De pagina staat online en op de agenda, als <em>nog niet definitief</em>. Buren kunnen zich nu aanmelden:`,
+          en: `Good news: the editors checked <strong>${tt}</strong> against the ground rules and approved it. The page is online and on the calendar, marked <em>not yet final</em>. Neighbours can now sign up:`,
         }),
         `<a href="${pagina}">${pagina}</a>`,
         t(locale, {
-          nl: 'Vanaf nu ben jij de organisator. In het beheerpaneel zie je wie zich heeft aangemeld, stuur je berichten aan de groep, sluit je de inschrijving en zet je de activiteit op de agenda zodra hij doorgaat. Log in met dit e-mailadres; je krijgt dan een inloglink.',
-          en: "From now on you're the organiser. In the admin panel you can see who signed up, send messages to the group, close sign-ups and put the activity on the calendar once it goes ahead. Log in with this email address and you'll receive a login link.",
+          nl: 'Nu ben jij aan zet: vertel buren erover en verzamel aanmeldingen. Jij beslist of het doorgaat. Zet de activiteit in het beheerpaneel op <em>Gaat door</em> (met een datum) of op <em>Afgelast</em>. De datum kun je altijd wijzigen; deelnemers krijgen daar automatisch een mail over.',
+          en: "Now it's up to you: tell your neighbours and gather sign-ups. You decide whether it goes ahead. In the admin panel, set the activity to <em>Gaat door</em> (with a date) or <em>Afgelast</em>. You can always change the date; participants are emailed automatically when you do.",
+        }),
+        t(locale, {
+          nl: 'In het beheerpaneel zie je ook wie zich heeft aangemeld, stuur je berichten aan de groep en sluit je de aanmelding als het vol is. Log in met dit e-mailadres; je krijgt dan een inloglink.',
+          en: "In the admin panel you can also see who signed up, send messages to the group and close sign-ups when it's full. Log in with this email address and you'll receive a login link.",
         }),
       ],
       knop: { label: t(locale, { nl: 'Naar het beheerpaneel', en: 'Go to the admin panel' }), url: adminUrl() },
@@ -334,6 +338,50 @@ export function faseMail({
         ? t(locale, { nl: `Het gaat door: ${titel}`, en: `It's on: ${titel}` })
         : t(locale, { nl: `Afgelast: ${titel}`, en: `Cancelled: ${titel}` }),
     html: mailHtml({ alineas, voet: fase === 'gaat-door' ? afmeldVoet(locale, token) : undefined }),
+  };
+}
+
+/** De organisator heeft de datum gewijzigd. `definitief` is false zolang de fase goedgekeurd is. */
+export function datumGewijzigdMail({
+  to,
+  locale,
+  titel,
+  slug,
+  datum,
+  definitief,
+  token,
+  replyTo,
+}: {
+  to: string;
+  locale: Locale;
+  titel: string;
+  slug: string;
+  datum?: string | null;
+  definitief: boolean;
+  token: string;
+  replyTo?: string;
+}): Mail {
+  const tt = escapeHtml(titel);
+  const pagina = siteUrl(locale, `/activiteiten/${slug}`);
+  const wanneer = datum
+    ? t(locale, { nl: `Nieuwe datum: ${formatDatumTijd(datum, locale)}`, en: `New date: ${formatDatumTijd(datum, locale)}` }) +
+      (definitief ? '' : t(locale, { nl: ' (nog niet definitief)', en: ' (not yet final)' }))
+    : t(locale, { nl: 'De datum is nog niet bekend.', en: 'The date is not known yet.' });
+  return {
+    to,
+    replyTo,
+    subject: t(locale, { nl: `Datum gewijzigd: ${titel}`, en: `Date changed: ${titel}` }),
+    html: mailHtml({
+      alineas: [
+        t(locale, {
+          nl: `De organisator heeft de datum van <strong>${tt}</strong> gewijzigd.`,
+          en: `The organiser has changed the date of <strong>${tt}</strong>.`,
+        }),
+        wanneer,
+        `<a href="${pagina}">${pagina}</a>`,
+      ],
+      voet: afmeldVoet(locale, token),
+    }),
   };
 }
 

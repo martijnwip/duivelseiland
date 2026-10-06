@@ -3,7 +3,7 @@ import { APIError } from 'payload';
 import { hasRoleAtLeast } from '../../access/roles';
 import { synchroniseerAgenda } from './agenda';
 import { ACTIEVE_FASES, ORGANISATOR_OVERGANGEN, type Fase } from './constants';
-import { faseMail, ideeAfgewezenMail, ideeGoedgekeurdMail, redactieNieuwIdeeMail, verstuur, verstuurBatch, type Locale } from './mail';
+import { datumGewijzigdMail, faseMail, ideeAfgewezenMail, ideeGoedgekeurdMail, redactieNieuwIdeeMail, verstuur, verstuurBatch, type Locale } from './mail';
 
 type Id = number;
 const idVan = (value: unknown): Id | null =>
@@ -43,6 +43,25 @@ export async function meldNieuwIdeeAanRedactie(payload: Payload, titel: string, 
   }
 }
 
+async function eigenaarEmail(payload: Payload, doc: { eigenaar?: unknown }, req?: PayloadRequest) {
+  const id = idVan(doc.eigenaar);
+  if (!id) return undefined;
+  const user = await payload.findByID({ collection: 'users', id, depth: 0, overrideAccess: true, req });
+  return user?.email ?? undefined;
+}
+
+async function actieveDeelnemers(payload: Payload, activiteitId: Id, req?: PayloadRequest) {
+  const { docs } = await payload.find({
+    collection: 'activiteit-inschrijvingen',
+    where: { and: [{ activiteit: { equals: activiteitId } }, { status: { equals: 'actief' } }] },
+    depth: 0,
+    pagination: false,
+    overrideAccess: true,
+    req,
+  });
+  return docs;
+}
+
 /** Bestaande gebruiker bij dit adres, of een nieuwe met rol organisator. Een bestaande rol blijft staan. */
 async function zorgVoorOrganisator(req: PayloadRequest, email: string, naam?: string | null): Promise<Id> {
   const { docs } = await req.payload.find({
@@ -80,6 +99,13 @@ export const activiteitBeforeChange: CollectionBeforeChangeHook = async ({ data,
     }
   }
 
+  // Doorgaan is een besluit van de organisator; bij een eenmalige activiteit hoort daar een datum bij.
+  // `datum: null` in dezelfde opslag maakt de datum leeg, dus niet terugvallen op de oude waarde.
+  const datum = 'datum' in data ? data.datum : originalDoc.datum;
+  if (nieuw === 'gaat-door' && (data.soort ?? originalDoc.soort) === 'eenmalig' && !datum) {
+    throw fout('Vul een datum in voordat je de activiteit op Gaat door zet.');
+  }
+
   if (nieuw === 'afgewezen' && !String(data.afwijsReden ?? originalDoc.afwijsReden ?? '').trim()) {
     throw fout('Vul een reden in voordat je het idee afwijst; die wordt naar de aanvrager gemaild.');
   }
@@ -112,6 +138,36 @@ export const activiteitAfterChange: CollectionAfterChangeHook = async ({ doc, pr
 
   const oud = previousDoc?.fase as Fase | undefined;
   const nieuw = doc.fase as Fase;
+
+  // Datum gewijzigd zonder fasewissel: deelnemers horen de nieuwe datum. Bij een fasewissel zit de datum al
+  // in de fasemail (gaat door) of doet hij er niet meer toe (afgelast).
+  if (oud === nieuw && ACTIEVE_FASES.includes(nieuw) && (doc.datum ?? null) !== (previousDoc?.datum ?? null)) {
+    try {
+      const [t, deelnemers, replyTo] = await Promise.all([
+        titels(payload, doc.id, req),
+        actieveDeelnemers(payload, doc.id, req),
+        eigenaarEmail(payload, doc, req),
+      ]);
+      await verstuurBatch(
+        deelnemers.map((d) => {
+          const l: Locale = d.locale === 'en' ? 'en' : 'nl';
+          return datumGewijzigdMail({
+            to: d.email,
+            locale: l,
+            titel: t[l],
+            slug: doc.slug,
+            datum: doc.datum,
+            definitief: nieuw === 'gaat-door',
+            token: d.token,
+            replyTo,
+          });
+        }),
+      );
+    } catch (error) {
+      payload.logger.error(`[activiteiten] datummail mislukt voor ${doc.id}: ${error}`);
+    }
+  }
+
   if (!oud || oud === nieuw) return doc;
 
   const locale: Locale = doc.locale === 'en' ? 'en' : 'nl';
@@ -134,18 +190,8 @@ export const activiteitAfterChange: CollectionAfterChangeHook = async ({ doc, pr
     // Afgelast, of door de redactie afgekeurd terwijl hij al online stond: deelnemers horen dat het niet doorgaat.
     const stopt = (nieuw === 'afgelast' || nieuw === 'afgewezen') && ACTIEVE_FASES.includes(oud);
     if ((nieuw === 'gaat-door' && oud === 'goedgekeurd') || stopt) {
-      const eigenaarId = idVan(doc.eigenaar);
-      const eigenaar = eigenaarId
-        ? await payload.findByID({ collection: 'users', id: eigenaarId, depth: 0, overrideAccess: true, req })
-        : null;
-      const { docs: deelnemers } = await payload.find({
-        collection: 'activiteit-inschrijvingen',
-        where: { and: [{ activiteit: { equals: doc.id } }, { status: { equals: 'actief' } }] },
-        depth: 0,
-        pagination: false,
-        overrideAccess: true,
-        req,
-      });
+      const replyTo = await eigenaarEmail(payload, doc, req);
+      const deelnemers = await actieveDeelnemers(payload, doc.id, req);
       await verstuurBatch(
         deelnemers.map((d) => {
           const l: Locale = d.locale === 'en' ? 'en' : 'nl';
@@ -157,7 +203,7 @@ export const activiteitAfterChange: CollectionAfterChangeHook = async ({ doc, pr
             fase: nieuw === 'gaat-door' ? 'gaat-door' : 'afgelast',
             datum: doc.datum,
             token: d.token,
-            replyTo: eigenaar?.email,
+            replyTo,
           });
         }),
       );
