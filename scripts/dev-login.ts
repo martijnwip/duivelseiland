@@ -2,6 +2,7 @@ import { readFileSync, rmSync } from 'fs';
 import path from 'path';
 import { spawn } from 'child_process';
 import type { PayloadWithAuth } from '@delmaredigital/payload-better-auth';
+import type { Role } from '../src/access/roles';
 import type { betterAuthOptions } from '../src/lib/auth/config';
 import { getClient } from './lib/payload-client';
 
@@ -9,14 +10,38 @@ import { getClient } from './lib/payload-client';
 // aan en opent die in de standaardbrowser, zodat je meteen ingelogd bent op de
 // lokale dev-server. Er wordt nooit gemaild.
 //
+//   bun dev:login [e-mail] [naam] [--rol admin|redacteur|auteur|organisator]
+//
+// Zonder --rol wordt een nieuwe gebruiker admin en houdt een bestaande zijn rol;
+// met --rol krijgt ook een bestaande gebruiker die rol.
+//
 // De link wordt in dit proces aangemaakt (sendMagicLink in src/lib/auth/config.ts).
 // Zonder RESEND_API_KEY schrijft die 'm naar .dev-magic-link in plaats van te mailen;
 // bun laadt .env.local automatisch, dus de key hier altijd weghalen. De draaiende
 // dev-server merkt daar niets van.
 delete process.env.RESEND_API_KEY;
 
-const email = process.argv[2] ?? 'test@test.nl';
-const name = process.argv[3] ?? 'Test Admin';
+const ROLLEN: Role[] = ['admin', 'redacteur', 'auteur', 'organisator'];
+
+// --rol x of --rol=x; de overige argumenten zijn e-mail en naam.
+const args = process.argv.slice(2);
+let rol: Role | undefined;
+const positioneel: string[] = [];
+for (let i = 0; i < args.length; i++) {
+  const arg = args[i];
+  const waarde = arg === '--rol' ? args[++i] : arg.startsWith('--rol=') ? arg.slice('--rol='.length) : null;
+  if (waarde === null) {
+    positioneel.push(arg);
+  } else if (ROLLEN.includes(waarde as Role)) {
+    rol = waarde as Role;
+  } else {
+    console.error(`[dev-login] onbekende rol "${waarde ?? ''}" — kies uit: ${ROLLEN.join(', ')}`);
+    process.exit(1);
+  }
+}
+
+const email = positioneel[0] ?? 'test@test.nl';
+const name = positioneel[1] ?? `Test ${rol ?? 'admin'}`;
 const linkFile = path.join(process.cwd(), '.dev-magic-link');
 // Altijd de lokale dev-server: NEXT_PUBLIC_SERVER_URL in .env.local kan het productiedomein zijn.
 const serverURL = process.env.DEV_SERVER_URL || 'http://localhost:3000';
@@ -50,11 +75,16 @@ async function run() {
     const user = await payload.create({
       collection: 'users',
       overrideAccess: true,
-      data: { email, name, role: 'admin' },
+      data: { email, name, role: rol ?? 'admin' },
     });
-    console.log(`[dev-login] nieuwe admin aangemaakt: ${user.email} (id ${user.id})`);
+    console.log(`[dev-login] nieuwe ${user.role} aangemaakt: ${user.email} (id ${user.id})`);
   } else {
-    console.log(`[dev-login] bestaande gebruiker: ${email} — nieuwe inloglink aanvragen...`);
+    const bestaand = existing.docs[0];
+    if (rol && bestaand.role !== rol) {
+      await payload.update({ collection: 'users', id: bestaand.id, data: { role: rol }, overrideAccess: true });
+      console.log(`[dev-login] rol van ${email}: ${bestaand.role} → ${rol}`);
+    }
+    console.log(`[dev-login] bestaande gebruiker: ${email} (${rol ?? bestaand.role}) — nieuwe inloglink aanvragen...`);
     await payload.betterAuth.api.signInMagicLink({
       body: { email, callbackURL: '/admin' },
       headers: new Headers(),
