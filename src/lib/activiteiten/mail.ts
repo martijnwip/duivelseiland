@@ -309,7 +309,7 @@ export function faseMail({
   locale: Locale;
   titel: string;
   slug: string;
-  fase: 'gaat-door' | 'afgelast';
+  fase: 'gaat-door' | 'afgelast' | 'niet-definitief';
   datum?: string | null;
   token: string;
   replyTo?: string;
@@ -318,7 +318,15 @@ export function faseMail({
   const wanneer = datum ? formatDatumTijd(datum, locale) : null;
   const pagina = siteUrl(locale, `/activiteiten/${slug}`);
   const alineas =
-    fase === 'gaat-door'
+    fase === 'niet-definitief'
+      ? [
+          t(locale, {
+            nl: `<strong>${tt}</strong> is weer <em>nog niet definitief</em>: de organisator weet nog niet zeker of het doorgaat. Je blijft ingeschreven en hoort het zodra er meer duidelijk is.`,
+            en: `<strong>${tt}</strong> is <em>not yet final</em> again: the organiser isn't sure yet whether it will go ahead. You're still signed up and will hear as soon as there's news.`,
+          }),
+          `<a href="${pagina}">${pagina}</a>`,
+        ]
+      : fase === 'gaat-door'
       ? [
           t(locale, { nl: `Het gaat door! <strong>${tt}</strong> vindt plaats.`, en: `It's on! <strong>${tt}</strong> is going ahead.` }),
           ...(wanneer ? [t(locale, { nl: `Wanneer: ${wanneer}`, en: `When: ${wanneer}` })] : []),
@@ -334,10 +342,12 @@ export function faseMail({
     to,
     replyTo,
     subject:
-      fase === 'gaat-door'
+      fase === 'niet-definitief'
+        ? t(locale, { nl: `Nog niet definitief: ${titel}`, en: `Not yet final: ${titel}` })
+        : fase === 'gaat-door'
         ? t(locale, { nl: `Het gaat door: ${titel}`, en: `It's on: ${titel}` })
         : t(locale, { nl: `Afgelast: ${titel}`, en: `Cancelled: ${titel}` }),
-    html: mailHtml({ alineas, voet: fase === 'gaat-door' ? afmeldVoet(locale, token) : undefined }),
+    html: mailHtml({ alineas, voet: fase === 'afgelast' ? undefined : afmeldVoet(locale, token) }),
   };
 }
 

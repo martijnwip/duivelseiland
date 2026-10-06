@@ -1617,6 +1617,8 @@
     "intro": "A book club, cooking club or sewing club: residents organise activities themselves to get to know each other. Join in, or start something yourself.",
     "ctaAanmelden": "Got an idea? Submit it",
     "leeg": "There are no activities yet. Will you start the first one?",
+    "archiefTitel": "Already happened in the neighbourhood",
+    "archiefIntro": "Activities that residents organised before. Fancy starting something yourself?",
     "fase": {
       "goedgekeurd": "Open for sign-ups",
       "gesloten": "Sign-ups closed",

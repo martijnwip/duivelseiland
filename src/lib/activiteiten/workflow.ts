@@ -189,7 +189,9 @@ export const activiteitAfterChange: CollectionAfterChangeHook = async ({ doc, pr
 
     // Afgelast, of door de redactie afgekeurd terwijl hij al online stond: deelnemers horen dat het niet doorgaat.
     const stopt = (nieuw === 'afgelast' || nieuw === 'afgewezen') && ACTIEVE_FASES.includes(oud);
-    if ((nieuw === 'gaat-door' && oud === 'goedgekeurd') || stopt) {
+    // Van gaat door terug naar goedgekeurd: deelnemers horen dat het weer onzeker is.
+    const terug = nieuw === 'goedgekeurd' && oud === 'gaat-door';
+    if ((nieuw === 'gaat-door' && oud === 'goedgekeurd') || terug || stopt) {
       const replyTo = await eigenaarEmail(payload, doc, req);
       const deelnemers = await actieveDeelnemers(payload, doc.id, req);
       await verstuurBatch(
@@ -200,7 +202,7 @@ export const activiteitAfterChange: CollectionAfterChangeHook = async ({ doc, pr
             locale: l,
             titel: t[l],
             slug: doc.slug,
-            fase: nieuw === 'gaat-door' ? 'gaat-door' : 'afgelast',
+            fase: nieuw === 'gaat-door' ? 'gaat-door' : terug ? 'niet-definitief' : 'afgelast',
             datum: doc.datum,
             token: d.token,
             replyTo,

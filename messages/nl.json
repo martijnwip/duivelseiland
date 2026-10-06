@@ -1434,6 +1434,8 @@
     "intro": "Een boekenclub, kookclub of naaiclub: bewoners organiseren zelf activiteiten om elkaar beter te leren kennen. Doe mee, of begin zelf iets.",
     "ctaAanmelden": "Zelf een idee? Meld het aan",
     "leeg": "Er zijn nog geen activiteiten. Begin jij de eerste?",
+    "archiefTitel": "Dit is er al gebeurd in de buurt",
+    "archiefIntro": "Activiteiten die bewoners eerder organiseerden. Zin om ook iets te beginnen?",
     "fase": {
       "goedgekeurd": "Open voor aanmelding",
       "gesloten": "Aanmelding gesloten",

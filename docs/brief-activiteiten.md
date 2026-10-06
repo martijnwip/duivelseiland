@@ -67,7 +67,7 @@ ingediend ──► afgewezen
 | `goedgekeurd` | Past binnen de spelregels: online, op de agenda als "nog niet definitief" en open voor aanmelding | Ja |
 | `gaat-door` | De organisator heeft besloten dat het doorgaat. Bij een eenmalige activiteit is een datum verplicht | Ja |
 | `afgelast` | Gaat niet door | Nee (deelnemers krijgen een mail) |
-| `afgelopen` | Klaar | Optioneel als archief, zonder inschrijfformulier |
+| `afgelopen` | Klaar | Ja, als archief ("Dit is er al gebeurd in de buurt" onder aan `/activiteiten`, laatste 12), zonder inschrijfformulier |
 
 Een idee dat nog niet bevestigd is, staat als `onbevestigd` in de database en is alleen voor admins zichtbaar. Na 7 dagen wordt het automatisch opgeruimd.
 
@@ -229,7 +229,7 @@ Een collection `activiteit-berichten` met de velden onderwerp, tekst, activiteit
 - Alleen platte tekst; links zijn toegestaan.
 - De redactie kan alle berichten lezen. Bij misbruik kan de redactie de organisator blokkeren.
 
-**Automatische mails aan deelnemers:** bij `goedgekeurd` → `gaat-door` ("Het gaat door!", met de datum), bij `afgelast`, en als de datum verandert terwijl de activiteit goedgekeurd is of doorgaat ("Datum gewijzigd", bij goedgekeurd met "nog niet definitief"). Wil de organisator iets toelichten, dan stuurt die daarnaast een gewoon bericht.
+**Automatische mails aan deelnemers:** bij `goedgekeurd` → `gaat-door` ("Het gaat door!", met de datum), bij `gaat-door` → `goedgekeurd` ("Nog niet definitief": het is weer onzeker), bij `afgelast`, en als de datum verandert terwijl de activiteit goedgekeurd is of doorgaat ("Datum gewijzigd", bij goedgekeurd met "nog niet definitief"). Wil de organisator iets toelichten, dan stuurt die daarnaast een gewoon bericht.
 
 ## 10. Flow 7: naar de agenda
 
@@ -291,7 +291,7 @@ Elke schemawijziging krijgt een migratie (`bun payload migrate:create activiteit
 - `src/collections/Agenda.ts`, `src/components/content/AgendaListPage.tsx`
 - `src/endpoints/translateDoc.ts`: vertaalknop
 
-## 15. Buiten scope en open vragen
+## 15. Buiten scope
 
 **Buiten scope (eerste versie)**
 
@@ -301,17 +301,14 @@ Elke schemawijziging krijgt een migratie (`bun payload migrate:create activiteit
 - Herinneringsmails vlak voor een bijeenkomst
 - Een herinnering aan de organisator als een activiteit na 6 maanden nog op `goedgekeurd` staat
 - Reacties of chat op de site
+- Een WhatsApp- of Signal-groepslink die de organisator met bevestigde deelnemers deelt (veel groepen draaien in de praktijk zo; telefoonnummers worden dan onderling zichtbaar, buiten de site om)
+- Een link "Organiseer dit" bij de vaste ideeën met hartjes op de buurtborrelpagina (`src/components/buurtborrel/`) naar `/activiteiten/aanmelden`
 
-**Open vragen**
-
-- Mag een organisator een WhatsApp- of Signal-groepslink delen met bevestigde deelnemers? Veel groepen draaien in de praktijk zo.
-- Publiceert de redactie het agenda-item, of gaat het direct online omdat de activiteit al gemodereerd is?
-- Tonen we afgelopen activiteiten als archief ("dit is er al gebeurd in de buurt")?
-- Linken de vaste ideeën met hartjes op de buurtborrelpagina (`src/components/buurtborrel/`) naar `/activiteiten/aanmelden`, of gaan ze er later in op?
+Het agenda-item gaat direct online bij goedkeuring, zonder aparte publicatie door de redactie (zie sectie 10).
 
 ## 16. Stand van de bouw
 
-Alles uit sectie 1 tot en met 14 is gebouwd, behalve wat in 15 staat. Waar je wat vindt:
+Alles uit sectie 1 tot en met 14 is gebouwd; wat in 15 staat valt buiten deze versie. Waar je wat vindt:
 
 | Wat | Waar |
 |---|---|
