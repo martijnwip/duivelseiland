@@ -222,6 +222,7 @@ Een collection `activiteit-berichten` met de velden onderwerp, tekst, activiteit
 - Elke deelnemer krijgt een eigen mail. Adressen zijn niet onderling zichtbaar.
 - Onder elke mail staat: *"Je ontvangt dit bericht via duivelseiland.nl namens [voornaam], organisator van [activiteit]."*, met een afmeldlink.
 - Alleen bevestigde deelnemers ontvangen het bericht.
+- Alleen op de productiesite: lokaal en op preview-deploys worden berichten en de automatische mails aan alle deelnemers alleen gelogd (`bulkmailToegestaan` in `src/lib/mail.ts`).
 
 **Grenzen**
 

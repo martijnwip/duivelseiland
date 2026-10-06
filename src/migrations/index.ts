@@ -27,6 +27,7 @@ import * as migration_20261002_133220_adresboek from './20261002_133220_adresboe
 import * as migration_20261002_140942_fase_goedgekeurd from './20261002_140942_fase_goedgekeurd';
 import * as migration_20261002_143838_merge_activiteiten_nieuwsbrief from './20261002_143838_merge_activiteiten_nieuwsbrief';
 import * as migration_20261006_111532_datum_samenvoegen from './20261006_111532_datum_samenvoegen';
+import * as migration_20261006_122805_nieuwsbrief_edities from './20261006_122805_nieuwsbrief_edities';
 
 export const migrations = [
   {
@@ -172,6 +173,11 @@ export const migrations = [
   {
     up: migration_20261006_111532_datum_samenvoegen.up,
     down: migration_20261006_111532_datum_samenvoegen.down,
-    name: '20261006_111532_datum_samenvoegen'
+    name: '20261006_111532_datum_samenvoegen',
+  },
+  {
+    up: migration_20261006_122805_nieuwsbrief_edities.up,
+    down: migration_20261006_122805_nieuwsbrief_edities.down,
+    name: '20261006_122805_nieuwsbrief_edities'
   },
 ];

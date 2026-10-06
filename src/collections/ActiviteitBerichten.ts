@@ -5,6 +5,7 @@ import { hasRoleAtLeast } from '../access/roles';
 import { viaEigenActiviteit } from '../access/activiteiten';
 import { ACTIEVE_FASES, BERICHTEN_DAGLIMIET, MAX_BERICHTEN_PER_WEEK, voornaam } from '../lib/activiteiten/constants';
 import { berichtMail, verstuurBatch, type Locale } from '../lib/activiteiten/mail';
+import { bulkMailsLaatste24Uur } from '../lib/mailQuotum';
 import { titels } from '../lib/activiteiten/workflow';
 
 const DAG = 24 * 60 * 60 * 1000;
@@ -33,16 +34,9 @@ const controleer: CollectionBeforeChangeHook = async ({ data, operation, req }) 
     }
   }
 
-  // Rem op het mailquotum: alle berichten van de afgelopen 24 uur samen.
-  const [{ docs: recent }, { totalDocs: ontvangers }] = await Promise.all([
-    req.payload.find({
-      collection: 'activiteit-berichten',
-      where: { createdAt: { greater_than: new Date(Date.now() - DAG).toISOString() } },
-      select: { aantalOntvangers: true },
-      pagination: false,
-      depth: 0,
-      req,
-    }),
+  // Rem op het mailquotum: berichten aan deelnemers en de nieuwsbrief van de afgelopen 24 uur samen.
+  const [recent, { totalDocs: ontvangers }] = await Promise.all([
+    bulkMailsLaatste24Uur(req.payload, req),
     req.payload.count({
       collection: 'activiteit-inschrijvingen',
       where: { and: [{ activiteit: { equals: activiteitId } }, { status: { equals: 'actief' } }] },
@@ -50,8 +44,7 @@ const controleer: CollectionBeforeChangeHook = async ({ data, operation, req }) 
     }),
   ]);
   if (ontvangers === 0) throw fout('Er zijn nog geen deelnemers om een bericht aan te sturen.');
-  const vandaag = recent.reduce((som, b) => som + (b.aantalOntvangers ?? 0), 0);
-  if (vandaag + ontvangers > BERICHTEN_DAGLIMIET) {
+  if (recent.berichten + recent.nieuwsbrief + ontvangers > BERICHTEN_DAGLIMIET) {
     throw fout('Het maximum aantal mails voor vandaag is bereikt. Probeer het morgen opnieuw.');
   }
 

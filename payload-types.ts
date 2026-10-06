@@ -82,6 +82,8 @@ export interface Config {
     slideshows: Slideshow;
     'idee-likes': IdeeLike;
     'nieuwsbrief-abonnees': NieuwsbriefAbonnee;
+    'nieuwsbrief-edities': NieuwsbriefEditie;
+    'nieuwsbrief-verzendingen': NieuwsbriefVerzendingen;
     activiteiten: Activiteiten;
     'activiteit-inschrijvingen': ActiviteitInschrijvingen;
     'activiteit-berichten': ActiviteitBerichten;
@@ -111,6 +113,8 @@ export interface Config {
     slideshows: SlideshowsSelect<false> | SlideshowsSelect<true>;
     'idee-likes': IdeeLikesSelect<false> | IdeeLikesSelect<true>;
     'nieuwsbrief-abonnees': NieuwsbriefAbonneesSelect<false> | NieuwsbriefAbonneesSelect<true>;
+    'nieuwsbrief-edities': NieuwsbriefEditiesSelect<false> | NieuwsbriefEditiesSelect<true>;
+    'nieuwsbrief-verzendingen': NieuwsbriefVerzendingenSelect<false> | NieuwsbriefVerzendingenSelect<true>;
     activiteiten: ActiviteitenSelect<false> | ActiviteitenSelect<true>;
     'activiteit-inschrijvingen': ActiviteitInschrijvingenSelect<false> | ActiviteitInschrijvingenSelect<true>;
     'activiteit-berichten': ActiviteitBerichtenSelect<false> | ActiviteitBerichtenSelect<true>;
@@ -366,7 +370,7 @@ export interface Agenda {
   createdAt: string;
 }
 /**
- * Ideeën en activiteiten van buurtbewoners. Nieuwe ideeën staan op "Wacht op goedkeuring": keur goed of wijs af met een reden (knoppen bovenaan het item). Na goedkeuring staat de activiteit online en kunnen buren zich aanmelden.
+ * Ideeën en activiteiten van buurtbewoners. Nieuwe ideeën staan op "Wacht op goedkeuring": keur goed of wijs af met een reden (knoppen bovenaan het item). Goedkeuren is alleen toetsen aan de spelregels: daarna staat de activiteit online en kunnen buren zich aanmelden. Organisator: hier beheer je je eigen activiteit. Jij beslist of het doorgaat en wanneer, en ziet de aanmeldingen en berichten.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "activiteiten".
@@ -398,7 +402,7 @@ export interface Activiteiten {
    */
   soortToelichting?: string | null;
   /**
-   * Kan altijd nog gewijzigd worden. Nodig om de activiteit op de agenda te zetten. Zolang de fase Goedgekeurd is, staat er "Nog niet definitief" bij.
+   * Kan altijd nog gewijzigd worden; deelnemers krijgen dan automatisch een mail. Nodig voor de agenda en, bij een eenmalige activiteit, voor Gaat door. Zolang de fase Goedgekeurd is, staat er "Nog niet definitief" bij.
    */
   datum?: string | null;
   image?: (number | null) | Media;
@@ -407,7 +411,7 @@ export interface Activiteiten {
    */
   locale: 'nl' | 'en';
   /**
-   * Goedkeuren en afwijzen doet de redactie (knoppen bovenaan). Daarna kiest de organisator: Gaat door, Afgelast of Afgelopen.
+   * Goedgekeurd betekent alleen dat het idee binnen de spelregels past. De organisator beslist daarna: Gaat door (eenmalig: met datum), Afgelast of Afgelopen. Goedkeuren en afwijzen doet de redactie (knoppen bovenaan).
    */
   fase: 'onbevestigd' | 'ingediend' | 'afgewezen' | 'goedgekeurd' | 'gaat-door' | 'afgelast' | 'afgelopen';
   /**
@@ -726,6 +730,74 @@ export interface NieuwsbriefAbonnee {
   createdAt: string;
 }
 /**
+ * Stel een nieuwsbrief samen, bekijk het voorbeeld en stuur een testmail. "Versturen" gaat naar alle actieve abonnees, in hun eigen taal; door de daglimiet kan dat over meerdere dagen verspreid gaan.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nieuwsbrief-edities".
+ */
+export interface NieuwsbriefEditie {
+  id: number;
+  onderwerp: string;
+  /**
+   * Komt bovenaan de mail, na de aanhef.
+   */
+  intro?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Gepubliceerde berichten, agenda-items en activiteiten; ieder komt als blokje met link in de mail.
+   */
+  items?:
+    | (
+        | {
+            relationTo: 'nieuws';
+            value: number | Nieuw;
+          }
+        | {
+            relationTo: 'agenda';
+            value: number | Agenda;
+          }
+        | {
+            relationTo: 'activiteiten';
+            value: number | Activiteiten;
+          }
+      )[]
+    | null;
+  status: 'concept' | 'verzenden' | 'verzonden' | 'gestopt';
+  gestartOp?: string | null;
+  gestartDoor?: (number | null) | User;
+  verzondenOp?: string | null;
+  aantalOntvangers?: number | null;
+  aantalVerzonden?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nieuwsbrief-verzendingen".
+ */
+export interface NieuwsbriefVerzendingen {
+  id: number;
+  editie: number | NieuwsbriefEditie;
+  abonnee: number | NieuwsbriefAbonnee;
+  status: 'wachtend' | 'verzonden' | 'overgeslagen';
+  verzondenOp?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Wie meedoet met een activiteit. Alleen "Actief" telt mee. Dit zijn persoonsgegevens: alleen gebruiken voor deze activiteit.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -922,6 +994,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'nieuwsbrief-abonnees';
         value: number | NieuwsbriefAbonnee;
+      } | null)
+    | ({
+        relationTo: 'nieuwsbrief-edities';
+        value: number | NieuwsbriefEditie;
+      } | null)
+    | ({
+        relationTo: 'nieuwsbrief-verzendingen';
+        value: number | NieuwsbriefVerzendingen;
       } | null)
     | ({
         relationTo: 'activiteiten';
@@ -1271,6 +1351,35 @@ export interface NieuwsbriefAbonneesSelect<T extends boolean = true> {
   bevestigdOp?: T;
   afgemeldOp?: T;
   laatsteMailOp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nieuwsbrief-edities_select".
+ */
+export interface NieuwsbriefEditiesSelect<T extends boolean = true> {
+  onderwerp?: T;
+  intro?: T;
+  items?: T;
+  status?: T;
+  gestartOp?: T;
+  gestartDoor?: T;
+  verzondenOp?: T;
+  aantalOntvangers?: T;
+  aantalVerzonden?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "nieuwsbrief-verzendingen_select".
+ */
+export interface NieuwsbriefVerzendingenSelect<T extends boolean = true> {
+  editie?: T;
+  abonnee?: T;
+  status?: T;
+  verzondenOp?: T;
   updatedAt?: T;
   createdAt?: T;
 }

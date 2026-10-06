@@ -91,6 +91,8 @@ Technisch beheerder.
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
 | Activiteiten           | lezen (goedgekeurd/gaat-door/afgelopen), idee indienen via formulier | lezen (publiek) | alles + modereren | alles |
 | Aanmeldingen / Berichten | inschrijven/afmelden via formulier | geen                      | alles                        | alles |
+| Nieuwsbrief-abonnees   | aan-/afmelden via formulier | geen                              | alles (import: alleen admin) | alles |
+| Nieuwsbrief-edities    | geen              | geen                             | alles + versturen            | alles |
 | E-mailadressen (adresboek) | geen            | geen                             | geen                         | alles |
 | Globals (instellingen) | lezen             | geen                             | lezen                        | alles |
 
@@ -193,7 +195,7 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
@@ -254,6 +256,16 @@ Eén foto in het verhaal vervangen door een andere Beeldbank-foto, zonder de res
 bun run foto:vervang <oude-beeldbank-link> <nieuwe-beeldbank-link>
 bun run foto:vervang:prod <oude-beeldbank-link> <nieuwe-beeldbank-link>  # daarna het verhaal 1x opslaan in /admin
 ```
+
+## Nieuwsbrief
+
+Aanmelden gaat met dubbele opt-in op `/nieuwsbrief` en in de footer; de taal van de abonnee (`locale`) is de taal van de pagina waarop de abonnee zich aanmeldde (bij import kiest de admin). Een admin kan adressen importeren (plakken of CSV) bij Nieuwsbrief-abonnees.
+
+**Edities** (`nieuwsbrief-edities`, redacteur en admin): onderwerp en intro (gelokaliseerd) plus uitgelichte Nieuws-, Agenda- en Activiteiten-items. Knoppen bovenaan: *Voorbeeld NL/EN*, *Testmail* (beide talen naar je eigen adres), *Versturen…* (met bevestiging: aantal ontvangers per taal, verwachte duur, waarschuwing als de Engelse versie leeg is) en *Stoppen*. Na de start ligt de editie vast. Is de Engelse tekst leeg, dan krijgen Engelstalige abonnees de Nederlandse.
+
+**Verspreid versturen** (gratis Resend-plan, 100 mails per dag): bij de start krijgt elke actieve abonnee een rij in `nieuwsbrief-verzendingen`. Er gaat meteen een portie uit, de rest elke ochtend via de cron `/api/nieuwsbrief-verzenden` (`vercel.json`). Per 24 uur maximaal `NIEUWSBRIEF_DAGLIMIET` (standaard 60) nieuwsbriefmails, en samen met berichten aan deelnemers maximaal `ACTIVITEITEN_MAIL_DAGLIMIET` (standaard 80); de rest van het quotum blijft over voor bevestigingsmails. Wie zich tussendoor afmeldt, wordt overgeslagen. Elke mail heeft een persoonlijke afmeldlink en een `List-Unsubscribe`-header. Verzendrijen van afgeronde edities verdwijnen na 30 dagen; de tellingen op de editie blijven. Logica: `src/lib/nieuwsbrief/verzenden.ts` en `editieMail.ts`.
+
+**Alleen op productie.** Mails aan een hele lijst gaan alleen echt uit als `VERCEL_ENV=production`; dat zet Vercel alleen op productie-deploys (`bulkmailToegestaan` in `src/lib/mail.ts`). Lokaal en op previews staan wel echte adressen in de database en vaak een echte Resend-key. Daarom weigert *Versturen…* daar, doet de cron niets, en worden berichten en automatische mails aan alle deelnemers van een activiteit alleen gelogd. *Voorbeeld*, *Testmail* en losse mails (bevestigen, inloglink) werken overal. Een omweg is er bewust niet. Let op: een via `vercel env pull` opgehaalde `.env.production.local` kan `VERCEL_ENV=production` bevatten; draai daarmee dus geen lokale `bun start`.
 
 ## Content vertalen (NL → EN)
 

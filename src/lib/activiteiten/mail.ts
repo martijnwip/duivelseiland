@@ -1,72 +1,7 @@
-import { Resend } from 'resend';
-import { localizedHref } from '@/i18n/localizedHref';
 import { formatDatumTijd } from './datum';
+import { escapeHtml, mailHtml, siteUrl, adminUrl, tekstAlsHtml, type Locale, type Mail } from '../mail';
 
-export type Locale = 'nl' | 'en';
-
-export type Mail = { to: string; subject: string; html: string; replyTo?: string };
-
-const FROM = () => process.env.RESEND_FROM_EMAIL || 'Duivelseiland <onboarding@resend.dev>';
-
-export function siteUrl(locale: Locale, path: string) {
-  const base = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
-  return `${base}${localizedHref(locale, path)}`;
-}
-
-export function adminUrl(path = '') {
-  const base = process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
-  return `${base}/admin${path}`;
-}
-
-export function escapeHtml(value: string) {
-  return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-/** Platte tekst (bv. van een organisator) veilig als alinea's in HTML. */
-export function tekstAlsHtml(tekst: string) {
-  return tekst
-    .replace(/\r\n/g, '\n')
-    .split(/\n{2,}/)
-    .filter((a) => a.trim())
-    .map((a) => `<p>${escapeHtml(a.trim()).replace(/\n/g, '<br>')}</p>`)
-    .join('');
-}
-
-/** Eenvoudige opmaak voor alle activiteitenmails. `alineas` is al HTML (escape gebruikersinvoer vooraf). */
-export function mailHtml({ alineas, knop, voet }: { alineas: string[]; knop?: { label: string; url: string }; voet?: string[] }) {
-  const body = alineas.map((a) => (a.startsWith('<p>') ? a : `<p>${a}</p>`)).join('');
-  const button = knop ? `<p><a href="${knop.url}">${escapeHtml(knop.label)}</a></p><p style="color:#666;font-size:13px">${knop.url}</p>` : '';
-  const footer = voet?.length
-    ? `<hr style="border:none;border-top:1px solid #ddd;margin:24px 0"><p style="color:#666;font-size:13px">${voet.join('<br>')}</p>`
-    : '';
-  return `${body}${button}${footer}`;
-}
-
-/** Eén mail versturen. Zonder RESEND_API_KEY (lokaal) alleen loggen. */
-export async function verstuur(mail: Mail) {
-  if (!process.env.RESEND_API_KEY) {
-    const links = [...mail.html.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
-    console.log(`[activiteiten] RESEND_API_KEY ontbreekt, mail aan ${mail.to}: "${mail.subject}"${links.length ? ` links: ${links.join(' ')}` : ''}`);
-    return;
-  }
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  const { error } = await resend.emails.send({ from: FROM(), ...mail });
-  if (error) throw error;
-}
-
-/** Veel mails tegelijk (berichten aan deelnemers): per 100 via de batch-API, ieder een eigen mail. */
-export async function verstuurBatch(mails: Mail[]) {
-  if (!mails.length) return;
-  if (!process.env.RESEND_API_KEY) {
-    for (const mail of mails) await verstuur(mail);
-    return;
-  }
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  for (let i = 0; i < mails.length; i += 100) {
-    const { error } = await resend.batch.send(mails.slice(i, i + 100).map((m) => ({ from: FROM(), ...m })));
-    if (error) throw error;
-  }
-}
+export { escapeHtml, mailHtml, siteUrl, adminUrl, tekstAlsHtml, verstuur, verstuurBatch, type Locale, type Mail } from '../mail';
 
 type T = Record<Locale, string>;
 const t = (locale: Locale, teksten: T) => teksten[locale];
