@@ -31,8 +31,8 @@ export const ORGANISATOR_OVERGANGEN: Partial<Record<Fase, Fase[]>> = {
 export const MAIL_INTERVAL_MS = 2 * 60 * 1000;
 export const MAX_OPEN_IDEEEN_PER_ADRES = 2;
 export const MAX_BERICHTEN_PER_WEEK = 3;
-// Rem op het Resend-quotum (gratis: 100 per dag); berichten van organisatoren mogen samen hier niet boven.
-export const BERICHTEN_DAGLIMIET = Number(process.env.ACTIVITEITEN_MAIL_DAGLIMIET) || 80;
+// Rem op het Resend-quotum (gratis: 100 per dag); berichten van organisatoren en de nieuwsbrief samen.
+export { BULK_DAGLIMIET as BERICHTEN_DAGLIMIET } from '../mailQuotum';
 export const MAX_AFBEELDING_BYTES = 4 * 1024 * 1024;
 export const AFBEELDING_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
 

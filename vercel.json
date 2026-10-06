@@ -1,4 +1,7 @@
 {
   "bunVersion": "1.4.x",
-  "crons": [{ "path": "/api/activiteiten-opruimen", "schedule": "0 4 * * *" }]
+  "crons": [
+    { "path": "/api/activiteiten-opruimen", "schedule": "0 4 * * *" },
+    { "path": "/api/nieuwsbrief-verzenden", "schedule": "0 7 * * *" }
+  ]
 }

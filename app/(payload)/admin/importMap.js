@@ -26,12 +26,14 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { HistorischeFotosImagePreview as HistorischeFotosImagePreview_e82e1460554cf5f8b64916e5d057f678 } from '../../../src/collections/HistorischeFotosImagePreview'
 import { HistorischeFotosImportButton as HistorischeFotosImportButton_e0ba2067b23a4918db3f39c8b4f744d0 } from '../../../src/collections/HistorischeFotosImportButton'
 import { NieuwsbriefImportForm as NieuwsbriefImportForm_1a0ba9f9af086e549d3c7fd86d4858f0 } from '../../../src/collections/NieuwsbriefImportForm'
+import { default as default_e314f607eeb1055d995f54c562522ae6 } from '../../../src/components/admin/EditieKnoppen'
 import { default as default_26d83c40fdc8465dddffa7a536d0bab8 } from '../../../src/components/admin/ModeratieKnoppen'
 import { default as default_39aaf18f83d54cac044133fe0324b08e } from '../../../src/components/admin/InschrijvingenExport'
 import { default as default_f6ccf604ce33a60dfd3014eb3ba37ccc } from '../../../src/components/admin/AdresOverzicht'
 import { TijdvakRowLabel as TijdvakRowLabel_d7f9671ad3837163194671c2d8885372 } from '../../../src/globals/TijdvakRowLabel'
 import { LogoutButton as LogoutButton_aa8e4427b70b37c7820895ace344eb78 } from '@delmaredigital/payload-better-auth/components'
 import { default as default_7be396d0766c6c490887ef074dd0ced4 } from '../../../src/components/admin/AdminIcon'
+import { default as default_c77bf85574dcd77791245a8c8f80bb19 } from '../../../src/components/admin/IngelogdAls'
 import { default as default_e39c6f04fbc3d800d62da1b240b44247 } from '../../../src/components/admin/EditorStyles'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 import { default as default_aacf6d6dc94957d485c631f551d68c45 } from '../../../src/components/admin/LoginViewWithLogo'
@@ -67,12 +69,14 @@ export const importMap = {
   "/collections/HistorischeFotosImagePreview#HistorischeFotosImagePreview": HistorischeFotosImagePreview_e82e1460554cf5f8b64916e5d057f678,
   "/collections/HistorischeFotosImportButton#HistorischeFotosImportButton": HistorischeFotosImportButton_e0ba2067b23a4918db3f39c8b4f744d0,
   "/collections/NieuwsbriefImportForm#NieuwsbriefImportForm": NieuwsbriefImportForm_1a0ba9f9af086e549d3c7fd86d4858f0,
+  "/components/admin/EditieKnoppen#default": default_e314f607eeb1055d995f54c562522ae6,
   "/components/admin/ModeratieKnoppen#default": default_26d83c40fdc8465dddffa7a536d0bab8,
   "/components/admin/InschrijvingenExport#default": default_39aaf18f83d54cac044133fe0324b08e,
   "/components/admin/AdresOverzicht#default": default_f6ccf604ce33a60dfd3014eb3ba37ccc,
   "/globals/TijdvakRowLabel#TijdvakRowLabel": TijdvakRowLabel_d7f9671ad3837163194671c2d8885372,
   "@delmaredigital/payload-better-auth/components#LogoutButton": LogoutButton_aa8e4427b70b37c7820895ace344eb78,
   "/components/admin/AdminIcon#default": default_7be396d0766c6c490887ef074dd0ced4,
+  "/components/admin/IngelogdAls#default": default_c77bf85574dcd77791245a8c8f80bb19,
   "/components/admin/EditorStyles#default": default_e39c6f04fbc3d800d62da1b240b44247,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
   "/components/admin/LoginViewWithLogo#default": default_aacf6d6dc94957d485c631f551d68c45,

@@ -15,6 +15,7 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
   labels: { singular: 'Nieuwsbrief-abonnee', plural: 'Nieuwsbrief-abonnees' },
   admin: {
     useAsTitle: 'email',
+    group: 'Nieuwsbrief',
     defaultColumns: ['email', 'naam', 'status', 'bron', 'locale', 'createdAt'],
     components: {
       beforeListTable: ['/collections/NieuwsbriefImportForm#NieuwsbriefImportForm'],
@@ -31,6 +32,12 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
   endpoints: [{ method: 'post', path: '/import', handler: nieuwsbriefImportEndpoint }],
   hooks: {
     afterChange: [adresboek.afterChange],
+    // Vóór het verwijderen (de verzendrij verwijst verplicht naar de abonnee); geldt ook voor "vergeet mij".
+    beforeDelete: [
+      async ({ id, req }) => {
+        await req.payload.delete({ collection: 'nieuwsbrief-verzendingen', where: { abonnee: { equals: id } }, overrideAccess: true, req });
+      },
+    ],
     afterDelete: [adresboek.afterDelete],
   },
   fields: [

@@ -21,6 +21,8 @@ import { HistorischeFotos } from './collections/HistorischeFotos';
 import { IdeeLikes } from './collections/IdeeLikes';
 import { InviteLinks } from './collections/InviteLinks';
 import { NieuwsbriefAbonnees } from './collections/NieuwsbriefAbonnees';
+import { NieuwsbriefEdities } from './collections/NieuwsbriefEdities';
+import { NieuwsbriefVerzendingen } from './collections/NieuwsbriefVerzendingen';
 import { Interviews } from './collections/Interviews';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
@@ -33,6 +35,7 @@ import { OverDeNaam } from './globals/OverDeNaam';
 import { GeschiedenisVerhaal } from './globals/GeschiedenisVerhaal';
 import { translateDocEndpoint } from './endpoints/translateDoc';
 import { activiteitenOpruimenEndpoint } from './endpoints/activiteitenOpruimen';
+import { nieuwsbriefVerzendenEndpoint } from './endpoints/nieuwsbriefVerzenden';
 import { SiteInstellingen } from './globals/SiteInstellingen';
 
 const filename = fileURLToPath(import.meta.url);
@@ -71,6 +74,8 @@ export default buildConfig({
     components: {
       // Laadt de site-lettertypen en de rand-styling voor de rich text-editor.
       providers: ['/components/admin/EditorStyles#default'],
+      // Kopbalk: met welk account je bent ingelogd, en LOKAAL/PREVIEW buiten productie.
+      actions: ['/components/admin/IngelogdAls#default'],
       graphics: {
         // Vervangt het "home"-icoontje voor de breadcrumb (StepNav) op elke
         // ingelogde admin-pagina. Het standaard graphics.Logo-slot (login-pagina)
@@ -97,6 +102,8 @@ export default buildConfig({
     Slideshows,
     IdeeLikes,
     NieuwsbriefAbonnees,
+    NieuwsbriefEdities,
+    NieuwsbriefVerzendingen,
     Activiteiten,
     ActiviteitInschrijvingen,
     ActiviteitBerichten,
@@ -105,7 +112,7 @@ export default buildConfig({
 
   globals: [SiteInstellingen, OverDeNaam, GeschiedenisVerhaal, Buurtborrel].map(verbergVoorOrganisator),
 
-  endpoints: [translateDocEndpoint, activiteitenOpruimenEndpoint],
+  endpoints: [translateDocEndpoint, activiteitenOpruimenEndpoint, nieuwsbriefVerzendenEndpoint],
 
   localization: {
     locales: [
