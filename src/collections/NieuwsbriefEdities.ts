@@ -4,6 +4,7 @@ import { isRedacteurOrAdmin } from '../access/isAdmin';
 import { hasRoleAtLeast } from '../access/roles';
 import { PUBLIEKE_FASES } from '../lib/activiteiten/constants';
 import { editieEndpoints } from '../endpoints/nieuwsbriefEdities';
+import { mailEditor } from '../globals/editors';
 
 const SERVERVELDEN = ['status', 'gestartOp', 'gestartDoor', 'verzondenOp', 'aantalOntvangers', 'aantalVerzonden'];
 
@@ -63,7 +64,8 @@ export const NieuwsbriefEdities: CollectionConfig = {
       name: 'intro',
       type: 'richText',
       localized: true,
-      admin: { description: 'Komt bovenaan de mail, na de aanhef.' },
+      editor: mailEditor,
+      admin: { description: 'Komt bovenaan de mail, na de aanhef. Een afbeelding voeg je toe met "/" en dan Upload.' },
     },
     {
       name: 'items',

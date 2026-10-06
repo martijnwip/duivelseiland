@@ -1,5 +1,5 @@
 import type { Payload, PayloadRequest } from 'payload';
-import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html';
+import { convertLexicalToHTML, type HTMLConverters } from '@payloadcms/richtext-lexical/html';
 import type { SerializedEditorState } from 'lexical';
 import type { Media, NieuwsbriefAbonnee, NieuwsbriefEditie } from '../../../payload-types';
 import { formatDatumTijd } from '../activiteiten/datum';
@@ -103,6 +103,23 @@ async function haalItems(payload: Payload, editie: NieuwsbriefEditie, locale: Lo
   return items;
 }
 
+/**
+ * Afbeelding in de intro: één <img> met absolute URL en vaste breedte. De standaardomzetting maakt een
+ * <picture> met relatieve URL's, en dat tonen mailprogramma's niet. Geen afbeelding: een link naar het bestand.
+ */
+const uploadConverter: HTMLConverters['upload'] = ({ node }) => {
+  const media = (node as { value?: unknown; fields?: { alt?: string } }).value;
+  if (!media || typeof media !== 'object') return '';
+  const doc = media as Media;
+  const url = absoluut(doc.mimeType?.startsWith('image') ? (doc.sizes?.hero?.url ?? doc.url) : doc.url);
+  if (!url) return '';
+  if (!doc.mimeType?.startsWith('image')) {
+    return `<p><a href="${escapeHtml(url)}">${escapeHtml(doc.filename ?? url)}</a></p>`;
+  }
+  const alt = escapeHtml((node as { fields?: { alt?: string } }).fields?.alt || doc.alt || '');
+  return `<img src="${escapeHtml(url)}" alt="${alt}" width="536" style="display:block;width:100%;max-width:536px;height:auto;border:0;border-radius:8px;margin:0 0 16px">`;
+};
+
 /** Groene knop zoals in de styleguide (rounded-lg, wit op groen). */
 function knop(label: string, url: string) {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-radius:8px;background:${KLEUR.groen}"><a href="${url}" style="display:inline-block;padding:8px 16px;border-radius:8px;font-family:${FONT_TEKST};font-size:16px;font-weight:500;color:${KLEUR.wit};text-decoration:none">${escapeHtml(label)}</a></td></tr></table>`;
@@ -132,9 +149,16 @@ function itemHtml(item: Item, locale: Locale) {
  * (localization.fallback in payload.config.ts).
  */
 export async function renderEditie(payload: Payload, id: number, locale: Locale, req?: PayloadRequest): Promise<GerenderdeEditie> {
-  const editie = await payload.findByID({ collection: 'nieuwsbrief-edities', id, locale, depth: 0, overrideAccess: true, req });
+  // depth 1: afbeeldingen in de intro komen met hun mediagegevens mee (zie uploadConverter).
+  const editie = await payload.findByID({ collection: 'nieuwsbrief-edities', id, locale, depth: 1, overrideAccess: true, req });
   const heeftIntro = hasRichTextContent(editie.intro);
-  const intro = heeftIntro ? convertLexicalToHTML({ data: editie.intro as SerializedEditorState, disableContainer: true }) : '';
+  const intro = heeftIntro
+    ? convertLexicalToHTML({
+        data: editie.intro as SerializedEditorState,
+        disableContainer: true,
+        converters: ({ defaultConverters }) => ({ ...defaultConverters, upload: uploadConverter }),
+      })
+    : '';
   const items = await haalItems(payload, editie, locale, req);
   return {
     locale,
@@ -158,6 +182,7 @@ const STYLE = `
   .intro li { margin:0 0 4px; }
   .intro blockquote { margin:0 0 16px; padding-left:16px; border-left:2px solid ${KLEUR.rand}; color:${KLEUR.muted}; }
   .intro a { color:${KLEUR.groen}; text-decoration:underline; }
+  .intro hr { border:0; border-top:1px solid ${KLEUR.rand}; margin:24px 0; }
   @media (max-width:620px) { .kader { padding-left:16px !important; padding-right:16px !important; } }
 `;
 
