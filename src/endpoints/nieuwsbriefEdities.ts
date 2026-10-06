@@ -37,7 +37,7 @@ export const editieEndpoints: Endpoint[] = [
     handler: redactie(async (req, id) => {
       const gerenderd = await renderEditie(req.payload, id, localeVan(req), req);
       const mail = editieMail(gerenderd, { email: req.user!.email, naam: null, token: '' }, { test: true });
-      return new Response(`<!doctype html><meta charset="utf-8"><title>${gerenderd.subject.replace(/</g, '&lt;')}</title>${mail.html}`, {
+      return new Response(mail.html, {
         headers: { 'Content-Type': 'text/html; charset=utf-8' },
       });
     }),
