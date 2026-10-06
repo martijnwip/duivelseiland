@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload';
-import { authoredContentAccess } from '../access/contentAccess';
+import { adminOnlyContentAccess } from '../access/contentAccess';
 import { contentFields } from './shared/contentFields';
 import { setAuthor } from './shared/setAuthor';
 
@@ -17,7 +17,7 @@ export const Vakmensen: CollectionConfig = {
       },
     },
   },
-  access: authoredContentAccess,
+  access: adminOnlyContentAccess,
   hooks: {
     beforeChange: [setAuthor('author')],
   },

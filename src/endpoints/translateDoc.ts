@@ -4,7 +4,16 @@ import { translateText } from '../lib/translate-live/engines';
 import { translateLexicalField } from '../lib/translate-live/lexical';
 import { findTranslatableLeaves, projectDocumentForLocale } from '../lib/translate-live/field-walker';
 
-const ADMIN_ONLY_GLOBALS = new Set(['site-instellingen']);
+// Onderdelen die alleen de admin beheert (zie de access op die collections/globals).
+const ADMIN_ONLY = new Set([
+  'site-instellingen',
+  'over-de-naam',
+  'geschiedenis-verhaal',
+  'interviews',
+  'geschiedenis',
+  'duivelse-kunst',
+  'vakmensen',
+]);
 
 export const translateDocEndpoint: Endpoint = {
   path: '/translate-doc',
@@ -26,7 +35,7 @@ export const translateDocEndpoint: Endpoint = {
       return Response.json({ error: 'id is verplicht voor een collection.' }, { status: 400 });
     }
 
-    const minRole = global && ADMIN_ONLY_GLOBALS.has(global) ? 'admin' : 'redacteur';
+    const minRole = ADMIN_ONLY.has(String(collection ?? global)) ? 'admin' : 'redacteur';
     if (!hasRoleAtLeast(req.user.role, minRole)) {
       return Response.json({ error: 'Onvoldoende rechten.' }, { status: 403 });
     }

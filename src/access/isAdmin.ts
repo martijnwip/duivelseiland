@@ -11,3 +11,6 @@ export const isRedacteurOrAdminField: FieldAccess = ({ req }) =>
   hasRoleAtLeast(req.user?.role, 'redacteur');
 
 export const isAuthorOrAbove: Access = ({ req }) => hasRoleAtLeast(req.user?.role, 'auteur');
+
+/** Bezoekers (publieke site) en admin; een ingelogde redacteur, auteur of organisator niet. Verbergt het item ook in /admin. */
+export const publiekOfAdmin: Access = ({ req }) => !req.user || hasRoleAtLeast(req.user.role, 'admin');

@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
-import { isAuthorOrAbove, isRedacteurOrAdmin } from './isAdmin';
+import { isAdmin, isAuthorOrAbove, isRedacteurOrAdmin } from './isAdmin';
+import { hasRoleAtLeast } from './roles';
 import { publishedOrOwn, publishedOrRedacteur } from './contentReadAccess';
 import { isOwnerOrRedacteur } from './isOwnerOrRedacteur';
 
@@ -19,4 +20,15 @@ export const editorOnlyContentAccess: ContentAccess = {
   create: isRedacteurOrAdmin,
   update: isRedacteurOrAdmin,
   delete: isRedacteurOrAdmin,
+};
+
+/** Admin only; bezoekers zien gepubliceerde items, redacteur en auteur zien de collection niet (bv. Interviews). */
+export const adminOnlyContentAccess: ContentAccess = {
+  read: ({ req }) => {
+    if (!req.user) return { status: { equals: 'published' } };
+    return hasRoleAtLeast(req.user.role, 'admin');
+  },
+  create: isAdmin,
+  update: isAdmin,
+  delete: isAdmin,
 };

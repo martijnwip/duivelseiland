@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { isRedacteurOrAdmin } from '../access/isAdmin';
+import { isAdmin, publiekOfAdmin } from '../access/isAdmin';
 
 export const OverDeNaam: GlobalConfig = {
   slug: 'over-de-naam',
@@ -11,8 +11,8 @@ export const OverDeNaam: GlobalConfig = {
     },
   },
   access: {
-    read: () => true,
-    update: isRedacteurOrAdmin,
+    read: publiekOfAdmin,
+    update: isAdmin,
   },
   fields: [
     {

@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { isRedacteurOrAdmin } from '../access/isAdmin';
+import { isAdmin, publiekOfAdmin } from '../access/isAdmin';
 import { revalidateGeschiedenis } from '../collections/shared/revalidateGeschiedenis';
 import { introEditor } from './editors';
 import { revalidateHome } from '../collections/shared/revalidateHome';
@@ -46,8 +46,8 @@ export const GeschiedenisVerhaal: GlobalConfig = {
     },
   },
   access: {
-    read: () => true,
-    update: isRedacteurOrAdmin,
+    read: publiekOfAdmin,
+    update: isAdmin,
   },
   hooks: {
     afterChange: [
