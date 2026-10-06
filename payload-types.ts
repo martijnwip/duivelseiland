@@ -739,7 +739,7 @@ export interface NieuwsbriefEditie {
   id: number;
   onderwerp: string;
   /**
-   * Komt bovenaan de mail, na de aanhef.
+   * Komt bovenaan de mail, na de aanhef. Een afbeelding voeg je toe met "/" en dan Upload.
    */
   intro?: {
     root: {
@@ -1591,6 +1591,12 @@ export interface SiteInstellingen {
     telefoon?: string | null;
     adres?: string | null;
   };
+  nieuwsbrief?: {
+    /**
+     * Aan: ook redacteuren kunnen een editie naar alle abonnees versturen. Uit: alleen de admin; bij een redacteur staat de knop Versturen uit.
+     */
+    redacteurMagVersturen?: boolean | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1802,6 +1808,11 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
         email?: T;
         telefoon?: T;
         adres?: T;
+      };
+  nieuwsbrief?:
+    | T
+    | {
+        redacteurMagVersturen?: T;
       };
   updatedAt?: T;
   createdAt?: T;

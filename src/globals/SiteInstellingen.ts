@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { isAdmin, publiekOfAdmin } from '../access/isAdmin';
+import { isAdmin, isAdminField, publiekOfAdmin } from '../access/isAdmin';
 import { footerEditor, introEditor } from './editors';
 import { revalidateSite } from './revalidateSite';
 
@@ -79,6 +79,23 @@ export const SiteInstellingen: GlobalConfig = {
         {
           name: 'adres',
           type: 'text',
+        },
+      ],
+    },
+    {
+      name: 'nieuwsbrief',
+      type: 'group',
+      // Niet voor de publieke site; de server leest het met overrideAccess (magVersturen in verzenden.ts).
+      access: { read: isAdminField },
+      fields: [
+        {
+          name: 'redacteurMagVersturen',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description:
+              'Aan: ook redacteuren kunnen een editie naar alle abonnees versturen. Uit: alleen de admin; bij een redacteur staat de knop Versturen uit.',
+          },
         },
       ],
     },
