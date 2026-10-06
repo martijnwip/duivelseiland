@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button, ConfirmationModal, toast, useAuth, useDocumentInfo, useFormFields, useFormModified, useModal } from '@payloadcms/ui';
+import { useOmgeving } from './omgeving';
 
 type Ontvangers = { totaal: number; nl: number; en: number; dagen: number; engelsLeeg: boolean; opProductie: boolean };
 
@@ -15,7 +16,8 @@ const MODAL = 'nieuwsbrief-versturen';
  */
 export default function EditieKnoppen() {
   const { id } = useDocumentInfo();
-  const { user } = useAuth<{ role?: string }>();
+  const { user } = useAuth<{ role?: string; email?: string }>();
+  const omgeving = useOmgeving();
   const router = useRouter();
   const modified = useFormModified();
   const { openModal } = useModal();
@@ -100,10 +102,16 @@ export default function EditieKnoppen() {
         Voorbeeld EN
       </Button>
       <Button onClick={testmail} disabled={bezig} buttonStyle="secondary" size="small">
-        Testmail
+        {user?.email ? `Testmail naar ${user.email}` : 'Testmail'}
       </Button>
       {status === 'concept' ? (
-        <Button onClick={vraagBevestiging} disabled={bezig} buttonStyle="primary" size="small">
+        <Button
+          onClick={vraagBevestiging}
+          disabled={bezig}
+          buttonStyle="primary"
+          size="small"
+          tooltip={omgeving && omgeving !== 'productie' ? 'Alleen op de productiesite' : undefined}
+        >
           Versturen…
         </Button>
       ) : null}

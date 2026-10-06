@@ -74,6 +74,8 @@ export default buildConfig({
     components: {
       // Laadt de site-lettertypen en de rand-styling voor de rich text-editor.
       providers: ['/components/admin/EditorStyles#default'],
+      // Kopbalk: met welk account je bent ingelogd, en LOKAAL/PREVIEW buiten productie.
+      actions: ['/components/admin/IngelogdAls#default'],
       graphics: {
         // Vervangt het "home"-icoontje voor de breadcrumb (StepNav) op elke
         // ingelogde admin-pagina. Het standaard graphics.Logo-slot (login-pagina)
