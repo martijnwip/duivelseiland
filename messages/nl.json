@@ -1444,7 +1444,6 @@
       "eenmalig": "Eenmalig",
       "terugkerend": "Terugkerend"
     },
-    "voorlopig": "voorlopig",
     "organisator": "Georganiseerd door {naam}",
     "aantal": "{aantal, plural, one {# buur doet mee} other {# buren doen mee}}",
     "terug": "Alle activiteiten",
@@ -1479,7 +1478,7 @@
       "soort": "Eenmalig of terugkerend?",
       "soortToelichting": "Hoe vaak?",
       "soortToelichtingPlaceholder": "Bijv. elke eerste dinsdag van de maand",
-      "voorlopigeDatum": "Voorlopige datum (optioneel)",
+      "datum": "Datum (optioneel)",
       "afbeelding": "Afbeelding voor bovenaan de pagina (optioneel)",
       "afbeeldingHint": "JPG, PNG of WebP, maximaal 4 MB. Alleen een foto waarvan je de rechten hebt, zonder herkenbare personen die geen toestemming gaven.",
       "afbeeldingTeGroot": "Deze afbeelding is groter dan 4 MB.",
@@ -1497,7 +1496,7 @@
         "akkoord": "Vink aan dat je akkoord gaat met de spelregels.",
         "server": "Er ging iets mis. Probeer het later nog eens."
       },
-      "voorlopigeDatumHint": "Je kunt de datum later nog aanpassen; de definitieve datum spreek je af met je groep."
+      "datumHint": "Je kunt de datum later altijd nog aanpassen."
     },
     "inschrijfForm": {
       "titel": "Doe mee",
@@ -1552,7 +1551,7 @@
       "terug": "Naar de activiteiten"
     },
     "agendaAanmelden": "Aanmelden voor deze activiteit",
-    "voorbehoud": "Onder voorbehoud: deze activiteit gaat door als er genoeg aanmeldingen zijn.",
-    "voorbehoudKort": "Onder voorbehoud"
+    "voorbehoud": "Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn.",
+    "voorbehoudKort": "Nog niet definitief"
   }
 }

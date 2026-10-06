@@ -1,19 +1,4 @@
-const TZ = 'Europe/Amsterdam';
-
-export function formatDatum(iso: string, locale: string) {
-  return new Date(iso).toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: TZ });
-}
-
-export function formatDatumTijd(iso: string, locale: string) {
-  return new Date(iso).toLocaleString(locale, {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZone: TZ,
-  });
-}
+export { formatDatumTijd } from '@/lib/activiteiten/datum';
 
 export function mediaUrl(image: unknown, size: 'card' | 'hero') {
   if (!image || typeof image !== 'object') return null;

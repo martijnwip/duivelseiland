@@ -1627,7 +1627,6 @@
       "eenmalig": "One-off",
       "terugkerend": "Recurring"
     },
-    "voorlopig": "provisional",
     "organisator": "Organised by {naam}",
     "aantal": "{aantal, plural, one {# neighbour is joining} other {# neighbours are joining}}",
     "terug": "All activities",
@@ -1662,7 +1661,7 @@
       "soort": "One-off or recurring?",
       "soortToelichting": "How often?",
       "soortToelichtingPlaceholder": "E.g. every first Tuesday of the month",
-      "voorlopigeDatum": "Provisional date (optional)",
+      "datum": "Date (optional)",
       "afbeelding": "Image for the top of the page (optional)",
       "afbeeldingHint": "JPG, PNG or WebP, max 4 MB. Only a photo you hold the rights to, without recognisable people who didn't give permission.",
       "afbeeldingTeGroot": "This image is larger than 4 MB.",
@@ -1680,7 +1679,7 @@
         "akkoord": "Please tick that you agree to the ground rules.",
         "server": "Something went wrong. Please try again later."
       },
-      "voorlopigeDatumHint": "You can change the date later; you'll agree the final date with your group."
+      "datumHint": "You can always change the date later."
     },
     "inschrijfForm": {
       "titel": "Join in",
@@ -1735,7 +1734,7 @@
       "terug": "Back to activities"
     },
     "agendaAanmelden": "Sign up for this activity",
-    "voorbehoud": "Subject to enough sign-ups: this activity goes ahead if enough people join.",
-    "voorbehoudKort": "Subject to sign-ups"
+    "voorbehoud": "Not yet final: this activity goes ahead if enough people sign up.",
+    "voorbehoudKort": "Not yet final"
   }
 }

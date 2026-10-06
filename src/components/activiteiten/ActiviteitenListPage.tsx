@@ -5,7 +5,7 @@ import config from '@payload-config';
 import { localizedHref } from '@/i18n/localizedHref';
 import { Section, SectionHead } from '@/components/site/Section';
 import { lexicalNaarTekst } from '@/lib/activiteiten/lexical';
-import { faseLabel, formatDatum, formatDatumTijd, mediaUrl } from './format';
+import { faseLabel, formatDatumTijd, mediaUrl } from './format';
 import { buttonCls } from './styles';
 
 /** /activiteiten: activiteiten die deelnemers zoeken of doorgaan. */
@@ -56,11 +56,9 @@ export async function ActiviteitenListPage({ locale }: { locale: 'nl' | 'en' }) 
                       <p className="text-sm text-muted first-letter:uppercase">
                         {doc.datum
                           ? formatDatumTijd(doc.datum, locale)
-                          : doc.voorlopigeDatum
-                            ? `${formatDatum(doc.voorlopigeDatum, locale)} (${t('voorlopig')})`
-                            : doc.soort === 'terugkerend'
-                              ? (doc.soortToelichting ?? t('soort.terugkerend'))
-                              : null}
+                          : doc.soort === 'terugkerend'
+                            ? (doc.soortToelichting ?? t('soort.terugkerend'))
+                            : null}
                       </p>
                       {doc.fase === 'goedgekeurd' ? <p className="text-xs font-medium text-accent">{t('voorbehoudKort')}</p> : null}
                       {tekst ? <p className="line-clamp-3 text-sm text-text">{tekst}</p> : null}

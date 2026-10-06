@@ -24,6 +24,7 @@ import {
   verstuur,
   type Locale,
 } from '@/lib/activiteiten/mail';
+import { amsterdamMiddernacht } from '@/lib/activiteiten/datum';
 import { uniekeSlug } from '@/lib/activiteiten/slug';
 import { meldNieuwIdeeAanRedactie, titels } from '@/lib/activiteiten/workflow';
 
@@ -39,7 +40,7 @@ export type IdeeVelden = {
   omschrijving: string;
   soort: string;
   soortToelichting: string;
-  voorlopigeDatum: string;
+  datum: string;
   naam: string;
   email: string;
 };
@@ -63,7 +64,7 @@ export async function submitIdee(_prev: IdeeFormState, formData: FormData): Prom
     omschrijving: str(formData, 'omschrijving'),
     soort: formData.get('soort') === 'terugkerend' ? 'terugkerend' : 'eenmalig',
     soortToelichting: str(formData, 'soortToelichting'),
-    voorlopigeDatum: str(formData, 'voorlopigeDatum'),
+    datum: str(formData, 'datum'),
     naam: str(formData, 'naam'),
     email: str(formData, 'email').toLowerCase(),
   };
@@ -80,7 +81,7 @@ export async function submitIdee(_prev: IdeeFormState, formData: FormData): Prom
     velden.naam.length > 80 ||
     velden.email.length > 254 ||
     !EMAIL_RE.test(velden.email) ||
-    (velden.voorlopigeDatum && Number.isNaN(Date.parse(velden.voorlopigeDatum)))
+    (velden.datum && !amsterdamMiddernacht(velden.datum))
   ) {
     return fout('velden');
   }
@@ -134,7 +135,7 @@ export async function submitIdee(_prev: IdeeFormState, formData: FormData): Prom
         content: tekstNaarLexical(velden.omschrijving) as Activiteiten['content'],
         soort: velden.soort as 'eenmalig' | 'terugkerend',
         soortToelichting: velden.soort === 'terugkerend' ? velden.soortToelichting || undefined : undefined,
-        voorlopigeDatum: velden.voorlopigeDatum ? new Date(velden.voorlopigeDatum).toISOString() : undefined,
+        datum: velden.datum ? amsterdamMiddernacht(velden.datum)! : undefined,
         image,
         fase: bekend ? 'ingediend' : 'onbevestigd',
         inschrijving: 'open',

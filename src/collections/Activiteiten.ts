@@ -103,25 +103,14 @@ export const Activiteiten: CollectionConfig = {
       ],
     },
     {
-      type: 'row',
-      fields: [
-        {
-          name: 'voorlopigeDatum',
-          label: 'Voorlopige datum',
-          type: 'date',
-          admin: { width: '50%', date: { pickerAppearance: 'dayOnly', displayFormat: 'd MMM yyyy' } },
-        },
-        {
-          name: 'datum',
-          label: 'Definitieve datum en tijd',
-          type: 'date',
-          admin: {
-            width: '50%',
-            date: { pickerAppearance: 'dayAndTime', displayFormat: 'd MMM yyyy HH:mm' },
-            description: 'Nodig om de activiteit op de agenda te zetten.',
-          },
-        },
-      ],
+      name: 'datum',
+      label: 'Datum en tijd',
+      type: 'date',
+      admin: {
+        date: { pickerAppearance: 'dayAndTime', displayFormat: 'd MMM yyyy HH:mm' },
+        description:
+          'Kan altijd nog gewijzigd worden. Nodig om de activiteit op de agenda te zetten. Zolang de fase Goedgekeurd is, staat er "Nog niet definitief" bij.',
+      },
     },
     { name: 'image', label: 'Headerafbeelding', type: 'upload', relationTo: 'media' },
     {

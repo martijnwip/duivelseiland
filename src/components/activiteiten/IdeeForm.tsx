@@ -15,8 +15,8 @@ export type IdeeFormStrings = {
   terugkerend: string;
   soortToelichting: string;
   soortToelichtingPlaceholder: string;
-  voorlopigeDatum: string;
-  voorlopigeDatumHint: string;
+  datum: string;
+  datumHint: string;
   afbeelding: string;
   afbeeldingHint: string;
   afbeeldingTeGroot: string;
@@ -109,17 +109,17 @@ export function IdeeForm({ locale, strings }: { locale: string; strings: IdeeFor
 
       <div>
         <label htmlFor="idee-datum" className={labelCls}>
-          {strings.voorlopigeDatum}
+          {strings.datum}
         </label>
         <p id="idee-datum-hint" className={hintCls}>
-          {strings.voorlopigeDatumHint}
+          {strings.datumHint}
         </p>
         <input
           id="idee-datum"
-          name="voorlopigeDatum"
+          name="datum"
           type="date"
           aria-describedby="idee-datum-hint"
-          defaultValue={vorige?.voorlopigeDatum}
+          defaultValue={vorige?.datum}
           className={`${inputCls} max-w-xs`}
         />
       </div>

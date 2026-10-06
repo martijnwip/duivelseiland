@@ -8,7 +8,7 @@ import { RichTextContent } from '@/components/site/RichTextContent';
 import { boxCls } from '@/components/site/Section';
 import { ACTIEVE_FASES, voornaam } from '@/lib/activiteiten/constants';
 import { hasRichTextContent } from '@/lib/richtext';
-import { faseLabel, formatDatum, formatDatumTijd, mediaUrl } from './format';
+import { faseLabel, formatDatumTijd, mediaUrl } from './format';
 import { InschrijfForm } from './InschrijfForm';
 
 export async function vindActiviteit(slug: string, locale: 'nl' | 'en') {
@@ -66,11 +66,7 @@ export async function ActiviteitDetailPage({ slug, locale }: { slug: string; loc
       <h1 className="mt-2 text-3xl font-bold text-text">{doc.title}</h1>
 
       <div className="mt-3 flex flex-col gap-1 text-sm text-muted">
-        {doc.datum || doc.voorlopigeDatum ? (
-          <p className="m-0 first-letter:uppercase">
-            {doc.datum ? formatDatumTijd(doc.datum, locale) : `${formatDatum(doc.voorlopigeDatum!, locale)} (${t('voorlopig')})`}
-          </p>
-        ) : null}
+        {doc.datum ? <p className="m-0 first-letter:uppercase">{formatDatumTijd(doc.datum, locale)}</p> : null}
         {naam ? <p className="m-0">{t('organisator', { naam })}</p> : null}
         {aantal !== null && aantal > 0 ? <p className="m-0">{t('aantal', { aantal })}</p> : null}
       </div>

@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { localizedHref } from '@/i18n/localizedHref';
+import { formatDatumTijd } from './datum';
 
 export type Locale = 'nl' | 'en';
 
@@ -310,9 +311,7 @@ export function faseMail({
   replyTo?: string;
 }): Mail {
   const tt = escapeHtml(titel);
-  const wanneer = datum
-    ? new Date(datum).toLocaleString(locale, { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Amsterdam' })
-    : null;
+  const wanneer = datum ? formatDatumTijd(datum, locale) : null;
   const pagina = siteUrl(locale, `/activiteiten/${slug}`);
   const alineas =
     fase === 'gaat-door'

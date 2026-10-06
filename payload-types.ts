@@ -397,9 +397,8 @@ export interface Activiteiten {
    * Bijv. "elke eerste dinsdag van de maand".
    */
   soortToelichting?: string | null;
-  voorlopigeDatum?: string | null;
   /**
-   * Nodig om de activiteit op de agenda te zetten.
+   * Kan altijd nog gewijzigd worden. Nodig om de activiteit op de agenda te zetten. Zolang de fase Goedgekeurd is, staat er "Nog niet definitief" bij.
    */
   datum?: string | null;
   image?: (number | null) | Media;
@@ -1284,7 +1283,6 @@ export interface ActiviteitenSelect<T extends boolean = true> {
   content?: T;
   soort?: T;
   soortToelichting?: T;
-  voorlopigeDatum?: T;
   datum?: T;
   image?: T;
   locale?: T;

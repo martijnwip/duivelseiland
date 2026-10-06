@@ -107,7 +107,7 @@ Pagina `/activiteiten/aanmelden`, met bovenaan uitleg in drie stappen: *idee ind
 | Titel | tekst, max 80 | ja | bv. "Boekenclub Duivelseiland" |
 | Omschrijving | platte tekst, max ~2000 | ja | Wat, voor wie, hoe vaak, waar ongeveer. De redactie zet dit om naar rich text. |
 | Soort | `eenmalig` / `terugkerend` | ja | Terugkerend: korte toelichting, bv. "elke eerste dinsdag van de maand". |
-| Voorlopige datum | datum, of "nog niet bekend" | nee | Het is een indicatie, en dat staat ook bij het veld: de datum kan later nog veranderen. Een definitieve datum komt pas bij `gaat-door`. |
+| Datum | datum, of leeg | nee | Er is één datumveld. Bij het veld staat dat de datum later nog kan veranderen. Zolang de fase `goedgekeurd` is, staat er op de site "Nog niet definitief" bij. Een datum zonder tijd wordt zonder tijd getoond. |
 | Afbeelding | jpg/png/webp, max 4 MB | nee | Wordt pas na goedkeuring getoond. De aanvrager verklaart de rechten te hebben en dat er geen herkenbare personen op staan zonder toestemming. |
 | Naam aanvrager | tekst | ja | **De aanvrager wordt de organisator.** Op de site staat alleen de voornaam. |
 | E-mail aanvrager | e-mail | ja | **Wordt bij goedkeuring de organisator**; met dit adres logt die in op `/admin`. Nooit publiek. |
@@ -159,12 +159,12 @@ De redactie kan:
 
 **`/activiteiten`**
 
-- Kaarten met afbeelding, titel, fase-label ("Zoekt deelnemers" of "Gaat door") en de voorlopige of definitieve datum.
+- Kaarten met afbeelding, titel, fase-label ("Zoekt deelnemers" of "Gaat door") en de datum.
 - Bovenaan een duidelijke knop: "Zelf een idee? Meld het aan."
 
 **`/activiteiten/[slug]`**
 
-- Header-afbeelding (of een standaardbeeld), titel, omschrijving, soort (eenmalig/terugkerend) en datum. Bij een voorlopige datum staat het label "voorlopig".
+- Header-afbeelding (of een standaardbeeld), titel, omschrijving, soort (eenmalig/terugkerend) en datum. Bij `goedgekeurd` staat er "Nog niet definitief" bij.
 - Fase-label en "Georganiseerd door *voornaam*". Het e-mailadres staat er nooit.
 - Optioneel het aantal aanmeldingen ("al 7 buren doen mee"). De organisator kiest of dat getoond wordt.
 - Een inschrijfblok (flow 4). Als de inschrijving gesloten is, staat er in plaats daarvan: "De inschrijving is gesloten."
@@ -235,9 +235,9 @@ Een collection `activiteit-berichten` met de velden onderwerp, tekst, activiteit
 
 Een goedgekeurde activiteit staat **meteen op de agenda**. Dat geeft extra bekendheid en levert meer aanmeldingen op.
 
-- Bij goedkeuring wordt automatisch een gekoppeld agenda-item gemaakt en gepubliceerd. Het krijgt de titel, omschrijving (nl en en), afbeelding en datum van de activiteit. De datum is de definitieve datum, of anders de voorlopige.
+- Bij goedkeuring wordt automatisch een gekoppeld agenda-item gemaakt en gepubliceerd. Het krijgt de titel, omschrijving (nl en en), afbeelding en datum van de activiteit.
 - Wijzigt de organisator of de redactie de activiteit, dan wordt het agenda-item bijgewerkt (`src/lib/activiteiten/agenda.ts`). Wijzigingen die je rechtstreeks in het agenda-item maakt, worden bij de volgende wijziging van de activiteit overschreven.
-- Zolang de fase **goedgekeurd** is, staat er op de agenda en op de activiteitpagina: *"Onder voorbehoud: deze activiteit gaat door als er genoeg aanmeldingen zijn."* In de agendalijst staat het label "Onder voorbehoud". Bij **gaat door** verdwijnt het voorbehoud.
+- Zolang de fase **goedgekeurd** is, staat er op de agenda en op de activiteitpagina: *"Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn."* In de agendalijst staat het label "Nog niet definitief". Bij **gaat door** verdwijnt dat label.
 - Het agenda-item heeft een knop "Aanmelden voor deze activiteit", zolang de aanmelding open is. Gewone agenda-items hebben die knop niet.
 - Afkeuren, afgelast of terug naar "wacht op goedkeuring": het agenda-item gaat naar concept. Opnieuw goedkeuren publiceert hetzelfde item weer. Bij afgelopen verandert er niets, want de datum ligt dan in het verleden.
 - Zonder datum staat het item wel gepubliceerd klaar, maar het verschijnt pas in de agendalijst als er een datum is.
@@ -270,7 +270,7 @@ Een goedgekeurde activiteit staat **meteen op de agenda**. Dat geeft extra beken
 
 | Collection | Belangrijkste velden |
 |---|---|
-| `activiteiten` (nieuw) | `title`*, `slug`, `content`* (rich text), `soort`, `soortToelichting`*, `voorlopigeDatum`, `datum`, `image`, `fase`, `inschrijving`, `maxDeelnemers`, `toonAantal`, `meldingBijInschrijving`, `eigenaar` (→ users), `aanvragerNaam`, `aanvragerEmail`, `afwijsReden`, `token`, `locale`, `agendaItem` (→ agenda) |
+| `activiteiten` (nieuw) | `title`*, `slug`, `content`* (rich text), `soort`, `soortToelichting`*, `datum`, `image`, `fase`, `inschrijving`, `maxDeelnemers`, `toonAantal`, `meldingBijInschrijving`, `eigenaar` (→ users), `aanvragerNaam`, `aanvragerEmail`, `afwijsReden`, `token`, `locale`, `agendaItem` (→ agenda) |
 | `activiteit-inschrijvingen` (nieuw) | `activiteit` (→ activiteiten), `voornaam`, `email`, `opmerking`, `status` (`pending`/`actief`/`afgemeld`), `token`, `locale`, `bevestigdOp`, `laatsteMailOp`. Uniek per (activiteit, email). |
 | `activiteit-berichten` (nieuw) | `activiteit`, `onderwerp`, `tekst`, `afzender` (→ users), `verzondenOp`, `aantalOntvangers` |
 | `agenda` (wijziging) | nieuw optioneel veld `activiteit` (→ activiteiten) |

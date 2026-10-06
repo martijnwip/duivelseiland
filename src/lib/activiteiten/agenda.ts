@@ -7,7 +7,7 @@ const idVan = (value: unknown): number | null =>
 
 /**
  * Houdt het agenda-item van een activiteit gelijk (docs/brief-activiteiten.md, flow 7). Goedgekeurd of
- * gaat door: gepubliceerd op de agenda (bij goedgekeurd met "onder voorbehoud" op de site), met titel,
+ * gaat door: gepubliceerd op de agenda (bij goedgekeurd met "nog niet definitief" op de site), met titel,
  * omschrijving, afbeelding en datum van de activiteit. Andere fasen: terug naar concept. Afgelopen: niets,
  * de datum ligt dan in het verleden. Zonder datum staat het item wel klaar, maar niet in de agendalijst.
  */
@@ -26,7 +26,7 @@ export async function synchroniseerAgenda(payload: Payload, activiteitId: number
   const content = doc.content as unknown as Localized<unknown>;
   const gedeeld = {
     status: 'published' as const,
-    date: doc.datum ?? doc.voorlopigeDatum ?? null,
+    date: doc.datum ?? null,
     image: idVan(doc.image),
     activiteit: doc.id,
   };
