@@ -63,9 +63,9 @@ Verantwoordelijk voor de inhoud en de kwaliteit van de site.
 
 - Alles wat een auteur kan, op alle items, ongeacht wie de auteur is.
 - Kan items publiceren en depubliceren.
-- Kan Praktische info beheren.
+- Kan Praktische info en Vakmensen beheren.
 - Kan alle media beheren.
-- Geen toegang tot Interviews, Geschiedenis, Duivelse Kunst en Vakmensen, de globals Site-instellingen, Over de naam en Geschiedenisverhaal, de Auth-groep en gebruikersbeheer. Zo blijft `/admin` overzichtelijk; die onderdelen beheert de admin.
+- Geen toegang tot Interviews, Geschiedenis en Duivelse Kunst, de globals Site-instellingen, Over de naam en Geschiedenisverhaal, de Auth-groep en gebruikersbeheer. Zo blijft `/admin` overzichtelijk; die onderdelen beheert de admin.
 
 ### Admin
 
@@ -74,7 +74,7 @@ Technisch beheerder.
 - Alles wat een redacteur kan.
 - Beheert gebruikers: aanmaken, rol toewijzen, deactiveren, verwijderen.
 - Beheert globale instellingen (sitenaam, menu, footer, contactgegevens) en de globals Over de naam en Geschiedenisverhaal.
-- Beheert als enige Interviews, Geschiedenis, Duivelse Kunst en Vakmensen.
+- Beheert als enige Interviews, Geschiedenis en Duivelse Kunst.
 - Kan de eigen rol niet verlagen en de laatste admin niet verwijderen.
 
 ## Rechtenmatrix
@@ -86,7 +86,7 @@ Technisch beheerder.
 | Interviews             | lezen (published) | geen                             | geen                         | alles |
 | Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
 | Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
-| Vakmensen              | lezen (published) | geen                             | geen                         | alles |
+| Vakmensen              | lezen (published) | geen                             | alles                        | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
@@ -117,7 +117,8 @@ Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-
   - `isAuthorOrAbove`
   - `isOwnerOrRedacteur` (query-constraint: `{ author: { equals: user.id } }` voor auteur, `true` voor redacteur/admin)
   - `publishedOrLoggedIn` (query-constraint voor `read`: `{ status: { equals: 'published' } }` voor bezoekers)
-  - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst, Vakmensen: bezoekers lezen published, verder alleen admin)
+  - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst: bezoekers lezen published, verder alleen admin)
+  - `editorOnlyContentAccess` (Praktische info, Vakmensen: bezoekers lezen published, verder redacteur en admin)
   - `publiekOfAdmin` (`read` voor globals die alleen de admin beheert; zonder leesrecht verdwijnt het item ook uit `/admin`)
 - Veldniveau access op `status`: `update` alleen voor redacteur/admin.
 - Veldniveau access op `users.role`: `update` alleen voor admin.
