@@ -2,17 +2,21 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Vakken, Vakmensen } from '../../../../payload-types';
-import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
+import { BuurtpasSlot, SlotIcoon } from '@/components/buurtpas/BuurtpasSlot';
+import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { localizedHref } from '@/i18n/localizedHref';
 
 type Groep = { vak: string; vakmensen: Vakmensen[] };
 
+const vakNamen = (vakmens: Vakmensen) =>
+  (vakmens.vakken ?? []).filter((v): v is Vakken => typeof v === 'object' && v !== null).map((v) => v.naam);
+
 /** Per vak de gepubliceerde vakmensen, alfabetisch; wie meerdere vakken heeft staat onder elk vak. */
 function groepeerPerVak(vakmensen: Vakmensen[], overig: string, locale: string): Groep[] {
   const groepen = new Map<string, Vakmensen[]>();
   for (const vakmens of vakmensen) {
-    const namen = (vakmens.vakken ?? []).filter((v): v is Vakken => typeof v === 'object' && v !== null).map((v) => v.naam);
+    const namen = vakNamen(vakmens);
     for (const naam of namen.length ? namen : [overig]) {
       groepen.set(naam, [...(groepen.get(naam) ?? []), vakmens]);
     }
@@ -23,6 +27,35 @@ function groepeerPerVak(vakmensen: Vakmensen[], overig: string, locale: string):
 }
 
 const zonderProtocol = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+const TUSSENVOEGSELS = new Set(['de', 'den', 'der', 'van', 'het', "'t", 'te', 'ten', 'ter', 'in', 'op', 'aan', 'bij', '&']);
+
+/** Eerste letter van het eerste en het laatste woord, zonder tussenvoegsels: "Piet van der Pijp" → "PP". */
+function initialen(naam: string) {
+  const woorden = naam.trim().split(/\s+/).filter((w, i) => i === 0 || !TUSSENVOEGSELS.has(w.toLowerCase()));
+  const eerste = woorden[0]?.[0] ?? '';
+  const laatste = woorden.length > 1 ? woorden[woorden.length - 1][0] : '';
+  return `${eerste}${laatste}`.toUpperCase();
+}
+
+const knopCls = 'inline-flex min-h-11 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors';
+
+function TelefoonIcoon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden className="size-4">
+      <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+    </svg>
+  );
+}
+
+function WebIcoon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden className="size-4">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20" />
+    </svg>
+  );
+}
 
 export default async function VakmensenPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -45,45 +78,96 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
   const heeftNummers = docs.some((d) => d.telefoon);
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-text">{t('heading')}</h1>
+    <main className="pt-8 xl:pt-12">
+      <Section id="vakmensen">
+        <SectionHead id="vakmensen" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
-      {heeftNummers && !buurtpas ? (
-        <div className="mt-6">
-          <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vakmensen')} titel={tb('slot.telefoon')} />
-        </div>
-      ) : null}
+        <aside role="note" className="mt-8 max-w-3xl rounded-lg border border-l-4 border-border border-l-accent bg-card px-5 py-4 text-[15px] leading-[1.5] text-text">
+          <p className="m-0 font-semibold text-accent">{t('disclaimer.titel')}</p>
+          <p className="mt-1 mb-0">{t.rich('disclaimer.tekst', { b: (chunks) => <strong>{chunks}</strong> })}</p>
+        </aside>
 
-      {groepen.length === 0 ? (
-        <p className="mt-6 text-muted">{t('empty')}</p>
-      ) : (
-        groepen.map(({ vak, vakmensen }) => (
-          <section key={vak} className="mt-10">
-            <h2 className="text-xl font-semibold text-text">{vak}</h2>
-            <ul className="mt-4 divide-y divide-muted/20">
-              {vakmensen.map((vakmens) => (
-                <li key={vakmens.id} className="py-3">
-                  <p className="font-medium text-text">{vakmens.naam}</p>
-                  <p className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                    {buurtpas && vakmens.telefoon ? (
-                      <a href={`tel:${vakmens.telefoon.replace(/[^0-9+]/g, '')}`} className="text-primary hover:underline">
-                        <span className="sr-only">{t('telefoon')}: </span>
-                        {vakmens.telefoon}
-                      </a>
-                    ) : null}
-                    {vakmens.website ? (
-                      <a href={vakmens.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                        <span className="sr-only">{t('website')}: </span>
-                        {zonderProtocol(vakmens.website)}
-                      </a>
-                    ) : null}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      )}
+        {heeftNummers && !buurtpas ? (
+          <div className="mt-6 max-w-3xl">
+            <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vakmensen')} titel={tb('slot.telefoon')} />
+          </div>
+        ) : null}
+
+        {groepen.length === 0 ? (
+          <p className="mt-10 text-muted">{t('empty')}</p>
+        ) : (
+          groepen.map(({ vak, vakmensen }) => (
+            <section key={vak} aria-label={vak} className="mt-12">
+              <h3 className="m-0 flex items-baseline gap-3 text-2xl font-semibold text-text">
+                {vak}
+                <span className="text-sm font-medium text-muted">{t('aantal', { aantal: vakmensen.length })}</span>
+              </h3>
+              <ul className="mt-5 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+                {vakmensen.map((vakmens) => {
+                  const vakken = vakNamen(vakmens);
+                  return (
+                    <li key={vakmens.id} className={`${boxCls} h-full`}>
+                      <div className="flex items-center gap-3">
+                        <span
+                          aria-hidden
+                          className="flex size-12 flex-none items-center justify-center rounded-full bg-primary-soft font-heading text-lg font-semibold text-primary"
+                        >
+                          {initialen(vakmens.naam)}
+                        </span>
+                        <div className="min-w-0">
+                          <p className="m-0 font-heading text-lg leading-[1.25] font-semibold break-words text-text">{vakmens.naam}</p>
+                          {vakken.length ? (
+                            <ul aria-label={t('vakken')} className="mt-1.5 flex list-none flex-wrap gap-1.5 p-0">
+                              {vakken.map((naam) => (
+                                <li key={naam} className="rounded-full bg-secondary-soft px-2.5 py-0.5 text-xs font-medium text-text">
+                                  {naam}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </div>
+                      </div>
+
+                      {vakmens.telefoon || vakmens.website ? (
+                        <div className="mt-auto flex flex-col items-start gap-2">
+                          {vakmens.telefoon && buurtpas ? (
+                            <a
+                              href={`tel:${vakmens.telefoon.replace(/[^0-9+]/g, '')}`}
+                              className={`${knopCls} bg-primary text-on-primary hover:bg-primary-hover`}
+                            >
+                              <TelefoonIcoon />
+                              <span className="sr-only">{t('telefoon')}: </span>
+                              {vakmens.telefoon}
+                            </a>
+                          ) : null}
+                          {vakmens.telefoon && !buurtpas ? (
+                            <span className="inline-flex min-h-11 items-center gap-2 text-sm text-muted">
+                              <SlotIcoon className="size-4" />
+                              {t('telefoonMetBuurtpas')}
+                            </span>
+                          ) : null}
+                          {vakmens.website ? (
+                            <a
+                              href={vakmens.website}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`${knopCls} max-w-full min-w-0 border border-border text-text hover:border-primary hover:text-primary`}
+                            >
+                              <WebIcoon />
+                              <span className="sr-only">{t('website')}: </span>
+                              <span className="truncate">{zonderProtocol(vakmens.website)}</span>
+                            </a>
+                          ) : null}
+                        </div>
+                      ) : null}
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ))
+        )}
+      </Section>
     </main>
   );
 }

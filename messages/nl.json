@@ -101,7 +101,16 @@
       "empty": "Er staan nog geen vakmensen op de site.",
       "telefoon": "Telefoon",
       "website": "Website",
-      "overig": "Overig"
+      "overig": "Overig",
+      "eyebrow": "Uit de buurt",
+      "intro": "Loodgieters, elektriciens, timmerlieden en andere vakmensen uit en rond Duivelseiland.",
+      "disclaimer": {
+        "titel": "Let op",
+        "tekst": "De vakmensen op deze pagina komen uit de WhatsApp-groep \"Buren-app Duivelseiland\" of zijn via bekenden aangemeld op deze site. Ze zijn <b>GEEN</b> aanbevelingen namens deze site, de redacteuren, het buurtcomité of de webmasters."
+      },
+      "aantal": "{aantal, plural, one {# vakmens} other {# vakmensen}}",
+      "vakken": "Vakken",
+      "telefoonMetBuurtpas": "Telefoon met buurtpas"
     },
     "interviews": {
       "heading": "Interviews"
