@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { BuurtborrelPage } from '@/components/buurtborrel/BuurtborrelPage';
 
-// Nummers komen uit het CMS; een wijziging daar valideert de site direct opnieuw (revalidateSite).
-export const revalidate = 3600;
+// De WhatsApp-knoppen hangen af van de buurtpas (cookie), dus per request renderen.
+export const dynamic = 'force-dynamic';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

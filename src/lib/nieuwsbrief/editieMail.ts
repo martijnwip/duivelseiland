@@ -94,7 +94,8 @@ async function haalItems(payload: Payload, editie: NieuwsbriefEditie, locale: Lo
     const datum = 'datum' in doc ? doc.datum : ref.relationTo === 'agenda' && 'date' in doc ? doc.date : null;
     items.push({
       titel: doc.title,
-      tekst: kort(lexicalNaarTekst(doc.content)),
+      // Buurtitem: alleen titel en link, de inhoud staat achter de buurtpas.
+      tekst: 'alleenBuurt' in doc && doc.alleenBuurt ? '' : kort(lexicalNaarTekst(doc.content)),
       datum: datum ? formatDatumTijd(datum, locale) : null,
       url: siteUrl(locale, `${PAD[ref.relationTo]}/${doc.slug}`),
       afbeelding: afbeeldingUrl(doc.image),

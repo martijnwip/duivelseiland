@@ -39,6 +39,7 @@ Er zijn vier ingelogde rollen en één publieke rol. Een gebruiker heeft precies
 - Ziet alleen gepubliceerde content (`status = published`).
 - Kan niets aanmaken, wijzigen of verwijderen.
 - Heeft geen toegang tot `/admin`.
+- Met een **buurtpas** (geen account, zie "Buurtpas" hieronder) ziet een bezoeker ook contactgegevens van vakmensen, WhatsApp-knoppen en items met "Alleen voor de buurt".
 
 ### Organisator
 
@@ -51,11 +52,11 @@ Buurtbewoner van wie een activiteitidee is goedgekeurd (zie `docs/brief-activite
 
 Buurtbewoner of vrijwilliger die content aanlevert.
 
-- Kan items aanmaken in: Nieuws, Agenda, Interviews, Geschiedenis, Duivelse Kunst, Vakmensen.
+- Kan items aanmaken in: Nieuws, Agenda.
 - Kan alleen eigen items bewerken en verwijderen (veld `author = ingelogde gebruiker`).
 - Kan eigen items alleen opslaan als concept (`draft`); publiceren is niet toegestaan.
 - Kan media uploaden en alleen eigen uploads verwijderen.
-- Geen toegang tot: Praktische info, gebruikersbeheer.
+- Geen toegang tot: Interviews, Geschiedenis, Duivelse Kunst, Vakmensen, Praktische info, gebruikersbeheer.
 
 ### Redacteur
 
@@ -65,7 +66,7 @@ Verantwoordelijk voor de inhoud en de kwaliteit van de site.
 - Kan items publiceren en depubliceren.
 - Kan Praktische info beheren.
 - Kan alle media beheren.
-- Geen toegang tot gebruikersbeheer en site-instellingen.
+- Geen toegang tot Interviews, Geschiedenis, Duivelse Kunst en Vakmensen, de globals Site-instellingen, Over de naam en Geschiedenisverhaal, de Auth-groep en gebruikersbeheer. Zo blijft `/admin` overzichtelijk; die onderdelen beheert de admin.
 
 ### Admin
 
@@ -73,7 +74,8 @@ Technisch beheerder.
 
 - Alles wat een redacteur kan.
 - Beheert gebruikers: aanmaken, rol toewijzen, deactiveren, verwijderen.
-- Beheert globale instellingen (sitenaam, menu, footer, contactgegevens).
+- Beheert globale instellingen (sitenaam, menu, footer, contactgegevens) en de globals Over de naam en Geschiedenisverhaal.
+- Beheert als enige Interviews, Geschiedenis, Duivelse Kunst en Vakmensen.
 - Kan de eigen rol niet verlagen en de laatste admin niet verwijderen.
 
 ## Rechtenmatrix
@@ -82,10 +84,10 @@ Technisch beheerder.
 | ---------------------- | ----------------- | -------------------------------- | ---------------------------- | ----- |
 | Nieuws                 | lezen (published) | aanmaken, eigen bewerken (draft) | alles + publiceren           | alles |
 | Agenda                 | lezen (published) | aanmaken, eigen bewerken (draft) | alles + publiceren           | alles |
-| Interviews             | lezen (published) | aanmaken, eigen bewerken (draft) | alles + publiceren           | alles |
-| Geschiedenis           | lezen (published) | aanmaken, eigen bewerken (draft) | alles + publiceren           | alles |
-| Duivelse Kunst         | lezen (published) | aanmaken, eigen bewerken (draft) | alles + publiceren           | alles |
-| Vakmensen              | lezen (published) | aanmaken, eigen bewerken (draft) | alles + publiceren           | alles |
+| Interviews             | lezen (published) | geen                             | geen                         | alles |
+| Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
+| Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
+| Vakmensen              | lezen (published) | geen                             | geen                         | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
@@ -94,7 +96,8 @@ Technisch beheerder.
 | Nieuwsbrief-abonnees   | aan-/afmelden via formulier | geen                              | alles (import: alleen admin) | alles |
 | Nieuwsbrief-edities    | geen              | geen                             | alles + versturen            | alles |
 | E-mailadressen (adresboek) | geen            | geen                             | geen                         | alles |
-| Globals (instellingen) | lezen             | geen                             | lezen                        | alles |
+| Globals: Site-instellingen, Over de naam, Geschiedenisverhaal | lezen | geen          | geen                         | alles |
+| Global: Buurtborrel    | lezen             | geen                             | alles                        | alles |
 
 Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-door/afgelast/afgelopen), de aanmeldingen daarvan (lezen, verwijderen, CSV) en berichten aan die deelnemers (max. 3 per week).
 
@@ -115,6 +118,10 @@ Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-
   - `isAuthorOrAbove`
   - `isOwnerOrRedacteur` (query-constraint: `{ author: { equals: user.id } }` voor auteur, `true` voor redacteur/admin)
   - `publishedOrLoggedIn` (query-constraint voor `read`: `{ status: { equals: 'published' } }` voor bezoekers)
+  - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst, Vakmensen: bezoekers lezen published, verder alleen admin)
+  - `publiekOfAdmin` (`read` voor globals die alleen de admin beheert; zonder leesrecht verdwijnt het item ook uit `/admin`)
+  - `zonderBuurtitems` / `publiekZichtbaar` (`read` van contentcollecties: bezoekers via de API zien geen items met `alleenBuurt`)
+  - `alleenIngelogdField` (veldniveau `read` op telefoonnummers: vakmensen-`contact`, agenda-`whatsappNumber`, buurtborrelnummers)
 - Veldniveau access op `status`: `update` alleen voor redacteur/admin.
 - Veldniveau access op `users.role`: `update` alleen voor admin.
 
@@ -256,6 +263,27 @@ Eén foto in het verhaal vervangen door een andere Beeldbank-foto, zonder de res
 bun run foto:vervang <oude-beeldbank-link> <nieuwe-beeldbank-link>
 bun run foto:vervang:prod <oude-beeldbank-link> <nieuwe-beeldbank-link>  # daarna het verhaal 1x opslaan in /admin
 ```
+
+## Buurtpas
+
+Afgeschermde inhoud zonder account. Een bezoeker vult een e-mailadres in en krijgt een link (30 minuten geldig, één keer bruikbaar). De link opent een pagina met een knop *Activeer buurtpas* (pas bij de klik, zodat mailscanners het token niet verbruiken). Daarna staat er een jaar lang een ondertekende cookie `buurtpas` op dat apparaat. Er is geen wachtwoord en geen `users`-record; het adres staat in het adresboek (`email-adressen`), dat de buurtpasvelden bevat.
+
+Wat afgeschermd is:
+- Vakmensen: de groep `contact` (telefoon, WhatsApp, e-mail, website, adres). Contactgegevens horen daar, niet in de vrije tekst.
+- WhatsApp-knoppen: agenda-items met een `whatsappNumber` en de knoppen op `/buurtborrel`.
+- Items met het vinkje *Alleen voor de buurt* (`alleenBuurt`, alle contentcollecties): in de lijst staat de titel met een slotje, de detailpagina toont alleen titel en slot (noindex), in de nieuwsbrief alleen titel en link.
+
+Hoe ver het gaat: elk bevestigd e-mailadres krijgt een buurtpas. Dat houdt zoekmachines, scrapers en toevallige bezoekers buiten, maar bewijst niet dat iemand in de buurt woont.
+
+Techniek (`src/lib/buurtpas/`, `src/components/buurtpas/`):
+- `heeftBuurtpas()` controleert de handtekening en daarna het adres in het adresboek: bestaat het nog, is het niet ingetrokken, klopt `buurtpasVersie`. Pagina's die het aanroepen worden per request gerenderd.
+- Maak afgeschermde inhoud alleen aan als `heeftBuurtpas()` waar is; anders `<BuurtpasSlot>`. Geef de gegevens niet als props mee aan een element dat niet gerenderd wordt: in dev belandt dat in de RSC-payload.
+- Via de REST/GraphQL-API zijn de nummers en buurtitems alleen voor ingelogde gebruikers.
+
+Beheer in *E-mailadressen* (admin):
+- *Toegang ingetrokken* blokkeert het adres.
+- `buurtpasVersie` ophogen maakt alle bestaande buurtpassen van dat adres ongeldig.
+- Het adres verwijderen haalt ook de buurtpas weg.
 
 ## Nieuwsbrief
 

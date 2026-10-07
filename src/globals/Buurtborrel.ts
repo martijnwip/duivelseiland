@@ -1,5 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { isRedacteurOrAdmin } from '../access/isAdmin';
+import { alleenIngelogdField, isRedacteurOrAdmin } from '../access/isAdmin';
 import { revalidateSite } from './revalidateSite';
 
 /**
@@ -26,11 +26,13 @@ export const Buurtborrel: GlobalConfig = {
     {
       name: 'burenAppNummer',
       type: 'text',
+      access: { read: alleenIngelogdField },
       admin: { description: 'Telefoonnummer van de beheerder van de Buren-app Duivelseiland (WhatsApp). Leeg = geen knop.' },
     },
     {
       name: 'barryNummer',
       type: 'text',
+      access: { read: alleenIngelogdField },
       admin: { description: 'Telefoonnummer van Barry (catering, WhatsApp). Leeg = geen knop.' },
     },
   ],

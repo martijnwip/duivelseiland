@@ -1,5 +1,5 @@
 import type { CollectionConfig } from 'payload';
-import { editorOnlyContentAccess } from '../access/contentAccess';
+import { editorOnlyContentAccess, zonderBuurtitems } from '../access/contentAccess';
 import { contentFields } from './shared/contentFields';
 import { setAuthor } from './shared/setAuthor';
 
@@ -17,7 +17,7 @@ export const PraktischeInfo: CollectionConfig = {
       },
     },
   },
-  access: editorOnlyContentAccess,
+  access: zonderBuurtitems(editorOnlyContentAccess),
   hooks: {
     beforeChange: [setAuthor('author')],
   },

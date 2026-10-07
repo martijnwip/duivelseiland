@@ -1555,5 +1555,48 @@
     "agendaAanmelden": "Aanmelden voor deze activiteit",
     "voorbehoud": "Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn.",
     "voorbehoudKort": "Nog niet definitief"
+  },
+  "buurtpas": {
+    "eyebrow": "Voor de buurt",
+    "heading": "Buurtpas",
+    "intro": "Sommige dingen op deze site zijn alleen voor de buurt: telefoonnummers van vakmensen, WhatsApp-groepen en berichten die niet op internet horen te zwerven. Met een buurtpas zie je ze wel.",
+    "punten": {
+      "wat": "Vul je e-mailadres in. Je krijgt een mail met een link; één klik en je hebt de buurtpas.",
+      "geenAccount": "Geen account, geen wachtwoord. Je e-mailadres is genoeg.",
+      "apparaat": "De buurtpas geldt een jaar op het apparaat (en de browser) waarop je de link opent. Op een ander apparaat vraag je hem gewoon opnieuw aan."
+    },
+    "actief": "Je hebt een buurtpas op dit apparaat.",
+    "uitloggen": "Buurtpas van dit apparaat halen",
+    "privacy": "Je e-mailadres komt in het adresboek van de buurtsite en wordt nergens anders voor gebruikt. Wil je dat het weg gaat? Mail de beheerder.",
+    "form": {
+      "emailLabel": "E-mailadres",
+      "emailPlaceholder": "naam@voorbeeld.nl",
+      "submit": "Stuur mij een link",
+      "submitting": "Bezig…",
+      "success": "Check je mail: we hebben je een link gestuurd. Die is 30 minuten geldig.",
+      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens."
+    },
+    "slot": {
+      "titel": "Alleen voor de buurt",
+      "alleenBuurt": "Alleen voor de buurt",
+      "whatsapp": "WhatsApp: buurtpas nodig",
+      "uitleg": "Dit zie je met een buurtpas. Vul je e-mailadres in; je krijgt een link, geen account.",
+      "meer": "Wat is de buurtpas?"
+    },
+    "contact": {
+      "titel": "Contactgegevens",
+      "telefoon": "Telefoon",
+      "whatsapp": "WhatsApp",
+      "email": "E-mail",
+      "website": "Website",
+      "adres": "Adres"
+    },
+    "activeren": {
+      "heading": "Buurtpas activeren",
+      "text": "Klik op de knop om de buurtpas op dit apparaat te zetten.",
+      "submit": "Activeer buurtpas",
+      "invalid": "Deze link werkt niet meer: hij is verlopen of al gebruikt. Vraag een nieuwe aan.",
+      "opnieuw": "Nieuwe link aanvragen"
+    }
   }
 }

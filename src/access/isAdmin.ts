@@ -11,3 +11,12 @@ export const isRedacteurOrAdminField: FieldAccess = ({ req }) =>
   hasRoleAtLeast(req.user?.role, 'redacteur');
 
 export const isAuthorOrAbove: Access = ({ req }) => hasRoleAtLeast(req.user?.role, 'auteur');
+
+/** Bezoekers (publieke site) en admin; een ingelogde redacteur, auteur of organisator niet. Verbergt het item ook in /admin. */
+export const publiekOfAdmin: Access = ({ req }) => !req.user || hasRoleAtLeast(req.user.role, 'admin');
+
+/**
+ * Contactgegevens die alleen bezoekers met een buurtpas zien. Via de REST- en GraphQL-API alleen voor
+ * ingelogde gebruikers; de site leest ze via de Local API en toont ze pas na de buurtpascheck.
+ */
+export const alleenIngelogdField: FieldAccess = ({ req }) => Boolean(req.user);

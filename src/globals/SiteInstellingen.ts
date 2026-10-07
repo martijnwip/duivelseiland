@@ -1,6 +1,5 @@
 import type { GlobalConfig } from 'payload';
-import { isAdmin } from '../access/isAdmin';
-import { hasRoleAtLeast } from '../access/roles';
+import { isAdmin, publiekOfAdmin } from '../access/isAdmin';
 import { footerEditor, introEditor } from './editors';
 import { revalidateSite } from './revalidateSite';
 
@@ -14,9 +13,8 @@ export const SiteInstellingen: GlobalConfig = {
     },
   },
   access: {
-    // Public/anonymous requests and admins can read; a logged-in auteur or
-    // redacteur cannot (PROJECT.md prose: only Admin manages site settings).
-    read: ({ req }) => !req.user || hasRoleAtLeast(req.user.role, 'admin'),
+    // Alleen de admin beheert de site-instellingen (PROJECT.md); de publieke site leest ze zonder user.
+    read: publiekOfAdmin,
     update: isAdmin,
   },
   hooks: {

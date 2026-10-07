@@ -1738,5 +1738,48 @@
     "agendaAanmelden": "Sign up for this activity",
     "voorbehoud": "Not yet final: this activity goes ahead if enough people sign up.",
     "voorbehoudKort": "Not yet final"
+  },
+  "buurtpas": {
+    "eyebrow": "For the neighbourhood",
+    "heading": "Neighbourhood pass",
+    "intro": "Some things on this site are only for the neighbourhood: phone numbers of local tradespeople, WhatsApp groups and posts that shouldn't drift around the internet. With a neighbourhood pass you can see them.",
+    "punten": {
+      "wat": "Enter your email address. You'll get an email with a link; one click and you have the pass.",
+      "geenAccount": "No account, no password. Your email address is enough.",
+      "apparaat": "The pass is valid for a year on the device (and browser) where you open the link. On another device, just request it again."
+    },
+    "actief": "You have a neighbourhood pass on this device.",
+    "uitloggen": "Remove the pass from this device",
+    "privacy": "Your email address is kept in the address book of the neighbourhood site and isn't used for anything else. Want it removed? Email the site administrator.",
+    "form": {
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "submit": "Send me a link",
+      "submitting": "Working…",
+      "success": "Check your email: we've sent you a link. It's valid for 30 minutes.",
+      "error": "That didn't work. Check your email address and try again."
+    },
+    "slot": {
+      "titel": "Neighbourhood only",
+      "alleenBuurt": "Neighbourhood only",
+      "whatsapp": "WhatsApp: neighbourhood pass needed",
+      "uitleg": "You can see this with a neighbourhood pass. Enter your email address; you'll get a link, not an account.",
+      "meer": "What is the neighbourhood pass?"
+    },
+    "contact": {
+      "titel": "Contact details",
+      "telefoon": "Phone",
+      "whatsapp": "WhatsApp",
+      "email": "Email",
+      "website": "Website",
+      "adres": "Address"
+    },
+    "activeren": {
+      "heading": "Activate neighbourhood pass",
+      "text": "Click the button to put the neighbourhood pass on this device.",
+      "submit": "Activate pass",
+      "invalid": "This link no longer works: it has expired or was already used. Request a new one.",
+      "opnieuw": "Request a new link"
+    }
   }
 }

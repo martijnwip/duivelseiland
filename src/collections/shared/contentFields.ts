@@ -25,6 +25,16 @@ export const contentFields = (): Field[] => [
     },
   },
   {
+    name: 'alleenBuurt',
+    label: 'Alleen voor de buurt',
+    type: 'checkbox',
+    defaultValue: false,
+    admin: {
+      position: 'sidebar',
+      description: 'Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.',
+    },
+  },
+  {
     name: 'author',
     type: 'relationship',
     relationTo: 'users',

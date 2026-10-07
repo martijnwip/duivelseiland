@@ -6,6 +6,10 @@ import { RichTextContent } from '@/components/site/RichTextContent';
 import { localizedHref } from '@/i18n/localizedHref';
 import type { ContentCollectionSlug } from './collections';
 import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from '@/lib/agenda/nextOccurrence';
+import { getTranslations } from 'next-intl/server';
+import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
+import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
+import { VakmensContact, type Contact } from './VakmensContact';
 
 export async function ContentDetailPage({
   collection,
@@ -24,6 +28,10 @@ export async function ContentDetailPage({
   recurringLabel?: string;
 }) {
   const payload = await getPayload({ config });
+  // Altijd de buurtpas lezen (cookies): zo wordt de pagina per request gerenderd en nooit een versie met of
+  // zonder afgeschermde inhoud gecachet voor iedereen.
+  const buurtpas = await heeftBuurtpas();
+  const terug = localizedHref(locale, `/${routeSegment}/${slug}`);
 
   const { docs } = await payload.find({
     collection,
@@ -37,6 +45,25 @@ export async function ContentDetailPage({
   if (!doc) {
     notFound();
   }
+
+  // Buurtitem zonder buurtpas: alleen de titel en het slot, geen tekst of afbeelding.
+  if (doc.alleenBuurt && !buurtpas) {
+    const t = await getTranslations({ locale, namespace: 'buurtpas' });
+    return (
+      <main className="mx-auto max-w-3xl px-4 py-10">
+        {/* React zet dit in de <head>: de slotpagina hoort niet in zoekmachines. */}
+        <meta name="robots" content="noindex" />
+        <Link href={localizedHref(locale, `/${routeSegment}`)} className="text-sm text-primary hover:underline">
+          ← {backLabel}
+        </Link>
+        <h1 className="mt-4 mb-6 text-3xl font-bold text-text">{doc.title}</h1>
+        <BuurtpasSlot locale={locale} terug={terug} titel={t('slot.alleenBuurt')} />
+      </main>
+    );
+  }
+
+  const contact = 'contact' in doc ? (doc.contact as Contact | null | undefined) : null;
+  const heeftContact = Boolean(contact && Object.values(contact).some(Boolean));
 
   const image = typeof doc.image === 'object' && doc.image !== null ? doc.image : null;
   const imageUrl = image?.sizes?.hero?.url ?? image?.url ?? null;
@@ -67,6 +94,16 @@ export async function ContentDetailPage({
       ) : null}
 
       {doc.content ? <RichTextContent data={doc.content} className="mt-6" /> : null}
+
+      {heeftContact ? (
+        <div className="mt-8">
+          {buurtpas ? (
+            <VakmensContact contact={contact!} locale={locale} />
+          ) : (
+            <BuurtpasSlot locale={locale} terug={terug} titel={(await getTranslations({ locale, namespace: 'buurtpas' }))('contact.titel')} />
+          )}
+        </div>
+      ) : null}
     </main>
   );
 }
