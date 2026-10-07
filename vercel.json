@@ -1,5 +1,8 @@
 {
   "bunVersion": "1.4.x",
+  "git": {
+    "deploymentEnabled": { "main": true, "**": false }
+  },
   "crons": [
     { "path": "/api/activiteiten-opruimen", "schedule": "0 4 * * *" },
     { "path": "/api/nieuwsbrief-verzenden", "schedule": "0 7 * * *" }
