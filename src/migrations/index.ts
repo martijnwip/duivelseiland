@@ -29,6 +29,7 @@ import * as migration_20261002_143838_merge_activiteiten_nieuwsbrief from './202
 import * as migration_20261006_111532_datum_samenvoegen from './20261006_111532_datum_samenvoegen';
 import * as migration_20261006_122805_nieuwsbrief_edities from './20261006_122805_nieuwsbrief_edities';
 import * as migration_20261006_232651_redacteur_mag_versturen from './20261006_232651_redacteur_mag_versturen';
+import * as migration_20261007_001845_vakmensen_vakken from './20261007_001845_vakmensen_vakken';
 
 export const migrations = [
   {
@@ -184,6 +185,11 @@ export const migrations = [
   {
     up: migration_20261006_232651_redacteur_mag_versturen.up,
     down: migration_20261006_232651_redacteur_mag_versturen.down,
-    name: '20261006_232651_redacteur_mag_versturen'
+    name: '20261006_232651_redacteur_mag_versturen',
+  },
+  {
+    up: migration_20261007_001845_vakmensen_vakken.up,
+    down: migration_20261007_001845_vakmensen_vakken.down,
+    name: '20261007_001845_vakmensen_vakken'
   },
 ];

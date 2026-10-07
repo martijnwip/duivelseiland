@@ -97,7 +97,11 @@
       "heading": "Duivelse Kunst"
     },
     "vakmensen": {
-      "heading": "Local Craftspeople"
+      "heading": "Local Craftspeople",
+      "empty": "No craftspeople listed yet.",
+      "telefoon": "Phone",
+      "website": "Website",
+      "overig": "Other"
     },
     "interviews": {
       "heading": "Interviews"

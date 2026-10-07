@@ -97,7 +97,11 @@
       "heading": "Duivelse Kunst"
     },
     "vakmensen": {
-      "heading": "Vakmensen"
+      "heading": "Vakmensen",
+      "empty": "Er staan nog geen vakmensen op de site.",
+      "telefoon": "Telefoon",
+      "website": "Website",
+      "overig": "Overig"
     },
     "interviews": {
       "heading": "Interviews"

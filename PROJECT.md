@@ -87,6 +87,7 @@ Technisch beheerder.
 | Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
 | Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
 | Vakmensen              | lezen (published) | geen                             | alles                        | alles |
+| Vakken (tags bij Vakmensen) | lezen        | geen                             | alles                        | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
@@ -200,11 +201,13 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
 Elke content-collection heeft `title`, `slug`, `status` (draft/published), `author`, `content` (rich text) en waar nodig `date`, `image`.
+
+Uitzondering: **Vakmensen** heeft `naam`, `vakken` (één of meer tags uit de collection `vakken`; met de + in het veld voeg je direct een nieuw vak toe), `telefoon`, `website`, plus `status` en `author`. De site toont ze als één overzicht op `/vakmensen`, gegroepeerd per vak, zonder detailpagina's. Vaknamen zijn tweetalig.
 
 ## Data ophalen in de site
 

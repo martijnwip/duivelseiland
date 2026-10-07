@@ -2,9 +2,34 @@ import type { Field } from 'payload';
 import { slugField } from 'payload';
 import { isRedacteurOrAdminField } from '../../access/isAdmin';
 
+/** Concept of gepubliceerd; alleen redacteur en admin mogen het wijzigen. */
+export const statusField: Field = {
+  name: 'status',
+  type: 'select',
+  options: ['draft', 'published'],
+  defaultValue: 'draft',
+  required: true,
+  access: {
+    update: isRedacteurOrAdminField,
+  },
+};
+
+/** Wie het item aanmaakte (gezet door setAuthor). */
+export const authorField: Field = {
+  name: 'author',
+  type: 'relationship',
+  relationTo: 'users',
+  admin: {
+    position: 'sidebar',
+  },
+  access: {
+    update: isRedacteurOrAdminField,
+  },
+};
+
 /**
  * Common field shape shared by every content collection (Nieuws, Agenda,
- * Interviews, Geschiedenis, Duivelse Kunst, Vakmensen, Praktische info).
+ * Interviews, Geschiedenis, Duivelse Kunst, Praktische info). Vakmensen heeft eigen velden.
  */
 export const contentFields = (): Field[] => [
   {
@@ -14,27 +39,8 @@ export const contentFields = (): Field[] => [
     localized: true,
   },
   slugField(),
-  {
-    name: 'status',
-    type: 'select',
-    options: ['draft', 'published'],
-    defaultValue: 'draft',
-    required: true,
-    access: {
-      update: isRedacteurOrAdminField,
-    },
-  },
-  {
-    name: 'author',
-    type: 'relationship',
-    relationTo: 'users',
-    admin: {
-      position: 'sidebar',
-    },
-    access: {
-      update: isRedacteurOrAdminField,
-    },
-  },
+  statusField,
+  authorField,
   {
     name: 'content',
     type: 'richText',

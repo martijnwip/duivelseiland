@@ -76,6 +76,7 @@ export interface Config {
     geschiedenis: Geschiedeni;
     'duivelse-kunst': DuivelseKunst;
     vakmensen: Vakmensen;
+    vakken: Vakken;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
     'historische-fotos': HistorischeFoto;
@@ -107,6 +108,7 @@ export interface Config {
     geschiedenis: GeschiedenisSelect<false> | GeschiedenisSelect<true>;
     'duivelse-kunst': DuivelseKunstSelect<false> | DuivelseKunstSelect<true>;
     vakmensen: VakmensenSelect<false> | VakmensenSelect<true>;
+    vakken: VakkenSelect<false> | VakkenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
     'historische-fotos': HistorischeFotosSelect<false> | HistorischeFotosSelect<true>;
@@ -555,31 +557,28 @@ export interface DuivelseKunst {
  */
 export interface Vakmensen {
   id: number;
-  title: string;
+  naam: string;
   /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   * Kies één of meer vakken. Staat het vak er niet bij? Voeg het toe met de +.
    */
-  generateSlug?: boolean | null;
-  slug: string;
+  vakken: (number | Vakken)[];
+  telefoon?: string | null;
+  /**
+   * Met http:// of https://, bv. https://www.voorbeeld.nl
+   */
+  website?: string | null;
   status: 'draft' | 'published';
   author?: (number | null) | User;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  date?: string | null;
-  image?: (number | null) | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vakken".
+ */
+export interface Vakken {
+  id: number;
+  naam: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -972,6 +971,10 @@ export interface PayloadLockedDocument {
         value: number | Vakmensen;
       } | null)
     | ({
+        relationTo: 'vakken';
+        value: number | Vakken;
+      } | null)
+    | ({
         relationTo: 'praktische-info';
         value: number | PraktischeInfo;
       } | null)
@@ -1257,14 +1260,21 @@ export interface DuivelseKunstSelect<T extends boolean = true> {
  * via the `definition` "vakmensen_select".
  */
 export interface VakmensenSelect<T extends boolean = true> {
-  title?: T;
-  generateSlug?: T;
-  slug?: T;
+  naam?: T;
+  vakken?: T;
+  telefoon?: T;
+  website?: T;
   status?: T;
   author?: T;
-  content?: T;
-  date?: T;
-  image?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vakken_select".
+ */
+export interface VakkenSelect<T extends boolean = true> {
+  naam?: T;
   updatedAt?: T;
   createdAt?: T;
 }
