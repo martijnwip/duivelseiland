@@ -39,6 +39,7 @@ Er zijn vier ingelogde rollen en één publieke rol. Een gebruiker heeft precies
 - Ziet alleen gepubliceerde content (`status = published`).
 - Kan niets aanmaken, wijzigen of verwijderen.
 - Heeft geen toegang tot `/admin`.
+- Met een **buurtpas** (geen account, zie "Buurtpas" hieronder) ziet een bezoeker ook contactgegevens van vakmensen, WhatsApp-knoppen en items met "Alleen voor de buurt".
 
 ### Organisator
 
@@ -119,6 +120,8 @@ Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-
   - `publishedOrLoggedIn` (query-constraint voor `read`: `{ status: { equals: 'published' } }` voor bezoekers)
   - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst, Vakmensen: bezoekers lezen published, verder alleen admin)
   - `publiekOfAdmin` (`read` voor globals die alleen de admin beheert; zonder leesrecht verdwijnt het item ook uit `/admin`)
+  - `zonderBuurtitems` / `publiekZichtbaar` (`read` van contentcollecties: bezoekers via de API zien geen items met `alleenBuurt`)
+  - `alleenIngelogdField` (veldniveau `read` op telefoonnummers: vakmensen-`contact`, agenda-`whatsappNumber`, buurtborrelnummers)
 - Veldniveau access op `status`: `update` alleen voor redacteur/admin.
 - Veldniveau access op `users.role`: `update` alleen voor admin.
 
@@ -260,6 +263,27 @@ Eén foto in het verhaal vervangen door een andere Beeldbank-foto, zonder de res
 bun run foto:vervang <oude-beeldbank-link> <nieuwe-beeldbank-link>
 bun run foto:vervang:prod <oude-beeldbank-link> <nieuwe-beeldbank-link>  # daarna het verhaal 1x opslaan in /admin
 ```
+
+## Buurtpas
+
+Afgeschermde inhoud zonder account. Een bezoeker vult een e-mailadres in en krijgt een link (30 minuten geldig, één keer bruikbaar). De link opent een pagina met een knop *Activeer buurtpas* (pas bij de klik, zodat mailscanners het token niet verbruiken). Daarna staat er een jaar lang een ondertekende cookie `buurtpas` op dat apparaat. Er is geen wachtwoord en geen `users`-record; het adres staat in het adresboek (`email-adressen`), dat de buurtpasvelden bevat.
+
+Wat afgeschermd is:
+- Vakmensen: de groep `contact` (telefoon, WhatsApp, e-mail, website, adres). Contactgegevens horen daar, niet in de vrije tekst.
+- WhatsApp-knoppen: agenda-items met een `whatsappNumber` en de knoppen op `/buurtborrel`.
+- Items met het vinkje *Alleen voor de buurt* (`alleenBuurt`, alle contentcollecties): in de lijst staat de titel met een slotje, de detailpagina toont alleen titel en slot (noindex), in de nieuwsbrief alleen titel en link.
+
+Hoe ver het gaat: elk bevestigd e-mailadres krijgt een buurtpas. Dat houdt zoekmachines, scrapers en toevallige bezoekers buiten, maar bewijst niet dat iemand in de buurt woont.
+
+Techniek (`src/lib/buurtpas/`, `src/components/buurtpas/`):
+- `heeftBuurtpas()` controleert de handtekening en daarna het adres in het adresboek: bestaat het nog, is het niet ingetrokken, klopt `buurtpasVersie`. Pagina's die het aanroepen worden per request gerenderd.
+- Maak afgeschermde inhoud alleen aan als `heeftBuurtpas()` waar is; anders `<BuurtpasSlot>`. Geef de gegevens niet als props mee aan een element dat niet gerenderd wordt: in dev belandt dat in de RSC-payload.
+- Via de REST/GraphQL-API zijn de nummers en buurtitems alleen voor ingelogde gebruikers.
+
+Beheer in *E-mailadressen* (admin):
+- *Toegang ingetrokken* blokkeert het adres.
+- `buurtpasVersie` ophogen maakt alle bestaande buurtpassen van dat adres ongeldig.
+- Het adres verwijderen haalt ook de buurtpas weg.
 
 ## Nieuwsbrief
 

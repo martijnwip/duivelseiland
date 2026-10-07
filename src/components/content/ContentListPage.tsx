@@ -2,6 +2,8 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import Link from 'next/link';
 import { localizedHref } from '@/i18n/localizedHref';
+import { getTranslations } from 'next-intl/server';
+import { SlotIcoon } from '@/components/buurtpas/BuurtpasSlot';
 import type { ContentCollectionSlug } from './collections';
 import {
   getAgendaEffectiveDate,
@@ -19,6 +21,7 @@ type ListItem = {
   recurrenceTime: string | null;
   isRecurring: boolean;
   imageUrl: string | null;
+  alleenBuurt: boolean;
 };
 
 export async function ContentListPage({
@@ -67,6 +70,7 @@ export async function ContentListPage({
       recurrenceTime: recurrenceFields.recurrenceTime ?? null,
       isRecurring: isRecurring(recurrenceFields),
       imageUrl: image?.sizes?.card?.url ?? image?.url ?? null,
+      alleenBuurt: Boolean(doc.alleenBuurt),
     };
   });
 
@@ -80,6 +84,15 @@ export async function ContentListPage({
   }
 
   if (embedded && items.length === 0) return null;
+
+  const tb = await getTranslations({ locale, namespace: 'buurtpas' });
+  const slot = (alleenBuurt: boolean) =>
+    alleenBuurt ? (
+      <span title={tb('slot.alleenBuurt')} className="ml-2 inline-flex align-middle text-muted">
+        <SlotIcoon className="size-4" />
+        <span className="sr-only">{tb('slot.alleenBuurt')}</span>
+      </span>
+    ) : null;
 
   const Wrapper = embedded ? 'section' : 'main';
   const Heading = embedded ? 'h2' : 'h1';
@@ -100,9 +113,15 @@ export async function ContentListPage({
                   <img src={item.imageUrl} alt="" className="mb-3 h-48 w-full rounded object-cover" />
                 ) : null}
                 {embedded ? (
-                  <h3 className="text-xl font-semibold text-text group-hover:text-primary">{item.title}</h3>
+                  <h3 className="text-xl font-semibold text-text group-hover:text-primary">
+                    {item.title}
+                    {slot(item.alleenBuurt)}
+                  </h3>
                 ) : (
-                  <h2 className="text-xl font-semibold text-text group-hover:text-primary">{item.title}</h2>
+                  <h2 className="text-xl font-semibold text-text group-hover:text-primary">
+                    {item.title}
+                    {slot(item.alleenBuurt)}
+                  </h2>
                 )}
                 {item.displayDate ? (
                   <p className="mt-1 text-sm text-muted">

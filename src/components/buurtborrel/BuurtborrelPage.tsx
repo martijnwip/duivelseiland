@@ -2,6 +2,9 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { getTranslations } from 'next-intl/server';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
+import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
+import { BuurtpasNodig } from '@/components/buurtpas/BuurtpasSlot';
+import { localizedHref } from '@/i18n/localizedHref';
 import type { AgendaRichFields } from '@/lib/agenda/richFields';
 import { BuurtborrelForm } from './BuurtborrelForm';
 import { Icon, WhatsAppIcon, type BuurtborrelIconName } from './icons';
@@ -65,6 +68,10 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
   const schoonmaakHref = buildWhatsAppLink(schoonmaak?.whatsappNumber, t('doeMee.schoonmaak.bericht'));
   const barryHref = buildWhatsAppLink(instellingen.barryNummer, t('dank.barry.bericht'));
   const nieuwVenster = t('nieuwVenster');
+  // WhatsApp-knoppen zijn telefoonnummers: alleen met buurtpas.
+  const buurtpas = await heeftBuurtpas();
+  const tb = await getTranslations({ locale, namespace: 'buurtpas' });
+  const slot = <BuurtpasNodig locale={locale} terug={localizedHref(locale, '/buurtborrel')} label={tb('slot.whatsapp')} />;
 
   const appgroepen = [
     { key: 'burenApp', icon: 'appgroep', href: burenAppHref },
@@ -166,7 +173,8 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
                     <p className="mt-1 mb-0 leading-[1.5] text-muted">{t(`doeMee.${key}.text`)}</p>
                   </div>
                 </div>
-                {href ? (
+                {href && !buurtpas ? slot : null}
+                {href && buurtpas ? (
                   <WhatsAppButton href={href} label={t(`doeMee.${key}.knop`)} context={t(`doeMee.${key}.title`)} note={nieuwVenster} />
                 ) : null}
               </div>
@@ -197,7 +205,8 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
                 <p className="mt-1 mb-0 leading-[1.5] text-muted">{t('dank.barry.text')}</p>
               </div>
             </div>
-            {barryHref ? <WhatsAppButton href={barryHref} label={t('dank.barry.knop')} context={t('dank.barry.title')} note={nieuwVenster} /> : null}
+            {barryHref && !buurtpas ? slot : null}
+            {barryHref && buurtpas ? <WhatsAppButton href={barryHref} label={t('dank.barry.knop')} context={t('dank.barry.title')} note={nieuwVenster} /> : null}
           </div>
         </div>
 

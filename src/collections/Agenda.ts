@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
-import { authoredContentAccess } from '../access/contentAccess';
+import { authoredContentAccess, zonderBuurtitems } from '../access/contentAccess';
+import { alleenIngelogdField } from '../access/isAdmin';
 import { contentFields } from './shared/contentFields';
 import { setAuthor } from './shared/setAuthor';
 
@@ -13,7 +14,7 @@ export const Agenda: CollectionConfig = {
       },
     },
   },
-  access: authoredContentAccess,
+  access: zonderBuurtitems(authoredContentAccess),
   hooks: {
     beforeChange: [setAuthor('author')],
   },
@@ -132,6 +133,7 @@ export const Agenda: CollectionConfig = {
         {
           name: 'whatsappNumber',
           type: 'text',
+          access: { read: alleenIngelogdField },
           admin: {
             width: '50%',
             description:

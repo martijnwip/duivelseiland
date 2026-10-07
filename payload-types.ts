@@ -274,6 +274,10 @@ export interface Nieuw {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -308,6 +312,10 @@ export interface Agenda {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -460,6 +468,10 @@ export interface Interview {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -494,6 +506,10 @@ export interface Geschiedeni {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -528,6 +544,10 @@ export interface DuivelseKunst {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -562,6 +582,10 @@ export interface Vakmensen {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -580,6 +604,22 @@ export interface Vakmensen {
   } | null;
   date?: string | null;
   image?: (number | null) | Media;
+  /**
+   * Alleen zichtbaar voor bezoekers met een buurtpas. Zet telefoonnummers en adressen hier, niet in de tekst: wat in de tekst staat, ziet iedereen.
+   */
+  contact?: {
+    telefoon?: string | null;
+    /**
+     * Telefoonnummer, wordt een wa.me-link.
+     */
+    whatsapp?: string | null;
+    email?: string | null;
+    /**
+     * Volledige link, bv. https://…
+     */
+    website?: string | null;
+    adres?: string | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
@@ -596,6 +636,10 @@ export interface PraktischeInfo {
   generateSlug?: boolean | null;
   slug: string;
   status: 'draft' | 'published';
+  /**
+   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
+   */
+  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
   content?: {
     root: {
@@ -739,7 +783,7 @@ export interface NieuwsbriefEditie {
   id: number;
   onderwerp: string;
   /**
-   * Komt bovenaan de mail, na de aanhef.
+   * Komt bovenaan de mail, na de aanhef. Een afbeelding voeg je toe met "/" en dan Upload.
    */
   intro?: {
     root: {
@@ -857,6 +901,18 @@ export interface EmailAdressen {
    */
   lijsten?: string | null;
   notitie?: string | null;
+  /**
+   * Aan: geen buurtpas meer op welk apparaat dan ook, en geen nieuwe aanvragen.
+   */
+  buurtpasIngetrokken?: boolean | null;
+  /**
+   * Ophogen maakt elke buurtpas van dit adres ongeldig (bv. bij een verloren telefoon); daarna kan het adres een nieuwe aanvragen.
+   */
+  buurtpasVersie?: number | null;
+  buurtpasLaatstGebruikt?: string | null;
+  buurtpasToken?: string | null;
+  buurtpasTokenTot?: string | null;
+  laatsteBuurtpasMailOp?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1165,6 +1221,7 @@ export interface NieuwsSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
@@ -1181,6 +1238,7 @@ export interface AgendaSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
@@ -1213,6 +1271,7 @@ export interface InterviewsSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
@@ -1229,6 +1288,7 @@ export interface GeschiedenisSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
@@ -1245,6 +1305,7 @@ export interface DuivelseKunstSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
@@ -1261,10 +1322,20 @@ export interface VakmensenSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
   image?: T;
+  contact?:
+    | T
+    | {
+        telefoon?: T;
+        whatsapp?: T;
+        email?: T;
+        website?: T;
+        adres?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1277,6 +1348,7 @@ export interface PraktischeInfoSelect<T extends boolean = true> {
   generateSlug?: T;
   slug?: T;
   status?: T;
+  alleenBuurt?: T;
   author?: T;
   content?: T;
   date?: T;
@@ -1453,6 +1525,12 @@ export interface EmailAdressenSelect<T extends boolean = true> {
   bevestigdOp?: T;
   lijsten?: T;
   notitie?: T;
+  buurtpasIngetrokken?: T;
+  buurtpasVersie?: T;
+  buurtpasLaatstGebruikt?: T;
+  buurtpasToken?: T;
+  buurtpasTokenTot?: T;
+  laatsteBuurtpasMailOp?: T;
   updatedAt?: T;
   createdAt?: T;
 }

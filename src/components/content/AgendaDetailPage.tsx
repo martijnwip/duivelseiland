@@ -9,6 +9,9 @@ import { ScheduleIcon } from './AgendaScheduleIcons';
 import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from '@/lib/agenda/nextOccurrence';
 import type { AgendaRichFields } from '@/lib/agenda/richFields';
 import { buildWhatsAppLink } from '@/lib/whatsapp';
+import { getTranslations } from 'next-intl/server';
+import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
+import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 
 export async function AgendaDetailPage({
   slug,
@@ -44,6 +47,24 @@ export async function AgendaDetailPage({
     notFound();
   }
 
+  const buurtpas = await heeftBuurtpas();
+  const terug = localizedHref(locale, `/agenda/${slug}`);
+  const tb = await getTranslations({ locale, namespace: 'buurtpas' });
+
+  // Buurtitem zonder buurtpas: alleen de titel en het slot.
+  if (doc.alleenBuurt && !buurtpas) {
+    return (
+      <main className="mx-auto max-w-3xl px-4 py-10">
+        <meta name="robots" content="noindex" />
+        <Link href={localizedHref(locale, `/agenda`)} className="text-sm text-primary hover:underline">
+          ← {backLabel}
+        </Link>
+        <h1 className="mt-4 mb-6 text-3xl font-bold text-text">{doc.title}</h1>
+        <BuurtpasSlot locale={locale} terug={terug} titel={tb('slot.alleenBuurt')} />
+      </main>
+    );
+  }
+
   const image = typeof doc.image === 'object' && doc.image !== null ? doc.image : null;
   const imageUrl = image?.sizes?.hero?.url ?? image?.url ?? null;
 
@@ -55,7 +76,8 @@ export async function AgendaDetailPage({
   const schedule = (richFields.schedule ?? []).filter((step) => step.title);
   const hasRichLayout = schedule.length > 0 || Boolean(richFields.intro);
   // Een los WhatsApp-nummer heeft voorrang boven een kant-en-klare link.
-  const ctaHref = buildWhatsAppLink(richFields.whatsappNumber) ?? richFields.ctaUrl;
+  const whatsappHref = buildWhatsAppLink(richFields.whatsappNumber);
+  const ctaHref = whatsappHref ?? richFields.ctaUrl;
   const hasCta = Boolean(richFields.ctaLabel && ctaHref);
 
   // Alleen agenda-items die bij een activiteit horen krijgen een aanmeldknop, en alleen zolang je je
@@ -120,7 +142,12 @@ export async function AgendaDetailPage({
       {!hasRichLayout && doc.content ? <RichTextContent data={doc.content} className="mt-6" /> : null}
       {hasRichLayout && doc.content ? <RichTextContent data={doc.content} className="mt-8" /> : null}
 
-      {hasCta ? (
+      {/* Een WhatsApp-nummer is een telefoonnummer: alleen met buurtpas. Een gewone link mag iedereen zien. */}
+      {hasCta && whatsappHref && !buurtpas ? (
+        <div className="mt-8">
+          <BuurtpasSlot locale={locale} terug={terug} titel={tb('slot.whatsapp')} />
+        </div>
+      ) : hasCta ? (
         <a
           href={ctaHref!}
           target="_blank"

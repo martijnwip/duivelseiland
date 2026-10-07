@@ -2,6 +2,8 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import Link from 'next/link';
 import { localizedHref } from '@/i18n/localizedHref';
+import { getTranslations } from 'next-intl/server';
+import { SlotIcoon } from '@/components/buurtpas/BuurtpasSlot';
 import { AgendaDateTile } from './AgendaDateTile';
 import {
   getAgendaEffectiveDate,
@@ -23,6 +25,7 @@ type ListItem = {
   voorbehoud: boolean;
   imageUrl: string | null;
   imageAlt: string;
+  alleenBuurt: boolean;
 };
 
 export async function AgendaListPage({
@@ -62,7 +65,9 @@ export async function AgendaListPage({
         id: doc.id,
         slug: doc.slug ?? '',
         title: doc.title,
-        intro: richFields.intro ?? null,
+        // Buurtitems: geen intro in de lijst, die zit achter de buurtpas.
+        intro: doc.alleenBuurt ? null : (richFields.intro ?? null),
+        alleenBuurt: Boolean(doc.alleenBuurt),
         effectiveDate: getAgendaEffectiveDate(recurrenceFields, now),
         recurrenceTime: recurrenceFields.recurrenceTime ?? null,
         isRecurring: isRecurring(recurrenceFields),
@@ -75,6 +80,8 @@ export async function AgendaListPage({
     // items lossen altijd op naar vandaag-of-later, dus die blijven.
     .filter((item) => item.isRecurring || (item.effectiveDate && startOfDay(item.effectiveDate) >= today))
     .sort((a, b) => (a.effectiveDate?.getTime() ?? 0) - (b.effectiveDate?.getTime() ?? 0));
+
+  const tb = await getTranslations({ locale, namespace: 'buurtpas' });
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
@@ -98,7 +105,15 @@ export async function AgendaListPage({
                 {item.effectiveDate ? <AgendaDateTile date={item.effectiveDate} locale={locale} /> : null}
 
                 <div className="min-w-0 flex-1">
-                  <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">{item.title}</h2>
+                  <h2 className="font-heading text-lg font-semibold text-text group-hover:text-primary">
+                    {item.title}
+                    {item.alleenBuurt ? (
+                      <span title={tb('slot.alleenBuurt')} className="ml-2 inline-flex align-middle text-muted">
+                        <SlotIcoon className="size-4" />
+                        <span className="sr-only">{tb('slot.alleenBuurt')}</span>
+                      </span>
+                    ) : null}
+                  </h2>
                   {item.effectiveDate ? (
                     <p className="mt-0.5 text-sm text-muted capitalize">
                       {item.effectiveDate.toLocaleDateString(locale, { weekday: 'long', day: 'numeric', month: 'long' })}
