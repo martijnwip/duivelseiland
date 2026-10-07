@@ -174,8 +174,9 @@ Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-
 |                    | Database                      | Media               |
 | ------------------ | ----------------------------- | ------------------- |
 | Lokaal             | `file:./dev.db`               | lokale map `media/` |
-| Preview (Vercel)   | Turso, aparte branch-database | Vercel Blob         |
 | Productie (Vercel) | Turso, productie-database     | Vercel Blob         |
+
+Er zijn geen preview-deploys: `vercel.json` (`git.deploymentEnabled`) laat Vercel alleen `main` bouwen. Een aparte preview-database kost geld, en zonder die database zou een preview zijn migraties op de productiedatabase draaien. Testen gebeurt lokaal; een merge naar `main` gaat direct live.
 
 ## Environment variables
 
