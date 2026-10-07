@@ -1905,25 +1905,19 @@
           "notNull": true,
           "autoincrement": true
         },
-        "naam": {
-          "name": "naam",
+        "generate_slug": {
+          "name": "generate_slug",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": true
+        },
+        "slug": {
+          "name": "slug",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false
-        },
-        "telefoon": {
-          "name": "telefoon",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "website": {
-          "name": "website",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
           "autoincrement": false
         },
         "status": {
@@ -1934,9 +1928,66 @@
           "autoincrement": false,
           "default": "'draft'"
         },
+        "alleen_buurt": {
+          "name": "alleen_buurt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
+        },
         "author_id": {
           "name": "author_id",
           "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "date": {
+          "name": "date",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "image_id": {
+          "name": "image_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contact_telefoon": {
+          "name": "contact_telefoon",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contact_whatsapp": {
+          "name": "contact_whatsapp",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contact_email": {
+          "name": "contact_email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contact_website": {
+          "name": "contact_website",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contact_adres": {
+          "name": "contact_adres",
+          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -1959,10 +2010,24 @@
         }
       },
       "indexes": {
+        "vakmensen_slug_idx": {
+          "name": "vakmensen_slug_idx",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
         "vakmensen_author_idx": {
           "name": "vakmensen_author_idx",
           "columns": [
             "author_id"
+          ],
+          "isUnique": false
+        },
+        "vakmensen_image_idx": {
+          "name": "vakmensen_image_idx",
+          "columns": [
+            "image_id"
           ],
           "isUnique": false
         },
@@ -1994,106 +2059,18 @@
           ],
           "onDelete": "set null",
           "onUpdate": "no action"
-        }
-      },
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "vakmensen_rels": {
-      "name": "vakmensen_rels",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
         },
-        "order": {
-          "name": "order",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "parent_id": {
-          "name": "parent_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "path": {
-          "name": "path",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "vakken_id": {
-          "name": "vakken_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        }
-      },
-      "indexes": {
-        "vakmensen_rels_order_idx": {
-          "name": "vakmensen_rels_order_idx",
-          "columns": [
-            "order"
-          ],
-          "isUnique": false
-        },
-        "vakmensen_rels_parent_idx": {
-          "name": "vakmensen_rels_parent_idx",
-          "columns": [
-            "parent_id"
-          ],
-          "isUnique": false
-        },
-        "vakmensen_rels_path_idx": {
-          "name": "vakmensen_rels_path_idx",
-          "columns": [
-            "path"
-          ],
-          "isUnique": false
-        },
-        "vakmensen_rels_vakken_id_idx": {
-          "name": "vakmensen_rels_vakken_id_idx",
-          "columns": [
-            "vakken_id"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {
-        "vakmensen_rels_parent_fk": {
-          "name": "vakmensen_rels_parent_fk",
-          "tableFrom": "vakmensen_rels",
-          "tableTo": "vakmensen",
+        "vakmensen_image_id_media_id_fk": {
+          "name": "vakmensen_image_id_media_id_fk",
+          "tableFrom": "vakmensen",
+          "tableTo": "media",
           "columnsFrom": [
-            "parent_id"
+            "image_id"
           ],
           "columnsTo": [
             "id"
           ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "vakmensen_rels_vakken_fk": {
-          "name": "vakmensen_rels_vakken_fk",
-          "tableFrom": "vakmensen_rels",
-          "tableTo": "vakken",
-          "columnsFrom": [
-            "vakken_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
+          "onDelete": "set null",
           "onUpdate": "no action"
         }
       },
@@ -2101,62 +2078,21 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
-    "vakken": {
-      "name": "vakken",
+    "vakmensen_locales": {
+      "name": "vakmensen_locales",
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
-          "primaryKey": true,
-          "notNull": true,
-          "autoincrement": true
-        },
-        "updated_at": {
-          "name": "updated_at",
+        "title": {
+          "name": "title",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
-          "autoincrement": false,
-          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
+          "autoincrement": false
         },
-        "created_at": {
-          "name": "created_at",
+        "content": {
+          "name": "content",
           "type": "text",
           "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false,
-          "default": "(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))"
-        }
-      },
-      "indexes": {
-        "vakken_updated_at_idx": {
-          "name": "vakken_updated_at_idx",
-          "columns": [
-            "updated_at"
-          ],
-          "isUnique": false
-        },
-        "vakken_created_at_idx": {
-          "name": "vakken_created_at_idx",
-          "columns": [
-            "created_at"
-          ],
-          "isUnique": false
-        }
-      },
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "checkConstraints": {}
-    },
-    "vakken_locales": {
-      "name": "vakken_locales",
-      "columns": {
-        "naam": {
-          "name": "naam",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": true,
+          "notNull": false,
           "autoincrement": false
         },
         "id": {
@@ -2182,8 +2118,8 @@
         }
       },
       "indexes": {
-        "vakken_locales_locale_parent_id_unique": {
-          "name": "vakken_locales_locale_parent_id_unique",
+        "vakmensen_locales_locale_parent_id_unique": {
+          "name": "vakmensen_locales_locale_parent_id_unique",
           "columns": [
             "_locale",
             "_parent_id"
@@ -2192,10 +2128,10 @@
         }
       },
       "foreignKeys": {
-        "vakken_locales_parent_id_fk": {
-          "name": "vakken_locales_parent_id_fk",
-          "tableFrom": "vakken_locales",
-          "tableTo": "vakken",
+        "vakmensen_locales_parent_id_fk": {
+          "name": "vakmensen_locales_parent_id_fk",
+          "tableFrom": "vakmensen_locales",
+          "tableTo": "vakmensen",
           "columnsFrom": [
             "_parent_id"
           ],
@@ -4340,21 +4276,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "buurtpas_nieuwsbrief": {
-          "name": "buurtpas_nieuwsbrief",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "buurtpas_locale": {
-          "name": "buurtpas_locale",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "updated_at": {
           "name": "updated_at",
           "type": "text",
@@ -4928,13 +4849,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "vakken_id": {
-          "name": "vakken_id",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "praktische_info_id": {
           "name": "praktische_info_id",
           "type": "integer",
@@ -5123,13 +5037,6 @@
           "name": "payload_locked_documents_rels_vakmensen_id_idx",
           "columns": [
             "vakmensen_id"
-          ],
-          "isUnique": false
-        },
-        "payload_locked_documents_rels_vakken_id_idx": {
-          "name": "payload_locked_documents_rels_vakken_id_idx",
-          "columns": [
-            "vakken_id"
           ],
           "isUnique": false
         },
@@ -5363,19 +5270,6 @@
           "tableTo": "vakmensen",
           "columnsFrom": [
             "vakmensen_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
-          "onDelete": "cascade",
-          "onUpdate": "no action"
-        },
-        "payload_locked_documents_rels_vakken_fk": {
-          "name": "payload_locked_documents_rels_vakken_fk",
-          "tableFrom": "payload_locked_documents_rels",
-          "tableTo": "vakken",
-          "columnsFrom": [
-            "vakken_id"
           ],
           "columnsTo": [
             "id"
@@ -5988,14 +5882,6 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
-        },
-        "nieuwsbrief_redacteur_mag_versturen": {
-          "name": "nieuwsbrief_redacteur_mag_versturen",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
         },
         "updated_at": {
           "name": "updated_at",
@@ -7109,6 +6995,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "20e1ae66-d5c9-40aa-a119-6dba1265c3d3",
+  "id": "3cb5922b-29fe-4bc3-9e34-572936be85f5",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }
