@@ -29,6 +29,7 @@ import { Nieuws } from './collections/Nieuws';
 import { PraktischeInfo } from './collections/PraktischeInfo';
 import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
+import { Vakken } from './collections/Vakken';
 import { Vakmensen } from './collections/Vakmensen';
 import { Buurtborrel } from './globals/Buurtborrel';
 import { OverDeNaam } from './globals/OverDeNaam';
@@ -96,6 +97,7 @@ export default buildConfig({
     Geschiedenis,
     DuivelseKunst,
     Vakmensen,
+    Vakken,
     PraktischeInfo,
     HeroSlides,
     HistorischeFotos,

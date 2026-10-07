@@ -117,6 +117,9 @@ export const EmailAdressen: CollectionConfig = {
         { name: 'buurtpasToken', type: 'text', unique: true, index: true, admin: { hidden: true } },
         { name: 'buurtpasTokenTot', type: 'date', admin: { hidden: true } },
         { name: 'laatsteBuurtpasMailOp', type: 'date', admin: { hidden: true } },
+        // Bij de aanvraag aangevinkt: na de klik op de link ook aanmelden voor de nieuwsbrief, in deze taal.
+        { name: 'buurtpasNieuwsbrief', type: 'checkbox', defaultValue: false, admin: { hidden: true } },
+        { name: 'buurtpasLocale', type: 'select', options: ['nl', 'en'], admin: { hidden: true } },
       ],
     },
     {

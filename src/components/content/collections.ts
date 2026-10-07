@@ -4,5 +4,4 @@ export type ContentCollectionSlug =
   | 'interviews'
   | 'geschiedenis'
   | 'duivelse-kunst'
-  | 'vakmensen'
   | 'praktische-info';

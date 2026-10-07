@@ -9,7 +9,6 @@ import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from
 import { getTranslations } from 'next-intl/server';
 import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
-import { VakmensContact, type Contact } from './VakmensContact';
 
 export async function ContentDetailPage({
   collection,
@@ -62,9 +61,6 @@ export async function ContentDetailPage({
     );
   }
 
-  const contact = 'contact' in doc ? (doc.contact as Contact | null | undefined) : null;
-  const heeftContact = Boolean(contact && Object.values(contact).some(Boolean));
-
   const image = typeof doc.image === 'object' && doc.image !== null ? doc.image : null;
   const imageUrl = image?.sizes?.hero?.url ?? image?.url ?? null;
 
@@ -94,16 +90,6 @@ export async function ContentDetailPage({
       ) : null}
 
       {doc.content ? <RichTextContent data={doc.content} className="mt-6" /> : null}
-
-      {heeftContact ? (
-        <div className="mt-8">
-          {buurtpas ? (
-            <VakmensContact contact={contact!} locale={locale} />
-          ) : (
-            <BuurtpasSlot locale={locale} terug={terug} titel={(await getTranslations({ locale, namespace: 'buurtpas' }))('contact.titel')} />
-          )}
-        </div>
-      ) : null}
     </main>
   );
 }

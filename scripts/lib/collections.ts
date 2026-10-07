@@ -4,7 +4,6 @@ export const CONTENT_COLLECTIONS = [
   'interviews',
   'geschiedenis',
   'duivelse-kunst',
-  'vakmensen',
   'praktische-info',
 ] as const;
 

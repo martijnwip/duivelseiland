@@ -1,45 +1,64 @@
 import type { CollectionConfig } from 'payload';
-import { adminOnlyContentAccess } from '../access/contentAccess';
+import { editorOnlyContentAccess } from '../access/contentAccess';
+import { authorField, statusField } from './shared/contentFields';
 import { alleenIngelogdField } from '../access/isAdmin';
-import { contentFields } from './shared/contentFields';
 import { setAuthor } from './shared/setAuthor';
 
+const TELEFOON = /^[0-9+\-()\s]{6,20}$/;
+const WEBSITE = /^https?:\/\/\S+\.\S+$/;
+
+/** Vakmensen uit de buurt: naam, vak(ken), telefoon en website. Getoond als één overzicht op /vakmensen. */
 export const Vakmensen: CollectionConfig = {
   slug: 'vakmensen',
   labels: {
-    singular: 'Vakmensen',
+    singular: 'Vakmens',
     plural: 'Vakmensen',
   },
   admin: {
-    useAsTitle: 'title',
-    components: {
-      edit: {
-        beforeDocumentControls: ['/components/admin/TranslateButton#default'],
-      },
-    },
+    useAsTitle: 'naam',
+    group: 'Vakmensen',
+    defaultColumns: ['naam', 'vakken', 'telefoon', 'status'],
   },
-  access: adminOnlyContentAccess,
+  defaultSort: 'naam',
+  access: editorOnlyContentAccess,
   hooks: {
     beforeChange: [setAuthor('author')],
   },
   fields: [
-    ...contentFields(),
     {
-      name: 'contact',
-      label: 'Contactgegevens',
-      type: 'group',
-      access: { read: alleenIngelogdField },
-      admin: {
-        description:
-          'Alleen zichtbaar voor bezoekers met een buurtpas. Zet telefoonnummers en adressen hier, niet in de tekst: wat in de tekst staat, ziet iedereen.',
-      },
-      fields: [
-        { name: 'telefoon', type: 'text', admin: { width: '50%' } },
-        { name: 'whatsapp', label: 'WhatsApp', type: 'text', admin: { width: '50%', description: 'Telefoonnummer, wordt een wa.me-link.' } },
-        { name: 'email', label: 'E-mail', type: 'email', admin: { width: '50%' } },
-        { name: 'website', type: 'text', admin: { width: '50%', description: 'Volledige link, bv. https://…' } },
-        { name: 'adres', type: 'textarea' },
-      ],
+      name: 'naam',
+      type: 'text',
+      required: true,
     },
+    {
+      name: 'vakken',
+      type: 'relationship',
+      relationTo: 'vakken',
+      hasMany: true,
+      required: true,
+      admin: {
+        description: 'Kies één of meer vakken. Staat het vak er niet bij? Voeg het toe met de +.',
+      },
+    },
+    {
+      name: 'telefoon',
+      type: 'text',
+      // Alleen voor bezoekers met een buurtpas (src/lib/buurtpas); via de API alleen voor ingelogde gebruikers.
+      access: { read: alleenIngelogdField },
+      admin: { description: 'Alleen zichtbaar voor bezoekers met een buurtpas.' },
+      validate: (value: string | null | undefined) =>
+        !value || TELEFOON.test(value.trim()) || 'Vul een geldig telefoonnummer in, bv. 06 12345678.',
+    },
+    {
+      name: 'website',
+      type: 'text',
+      admin: {
+        description: 'Met http:// of https://, bv. https://www.voorbeeld.nl',
+      },
+      validate: (value: string | null | undefined) =>
+        !value || WEBSITE.test(value.trim()) || 'Begin het adres met http:// of https://, bv. https://www.voorbeeld.nl',
+    },
+    statusField,
+    authorField,
   ],
 };

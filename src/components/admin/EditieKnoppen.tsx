@@ -1,13 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button, ConfirmationModal, toast, useAuth, useDocumentInfo, useFormFields, useFormModified, useModal } from '@payloadcms/ui';
+import { Button, ConfirmationModal, toast, Tooltip, useAuth, useDocumentInfo, useFormFields, useFormModified, useModal } from '@payloadcms/ui';
 import { useOmgeving } from './omgeving';
 
-type Ontvangers = { totaal: number; nl: number; en: number; dagen: number; engelsLeeg: boolean; opProductie: boolean };
+type Ontvangers = { totaal: number; nl: number; en: number; dagen: number; engelsLeeg: boolean; opProductie: boolean; magVersturen: boolean };
 
 const MODAL = 'nieuwsbrief-versturen';
+const UITGEZET = 'Versturen staat uit. Vraag Martijn om het aan te zetten.';
 
 /**
  * Knoppen bovenaan een nieuwsbrief-editie (redacteur of admin): voorbeeld, testmail, versturen en stoppen.
@@ -24,8 +25,24 @@ export default function EditieKnoppen() {
   const status = useFormFields(([fields]) => fields.status?.value) as string | undefined;
   const [bezig, setBezig] = useState(false);
   const [ontvangers, setOntvangers] = useState<Ontvangers | null>(null);
+  // null zolang nog niet bekend; de knop staat dan uit. De server controleert het bij versturen opnieuw.
+  const [magVersturen, setMagVersturen] = useState<boolean | null>(null);
+  const [toonUitleg, setToonUitleg] = useState(false);
 
   const redactie = user?.role === 'redacteur' || user?.role === 'admin';
+
+  useEffect(() => {
+    if (id === undefined || !redactie) return;
+    let actief = true;
+    fetch(`/api/nieuwsbrief-edities/${id}/rechten`, { credentials: 'include' })
+      .then((res) => (res.ok ? res.json() : { magVersturen: false }))
+      .then((r) => actief && setMagVersturen(r.magVersturen === true))
+      .catch(() => actief && setMagVersturen(false));
+    return () => {
+      actief = false;
+    };
+  }, [id, redactie]);
+
   if (id === undefined || !redactie) return null;
 
   const api = async (pad: string, method: 'GET' | 'POST' = 'POST') => {
@@ -63,6 +80,11 @@ export default function EditieKnoppen() {
   const vraagBevestiging = () =>
     actie(async () => {
       const r: Ontvangers = await api('ontvangers', 'GET');
+      if (!r.magVersturen) {
+        setMagVersturen(false);
+        toast.error(UITGEZET);
+        return;
+      }
       // De server weigert sowieso; dit voorkomt alleen een bevestigingsvenster dat toch niets doet.
       if (!r.opProductie) {
         toast.error('Versturen naar alle abonnees kan alleen op de productiesite. Hier kun je Voorbeeld en Testmail gebruiken.');
@@ -104,10 +126,25 @@ export default function EditieKnoppen() {
       <Button onClick={testmail} disabled={bezig} buttonStyle="secondary" size="small">
         {user?.email ? `Testmail naar ${user.email}` : 'Testmail'}
       </Button>
-      {status === 'concept' ? (
+      {status === 'concept' && magVersturen === false ? (
+        // Een uitgeschakelde knop krijgt in veel browsers geen hover; daarom vangt de span die op.
+        <span
+          title={UITGEZET}
+          onPointerEnter={() => setToonUitleg(true)}
+          onPointerLeave={() => setToonUitleg(false)}
+          style={{ position: 'relative', display: 'inline-flex' }}
+        >
+          <Tooltip show={toonUitleg} position="bottom">
+            {UITGEZET}
+          </Tooltip>
+          <Button disabled buttonStyle="primary" size="small" extraButtonProps={{ style: { pointerEvents: 'none' } }}>
+            Versturen…
+          </Button>
+        </span>
+      ) : status === 'concept' ? (
         <Button
           onClick={vraagBevestiging}
-          disabled={bezig}
+          disabled={bezig || magVersturen === null}
           buttonStyle="primary"
           size="small"
           tooltip={omgeving && omgeving !== 'productie' ? 'Alleen op de productiesite' : undefined}

@@ -39,7 +39,7 @@ Er zijn vier ingelogde rollen en één publieke rol. Een gebruiker heeft precies
 - Ziet alleen gepubliceerde content (`status = published`).
 - Kan niets aanmaken, wijzigen of verwijderen.
 - Heeft geen toegang tot `/admin`.
-- Met een **buurtpas** (geen account, zie "Buurtpas" hieronder) ziet een bezoeker ook contactgegevens van vakmensen, WhatsApp-knoppen en items met "Alleen voor de buurt".
+- Met een **buurtpas** (geen account, zie "Buurtpas" hieronder) ziet een bezoeker ook telefoonnummers van vakmensen, WhatsApp-knoppen en items met "Alleen voor de buurt".
 
 ### Organisator
 
@@ -64,9 +64,9 @@ Verantwoordelijk voor de inhoud en de kwaliteit van de site.
 
 - Alles wat een auteur kan, op alle items, ongeacht wie de auteur is.
 - Kan items publiceren en depubliceren.
-- Kan Praktische info beheren.
+- Kan Praktische info en Vakmensen beheren.
 - Kan alle media beheren.
-- Geen toegang tot Interviews, Geschiedenis, Duivelse Kunst en Vakmensen, de globals Site-instellingen, Over de naam en Geschiedenisverhaal, de Auth-groep en gebruikersbeheer. Zo blijft `/admin` overzichtelijk; die onderdelen beheert de admin.
+- Geen toegang tot Interviews, Geschiedenis en Duivelse Kunst, de globals Site-instellingen, Over de naam en Geschiedenisverhaal, de Auth-groep en gebruikersbeheer. Zo blijft `/admin` overzichtelijk; die onderdelen beheert de admin.
 
 ### Admin
 
@@ -75,7 +75,7 @@ Technisch beheerder.
 - Alles wat een redacteur kan.
 - Beheert gebruikers: aanmaken, rol toewijzen, deactiveren, verwijderen.
 - Beheert globale instellingen (sitenaam, menu, footer, contactgegevens) en de globals Over de naam en Geschiedenisverhaal.
-- Beheert als enige Interviews, Geschiedenis, Duivelse Kunst en Vakmensen.
+- Beheert als enige Interviews, Geschiedenis en Duivelse Kunst.
 - Kan de eigen rol niet verlagen en de laatste admin niet verwijderen.
 
 ## Rechtenmatrix
@@ -87,14 +87,15 @@ Technisch beheerder.
 | Interviews             | lezen (published) | geen                             | geen                         | alles |
 | Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
 | Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
-| Vakmensen              | lezen (published) | geen                             | geen                         | alles |
+| Vakmensen              | lezen (published) | geen                             | alles                        | alles |
+| Vakken (tags bij Vakmensen) | lezen        | geen                             | alles                        | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
 | Activiteiten           | lezen (goedgekeurd/gaat-door/afgelopen), idee indienen via formulier | lezen (publiek) | alles + modereren | alles |
 | Aanmeldingen / Berichten | inschrijven/afmelden via formulier | geen                      | alles                        | alles |
 | Nieuwsbrief-abonnees   | aan-/afmelden via formulier | geen                              | alles (import: alleen admin) | alles |
-| Nieuwsbrief-edities    | geen              | geen                             | alles + versturen            | alles |
+| Nieuwsbrief-edities    | geen              | geen                             | alles + versturen (als de admin het vrijgeeft) | alles |
 | E-mailadressen (adresboek) | geen            | geen                             | geen                         | alles |
 | Globals: Site-instellingen, Over de naam, Geschiedenisverhaal | lezen | geen          | geen                         | alles |
 | Global: Buurtborrel    | lezen             | geen                             | alles                        | alles |
@@ -118,10 +119,11 @@ Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-
   - `isAuthorOrAbove`
   - `isOwnerOrRedacteur` (query-constraint: `{ author: { equals: user.id } }` voor auteur, `true` voor redacteur/admin)
   - `publishedOrLoggedIn` (query-constraint voor `read`: `{ status: { equals: 'published' } }` voor bezoekers)
-  - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst, Vakmensen: bezoekers lezen published, verder alleen admin)
+  - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst: bezoekers lezen published, verder alleen admin)
+  - `editorOnlyContentAccess` (Praktische info, Vakmensen: bezoekers lezen published, verder redacteur en admin)
   - `publiekOfAdmin` (`read` voor globals die alleen de admin beheert; zonder leesrecht verdwijnt het item ook uit `/admin`)
   - `zonderBuurtitems` / `publiekZichtbaar` (`read` van contentcollecties: bezoekers via de API zien geen items met `alleenBuurt`)
-  - `alleenIngelogdField` (veldniveau `read` op telefoonnummers: vakmensen-`contact`, agenda-`whatsappNumber`, buurtborrelnummers)
+  - `alleenIngelogdField` (veldniveau `read` op telefoonnummers: vakmensen-`telefoon`, agenda-`whatsappNumber`, buurtborrelnummers)
 - Veldniveau access op `status`: `update` alleen voor redacteur/admin.
 - Veldniveau access op `users.role`: `update` alleen voor admin.
 
@@ -202,11 +204,13 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
 Elke content-collection heeft `title`, `slug`, `status` (draft/published), `author`, `content` (rich text) en waar nodig `date`, `image`.
+
+Uitzondering: **Vakmensen** heeft `naam`, `vakken` (één of meer tags uit de collection `vakken`; met de + in het veld voeg je direct een nieuw vak toe), `telefoon`, `website`, plus `status` en `author`. De site toont ze als één overzicht op `/vakmensen`, gegroepeerd per vak, zonder detailpagina's. Vaknamen zijn tweetalig.
 
 ## Data ophalen in de site
 
@@ -269,9 +273,9 @@ bun run foto:vervang:prod <oude-beeldbank-link> <nieuwe-beeldbank-link>  # daarn
 Afgeschermde inhoud zonder account. Een bezoeker vult een e-mailadres in en krijgt een link (30 minuten geldig, één keer bruikbaar). De link opent een pagina met een knop *Activeer buurtpas* (pas bij de klik, zodat mailscanners het token niet verbruiken). Daarna staat er een jaar lang een ondertekende cookie `buurtpas` op dat apparaat. Er is geen wachtwoord en geen `users`-record; het adres staat in het adresboek (`email-adressen`), dat de buurtpasvelden bevat.
 
 Wat afgeschermd is:
-- Vakmensen: de groep `contact` (telefoon, WhatsApp, e-mail, website, adres). Contactgegevens horen daar, niet in de vrije tekst.
+- Vakmensen: het `telefoon`-veld op het overzicht `/vakmensen`. Zonder buurtpas staat er één slot boven de lijst. Naam, vakken en website ziet iedereen.
 - WhatsApp-knoppen: agenda-items met een `whatsappNumber` en de knoppen op `/buurtborrel`.
-- Items met het vinkje *Alleen voor de buurt* (`alleenBuurt`, alle contentcollecties): in de lijst staat de titel met een slotje, de detailpagina toont alleen titel en slot (noindex), in de nieuwsbrief alleen titel en link.
+- Items met het vinkje *Alleen voor de buurt* (`alleenBuurt`, alle collecties met `contentFields()`, dus niet Vakmensen): in de lijst staat de titel met een slotje, de detailpagina toont alleen titel en slot (noindex), in de nieuwsbrief alleen titel en link.
 
 Hoe ver het gaat: elk bevestigd e-mailadres krijgt een buurtpas. Dat houdt zoekmachines, scrapers en toevallige bezoekers buiten, maar bewijst niet dat iemand in de buurt woont.
 
@@ -279,6 +283,13 @@ Techniek (`src/lib/buurtpas/`, `src/components/buurtpas/`):
 - `heeftBuurtpas()` controleert de handtekening en daarna het adres in het adresboek: bestaat het nog, is het niet ingetrokken, klopt `buurtpasVersie`. Pagina's die het aanroepen worden per request gerenderd.
 - Maak afgeschermde inhoud alleen aan als `heeftBuurtpas()` waar is; anders `<BuurtpasSlot>`. Geef de gegevens niet als props mee aan een element dat niet gerenderd wordt: in dev belandt dat in de RSC-payload.
 - Via de REST/GraphQL-API zijn de nummers en buurtitems alleen voor ingelogde gebruikers.
+
+Zelf regelen op `/buurtpas`:
+- **Bij de aanvraag** kan de bezoeker *Stuur mij ook de nieuwsbrief* aanvinken. De klik op de link in de buurtpasmail bevestigt dan ook de nieuwsbrief; er komt geen aparte bevestigingsmail.
+- **Met een buurtpas** toont de pagina het e-mailadres en drie knoppen:
+  - *Aan- of afmelden voor de nieuwsbrief*: direct, zonder mail, want de buurtpas bewijst dat het adres van de bezoeker is.
+  - *Buurtpas van dit apparaat halen*: andere apparaten houden hun buurtpas.
+  - *Buurtpas opzeggen*: geldt meteen op alle apparaten. Gebruikt de site het adres nergens anders voor (nieuwsbrief, activiteiten, account), dan verdwijnt het ook uit het adresboek.
 
 Beheer in *E-mailadressen* (admin):
 - *Toegang ingetrokken* blokkeert het adres.
@@ -289,7 +300,7 @@ Beheer in *E-mailadressen* (admin):
 
 Aanmelden gaat met dubbele opt-in op `/nieuwsbrief` en in de footer; de taal van de abonnee (`locale`) is de taal van de pagina waarop de abonnee zich aanmeldde (bij import kiest de admin). Een admin kan adressen importeren (plakken of CSV) bij Nieuwsbrief-abonnees.
 
-**Edities** (`nieuwsbrief-edities`, redacteur en admin): onderwerp en intro (gelokaliseerd) plus uitgelichte Nieuws-, Agenda- en Activiteiten-items. Knoppen bovenaan: *Voorbeeld NL/EN*, *Testmail* (beide talen naar je eigen adres), *Versturen…* (met bevestiging: aantal ontvangers per taal, verwachte duur, waarschuwing als de Engelse versie leeg is) en *Stoppen*. Na de start ligt de editie vast. Is de Engelse tekst leeg, dan krijgen Engelstalige abonnees de Nederlandse.
+**Edities** (`nieuwsbrief-edities`, redacteur en admin): onderwerp en intro (gelokaliseerd) plus uitgelichte Nieuws-, Agenda- en Activiteiten-items. Knoppen bovenaan: *Voorbeeld NL/EN*, *Testmail* (beide talen naar je eigen adres), *Versturen…* (met bevestiging: aantal ontvangers per taal, verwachte duur, waarschuwing als de Engelse versie leeg is) en *Stoppen*. Na de start ligt de editie vast. *Versturen…* kan een redacteur alleen gebruiken als de admin in Site-instellingen *Redacteur mag versturen* aanzet (standaard uit, tegen per ongeluk versturen); de admin kan altijd versturen. Dit wordt ook op de server gecontroleerd (`magVersturen` in `verzenden.ts`). Is de Engelse tekst leeg, dan krijgen Engelstalige abonnees de Nederlandse.
 
 **Verspreid versturen** (gratis Resend-plan, 100 mails per dag): bij de start krijgt elke actieve abonnee een rij in `nieuwsbrief-verzendingen`. Er gaat meteen een portie uit, de rest elke ochtend via de cron `/api/nieuwsbrief-verzenden` (`vercel.json`). Per 24 uur maximaal `NIEUWSBRIEF_DAGLIMIET` (standaard 60) nieuwsbriefmails, en samen met berichten aan deelnemers maximaal `ACTIVITEITEN_MAIL_DAGLIMIET` (standaard 80); de rest van het quotum blijft over voor bevestigingsmails. Wie zich tussendoor afmeldt, wordt overgeslagen. Elke mail heeft een persoonlijke afmeldlink en een `List-Unsubscribe`-header. Verzendrijen van afgeronde edities verdwijnen na 30 dagen; de tellingen op de editie blijven. Logica: `src/lib/nieuwsbrief/verzenden.ts` en `editieMail.ts`.
 
