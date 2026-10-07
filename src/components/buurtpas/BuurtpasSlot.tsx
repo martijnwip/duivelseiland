@@ -69,6 +69,7 @@ export async function formStrings(locale: string) {
   return {
     emailLabel: t('form.emailLabel'),
     emailPlaceholder: t('form.emailPlaceholder'),
+    nieuwsbrief: t('form.nieuwsbrief'),
     submit: t('form.submit'),
     submitting: t('form.submitting'),
     success: t('form.success'),

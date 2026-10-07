@@ -280,6 +280,13 @@ Techniek (`src/lib/buurtpas/`, `src/components/buurtpas/`):
 - Maak afgeschermde inhoud alleen aan als `heeftBuurtpas()` waar is; anders `<BuurtpasSlot>`. Geef de gegevens niet als props mee aan een element dat niet gerenderd wordt: in dev belandt dat in de RSC-payload.
 - Via de REST/GraphQL-API zijn de nummers en buurtitems alleen voor ingelogde gebruikers.
 
+Zelf regelen op `/buurtpas`:
+- **Bij de aanvraag** kan de bezoeker *Stuur mij ook de nieuwsbrief* aanvinken. De klik op de link in de buurtpasmail bevestigt dan ook de nieuwsbrief; er komt geen aparte bevestigingsmail.
+- **Met een buurtpas** toont de pagina het e-mailadres en drie knoppen:
+  - *Aan- of afmelden voor de nieuwsbrief*: direct, zonder mail, want de buurtpas bewijst dat het adres van de bezoeker is.
+  - *Buurtpas van dit apparaat halen*: andere apparaten houden hun buurtpas.
+  - *Buurtpas opzeggen*: geldt meteen op alle apparaten. Gebruikt de site het adres nergens anders voor (nieuwsbrief, activiteiten, account), dan verdwijnt het ook uit het adresboek.
+
 Beheer in *E-mailadressen* (admin):
 - *Toegang ingetrokken* blokkeert het adres.
 - `buurtpasVersie` ophogen maakt alle bestaande buurtpassen van dat adres ongeldig.

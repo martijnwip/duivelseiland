@@ -19,6 +19,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`ALTER TABLE \`email_adressen\` ADD \`buurtpas_token\` text;`)
   await db.run(sql`ALTER TABLE \`email_adressen\` ADD \`buurtpas_token_tot\` text;`)
   await db.run(sql`ALTER TABLE \`email_adressen\` ADD \`laatste_buurtpas_mail_op\` text;`)
+  await db.run(sql`ALTER TABLE \`email_adressen\` ADD \`buurtpas_nieuwsbrief\` integer DEFAULT false;`)
+  await db.run(sql`ALTER TABLE \`email_adressen\` ADD \`buurtpas_locale\` text;`)
   await db.run(sql`CREATE UNIQUE INDEX \`email_adressen_buurtpas_token_idx\` ON \`email_adressen\` (\`buurtpas_token\`);`)
 }
 
@@ -30,6 +32,8 @@ export async function down({ db, payload, req }: MigrateDownArgs): Promise<void>
   await db.run(sql`ALTER TABLE \`email_adressen\` DROP COLUMN \`buurtpas_token\`;`)
   await db.run(sql`ALTER TABLE \`email_adressen\` DROP COLUMN \`buurtpas_token_tot\`;`)
   await db.run(sql`ALTER TABLE \`email_adressen\` DROP COLUMN \`laatste_buurtpas_mail_op\`;`)
+  await db.run(sql`ALTER TABLE \`email_adressen\` DROP COLUMN \`buurtpas_nieuwsbrief\`;`)
+  await db.run(sql`ALTER TABLE \`email_adressen\` DROP COLUMN \`buurtpas_locale\`;`)
   await db.run(sql`ALTER TABLE \`nieuws\` DROP COLUMN \`alleen_buurt\`;`)
   await db.run(sql`ALTER TABLE \`agenda\` DROP COLUMN \`alleen_buurt\`;`)
   await db.run(sql`ALTER TABLE \`interviews\` DROP COLUMN \`alleen_buurt\`;`)

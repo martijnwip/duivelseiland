@@ -4,10 +4,11 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { getPayload } from 'payload';
 import config from '@payload-config';
-import { normaliseerEmail, registreerAdres } from '@/lib/adresboek';
+import { normaliseerEmail, registreerAdres, regelsVoorAdres } from '@/lib/adresboek';
 import { COOKIE_MAX_AGE, COOKIE_NAAM, maakCookieWaarde } from '@/lib/buurtpas/cookie';
 import { TOKEN_GELDIG_MS, sendBuurtpasMail } from '@/lib/buurtpas/mail';
-import { veiligTerugpad } from '@/lib/buurtpas/toegang';
+import { zetNieuwsbrief } from '@/lib/buurtpas/nieuwsbrief';
+import { buurtpasAdres, veiligTerugpad } from '@/lib/buurtpas/toegang';
 import { EMAIL_RE, TOKEN_RE, nieuwToken } from '@/lib/nieuwsbrief/token';
 
 export type BuurtpasFormState = { status: 'idle' } | { status: 'success' } | { status: 'error'; email: string };
@@ -27,6 +28,7 @@ export async function vraagBuurtpasAan(_prev: BuurtpasFormState, formData: FormD
   const email = normaliseerEmail(rawEmail);
   const locale = formData.get('locale') === 'en' ? 'en' : 'nl';
   const terug = veiligTerugpad(formData.get('terug'));
+  const metNieuwsbrief = formData.get('nieuwsbrief') === 'ja';
   if (email.length > 254 || !EMAIL_RE.test(email)) return { status: 'error', email: rawEmail };
 
   try {
@@ -54,11 +56,14 @@ export async function vraagBuurtpasAan(_prev: BuurtpasFormState, formData: FormD
         buurtpasToken: token,
         buurtpasTokenTot: new Date(nu + TOKEN_GELDIG_MS).toISOString(),
         laatsteBuurtpasMailOp: new Date(nu).toISOString(),
+        // De nieuwsbrief pas na de klik op de link: dan is het adres bewezen van de aanvrager.
+        buurtpasNieuwsbrief: metNieuwsbrief,
+        buurtpasLocale: locale,
       },
       overrideAccess: true,
       context: { geenPromotie: true },
     });
-    await sendBuurtpasMail({ to: email, locale, token, terug });
+    await sendBuurtpasMail({ to: email, locale, token, terug, metNieuwsbrief });
     return { status: 'success' };
   } catch (error) {
     console.error('[buurtpas] aanvragen mislukt', error);
@@ -98,11 +103,15 @@ export async function bevestigBuurtpas(_prev: BuurtpasTokenState, formData: Form
       buurtpasTokenTot: null,
       buurtpasVersie: versie,
       buurtpasLaatstGebruikt: new Date().toISOString(),
+      buurtpasNieuwsbrief: false,
       bevestigd: true,
     },
     overrideAccess: true,
     context: { geenPromotie: true },
   });
+  if (adres.buurtpasNieuwsbrief) {
+    await zetNieuwsbrief(payload, adres.email, { aan: true, locale: adres.buurtpasLocale === 'en' ? 'en' : 'nl' });
+  }
 
   (await cookies()).set(COOKIE_NAAM, await maakCookieWaarde({ adresId: adres.id, versie, uitgegeven: Date.now() }), {
     httpOnly: true,
@@ -118,4 +127,44 @@ export async function bevestigBuurtpas(_prev: BuurtpasTokenState, formData: Form
 export async function beeindigBuurtpas(formData: FormData) {
   (await cookies()).delete(COOKIE_NAAM);
   redirect(veiligTerugpad(formData.get('terug')));
+}
+
+/** Nieuwsbrief aan of uit vanaf /buurtpas. Alleen met een geldige buurtpas: die bewijst dat het adres van de bezoeker is. */
+export async function nieuwsbriefMetBuurtpas(formData: FormData) {
+  const terug = veiligTerugpad(formData.get('terug'));
+  const adres = await buurtpasAdres();
+  if (adres) {
+    const payload = await getPayload({ config });
+    await zetNieuwsbrief(payload, adres.email, {
+      aan: formData.get('aan') === 'ja',
+      locale: formData.get('locale') === 'en' ? 'en' : 'nl',
+    });
+  }
+  redirect(terug);
+}
+
+/**
+ * Buurtpas opzeggen: geldt meteen op alle apparaten (nieuwe versie). Gebruikt de site het adres nergens
+ * anders voor (nieuwsbrief, activiteiten, account), dan verdwijnt het ook uit het adresboek.
+ */
+export async function zegBuurtpasOp(formData: FormData) {
+  const terug = veiligTerugpad(formData.get('terug'));
+  const adres = await buurtpasAdres();
+  if (adres) {
+    const payload = await getPayload({ config });
+    const regels = await regelsVoorAdres(payload, adres.email);
+    if (regels.length === 0) {
+      await payload.delete({ collection: 'email-adressen', id: adres.id, overrideAccess: true });
+    } else {
+      await payload.update({
+        collection: 'email-adressen',
+        id: adres.id,
+        data: { buurtpasVersie: (adres.buurtpasVersie ?? 1) + 1, buurtpasToken: null, buurtpasTokenTot: null, buurtpasNieuwsbrief: false },
+        overrideAccess: true,
+        context: { geenPromotie: true },
+      });
+    }
+  }
+  (await cookies()).delete(COOKIE_NAAM);
+  redirect(`${terug}?opgezegd=1`);
 }

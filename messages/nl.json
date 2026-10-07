@@ -1565,16 +1565,17 @@
       "geenAccount": "Geen account, geen wachtwoord. Je e-mailadres is genoeg.",
       "apparaat": "De buurtpas geldt een jaar op het apparaat (en de browser) waarop je de link opent. Op een ander apparaat vraag je hem gewoon opnieuw aan."
     },
-    "actief": "Je hebt een buurtpas op dit apparaat.",
+    "actief": "Je hebt een buurtpas op dit apparaat ({email}).",
     "uitloggen": "Buurtpas van dit apparaat halen",
-    "privacy": "Je e-mailadres komt in het adresboek van de buurtsite en wordt nergens anders voor gebruikt. Wil je dat het weg gaat? Mail de beheerder.",
+    "privacy": "Je e-mailadres komt in het adresboek van de buurtsite en wordt nergens anders voor gebruikt. Opzeggen kan altijd hier, met je buurtpas.",
     "form": {
       "emailLabel": "E-mailadres",
       "emailPlaceholder": "naam@voorbeeld.nl",
       "submit": "Stuur mij een link",
       "submitting": "Bezig…",
       "success": "Check je mail: we hebben je een link gestuurd. Die is 30 minuten geldig.",
-      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens."
+      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens.",
+      "nieuwsbrief": "Stuur mij ook de nieuwsbrief"
     },
     "slot": {
       "titel": "Alleen voor de buurt",
@@ -1597,6 +1598,16 @@
       "submit": "Activeer buurtpas",
       "invalid": "Deze link werkt niet meer: hij is verlopen of al gebruikt. Vraag een nieuwe aan.",
       "opnieuw": "Nieuwe link aanvragen"
+    },
+    "beheer": {
+      "nieuwsbriefAan": "Je krijgt de nieuwsbrief.",
+      "nieuwsbriefUit": "Je krijgt de nieuwsbrief nog niet.",
+      "nieuwsbriefAanmelden": "Aanmelden voor de nieuwsbrief",
+      "nieuwsbriefAfmelden": "Afmelden voor de nieuwsbrief",
+      "apparaatUitleg": "Gebruik je een gedeelde computer? Haal de buurtpas dan alleen van dit apparaat.",
+      "opzeggen": "Buurtpas opzeggen",
+      "opzeggenUitleg": "Opzeggen geldt meteen op al je apparaten. Gebruiken we je e-mailadres nergens anders voor, dan verwijderen we het ook.",
+      "opgezegd": "Je buurtpas is opgezegd."
     }
   }
 }

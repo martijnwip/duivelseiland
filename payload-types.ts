@@ -913,6 +913,8 @@ export interface EmailAdressen {
   buurtpasToken?: string | null;
   buurtpasTokenTot?: string | null;
   laatsteBuurtpasMailOp?: string | null;
+  buurtpasNieuwsbrief?: boolean | null;
+  buurtpasLocale?: ('nl' | 'en') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1531,6 +1533,8 @@ export interface EmailAdressenSelect<T extends boolean = true> {
   buurtpasToken?: T;
   buurtpasTokenTot?: T;
   laatsteBuurtpasMailOp?: T;
+  buurtpasNieuwsbrief?: T;
+  buurtpasLocale?: T;
   updatedAt?: T;
   createdAt?: T;
 }

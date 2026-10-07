@@ -4276,6 +4276,21 @@
           "notNull": false,
           "autoincrement": false
         },
+        "buurtpas_nieuwsbrief": {
+          "name": "buurtpas_nieuwsbrief",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
+        },
+        "buurtpas_locale": {
+          "name": "buurtpas_locale",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "text",
@@ -6995,6 +7010,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "3cb5922b-29fe-4bc3-9e34-572936be85f5",
+  "id": "60b1f294-1384-45a5-85fb-c78c5849d31b",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

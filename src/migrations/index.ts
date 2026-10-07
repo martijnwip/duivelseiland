@@ -28,7 +28,7 @@ import * as migration_20261002_140942_fase_goedgekeurd from './20261002_140942_f
 import * as migration_20261002_143838_merge_activiteiten_nieuwsbrief from './20261002_143838_merge_activiteiten_nieuwsbrief';
 import * as migration_20261006_111532_datum_samenvoegen from './20261006_111532_datum_samenvoegen';
 import * as migration_20261006_122805_nieuwsbrief_edities from './20261006_122805_nieuwsbrief_edities';
-import * as migration_20261006_235848_buurtpas from './20261006_235848_buurtpas';
+import * as migration_20261007_004313_buurtpas from './20261007_004313_buurtpas';
 
 export const migrations = [
   {
@@ -182,8 +182,8 @@ export const migrations = [
     name: '20261006_122805_nieuwsbrief_edities',
   },
   {
-    up: migration_20261006_235848_buurtpas.up,
-    down: migration_20261006_235848_buurtpas.down,
-    name: '20261006_235848_buurtpas'
+    up: migration_20261007_004313_buurtpas.up,
+    down: migration_20261007_004313_buurtpas.down,
+    name: '20261007_004313_buurtpas'
   },
 ];

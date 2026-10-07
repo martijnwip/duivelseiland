@@ -1748,16 +1748,17 @@
       "geenAccount": "No account, no password. Your email address is enough.",
       "apparaat": "The pass is valid for a year on the device (and browser) where you open the link. On another device, just request it again."
     },
-    "actief": "You have a neighbourhood pass on this device.",
+    "actief": "You have a neighbourhood pass on this device ({email}).",
     "uitloggen": "Remove the pass from this device",
-    "privacy": "Your email address is kept in the address book of the neighbourhood site and isn't used for anything else. Want it removed? Email the site administrator.",
+    "privacy": "Your email address is kept in the address book of the neighbourhood site and isn't used for anything else. You can cancel any time, right here, with your pass.",
     "form": {
       "emailLabel": "Email address",
       "emailPlaceholder": "name@example.com",
       "submit": "Send me a link",
       "submitting": "Working…",
       "success": "Check your email: we've sent you a link. It's valid for 30 minutes.",
-      "error": "That didn't work. Check your email address and try again."
+      "error": "That didn't work. Check your email address and try again.",
+      "nieuwsbrief": "Also send me the newsletter"
     },
     "slot": {
       "titel": "Neighbourhood only",
@@ -1780,6 +1781,16 @@
       "submit": "Activate pass",
       "invalid": "This link no longer works: it has expired or was already used. Request a new one.",
       "opnieuw": "Request a new link"
+    },
+    "beheer": {
+      "nieuwsbriefAan": "You receive the newsletter.",
+      "nieuwsbriefUit": "You don't receive the newsletter yet.",
+      "nieuwsbriefAanmelden": "Subscribe to the newsletter",
+      "nieuwsbriefAfmelden": "Unsubscribe from the newsletter",
+      "apparaatUitleg": "On a shared computer? Remove the pass from this device only.",
+      "opzeggen": "Cancel neighbourhood pass",
+      "opzeggenUitleg": "Cancelling applies to all your devices right away. If we don't use your email address for anything else, we delete it too.",
+      "opgezegd": "Your neighbourhood pass has been cancelled."
     }
   }
 }

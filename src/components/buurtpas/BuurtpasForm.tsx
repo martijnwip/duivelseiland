@@ -7,6 +7,7 @@ import { vraagBuurtpasAan, type BuurtpasFormState } from './actions';
 export type BuurtpasFormStrings = {
   emailLabel: string;
   emailPlaceholder: string;
+  nieuwsbrief: string;
   submit: string;
   submitting: string;
   success: string;
@@ -28,7 +29,7 @@ export function BuurtpasForm({ locale, terug, strings }: { locale: string; terug
   }
 
   return (
-    <form action={formAction} className="relative flex flex-col gap-3 sm:flex-row sm:items-end">
+    <form action={formAction} className="relative flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="terug" value={terug} />
       <div className="flex-1">
@@ -47,6 +48,10 @@ export function BuurtpasForm({ locale, terug, strings }: { locale: string; terug
           className="mt-1 w-full rounded-lg border border-input-border bg-card px-3 py-2 text-text focus:border-primary focus:outline-none"
         />
       </div>
+      <label className="flex min-h-11 items-center gap-2 text-sm text-text sm:order-last sm:basis-full">
+        <input type="checkbox" name="nieuwsbrief" value="ja" className="size-4 accent-primary" />
+        {strings.nieuwsbrief}
+      </label>
       <Honeypot />
       <button
         type="submit"
