@@ -101,7 +101,16 @@
       "empty": "No craftspeople listed yet.",
       "telefoon": "Phone",
       "website": "Website",
-      "overig": "Other"
+      "overig": "Other",
+      "eyebrow": "From the neighbourhood",
+      "intro": "Plumbers, electricians, carpenters and other tradespeople from in and around Duivelseiland.",
+      "disclaimer": {
+        "titel": "Please note",
+        "tekst": "The tradespeople on this page come from the WhatsApp group \"Buren-app Duivelseiland\" or were added to this site by people who know them. They are <b>NOT</b> recommendations on behalf of this site, its editors, the neighbourhood committee or the webmasters."
+      },
+      "aantal": "{aantal, plural, one {# person} other {# people}}",
+      "vakken": "Trades",
+      "telefoonMetBuurtpas": "Phone with neighbourhood pass"
     },
     "interviews": {
       "heading": "Interviews"
