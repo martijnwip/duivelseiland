@@ -2,9 +2,34 @@ import type { Field } from 'payload';
 import { slugField } from 'payload';
 import { isRedacteurOrAdminField } from '../../access/isAdmin';
 
+/** Concept of gepubliceerd; alleen redacteur en admin mogen het wijzigen. */
+export const statusField: Field = {
+  name: 'status',
+  type: 'select',
+  options: ['draft', 'published'],
+  defaultValue: 'draft',
+  required: true,
+  access: {
+    update: isRedacteurOrAdminField,
+  },
+};
+
+/** Wie het item aanmaakte (gezet door setAuthor). */
+export const authorField: Field = {
+  name: 'author',
+  type: 'relationship',
+  relationTo: 'users',
+  admin: {
+    position: 'sidebar',
+  },
+  access: {
+    update: isRedacteurOrAdminField,
+  },
+};
+
 /**
  * Common field shape shared by every content collection (Nieuws, Agenda,
- * Interviews, Geschiedenis, Duivelse Kunst, Vakmensen, Praktische info).
+ * Interviews, Geschiedenis, Duivelse Kunst, Praktische info). Vakmensen heeft eigen velden.
  */
 export const contentFields = (): Field[] => [
   {
@@ -14,16 +39,7 @@ export const contentFields = (): Field[] => [
     localized: true,
   },
   slugField(),
-  {
-    name: 'status',
-    type: 'select',
-    options: ['draft', 'published'],
-    defaultValue: 'draft',
-    required: true,
-    access: {
-      update: isRedacteurOrAdminField,
-    },
-  },
+  statusField,
   {
     name: 'alleenBuurt',
     label: 'Alleen voor de buurt',
@@ -34,17 +50,7 @@ export const contentFields = (): Field[] => [
       description: 'Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.',
     },
   },
-  {
-    name: 'author',
-    type: 'relationship',
-    relationTo: 'users',
-    admin: {
-      position: 'sidebar',
-    },
-    access: {
-      update: isRedacteurOrAdminField,
-    },
-  },
+  authorField,
   {
     name: 'content',
     type: 'richText',

@@ -3,13 +3,15 @@ import { APIError } from 'payload';
 import { hasRoleAtLeast } from '../access/roles';
 import { bulkmailToegestaan, verstuur, type Locale } from '../lib/mail';
 import { editieMail, renderEditie } from '../lib/nieuwsbrief/editieMail';
-import { ontvangers, startEditie, stopEditie, verwachteDagen } from '../lib/nieuwsbrief/verzenden';
+import { magVersturen, ontvangers, startEditie, stopEditie, verwachteDagen } from '../lib/nieuwsbrief/verzenden';
 
 /** Endpoints op /api/nieuwsbrief-edities/:id/…, alleen voor redacteur en admin (knoppen: EditieKnoppen). */
 
 const TESTMAIL_INTERVAL_MS = 60 * 1000;
 // Per serverinstantie; genoeg om per ongeluk dubbelklikken op "Testmail" af te remmen.
 const laatsteTestmail = new Map<number, number>();
+
+const NIET_VRIJGEGEVEN = 'Versturen staat uit. Vraag Martijn om het aan te zetten.';
 
 const localeVan = (req: PayloadRequest): Locale => (req.searchParams.get('locale') === 'en' ? 'en' : 'nl');
 
@@ -31,6 +33,14 @@ function redactie(handler: (req: PayloadRequest, id: number) => Promise<Response
 
 export const editieEndpoints: Endpoint[] = [
   {
+    // Bij het laden van de knoppen: of Versturen aan mag staan.
+    path: '/:id/rechten',
+    method: 'get',
+    handler: redactie(async (req) =>
+      Response.json({ magVersturen: await magVersturen(req.payload, req.user!.role, req), opProductie: bulkmailToegestaan() }),
+    ),
+  },
+  {
     // De mail zoals een abonnee hem krijgt (zonder aanhef), om in de browser te bekijken. Kost geen quotum.
     path: '/:id/voorbeeld',
     method: 'get',
@@ -47,11 +57,20 @@ export const editieEndpoints: Endpoint[] = [
     path: '/:id/ontvangers',
     method: 'get',
     handler: redactie(async (req, id) => {
-      const [{ ids, nl, en }, engels] = await Promise.all([
+      const [{ ids, nl, en }, engels, mag] = await Promise.all([
         ontvangers(req.payload, req),
         req.payload.findByID({ collection: 'nieuwsbrief-edities', id, depth: 0, locale: 'en', fallbackLocale: false, overrideAccess: true, req }),
+        magVersturen(req.payload, req.user!.role, req),
       ]);
-      return Response.json({ totaal: ids.length, nl, en, dagen: verwachteDagen(ids.length), engelsLeeg: !engels.onderwerp?.trim(), opProductie: bulkmailToegestaan() });
+      return Response.json({
+        totaal: ids.length,
+        nl,
+        en,
+        dagen: verwachteDagen(ids.length),
+        engelsLeeg: !engels.onderwerp?.trim(),
+        opProductie: bulkmailToegestaan(),
+        magVersturen: mag,
+      });
     }),
   },
   {
@@ -74,7 +93,10 @@ export const editieEndpoints: Endpoint[] = [
   {
     path: '/:id/versturen',
     method: 'post',
-    handler: redactie(async (req, id) => Response.json(await startEditie(req.payload, id, Number(req.user!.id), req))),
+    handler: redactie(async (req, id) => {
+      if (!(await magVersturen(req.payload, req.user!.role, req))) return Response.json({ message: NIET_VRIJGEGEVEN }, { status: 403 });
+      return Response.json(await startEditie(req.payload, id, Number(req.user!.id), req));
+    }),
   },
   {
     path: '/:id/stoppen',

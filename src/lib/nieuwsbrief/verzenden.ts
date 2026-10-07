@@ -1,5 +1,6 @@
 import type { Payload, PayloadRequest } from 'payload';
 import { APIError } from 'payload';
+import { hasRoleAtLeast, type Role } from '../../access/roles';
 import type { Locale } from '../mail';
 import { bulkmailToegestaan, verstuurBatch } from '../mail';
 import { BULK_DAGLIMIET, NIEUWSBRIEF_DAGLIMIET, bulkMailsLaatste24Uur } from '../mailQuotum';
@@ -15,6 +16,17 @@ const DAG = 24 * 60 * 60 * 1000;
 const fout = (bericht: string, status = 400) => new APIError(bericht, status, null, true);
 // Alleen de verzendlogica mag status en tellingen van een editie zetten (zie NieuwsbriefEdities.ts).
 const context = { verzending: true };
+
+/**
+ * Mag deze gebruiker een editie naar alle abonnees versturen? De admin altijd; een redacteur alleen als de
+ * admin dat in Site-instellingen heeft aangezet (standaard uit, tegen per ongeluk versturen).
+ */
+export async function magVersturen(payload: Payload, role: Role | undefined, req?: PayloadRequest) {
+  if (hasRoleAtLeast(role, 'admin')) return true;
+  if (!hasRoleAtLeast(role, 'redacteur')) return false;
+  const instellingen = await payload.findGlobal({ slug: 'site-instellingen', depth: 0, overrideAccess: true, req });
+  return instellingen.nieuwsbrief?.redacteurMagVersturen === true;
+}
 
 /** Hoeveel nieuwsbriefmails er nu nog uit mogen. */
 export async function beschikbaarBudget(payload: Payload, req?: PayloadRequest) {

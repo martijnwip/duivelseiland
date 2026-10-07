@@ -12,7 +12,6 @@ const ADMIN_ONLY = new Set([
   'interviews',
   'geschiedenis',
   'duivelse-kunst',
-  'vakmensen',
 ]);
 
 export const translateDocEndpoint: Endpoint = {

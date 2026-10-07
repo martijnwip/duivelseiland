@@ -28,7 +28,9 @@ import * as migration_20261002_140942_fase_goedgekeurd from './20261002_140942_f
 import * as migration_20261002_143838_merge_activiteiten_nieuwsbrief from './20261002_143838_merge_activiteiten_nieuwsbrief';
 import * as migration_20261006_111532_datum_samenvoegen from './20261006_111532_datum_samenvoegen';
 import * as migration_20261006_122805_nieuwsbrief_edities from './20261006_122805_nieuwsbrief_edities';
-import * as migration_20261007_004313_buurtpas from './20261007_004313_buurtpas';
+import * as migration_20261006_232651_redacteur_mag_versturen from './20261006_232651_redacteur_mag_versturen';
+import * as migration_20261007_001845_vakmensen_vakken from './20261007_001845_vakmensen_vakken';
+import * as migration_20261007_005424_buurtpas from './20261007_005424_buurtpas';
 
 export const migrations = [
   {
@@ -182,8 +184,18 @@ export const migrations = [
     name: '20261006_122805_nieuwsbrief_edities',
   },
   {
-    up: migration_20261007_004313_buurtpas.up,
-    down: migration_20261007_004313_buurtpas.down,
-    name: '20261007_004313_buurtpas'
+    up: migration_20261006_232651_redacteur_mag_versturen.up,
+    down: migration_20261006_232651_redacteur_mag_versturen.down,
+    name: '20261006_232651_redacteur_mag_versturen',
+  },
+  {
+    up: migration_20261007_001845_vakmensen_vakken.up,
+    down: migration_20261007_001845_vakmensen_vakken.down,
+    name: '20261007_001845_vakmensen_vakken',
+  },
+  {
+    up: migration_20261007_005424_buurtpas.up,
+    down: migration_20261007_005424_buurtpas.down,
+    name: '20261007_005424_buurtpas'
   },
 ];

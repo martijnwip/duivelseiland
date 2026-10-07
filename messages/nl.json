@@ -97,7 +97,11 @@
       "heading": "Duivelse Kunst"
     },
     "vakmensen": {
-      "heading": "Vakmensen"
+      "heading": "Vakmensen",
+      "empty": "Er staan nog geen vakmensen op de site.",
+      "telefoon": "Telefoon",
+      "website": "Website",
+      "overig": "Overig"
     },
     "interviews": {
       "heading": "Interviews"
@@ -1582,15 +1586,8 @@
       "alleenBuurt": "Alleen voor de buurt",
       "whatsapp": "WhatsApp: buurtpas nodig",
       "uitleg": "Dit zie je met een buurtpas. Vul je e-mailadres in; je krijgt een link, geen account.",
-      "meer": "Wat is de buurtpas?"
-    },
-    "contact": {
-      "titel": "Contactgegevens",
-      "telefoon": "Telefoon",
-      "whatsapp": "WhatsApp",
-      "email": "E-mail",
-      "website": "Website",
-      "adres": "Adres"
+      "meer": "Wat is de buurtpas?",
+      "telefoon": "Telefoonnummers"
     },
     "activeren": {
       "heading": "Buurtpas activeren",

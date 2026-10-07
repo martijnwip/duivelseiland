@@ -635,14 +635,6 @@
           "autoincrement": false,
           "default": "'draft'"
         },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
         "author_id": {
           "name": "author_id",
           "type": "integer",
@@ -994,14 +986,6 @@
           "autoincrement": false,
           "default": "'draft'"
         },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
         "author_id": {
           "name": "author_id",
           "type": "integer",
@@ -1280,14 +1264,6 @@
           "autoincrement": false,
           "default": "'draft'"
         },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
         "author_id": {
           "name": "author_id",
           "type": "integer",
@@ -1495,14 +1471,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": "'draft'"
-        },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
         },
         "author_id": {
           "name": "author_id",
@@ -1712,14 +1680,6 @@
           "autoincrement": false,
           "default": "'draft'"
         },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
         "author_id": {
           "name": "author_id",
           "type": "integer",
@@ -1928,14 +1888,6 @@
           "autoincrement": false,
           "default": "'draft'"
         },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
         "author_id": {
           "name": "author_id",
           "type": "integer",
@@ -1953,41 +1905,6 @@
         "image_id": {
           "name": "image_id",
           "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contact_telefoon": {
-          "name": "contact_telefoon",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contact_whatsapp": {
-          "name": "contact_whatsapp",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contact_email": {
-          "name": "contact_email",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contact_website": {
-          "name": "contact_website",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "contact_adres": {
-          "name": "contact_adres",
-          "type": "text",
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
@@ -2178,14 +2095,6 @@
           "notNull": true,
           "autoincrement": false,
           "default": "'draft'"
-        },
-        "alleen_buurt": {
-          "name": "alleen_buurt",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
         },
         "author_id": {
           "name": "author_id",
@@ -4232,65 +4141,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "buurtpas_ingetrokken": {
-          "name": "buurtpas_ingetrokken",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "buurtpas_versie": {
-          "name": "buurtpas_versie",
-          "type": "numeric",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": 1
-        },
-        "buurtpas_laatst_gebruikt": {
-          "name": "buurtpas_laatst_gebruikt",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "buurtpas_token": {
-          "name": "buurtpas_token",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "buurtpas_token_tot": {
-          "name": "buurtpas_token_tot",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "laatste_buurtpas_mail_op": {
-          "name": "laatste_buurtpas_mail_op",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "buurtpas_nieuwsbrief": {
-          "name": "buurtpas_nieuwsbrief",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false,
-          "default": false
-        },
-        "buurtpas_locale": {
-          "name": "buurtpas_locale",
-          "type": "text",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "updated_at": {
           "name": "updated_at",
           "type": "text",
@@ -4322,13 +4172,6 @@
             "bevestigd"
           ],
           "isUnique": false
-        },
-        "email_adressen_buurtpas_token_idx": {
-          "name": "email_adressen_buurtpas_token_idx",
-          "columns": [
-            "buurtpas_token"
-          ],
-          "isUnique": true
         },
         "email_adressen_updated_at_idx": {
           "name": "email_adressen_updated_at_idx",
@@ -5898,6 +5741,14 @@
           "notNull": false,
           "autoincrement": false
         },
+        "nieuwsbrief_redacteur_mag_versturen": {
+          "name": "nieuwsbrief_redacteur_mag_versturen",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": false
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "text",
@@ -7010,6 +6861,6 @@
   "internal": {
     "indexes": {}
   },
-  "id": "60b1f294-1384-45a5-85fb-c78c5849d31b",
+  "id": "5de00e8e-02d3-4b4a-9b9f-7ad06bf086ea",
   "prevId": "00000000-0000-0000-0000-000000000000"
 }

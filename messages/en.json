@@ -97,7 +97,11 @@
       "heading": "Duivelse Kunst"
     },
     "vakmensen": {
-      "heading": "Local Craftspeople"
+      "heading": "Local Craftspeople",
+      "empty": "No craftspeople listed yet.",
+      "telefoon": "Phone",
+      "website": "Website",
+      "overig": "Other"
     },
     "interviews": {
       "heading": "Interviews"
@@ -1765,15 +1769,8 @@
       "alleenBuurt": "Neighbourhood only",
       "whatsapp": "WhatsApp: neighbourhood pass needed",
       "uitleg": "You can see this with a neighbourhood pass. Enter your email address; you'll get a link, not an account.",
-      "meer": "What is the neighbourhood pass?"
-    },
-    "contact": {
-      "titel": "Contact details",
-      "telefoon": "Phone",
-      "whatsapp": "WhatsApp",
-      "email": "Email",
-      "website": "Website",
-      "adres": "Address"
+      "meer": "What is the neighbourhood pass?",
+      "telefoon": "Phone numbers"
     },
     "activeren": {
       "heading": "Activate neighbourhood pass",

@@ -76,6 +76,7 @@ export interface Config {
     geschiedenis: Geschiedeni;
     'duivelse-kunst': DuivelseKunst;
     vakmensen: Vakmensen;
+    vakken: Vakken;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
     'historische-fotos': HistorischeFoto;
@@ -107,6 +108,7 @@ export interface Config {
     geschiedenis: GeschiedenisSelect<false> | GeschiedenisSelect<true>;
     'duivelse-kunst': DuivelseKunstSelect<false> | DuivelseKunstSelect<true>;
     vakmensen: VakmensenSelect<false> | VakmensenSelect<true>;
+    vakken: VakkenSelect<false> | VakkenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
     'historische-fotos': HistorischeFotosSelect<false> | HistorischeFotosSelect<true>;
@@ -575,51 +577,31 @@ export interface DuivelseKunst {
  */
 export interface Vakmensen {
   id: number;
-  title: string;
+  naam: string;
   /**
-   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   * Kies één of meer vakken. Staat het vak er niet bij? Voeg het toe met de +.
    */
-  generateSlug?: boolean | null;
-  slug: string;
+  vakken: (number | Vakken)[];
+  /**
+   * Alleen zichtbaar voor bezoekers met een buurtpas.
+   */
+  telefoon?: string | null;
+  /**
+   * Met http:// of https://, bv. https://www.voorbeeld.nl
+   */
+  website?: string | null;
   status: 'draft' | 'published';
-  /**
-   * Aan: alleen bezoekers met een buurtpas zien de inhoud. Anderen zien de titel met een slotje.
-   */
-  alleenBuurt?: boolean | null;
   author?: (number | null) | User;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  date?: string | null;
-  image?: (number | null) | Media;
-  /**
-   * Alleen zichtbaar voor bezoekers met een buurtpas. Zet telefoonnummers en adressen hier, niet in de tekst: wat in de tekst staat, ziet iedereen.
-   */
-  contact?: {
-    telefoon?: string | null;
-    /**
-     * Telefoonnummer, wordt een wa.me-link.
-     */
-    whatsapp?: string | null;
-    email?: string | null;
-    /**
-     * Volledige link, bv. https://…
-     */
-    website?: string | null;
-    adres?: string | null;
-  };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vakken".
+ */
+export interface Vakken {
+  id: number;
+  naam: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1030,6 +1012,10 @@ export interface PayloadLockedDocument {
         value: number | Vakmensen;
       } | null)
     | ({
+        relationTo: 'vakken';
+        value: number | Vakken;
+      } | null)
+    | ({
         relationTo: 'praktische-info';
         value: number | PraktischeInfo;
       } | null)
@@ -1320,24 +1306,21 @@ export interface DuivelseKunstSelect<T extends boolean = true> {
  * via the `definition` "vakmensen_select".
  */
 export interface VakmensenSelect<T extends boolean = true> {
-  title?: T;
-  generateSlug?: T;
-  slug?: T;
+  naam?: T;
+  vakken?: T;
+  telefoon?: T;
+  website?: T;
   status?: T;
-  alleenBuurt?: T;
   author?: T;
-  content?: T;
-  date?: T;
-  image?: T;
-  contact?:
-    | T
-    | {
-        telefoon?: T;
-        whatsapp?: T;
-        email?: T;
-        website?: T;
-        adres?: T;
-      };
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "vakken_select".
+ */
+export interface VakkenSelect<T extends boolean = true> {
+  naam?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1673,6 +1656,12 @@ export interface SiteInstellingen {
     telefoon?: string | null;
     adres?: string | null;
   };
+  nieuwsbrief?: {
+    /**
+     * Aan: ook redacteuren kunnen een editie naar alle abonnees versturen. Uit: alleen de admin; bij een redacteur staat de knop Versturen uit.
+     */
+    redacteurMagVersturen?: boolean | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1884,6 +1873,11 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
         email?: T;
         telefoon?: T;
         adres?: T;
+      };
+  nieuwsbrief?:
+    | T
+    | {
+        redacteurMagVersturen?: T;
       };
   updatedAt?: T;
   createdAt?: T;
