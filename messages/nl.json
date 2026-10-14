@@ -110,7 +110,45 @@
       },
       "aantal": "{aantal, plural, one {# vakmens} other {# vakmensen}}",
       "vakken": "Vakken",
-      "telefoonMetBuurtpas": "Telefoon met buurtpas"
+      "telefoonMetBuurtpas": "Telefoon met buurtpas",
+      "aanmeldKnop": {
+        "titel": "Ken je een goede vakmens?",
+        "tekst": "Heb je een buurtpas, dan kun je een vakmens aanmelden. De redactie kijkt mee voordat die op de site komt.",
+        "link": "Meld een vakmens aan"
+      },
+      "aanmelden": {
+        "eyebrow": "Vakmensen",
+        "heading": "Vakmens aanmelden",
+        "metaDescription": "Meld een vakmens uit of rond Duivelseiland aan voor het overzicht van vakmensen.",
+        "intro": "Ken je een goede loodgieter, schilder of klusser in of rond de buurt? Meld die hier aan. De redactie kijkt naar elke aanmelding en zet de vakmens daarna op de site. Je krijgt per mail bericht.",
+        "form": {
+          "naam": "Naam van de vakmens of het bedrijf",
+          "naamPlaceholder": "bv. Piet van der Pijp",
+          "vakken": "Vak",
+          "vakkenHint": "Kies één of meer vakken. Staat het vak er niet bij? Vul het hieronder in.",
+          "anderVak": "Ander vak",
+          "anderVakPlaceholder": "bv. glazenwasser",
+          "telefoon": "Telefoon",
+          "website": "Website",
+          "contactHint": "Vul een telefoonnummer, een website of allebei in. Het telefoonnummer zien alleen buren met een buurtpas.",
+          "aanmelderNaam": "Je eigen naam",
+          "aanmelderNaamHint": "Alleen voor de redactie, niet op de site. Je e-mailadres nemen we over van je buurtpas.",
+          "toelichting": "Toelichting voor de redactie (optioneel)",
+          "toelichtingHint": "Bijvoorbeeld wat de vakmens voor je heeft gedaan. Niet zichtbaar op de site.",
+          "akkoord": "De vakmens vindt het goed dat naam, vak en contactgegevens op deze site staan.",
+          "submit": "Aanmelding versturen",
+          "submitting": "Bezig met versturen…",
+          "success": "Bedankt! De redactie kijkt naar je aanmelding. Je krijgt een mail als de vakmens op de site staat.",
+          "error": {
+            "velden": "Controleer de velden: de naam van de vakmens en je eigen naam zijn verplicht, en het telefoonnummer of de website klopt niet.",
+            "vak": "Kies een vak of vul bij \"Ander vak\" in wat de vakmens doet.",
+            "contact": "Vul een telefoonnummer of een website in.",
+            "akkoord": "Bevestig dat de vakmens akkoord is met vermelding op de site.",
+            "buurtpas": "Je buurtpas is niet (meer) geldig. Vraag een nieuwe aan en probeer het opnieuw.",
+            "server": "Er ging iets mis bij het versturen. Probeer het later opnieuw."
+          }
+        }
+      }
     },
     "interviews": {
       "heading": "Interviews"
@@ -1563,7 +1601,15 @@
         "success": "Je bent afgemeld. Je krijgt geen mail meer over deze activiteit.",
         "invalid": "Deze link is niet (meer) geldig."
       },
-      "terug": "Naar de activiteiten"
+      "terug": "Naar de activiteiten",
+      "vakmens-intrekken": {
+        "heading": "Aanmelding intrekken",
+        "text": "Klik op de knop om de aanmelding van de vakmens in te trekken. Die wordt dan helemaal verwijderd.",
+        "submit": "Trek de aanmelding in",
+        "success": "De aanmelding is ingetrokken en verwijderd.",
+        "invalid": "Deze link is niet (meer) geldig, of de vakmens is al goedgekeurd. Neem dan contact op met de redactie."
+      },
+      "terugVakmensen": "Naar de vakmensen"
     },
     "agendaAanmelden": "Aanmelden voor deze activiteit",
     "voorbehoud": "Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn.",
@@ -1596,7 +1642,8 @@
       "whatsapp": "WhatsApp: buurtpas nodig",
       "uitleg": "Dit zie je met een buurtpas. Vul je e-mailadres in; je krijgt een link, geen account.",
       "meer": "Wat is de buurtpas?",
-      "telefoon": "Telefoonnummers"
+      "telefoon": "Telefoonnummers",
+      "vakmensAanmelden": "Vakmens aanmelden met buurtpas"
     },
     "activeren": {
       "heading": "Buurtpas activeren",

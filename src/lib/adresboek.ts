@@ -29,10 +29,11 @@ export async function regelsVoorAdres(payload: Payload, email: string, req?: Pay
   const where = { email: { equals: email } };
   // Vaste taal: binnen een request met locale 'all' zou de titel anders een object per taal zijn.
   const opties = { depth: 1, pagination: false as const, overrideAccess: true, locale: 'nl' as const, req };
-  const [nieuwsbrief, deelnemer, aanvrager, gebruiker] = await Promise.all([
+  const [nieuwsbrief, deelnemer, aanvrager, vakmensen, gebruiker] = await Promise.all([
     payload.find({ collection: 'nieuwsbrief-abonnees', where, ...opties }),
     payload.find({ collection: 'activiteit-inschrijvingen', where, ...opties }),
     payload.find({ collection: 'activiteiten', where: { aanvragerEmail: { equals: email } }, ...opties, depth: 0 }),
+    payload.find({ collection: 'vakmensen', where: { aanmelderEmail: { equals: email } }, ...opties, depth: 0 }),
     payload.find({ collection: 'users', where, ...opties, depth: 0 }),
   ]);
   return [
@@ -56,6 +57,13 @@ export async function regelsVoorAdres(payload: Payload, email: string, req?: Pay
       status: d.status,
       datum: d.bevestigdOp ?? d.createdAt,
       href: `/admin/collections/activiteit-inschrijvingen/${d.id}`,
+    })),
+    ...vakmensen.docs.map((d) => ({
+      lijst: `${d.naam} (vakmens aangemeld)`,
+      naam: d.aanmelderNaam ?? '',
+      status: d.moderatie ?? '',
+      datum: d.createdAt,
+      href: `/admin/collections/vakmensen/${d.id}`,
     })),
     ...gebruiker.docs.map((d) => ({
       lijst: 'Gebruiker',
@@ -203,7 +211,9 @@ export async function zetOpenstaandeDoor(payload: Payload, email: string, req?: 
 /**
  * Het adres moet overal weg ("vergeet mij"): nieuwsbrief, aanmeldingen en nog niet goedgekeurde ideeën
  * (met hun anoniem geüploade afbeelding). Bij goedgekeurde activiteiten verdwijnen alleen naam en e-mail
- * van de aanvrager; de activiteit en de andere deelnemers blijven. Gebruikersaccounts blijven bestaan.
+ * van de aanvrager; de activiteit en de andere deelnemers blijven. Zo ook bij aangemelde vakmensen: een
+ * open of afgekeurde aanmelding verdwijnt, bij een goedgekeurde alleen de gegevens van de aanmelder.
+ * Gebruikersaccounts blijven bestaan.
  */
 export async function verwijderAdresOveral(payload: Payload, email: string, req?: PayloadRequest) {
   await payload.delete({ collection: 'nieuwsbrief-abonnees', where: { email: { equals: email } }, overrideAccess: true, req });
@@ -234,6 +244,28 @@ export async function verwijderAdresOveral(payload: Payload, email: string, req?
         context: { skipWorkflow: true },
         req,
       });
+    }
+  }
+
+  const { docs: vakmensen } = await payload.find({
+    collection: 'vakmensen',
+    where: { aanmelderEmail: { equals: email } },
+    depth: 0,
+    pagination: false,
+    overrideAccess: true,
+    req,
+  });
+  for (const v of vakmensen) {
+    if (v.moderatie === 'goedgekeurd') {
+      await payload.update({
+        collection: 'vakmensen',
+        id: v.id,
+        data: { aanmelderNaam: null, aanmelderEmail: null, aanmelderToelichting: null },
+        overrideAccess: true,
+        req,
+      });
+    } else {
+      await payload.delete({ collection: 'vakmensen', id: v.id, overrideAccess: true, req });
     }
   }
 }

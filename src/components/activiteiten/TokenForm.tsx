@@ -2,15 +2,17 @@
 
 import { useActionState } from 'react';
 import { afmeldenInschrijving, bevestigIdee, bevestigInschrijving, trekIdeeIn, type TokenState } from './actions';
+import { trekVakmensIn } from '../vakmensen/actions';
 import { buttonCls } from './styles';
 
-export type TokenKind = 'idee-bevestigen' | 'idee-intrekken' | 'inschrijving-bevestigen' | 'inschrijving-afmelden';
+export type TokenKind = 'idee-bevestigen' | 'idee-intrekken' | 'inschrijving-bevestigen' | 'inschrijving-afmelden' | 'vakmens-intrekken';
 
 const ACTIONS = {
   'idee-bevestigen': bevestigIdee,
   'idee-intrekken': trekIdeeIn,
   'inschrijving-bevestigen': bevestigInschrijving,
   'inschrijving-afmelden': afmeldenInschrijving,
+  'vakmens-intrekken': trekVakmensIn,
 } as const;
 
 type Strings = { submit: string; submitting: string; success: string; invalid: string; gesloten: string };

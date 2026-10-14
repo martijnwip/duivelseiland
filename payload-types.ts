@@ -572,6 +572,8 @@ export interface DuivelseKunst {
   createdAt: string;
 }
 /**
+ * Aanmeldingen van buren staan op "Wacht op goedkeuring": keur goed of af met een reden (knoppen bovenaan het item). Goedkeuren zet de vakmens direct online.
+ *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "vakmensen".
  */
@@ -581,7 +583,11 @@ export interface Vakmensen {
   /**
    * Kies één of meer vakken. Staat het vak er niet bij? Voeg het toe met de +.
    */
-  vakken: (number | Vakken)[];
+  vakken?: (number | Vakken)[] | null;
+  /**
+   * Uit het aanmeldformulier. Voeg het vak toe bij Vakken (met de +) en maak dit veld daarna leeg.
+   */
+  anderVak?: string | null;
   /**
    * Alleen zichtbaar voor bezoekers met een buurtpas.
    */
@@ -592,6 +598,26 @@ export interface Vakmensen {
   website?: string | null;
   status: 'draft' | 'published';
   author?: (number | null) | User;
+  /**
+   * Alleen bij een aanmelding via de site. Goedkeuren en afkeuren gaat met de knoppen bovenaan.
+   */
+  moderatie?: ('ingediend' | 'afgewezen' | 'goedgekeurd') | null;
+  /**
+   * Alleen invullen als je afkeurt; wordt naar de aanmelder gemaild.
+   */
+  afwijsReden?: string | null;
+  aanmelderNaam?: string | null;
+  /**
+   * Uit de buurtpas, nooit publiek.
+   */
+  aanmelderEmail?: string | null;
+  /**
+   * Alleen voor de redactie.
+   */
+  aanmelderToelichting?: string | null;
+  locale?: ('nl' | 'en') | null;
+  token?: string | null;
+  laatsteMailOp?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1308,10 +1334,19 @@ export interface DuivelseKunstSelect<T extends boolean = true> {
 export interface VakmensenSelect<T extends boolean = true> {
   naam?: T;
   vakken?: T;
+  anderVak?: T;
   telefoon?: T;
   website?: T;
   status?: T;
   author?: T;
+  moderatie?: T;
+  afwijsReden?: T;
+  aanmelderNaam?: T;
+  aanmelderEmail?: T;
+  aanmelderToelichting?: T;
+  locale?: T;
+  token?: T;
+  laatsteMailOp?: T;
   updatedAt?: T;
   createdAt?: T;
 }

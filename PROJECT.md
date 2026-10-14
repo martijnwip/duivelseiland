@@ -87,7 +87,7 @@ Technisch beheerder.
 | Interviews             | lezen (published) | geen                             | geen                         | alles |
 | Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
 | Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
-| Vakmensen              | lezen (published) | geen                             | alles                        | alles |
+| Vakmensen              | lezen (published); met buurtpas aanmelden via formulier | geen | alles + modereren | alles |
 | Vakken (tags bij Vakmensen) | lezen        | geen                             | alles                        | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
@@ -212,6 +212,8 @@ Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md
 Elke content-collection heeft `title`, `slug`, `status` (draft/published), `author`, `content` (rich text) en waar nodig `date`, `image`.
 
 Uitzondering: **Vakmensen** heeft `naam`, `vakken` (één of meer tags uit de collection `vakken`; met de + in het veld voeg je direct een nieuw vak toe), `telefoon`, `website`, plus `status` en `author`. De site toont ze als één overzicht op `/vakmensen`, gegroepeerd per vak, zonder detailpagina's. Vaknamen zijn tweetalig.
+
+**Vakmens aanmelden.** Buren met een buurtpas kunnen op `/vakmensen/aanmelden` een vakmens aanmelden: naam, vakken (vinkjes) en/of *Ander vak*, telefoon en/of website, de eigen naam en een toelichting voor de redactie. Het e-mailadres komt uit de buurtpas. De aanmelding komt binnen als concept met `moderatie = ingediend`. De redactie krijgt een mail; de aanmelder krijgt een ontvangstmail met een intrekken-link (`/vakmensen/aanmelding/intrekken/<token>`, werkt tot goedkeuring). In `/admin` staan bovenaan de knoppen **Goedkeuren** (zet `status = published`; er moet een vak gekoppeld zijn, dus zet *Ander vak* eerst om met de +) en **Afkeuren** (reden verplicht, gaat naar de aanmelder; de vakmens gaat terug naar concept). Een afgekeurde aanmelding kun je opnieuw goedkeuren. Handmatig publiceren telt ook als goedkeuren. De regels staan in `src/lib/vakmensen/workflow.ts`; de gegevens van de aanmelder zijn alleen voor redacteur en admin. In het adresboek staat de aanmelder als "vakmens aangemeld". Verwijder je het adres, dan verdwijnt een open of afgekeurde aanmelding; bij een goedgekeurde gaan alleen de gegevens van de aanmelder weg.
 
 ## Data ophalen in de site
 

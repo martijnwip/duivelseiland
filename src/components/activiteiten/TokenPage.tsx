@@ -9,15 +9,16 @@ import { TokenForm, type TokenKind } from './TokenForm';
 async function tokenBestaat(kind: TokenKind, token: string) {
   if (!TOKEN_RE.test(token)) return false;
   const payload = await getPayload({ config });
-  const collection = kind.startsWith('idee') ? 'activiteiten' : 'activiteit-inschrijvingen';
+  const collection = kind.startsWith('idee') ? 'activiteiten' : kind.startsWith('vakmens') ? 'vakmensen' : 'activiteit-inschrijvingen';
   const { totalDocs } = await payload.count({ collection, where: { token: { equals: token } } });
   return totalDocs > 0;
 }
 
-/** Pagina achter een link uit een activiteitenmail (bevestigen, intrekken, afmelden). */
+/** Pagina achter een link uit een mail over een activiteit of een aangemelde vakmens (bevestigen, intrekken, afmelden). */
 export async function TokenPage({ kind, locale, token }: { kind: TokenKind; locale: string; token: string }) {
   const t = await getTranslations({ locale, namespace: 'activiteiten.token' });
   const geldig = await tokenBestaat(kind, token);
+  const vakmens = kind.startsWith('vakmens');
 
   return (
     <main className="mx-auto max-w-md px-4 py-16">
@@ -41,8 +42,8 @@ export async function TokenPage({ kind, locale, token }: { kind: TokenKind; loca
         <p className="mt-4 text-accent">{t(`${kind}.invalid`)}</p>
       )}
       <p className="mt-8">
-        <Link href={localizedHref(locale, '/activiteiten')} className="text-primary underline">
-          {t('terug')}
+        <Link href={localizedHref(locale, vakmens ? '/vakmensen' : '/activiteiten')} className="text-primary underline">
+          {t(vakmens ? 'terugVakmensen' : 'terug')}
         </Link>
       </p>
     </main>

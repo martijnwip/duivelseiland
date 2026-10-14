@@ -32,6 +32,7 @@ import * as migration_20261006_232651_redacteur_mag_versturen from './20261006_2
 import * as migration_20261006_235848_buurtpas from './20261006_235848_buurtpas';
 import * as migration_20261007_001845_vakmensen_vakken from './20261007_001845_vakmensen_vakken';
 import * as migration_20261007_010522_buurtpas_nieuwsbrief from './20261007_010522_buurtpas_nieuwsbrief';
+import * as migration_20261014_120726_vakmensen_aanmelden from './20261014_120726_vakmensen_aanmelden';
 
 export const migrations = [
   {
@@ -202,6 +203,11 @@ export const migrations = [
   {
     up: migration_20261007_010522_buurtpas_nieuwsbrief.up,
     down: migration_20261007_010522_buurtpas_nieuwsbrief.down,
-    name: '20261007_010522_buurtpas_nieuwsbrief'
+    name: '20261007_010522_buurtpas_nieuwsbrief',
+  },
+  {
+    up: migration_20261014_120726_vakmensen_aanmelden.up,
+    down: migration_20261014_120726_vakmensen_aanmelden.down,
+    name: '20261014_120726_vakmensen_aanmelden'
   },
 ];
