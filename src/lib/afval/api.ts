@@ -195,7 +195,7 @@ export function getRecyclepunten(): Promise<Result<Recyclepunt[]>> {
 export function getMeldingen(): Promise<Result<Melding[]>> {
   type Feature = {
     geometry: { coordinates: [number, number] };
-    properties: { created_at: string; category: { name: string; parent: { slug: string } } };
+    properties: { created_at: string; category: { name: string; slug: string; parent: { slug: string } } };
   };
   return safe('meldingen', async () => {
     const bbox = VIEW_WGS84.join(',');
@@ -206,6 +206,7 @@ export function getMeldingen(): Promise<Result<Melding[]>> {
       .flatMap((fc) => fc.features)
       .map(({ geometry, properties: p }) => ({
         categorie: p.category.name,
+        categorieSlug: p.category.slug,
         hoofdcategorie: p.category.parent.slug,
         datum: p.created_at,
         rd: wgs84ToRd(geometry.coordinates[1], geometry.coordinates[0]),

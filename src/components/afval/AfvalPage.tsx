@@ -415,7 +415,10 @@ export async function AfvalPage({ locale }: { locale: string }) {
       <p className="m-0 text-sm leading-[1.5]">{t('meldingen.whatsappPrivacy')}</p>
     </div>
   );
-  const meldTone = (cat: string): Tone => (cat === 'Grof afval' ? 'c' : 's');
+  // Gemeentelijke categorienamen, vertaald op slug; een onbekende slug toont de naam uit de API.
+  const meldCat = (m: { categorie: string; categorieSlug: string }) =>
+    t.has(`meldingCategorieen.${m.categorieSlug}`) ? t(`meldingCategorieen.${m.categorieSlug}`) : m.categorie;
+  const meldTone = (slug: string): Tone => (slug === 'grofvuil' ? 'c' : 's');
   const meldCards = meld ? (
     <Pair>
       {card({
@@ -428,8 +431,8 @@ export async function AfvalPage({ locale }: { locale: string }) {
             <BaseMap label={t('cards.meldingMap.label', { n: meld.recent.length })}>
               <MeldingLayer
                 meldingen={meld.recent}
-                tone={(m) => meldTone(m.categorie)}
-                tip={(m) => t('tip.melding', { datum: date(m.datum, { day: 'numeric', month: 'short' }), categorie: m.categorie })}
+                tone={(m) => meldTone(m.categorieSlug)}
+                tip={(m) => t('tip.melding', { datum: date(m.datum, { day: 'numeric', month: 'short' }), categorie: meldCat(m) })}
               />
             </BaseMap>
             <Legend
@@ -441,7 +444,7 @@ export async function AfvalPage({ locale }: { locale: string }) {
           </div>
         ),
         head: [t('table.datum'), t('table.categorie')],
-        rows: meld.recent.map((m) => [date(m.datum, { day: 'numeric', month: 'short' }), m.categorie]),
+        rows: meld.recent.map((m) => [date(m.datum, { day: 'numeric', month: 'short' }), meldCat(m)]),
       })}
       <Stack>
         {card({
@@ -453,13 +456,13 @@ export async function AfvalPage({ locale }: { locale: string }) {
               width={w}
               mobile={mobile}
               labelWidth={210}
-              rows={meld.perCat.slice(0, 8).map((x) => ({ label: x.categorie, v: x.n, tone: meldTone(x.categorie), tip: `${x.categorie}\n${f.num(x.n)}` }))}
+              rows={meld.perCat.slice(0, 8).map((x) => ({ label: meldCat(x), v: x.n, tone: meldTone(x.categorieSlug), tip: `${meldCat(x)}\n${f.num(x.n)}` }))}
               fmt={(v) => f.num(v)}
               label={t('cards.meldingCat.label')}
             />
           )),
           head: [t('table.categorie'), t('table.aantal')],
-          rows: meld.perCat.map((x) => [x.categorie, f.num(x.n)]),
+          rows: meld.perCat.map((x) => [meldCat(x), f.num(x.n)]),
         })}
         {cta}
       </Stack>

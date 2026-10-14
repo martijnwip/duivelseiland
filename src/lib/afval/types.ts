@@ -34,4 +34,4 @@ export type Regel = {
 
 export type Recyclepunt = { naam: string; adres: string; postcode: string; url: string | null; rd: Pt; geenBedrijfsafval: boolean };
 
-export type Melding = { categorie: string; hoofdcategorie: string; datum: string; rd: Pt };
+export type Melding = { categorie: string; categorieSlug: string; hoofdcategorie: string; datum: string; rd: Pt };
