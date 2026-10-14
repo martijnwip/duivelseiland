@@ -1661,6 +1661,30 @@
       "eyebrow": "Parking",
       "title": "Parking in Duivelseiland",
       "intro": "Duivelseiland is in parking permit area Zuid 8. Across the Hobbemakade, De Pijp begins: a residents’ permit for Zuid 8 is not valid there.",
+      "tarief": {
+        "titel": "What does parking cost?",
+        "perUur": "{bedrag} per hour",
+        "dagen": {
+          "ma-za": "Mon–Sat",
+          "zo": "Sun"
+        },
+        "bezoeker": {
+          "titel": "Visitor without a permit",
+          "betalen": "Pay: {tijden}. Outside those hours parking is free.",
+          "kaarten": "Staying longer? At the parking meter you can buy a day ticket (Mon–Sat 9:00–24:00) for {dag}, a Sunday ticket (12:00–24:00) for {zondag} or an evening ticket (19:00–24:00) for {avond}."
+        },
+        "bezoek": {
+          "titel": "Visiting a resident",
+          "tekst": "With the resident’s visitor permit, your visitors park at a 65 percent discount. The resident registers the visit, up to 150 hours per quarter. The permit is free, even if you don’t have a car yourself."
+        },
+        "bewoner": {
+          "titel": "Resident with a car",
+          "prijs": "No parking fees",
+          "tekst": "With a parking permit for Zuid 8 you park in the neighbourhood without paying parking fees. The permit itself costs money and there may be a waiting list. It is not valid in De Pijp."
+        },
+        "onbekend": "The current rate could not be retrieved.",
+        "bron": "Rate since {datum}, source: RDW Open Data Parkeren. A few streets may have different times: look up your street on the <link>city’s parking rates map</link> (in Dutch)."
+      },
       "cijfers": {
         "totaal": "parking spaces in the neighbourhood",
         "laadpaal": "charging spaces for electric cars",
@@ -1679,14 +1703,6 @@
       "bron": "Source: Parkeervakken, City of Amsterdam. Updated daily.",
       "link": "More on amsterdam.nl (in Dutch)",
       "kaartjes": {
-        "vergunning": {
-          "title": "Parking permit",
-          "text": "Live here and have a car? Apply for a parking permit with the city. There may be a waiting list; you can see your place in Mijn Parkeren."
-        },
-        "bezoek": {
-          "title": "Visitors",
-          "text": "Even without a car of your own you can apply for a free visitor permit. Your visitors then park in Zuid 8 at a 65 percent discount, up to 150 hours per quarter."
-        },
         "laden": {
           "title": "Loading and unloading",
           "text": "Useful when moving house or for deliveries. The times are on the sign, usually daytime on weekdays and Saturday. You can’t park there."
