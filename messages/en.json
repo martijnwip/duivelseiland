@@ -110,7 +110,45 @@
       },
       "aantal": "{aantal, plural, one {# person} other {# people}}",
       "vakken": "Trades",
-      "telefoonMetBuurtpas": "Phone with neighbourhood pass"
+      "telefoonMetBuurtpas": "Phone with neighbourhood pass",
+      "aanmeldKnop": {
+        "titel": "Know a good tradesperson?",
+        "tekst": "With a neighbourhood pass you can submit a tradesperson. The editors review it before it goes on the site.",
+        "link": "Submit a tradesperson"
+      },
+      "aanmelden": {
+        "eyebrow": "Tradespeople",
+        "heading": "Submit a tradesperson",
+        "metaDescription": "Submit a tradesperson from in or around Duivelseiland for the list of tradespeople.",
+        "intro": "Know a good plumber, painter or handyman in or around the neighbourhood? Submit them here. The editors review every submission before the tradesperson goes on the site. We will let you know by email.",
+        "form": {
+          "naam": "Name of the tradesperson or company",
+          "naamPlaceholder": "e.g. Piet van der Pijp",
+          "vakken": "Trade",
+          "vakkenHint": "Choose one or more trades. Not listed? Fill it in below.",
+          "anderVak": "Other trade",
+          "anderVakPlaceholder": "e.g. window cleaner",
+          "telefoon": "Phone",
+          "website": "Website",
+          "contactHint": "Fill in a phone number, a website or both. Only neighbours with a neighbourhood pass see the phone number.",
+          "aanmelderNaam": "Your own name",
+          "aanmelderNaamHint": "Only for the editors, not shown on the site. We take your email address from your neighbourhood pass.",
+          "toelichting": "Note for the editors (optional)",
+          "toelichtingHint": "For example what the tradesperson did for you. Not shown on the site.",
+          "akkoord": "The tradesperson agrees to having their name, trade and contact details on this site.",
+          "submit": "Send submission",
+          "submitting": "Sending…",
+          "success": "Thank you! The editors will review your submission. You will get an email once the tradesperson is on the site.",
+          "error": {
+            "velden": "Check the fields: the tradesperson's name and your own name are required, and the phone number or website isn't valid.",
+            "vak": "Choose a trade or fill in \"Other trade\".",
+            "contact": "Fill in a phone number or a website.",
+            "akkoord": "Confirm that the tradesperson agrees to being listed on the site.",
+            "buurtpas": "Your neighbourhood pass is not (or no longer) valid. Request a new one and try again.",
+            "server": "Something went wrong while sending. Please try again later."
+          }
+        }
+      }
     },
     "interviews": {
       "heading": "Interviews"
@@ -1746,7 +1784,15 @@
         "success": "You've left. You won't receive any more email about this activity.",
         "invalid": "This link is not (or no longer) valid."
       },
-      "terug": "Back to activities"
+      "terug": "Back to activities",
+      "vakmens-intrekken": {
+        "heading": "Withdraw submission",
+        "text": "Click the button to withdraw the tradesperson submission. It will be deleted completely.",
+        "submit": "Withdraw the submission",
+        "success": "The submission has been withdrawn and deleted.",
+        "invalid": "This link is not (or no longer) valid, or the tradesperson has already been approved. Please contact the editors."
+      },
+      "terugVakmensen": "Back to tradespeople"
     },
     "agendaAanmelden": "Sign up for this activity",
     "voorbehoud": "Not yet final: this activity goes ahead if enough people sign up.",
@@ -1779,7 +1825,8 @@
       "whatsapp": "WhatsApp: neighbourhood pass needed",
       "uitleg": "You can see this with a neighbourhood pass. Enter your email address; you'll get a link, not an account.",
       "meer": "What is the neighbourhood pass?",
-      "telefoon": "Phone numbers"
+      "telefoon": "Phone numbers",
+      "vakmensAanmelden": "Submit a tradesperson with a neighbourhood pass"
     },
     "activeren": {
       "heading": "Activate neighbourhood pass",

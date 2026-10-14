@@ -1,13 +1,24 @@
 import type { CollectionConfig } from 'payload';
 import { editorOnlyContentAccess } from '../access/contentAccess';
 import { authorField, statusField } from './shared/contentFields';
-import { alleenIngelogdField } from '../access/isAdmin';
+import { alleenIngelogdField, isRedacteurOrAdminField } from '../access/isAdmin';
 import { setAuthor } from './shared/setAuthor';
+import { adresboekHooks } from '../lib/adresboek';
+import { MODERATIE, MODERATIE_LABELS, TELEFOON, WEBSITE } from '../lib/vakmensen/constants';
+import { vakmensAfterChange, vakmensBeforeChange } from '../lib/vakmensen/workflow';
 
-const TELEFOON = /^[0-9+\-()\s]{6,20}$/;
-const WEBSITE = /^https?:\/\/\S+\.\S+$/;
+// De aanmelder heeft een buurtpas, dus het adres is al bevestigd.
+const adresboek = adresboekHooks<{ aanmelderEmail?: string | null }>(
+  (d) => d.aanmelderEmail,
+  () => true,
+);
 
-/** Vakmensen uit de buurt: naam, vak(ken), telefoon en website. Getoond als één overzicht op /vakmensen. */
+const isAanmelding = (data: { moderatie?: string | null } | undefined) => Boolean(data?.moderatie);
+
+/**
+ * Vakmensen uit de buurt: naam, vak(ken), telefoon en website. Getoond als één overzicht op /vakmensen.
+ * Buren met een buurtpas kunnen er een aanmelden via /vakmensen/aanmelden; de redactie keurt die goed of af.
+ */
 export const Vakmensen: CollectionConfig = {
   slug: 'vakmensen',
   labels: {
@@ -17,12 +28,21 @@ export const Vakmensen: CollectionConfig = {
   admin: {
     useAsTitle: 'naam',
     group: 'Vakmensen',
-    defaultColumns: ['naam', 'vakken', 'telefoon', 'status'],
+    defaultColumns: ['naam', 'vakken', 'telefoon', 'status', 'moderatie'],
+    description:
+      'Aanmeldingen van buren staan op "Wacht op goedkeuring": keur goed of af met een reden (knoppen bovenaan het item). Goedkeuren zet de vakmens direct online.',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/VakmensModeratieKnoppen#default'],
+      },
+    },
   },
   defaultSort: 'naam',
   access: editorOnlyContentAccess,
   hooks: {
-    beforeChange: [setAuthor('author')],
+    beforeChange: [setAuthor('author'), vakmensBeforeChange],
+    afterChange: [vakmensAfterChange, adresboek.afterChange],
+    afterDelete: [adresboek.afterDelete],
   },
   fields: [
     {
@@ -35,9 +55,21 @@ export const Vakmensen: CollectionConfig = {
       type: 'relationship',
       relationTo: 'vakken',
       hasMany: true,
-      required: true,
       admin: {
         description: 'Kies één of meer vakken. Staat het vak er niet bij? Voeg het toe met de +.',
+      },
+      // Een aanmelding mag zonder vak binnenkomen (alleen "Ander vak"); live zetten kan pas met een vak.
+      validate: (value: unknown, { siblingData }: { siblingData: { status?: string } }) =>
+        siblingData?.status !== 'published' || (Array.isArray(value) && value.length > 0) || 'Kies minstens één vak.',
+    },
+    {
+      name: 'anderVak',
+      label: 'Ander vak (volgens de aanmelder)',
+      type: 'text',
+      maxLength: 60,
+      admin: {
+        description: 'Uit het aanmeldformulier. Voeg het vak toe bij Vakken (met de +) en maak dit veld daarna leeg.',
+        condition: (data) => Boolean(data?.anderVak),
       },
     },
     {
@@ -60,5 +92,68 @@ export const Vakmensen: CollectionConfig = {
     },
     statusField,
     authorField,
+
+    // --- Moderatie (alleen bij een aanmelding via de site) ---
+    {
+      name: 'moderatie',
+      type: 'select',
+      index: true,
+      options: MODERATIE.map((value) => ({ value, label: MODERATIE_LABELS[value] })),
+      access: { update: isRedacteurOrAdminField },
+      admin: {
+        position: 'sidebar',
+        description: 'Alleen bij een aanmelding via de site. Goedkeuren en afkeuren gaat met de knoppen bovenaan.',
+        condition: isAanmelding,
+      },
+    },
+    {
+      name: 'afwijsReden',
+      label: 'Reden van afkeuren',
+      type: 'textarea',
+      access: { read: isRedacteurOrAdminField, update: isRedacteurOrAdminField },
+      admin: {
+        position: 'sidebar',
+        description: 'Alleen invullen als je afkeurt; wordt naar de aanmelder gemaild.',
+        condition: isAanmelding,
+      },
+    },
+    {
+      name: 'aanmelderNaam',
+      label: 'Aangemeld door',
+      type: 'text',
+      access: { read: isRedacteurOrAdminField, update: isRedacteurOrAdminField },
+      admin: { position: 'sidebar', condition: isAanmelding },
+    },
+    {
+      name: 'aanmelderEmail',
+      label: 'E-mail aanmelder',
+      type: 'email',
+      access: { read: isRedacteurOrAdminField, update: isRedacteurOrAdminField },
+      admin: { position: 'sidebar', description: 'Uit de buurtpas, nooit publiek.', condition: isAanmelding },
+    },
+    {
+      name: 'aanmelderToelichting',
+      label: 'Toelichting van de aanmelder',
+      type: 'textarea',
+      maxLength: 500,
+      access: { read: isRedacteurOrAdminField, update: isRedacteurOrAdminField },
+      admin: { position: 'sidebar', description: 'Alleen voor de redactie.', condition: isAanmelding },
+    },
+    {
+      name: 'locale',
+      label: 'Taal van de mails',
+      type: 'select',
+      options: [
+        { label: 'Nederlands', value: 'nl' },
+        { label: 'English', value: 'en' },
+      ],
+      access: { read: isRedacteurOrAdminField },
+      admin: { position: 'sidebar', condition: isAanmelding },
+    },
+
+    // --- Intern ---
+    // Token voor de intrekken-link van de aanmelder.
+    { name: 'token', type: 'text', index: true, access: { read: () => false, update: () => false }, admin: { hidden: true } },
+    { name: 'laatsteMailOp', type: 'date', access: { read: () => false, update: () => false }, admin: { hidden: true } },
   ],
 };

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
@@ -86,6 +87,18 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
           <p className="m-0 font-semibold text-accent">{t('disclaimer.titel')}</p>
           <p className="mt-1 mb-0">{t.rich('disclaimer.tekst', { b: (chunks) => <strong>{chunks}</strong> })}</p>
         </aside>
+
+        <div className="mt-6 flex max-w-3xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <p className="m-0 text-text">
+            <strong>{t('aanmeldKnop.titel')}</strong> {t('aanmeldKnop.tekst')}
+          </p>
+          <Link
+            href={localizedHref(locale, '/vakmensen/aanmelden')}
+            className={`${knopCls} flex-none self-start border border-border text-text hover:border-primary hover:text-primary sm:self-auto`}
+          >
+            {t('aanmeldKnop.link')}
+          </Link>
+        </div>
 
         {heeftNummers && !buurtpas ? (
           <div className="mt-6 max-w-3xl">
