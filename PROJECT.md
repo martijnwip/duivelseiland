@@ -253,6 +253,16 @@ bun run seed:admin jij@voorbeeld.nl geheim # eigen e-mail/wachtwoord
 
 Idempotent: bestaat het e-mailadres al, dan gebeurt er niets. Bedoeld voor lokale ontwikkeling — niet voor productie (zwak standaardwachtwoord).
 
+### Homepagina-intro zetten
+
+De intro naast de kaart op de homepagina staat in Site-instellingen (veld `intro`, NL en EN): waar de site voor is en wat je er kunt doen, met links. `scripts/seed-intro.ts` zet die tekst. Het schrijft alleen `intro`; menu, footer en de andere velden blijven staan. De oude intro gaat eerst naar een back-up in `data/`. Daarna is de tekst gewoon te bewerken in `/admin`.
+
+```bash
+bun run seed:intro                                  # lokaal
+bun run seed:intro:prod                             # productie (eerst vercel env pull, zie hieronder)
+bun run seed:intro --herstel data/intro-backup.<omgeving>.<tijdstip>.json  # back-up terugzetten
+```
+
 ### Geschiedenisverhaal vullen
 
 De pagina `/geschiedenis` toont het verhaal uit de global `geschiedenis-verhaal` (tijdvakken, gebeurtenissen, vaste infographics); ontwerp in `docs/design-brief-geschiedenis.md`, bronmateriaal in `GESCHIEDENIS.md`. Het script vult de concepttekst in NL en EN en importeert de archieffoto's uit de Beeldbank (met datering, maker en rechten):
