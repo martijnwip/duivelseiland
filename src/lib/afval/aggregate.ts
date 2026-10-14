@@ -110,10 +110,13 @@ export function perFractie(c: Container[]) {
   return [...count(c.map((x) => x.fractie)).entries()].sort((a, b) => b[1] - a[1]).map(([fractie, n]) => ({ fractie, n }));
 }
 
-/** Meldingen van de afgelopen `dagen`, per categorie. */
+/** Meldingen van de afgelopen `dagen`, per categorie (op slug, met de naam van de eerste melding). */
 export function meldingenRecent(m: Melding[], nu: Date, dagen = 30) {
   const since = new Date(nu.getTime() - dagen * 86400_000).toISOString();
   const recent = m.filter((x) => x.datum >= since);
-  const perCat = [...count(recent.map((x) => x.categorie)).entries()].sort((a, b) => b[1] - a[1]).map(([categorie, n]) => ({ categorie, n }));
+  const naam = new Map(recent.map((x) => [x.categorieSlug, x.categorie] as const).reverse());
+  const perCat = [...count(recent.map((x) => x.categorieSlug)).entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([categorieSlug, n]) => ({ categorieSlug, categorie: naam.get(categorieSlug) ?? categorieSlug, n }));
   return { recent, perCat };
 }
