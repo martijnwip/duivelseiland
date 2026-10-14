@@ -1474,6 +1474,66 @@
         }
       }
     },
+    "parkeren": {
+      "eyebrow": "Parkeren",
+      "title": "Parkeren in Duivelseiland",
+      "intro": "Duivelseiland valt in parkeervergunninggebied Zuid 8. Aan de overkant van de Hobbemakade begint De Pijp: daar geldt een bewonersvergunning voor Zuid 8 niet.",
+      "tarief": {
+        "titel": "Wat kost parkeren?",
+        "perUur": "{bedrag} per uur",
+        "dagen": {
+          "ma-za": "ma–za",
+          "zo": "zo"
+        },
+        "bezoeker": {
+          "titel": "Bezoeker zonder vergunning",
+          "betalen": "Betalen: {tijden}. Daarbuiten parkeer je gratis.",
+          "kaarten": "Lang blijven? Bij de parkeerautomaat koop je een dagkaart (ma–za 9.00–24.00) voor {dag}, een zondagkaart (12.00–24.00) voor {zondag} of een avondkaart (19.00–24.00) voor {avond}."
+        },
+        "bezoek": {
+          "titel": "Bezoek van een bewoner",
+          "tekst": "Met de bezoekersvergunning van de bewoner parkeert je bezoek met 65 procent korting. De bewoner meldt het bezoek aan, maximaal 150 uur per kwartaal. De vergunning is gratis, ook als je zelf geen auto hebt."
+        },
+        "bewoner": {
+          "titel": "Bewoner met eigen auto",
+          "prijs": "Geen parkeergeld",
+          "tekst": "Met een parkeervergunning voor Zuid 8 parkeer je in de buurt zonder parkeergeld. De vergunning zelf kost geld en er kan een wachtlijst zijn. In De Pijp geldt hij niet."
+        },
+        "onbekend": "Het actuele tarief kon niet worden opgehaald.",
+        "bron": "Tarief sinds {datum}, bron: RDW Open Data Parkeren. Op een paar straten kunnen andere tijden gelden: zoek je straat op de <link>tarievenkaart van de gemeente</link>."
+      },
+      "cijfers": {
+        "totaal": "parkeerplaatsen in de buurt",
+        "laadpaal": "laadplekken voor elektrische auto’s",
+        "laden-lossen": "plekken voor laden en lossen",
+        "deelauto": "plekken voor deelauto’s",
+        "gehandicapt": "gehandicaptenplaatsen"
+      },
+      "kaartLabel": "Kaart van de parkeervakken in Duivelseiland: {laadpaal} laadplekken, {ladenLossen} plekken voor laden en lossen, {deelauto} deelautoplekken en {gehandicapt} gehandicaptenplaatsen gekleurd",
+      "legenda": {
+        "laadpaal": "Laadpaal",
+        "laden-lossen": "Laden en lossen",
+        "deelauto": "Deelauto",
+        "gehandicapt": "Gehandicapten",
+        "gewoon": "Overige vakken"
+      },
+      "bron": "Bron: Parkeervakken, gemeente Amsterdam. Wordt dagelijks bijgewerkt.",
+      "link": "Meer op amsterdam.nl",
+      "kaartjes": {
+        "laden": {
+          "title": "Laden en lossen",
+          "text": "Handig bij een verhuizing of bezorging. De tijden staan op het bord, meestal overdag op werkdagen en zaterdag. Parkeren mag daar niet."
+        },
+        "laadpaal": {
+          "title": "Laadpalen",
+          "text": "Een nieuwe laadpaal aanvragen kan niet meer: de gemeente kiest zelf de plekken. Vragen of ideeën stuur je naar oplaadpunten@amsterdam.nl."
+        },
+        "gehandicapt": {
+          "title": "Gehandicaptenparkeren",
+          "text": "Met een gehandicaptenparkeerkaart (GPK) parkeer je op de algemene gehandicaptenplaatsen. Staat er een kenteken op het bord, dan is de plek van één persoon."
+        }
+      }
+    },
     "kaart": {
       "eyebrow": "Kaart",
       "title": "Alles op de kaart",

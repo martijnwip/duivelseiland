@@ -2,30 +2,30 @@ import { BUURT_CODE, BUURT_ID, DSO, RECYCLEPUNTEN_URL, SIGNALEN_URL, VIEW_WGS84 
 import { wgs84ToRd, type Pt } from './geo';
 import type { Bijplaatsing, Container, Melding, Recyclepunt, Regel, Result } from './types';
 
-const DAG = 86400;
+export const DAG = 86400;
 const UUR = 3600;
 
 type Point = { type: 'Point'; coordinates: Pt };
 type DsoPage<K extends string, T> = { _embedded: Record<K, T[]>; page?: { totalPages?: number } };
 
-async function json<T>(url: string, revalidate: number): Promise<T> {
+export async function json<T>(url: string, revalidate: number): Promise<T> {
   const res = await fetch(url, { next: { revalidate } });
   if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
   return (await res.json()) as T;
 }
 
 /** Vangt fouten per bron af; de rest van de pagina blijft werken. */
-async function safe<T>(name: string, load: () => Promise<T>): Promise<Result<T>> {
+export async function safe<T>(name: string, load: () => Promise<T>): Promise<Result<T>> {
   try {
     return { ok: true, data: await load(), fetchedAt: new Date().toISOString() };
   } catch (e) {
-    console.error(`[afval] ${name} niet beschikbaar:`, e);
+    console.error(`[open data] ${name} niet beschikbaar:`, e);
     return { ok: false };
   }
 }
 
 /** Alle pagina's van een DSO-lijst: eerst pagina 1 met telling, daarna de rest tegelijk. */
-async function dsoAll<K extends string, T>(key: K, path: string, params: Record<string, string>, revalidate: number): Promise<T[]> {
+export async function dsoAll<K extends string, T>(key: K, path: string, params: Record<string, string>, revalidate: number): Promise<T[]> {
   const qs = (page: number) => new URLSearchParams({ _format: 'json', _pageSize: '1000', ...params, page: String(page) }).toString();
   const first = await json<DsoPage<K, T>>(`${DSO}${path}?${qs(1)}&_count=true`, revalidate);
   const pages = first.page?.totalPages ?? 1;
