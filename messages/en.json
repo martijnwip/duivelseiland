@@ -1186,7 +1186,11 @@
         "ctaTitle": "See rubbish on the street?",
         "ctaText": "Report it to the city via the website or the app. Bulky waste next to a container, a full container or a dumped sofa: every report counts.",
         "cta": "Make a report",
-        "mapLink": "View the reports map"
+        "mapLink": "View the reports map",
+        "bellen": "Rather call or message, for example about bulky waste? Call the city on",
+        "whatsapp": "or WhatsApp",
+        "bellenVerder": "(Monday to Friday, 8:00 to 18:00; calling from abroad: +31 20 624 1111). Other ways to get in touch are on the",
+        "contactLink": "city's contact page"
       },
       "sources": {
         "title": "Sources",

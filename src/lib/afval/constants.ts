@@ -19,4 +19,7 @@ export const LINKS = {
   melding: 'https://meldingen.amsterdam.nl/',
   meldingenkaart: 'https://meldingen.amsterdam.nl/meldingenkaart',
   containerkaart: 'https://kaart.amsterdam.nl/afvalcontainers',
+  contact: 'https://www.amsterdam.nl/contact/',
+  telefoon: 'tel:14020',
+  whatsapp: 'https://wa.me/31644440655',
 } as const;

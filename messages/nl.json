@@ -1003,7 +1003,11 @@
         "ctaTitle": "Zie je afval op straat?",
         "ctaText": "Meld het bij de gemeente via de website of de app. Grof afval naast een container, een volle container of een gedumpte bank: elke melding telt.",
         "cta": "Doe een melding",
-        "mapLink": "Bekijk de meldingenkaart"
+        "mapLink": "Bekijk de meldingenkaart",
+        "bellen": "Liever bellen of appen, bijvoorbeeld over grof afval? Bel de gemeente op",
+        "whatsapp": "of app naar",
+        "bellenVerder": "(maandag tot en met vrijdag, 8.00 tot 18.00 uur; bellen vanuit het buitenland: +31 20 624 1111). Andere manieren om contact op te nemen vind je op de",
+        "contactLink": "contactpagina van de gemeente"
       },
       "sources": {
         "title": "Bronnen",

@@ -397,6 +397,21 @@ export async function AfvalPage({ locale }: { locale: string }) {
           {t('meldingen.mapLink')}
         </External>
       </div>
+      <p className="m-0 text-[15px] leading-[1.5]">
+        {t('meldingen.bellen')}{' '}
+        <a href={LINKS.telefoon} className="font-semibold whitespace-nowrap text-background underline underline-offset-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background">
+          14 020
+        </a>{' '}
+        {t('meldingen.whatsapp')}{' '}
+        <External href={LINKS.whatsapp} note={note} className="font-semibold whitespace-nowrap text-background underline underline-offset-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background">
+          06 4444 0655
+        </External>{' '}
+        {t('meldingen.bellenVerder')}{' '}
+        <External href={LINKS.contact} note={note} className="font-medium text-background underline underline-offset-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-background">
+          {t('meldingen.contactLink')}
+        </External>
+        .
+      </p>
     </div>
   );
   const meldTone = (cat: string): Tone => (cat === 'Grof afval' ? 'c' : 's');
