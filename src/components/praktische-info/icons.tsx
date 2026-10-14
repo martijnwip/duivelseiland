@@ -33,6 +33,43 @@ const ICONS = {
   telefoon: (
     <path d="M14 7l6 9-4 4a24 24 0 0 0 12 12l4-4 9 6-3 6c-2 2-5 2-8 1A36 36 0 0 1 9 20c-1-3-1-6 1-8z" />
   ),
+  auto: (
+    <>
+      <path d="M8 32v-7l4-9h24l4 9v7z" />
+      <path d="M8 25h32" />
+      <circle cx="15" cy="32" r="4" />
+      <circle cx="33" cy="32" r="4" />
+    </>
+  ),
+  bezoek: (
+    <>
+      <circle cx="17" cy="16" r="6" />
+      <path d="M6 40a11 11 0 0 1 22 0" />
+      <circle cx="33" cy="18" r="5" />
+      <path d="M29 30a9 9 0 0 1 13 10" />
+    </>
+  ),
+  doos: (
+    <>
+      <path d="M8 16l16-8 16 8v18l-16 8-16-8z" />
+      <path d="M8 16l16 8 16-8M24 24v18" />
+    </>
+  ),
+  stekker: (
+    <>
+      <path d="M18 6v9M30 6v9" />
+      <path d="M13 15h22v7a11 11 0 0 1-22 0z" />
+      <path d="M24 33v9" />
+    </>
+  ),
+  rolstoel: (
+    <>
+      <circle cx="21" cy="8" r="3" />
+      <path d="M21 13v13h11l4 10" />
+      <path d="M21 19h9" />
+      <path d="M15 22a10 10 0 1 0 14 13" />
+    </>
+  ),
   kerk: (
     <>
       <path d="M24 5v8M20 9h8" />

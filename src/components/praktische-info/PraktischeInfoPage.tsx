@@ -1,7 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
+import { Legend } from '@/components/stats/charts/base';
+import { getParkeervakken } from '@/lib/parkeren/api';
+import { perSoort } from '@/lib/parkeren/aggregate';
 import { Icon, type PraktischeInfoIconName } from './icons';
 import { BRIEVENBUSSEN, PraktischeKaart } from './PraktischeKaart';
+import { ParkeerKaart, SOORT_TONE } from './ParkeerKaart';
 
 const AED_KAARTEN = [
   { key: 'locatie', icon: 'locatie' },
@@ -12,8 +16,22 @@ const IN_DE_BUURT = [
   { key: 'kerk', icon: 'kerk', url: 'https://amsterdam.oudkatholiek.nl/' },
 ] as const satisfies readonly { key: string; icon: PraktischeInfoIconName; url: string }[];
 
+const PARKEER_SOORTEN = ['laadpaal', 'laden-lossen', 'deelauto', 'gehandicapt'] as const;
+
+/** Uitleg bij parkeren; de links zijn gecontroleerd op amsterdam.nl (alleen in het Nederlands). */
+const PARKEER_KAARTJES = [
+  { key: 'vergunning', icon: 'auto', url: 'https://www.amsterdam.nl/parkeren/parkeervergunning/parkeervergunning-voor-bewoners/' },
+  { key: 'bezoek', icon: 'bezoek', url: 'https://www.amsterdam.nl/parkeren/parkeervergunning/parkeervergunningen-voor-uw-bezoek/parkeervergunning-bezoek-aanvragen/' },
+  { key: 'laden', icon: 'doos', url: null },
+  { key: 'laadpaal', icon: 'stekker', url: 'https://www.amsterdam.nl/parkeren/elektrische-oplaadpunten-amsterdam/' },
+  { key: 'gehandicapt', icon: 'rolstoel', url: 'https://www.amsterdam.nl/parkeren/parkeren-gehandicapten/parkeren-gehandicapten-waar/' },
+] as const satisfies readonly { key: string; icon: PraktischeInfoIconName; url: string | null }[];
+
 export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
   const t = await getTranslations({ locale, namespace: 'praktischeInfo' });
+  const vakken = await getParkeervakken();
+  const aantal = vakken.ok ? perSoort(vakken.data) : null;
+  const num = (n: number) => n.toLocaleString(locale);
 
   return (
     <main>
@@ -115,6 +133,63 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
                     {t('inDeBuurt.link')}
                     <span className="sr-only"> ({t('nieuwVenster')})</span>
                   </a>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      <Section id="praktisch-parkeren">
+        <SectionHead id="praktisch-parkeren" eyebrow={t('parkeren.eyebrow')} title={t('parkeren.title')} intro={t('parkeren.intro')} />
+
+        {vakken.ok && aantal ? (
+          <>
+            <dl className="mt-8 mb-0 grid grid-cols-2 gap-4 md:grid-cols-5">
+              {(['totaal', ...PARKEER_SOORTEN] as const).map((key) => (
+                <div key={key} className="flex flex-col gap-1 border-t border-border pt-3">
+                  <dt className="order-2 text-sm leading-[1.4] text-muted">{t(`parkeren.cijfers.${key}`)}</dt>
+                  <dd className="order-1 m-0 font-heading text-3xl leading-none font-semibold text-primary">{num(aantal[key])}</dd>
+                </div>
+              ))}
+            </dl>
+            <figure className={`${boxCls} mt-6 mb-0`}>
+              <ParkeerKaart
+                vakken={vakken.data}
+                label={t('parkeren.kaartLabel', {
+                  laadpaal: aantal.laadpaal,
+                  ladenLossen: aantal['laden-lossen'],
+                  deelauto: aantal.deelauto,
+                  gehandicapt: aantal.gehandicapt,
+                })}
+              />
+              <div className="flex flex-wrap items-center gap-x-4.5 gap-y-1.5">
+                <Legend items={PARKEER_SOORTEN.map((key) => ({ label: t(`parkeren.legenda.${key}`), tone: SOORT_TONE[key] }))} />
+                {/* Gewone vakken staan op de kaart als omtrek, dus hier ook. */}
+                <span className="inline-flex items-center gap-2 text-[13px] text-text">
+                  <span aria-hidden className="size-3 rounded-[2px] border border-muted" />
+                  {t('parkeren.legenda.gewoon')}
+                </span>
+              </div>
+              <figcaption className="text-sm leading-[1.4] text-muted">{t('parkeren.bron')}</figcaption>
+            </figure>
+          </>
+        ) : null}
+
+        <ul className="mt-6 grid list-none gap-4 p-0 md:grid-cols-2">
+          {PARKEER_KAARTJES.map(({ key, icon, url }) => (
+            <li key={key} className={boxCls}>
+              <div className="flex items-start gap-4">
+                <Icon name={icon} className="size-10 flex-none text-primary" />
+                <div>
+                  <h3 className="m-0 text-lg leading-[1.3] font-semibold text-text">{t(`parkeren.kaartjes.${key}.title`)}</h3>
+                  <p className="mt-1 mb-0 leading-[1.5] text-text">{t(`parkeren.kaartjes.${key}.text`)}</p>
+                  {url ? (
+                    <a href={url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block font-medium text-primary underline">
+                      {t('parkeren.link')}
+                      <span className="sr-only"> ({t('nieuwVenster')})</span>
+                    </a>
+                  ) : null}
                 </div>
               </div>
             </li>

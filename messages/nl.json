@@ -1474,6 +1474,50 @@
         }
       }
     },
+    "parkeren": {
+      "eyebrow": "Parkeren",
+      "title": "Parkeren in Duivelseiland",
+      "intro": "Duivelseiland valt in parkeervergunninggebied Zuid 8. Aan de overkant van de Hobbemakade begint De Pijp: daar geldt een bewonersvergunning voor Zuid 8 niet.",
+      "cijfers": {
+        "totaal": "parkeerplaatsen in de buurt",
+        "laadpaal": "laadplekken voor elektrische auto’s",
+        "laden-lossen": "plekken voor laden en lossen",
+        "deelauto": "plekken voor deelauto’s",
+        "gehandicapt": "gehandicaptenplaatsen"
+      },
+      "kaartLabel": "Kaart van de parkeervakken in Duivelseiland: {laadpaal} laadplekken, {ladenLossen} plekken voor laden en lossen, {deelauto} deelautoplekken en {gehandicapt} gehandicaptenplaatsen gekleurd",
+      "legenda": {
+        "laadpaal": "Laadpaal",
+        "laden-lossen": "Laden en lossen",
+        "deelauto": "Deelauto",
+        "gehandicapt": "Gehandicapten",
+        "gewoon": "Overige vakken"
+      },
+      "bron": "Bron: Parkeervakken, gemeente Amsterdam. Wordt dagelijks bijgewerkt.",
+      "link": "Meer op amsterdam.nl",
+      "kaartjes": {
+        "vergunning": {
+          "title": "Parkeervergunning",
+          "text": "Woon je hier en heb je een auto? Vraag een parkeervergunning aan bij de gemeente. Er kan een wachtlijst zijn; je plek zie je in Mijn Parkeren."
+        },
+        "bezoek": {
+          "title": "Bezoek",
+          "text": "Ook zonder eigen auto kun je een gratis bezoekersvergunning aanvragen. Je bezoek parkeert dan in Zuid 8 met 65 procent korting, maximaal 150 uur per kwartaal."
+        },
+        "laden": {
+          "title": "Laden en lossen",
+          "text": "Handig bij een verhuizing of bezorging. De tijden staan op het bord, meestal overdag op werkdagen en zaterdag. Parkeren mag daar niet."
+        },
+        "laadpaal": {
+          "title": "Laadpalen",
+          "text": "Een nieuwe laadpaal aanvragen kan niet meer: de gemeente kiest zelf de plekken. Vragen of ideeën stuur je naar oplaadpunten@amsterdam.nl."
+        },
+        "gehandicapt": {
+          "title": "Gehandicaptenparkeren",
+          "text": "Met een gehandicaptenparkeerkaart (GPK) parkeer je op de algemene gehandicaptenplaatsen. Staat er een kenteken op het bord, dan is de plek van één persoon."
+        }
+      }
+    },
     "kaart": {
       "eyebrow": "Kaart",
       "title": "Alles op de kaart",

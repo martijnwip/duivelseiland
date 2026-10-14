@@ -1657,6 +1657,50 @@
         }
       }
     },
+    "parkeren": {
+      "eyebrow": "Parking",
+      "title": "Parking in Duivelseiland",
+      "intro": "Duivelseiland is in parking permit area Zuid 8. Across the Hobbemakade, De Pijp begins: a residents’ permit for Zuid 8 is not valid there.",
+      "cijfers": {
+        "totaal": "parking spaces in the neighbourhood",
+        "laadpaal": "charging spaces for electric cars",
+        "laden-lossen": "loading and unloading bays",
+        "deelauto": "spaces for shared cars",
+        "gehandicapt": "disabled parking spaces"
+      },
+      "kaartLabel": "Map of the parking spaces in Duivelseiland, with {laadpaal} charging spaces, {ladenLossen} loading bays, {deelauto} shared-car spaces and {gehandicapt} disabled spaces in colour",
+      "legenda": {
+        "laadpaal": "Charging",
+        "laden-lossen": "Loading and unloading",
+        "deelauto": "Shared car",
+        "gehandicapt": "Disabled",
+        "gewoon": "Other spaces"
+      },
+      "bron": "Source: Parkeervakken, City of Amsterdam. Updated daily.",
+      "link": "More on amsterdam.nl (in Dutch)",
+      "kaartjes": {
+        "vergunning": {
+          "title": "Parking permit",
+          "text": "Live here and have a car? Apply for a parking permit with the city. There may be a waiting list; you can see your place in Mijn Parkeren."
+        },
+        "bezoek": {
+          "title": "Visitors",
+          "text": "Even without a car of your own you can apply for a free visitor permit. Your visitors then park in Zuid 8 at a 65 percent discount, up to 150 hours per quarter."
+        },
+        "laden": {
+          "title": "Loading and unloading",
+          "text": "Useful when moving house or for deliveries. The times are on the sign, usually daytime on weekdays and Saturday. You can’t park there."
+        },
+        "laadpaal": {
+          "title": "Charging points",
+          "text": "You can no longer request a new charging point: the city chooses the locations. Send questions or ideas to oplaadpunten@amsterdam.nl."
+        },
+        "gehandicapt": {
+          "title": "Disabled parking",
+          "text": "With a disabled parking card (GPK) you can park in the general disabled spaces. If the sign shows a licence plate, the space belongs to one person."
+        }
+      }
+    },
     "kaart": {
       "eyebrow": "Map",
       "title": "Everything on the map",
