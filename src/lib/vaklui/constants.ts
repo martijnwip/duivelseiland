@@ -1,4 +1,4 @@
-/** Moderatie van een vakmens die een buur via /vakmensen/aanmelden heeft aangemeld. Leeg: door de redactie aangemaakt. */
+/** Moderatie van een vakman die een buur via /vaklui/aanmelden heeft aangemeld. Leeg: door de redactie aangemaakt. */
 export const MODERATIE = ['ingediend', 'afgewezen', 'goedgekeurd'] as const;
 export type Moderatie = (typeof MODERATIE)[number];
 

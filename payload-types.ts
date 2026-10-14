@@ -75,7 +75,7 @@ export interface Config {
     interviews: Interview;
     geschiedenis: Geschiedeni;
     'duivelse-kunst': DuivelseKunst;
-    vakmensen: Vakmensen;
+    vaklui: Vaklui;
     vakken: Vakken;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
@@ -107,7 +107,7 @@ export interface Config {
     interviews: InterviewsSelect<false> | InterviewsSelect<true>;
     geschiedenis: GeschiedenisSelect<false> | GeschiedenisSelect<true>;
     'duivelse-kunst': DuivelseKunstSelect<false> | DuivelseKunstSelect<true>;
-    vakmensen: VakmensenSelect<false> | VakmensenSelect<true>;
+    vaklui: VakluiSelect<false> | VakluiSelect<true>;
     vakken: VakkenSelect<false> | VakkenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
@@ -572,12 +572,12 @@ export interface DuivelseKunst {
   createdAt: string;
 }
 /**
- * Aanmeldingen van buren staan op "Wacht op goedkeuring": keur goed of af met een reden (knoppen bovenaan het item). Goedkeuren zet de vakmens direct online.
+ * Aanmeldingen van buren staan op "Wacht op goedkeuring": keur goed of af met een reden (knoppen bovenaan het item). Goedkeuren zet de vakman direct online.
  *
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "vakmensen".
+ * via the `definition` "vaklui".
  */
-export interface Vakmensen {
+export interface Vaklui {
   id: number;
   naam: string;
   /**
@@ -1034,8 +1034,8 @@ export interface PayloadLockedDocument {
         value: number | DuivelseKunst;
       } | null)
     | ({
-        relationTo: 'vakmensen';
-        value: number | Vakmensen;
+        relationTo: 'vaklui';
+        value: number | Vaklui;
       } | null)
     | ({
         relationTo: 'vakken';
@@ -1329,9 +1329,9 @@ export interface DuivelseKunstSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "vakmensen_select".
+ * via the `definition` "vaklui_select".
  */
-export interface VakmensenSelect<T extends boolean = true> {
+export interface VakluiSelect<T extends boolean = true> {
   naam?: T;
   vakken?: T;
   anderVak?: T;

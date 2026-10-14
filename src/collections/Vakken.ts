@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { isRedacteurOrAdmin } from '../access/isAdmin';
 
 /**
- * Vakken (loodgieter, elektricien, ...) als tags voor Vakmensen. Een redacteur kan bij een vakmens
+ * Vakken (loodgieter, elektricien, ...) als tags voor Vaklui. Een redacteur kan bij een vakman
  * met de + in het veld Vakken direct een nieuw vak toevoegen.
  */
 export const Vakken: CollectionConfig = {
@@ -13,7 +13,7 @@ export const Vakken: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'naam',
-    group: 'Vakmensen',
+    group: 'Vaklui',
     components: {
       edit: {
         beforeDocumentControls: ['/components/admin/TranslateButton#default'],
@@ -22,7 +22,7 @@ export const Vakken: CollectionConfig = {
   },
   defaultSort: 'naam',
   access: {
-    // De site toont de vaknamen bij de vakmensen.
+    // De site toont de vaknamen bij de vaklui.
     read: () => true,
     create: isRedacteurOrAdmin,
     update: isRedacteurOrAdmin,

@@ -30,7 +30,7 @@ import { PraktischeInfo } from './collections/PraktischeInfo';
 import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
 import { Vakken } from './collections/Vakken';
-import { Vakmensen } from './collections/Vakmensen';
+import { Vaklui } from './collections/Vaklui';
 import { Buurtborrel } from './globals/Buurtborrel';
 import { OverDeNaam } from './globals/OverDeNaam';
 import { GeschiedenisVerhaal } from './globals/GeschiedenisVerhaal';
@@ -96,7 +96,7 @@ export default buildConfig({
     Interviews,
     Geschiedenis,
     DuivelseKunst,
-    Vakmensen,
+    Vaklui,
     Vakken,
     PraktischeInfo,
     HeroSlides,

@@ -29,7 +29,7 @@ CONTENT_COLLECTIONS = [
     "interviews",
     "geschiedenis",
     "duivelse-kunst",
-    "vakmensen",
+    "vaklui",
     "praktische-info",
 ]
 

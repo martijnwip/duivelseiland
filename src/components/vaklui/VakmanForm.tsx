@@ -1,11 +1,11 @@
 'use client';
 
 import { useActionState } from 'react';
-import { submitVakmens, type VakmensFormState, type VakmensFoutReden } from './actions';
+import { submitVakman, type VakmanFormState, type VakmanFoutReden } from './actions';
 import { Honeypot } from '../activiteiten/Honeypot';
 import { buttonCls, hintCls, inputCls, labelCls } from '../activiteiten/styles';
 
-export type VakmensFormStrings = {
+export type VakmanFormStrings = {
   naam: string;
   naamPlaceholder: string;
   vakken: string;
@@ -23,22 +23,22 @@ export type VakmensFormStrings = {
   submit: string;
   submitting: string;
   success: string;
-  error: Record<VakmensFoutReden, string>;
+  error: Record<VakmanFoutReden, string>;
 };
 
-const initialState: VakmensFormState = { status: 'idle' };
+const initialState: VakmanFormState = { status: 'idle' };
 
-/** Formulier op /vakmensen/aanmelden (alleen met buurtpas). */
-export function VakmensForm({
+/** Formulier op /vaklui/aanmelden (alleen met buurtpas). */
+export function VakmanForm({
   locale,
   vakken,
   strings,
 }: {
   locale: string;
   vakken: { id: number; naam: string }[];
-  strings: VakmensFormStrings;
+  strings: VakmanFormStrings;
 }) {
-  const [state, formAction, pending] = useActionState(submitVakmens, initialState);
+  const [state, formAction, pending] = useActionState(submitVakman, initialState);
   const vorige = state.status === 'error' ? state.velden : undefined;
 
   if (state.status === 'success') {
@@ -54,15 +54,15 @@ export function VakmensForm({
       <input type="hidden" name="locale" value={locale} />
 
       <div>
-        <label htmlFor="vakmens-naam" className={labelCls}>
+        <label htmlFor="vakman-naam" className={labelCls}>
           {strings.naam}
         </label>
-        <input id="vakmens-naam" name="naam" required maxLength={80} defaultValue={vorige?.naam} placeholder={strings.naamPlaceholder} className={inputCls} />
+        <input id="vakman-naam" name="naam" required maxLength={80} defaultValue={vorige?.naam} placeholder={strings.naamPlaceholder} className={inputCls} />
       </div>
 
-      <fieldset aria-describedby="vakmens-vakken-hint">
+      <fieldset aria-describedby="vakman-vakken-hint">
         <legend className={labelCls}>{strings.vakken}</legend>
-        <p id="vakmens-vakken-hint" className={hintCls}>
+        <p id="vakman-vakken-hint" className={hintCls}>
           {strings.vakkenHint}
         </p>
         {vakken.length ? (
@@ -82,11 +82,11 @@ export function VakmensForm({
           </div>
         ) : null}
         <div className="mt-3">
-          <label htmlFor="vakmens-ander-vak" className={labelCls}>
+          <label htmlFor="vakman-ander-vak" className={labelCls}>
             {strings.anderVak}
           </label>
           <input
-            id="vakmens-ander-vak"
+            id="vakman-ander-vak"
             name="anderVak"
             maxLength={60}
             defaultValue={vorige?.anderVak}
@@ -97,31 +97,31 @@ export function VakmensForm({
       </fieldset>
 
       <div>
-        <p id="vakmens-contact-hint" className={hintCls}>
+        <p id="vakman-contact-hint" className={hintCls}>
           {strings.contactHint}
         </p>
         <div className="mt-2 grid gap-5 sm:grid-cols-2">
           <div>
-            <label htmlFor="vakmens-telefoon" className={labelCls}>
+            <label htmlFor="vakman-telefoon" className={labelCls}>
               {strings.telefoon}
             </label>
             <input
-              id="vakmens-telefoon"
+              id="vakman-telefoon"
               name="telefoon"
               type="tel"
               maxLength={20}
               autoComplete="off"
               defaultValue={vorige?.telefoon}
-              aria-describedby="vakmens-contact-hint"
+              aria-describedby="vakman-contact-hint"
               className={inputCls}
             />
           </div>
           <div>
-            <label htmlFor="vakmens-website" className={labelCls}>
+            <label htmlFor="vakman-website" className={labelCls}>
               {strings.website}
             </label>
             <input
-              id="vakmens-website"
+              id="vakman-website"
               name="website"
               type="text"
               inputMode="url"
@@ -129,7 +129,7 @@ export function VakmensForm({
               autoComplete="off"
               defaultValue={vorige?.website}
               placeholder="www.voorbeeld.nl"
-              aria-describedby="vakmens-contact-hint"
+              aria-describedby="vakman-contact-hint"
               className={inputCls}
             />
           </div>
@@ -137,37 +137,37 @@ export function VakmensForm({
       </div>
 
       <div>
-        <label htmlFor="vakmens-aanmelder" className={labelCls}>
+        <label htmlFor="vakman-aanmelder" className={labelCls}>
           {strings.aanmelderNaam}
         </label>
         <input
-          id="vakmens-aanmelder"
+          id="vakman-aanmelder"
           name="aanmelderNaam"
           required
           maxLength={80}
           autoComplete="name"
           defaultValue={vorige?.aanmelderNaam}
-          aria-describedby="vakmens-aanmelder-hint"
+          aria-describedby="vakman-aanmelder-hint"
           className={inputCls}
         />
-        <p id="vakmens-aanmelder-hint" className={hintCls}>
+        <p id="vakman-aanmelder-hint" className={hintCls}>
           {strings.aanmelderNaamHint}
         </p>
       </div>
 
       <div>
-        <label htmlFor="vakmens-toelichting" className={labelCls}>
+        <label htmlFor="vakman-toelichting" className={labelCls}>
           {strings.toelichting}
         </label>
-        <p id="vakmens-toelichting-hint" className={hintCls}>
+        <p id="vakman-toelichting-hint" className={hintCls}>
           {strings.toelichtingHint}
         </p>
         <textarea
-          id="vakmens-toelichting"
+          id="vakman-toelichting"
           name="toelichting"
           maxLength={500}
           rows={4}
-          aria-describedby="vakmens-toelichting-hint"
+          aria-describedby="vakman-toelichting-hint"
           defaultValue={vorige?.toelichting}
           className={inputCls}
         />

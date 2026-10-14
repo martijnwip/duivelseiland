@@ -4,20 +4,20 @@ import config from '@payload-config';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
-import { VakmensForm } from '@/components/vakmensen/VakmensForm';
+import { VakmanForm } from '@/components/vaklui/VakmanForm';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { localizedHref } from '@/i18n/localizedHref';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: 'pages.vakmensen.aanmelden' });
+  const t = await getTranslations({ locale, namespace: 'pages.vaklui.aanmelden' });
   return { title: t('heading'), description: t('metaDescription') };
 }
 
-export default async function VakmensAanmeldenRoute({ params }: { params: Promise<{ locale: string }> }) {
+export default async function VakmanAanmeldenRoute({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'pages.vakmensen.aanmelden' });
+  const t = await getTranslations({ locale, namespace: 'pages.vaklui.aanmelden' });
   const tb = await getTranslations({ locale, namespace: 'buurtpas' });
   // Alleen buren met een buurtpas kunnen aanmelden (leest cookies, dus per request gerenderd).
   const buurtpas = await heeftBuurtpas();
@@ -32,13 +32,13 @@ export default async function VakmensAanmeldenRoute({ params }: { params: Promis
 
   return (
     <main className="pt-8 xl:pt-12">
-      <Section id="vakmens-aanmelden">
-        <SectionHead id="vakmens-aanmelden" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+      <Section id="vakman-aanmelden">
+        <SectionHead id="vakman-aanmelden" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
         <div className="mt-8 max-w-2xl">
           {buurtpas ? (
             <div className={boxCls}>
-              <VakmensForm
+              <VakmanForm
                 locale={locale}
                 vakken={vakken}
                 strings={{
@@ -71,7 +71,7 @@ export default async function VakmensAanmeldenRoute({ params }: { params: Promis
               />
             </div>
           ) : (
-            <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vakmensen/aanmelden')} titel={tb('slot.vakmensAanmelden')} />
+            <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vaklui/aanmelden')} titel={tb('slot.vakmanAanmelden')} />
           )}
         </div>
       </Section>

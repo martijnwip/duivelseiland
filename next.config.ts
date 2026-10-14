@@ -18,6 +18,13 @@ const config = withNextIntl(
     // Next's build tracer can't follow those, so keep the package external
     // instead of bundling it (see runtime "Cannot find module 'ws'" on Vercel).
     serverExternalPackages: ['@libsql/client', 'ws', 'undici'],
+    // /vakmensen heet sinds oktober 2026 /vaklui; oude links (bladwijzers, zoekmachines, verstuurde mails) blijven werken.
+    async redirects() {
+      return [
+        { source: '/vakmensen/:path*', destination: '/vaklui/:path*', permanent: true },
+        { source: '/:locale(nl|en)/vakmensen/:path*', destination: '/:locale/vaklui/:path*', permanent: true },
+      ];
+    },
     // The build tracer can't follow @libsql/isomorphic-ws's conditional ESM
     // export into 'ws'/'undici', so force those package files into the
     // deployed function output explicitly.

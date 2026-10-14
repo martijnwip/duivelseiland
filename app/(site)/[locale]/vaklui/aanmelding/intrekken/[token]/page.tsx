@@ -7,11 +7,11 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'activiteiten.token' });
-  return { title: t('vakmens-intrekken.heading'), robots: { index: false, follow: false } };
+  return { title: t('vakman-intrekken.heading'), robots: { index: false, follow: false } };
 }
 
 export default async function Route({ params }: { params: Promise<{ locale: string; token: string }> }) {
   const { locale, token } = await params;
   setRequestLocale(locale);
-  return <TokenPage kind="vakmens-intrekken" locale={locale} token={token} />;
+  return <TokenPage kind="vakman-intrekken" locale={locale} token={token} />;
 }

@@ -96,7 +96,7 @@
     "duivelseKunst": {
       "heading": "Duivelse Kunst"
     },
-    "vakmensen": {
+    "vaklui": {
       "heading": "Local Craftspeople",
       "empty": "No craftspeople listed yet.",
       "telefoon": "Phone",
@@ -1785,14 +1785,14 @@
         "invalid": "This link is not (or no longer) valid."
       },
       "terug": "Back to activities",
-      "vakmens-intrekken": {
+      "vakman-intrekken": {
         "heading": "Withdraw submission",
         "text": "Click the button to withdraw the tradesperson submission. It will be deleted completely.",
         "submit": "Withdraw the submission",
         "success": "The submission has been withdrawn and deleted.",
         "invalid": "This link is not (or no longer) valid, or the tradesperson has already been approved. Please contact the editors."
       },
-      "terugVakmensen": "Back to tradespeople"
+      "terugVaklui": "Back to tradespeople"
     },
     "agendaAanmelden": "Sign up for this activity",
     "voorbehoud": "Not yet final: this activity goes ahead if enough people sign up.",
@@ -1826,7 +1826,7 @@
       "uitleg": "You can see this with a neighbourhood pass. Enter your email address; you'll get a link, not an account.",
       "meer": "What is the neighbourhood pass?",
       "telefoon": "Phone numbers",
-      "vakmensAanmelden": "Submit a tradesperson with a neighbourhood pass"
+      "vakmanAanmelden": "Submit a tradesperson with a neighbourhood pass"
     },
     "activeren": {
       "heading": "Activate neighbourhood pass",
