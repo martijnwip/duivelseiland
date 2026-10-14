@@ -57,14 +57,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.run(sql`ALTER TABLE \`payload_locked_documents_rels\` ADD \`vakken_id\` integer REFERENCES vakken(id);`)
   await db.run(sql`CREATE INDEX \`payload_locked_documents_rels_vakken_id_idx\` ON \`payload_locked_documents_rels\` (\`vakken_id\`);`)
 
-  // De eerste vakken; de redactie voegt er zelf meer toe.
+  // De eerste vakken; de redactie voegt er zelf meer toe. Met gewone SQL en niet via de Payload-API: die werkt
+  // met de huidige config (bv. collection `vaklui`), en die past niet bij het schema van dit moment.
   for (const [nl, en] of [
     ['Loodgieter', 'Plumber'],
     ['Elektricien', 'Electrician'],
     ['Timmerman', 'Carpenter'],
   ]) {
-    const vak = await payload.create({ collection: 'vakken', data: { naam: nl }, locale: 'nl', overrideAccess: true, req })
-    await payload.update({ collection: 'vakken', id: vak.id, data: { naam: en }, locale: 'en', overrideAccess: true, req })
+    const [vak] = await db.all<{ id: number }>(sql`INSERT INTO \`vakken\` DEFAULT VALUES RETURNING \`id\`;`)
+    await db.run(sql`INSERT INTO \`vakken_locales\` (\`naam\`, \`_locale\`, \`_parent_id\`) VALUES (${nl}, 'nl', ${vak.id}), (${en}, 'en', ${vak.id});`)
   }
 }
 

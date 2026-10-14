@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload';
 import { isRedacteurOrAdmin } from '../access/isAdmin';
+import { metHoofdletter } from '../lib/vaklui/vaknaam';
 
 /**
  * Vakken (loodgieter, elektricien, ...) als tags voor Vaklui. Een redacteur kan bij een vakman
@@ -34,6 +35,10 @@ export const Vakken: CollectionConfig = {
       type: 'text',
       required: true,
       localized: true,
+      // Altijd met een hoofdletter opgeslagen, ook bij een vak dat met de + bij een vakman wordt toegevoegd.
+      hooks: {
+        beforeValidate: [({ value }) => (typeof value === 'string' ? metHoofdletter(value) : value)],
+      },
     },
   ],
 };

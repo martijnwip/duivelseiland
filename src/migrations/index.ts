@@ -34,6 +34,7 @@ import * as migration_20261007_001845_vakmensen_vakken from './20261007_001845_v
 import * as migration_20261007_010522_buurtpas_nieuwsbrief from './20261007_010522_buurtpas_nieuwsbrief';
 import * as migration_20261014_120726_vakmensen_aanmelden from './20261014_120726_vakmensen_aanmelden';
 import * as migration_20261014_130000_vaklui from './20261014_130000_vaklui';
+import * as migration_20261014_160000_vakken_hoofdletter from './20261014_160000_vakken_hoofdletter';
 
 export const migrations = [
   {
@@ -215,5 +216,10 @@ export const migrations = [
     up: migration_20261014_130000_vaklui.up,
     down: migration_20261014_130000_vaklui.down,
     name: '20261014_130000_vaklui',
+  },
+  {
+    up: migration_20261014_160000_vakken_hoofdletter.up,
+    down: migration_20261014_160000_vakken_hoofdletter.down,
+    name: '20261014_160000_vakken_hoofdletter',
   },
 ];
