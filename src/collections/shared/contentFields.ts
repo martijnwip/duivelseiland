@@ -29,7 +29,7 @@ export const authorField: Field = {
 
 /**
  * Common field shape shared by every content collection (Nieuws, Agenda,
- * Interviews, Geschiedenis, Duivelse Kunst, Praktische info). Vakmensen heeft eigen velden.
+ * Interviews, Geschiedenis, Duivelse Kunst, Praktische info). Vaklui heeft eigen velden.
  */
 export const contentFields = (): Field[] => [
   {

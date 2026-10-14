@@ -7,15 +7,15 @@ import { Button, toast, useAuth, useDocumentInfo, useFormFields, useFormModified
 type Wijziging = { moderatie: 'goedgekeurd' | 'afgewezen'; afwijsReden?: string };
 
 const MELDINGEN = {
-  goedgekeurd: 'Goedgekeurd: de vakmens staat online en de aanmelder is gemaild.',
-  afgewezen: 'Afgekeurd: de vakmens is offline en de aanmelder krijgt een mail met de reden.',
+  goedgekeurd: 'Goedgekeurd: de vakman staat online en de aanmelder is gemaild.',
+  afgewezen: 'Afgekeurd: de vakman is offline en de aanmelder krijgt een mail met de reden.',
 };
 
 /**
- * Knoppen voor de redactie bovenaan een vakmens die een buur via de site heeft aangemeld: goedkeuren en
- * afkeuren. De regels en mails staan op de server (src/lib/vakmensen/workflow.ts), niet hier.
+ * Knoppen voor de redactie bovenaan een vakman die een buur via de site heeft aangemeld: goedkeuren en
+ * afkeuren. De regels en mails staan op de server (src/lib/vaklui/workflow.ts), niet hier.
  */
-export default function VakmensModeratieKnoppen() {
+export default function VakmanModeratieKnoppen() {
   const { id } = useDocumentInfo();
   const { user } = useAuth<{ role?: string }>();
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function VakmensModeratieKnoppen() {
     }
     setBezig(true);
     try {
-      const res = await fetch(`/api/vakmensen/${id}`, {
+      const res = await fetch(`/api/vaklui/${id}`, {
         method: 'PATCH',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },

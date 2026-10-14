@@ -2,29 +2,29 @@ import Link from 'next/link';
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
-import type { Vakken, Vakmensen } from '../../../../payload-types';
+import type { Vakken, Vaklui } from '../../../../payload-types';
 import { BuurtpasSlot, SlotIcoon } from '@/components/buurtpas/BuurtpasSlot';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { localizedHref } from '@/i18n/localizedHref';
 
-type Groep = { vak: string; vakmensen: Vakmensen[] };
+type Groep = { vak: string; vaklui: Vaklui[] };
 
-const vakNamen = (vakmens: Vakmensen) =>
-  (vakmens.vakken ?? []).filter((v): v is Vakken => typeof v === 'object' && v !== null).map((v) => v.naam);
+const vakNamen = (vakman: Vaklui) =>
+  (vakman.vakken ?? []).filter((v): v is Vakken => typeof v === 'object' && v !== null).map((v) => v.naam);
 
-/** Per vak de gepubliceerde vakmensen, alfabetisch; wie meerdere vakken heeft staat onder elk vak. */
-function groepeerPerVak(vakmensen: Vakmensen[], overig: string, locale: string): Groep[] {
-  const groepen = new Map<string, Vakmensen[]>();
-  for (const vakmens of vakmensen) {
-    const namen = vakNamen(vakmens);
+/** Per vak de gepubliceerde vaklui, alfabetisch; wie meerdere vakken heeft staat onder elk vak. */
+function groepeerPerVak(vaklui: Vaklui[], overig: string, locale: string): Groep[] {
+  const groepen = new Map<string, Vaklui[]>();
+  for (const vakman of vaklui) {
+    const namen = vakNamen(vakman);
     for (const naam of namen.length ? namen : [overig]) {
-      groepen.set(naam, [...(groepen.get(naam) ?? []), vakmens]);
+      groepen.set(naam, [...(groepen.get(naam) ?? []), vakman]);
     }
   }
   return [...groepen.entries()]
     .sort(([a], [b]) => (a === overig ? 1 : b === overig ? -1 : a.localeCompare(b, locale)))
-    .map(([vak, lijst]) => ({ vak, vakmensen: lijst.sort((a, b) => a.naam.localeCompare(b.naam, locale)) }));
+    .map(([vak, lijst]) => ({ vak, vaklui: lijst.sort((a, b) => a.naam.localeCompare(b.naam, locale)) }));
 }
 
 const zonderProtocol = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, '');
@@ -58,10 +58,10 @@ function WebIcoon() {
   );
 }
 
-export default async function VakmensenPage({ params }: { params: Promise<{ locale: string }> }) {
+export default async function VakluiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations({ locale, namespace: 'pages.vakmensen' });
+  const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
   const tb = await getTranslations({ locale, namespace: 'buurtpas' });
   // Telefoonnummers alleen met buurtpas (leest cookies, dus per request gerenderd). Zonder buurtpas wordt het
   // nummer niet eens aangemaakt; naam, vakken en website ziet iedereen.
@@ -69,7 +69,7 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
 
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
-    collection: 'vakmensen',
+    collection: 'vaklui',
     where: { status: { equals: 'published' } },
     locale: locale as 'nl' | 'en',
     depth: 1,
@@ -80,8 +80,8 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
 
   return (
     <main className="pt-8 xl:pt-12">
-      <Section id="vakmensen">
-        <SectionHead id="vakmensen" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+      <Section id="vaklui">
+        <SectionHead id="vaklui" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
         <aside role="note" className="mt-8 max-w-3xl rounded-lg border border-l-4 border-border border-l-accent bg-card px-5 py-4 text-[15px] leading-[1.5] text-text">
           <p className="m-0 font-semibold text-accent">{t('disclaimer.titel')}</p>
@@ -93,7 +93,7 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
             <strong>{t('aanmeldKnop.titel')}</strong> {t('aanmeldKnop.tekst')}
           </p>
           <Link
-            href={localizedHref(locale, '/vakmensen/aanmelden')}
+            href={localizedHref(locale, '/vaklui/aanmelden')}
             className={`${knopCls} flex-none self-start border border-border text-text hover:border-primary hover:text-primary sm:self-auto`}
           >
             {t('aanmeldKnop.link')}
@@ -102,33 +102,33 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
 
         {heeftNummers && !buurtpas ? (
           <div className="mt-6 max-w-3xl">
-            <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vakmensen')} titel={tb('slot.telefoon')} />
+            <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vaklui')} titel={tb('slot.telefoon')} />
           </div>
         ) : null}
 
         {groepen.length === 0 ? (
           <p className="mt-10 text-muted">{t('empty')}</p>
         ) : (
-          groepen.map(({ vak, vakmensen }) => (
+          groepen.map(({ vak, vaklui }) => (
             <section key={vak} aria-label={vak} className="mt-12">
               <h3 className="m-0 flex items-baseline gap-3 text-2xl font-semibold text-text">
                 {vak}
-                <span className="text-sm font-medium text-muted">{t('aantal', { aantal: vakmensen.length })}</span>
+                <span className="text-sm font-medium text-muted">{t('aantal', { aantal: vaklui.length })}</span>
               </h3>
               <ul className="mt-5 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
-                {vakmensen.map((vakmens) => {
-                  const vakken = vakNamen(vakmens);
+                {vaklui.map((vakman) => {
+                  const vakken = vakNamen(vakman);
                   return (
-                    <li key={vakmens.id} className={`${boxCls} h-full`}>
+                    <li key={vakman.id} className={`${boxCls} h-full`}>
                       <div className="flex items-center gap-3">
                         <span
                           aria-hidden
                           className="flex size-12 flex-none items-center justify-center rounded-full bg-primary-soft font-heading text-lg font-semibold text-primary"
                         >
-                          {initialen(vakmens.naam)}
+                          {initialen(vakman.naam)}
                         </span>
                         <div className="min-w-0">
-                          <p className="m-0 font-heading text-lg leading-[1.25] font-semibold break-words text-text">{vakmens.naam}</p>
+                          <p className="m-0 font-heading text-lg leading-[1.25] font-semibold break-words text-text">{vakman.naam}</p>
                           {vakken.length ? (
                             <ul aria-label={t('vakken')} className="mt-1.5 flex list-none flex-wrap gap-1.5 p-0">
                               {vakken.map((naam) => (
@@ -141,34 +141,34 @@ export default async function VakmensenPage({ params }: { params: Promise<{ loca
                         </div>
                       </div>
 
-                      {vakmens.telefoon || vakmens.website ? (
+                      {vakman.telefoon || vakman.website ? (
                         <div className="mt-auto flex flex-col items-start gap-2">
-                          {vakmens.telefoon && buurtpas ? (
+                          {vakman.telefoon && buurtpas ? (
                             <a
-                              href={`tel:${vakmens.telefoon.replace(/[^0-9+]/g, '')}`}
+                              href={`tel:${vakman.telefoon.replace(/[^0-9+]/g, '')}`}
                               className={`${knopCls} bg-primary text-on-primary hover:bg-primary-hover`}
                             >
                               <TelefoonIcoon />
                               <span className="sr-only">{t('telefoon')}: </span>
-                              {vakmens.telefoon}
+                              {vakman.telefoon}
                             </a>
                           ) : null}
-                          {vakmens.telefoon && !buurtpas ? (
+                          {vakman.telefoon && !buurtpas ? (
                             <span className="inline-flex min-h-11 items-center gap-2 text-sm text-muted">
                               <SlotIcoon className="size-4" />
                               {t('telefoonMetBuurtpas')}
                             </span>
                           ) : null}
-                          {vakmens.website ? (
+                          {vakman.website ? (
                             <a
-                              href={vakmens.website}
+                              href={vakman.website}
                               target="_blank"
                               rel="noopener noreferrer"
                               className={`${knopCls} max-w-full min-w-0 border border-border text-text hover:border-primary hover:text-primary`}
                             >
                               <WebIcoon />
                               <span className="sr-only">{t('website')}: </span>
-                              <span className="truncate">{zonderProtocol(vakmens.website)}</span>
+                              <span className="truncate">{zonderProtocol(vakman.website)}</span>
                             </a>
                           ) : null}
                         </div>

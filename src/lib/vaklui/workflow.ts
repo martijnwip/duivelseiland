@@ -3,26 +3,26 @@ import { APIError } from 'payload';
 import { redactieAdressen } from '../activiteiten/workflow';
 import type { Locale } from '../mail';
 import type { Moderatie } from './constants';
-import { redactieNieuweVakmensMail, vakmensAfgewezenMail, vakmensGoedgekeurdMail, verstuur } from './mail';
+import { redactieNieuweVakmanMail, vakmanAfgewezenMail, vakmanGoedgekeurdMail, verstuur } from './mail';
 
 const fout = (bericht: string, status = 400) => new APIError(bericht, status, null, true);
 
-export async function meldNieuweVakmensAanRedactie(payload: Payload, naam: string, id: number) {
+export async function meldNieuweVakmanAanRedactie(payload: Payload, naam: string, id: number) {
   for (const to of await redactieAdressen(payload)) {
     try {
-      await verstuur(redactieNieuweVakmensMail(to, naam, id));
+      await verstuur(redactieNieuweVakmanMail(to, naam, id));
     } catch (error) {
-      payload.logger.error(`[vakmensen] melding nieuwe aanmelding aan ${to} mislukt: ${error}`);
+      payload.logger.error(`[vaklui] melding nieuwe aanmelding aan ${to} mislukt: ${error}`);
     }
   }
 }
 
 /**
- * Moderatie van een aangemelde vakmens: goedkeuren zet hem live, afkeuren (met reden) haalt hem offline.
+ * Moderatie van een aangemelde vakman: goedkeuren zet hem live, afkeuren (met reden) haalt hem offline.
  * Publiceert de redactie een aanmelding met de hand, dan telt dat als goedkeuren, zodat `status` en
  * `moderatie` niet uit de pas lopen.
  */
-export const vakmensBeforeChange: CollectionBeforeChangeHook = ({ data, originalDoc, operation }) => {
+export const vakmanBeforeChange: CollectionBeforeChangeHook = ({ data, originalDoc, operation }) => {
   if (operation !== 'update' || !originalDoc) return data;
   const oud = (originalDoc.moderatie ?? null) as Moderatie | null;
   let nieuw = ('moderatie' in data ? data.moderatie : oud) as Moderatie | null;
@@ -53,14 +53,14 @@ export const vakmensBeforeChange: CollectionBeforeChangeHook = ({ data, original
 };
 
 /** Mail aan de aanmelder na goedkeuren of afkeuren. Fouten bij versturen worden gelogd, niet teruggegeven. */
-export const vakmensAfterChange: CollectionAfterChangeHook = async ({ doc, previousDoc, operation, req }) => {
+export const vakmanAfterChange: CollectionAfterChangeHook = async ({ doc, previousDoc, operation, req }) => {
   if (operation !== 'update' || !doc.aanmelderEmail || doc.moderatie === previousDoc?.moderatie) return doc;
   const locale: Locale = doc.locale === 'en' ? 'en' : 'nl';
   try {
-    if (doc.moderatie === 'goedgekeurd') await verstuur(vakmensGoedgekeurdMail(doc.aanmelderEmail, locale, doc.naam));
-    if (doc.moderatie === 'afgewezen') await verstuur(vakmensAfgewezenMail(doc.aanmelderEmail, locale, doc.naam, doc.afwijsReden ?? ''));
+    if (doc.moderatie === 'goedgekeurd') await verstuur(vakmanGoedgekeurdMail(doc.aanmelderEmail, locale, doc.naam));
+    if (doc.moderatie === 'afgewezen') await verstuur(vakmanAfgewezenMail(doc.aanmelderEmail, locale, doc.naam, doc.afwijsReden ?? ''));
   } catch (error) {
-    req.payload.logger.error(`[vakmensen] mail na ${previousDoc?.moderatie} → ${doc.moderatie} mislukt voor ${doc.id}: ${error}`);
+    req.payload.logger.error(`[vaklui] mail na ${previousDoc?.moderatie} → ${doc.moderatie} mislukt voor ${doc.id}: ${error}`);
   }
   return doc;
 };

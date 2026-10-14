@@ -7,7 +7,7 @@ Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer
   - grof vuil
   - melden overlast
 - Duivelse Kunst
-- Vakmensen
+- Vaklui
 - Interviews
 - Geschiedenis
 - Buurt Statistieken 👉 STATISTIEKEN.md
@@ -39,7 +39,7 @@ Er zijn vier ingelogde rollen en één publieke rol. Een gebruiker heeft precies
 - Ziet alleen gepubliceerde content (`status = published`).
 - Kan niets aanmaken, wijzigen of verwijderen.
 - Heeft geen toegang tot `/admin`.
-- Met een **buurtpas** (geen account, zie "Buurtpas" hieronder) ziet een bezoeker ook telefoonnummers van vakmensen, WhatsApp-knoppen en items met "Alleen voor de buurt".
+- Met een **buurtpas** (geen account, zie "Buurtpas" hieronder) ziet een bezoeker ook telefoonnummers van vaklui, WhatsApp-knoppen en items met "Alleen voor de buurt".
 
 ### Organisator
 
@@ -56,7 +56,7 @@ Buurtbewoner of vrijwilliger die content aanlevert.
 - Kan alleen eigen items bewerken en verwijderen (veld `author = ingelogde gebruiker`).
 - Kan eigen items alleen opslaan als concept (`draft`); publiceren is niet toegestaan.
 - Kan media uploaden en alleen eigen uploads verwijderen.
-- Geen toegang tot: Interviews, Geschiedenis, Duivelse Kunst, Vakmensen, Praktische info, gebruikersbeheer.
+- Geen toegang tot: Interviews, Geschiedenis, Duivelse Kunst, Vaklui, Praktische info, gebruikersbeheer.
 
 ### Redacteur
 
@@ -64,7 +64,7 @@ Verantwoordelijk voor de inhoud en de kwaliteit van de site.
 
 - Alles wat een auteur kan, op alle items, ongeacht wie de auteur is.
 - Kan items publiceren en depubliceren.
-- Kan Praktische info en Vakmensen beheren.
+- Kan Praktische info en Vaklui beheren.
 - Kan alle media beheren.
 - Geen toegang tot Interviews, Geschiedenis en Duivelse Kunst, de globals Site-instellingen, Over de naam en Geschiedenisverhaal, de Auth-groep en gebruikersbeheer. Zo blijft `/admin` overzichtelijk; die onderdelen beheert de admin.
 
@@ -87,8 +87,8 @@ Technisch beheerder.
 | Interviews             | lezen (published) | geen                             | geen                         | alles |
 | Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
 | Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
-| Vakmensen              | lezen (published); met buurtpas aanmelden via formulier | geen | alles + modereren | alles |
-| Vakken (tags bij Vakmensen) | lezen        | geen                             | alles                        | alles |
+| Vaklui              | lezen (published); met buurtpas aanmelden via formulier | geen | alles + modereren | alles |
+| Vakken (tags bij Vaklui) | lezen        | geen                             | alles                        | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
 | Media                  | lezen             | uploaden, eigen verwijderen      | alles                        | alles |
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
@@ -120,10 +120,10 @@ Organisator: alleen de eigen activiteit (bewerken, fase binnen goedgekeurd/gaat-
   - `isOwnerOrRedacteur` (query-constraint: `{ author: { equals: user.id } }` voor auteur, `true` voor redacteur/admin)
   - `publishedOrLoggedIn` (query-constraint voor `read`: `{ status: { equals: 'published' } }` voor bezoekers)
   - `adminOnlyContentAccess` (Interviews, Geschiedenis, Duivelse Kunst: bezoekers lezen published, verder alleen admin)
-  - `editorOnlyContentAccess` (Praktische info, Vakmensen: bezoekers lezen published, verder redacteur en admin)
+  - `editorOnlyContentAccess` (Praktische info, Vaklui: bezoekers lezen published, verder redacteur en admin)
   - `publiekOfAdmin` (`read` voor globals die alleen de admin beheert; zonder leesrecht verdwijnt het item ook uit `/admin`)
   - `zonderBuurtitems` / `publiekZichtbaar` (`read` van contentcollecties: bezoekers via de API zien geen items met `alleenBuurt`)
-  - `alleenIngelogdField` (veldniveau `read` op telefoonnummers: vakmensen-`telefoon`, agenda-`whatsappNumber`, buurtborrelnummers)
+  - `alleenIngelogdField` (veldniveau `read` op telefoonnummers: vaklui-`telefoon`, agenda-`whatsappNumber`, buurtborrelnummers)
 - Veldniveau access op `status`: `update` alleen voor redacteur/admin.
 - Veldniveau access op `users.role`: `update` alleen voor admin.
 
@@ -205,15 +205,15 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vakmensen`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vaklui`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
 Elke content-collection heeft `title`, `slug`, `status` (draft/published), `author`, `content` (rich text) en waar nodig `date`, `image`.
 
-Uitzondering: **Vakmensen** heeft `naam`, `vakken` (één of meer tags uit de collection `vakken`; met de + in het veld voeg je direct een nieuw vak toe), `telefoon`, `website`, plus `status` en `author`. De site toont ze als één overzicht op `/vakmensen`, gegroepeerd per vak, zonder detailpagina's. Vaknamen zijn tweetalig.
+Uitzondering: **Vaklui** heeft `naam`, `vakken` (één of meer tags uit de collection `vakken`; met de + in het veld voeg je direct een nieuw vak toe), `telefoon`, `website`, plus `status` en `author`. De site toont ze als één overzicht op `/vaklui`, gegroepeerd per vak, zonder detailpagina's. Vaknamen zijn tweetalig.
 
-**Vakmens aanmelden.** Buren met een buurtpas kunnen op `/vakmensen/aanmelden` een vakmens aanmelden: naam, vakken (vinkjes) en/of *Ander vak*, telefoon en/of website, de eigen naam en een toelichting voor de redactie. Het e-mailadres komt uit de buurtpas. De aanmelding komt binnen als concept met `moderatie = ingediend`. De redactie krijgt een mail; de aanmelder krijgt een ontvangstmail met een intrekken-link (`/vakmensen/aanmelding/intrekken/<token>`, werkt tot goedkeuring). In `/admin` staan bovenaan de knoppen **Goedkeuren** (zet `status = published`; er moet een vak gekoppeld zijn, dus zet *Ander vak* eerst om met de +) en **Afkeuren** (reden verplicht, gaat naar de aanmelder; de vakmens gaat terug naar concept). Een afgekeurde aanmelding kun je opnieuw goedkeuren. Handmatig publiceren telt ook als goedkeuren. De regels staan in `src/lib/vakmensen/workflow.ts`; de gegevens van de aanmelder zijn alleen voor redacteur en admin. In het adresboek staat de aanmelder als "vakmens aangemeld". Verwijder je het adres, dan verdwijnt een open of afgekeurde aanmelding; bij een goedgekeurde gaan alleen de gegevens van de aanmelder weg.
+**Vakman aanmelden.** Buren met een buurtpas kunnen op `/vaklui/aanmelden` een vakman aanmelden: naam, vakken (vinkjes) en/of *Ander vak*, telefoon en/of website, de eigen naam en een toelichting voor de redactie. Het e-mailadres komt uit de buurtpas. De aanmelding komt binnen als concept met `moderatie = ingediend`. De redactie krijgt een mail; de aanmelder krijgt een ontvangstmail met een intrekken-link (`/vaklui/aanmelding/intrekken/<token>`, werkt tot goedkeuring). In `/admin` staan bovenaan de knoppen **Goedkeuren** (zet `status = published`; er moet een vak gekoppeld zijn, dus zet *Ander vak* eerst om met de +) en **Afkeuren** (reden verplicht, gaat naar de aanmelder; de vakman gaat terug naar concept). Een afgekeurde aanmelding kun je opnieuw goedkeuren. Handmatig publiceren telt ook als goedkeuren. De regels staan in `src/lib/vaklui/workflow.ts`; de gegevens van de aanmelder zijn alleen voor redacteur en admin. In het adresboek staat de aanmelder als "vakman aangemeld". Verwijder je het adres, dan verdwijnt een open of afgekeurde aanmelding; bij een goedgekeurde gaan alleen de gegevens van de aanmelder weg.
 
 ## Data ophalen in de site
 
@@ -276,9 +276,9 @@ bun run foto:vervang:prod <oude-beeldbank-link> <nieuwe-beeldbank-link>  # daarn
 Afgeschermde inhoud zonder account. Een bezoeker vult een e-mailadres in en krijgt een link (30 minuten geldig, één keer bruikbaar). De link opent een pagina met een knop *Activeer buurtpas* (pas bij de klik, zodat mailscanners het token niet verbruiken). Daarna staat er een jaar lang een ondertekende cookie `buurtpas` op dat apparaat. Er is geen wachtwoord en geen `users`-record; het adres staat in het adresboek (`email-adressen`), dat de buurtpasvelden bevat.
 
 Wat afgeschermd is:
-- Vakmensen: het `telefoon`-veld op het overzicht `/vakmensen`. Zonder buurtpas staat er één slot boven de lijst. Naam, vakken en website ziet iedereen.
+- Vaklui: het `telefoon`-veld op het overzicht `/vaklui`. Zonder buurtpas staat er één slot boven de lijst. Naam, vakken en website ziet iedereen.
 - WhatsApp-knoppen: agenda-items met een `whatsappNumber` en de knoppen op `/buurtborrel`.
-- Items met het vinkje *Alleen voor de buurt* (`alleenBuurt`, alle collecties met `contentFields()`, dus niet Vakmensen): in de lijst staat de titel met een slotje, de detailpagina toont alleen titel en slot (noindex), in de nieuwsbrief alleen titel en link.
+- Items met het vinkje *Alleen voor de buurt* (`alleenBuurt`, alle collecties met `contentFields()`, dus niet Vaklui): in de lijst staat de titel met een slotje, de detailpagina toont alleen titel en slot (noindex), in de nieuwsbrief alleen titel en link.
 
 Hoe ver het gaat: elk bevestigd e-mailadres krijgt een buurtpas. Dat houdt zoekmachines, scrapers en toevallige bezoekers buiten, maar bewijst niet dat iemand in de buurt woont.
 
@@ -313,7 +313,7 @@ Aanmelden gaat met dubbele opt-in op `/nieuwsbrief` en in de footer; de taal van
 
 ### Live "Vertaal naar Engels"-knop in de admin (primaire aanpak)
 
-Elk contentdocument (Nieuws, Agenda, Interviews, Geschiedenis, Duivelse Kunst, Vakmensen, Praktische info, Media) en de `SiteInstellingen`-global heeft in `/admin` een knop **"Vertaal naar Engels"** naast de standaard document-knoppen. Bij een klik:
+Elk contentdocument (Nieuws, Agenda, Interviews, Geschiedenis, Duivelse Kunst, Vaklui, Praktische info, Media) en de `SiteInstellingen`-global heeft in `/admin` een knop **"Vertaal naar Engels"** naast de standaard document-knoppen. Bij een klik:
 
 - ontdekt de server **dynamisch** (door `payload.config`'s velddefinities te doorlopen, niet via een handmatige lijst) welke `localized: true`-velden op dat document een lege Engelse waarde hebben terwijl de Nederlandse wel gevuld is — werkt dus automatisch mee met nieuwe collecties/velden, ook als het schema nog verandert;
 - vertaalt die velden via MyMemory (zie hieronder), inclusief rich text (`content`) met behoud van opmaak (koppen, vet, lijsten — alleen de tekst verandert);

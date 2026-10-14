@@ -5,7 +5,7 @@ export const TOKEN_GELDIG_MS = 30 * 60 * 1000;
 const T = {
   nl: {
     subject: 'Je buurtpas voor Duivelseiland',
-    intro: 'Je vroeg een buurtpas aan voor de website van Duivelseiland. Daarmee zie je op dit apparaat ook de contactgegevens van vakmensen en de berichten die alleen voor de buurt zijn.',
+    intro: 'Je vroeg een buurtpas aan voor de website van Duivelseiland. Daarmee zie je op dit apparaat ook de contactgegevens van vaklui en de berichten die alleen voor de buurt zijn.',
     knop: 'Buurtpas activeren',
     geldig: 'De link is 30 minuten geldig en werkt één keer. Je hebt geen account of wachtwoord nodig.',
     nieuwsbrief: 'Je vroeg ook om de nieuwsbrief. Met dezelfde klik meld je je daarvoor aan.',

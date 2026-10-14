@@ -4,8 +4,8 @@ import { authorField, statusField } from './shared/contentFields';
 import { alleenIngelogdField, isRedacteurOrAdminField } from '../access/isAdmin';
 import { setAuthor } from './shared/setAuthor';
 import { adresboekHooks } from '../lib/adresboek';
-import { MODERATIE, MODERATIE_LABELS, TELEFOON, WEBSITE } from '../lib/vakmensen/constants';
-import { vakmensAfterChange, vakmensBeforeChange } from '../lib/vakmensen/workflow';
+import { MODERATIE, MODERATIE_LABELS, TELEFOON, WEBSITE } from '../lib/vaklui/constants';
+import { vakmanAfterChange, vakmanBeforeChange } from '../lib/vaklui/workflow';
 
 // De aanmelder heeft een buurtpas, dus het adres is al bevestigd.
 const adresboek = adresboekHooks<{ aanmelderEmail?: string | null }>(
@@ -16,32 +16,32 @@ const adresboek = adresboekHooks<{ aanmelderEmail?: string | null }>(
 const isAanmelding = (data: { moderatie?: string | null } | undefined) => Boolean(data?.moderatie);
 
 /**
- * Vakmensen uit de buurt: naam, vak(ken), telefoon en website. Getoond als één overzicht op /vakmensen.
- * Buren met een buurtpas kunnen er een aanmelden via /vakmensen/aanmelden; de redactie keurt die goed of af.
+ * Vaklui uit de buurt: naam, vak(ken), telefoon en website. Getoond als één overzicht op /vaklui.
+ * Buren met een buurtpas kunnen er een aanmelden via /vaklui/aanmelden; de redactie keurt die goed of af.
  */
-export const Vakmensen: CollectionConfig = {
-  slug: 'vakmensen',
+export const Vaklui: CollectionConfig = {
+  slug: 'vaklui',
   labels: {
-    singular: 'Vakmens',
-    plural: 'Vakmensen',
+    singular: 'Vakman',
+    plural: 'Vaklui',
   },
   admin: {
     useAsTitle: 'naam',
-    group: 'Vakmensen',
+    group: 'Vaklui',
     defaultColumns: ['naam', 'vakken', 'telefoon', 'status', 'moderatie'],
     description:
-      'Aanmeldingen van buren staan op "Wacht op goedkeuring": keur goed of af met een reden (knoppen bovenaan het item). Goedkeuren zet de vakmens direct online.',
+      'Aanmeldingen van buren staan op "Wacht op goedkeuring": keur goed of af met een reden (knoppen bovenaan het item). Goedkeuren zet de vakman direct online.',
     components: {
       edit: {
-        beforeDocumentControls: ['/components/admin/VakmensModeratieKnoppen#default'],
+        beforeDocumentControls: ['/components/admin/VakmanModeratieKnoppen#default'],
       },
     },
   },
   defaultSort: 'naam',
   access: editorOnlyContentAccess,
   hooks: {
-    beforeChange: [setAuthor('author'), vakmensBeforeChange],
-    afterChange: [vakmensAfterChange, adresboek.afterChange],
+    beforeChange: [setAuthor('author'), vakmanBeforeChange],
+    afterChange: [vakmanAfterChange, adresboek.afterChange],
     afterDelete: [adresboek.afterDelete],
   },
   fields: [
