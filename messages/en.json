@@ -1190,7 +1190,8 @@
         "bellen": "Rather call or message, for example about bulky waste? Call the city on",
         "whatsapp": "or WhatsApp",
         "bellenVerder": "(Monday to Friday, 8:00 to 18:00; calling from abroad: +31 20 624 1111). Other ways to get in touch are on the",
-        "contactLink": "city's contact page"
+        "contactLink": "city's contact page",
+        "whatsappPrivacy": "Don't send privacy-sensitive information via WhatsApp, such as your BSN (citizen service number) or bank details."
       },
       "sources": {
         "title": "Sources",

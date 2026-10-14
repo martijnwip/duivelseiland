@@ -1007,7 +1007,8 @@
         "bellen": "Liever bellen of appen, bijvoorbeeld over grof afval? Bel de gemeente op",
         "whatsapp": "of app naar",
         "bellenVerder": "(maandag tot en met vrijdag, 8.00 tot 18.00 uur; bellen vanuit het buitenland: +31 20 624 1111). Andere manieren om contact op te nemen vind je op de",
-        "contactLink": "contactpagina van de gemeente"
+        "contactLink": "contactpagina van de gemeente",
+        "whatsappPrivacy": "Stuur via WhatsApp geen privacygevoelige gegevens, zoals je BSN of bankgegevens."
       },
       "sources": {
         "title": "Bronnen",

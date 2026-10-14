@@ -412,6 +412,7 @@ export async function AfvalPage({ locale }: { locale: string }) {
         </External>
         .
       </p>
+      <p className="m-0 text-sm leading-[1.5]">{t('meldingen.whatsappPrivacy')}</p>
     </div>
   );
   const meldTone = (cat: string): Tone => (cat === 'Grof afval' ? 'c' : 's');
