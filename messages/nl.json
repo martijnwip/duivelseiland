@@ -25,7 +25,9 @@
     },
     "duivelseSchoonmaak": {
       "title": "Doe mee met de buurt",
-      "intro": "Elke eerste zondag van de maand ruimen buurtgenoten samen het zwerfafval op Duivelseiland op. Iedereen is welkom.",
+      "intro": "Buurtgenoten organiseren zelf van alles: een boekenclub, een kookavond, een wandeling. Heb je zelf een idee, groot of klein? Zet het op de site, dan kunnen buren zich aansluiten.",
+      "activiteitCta": "Organiseer een activiteit",
+      "schoonmaakIntro": "Elke eerste zondag van de maand ruimen buurtgenoten samen het zwerfafval op Duivelseiland op. Iedereen is welkom.",
       "readMore": "Bekijk het agenda-item",
       "readMoreContext": "over de Duivelse Schoonmaak",
       "eyebrow": "Elke maand",

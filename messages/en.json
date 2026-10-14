@@ -25,7 +25,9 @@
     },
     "duivelseSchoonmaak": {
       "title": "Join the neighbourhood",
-      "intro": "On the first Sunday of every month, neighbours clear the litter from Duivelseiland together. Everyone is welcome.",
+      "intro": "Neighbours organise all sorts of things themselves: a book club, a cooking night, a walk. Got an idea of your own, big or small? Put it on the site so neighbours can join in.",
+      "activiteitCta": "Organise an activity",
+      "schoonmaakIntro": "On the first Sunday of every month, neighbours clear the litter from Duivelseiland together. Everyone is welcome.",
       "readMore": "View the agenda item",
       "readMoreContext": "about the Duivelse Schoonmaak",
       "eyebrow": "Every month",

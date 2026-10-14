@@ -54,6 +54,16 @@ export async function HomeDuivelseSchoonmaak({ locale }: { locale: 'nl' | 'en' }
             {t('title')}
           </h2>
           <p className="m-0 max-w-[560px] text-lg leading-[1.4] text-text">{t('intro')}</p>
+          <Link
+            href={localizedHref(locale, '/activiteiten/aanmelden')}
+            className="inline-flex min-h-11 items-center gap-2 self-start rounded-lg border border-primary px-5 py-2 font-medium text-primary no-underline transition-colors hover:bg-primary hover:text-on-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            {t('activiteitCta')}
+            <svg width="16" height="16" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+              <path d="M2 7.5h10M8 3.5l4 4-4 4" />
+            </svg>
+          </Link>
+          <p className="m-0 mt-2 max-w-[560px] text-lg leading-[1.4] text-text">{t('schoonmaakIntro')}</p>
         </div>
         <div className="flex items-baseline gap-4 border-t border-border pt-3 xl:flex-col xl:items-start xl:gap-1.5 xl:pt-4">
           <span className="font-heading text-4xl leading-none font-semibold text-primary xl:text-[48px]">1×</span>
