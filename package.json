@@ -19,7 +19,8 @@
     "db:pull": "bun run scripts/pull-prod-db.ts",
     "reseed:local":"bun run scripts/reseed.ts",
     "reseed:prod": "bun --env-file=.env.production.local run scripts/reseed.ts",
-    "afval:deelkaart": "bun run scripts/afval-deelkaart.ts",
+    "afval:deelkaart": "KAART=afval bun run scripts/afval-deelkaart.ts",
+    "geluid:deelkaart": "KAART=geluid bun run scripts/afval-deelkaart.ts",
     "kaart:locatie": "bun run scripts/locatiekaart.ts",
     "translate": "translate/.venv/bin/python translate/translate.py",
     "translate:setup": "python3 -m venv translate/.venv && translate/.venv/bin/pip install -r translate/requirements.txt"

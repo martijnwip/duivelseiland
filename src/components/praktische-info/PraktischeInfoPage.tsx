@@ -1,5 +1,8 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
+import { localizedHref } from '@/i18n/localizedHref';
+import { Icon as InstructieIcon } from '@/components/afval/instructie/icons';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { Legend } from '@/components/stats/charts/base';
 import { getParkeervakken } from '@/lib/parkeren/api';
@@ -264,6 +267,31 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
             </li>
           ))}
         </ul>
+      </Section>
+
+      <Section id="praktisch-geluid">
+        <SectionHead id="praktisch-geluid" eyebrow={t('geluid.eyebrow')} title={t('geluid.title')} intro={t('geluid.intro')} />
+        <div className={`${boxCls} mt-8 md:flex-row md:items-center md:justify-between`}>
+          <div className="flex items-center gap-3 text-primary" aria-hidden>
+            <InstructieIcon name="boor" className="size-10" />
+            <InstructieIcon name="muziek" className="size-10" />
+            <InstructieIcon name="praten" className="size-10" />
+          </div>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <Link
+              href={localizedHref(locale, '/geluid')}
+              className="inline-flex min-h-11 items-center gap-2 rounded-md bg-primary px-4 text-[15px] font-semibold text-on-primary no-underline hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            >
+              {t('geluid.cta')} <span aria-hidden>→</span>
+            </Link>
+            <Link href={localizedHref(locale, '/geluid/instructie')} className="font-medium text-primary underline">
+              {t('geluid.kaart')}
+            </Link>
+            <Link href={localizedHref(locale, '/geluid/briefje')} className="font-medium text-primary underline">
+              {t('geluid.briefje')}
+            </Link>
+          </div>
+        </div>
       </Section>
 
       <Section id="praktisch-kaart">

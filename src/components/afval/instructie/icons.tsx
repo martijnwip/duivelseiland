@@ -212,6 +212,63 @@ export const ICONS = {
       <path d="M18 17l-8 12 6 10M30 17l8 12-6 10" />
     </>
   ),
+  // Geluid (instructiekaart en pagina /geluid)
+  boor: (
+    <>
+      <path d="M6 12h24a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H6z" />
+      <path d="M34 18h10M6 12v12" />
+      <path d="M13 24l-3 17h9l3-17" />
+    </>
+  ),
+  hamer: (
+    <>
+      <path d="M22 8l12-3 9 9-3 12-6-6-4 4-6-6 4-4z" />
+      <path d="M24 20L7 37a3.5 3.5 0 0 0 5 5l17-17" />
+    </>
+  ),
+  muziek: (
+    <>
+      <path d="M18 36V11l22-5v26" />
+      <path d="M18 18l22-5" />
+      <circle cx="13" cy="36" r="5" />
+      <circle cx="35" cy="32" r="5" />
+    </>
+  ),
+  brief: (
+    <>
+      <rect x="6" y="11" width="36" height="27" rx="2" />
+      <path d="M6 13l18 14 18-14" />
+    </>
+  ),
+  telefoon: (
+    <path d="M14 6h7l3 9-5 3.5a24 24 0 0 0 10.5 10.5L33 24l9 3v7a4 4 0 0 1-4 4C21 38 10 27 10 10a4 4 0 0 1 4-4z" />
+  ),
+  bouwbord: (
+    <>
+      <rect x="7" y="5" width="34" height="23" rx="2" />
+      <path d="M14 28v15M34 28v15M13 12h22M13 19h14" />
+    </>
+  ),
+  praten: (
+    <>
+      <path d="M5 8h24v16H15l-6 5v-5H5z" />
+      <path d="M33 16h10v16h-3v5l-5-5H23v-4" />
+    </>
+  ),
+  huis: (
+    <>
+      <path d="M5 23L24 7l19 16" />
+      <path d="M10 19v22h28V19" />
+      <path d="M20 41V30h8v11" />
+    </>
+  ),
+  kalender: (
+    <>
+      <rect x="6" y="9" width="36" height="33" rx="3" />
+      <path d="M6 18h36M15 5v8M33 5v8" />
+      <path d="M14 26h4M22 26h4M30 26h4M14 34h4M22 34h4" />
+    </>
+  ),
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof ICONS;

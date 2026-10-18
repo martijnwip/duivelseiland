@@ -11,7 +11,7 @@ import { ShareImageButton } from './ShareImageButton';
 type Item = { icon: IconName; label: string };
 
 /** Paneel met groot nummer, zoals op een safety card. */
-function Panel({ n, title, children, wide = false }: { n: number; title: string; children: ReactNode; wide?: boolean }) {
+export function Panel({ n, title, children, wide = false }: { n: number; title: string; children: ReactNode; wide?: boolean }) {
   return (
     <section
       aria-labelledby={`paneel-${n}`}
@@ -29,7 +29,7 @@ function Panel({ n, title, children, wide = false }: { n: number; title: string;
 }
 
 /** Eén situatie: goed (groen, ✓) of fout (terracotta, ✗), met pictogrammen en korte uitleg. */
-function Scene({ ok, title, caption, children }: { ok: boolean; title: string; caption?: string; children: ReactNode }) {
+export function Scene({ ok, title, caption, children }: { ok: boolean; title: string; caption?: string; children: ReactNode }) {
   return (
     <figure className={`m-0 flex min-w-0 flex-col gap-2 rounded-lg border-2 bg-background p-3 break-inside-avoid ${ok ? 'border-primary' : 'border-accent'}`}>
       <div className="flex items-center gap-2">
@@ -44,7 +44,7 @@ function Scene({ ok, title, caption, children }: { ok: boolean; title: string; c
   );
 }
 
-const Arrow = () => <Icon name="pijl" className="size-6 text-muted" />;
+export const Arrow = () => <Icon name="pijl" className="size-6 text-muted" />;
 
 /** Bovenaanzicht van de stoep: grof vuil op de vaste plek, afstand tot container, boom en parkeervak. */
 function WaarScene({ label, plek, afstand }: { label: string; plek: string; afstand: string }) {

@@ -6,6 +6,7 @@ Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer
 - Praktische info
   - grof vuil
   - melden overlast
+  - geluid & lawaai (verbouwen, feestjes) 👉 `/geluid`, zie "Geluid" hieronder
 - Duivelse Kunst
 - Vaklui
 - Interviews
@@ -389,6 +390,16 @@ Oorspronkelijk stond dit op Google Translate, maar dat endpoint gaf vanaf onze e
 - **Argos Translate** — volledig offline/open-source, geen API-key, geen limiet, geen ToS-risico. Kwaliteit merkbaar lager dan Google/DeepL, maar geen netwerkafhankelijkheid.
 - **Google** (`GoogleTranslator`) — was de oorspronkelijke keuze, vanaf deze machine geblokkeerd; kan op een ander netwerk mogelijk wel werken.
 - **Handmatig** — de oorspronkelijke aanpak voor doorlopende redactie: zelf de Engelse tekst intypen per veld in `/admin`. Blijft altijd beschikbaar als terugvaloptie, ongeacht wat er met een vertaal-API gebeurt.
+
+## Geluid
+
+`/geluid` legt uit hoe laat verbouwen mag, hoe je de buren informeert, wat er voor feestjes geldt en wat je doet bij geluidsoverlast. Daarbij een instructiekaart (`/geluid/instructie`, te printen en als PNG te delen) en in te vullen briefjes voor de buren (`/geluid/briefje`). Geen CMS en geen live data: de openbare meldingenkaart heeft voor de buurt bijna geen geluidsmeldingen, en burenlawaai via het Meldpunt Zorg en Woonoverlast is niet openbaar.
+
+- **Regels en getallen** staan op één plek: `src/lib/geluid/constants.ts` (bouwtijden, buurtfeest, geluidsgrenzen, ontheffing, telefoonnummers, links). De datum `GECONTROLEERD` staat op de pagina. Controleer de regels jaarlijks tegen het Besluit bouwwerken leefomgeving (art. 7.4, 7.17), de beleidsregels bouwlawaai Amsterdam (CVDR726068) en de APV (art. 2.18A, 2.41, 5.5), en pas daarna die datum aan.
+- **Advies, geen regel:** "lawaaiig werk liever niet vóór 9 uur" (`ADVIES_LAWAAI_VANAF`) en "na 23 uur zachter" (`FEEST_ZACHTER_VANAF`) zijn afspraken van de buurt. Voor zelf klussen staat er geen vaste tijd in de wet, alleen een zorgplicht; de pagina zegt dat ook.
+- **Briefjes:** alles blijft in de browser (een concept in `localStorage`), er gaat niets naar de server en niets in de URL. Het briefje kan in het Nederlands, het Engels of allebei, los van de taal van de site.
+- **Homepagina:** `HomeGeluid` (onder de afvalsectie) haalt de inleiding en de weekbalk uit `pages.geluid`, zodat ze gelijk blijven met de pagina.
+- **Deelafbeelding** opnieuw maken na een tekstwijziging: `bun run geluid:deelkaart` (site moet draaien). Voor afval: `bun run afval:deelkaart`.
 
 ## Kosten
 
