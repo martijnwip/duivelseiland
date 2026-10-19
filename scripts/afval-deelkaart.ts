@@ -1,25 +1,31 @@
 /**
- * Maakt de deelbare afbeeldingen van de instructiekaart (1080×1920, nl en en) door
- * /afval/instructie/afbeelding te openen in headless Chrome en alleen #deelkaart te fotograferen.
+ * Maakt de deelbare afbeeldingen van de instructiekaarten (1080×1920, nl en en) door
+ * /<kaart>/instructie/afbeelding te openen in headless Chrome en alleen #deelkaart te fotograferen.
  * Draai eerst de site (bun run dev of start), daarna:
  *
  *   bun run afval:deelkaart [basis-url]      (standaard http://localhost:3000)
+ *   bun run geluid:deelkaart [basis-url]
  *
- * Chrome-pad aanpassen kan met CHROME=/pad/naar/chrome.
+ * Zonder KAART maakt hij ze allebei. Chrome-pad aanpassen kan met CHROME=/pad/naar/chrome;
+ * anders zoekt hij Chromium of Chrome op de gebruikelijke plekken (Linux en macOS).
  */
 import { spawn } from 'child_process';
+import { existsSync } from 'fs';
 import { mkdtemp, mkdir, rm, writeFile } from 'fs/promises';
 import { tmpdir } from 'os';
 import { join } from 'path';
 
 const BASE = (process.argv[2] ?? 'http://localhost:3000').replace(/\/$/, '');
-const CHROME = process.env.CHROME ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CHROME =
+  process.env.CHROME ??
+  ['/usr/bin/chromium', '/usr/bin/chromium-browser', '/usr/bin/google-chrome', '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'].find((p) => existsSync(p)) ??
+  'chromium';
 const PORT = 9400 + Math.floor(Math.random() * 400);
-const OUT = new URL('../public/afval/', import.meta.url);
-const TARGETS = [
-  { locale: 'nl', path: '/afval/instructie/afbeelding' },
-  { locale: 'en', path: '/en/afval/instructie/afbeelding' },
-];
+const KAARTEN = (process.env.KAART ? [process.env.KAART] : ['afval', 'geluid']) as string[];
+const TARGETS = KAARTEN.flatMap((kaart) => [
+  { kaart, locale: 'nl', path: `/${kaart}/instructie/afbeelding` },
+  { kaart, locale: 'en', path: `/en/${kaart}/instructie/afbeelding` },
+]);
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
@@ -72,9 +78,9 @@ async function run() {
     await send('Emulation.setDeviceMetricsOverride', { width: 1200, height: 2200, deviceScaleFactor: 1, mobile: false });
     // Altijd de lichte variant van de site eromheen; de kaart zelf is sowieso licht.
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: 'light' }] });
-    await mkdir(OUT, { recursive: true });
-
-    for (const { locale, path } of TARGETS) {
+    for (const { kaart, locale, path } of TARGETS) {
+      const out = new URL(`../public/${kaart}/`, import.meta.url);
+      await mkdir(out, { recursive: true });
       const loaded = once('Page.loadEventFired');
       await send('Page.navigate', { url: `${BASE}${path}` });
       await loaded;
@@ -100,9 +106,9 @@ async function run() {
       if (!result?.value) throw new Error(`#deelkaart niet gevonden op ${path}`);
       const clip = JSON.parse(result.value);
       const shot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: true, clip: { ...clip, scale: 1 } });
-      const file = new URL(`instructiekaart-${locale}.png`, OUT);
+      const file = new URL(`instructiekaart-${locale}.png`, out);
       await writeFile(file, Buffer.from(shot.data, 'base64'));
-      console.log(`${locale}: ${Math.round(clip.width)}×${Math.round(clip.height)} → public/afval/instructiekaart-${locale}.png`);
+      console.log(`${kaart} ${locale}: ${Math.round(clip.width)}×${Math.round(clip.height)} → public/${kaart}/instructiekaart-${locale}.png`);
     }
     close();
   } finally {

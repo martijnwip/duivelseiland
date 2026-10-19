@@ -66,6 +66,31 @@
       "statsCta": "All figures and maps",
       "statsCtaContext": "about waste in Duivelseiland"
     },
+    "geluid": {
+      "eyebrow": "Being considerate",
+      "title": "Noise",
+      "factText": "companies may build, Monday to Saturday. Not on Sundays and public holidays.",
+      "rules": {
+        "later": {
+          "title": "No drilling or sanding at 7 am",
+          "text": "Start noisy work a little later in the day, and agree on this with the contractor."
+        },
+        "buren": {
+          "title": "Tell the neighbours",
+          "text": "When does the renovation start, how long will it take, and when will it be noisy? Many neighbours work from home."
+        },
+        "feest": {
+          "title": "Party? Leave a note first",
+          "text": "With an end time and your phone number. After 11 pm, music down and windows closed."
+        }
+      },
+      "weekTitle": "When may a company build?",
+      "cardCta": "View the instruction card",
+      "cardCtaContext": "about noise (also for printing)",
+      "briefjeCta": "Make a note for the neighbours",
+      "pageCta": "All rules and what to do about nuisance",
+      "pageCtaContext": "about noise in Duivelseiland"
+    },
     "buurtborrel": {
       "eyebrow": "Together",
       "title": "Neighbourhood drinks",
@@ -1468,6 +1493,412 @@
         "heading": "Instruction card as image"
       }
     },
+    "geluid": {
+      "heading": "Noise",
+      "metaDescription": "Renovations, DIY and parties in Duivelseiland: when noise is allowed, how to let the neighbours know and what to do about noise nuisance. With an instruction card and notes for the neighbours.",
+      "hero": {
+        "eyebrow": "Duivelseiland · being considerate",
+        "lead": "People in this neighbourhood live close together. The inner courtyards act like sound boxes, and it is appreciated when you keep that in mind.",
+        "body": [
+          "Hold off on noisy tools like drills and sanders until a little later in the day, and don’t ask the builders to start with them at 7 am.",
+          "Let your neighbours know as soon as a renovation is coming and how long it will take. Many people work from home, so they can plan around it."
+        ],
+        "start": "To the rules",
+        "card": "Instruction card",
+        "briefje": "Note for the neighbours"
+      },
+      "kern": [
+        {
+          "big": "{van}–{tot}",
+          "text": "Companies may build and demolish Monday to Saturday"
+        },
+        {
+          "big": "Sunday",
+          "text": "and public holidays: no construction noise, not even from a contractor"
+        },
+        {
+          "big": "Party",
+          "text": "No permit needed. Do tell the neighbours in advance"
+        },
+        {
+          "big": "{einde}",
+          "text": "An outdoor street party may last until then, with a notification 2 weeks ahead"
+        }
+      ],
+      "nav": {
+        "nav": "Chapters",
+        "contents": "Contents",
+        "chapterOf": "Chapter {n} of {total}",
+        "sources": "Sources"
+      },
+      "ui": {
+        "chapterLabel": "Chapter",
+        "external": "(opens an external website)"
+      },
+      "chapters": {
+        "verbouwen": {
+          "name": "Renovating and DIY",
+          "message": "Contractors have fixed hours. If you do the work yourself, there are no fixed hours, but you must avoid unnecessary noise.",
+          "factBig": "{van}–{tot}",
+          "factText": "Monday to Saturday, for construction and demolition by a company"
+        },
+        "feestjes": {
+          "name": "Parties",
+          "message": "A party at home is fine. The city only steps in when serious nuisance keeps happening.",
+          "factBig": "0",
+          "factText": "permits needed for a party at home or in the garden"
+        },
+        "overlast": {
+          "name": "Bothered by noise?",
+          "message": "Start with a conversation. If you can’t sort it out together, there are free mediators and a hotline that is open day and night.",
+          "factBig": "24/7",
+          "factText": "open: the city’s neighbour nuisance hotline, 020 552 5000"
+        },
+        "vooraf": {
+          "name": "Knowing what’s coming",
+          "message": "A renovation next door doesn’t have to be a surprise.",
+          "factBig": "1 week",
+          "factText": "before work starts, the building sign must be up, for renovations with a permit"
+        }
+      },
+      "verbouwen": {
+        "weekTitle": "When may a company build?",
+        "weekSub": "Construction and demolition by a contractor or handyman company. For DIY, this is the best guideline.",
+        "week": {
+          "label": "Week from Monday to Sunday, from midnight to midnight",
+          "summary": "Monday to Saturday from {van} to {tot} it is allowed. Preferably no drilling or sanding before {advies}. No construction noise on Sundays and public holidays.",
+          "dagen": [
+            "Mon",
+            "Tue",
+            "Wed",
+            "Thu",
+            "Fri",
+            "Sat",
+            "Sun"
+          ],
+          "mag": "Allowed",
+          "advies": "Allowed, but preferably no drilling or sanding yet",
+          "niet": "Not without an exemption",
+          "feestdag": "Public holidays count as Sundays: New Year’s Day, Easter Monday, Whit Monday, Ascension Day, King’s Day, 5 May and both Christmas days. Good Friday counts too."
+        },
+        "advies": {
+          "title": "The law allows 7 am, but…",
+          "text": "The courtyards echo, and many neighbours work from home or are still asleep. Start noisy work such as drilling, grinding, sanding and breaking a little later in the day, and agree on this with the contractor. Builders who start at 7 can do quiet work first."
+        },
+        "grenzen": {
+          "title": "How loud may it be?",
+          "sub": "The louder the noise at the front of a home, the fewer days it is allowed, per building project.",
+          "head": [
+            "Noise at the facade",
+            "Maximum"
+          ],
+          "onbeperkt": "unlimited",
+          "dagen": "{n} days",
+          "nooit": "not a single day",
+          "note": "In dB(A). For comparison: a conversation is about 60 dB, a drill up close 90 to 100 dB."
+        },
+        "klussen": {
+          "title": "Doing it yourself",
+          "text": [
+            "If you do the work yourself, the law sets no fixed hours. You do have a duty of care: you must avoid unnecessary noise.",
+            "So keep to the same hours as a contractor, and do the noisiest work in the middle of the day. The city also mentions Monday to Saturday, {van} to {tot}.",
+            "Also check your owners’ association (VvE) rules or your rental contract: they sometimes have stricter rules."
+          ]
+        },
+        "buren": {
+          "title": "Telling the neighbours",
+          "text": "Ring the bell or drop a note through the letterbox: when does it start, how long will it take, and when will it be noisy? Neighbours who work from home can then plan around it.",
+          "bouwbord": "Do you need an environmental permit? Then a building sign must be up at least a week before work starts, at least A3 size, saying how long the work will take and who to contact. You can pick up a free sign at a city office (stadsloket).",
+          "briefjeCta": "Make a note for the neighbours",
+          "gemeenteCta": "Examples and building sign from the city (Dutch)"
+        },
+        "ontheffing": {
+          "title": "Working in the evening, at night or on Sunday",
+          "text": "For that, the company needs a noise exemption from the city (officially a ‘maatwerkvoorschrift’). It is only granted if:",
+          "items": [
+            "the work is really necessary and can’t be done during the day (catching up on a schedule doesn’t count);",
+            "the quietest methods and machines are used;",
+            "the application is in at least {weken} weeks ahead."
+          ],
+          "kosten": "An exemption costs {bedrag} per night. Whoever has one must give the neighbours a letter a week in advance with a phone number for complaints.",
+          "cta": "Construction noise exemption at the city (Dutch)"
+        }
+      },
+      "feestjes": {
+        "thuis": {
+          "title": "A party at home or in the garden",
+          "text": [
+            "You don’t need a permit, and there is no fixed time by which it must be quiet.",
+            "The rule is that you don’t cause your neighbours serious nuisance that keeps coming back, for example so that they often can’t sleep. Some noise comes with living close together. The city itself gives the example that a barbecue in the shared garden a few times a year is no reason to step in."
+          ]
+        },
+        "tips": {
+          "title": "Keeping it fun for everyone",
+          "items": [
+            "Tell the neighbours in advance: when, until what time, and a phone number.",
+            "After 11 pm, turn the music down and close the windows and doors.",
+            "Talking and laughing on a balcony or in the courtyard carries far: keep it quiet there in the evening.",
+            "Invite the neighbours. People who can join in are less bothered."
+          ],
+          "briefjeCta": "Make a party note for the neighbours"
+        },
+        "buiten": {
+          "title": "Outdoor street party",
+          "intro": "In the street or on a square, a free notification at least {weken} weeks ahead is enough, if the party meets these conditions:",
+          "items": [
+            "one day, between {van} and {tot};",
+            "at most {max} visitors at the same time;",
+            "no louder than {db} dB(C) at the facades of the surrounding homes;",
+            "not on the road and not blocking traffic;",
+            "no sale of food or drink, not commercial;",
+            "at most two small objects, such as a party tent;",
+            "there is an organiser who can be approached."
+          ],
+          "zondag": "On Sundays, an exemption is needed before 1 pm. If the party doesn’t meet the conditions, it needs an event permit.",
+          "cta": "Notify an event at the city (Dutch)"
+        }
+      },
+      "overlast": {
+        "stappenTitle": "Step by step",
+        "stappen": {
+          "praten": {
+            "title": "Talk to your neighbours",
+            "text": "At a calm moment, not in the middle of the noise. Neighbours often don’t know it bothers you."
+          },
+          "verhuurder": {
+            "title": "Renting? Go to the landlord. Own your home? The owners’ association (VvE)",
+            "text": "They can hold the neighbours to the rental contract or the rules."
+          },
+          "beterBuren": {
+            "title": "Ask for a neighbourhood mediator",
+            "text": "BeterBuren helps neighbours sort things out together, free and confidential."
+          },
+          "meldpunt": {
+            "title": "Report it to the neighbour nuisance hotline",
+            "text": "The Meldpunt Zorg en Woonoverlast handles nuisance from a neighbour, including noise. Urgent reports are picked up right away, others within 2 working days."
+          },
+          "bouw": {
+            "title": "Construction noise outside the hours?",
+            "text": "Or do you suspect building without a permit? Report it to the city."
+          },
+          "horeca": {
+            "title": "Bothered by a café or business?",
+            "text": "The city has a separate way to report that."
+          }
+        },
+        "bellen": "You can also call:",
+        "logboek": {
+          "title": "Keep a record",
+          "text": "Write down when and how long you were bothered, and what you heard. That helps the landlord, the mediator or the hotline, and is needed if it ever ends up in court."
+        },
+        "nood": {
+          "title": "Is it unsafe?",
+          "text": "Call the police on <politieLink>{politie}</politieLink>. In an emergency: <noodLink>{nood}</noodLink>."
+        },
+        "melden": "Make a report (Dutch)",
+        "meldpuntCta": "Report online (Dutch)",
+        "beterBurenCta": "Sign up with BeterBuren (Dutch)",
+        "horecaCta": "Report nuisance from bars and businesses (Dutch)"
+      },
+      "vooraf": {
+        "items": {
+          "omgevingsalert": {
+            "title": "Permits in the neighbourhood",
+            "text": "The Omgevingsalert app or Overheid.nl shows which building permits are applied for nearby. If you disagree, you can object.",
+            "cta": "Omgevingsalert (Dutch)"
+          },
+          "nulmeting": {
+            "title": "Get a pre-construction survey",
+            "text": "Are the neighbours doing a big renovation? Ask the contractor to record the state of your home beforehand, including the foundations. If the contractor won’t, you can hire a building inspector yourself.",
+            "cta": "More from the city (Dutch)"
+          },
+          "schade": {
+            "title": "Damage from the renovation?",
+            "text": "For example cracks or water damage: first contact whoever is renovating. If you can’t work it out, the Juridisch Loket (free legal advice) can help.",
+            "cta": "Juridisch Loket (Dutch)"
+          }
+        }
+      },
+      "sources": {
+        "title": "Sources",
+        "intro": "The rules on this page come from the City of Amsterdam and the law. We have summarised them in plain language.",
+        "checked": "Checked on {date}.",
+        "disclaimer": "This is not legal advice. When in doubt, the city’s rules take precedence.",
+        "rows": [
+          {
+            "name": "Buildings and Living Environment Decree (Bbl)",
+            "what": "Construction hours and noise limits for companies (art. 7.17), duty of care for everyone who builds (art. 7.4)",
+            "ref": "wetten.overheid.nl · BWBR0041297"
+          },
+          {
+            "name": "Amsterdam construction noise policy",
+            "what": "When the city grants an exemption, and that DIY work falls under the duty of care (2024)",
+            "ref": "lokaleregelgeving.overheid.nl · CVDR726068"
+          },
+          {
+            "name": "Amsterdam local by-laws (APV)",
+            "what": "Nuisance in and around the home (art. 2.18A), street party with a notification (art. 2.41), nuisance from devices (art. 5.5)",
+            "ref": "lokaleregelgeving.overheid.nl · CVDR72510"
+          },
+          {
+            "name": "City of Amsterdam",
+            "what": "Pages on neighbours renovating, telling the neighbours, construction noise exemptions, reporting nuisance from neighbours, and notifying an event",
+            "ref": "amsterdam.nl"
+          },
+          {
+            "name": "BeterBuren",
+            "what": "Free neighbourhood mediation in Amsterdam",
+            "ref": "beterburen.nl"
+          }
+        ]
+      }
+    },
+    "geluidInstructie": {
+      "heading": "Noise instruction card",
+      "metaDescription": "Noise in Duivelseiland on one card: when renovating is allowed, telling the neighbours, parties and what to do about nuisance. Also for printing.",
+      "back": "Back to Noise",
+      "print": "Print",
+      "eyebrow": "Duivelseiland · Instruction card",
+      "title": "Noise in the neighbourhood",
+      "intro": "We live close together, and the courtyards echo.",
+      "verbouwen": {
+        "title": "Renovating",
+        "ok": "Companies: Mon–Sat, {van}–{tot}",
+        "okCaption": "Doing it yourself? Keep to the same hours.",
+        "no": "Sundays and public holidays",
+        "noCaption": "No construction noise, not even from a contractor.",
+        "later": "Drilling or sanding at 7 am",
+        "laterCaption": "Start noisy work a little later in the day, and agree on it with the contractor."
+      },
+      "buren": {
+        "title": "Tell the neighbours",
+        "bord": "Building sign, a week ahead",
+        "bordCaption": "Required with an environmental permit: how long, and who to contact.",
+        "brief": "A note through the door",
+        "briefCaption": "When, how long, and when it will be noisy. Many neighbours work from home."
+      },
+      "feest": {
+        "title": "Party",
+        "brief": "A note to the neighbours first",
+        "briefCaption": "With an end time and your phone number.",
+        "laat": "Quieter after 11 pm",
+        "laatCaption": "Music down, windows and doors closed.",
+        "vaak": "Not deep into the night, time after time",
+        "vaakCaption": "Serious nuisance that keeps coming back is dealt with by the city."
+      },
+      "overlast": {
+        "title": "Bothered by noise?",
+        "praten": "Talk to your neighbours",
+        "pratenText": "At a calm moment. Renting? Also the landlord. Owner? The VvE.",
+        "bemiddeling": "Mediation, free",
+        "bemiddelingText": "BeterBuren",
+        "meldpunt": "Nuisance hotline, 24/7",
+        "meldpuntText": "Meldpunt Zorg en Woonoverlast",
+        "nood": "Unsafe? Police {politie}. Emergency: {nood}."
+      },
+      "footer": "All rules, steps and notes for the neighbours:",
+      "credit": "Website by martijnwip.nl",
+      "share": {
+        "subtitle": "How we keep Duivelseiland liveable",
+        "button": "Share as image",
+        "shareTitle": "Noise in the neighbourhood: Duivelseiland",
+        "shareText": "Renovations, DIY and parties in Duivelseiland: how we look out for each other. More info: https://duivelseiland.amsterdam/en/geluid",
+        "fileName": "duivelseiland-noise.png",
+        "heading": "Noise instruction card as image",
+        "weekLabel": "Renovating by a company",
+        "weekNote": "Sundays and public holidays: no construction noise",
+        "tiles": {
+          "later": {
+            "title": "No drilling at 7 am",
+            "text": "Start noisy work a bit later. The courtyard echoes."
+          },
+          "buren": {
+            "title": "Tell the neighbours",
+            "text": "When and how long. Many neighbours work from home."
+          },
+          "feest": {
+            "title": "Party? Leave a note!",
+            "text": "Add an end time. Quieter after 11 pm, windows shut."
+          },
+          "overlast": {
+            "title": "Bothered by noise?",
+            "text": "Talk first. BeterBuren mediates for free."
+          }
+        },
+        "bellen": "Nuisance hotline, 24/7",
+        "footer": "Rules, steps and notes for the neighbours",
+        "site": "duivelseiland.amsterdam"
+      }
+    },
+    "geluidBriefje": {
+      "heading": "Note for the neighbours",
+      "metaDescription": "Make a note for your neighbours when you are renovating or having a party: fill it in, check it and print it.",
+      "back": "Back to Noise",
+      "intro": "Is something coming up that the neighbours will hear? Fill it in, check it and print it. Drop it through the letterboxes a week ahead.",
+      "privacy": "What you fill in stays on this device. We don’t send or store anything; your browser only remembers your draft.",
+      "tabs": {
+        "label": "Type of note",
+        "verbouwing": "Renovation",
+        "feestje": "Party"
+      },
+      "taal": {
+        "label": "Language of the note",
+        "nl": "Nederlands",
+        "en": "English",
+        "beide": "Both"
+      },
+      "velden": {
+        "naam": "Your name",
+        "adres": "House number or address",
+        "telefoon": "Phone number",
+        "start": "First day",
+        "eind": "Last day",
+        "wat": "What is happening?",
+        "watPlaceholder": "for example a new kitchen",
+        "werkVan": "Work from",
+        "werkTot": "Work until",
+        "lawaaiVan": "Noisy work from",
+        "lawaaiTot": "Noisy work until",
+        "aannemer": "Contractor (optional)",
+        "datum": "Date",
+        "van": "From",
+        "tot": "Until about",
+        "stil": "Music down from",
+        "aanleiding": "Occasion (optional)",
+        "aanleidingPlaceholder": "for example my birthday",
+        "welkom": "Neighbours are welcome to drop by"
+      },
+      "lawaaiTip": "Noisy work means drilling, demolishing, grinding and sanding. Preferably not before {advies}: the courtyards echo.",
+      "voorbeeld": "Preview",
+      "print": "Print",
+      "wissen": "Clear",
+      "leeg": "…",
+      "brief": {
+        "verbouwing": {
+          "titel": "We are renovating",
+          "aanhef": "Dear neighbours,",
+          "periode": "From {start} to {eind} we are renovating: {wat}.",
+          "periodeKort": "From {start} to {eind} we are renovating.",
+          "tijden": "Work takes place from {werkVan} to {werkTot}, not on Sundays.",
+          "lawaai": "We do noisy work, such as drilling, demolishing and sanding, between {lawaaiVan} and {lawaaiTot} as much as possible. Working from home? Then you know when it will be quiet.",
+          "aannemer": "The work is done by {aannemer}.",
+          "contact": "Questions, or bothered a lot after all? Call or text {naam} on {telefoon}.",
+          "slot": "Thank you in advance for your understanding!",
+          "groet": "Kind regards,"
+        },
+        "feestje": {
+          "titel": "We are having a party",
+          "aanhef": "Dear neighbours,",
+          "wanneer": "On {datum} we are having a party, from {van} until about {tot}.",
+          "wanneerMet": "On {datum} we are celebrating {aanleiding}, from {van} until about {tot}.",
+          "stil": "From {stil} we will turn the music down and close the windows and doors.",
+          "contact": "Too loud after all? Call or text {naam} on {telefoon} and we will turn it down.",
+          "welkom": "You are very welcome to drop by!",
+          "slot": "Thank you in advance for your understanding!",
+          "groet": "Kind regards,"
+        }
+      }
+    },
     "buurtborrel": {
       "heading": "Neighbourhood drinks",
       "metaDescription": "Duivelseiland's neighbourhood drinks: raising a glass on the green and getting to know your neighbours. Join the mailing list or the neighbourhood app group."
@@ -1716,6 +2147,14 @@
           "text": "With a disabled parking card (GPK) you can park in the general disabled spaces. If the sign shows a licence plate, the space belongs to one person."
         }
       }
+    },
+    "geluid": {
+      "eyebrow": "Being considerate",
+      "title": "Noise",
+      "intro": "Renovating, DIY or a party? When it is allowed, how to let the neighbours know and what to do if noise bothers you.",
+      "cta": "Go to Noise",
+      "kaart": "Instruction card",
+      "briefje": "Note for the neighbours"
     },
     "kaart": {
       "eyebrow": "Map",

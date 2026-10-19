@@ -66,6 +66,31 @@
       "statsCta": "Alle cijfers en kaarten",
       "statsCtaContext": "over afval in Duivelseiland"
     },
+    "geluid": {
+      "eyebrow": "Rekening houden met elkaar",
+      "title": "Geluid & lawaai",
+      "factText": "mag een bedrijf bouwen, maandag tot en met zaterdag. Op zondag en feestdagen niet.",
+      "rules": {
+        "later": {
+          "title": "Boren en schuren niet om 7 uur",
+          "text": "Begin lawaaiig werk wat later op de dag, en spreek dat ook af met de aannemer."
+        },
+        "buren": {
+          "title": "Vertel het de buren",
+          "text": "Wanneer begint de verbouwing, hoe lang duurt die, en wanneer is het lawaaiig? Veel buren werken thuis."
+        },
+        "feest": {
+          "title": "Feestje? Een briefje vooraf",
+          "text": "Met een eindtijd en je telefoonnummer. Na 23.00 uur de muziek zachter en de ramen dicht."
+        }
+      },
+      "weekTitle": "Wanneer mag een bedrijf bouwen?",
+      "cardCta": "Bekijk de instructiekaart",
+      "cardCtaContext": "over geluid (ook om te printen)",
+      "briefjeCta": "Maak een briefje voor de buren",
+      "pageCta": "Alle regels en wat je doet bij overlast",
+      "pageCtaContext": "over geluid en lawaai in Duivelseiland"
+    },
     "buurtborrel": {
       "eyebrow": "Samen",
       "title": "Buurtborrel",
@@ -1285,6 +1310,412 @@
         "heading": "Instructiekaart als afbeelding"
       }
     },
+    "geluid": {
+      "heading": "Geluid & lawaai",
+      "metaDescription": "Verbouwen, klussen en feestjes in Duivelseiland: hoe laat het mag, hoe je de buren informeert en wat je kunt doen bij geluidsoverlast. Met een instructiekaart en briefjes voor de buren.",
+      "hero": {
+        "eyebrow": "Duivelseiland · rekening houden met elkaar",
+        "lead": "De mensen in deze buurt wonen dicht op elkaar. De binnenplaatsen werken als klankkasten, en het wordt gewaardeerd als je daar rekening mee houdt.",
+        "body": [
+          "Wacht met machines die veel lawaai maken, zoals boren en schuren, tot wat later op de dag, en vraag de bouwvakkers daar niet om 7 uur mee te beginnen.",
+          "Vertel je buren zodra er een verbouwing komt en hoe lang die gaat duren. Veel mensen werken thuis; dan kunnen ze daar rekening mee houden."
+        ],
+        "start": "Naar de regels",
+        "card": "Instructiekaart",
+        "briefje": "Briefje voor de buren"
+      },
+      "kern": [
+        {
+          "big": "{van}–{tot}",
+          "text": "Een bedrijf mag bouwen en slopen van maandag tot en met zaterdag"
+        },
+        {
+          "big": "Zondag",
+          "text": "en op feestdagen geen bouwlawaai, ook niet van een aannemer"
+        },
+        {
+          "big": "Feestje",
+          "text": "Geen vergunning nodig. Wel: vertel het de buren vooraf"
+        },
+        {
+          "big": "{einde}",
+          "text": "Tot dan mag een buurtfeest buiten, met een melding 2 weken vooraf"
+        }
+      ],
+      "nav": {
+        "nav": "Hoofdstukken",
+        "contents": "Inhoud",
+        "chapterOf": "Hoofdstuk {n} van {total}",
+        "sources": "Bronnen"
+      },
+      "ui": {
+        "chapterLabel": "Hoofdstuk",
+        "external": "(opent een externe website)"
+      },
+      "chapters": {
+        "verbouwen": {
+          "name": "Verbouwen en klussen",
+          "message": "Een aannemer heeft vaste tijden. Wie zelf klust, heeft geen vaste tijd, maar moet wel onnodig lawaai voorkomen.",
+          "factBig": "{van}–{tot}",
+          "factText": "maandag tot en met zaterdag, voor bouw- en sloopwerk door een bedrijf"
+        },
+        "feestjes": {
+          "name": "Feestjes",
+          "message": "Een feestje thuis mag gewoon. De gemeente grijpt pas in bij ernstige overlast die steeds terugkomt.",
+          "factBig": "0",
+          "factText": "vergunningen nodig voor een feestje thuis of in de tuin"
+        },
+        "overlast": {
+          "name": "Last van geluid?",
+          "message": "Begin met een gesprek. Komen jullie er samen niet uit, dan zijn er gratis bemiddelaars en een meldpunt dat dag en nacht bereikbaar is.",
+          "factBig": "24/7",
+          "factText": "bereikbaar: Meldpunt Zorg en Woonoverlast, 020 552 5000"
+        },
+        "vooraf": {
+          "name": "Vooraf weten wat er komt",
+          "message": "Een verbouwing bij de buren hoeft geen verrassing te zijn.",
+          "factBig": "1 week",
+          "factText": "vóór de start moet het bouwbord er hangen, bij een verbouwing met vergunning"
+        }
+      },
+      "verbouwen": {
+        "weekTitle": "Wanneer mag een bedrijf bouwen?",
+        "weekSub": "Bouw- en sloopwerk door een aannemer of klusbedrijf. Voor zelf klussen is dit de beste richtlijn.",
+        "week": {
+          "label": "Week van maandag tot en met zondag, van middernacht tot middernacht",
+          "summary": "Maandag tot en met zaterdag van {van} tot {tot} uur mag het. Liever geen boren of schuren vóór {advies} uur. Op zondag en feestdagen geen bouwlawaai.",
+          "dagen": [
+            "ma",
+            "di",
+            "wo",
+            "do",
+            "vr",
+            "za",
+            "zo"
+          ],
+          "mag": "Mag",
+          "advies": "Mag, maar liever nog geen boren of schuren",
+          "niet": "Niet zonder ontheffing",
+          "feestdag": "Feestdagen tellen als zondag: Nieuwjaarsdag, tweede paas- en pinksterdag, Hemelvaartsdag, Koningsdag, 5 mei en beide kerstdagen. Ook Goede Vrijdag telt mee."
+        },
+        "advies": {
+          "title": "Wettelijk mag het vanaf 7 uur, maar…",
+          "text": "De binnenplaatsen galmen, en veel buren werken thuis of slapen nog. Begin lawaaiig werk zoals boren, slijpen, schuren en breken wat later op de dag, en spreek dat ook af met de aannemer. Een bouwvakker die om 7 uur begint, kan prima eerst stil werk doen."
+        },
+        "grenzen": {
+          "title": "Hoe hard mag het?",
+          "sub": "Hoe harder het lawaai op de gevel van een woning, hoe minder dagen het mag, per bouwproject.",
+          "head": [
+            "Geluid op de gevel",
+            "Maximaal"
+          ],
+          "onbeperkt": "onbeperkt",
+          "dagen": "{n} dagen",
+          "nooit": "geen enkele dag",
+          "note": "In dB(A). Ter vergelijking: een gesprek is zo’n 60 dB, een boormachine van dichtbij 90 tot 100 dB."
+        },
+        "klussen": {
+          "title": "Zelf klussen",
+          "text": [
+            "Voor wie zelf klust, staat er geen vaste tijd in de wet. Je hebt wel een zorgplicht: je moet onnodige geluidshinder voorkomen.",
+            "Houd dus dezelfde tijden aan als een aannemer, en doe het lawaaiigste werk midden op de dag. De gemeente noemt ook maandag tot en met zaterdag, {van} tot {tot} uur.",
+            "Kijk ook in het huishoudelijk reglement van je VvE of in je huurcontract: daar staan soms strengere regels."
+          ]
+        },
+        "buren": {
+          "title": "Buren informeren",
+          "text": "Bel aan of doe een briefje in de bus: wanneer begint het, hoe lang duurt het, en wanneer is het lawaaiig? Dan kunnen buren die thuiswerken daar rekening mee houden.",
+          "bouwbord": "Heb je een omgevingsvergunning nodig? Dan moet er minstens een week vóór de start een bouwbord hangen, minimaal A3, met hoe lang het werk duurt en wie het aanspreekpunt is. Een gratis bouwbord haal je bij het stadsloket.",
+          "briefjeCta": "Maak een briefje voor de buren",
+          "gemeenteCta": "Voorbeelden en bouwbord van de gemeente"
+        },
+        "ontheffing": {
+          "title": "Werken ’s avonds, ’s nachts of op zondag",
+          "text": "Daarvoor heeft het bedrijf een geluidsontheffing van de gemeente nodig (officieel: een maatwerkvoorschrift). Die is er alleen als:",
+          "items": [
+            "het werk echt nodig is en niet overdag kan (doorwerken voor de planning telt niet);",
+            "de stilste technieken en machines worden gebruikt;",
+            "de aanvraag minstens {weken} weken vooraf binnen is."
+          ],
+          "kosten": "Een ontheffing kost {bedrag} per nacht. Wie er een heeft, moet de buren een week vooraf een brief geven met een telefoonnummer voor klachten.",
+          "cta": "Geluidsontheffing bouw bij de gemeente"
+        }
+      },
+      "feestjes": {
+        "thuis": {
+          "title": "Feestje thuis of in de tuin",
+          "text": [
+            "Daarvoor heb je geen vergunning nodig, en er is ook geen vaste tijd waarop het stil moet zijn.",
+            "De regel is dat je de buren geen ernstige overlast bezorgt die steeds terugkomt, bijvoorbeeld zodat ze vaak niet kunnen slapen. Enig geluid hoort bij dicht op elkaar wonen. De gemeente noemt zelf als voorbeeld dat een paar keer per jaar een barbecue in de binnentuin geen reden is om in te grijpen."
+          ]
+        },
+        "tips": {
+          "title": "Zo blijft het gezellig voor iedereen",
+          "items": [
+            "Vertel het de buren vooraf: wanneer, tot hoe laat, en een telefoonnummer.",
+            "Na 23.00 uur de muziek zachter en de ramen en deuren dicht.",
+            "Praten en lachen op het balkon of de binnenplaats galmt ver: houd het daar ’s avonds rustig.",
+            "Nodig de buren uit. Wie mee mag doen, ergert zich minder."
+          ],
+          "briefjeCta": "Maak een feestbriefje voor de buren"
+        },
+        "buiten": {
+          "title": "Buurt- of straatfeest buiten",
+          "intro": "Op straat of op het plein is een gratis melding genoeg, minstens {weken} weken vooraf, als het feest aan deze voorwaarden voldoet:",
+          "items": [
+            "één dag, tussen {van} en {tot} uur;",
+            "hoogstens {max} bezoekers tegelijk;",
+            "niet harder dan {db} dB(C) op de gevel van de huizen eromheen;",
+            "niet op de rijbaan en niet in de weg voor het verkeer;",
+            "geen verkoop van eten of drank, niet commercieel;",
+            "hoogstens twee kleine objecten, zoals een partytent;",
+            "er is een organisator die aanspreekbaar is."
+          ],
+          "zondag": "Op zondag is vóór 13.00 uur een ontheffing nodig. Voldoet het feest niet aan de voorwaarden, dan is een evenementenvergunning nodig.",
+          "cta": "Evenement melden bij de gemeente"
+        }
+      },
+      "overlast": {
+        "stappenTitle": "Stap voor stap",
+        "stappen": {
+          "praten": {
+            "title": "Praat met je buren",
+            "text": "Op een rustig moment, niet midden in de herrie. Vaak weten buren niet dat je er last van hebt."
+          },
+          "verhuurder": {
+            "title": "Huur je? Ga naar de verhuurder. Koopwoning? Naar de VvE",
+            "text": "Die kan de buren aanspreken op het huurcontract of het reglement."
+          },
+          "beterBuren": {
+            "title": "Vraag een buurtbemiddelaar",
+            "text": "BeterBuren helpt buren gratis en vertrouwelijk om er samen uit te komen."
+          },
+          "meldpunt": {
+            "title": "Meld het bij het Meldpunt Zorg en Woonoverlast",
+            "text": "Bij overlast van een buurtbewoner, ook lawaai. Dringende meldingen pakken ze meteen op, andere binnen 2 werkdagen."
+          },
+          "bouw": {
+            "title": "Bouwlawaai buiten de tijden?",
+            "text": "Of vermoed je dat er zonder vergunning wordt gebouwd? Doe een melding bij de gemeente."
+          },
+          "horeca": {
+            "title": "Last van een café of bedrijf?",
+            "text": "Daarvoor heeft de gemeente een aparte meldroute."
+          }
+        },
+        "bellen": "Bellen kan ook:",
+        "logboek": {
+          "title": "Houd een overzicht bij",
+          "text": "Schrijf op wanneer en hoe lang je last had, en wat je hoorde. Dat helpt de verhuurder, de bemiddelaar of het meldpunt, en is nodig als het ooit tot een rechtszaak komt."
+        },
+        "nood": {
+          "title": "Is het onveilig?",
+          "text": "Bel de politie op <politieLink>{politie}</politieLink>. Bij nood: <noodLink>{nood}</noodLink>."
+        },
+        "melden": "Melding doen",
+        "meldpuntCta": "Online melden",
+        "beterBurenCta": "Aanmelden bij BeterBuren",
+        "horecaCta": "Overlast van horeca melden"
+      },
+      "vooraf": {
+        "items": {
+          "omgevingsalert": {
+            "title": "Vergunningen in de buurt",
+            "text": "Met de app Omgevingsalert of op Overheid.nl zie je welke bouwvergunningen er in de buurt worden aangevraagd. Ben je het er niet mee eens, dan kun je bezwaar maken.",
+            "cta": "Omgevingsalert"
+          },
+          "nulmeting": {
+            "title": "Laat een nulmeting doen",
+            "text": "Gaan de buren flink verbouwen? Vraag de aannemer om vooraf de staat van je huis vast te leggen, ook de fundering. Wil de aannemer niet, dan kun je zelf een bouwkundige inschakelen.",
+            "cta": "Meer bij de gemeente"
+          },
+          "schade": {
+            "title": "Schade door de verbouwing?",
+            "text": "Bijvoorbeeld scheuren of waterschade: neem eerst contact op met de verbouwer. Komen jullie er niet uit, dan helpt het Juridisch Loket gratis verder.",
+            "cta": "Juridisch Loket"
+          }
+        }
+      },
+      "sources": {
+        "title": "Bronnen",
+        "intro": "De regels op deze pagina komen van de gemeente Amsterdam en uit de wet. We hebben ze in gewone taal samengevat.",
+        "checked": "Gecontroleerd op {date}.",
+        "disclaimer": "Dit is geen juridisch advies. Bij twijfel gaan de regels van de gemeente voor.",
+        "rows": [
+          {
+            "name": "Besluit bouwwerken leefomgeving",
+            "what": "Bouwtijden en geluidsgrenzen voor bedrijven (art. 7.17), zorgplicht voor iedereen die bouwt (art. 7.4)",
+            "ref": "wetten.overheid.nl · BWBR0041297"
+          },
+          {
+            "name": "Beleidsregels bouwlawaai Amsterdam",
+            "what": "Wanneer de gemeente een ontheffing geeft, en dat klussers onder de zorgplicht vallen (2024)",
+            "ref": "lokaleregelgeving.overheid.nl · CVDR726068"
+          },
+          {
+            "name": "APV Amsterdam",
+            "what": "Hinder in en om de woning (art. 2.18A), buurtfeest met een melding (art. 2.41), hinder van apparaten (art. 5.5)",
+            "ref": "lokaleregelgeving.overheid.nl · CVDR72510"
+          },
+          {
+            "name": "Gemeente Amsterdam",
+            "what": "Mijn buren gaan verbouwen, Verbouwen: vertel het de buren, Geluidsontheffing bouw, Overlast van buurtbewoners melden, Evenement melden",
+            "ref": "amsterdam.nl"
+          },
+          {
+            "name": "BeterBuren",
+            "what": "Gratis buurtbemiddeling in Amsterdam",
+            "ref": "beterburen.nl"
+          }
+        ]
+      }
+    },
+    "geluidInstructie": {
+      "heading": "Instructiekaart geluid",
+      "metaDescription": "Geluid in Duivelseiland op één kaart: hoe laat verbouwen mag, buren informeren, feestjes en wat je doet bij overlast. Ook om af te drukken.",
+      "back": "Terug naar Geluid & lawaai",
+      "print": "Afdrukken",
+      "eyebrow": "Duivelseiland · Instructiekaart",
+      "title": "Geluid in de buurt",
+      "intro": "We wonen dicht op elkaar, en de binnenplaatsen galmen.",
+      "verbouwen": {
+        "title": "Verbouwen",
+        "ok": "Bedrijf: ma t/m za, {van}–{tot}",
+        "okCaption": "Zelf klussen? Houd dezelfde tijden aan.",
+        "no": "Zondag en feestdagen",
+        "noCaption": "Geen bouwlawaai, ook niet van een aannemer.",
+        "later": "Om 7 uur al boren of schuren",
+        "laterCaption": "Begin lawaaiig werk wat later op de dag, en spreek dat af met de aannemer."
+      },
+      "buren": {
+        "title": "Vertel het de buren",
+        "bord": "Bouwbord, een week vooraf",
+        "bordCaption": "Verplicht bij een omgevingsvergunning: hoe lang, en wie het aanspreekpunt is.",
+        "brief": "Briefje in de bus",
+        "briefCaption": "Wanneer, hoe lang, en wanneer het lawaaiig is. Veel buren werken thuis."
+      },
+      "feest": {
+        "title": "Feestje",
+        "brief": "Buren vooraf een briefje",
+        "briefCaption": "Met een eindtijd en je telefoonnummer.",
+        "laat": "Na 23:00 zachter",
+        "laatCaption": "Muziek zachter, ramen en deuren dicht.",
+        "vaak": "Niet steeds tot diep in de nacht",
+        "vaakCaption": "Ernstige overlast die steeds terugkomt, pakt de gemeente aan."
+      },
+      "overlast": {
+        "title": "Last van geluid?",
+        "praten": "Praat met je buren",
+        "pratenText": "Op een rustig moment. Huur je? Ook de verhuurder. Koop je? De VvE.",
+        "bemiddeling": "Buurtbemiddeling, gratis",
+        "bemiddelingText": "BeterBuren",
+        "meldpunt": "Meldpunt Woonoverlast, 24/7",
+        "meldpuntText": "Meldpunt Zorg en Woonoverlast",
+        "nood": "Onveilig? Politie {politie}. Nood: {nood}."
+      },
+      "footer": "Alle regels, stappen en briefjes voor de buren:",
+      "credit": "Website by martijnwip.nl",
+      "share": {
+        "subtitle": "Zo houden we het in Duivelseiland leefbaar",
+        "button": "Deel als afbeelding",
+        "shareTitle": "Geluid in de buurt: Duivelseiland",
+        "shareText": "Verbouwen, klussen en feestjes in Duivelseiland: zo houden we rekening met elkaar. Meer info: https://duivelseiland.amsterdam/geluid",
+        "fileName": "duivelseiland-geluid.png",
+        "heading": "Instructiekaart geluid als afbeelding",
+        "weekLabel": "Verbouwen door een bedrijf",
+        "weekNote": "Zondag en feestdagen: geen bouwlawaai",
+        "tiles": {
+          "later": {
+            "title": "Boren niet om 7 uur",
+            "text": "Begin lawaaiig werk wat later. De binnenplaats galmt."
+          },
+          "buren": {
+            "title": "Vertel het de buren",
+            "text": "Wanneer en hoe lang. Veel buren werken thuis."
+          },
+          "feest": {
+            "title": "Feestje? Briefje!",
+            "text": "Eindtijd erop. Na 23:00 zachter, ramen dicht."
+          },
+          "overlast": {
+            "title": "Last van geluid?",
+            "text": "Eerst praten. BeterBuren bemiddelt gratis."
+          }
+        },
+        "bellen": "Meldpunt Woonoverlast, 24/7",
+        "footer": "Regels, stappen en briefjes voor de buren",
+        "site": "duivelseiland.amsterdam"
+      }
+    },
+    "geluidBriefje": {
+      "heading": "Briefje voor de buren",
+      "metaDescription": "Maak een briefje voor je buren als je gaat verbouwen of een feestje geeft: invullen, controleren en afdrukken.",
+      "back": "Terug naar Geluid & lawaai",
+      "intro": "Gaat er iets gebeuren dat de buren horen? Vul het in, kijk of het klopt en druk het af. Doe het een week van tevoren in de bus.",
+      "privacy": "Wat je invult, blijft op dit apparaat. We versturen of bewaren niets, je browser onthoudt alleen je concept.",
+      "tabs": {
+        "label": "Soort briefje",
+        "verbouwing": "Verbouwing",
+        "feestje": "Feestje"
+      },
+      "taal": {
+        "label": "Taal van het briefje",
+        "nl": "Nederlands",
+        "en": "English",
+        "beide": "Beide"
+      },
+      "velden": {
+        "naam": "Je naam",
+        "adres": "Huisnummer of adres",
+        "telefoon": "Telefoonnummer",
+        "start": "Eerste dag",
+        "eind": "Laatste dag",
+        "wat": "Wat gaat er gebeuren?",
+        "watPlaceholder": "bijvoorbeeld een nieuwe keuken",
+        "werkVan": "Werk van",
+        "werkTot": "Werk tot",
+        "lawaaiVan": "Lawaaiig werk van",
+        "lawaaiTot": "Lawaaiig werk tot",
+        "aannemer": "Aannemer (mag leeg)",
+        "datum": "Datum",
+        "van": "Van",
+        "tot": "Tot ongeveer",
+        "stil": "Muziek zachter vanaf",
+        "aanleiding": "Aanleiding (mag leeg)",
+        "aanleidingPlaceholder": "bijvoorbeeld mijn verjaardag",
+        "welkom": "Buren zijn welkom om langs te komen"
+      },
+      "lawaaiTip": "Lawaaiig werk is boren, slopen, slijpen en schuren. Liever niet vóór {advies} uur: de binnenplaatsen galmen.",
+      "voorbeeld": "Voorbeeld",
+      "print": "Afdrukken",
+      "wissen": "Leegmaken",
+      "leeg": "…",
+      "brief": {
+        "verbouwing": {
+          "titel": "Wij gaan verbouwen",
+          "aanhef": "Beste buren,",
+          "periode": "Van {start} tot en met {eind} wordt er bij ons verbouwd: {wat}.",
+          "periodeKort": "Van {start} tot en met {eind} wordt er bij ons verbouwd.",
+          "tijden": "Er wordt gewerkt van {werkVan} tot {werkTot} uur, niet op zondag.",
+          "lawaai": "Lawaaiig werk, zoals boren, slopen en schuren, doen we zo veel mogelijk tussen {lawaaiVan} en {lawaaiTot} uur. Werk je thuis? Dan weet je wanneer het rustig is.",
+          "aannemer": "Het werk wordt gedaan door {aannemer}.",
+          "contact": "Vragen, of toch veel last? Bel of app {naam} op {telefoon}.",
+          "slot": "Alvast bedankt voor jullie begrip!",
+          "groet": "Hartelijke groet,"
+        },
+        "feestje": {
+          "titel": "Wij geven een feestje",
+          "aanhef": "Beste buren,",
+          "wanneer": "Op {datum} geven we een feestje, van {van} tot ongeveer {tot} uur.",
+          "wanneerMet": "Op {datum} vieren we {aanleiding}, van {van} tot ongeveer {tot} uur.",
+          "stil": "Vanaf {stil} uur zetten we de muziek zachter en gaan de ramen en deuren dicht.",
+          "contact": "Is het toch te hard? Bel of app {naam} op {telefoon}, dan zetten we het zachter.",
+          "welkom": "Jullie zijn van harte welkom om even langs te komen!",
+          "slot": "Alvast bedankt voor jullie begrip!",
+          "groet": "Hartelijke groet,"
+        }
+      }
+    },
     "buurtborrel": {
       "heading": "Buurtborrel",
       "metaDescription": "De Buurtborrel van Duivelseiland: samen proosten op het plantsoen, buren leren kennen. Meld je aan voor de mailinglijst of kom in de buurt-appgroep."
@@ -1533,6 +1964,14 @@
           "text": "Met een gehandicaptenparkeerkaart (GPK) parkeer je op de algemene gehandicaptenplaatsen. Staat er een kenteken op het bord, dan is de plek van één persoon."
         }
       }
+    },
+    "geluid": {
+      "eyebrow": "Rekening houden met elkaar",
+      "title": "Geluid & lawaai",
+      "intro": "Verbouwen, klussen of een feestje? Hoe laat het mag, hoe je de buren informeert en wat je doet als je last hebt van geluid.",
+      "cta": "Naar Geluid & lawaai",
+      "kaart": "Instructiekaart",
+      "briefje": "Briefje voor de buren"
     },
     "kaart": {
       "eyebrow": "Kaart",

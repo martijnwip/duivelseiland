@@ -16,6 +16,7 @@ import { getBijplaatsingen, getContainers, getMeldingen, getRecyclepunten, getRe
 import { CROW, crowVerdeling, hotspots, jaarVergelijking, laatsteDatum, meldingenRecent, perFractie, perJaar, perStraat, soorten } from '@/lib/afval/aggregate';
 import { LINKS } from '@/lib/afval/constants';
 import { BUURT_MIDDEN, distanceM } from '@/lib/afval/geo';
+import { External, linkCls } from '@/components/site/External';
 import { BaseMap } from './BaseMap';
 import { ContainerLayer, HotspotLayer, MeldingLayer, fractieTone } from './MapLayers';
 import { NextPickup } from './NextPickup';
@@ -25,18 +26,7 @@ import { RegelItem } from './RegelItem';
 const DAGEN = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
 const MELDING_DAGEN = 90;
 
-const linkCls =
-  'font-medium text-primary underline underline-offset-3 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary';
 const boxCls = 'flex min-w-0 flex-col gap-4 rounded-lg border border-border bg-card p-4 xl:p-6';
-
-function External({ href, children, className = linkCls, note }: { href: string; children: ReactNode; className?: string; note: string }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
-      {children}
-      <span className="sr-only"> {note}</span>
-    </a>
-  );
-}
 
 function BoxTitle({ title, sub }: { title: string; sub?: string }) {
   return (

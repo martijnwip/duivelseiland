@@ -7,6 +7,7 @@ import { RichTextContent } from '@/components/site/RichTextContent';
 import { HomeStats } from '@/components/stats/HomeStats';
 import { HomeDuivelseSchoonmaak } from '@/components/content/HomeDuivelseSchoonmaak';
 import { HomeAfval, HomeAfvalSkeleton } from '@/components/afval/HomeAfval';
+import { HomeGeluid } from '@/components/geluid/HomeGeluid';
 import { HomeGeschiedenis } from '@/components/geschiedenis/HomeGeschiedenis';
 import { HomeBuurtborrel } from '@/components/buurtborrel/HomeBuurtborrel';
 import { hasRichTextContent } from '@/lib/richtext';
@@ -128,6 +129,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Suspense fallback={<HomeAfvalSkeleton locale={locale} />}>
         <HomeAfval locale={locale} />
       </Suspense>
+      <HomeGeluid locale={locale} />
     </main>
   );
 }
