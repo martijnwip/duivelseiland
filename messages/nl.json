@@ -1755,8 +1755,7 @@
         }
       },
       "links": {
-        "schoonmaak": "Aanmelden voor de schoonmaakgroep op WhatsApp",
-        "formulier": "Of meld je aan via het formulier"
+        "schoonmaak": "Aanmelden voor de schoonmaakgroep op WhatsApp"
       },
       "footer": {
         "title": "WhatsApp",
@@ -1838,14 +1837,12 @@
       "burenApp": {
         "title": "Buren-app Duivelseiland",
         "text": "De WhatsApp-groep voor spontane aankondigingen en berichten uit de buurt.",
-        "knop": "Vraag om toegang",
-        "bericht": "Hoi! Ik wil graag in de Buren-app Duivelseiland. Mijn naam is "
+        "knop": "Aanmelden voor de Buren-app"
       },
       "schoonmaak": {
         "title": "Duivelse Schoonmaak",
         "text": "Elke maand ruimen buren samen het zwerfafval op. Doe je mee, dan kom je in de appgroep.",
-        "knop": "App voor de appgroep",
-        "bericht": "Hoi! Ik doe graag mee met de Duivelse Schoonmaak en wil in de appgroep. Mijn naam is "
+        "knop": "Aanmelden voor de schoonmaakgroep"
       }
     },
     "form": {

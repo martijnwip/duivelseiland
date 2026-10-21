@@ -1938,8 +1938,7 @@
         }
       },
       "links": {
-        "schoonmaak": "Join the clean-up group on WhatsApp",
-        "formulier": "Or sign up using the form"
+        "schoonmaak": "Join the clean-up group on WhatsApp"
       },
       "footer": {
         "title": "WhatsApp",
@@ -2021,14 +2020,12 @@
       "burenApp": {
         "title": "Buren-app Duivelseiland",
         "text": "The neighbourhood WhatsApp group for spontaneous announcements and news.",
-        "knop": "Ask to join",
-        "bericht": "Hi! I'd like to join the Buren-app Duivelseiland. My name is "
+        "knop": "Join the Buren-app"
       },
       "schoonmaak": {
         "title": "Duivelse Schoonmaak",
         "text": "Every month neighbours pick up litter together. If you'd like to join, you'll be added to the app group.",
-        "knop": "Message to join",
-        "bericht": "Hi! I'd like to join the Duivelse Schoonmaak and its app group. My name is "
+        "knop": "Join the clean-up group"
       }
     },
     "form": {
