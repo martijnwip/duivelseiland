@@ -13,13 +13,13 @@ async function tokenBestaat(token: string) {
   return totalDocs > 0;
 }
 
-/** Pagina achter de bevestigings- of afmeldlink uit de mail. */
+/** Pagina achter de bevestigings- of afmeldlink uit de mail (ook: afmelden voor alleen de seintjes over ideeën). */
 export async function NieuwsbriefTokenPage({
   kind,
   locale,
   token,
 }: {
-  kind: 'bevestigen' | 'afmelden';
+  kind: 'bevestigen' | 'afmelden' | 'ideeenAfmelden';
   locale: string;
   token: string;
 }) {

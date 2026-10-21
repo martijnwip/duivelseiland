@@ -444,6 +444,7 @@ export interface Activiteiten {
   maxDeelnemers?: number | null;
   toonAantal?: boolean | null;
   meldingBijInschrijving?: boolean | null;
+  goedgekeurdOp?: string | null;
   aanvragerNaam?: string | null;
   /**
    * Uit het aanmeldformulier, nooit publiek. Wordt bij goedkeuring automatisch de organisator.
@@ -800,6 +801,12 @@ export interface NieuwsbriefAbonnee {
   token: string;
   bevestigdOp?: string | null;
   afgemeldOp?: string | null;
+  /**
+   * Een seintje als de redactie een idee van een buur goedkeurt (hooguit één mail per dag).
+   */
+  ideeen?: boolean | null;
+  ideeenVanaf?: string | null;
+  ideeenGemaildOp?: string | null;
   laatsteMailOp?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -1485,6 +1492,9 @@ export interface NieuwsbriefAbonneesSelect<T extends boolean = true> {
   token?: T;
   bevestigdOp?: T;
   afgemeldOp?: T;
+  ideeen?: T;
+  ideeenVanaf?: T;
+  ideeenGemaildOp?: T;
   laatsteMailOp?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -1538,6 +1548,7 @@ export interface ActiviteitenSelect<T extends boolean = true> {
   maxDeelnemers?: T;
   toonAantal?: T;
   meldingBijInschrijving?: T;
+  goedgekeurdOp?: T;
   aanvragerNaam?: T;
   aanvragerEmail?: T;
   eigenaar?: T;

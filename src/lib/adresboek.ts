@@ -286,11 +286,13 @@ export async function verwijderAdresOveral(payload: Payload, email: string, req?
  */
 export async function vulAdresboek(payload: Payload, req?: PayloadRequest) {
   const opties = { depth: 0, pagination: false as const, overrideAccess: true, req };
+  // Alleen de velden die hier nodig zijn: deze functie draait in een oude migratie, op een schema waar latere
+  // kolommen (zoals `ideeen` op abonnees) nog niet bestaan.
   const [nieuwsbrief, deelnemers, ideeen, gebruikers] = await Promise.all([
-    payload.find({ collection: 'nieuwsbrief-abonnees', ...opties }),
-    payload.find({ collection: 'activiteit-inschrijvingen', ...opties }),
-    payload.find({ collection: 'activiteiten', ...opties }),
-    payload.find({ collection: 'users', ...opties }),
+    payload.find({ collection: 'nieuwsbrief-abonnees', select: { email: true, status: true }, ...opties }),
+    payload.find({ collection: 'activiteit-inschrijvingen', select: { email: true, status: true }, ...opties }),
+    payload.find({ collection: 'activiteiten', select: { aanvragerEmail: true, fase: true }, ...opties }),
+    payload.find({ collection: 'users', select: { email: true }, ...opties }),
   ]);
   const adressen = new Map<string, boolean>();
   const zet = (email: string | null | undefined, bevestigd: boolean) => {

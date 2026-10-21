@@ -1,7 +1,7 @@
 'use client';
 
 import { useActionState } from 'react';
-import { afmeldenNieuwsbrief, bevestigNieuwsbrief, type NieuwsbriefTokenState } from './actions';
+import { afmeldenIdeeen, afmeldenNieuwsbrief, bevestigNieuwsbrief, type NieuwsbriefTokenState } from './actions';
 
 type Strings = { submit: string; submitting: string; success: string; invalid: string };
 
@@ -16,12 +16,12 @@ export function NieuwsbriefTokenForm({
   token,
   strings,
 }: {
-  kind: 'bevestigen' | 'afmelden';
+  kind: 'bevestigen' | 'afmelden' | 'ideeenAfmelden';
   token: string;
   strings: Strings;
 }) {
   const [state, formAction, pending] = useActionState(
-    kind === 'bevestigen' ? bevestigNieuwsbrief : afmeldenNieuwsbrief,
+    kind === 'bevestigen' ? bevestigNieuwsbrief : kind === 'ideeenAfmelden' ? afmeldenIdeeen : afmeldenNieuwsbrief,
     initialState,
   );
 

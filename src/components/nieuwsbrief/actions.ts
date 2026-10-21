@@ -34,6 +34,8 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
   const rawNaam = String(formData.get('naam') ?? '');
   const naam = rawNaam.trim().replace(/\s+/g, ' ').slice(0, 200);
   const locale = formData.get('locale') === 'en' ? 'en' : 'nl';
+  // Seintjes over nieuwe ideeën: gaan pas lopen na de bevestiging, net als de nieuwsbrief.
+  const ideeen = formData.get('ideeen') === 'ja';
   if (email.length > 254 || !EMAIL_RE.test(email)) return { status: 'error', email: rawEmail, naam: rawNaam };
 
   try {
@@ -53,7 +55,7 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
         const token = nieuwToken();
         await payload.create({
           collection: 'nieuwsbrief-abonnees',
-          data: { email, naam: naam || null, status: 'pending', bron: 'formulier', locale, token, laatsteMailOp: now },
+          data: { email, naam: naam || null, status: 'pending', bron: 'formulier', locale, token, laatsteMailOp: now, ideeen },
         });
         mail = { kind: 'bevestigen', token, locale };
       } else if (bestaand.status !== 'actief' && !recentGemaild(bestaand.laatsteMailOp)) {
@@ -62,7 +64,7 @@ export async function submitNieuwsbrief(_prev: NieuwsbriefFormState, formData: F
         await payload.update({
           collection: 'nieuwsbrief-abonnees',
           id: bestaand.id,
-          data: { status: 'pending', locale, token, laatsteMailOp: now, ...(naam ? { naam } : {}) },
+          data: { status: 'pending', locale, token, laatsteMailOp: now, ideeen, ...(naam ? { naam } : {}) },
         });
         mail = { kind: 'bevestigen', token, locale };
       }
@@ -102,6 +104,17 @@ async function zetStatus(formData: FormData, status: 'actief' | 'afgemeld'): Pro
     id: abonnee.id,
     data: status === 'actief' ? { status, bevestigdOp: now, afgemeldOp: null } : { status, afgemeldOp: now, laatsteMailOp: null },
   });
+  return { status: 'success' };
+}
+
+/** Klik op "afmelden" achter de link in een seintje over nieuwe ideeën: alleen de seintjes stoppen, de nieuwsbrief blijft. */
+export async function afmeldenIdeeen(_prev: NieuwsbriefTokenState, formData: FormData): Promise<NieuwsbriefTokenState> {
+  const token = String(formData.get('token') ?? '');
+  if (!TOKEN_RE.test(token)) return { status: 'invalid' };
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({ collection: 'nieuwsbrief-abonnees', where: { token: { equals: token } }, limit: 1, depth: 0 });
+  if (!docs[0]) return { status: 'invalid' };
+  if (docs[0].ideeen) await payload.update({ collection: 'nieuwsbrief-abonnees', id: docs[0].id, data: { ideeen: false } });
   return { status: 'success' };
 }
 

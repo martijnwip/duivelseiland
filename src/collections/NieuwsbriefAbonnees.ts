@@ -1,9 +1,15 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionBeforeChangeHook, CollectionConfig } from 'payload';
 import { isRedacteurOrAdmin } from '../access/isAdmin';
 import { adresboekHooks } from '../lib/adresboek';
 import { nieuwsbriefImportEndpoint } from './NieuwsbriefImportEndpoint';
 
 const adresboek = adresboekHooks<{ email: string; status: string }>((d) => d.email, (d) => d.status === 'actief');
+
+/** Net aangezet: alleen ideeën die vanaf nu worden goedgekeurd, niet de oude (zie src/lib/activiteiten/seintjes.ts). */
+const ideeenVanafNu: CollectionBeforeChangeHook = ({ data, originalDoc }) => {
+  if (data.ideeen === true && !originalDoc?.ideeen) data.ideeenVanaf = new Date().toISOString();
+  return data;
+};
 
 /**
  * Aanmeldingen voor de nieuwsbrief, met dubbele opt-in. Aanmaken gaat alleen via de server actions
@@ -16,7 +22,7 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
   admin: {
     useAsTitle: 'email',
     group: 'Nieuwsbrief',
-    defaultColumns: ['email', 'naam', 'status', 'bron', 'locale', 'createdAt'],
+    defaultColumns: ['email', 'naam', 'status', 'ideeen', 'bron', 'locale', 'createdAt'],
     components: {
       beforeListTable: ['/collections/NieuwsbriefImportForm#NieuwsbriefImportForm'],
     },
@@ -31,6 +37,7 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
   },
   endpoints: [{ method: 'post', path: '/import', handler: nieuwsbriefImportEndpoint }],
   hooks: {
+    beforeChange: [ideeenVanafNu],
     afterChange: [adresboek.afterChange],
     // Vóór het verwijderen (de verzendrij verwijst verplicht naar de abonnee); geldt ook voor "vergeet mij".
     beforeDelete: [
@@ -85,6 +92,18 @@ export const NieuwsbriefAbonnees: CollectionConfig = {
     { name: 'token', type: 'text', required: true, unique: true, index: true, admin: { hidden: true } },
     { name: 'bevestigdOp', type: 'date', admin: { readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
     { name: 'afgemeldOp', type: 'date', admin: { readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
+    {
+      name: 'ideeen',
+      label: 'Mail bij een nieuw idee voor een activiteit',
+      type: 'checkbox',
+      defaultValue: false,
+      index: true,
+      admin: { description: 'Een seintje als de redactie een idee van een buur goedkeurt (hooguit één mail per dag).' },
+    },
+    // Ideeën die na dit moment zijn goedgekeurd, moeten nog gemeld worden; het tijdstip van de laatste
+    // seintjesmail telt mee in het dagquotum (src/lib/mailQuotum.ts).
+    { name: 'ideeenVanaf', type: 'date', admin: { hidden: true } },
+    { name: 'ideeenGemaildOp', type: 'date', index: true, admin: { hidden: true } },
     // Rem op het herhaald versturen van bevestigings- en afmeldmails naar hetzelfde adres.
     { name: 'laatsteMailOp', type: 'date', admin: { hidden: true } },
   ],

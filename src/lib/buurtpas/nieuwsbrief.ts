@@ -50,3 +50,23 @@ export async function krijgtNieuwsbrief(payload: Payload, email: string) {
   });
   return totalDocs > 0;
 }
+
+/** Krijgt dit adres seintjes over nieuwe ideeën? Alleen als het ook de nieuwsbrief krijgt. */
+export async function krijgtIdeeen(payload: Payload, email: string) {
+  const { totalDocs } = await payload.count({
+    collection: 'nieuwsbrief-abonnees',
+    where: { and: [{ email: { equals: email } }, { status: { equals: 'actief' } }, { ideeen: { equals: true } }] },
+    overrideAccess: true,
+  });
+  return totalDocs > 0;
+}
+
+/** Seintjes over nieuwe ideeën aan of uit; alleen voor een actieve abonnee (de seintjes horen bij de nieuwsbrief). */
+export async function zetIdeeen(payload: Payload, email: string, aan: boolean) {
+  await payload.update({
+    collection: 'nieuwsbrief-abonnees',
+    where: { and: [{ email: { equals: email } }, { status: { equals: 'actief' } }] },
+    data: { ideeen: aan },
+    overrideAccess: true,
+  });
+}

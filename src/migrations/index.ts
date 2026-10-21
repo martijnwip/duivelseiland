@@ -37,6 +37,7 @@ import * as migration_20261014_130000_vaklui from './20261014_130000_vaklui';
 import * as migration_20261014_160000_vakken_hoofdletter from './20261014_160000_vakken_hoofdletter';
 import * as migration_20261021_121920_nieuwsbrief_deellink from './20261021_121920_nieuwsbrief_deellink';
 import * as migration_20261021_142202_whatsapp_aanmeldingen from './20261021_142202_whatsapp_aanmeldingen';
+import * as migration_20261021_144909_ideeen_seintjes from './20261021_144909_ideeen_seintjes';
 
 export const migrations = [
   {
@@ -232,6 +233,11 @@ export const migrations = [
   {
     up: migration_20261021_142202_whatsapp_aanmeldingen.up,
     down: migration_20261021_142202_whatsapp_aanmeldingen.down,
-    name: '20261021_142202_whatsapp_aanmeldingen'
+    name: '20261021_142202_whatsapp_aanmeldingen',
+  },
+  {
+    up: migration_20261021_144909_ideeen_seintjes.up,
+    down: migration_20261021_144909_ideeen_seintjes.down,
+    name: '20261021_144909_ideeen_seintjes'
   },
 ];
