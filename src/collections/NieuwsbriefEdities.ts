@@ -6,14 +6,14 @@ import { PUBLIEKE_FASES } from '../lib/activiteiten/constants';
 import { editieEndpoints } from '../endpoints/nieuwsbriefEdities';
 import { mailEditor } from '../globals/editors';
 
-const SERVERVELDEN = ['status', 'gestartOp', 'gestartDoor', 'verzondenOp', 'aantalOntvangers', 'aantalVerzonden'];
+const SERVERVELDEN = ['status', 'gestartOp', 'gestartDoor', 'verzondenOp', 'aantalOntvangers', 'aantalVerzonden', 'deelToken'];
 
 /**
- * Status en tellingen zet alleen de verzendlogica (`context.verzending`). Na de start ligt ook de inhoud
- * vast: alle ontvangers moeten dezelfde nieuwsbrief krijgen.
+ * Status en tellingen zet alleen de verzendlogica (`context.verzending`), de deellink alleen het endpoint
+ * (`context.deellink`). Na de start ligt ook de inhoud vast: alle ontvangers moeten dezelfde nieuwsbrief krijgen.
  */
 const alleenConceptBewerken: CollectionBeforeChangeHook = ({ data, originalDoc, operation, context }) => {
-  if (context.verzending) return data;
+  if (context.verzending || context.deellink) return data;
   if (operation === 'update' && originalDoc?.status !== 'concept') {
     throw new APIError('Deze editie wordt of is verstuurd; je kunt hem niet meer wijzigen.', 400, null, true);
   }
@@ -96,5 +96,12 @@ export const NieuwsbriefEdities: CollectionConfig = {
     { name: 'verzondenOp', label: 'Klaar op', type: 'date', admin: { readOnly: true, position: 'sidebar', date: { pickerAppearance: 'dayAndTime' } } },
     { name: 'aantalOntvangers', type: 'number', admin: { readOnly: true, position: 'sidebar' } },
     { name: 'aantalVerzonden', type: 'number', admin: { readOnly: true, position: 'sidebar' } },
+    {
+      // Sleutel van de deellink (knop Deellink); een nieuwe link vervangt de vorige. Werkt alleen zolang de editie concept is.
+      name: 'deelToken',
+      type: 'text',
+      index: true,
+      admin: { hidden: true },
+    },
   ],
 };

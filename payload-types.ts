@@ -833,6 +833,7 @@ export interface NieuwsbriefEditie {
   verzondenOp?: string | null;
   aantalOntvangers?: number | null;
   aantalVerzonden?: number | null;
+  deelToken?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1460,6 +1461,7 @@ export interface NieuwsbriefEditiesSelect<T extends boolean = true> {
   verzondenOp?: T;
   aantalOntvangers?: T;
   aantalVerzonden?: T;
+  deelToken?: T;
   updatedAt?: T;
   createdAt?: T;
 }
