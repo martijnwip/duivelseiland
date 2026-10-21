@@ -31,7 +31,8 @@
       "readMore": "Bekijk het agenda-item",
       "readMoreContext": "over de Duivelse Schoonmaak",
       "eyebrow": "Elke maand",
-      "factText": "keer per maand, altijd de eerste zondag"
+      "factText": "keer per maand, altijd de eerste zondag",
+      "whatsappCta": "In de schoonmaakgroep op WhatsApp"
     },
     "afval": {
       "eyebrow": "Schoon en netjes",
@@ -1719,6 +1720,49 @@
     "buurtborrel": {
       "heading": "Buurtborrel",
       "metaDescription": "De Buurtborrel van Duivelseiland: samen proosten op het plantsoen, buren leren kennen. Meld je aan voor de mailinglijst of kom in de buurt-appgroep."
+    },
+    "whatsapp": {
+      "eyebrow": "Buurt",
+      "heading": "WhatsApp-groepen",
+      "metaDescription": "Meld je aan voor de WhatsApp-groepen van Duivelseiland. De redactie voegt je toe.",
+      "intro": "Wil je in de WhatsApp-groep van de buurt, of meedoen met de schoonmaakgroep? Laat je naam en telefoonnummer achter. De redactie voegt je toe.",
+      "groepen": {
+        "buurt": {
+          "naam": "Buren-app Duivelseiland",
+          "uitleg": "De WhatsApp-groep voor aankondigingen, vragen en tips uit de buurt."
+        },
+        "schoonmaak": {
+          "naam": "Duivelse Schoonmaak",
+          "uitleg": "Elke eerste zondag van de maand ruimen buren samen het zwerfafval op. In deze groep spreek je af."
+        }
+      },
+      "form": {
+        "groepen": "Welke groep?",
+        "groepenHint": "Kies één of beide groepen.",
+        "naam": "Je naam",
+        "telefoon": "Je telefoonnummer (WhatsApp)",
+        "telefoonHint": "Alleen voor de redactie. Na het toevoegen wissen we het nummer van de site.",
+        "akkoord": "Ik vind het goed dat de redactie mij met dit nummer aan de groep toevoegt. In de groep zien de andere leden mijn nummer.",
+        "submit": "Aanmelden",
+        "submitting": "Bezig met versturen…",
+        "success": "Bedankt! De redactie voegt je zo snel mogelijk toe aan de groep.",
+        "error": {
+          "velden": "Controleer je naam en telefoonnummer.",
+          "groep": "Kies minstens één groep.",
+          "akkoord": "Geef toestemming om je aan de groep toe te voegen.",
+          "buurtpas": "Je buurtpas is niet (meer) geldig. Vraag een nieuwe aan en probeer het opnieuw.",
+          "server": "Er ging iets mis bij het versturen. Probeer het later opnieuw."
+        }
+      },
+      "links": {
+        "schoonmaak": "Aanmelden voor de schoonmaakgroep op WhatsApp",
+        "formulier": "Of meld je aan via het formulier"
+      },
+      "footer": {
+        "title": "WhatsApp",
+        "text": "In de appgroep van de buurt of de Duivelse Schoonmaak? De redactie voegt je toe.",
+        "link": "Aanmelden voor een appgroep"
+      }
     }
   },
   "content": {
@@ -1978,6 +2022,12 @@
       "title": "Alles op de kaart",
       "label": "Kaart van Duivelseiland en omgeving met de drie brievenbussen, genummerd 1 tot en met 3: Gerard Terborgstraat, Eerste Jan Steenstraat en de hoek Johannes Vermeerstraat en Teniersstraat. De AED hangt aan de Ruysdaelstraat, bij de Oud-Katholieke Kerk.",
       "bijschrift": "De nummers horen bij de brievenbussen hierboven. De stippellijn is de grens van Duivelseiland."
+    },
+    "whatsapp": {
+      "eyebrow": "WhatsApp",
+      "title": "WhatsApp-groepen van de buurt",
+      "intro": "In de Buren-app Duivelseiland delen buren aankondigingen, vragen en tips. In de groep van de Duivelse Schoonmaak spreken buren af om samen het zwerfafval op te ruimen. Meld je aan, dan voegt de redactie je toe.",
+      "knop": "Aanmelden voor een WhatsApp-groep"
     }
   },
   "nieuwsbrief": {
@@ -2189,7 +2239,8 @@
       "uitleg": "Dit zie je met een buurtpas. Vul je e-mailadres in; je krijgt een link, geen account.",
       "meer": "Wat is de buurtpas?",
       "telefoon": "Telefoonnummers",
-      "vakmanAanmelden": "Vakman aanmelden met buurtpas"
+      "vakmanAanmelden": "Vakman aanmelden met buurtpas",
+      "whatsappAanmelden": "In de WhatsApp-groep met buurtpas"
     },
     "activeren": {
       "heading": "Buurtpas activeren",

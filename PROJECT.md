@@ -95,6 +95,7 @@ Technisch beheerder.
 | Users                  | geen              | eigen profiel lezen/bewerken     | eigen profiel lezen/bewerken | alles |
 | Activiteiten           | lezen (goedgekeurd/gaat-door/afgelopen), idee indienen via formulier | lezen (publiek) | alles + modereren | alles |
 | Aanmeldingen / Berichten | inschrijven/afmelden via formulier | geen                      | alles                        | alles |
+| WhatsApp-aanmeldingen  | met buurtpas aanmelden via formulier | geen                    | alles                        | alles |
 | Nieuwsbrief-abonnees   | aan-/afmelden via formulier | geen                              | alles (import: alleen admin) | alles |
 | Nieuwsbrief-edities    | geen              | geen                             | alles + versturen (als de admin het vrijgeeft) | alles |
 | E-mailadressen (adresboek) | geen            | geen                             | geen                         | alles |
@@ -206,7 +207,7 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vaklui`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vaklui`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`, `whatsapp-aanmeldingen`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
@@ -215,6 +216,8 @@ Elke content-collection heeft `title`, `slug`, `status` (draft/published), `auth
 Uitzondering: **Vaklui** heeft `naam`, `vakken` (één of meer tags uit de collection `vakken`; met de + in het veld voeg je direct een nieuw vak toe), `telefoon`, `website`, plus `status` en `author`. De site toont ze als één overzicht op `/vaklui`, gegroepeerd per vak, zonder detailpagina's. Vaknamen zijn tweetalig.
 
 **Vakman aanmelden.** Buren met een buurtpas kunnen op `/vaklui/aanmelden` een vakman aanmelden: naam, vakken (vinkjes) en/of *Ander vak*, telefoon en/of website, de eigen naam en een toelichting voor de redactie. Het e-mailadres komt uit de buurtpas. De aanmelding komt binnen als concept met `moderatie = ingediend`. De redactie krijgt een mail; de aanmelder krijgt een ontvangstmail met een intrekken-link (`/vaklui/aanmelding/intrekken/<token>`, werkt tot goedkeuring). In `/admin` staan bovenaan de knoppen **Goedkeuren** (zet `status = published`; er moet een vak gekoppeld zijn, dus zet *Ander vak* eerst om met de +) en **Afkeuren** (reden verplicht, gaat naar de aanmelder; de vakman gaat terug naar concept). Een afgekeurde aanmelding kun je opnieuw goedkeuren. Handmatig publiceren telt ook als goedkeuren. De regels staan in `src/lib/vaklui/workflow.ts`; de gegevens van de aanmelder zijn alleen voor redacteur en admin. In het adresboek staat de aanmelder als "vakman aangemeld". Verwijder je het adres, dan verdwijnt een open of afgekeurde aanmelding; bij een goedgekeurde gaan alleen de gegevens van de aanmelder weg.
+
+**WhatsApp-groepen aanmelden.** Buren met een buurtpas melden zich op `/whatsapp` aan voor de Buren-app Duivelseiland en/of de groep van de Duivelse Schoonmaak: naam, telefoonnummer en de groep(en). Het e-mailadres komt uit de buurtpas. De redactie krijgt een mail (zonder telefoonnummer) en voegt het nummer zelf toe in WhatsApp. Zet de redactie de aanmelding in `/admin` op *Toegevoegd*, dan wordt het telefoonnummer gewist. Een tweede aanmelding van hetzelfde adres werkt de open aanmelding bij. In het adresboek staat het adres als "WhatsApp-groep"; verwijder je het adres, dan verdwijnt de aanmelding. Verwijzingen naar het formulier: homepage (bij de Duivelse Schoonmaak), het agenda-item Duivelse Schoonmaak, Praktische info, `/buurtborrel` en de footer. Code: `src/collections/WhatsappAanmeldingen.ts`, `src/components/whatsapp/`, `src/lib/whatsapp-groepen/`.
 
 ## Data ophalen in de site
 

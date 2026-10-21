@@ -76,6 +76,7 @@ export interface Config {
     geschiedenis: Geschiedeni;
     'duivelse-kunst': DuivelseKunst;
     vaklui: Vaklui;
+    'whatsapp-aanmeldingen': WhatsappAanmelding;
     vakken: Vakken;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
@@ -108,6 +109,7 @@ export interface Config {
     geschiedenis: GeschiedenisSelect<false> | GeschiedenisSelect<true>;
     'duivelse-kunst': DuivelseKunstSelect<false> | DuivelseKunstSelect<true>;
     vaklui: VakluiSelect<false> | VakluiSelect<true>;
+    'whatsapp-aanmeldingen': WhatsappAanmeldingenSelect<false> | WhatsappAanmeldingenSelect<true>;
     vakken: VakkenSelect<false> | VakkenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
@@ -632,6 +634,27 @@ export interface Vakken {
   createdAt: string;
 }
 /**
+ * Buren die in een WhatsApp-groep willen. Voeg het nummer toe aan de groep(en) en zet de status op "Toegevoegd": het telefoonnummer wordt dan gewist.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whatsapp-aanmeldingen".
+ */
+export interface WhatsappAanmelding {
+  id: number;
+  naam: string;
+  /**
+   * Wordt gewist zodra de status op "Toegevoegd" gaat.
+   */
+  telefoon?: string | null;
+  groepen: ('buurt' | 'schoonmaak')[];
+  status: 'aangemeld' | 'toegevoegd';
+  toegevoegdOp?: string | null;
+  email: string;
+  locale?: ('nl' | 'en') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "praktische-info".
  */
@@ -1039,6 +1062,10 @@ export interface PayloadLockedDocument {
         value: number | Vaklui;
       } | null)
     | ({
+        relationTo: 'whatsapp-aanmeldingen';
+        value: number | WhatsappAanmelding;
+      } | null)
+    | ({
         relationTo: 'vakken';
         value: number | Vakken;
       } | null)
@@ -1348,6 +1375,21 @@ export interface VakluiSelect<T extends boolean = true> {
   locale?: T;
   token?: T;
   laatsteMailOp?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "whatsapp-aanmeldingen_select".
+ */
+export interface WhatsappAanmeldingenSelect<T extends boolean = true> {
+  naam?: T;
+  telefoon?: T;
+  groepen?: T;
+  status?: T;
+  toegevoegdOp?: T;
+  email?: T;
+  locale?: T;
   updatedAt?: T;
   createdAt?: T;
 }

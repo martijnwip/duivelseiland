@@ -12,6 +12,7 @@ import { PlantsoenKaart } from './PlantsoenKaart';
 import { IdeeLikes } from './IdeeLikes';
 import type { IdeeKey } from '@/collections/IdeeLikes';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
+import { WhatsappAanmeldLink } from '@/components/whatsapp/WhatsappAanmeldLink';
 
 // Het Schoonmaak-nummer staat al bij het agenda-item (zie HomeDuivelseSchoonmaak).
 const SCHOONMAAK_SLUG = 'duivelse-schoonmaak';
@@ -51,6 +52,7 @@ function WhatsAppButton({ href, label, context, note }: { href: string; label: s
 
 export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
   const t = await getTranslations({ locale, namespace: 'buurtborrel' });
+  const tw = await getTranslations({ locale, namespace: 'pages.whatsapp.links' });
 
   const payload = await getPayload({ config });
   const [instellingen, { docs: schoonmaakDocs }] = await Promise.all([
@@ -177,6 +179,7 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
                 {href && buurtpas ? (
                   <WhatsAppButton href={href} label={t(`doeMee.${key}.knop`)} context={t(`doeMee.${key}.title`)} note={nieuwVenster} />
                 ) : null}
+                <WhatsappAanmeldLink locale={locale} label={tw('formulier')} variant="link" className="self-start" />
               </div>
             ))}
           </div>

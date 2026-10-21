@@ -36,6 +36,7 @@ import * as migration_20261014_120726_vakmensen_aanmelden from './20261014_12072
 import * as migration_20261014_130000_vaklui from './20261014_130000_vaklui';
 import * as migration_20261014_160000_vakken_hoofdletter from './20261014_160000_vakken_hoofdletter';
 import * as migration_20261021_121920_nieuwsbrief_deellink from './20261021_121920_nieuwsbrief_deellink';
+import * as migration_20261021_142202_whatsapp_aanmeldingen from './20261021_142202_whatsapp_aanmeldingen';
 
 export const migrations = [
   {
@@ -226,6 +227,11 @@ export const migrations = [
   {
     up: migration_20261021_121920_nieuwsbrief_deellink.up,
     down: migration_20261021_121920_nieuwsbrief_deellink.down,
-    name: '20261021_121920_nieuwsbrief_deellink'
+    name: '20261021_121920_nieuwsbrief_deellink',
+  },
+  {
+    up: migration_20261021_142202_whatsapp_aanmeldingen.up,
+    down: migration_20261021_142202_whatsapp_aanmeldingen.down,
+    name: '20261021_142202_whatsapp_aanmeldingen'
   },
 ];

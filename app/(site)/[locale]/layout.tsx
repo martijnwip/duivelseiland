@@ -75,6 +75,7 @@ export default async function SiteLayout({
   const siteNaam = site.siteNaam || 'Duivelseiland';
   const menu = (site.menu ?? []).filter((item) => item.zichtbaar !== false);
   const tNieuwsbrief = await getTranslations({ locale, namespace: 'nieuwsbrief' });
+  const tWhatsapp = await getTranslations({ locale, namespace: 'pages.whatsapp.footer' });
 
   return (
     <html
@@ -105,6 +106,7 @@ export default async function SiteLayout({
               error: tNieuwsbrief('form.error'),
               afmelden: tNieuwsbrief('footer.afmelden'),
             }}
+            whatsapp={{ title: tWhatsapp('title'), text: tWhatsapp('text'), link: tWhatsapp('link') }}
           />
         </ThemeProvider>
         <Analytics />

@@ -31,7 +31,8 @@
       "readMore": "View the agenda item",
       "readMoreContext": "about the Duivelse Schoonmaak",
       "eyebrow": "Every month",
-      "factText": "time a month, always the first Sunday"
+      "factText": "time a month, always the first Sunday",
+      "whatsappCta": "Join the clean-up group on WhatsApp"
     },
     "afval": {
       "eyebrow": "Clean and tidy",
@@ -1902,6 +1903,49 @@
     "buurtborrel": {
       "heading": "Neighbourhood drinks",
       "metaDescription": "Duivelseiland's neighbourhood drinks: raising a glass on the green and getting to know your neighbours. Join the mailing list or the neighbourhood app group."
+    },
+    "whatsapp": {
+      "eyebrow": "Neighbourhood",
+      "heading": "WhatsApp groups",
+      "metaDescription": "Sign up for the Duivelseiland WhatsApp groups. The editors will add you.",
+      "intro": "Want to join the neighbourhood WhatsApp group, or the clean-up group? Leave your name and phone number. The editors will add you.",
+      "groepen": {
+        "buurt": {
+          "naam": "Buren-app Duivelseiland (neighbourhood group)",
+          "uitleg": "The WhatsApp group for announcements, questions and tips from the neighbourhood."
+        },
+        "schoonmaak": {
+          "naam": "Duivelse Schoonmaak (clean-up group)",
+          "uitleg": "On the first Sunday of every month, neighbours pick up litter together. This group is where you arrange it."
+        }
+      },
+      "form": {
+        "groepen": "Which group?",
+        "groepenHint": "Choose one or both groups.",
+        "naam": "Your name",
+        "telefoon": "Your phone number (WhatsApp)",
+        "telefoonHint": "Only for the editors. Once you've been added, we delete the number from the site.",
+        "akkoord": "I agree that the editors add me to the group with this number. Other members of the group will see my number.",
+        "submit": "Sign up",
+        "submitting": "Sending…",
+        "success": "Thanks! The editors will add you to the group as soon as possible.",
+        "error": {
+          "velden": "Please check your name and phone number.",
+          "groep": "Choose at least one group.",
+          "akkoord": "Please agree to being added to the group.",
+          "buurtpas": "Your neighbourhood pass is no longer valid. Request a new one and try again.",
+          "server": "Something went wrong. Please try again later."
+        }
+      },
+      "links": {
+        "schoonmaak": "Join the clean-up group on WhatsApp",
+        "formulier": "Or sign up using the form"
+      },
+      "footer": {
+        "title": "WhatsApp",
+        "text": "Join the neighbourhood group or the Duivelse Schoonmaak clean-up group. The editors will add you.",
+        "link": "Sign up for a group"
+      }
     }
   },
   "content": {
@@ -2161,6 +2205,12 @@
       "title": "Everything on the map",
       "label": "Map of Duivelseiland and surroundings with the three post boxes, numbered 1 to 3: Gerard Terborgstraat, Eerste Jan Steenstraat and the corner of Johannes Vermeerstraat and Teniersstraat. The AED is on Ruysdaelstraat, at the Old Catholic Church.",
       "bijschrift": "The numbers match the post boxes above. The dotted line is the boundary of Duivelseiland."
+    },
+    "whatsapp": {
+      "eyebrow": "WhatsApp",
+      "title": "Neighbourhood WhatsApp groups",
+      "intro": "In the Buren-app Duivelseiland, neighbours share announcements, questions and tips. In the Duivelse Schoonmaak group, neighbours arrange to pick up litter together. Sign up and the editors will add you.",
+      "knop": "Sign up for a WhatsApp group"
     }
   },
   "nieuwsbrief": {
@@ -2372,7 +2422,8 @@
       "uitleg": "You can see this with a neighbourhood pass. Enter your email address; you'll get a link, not an account.",
       "meer": "What is the neighbourhood pass?",
       "telefoon": "Phone numbers",
-      "vakmanAanmelden": "Submit a tradesperson with a neighbourhood pass"
+      "vakmanAanmelden": "Submit a tradesperson with a neighbourhood pass",
+      "whatsappAanmelden": "Join the WhatsApp group with a neighbourhood pass"
     },
     "activeren": {
       "heading": "Activate neighbourhood pass",

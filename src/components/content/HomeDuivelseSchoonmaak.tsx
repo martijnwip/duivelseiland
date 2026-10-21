@@ -3,6 +3,7 @@ import { getPayload } from 'payload';
 import config from '@payload-config';
 import { getTranslations } from 'next-intl/server';
 import { localizedHref } from '@/i18n/localizedHref';
+import { WhatsappAanmeldLink } from '@/components/whatsapp/WhatsappAanmeldLink';
 import { AgendaDateTile } from './AgendaDateTile';
 import { ScheduleIcon } from './AgendaScheduleIcons';
 import { getAgendaEffectiveDate, isRecurring, type AgendaRecurrenceFields } from '@/lib/agenda/nextOccurrence';
@@ -11,7 +12,7 @@ import type { AgendaRichFields } from '@/lib/agenda/richFields';
 // Vast op dit ene agenda-item — net als HomeStats vaste KEYS gebruikt in plaats
 // van generiek "een featured item" te worden. Als er later meer van dit soort
 // homepage-uitlichtingen komen, is dat het moment om te generaliseren.
-const SLUG = 'duivelse-schoonmaak';
+export const SCHOONMAAK_SLUG = 'duivelse-schoonmaak';
 
 /** Homepagina-sectie onder "De buurt in cijfers": uitlichting van het terugkerende agenda-item Duivelse Schoonmaak. */
 export async function HomeDuivelseSchoonmaak({ locale }: { locale: 'nl' | 'en' }) {
@@ -21,7 +22,7 @@ export async function HomeDuivelseSchoonmaak({ locale }: { locale: 'nl' | 'en' }
   const payload = await getPayload({ config });
   const { docs } = await payload.find({
     collection: 'agenda',
-    where: { slug: { equals: SLUG }, status: { equals: 'published' } },
+    where: { slug: { equals: SCHOONMAAK_SLUG }, status: { equals: 'published' } },
     locale,
     depth: 0,
     limit: 1,
@@ -101,16 +102,19 @@ export async function HomeDuivelseSchoonmaak({ locale }: { locale: 'nl' | 'en' }
         </div>
       </div>
 
-      <Link
-        href={localizedHref(locale, `/agenda/${doc.slug}`)}
-        className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-      >
-        {t('readMore')}
-        <span className="sr-only"> {t('readMoreContext')}</span>
-        <svg width="16" height="16" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-          <path d="M2 7.5h10M8 3.5l4 4-4 4" />
-        </svg>
-      </Link>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link
+          href={localizedHref(locale, `/agenda/${doc.slug}`)}
+          className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {t('readMore')}
+          <span className="sr-only"> {t('readMoreContext')}</span>
+          <svg width="16" height="16" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+            <path d="M2 7.5h10M8 3.5l4 4-4 4" />
+          </svg>
+        </Link>
+        <WhatsappAanmeldLink locale={locale} label={t('whatsappCta')} />
+      </div>
     </section>
   );
 }
