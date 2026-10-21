@@ -79,6 +79,21 @@ const ICONS = {
       <path d="M20 42v-8a4 4 0 0 1 8 0v8" />
     </>
   ),
+  boek: (
+    <>
+      <path d="M24 13c-4-3-10-4-17-4v28c7 0 13 1 17 4 4-3 10-4 17-4V9c-7 0-13 1-17 4z" />
+      <path d="M24 13v28" />
+    </>
+  ),
+  buurthuis: (
+    <>
+      <path d="M6 22L24 8l18 14" />
+      <path d="M11 18v24h26V18" />
+      <circle cx="19" cy="27" r="3" />
+      <circle cx="29" cy="27" r="3" />
+      <path d="M14 42v-4a5 5 0 0 1 10 0M24 38a5 5 0 0 1 10 0v4" />
+    </>
+  ),
 } as const;
 
 export type PraktischeInfoIconName = keyof typeof ICONS;

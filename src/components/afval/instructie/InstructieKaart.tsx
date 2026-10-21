@@ -142,39 +142,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
         </header>
 
         <div className="grid md:grid-cols-2 print:grid-cols-2">
-          <Panel n={1} title={t('rest.title')}>
-            <div className="grid gap-3 sm:grid-cols-2 print:grid-cols-2">
-              <Scene ok title={t('rest.ok')} caption={t('rest.okCaption')}>
-                <Icon name="zak" className="size-13" />
-                <Arrow />
-                <Icon name="container" className="size-14" />
-              </Scene>
-              <Scene ok={false} title={t('rest.no')} caption={t('rest.noCaption')}>
-                <Icon name="container" className="size-14" />
-                <Icon name="zak" className="size-10" />
-                <Icon name="rat" className="size-13 text-accent" />
-              </Scene>
-            </div>
-          </Panel>
-
-          <Panel n={2} title={t('karton.title')}>
-            <div className="grid gap-3 sm:grid-cols-2 print:grid-cols-2">
-              <Scene ok title={t('karton.ok')} caption={t('karton.okCaption')}>
-                <Icon name="doos" className="size-10" />
-                <Arrow />
-                <Icon name="papiercontainer" className="size-14" />
-              </Scene>
-              <Scene ok title={t('karton.big')} caption={t('karton.bigCaption')}>
-                <Icon name="doos" className="size-10" />
-                <Icon name="mes" className="size-9" />
-                <Icon name="stukken" className="size-9" />
-                <Arrow />
-                <Icon name="papiercontainer" className="size-14" />
-              </Scene>
-            </div>
-          </Panel>
-
-          <Panel n={3} title={t('grof.title')} wide>
+          <Panel n={1} title={t('grof.title')} wide>
             <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] print:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.when.label')}</h3>
@@ -193,6 +161,10 @@ export async function InstructieKaart({ locale }: { locale: string }) {
                   }}
                 />
                 <p className="m-0 text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.when.text')}</p>
+                <p className="m-0 flex items-start gap-2 rounded-md border-2 border-accent bg-background p-2.5 text-[15px] leading-[1.4] font-semibold text-text print:text-[13px]">
+                  <Mark ok={false} />
+                  {t('grof.when.feestdag')}
+                </p>
               </div>
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.how.label')}</h3>
@@ -219,6 +191,38 @@ export async function InstructieKaart({ locale }: { locale: string }) {
                 <p className="m-0 text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.where.text')}</p>
               </div>
               <WaarScene label={t('grof.where.label') + ': ' + t('grof.where.text')} plek={t('grof.where.plek')} afstand={t('grof.where.afstand')} />
+            </div>
+          </Panel>
+
+          <Panel n={2} title={t('rest.title')}>
+            <div className="grid gap-3 sm:grid-cols-2 print:grid-cols-2">
+              <Scene ok title={t('rest.ok')} caption={t('rest.okCaption')}>
+                <Icon name="zak" className="size-13" />
+                <Arrow />
+                <Icon name="container" className="size-14" />
+              </Scene>
+              <Scene ok={false} title={t('rest.no')} caption={t('rest.noCaption')}>
+                <Icon name="container" className="size-14" />
+                <Icon name="zak" className="size-10" />
+                <Icon name="rat" className="size-13 text-accent" />
+              </Scene>
+            </div>
+          </Panel>
+
+          <Panel n={3} title={t('karton.title')}>
+            <div className="grid gap-3 sm:grid-cols-2 print:grid-cols-2">
+              <Scene ok title={t('karton.ok')} caption={t('karton.okCaption')}>
+                <Icon name="doos" className="size-10" />
+                <Arrow />
+                <Icon name="papiercontainer" className="size-14" />
+              </Scene>
+              <Scene ok title={t('karton.big')} caption={t('karton.bigCaption')}>
+                <Icon name="doos" className="size-10" />
+                <Icon name="mes" className="size-9" />
+                <Icon name="stukken" className="size-9" />
+                <Arrow />
+                <Icon name="papiercontainer" className="size-14" />
+              </Scene>
             </div>
           </Panel>
 
