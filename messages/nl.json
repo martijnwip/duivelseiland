@@ -1156,12 +1156,6 @@
           "label": "Hoeveel",
           "or": "of",
           "text": "Maximaal 2 kubieke meter per keer. Bijvoorbeeld 2 wasmachines of een driezitsbank."
-        },
-        "where": {
-          "label": "Waar",
-          "text": "Op de vaste plek voor grof afval. Is die er niet, dan aan de rand van de stoep. Altijd een paar meter van containers, bomen en parkeerplaatsen, zodat de grijper van de vuilniswagen erbij kan.",
-          "plek": "vaste plek",
-          "afstand": "paar meter"
         }
       },
       "welniet": {

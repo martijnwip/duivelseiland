@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import type { T } from '@/components/stats/cards/card';
 import { localizedHref } from '@/i18n/localizedHref';
-import { ICONS, Icon, Mark, type IconName } from './icons';
+import { Icon, Mark, type IconName } from './icons';
 import { Klok, Tijdvak } from './Tijdvak';
 import { PrintButton } from './PrintButton';
 import { ShareImageButton } from './ShareImageButton';
@@ -45,48 +45,6 @@ export function Scene({ ok, title, caption, children }: { ok: boolean; title: st
 }
 
 export const Arrow = () => <Icon name="pijl" className="size-6 text-muted" />;
-
-/** Bovenaanzicht van de stoep: grof vuil op de vaste plek, afstand tot container, boom en parkeervak. */
-function WaarScene({ label, plek, afstand }: { label: string; plek: string; afstand: string }) {
-  const icon = (name: IconName, x: number, y: number, size: number, cls = 'text-text') => (
-    <svg x={x} y={y} width={size} height={size} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className={cls}>
-      {ICONS[name]}
-    </svg>
-  );
-  /** Maatlijn met pijlpunten; het label staat eronder, zodat het nergens overlapt. */
-  const dim = (x1: number, x2: number, y: number) => (
-    <g className="stroke-text" strokeWidth={1.5}>
-      <path d={`M${x1} ${y}H${x2}M${x1 + 5} ${y - 4}L${x1} ${y}l5 4M${x2 - 5} ${y - 4}L${x2} ${y}l-5 4`} fill="none" />
-      <text x={(x1 + x2) / 2} y={y + 15} textAnchor="middle" stroke="none" className="fill-text font-heading text-[12px] font-semibold">
-        {afstand}
-      </text>
-    </g>
-  );
-  return (
-    <svg viewBox="0 0 440 170" role="img" aria-label={label} className="block h-auto w-full">
-      <title>{label}</title>
-      <rect x={0} y={0} width={440} height={116} rx={6} className="fill-border" />
-      <rect x={0} y={116} width={440} height={54} rx={6} className="fill-muted-soft" />
-      <path d="M0 116H440" strokeWidth={3} className="stroke-text" />
-      {/* Container links, boom rechts, parkeervak op de weg */}
-      {icon('container', 16, 56, 54)}
-      {icon('boom', 372, 28, 52, 'text-primary')}
-      <rect x={336} y={123} width={96} height={41} rx={3} fill="none" strokeDasharray="5 4" strokeWidth={1.75} className="stroke-text" />
-      {icon('parkeren', 370, 129, 28)}
-      {/* Vaste plek met grof vuil */}
-      <rect x={160} y={46} width={100} height={64} rx={6} fill="none" strokeDasharray="6 4" strokeWidth={2.5} className="stroke-primary" />
-      {icon('bank', 182, 54, 56)}
-      <text x={210} y={36} textAnchor="middle" className="fill-primary font-heading text-[13px] font-bold">
-        ✓ {plek}
-      </text>
-      {/* Grijper vanaf de weg */}
-      {icon('grijper', 193, 122, 34, 'text-muted')}
-      {dim(78, 154, 78)}
-      {dim(266, 366, 54)}
-      {dim(266, 330, 142)}
-    </svg>
-  );
-}
 
 export async function InstructieKaart({ locale }: { locale: string }) {
   const t = (await getTranslations({ locale, namespace: 'pages.afvalInstructie' })) as unknown as T;
@@ -143,13 +101,14 @@ export async function InstructieKaart({ locale }: { locale: string }) {
 
         <div className="grid md:grid-cols-2 print:grid-cols-2">
           <Panel n={1} title={t('grof.title')} wide>
-            <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] print:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
-              <div className="flex flex-col gap-2">
-                <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.when.label')}</h3>
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <Klok label={t('grof.when.clock')} className="size-24 xl:size-28 print:size-24" />
-                  <p className="m-0 font-heading text-[26px] leading-none font-bold whitespace-nowrap text-primary sm:text-[30px] xl:text-[34px] print:text-[30px]">{t('grof.when.big')}</p>
-                </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.when.label')}</h3>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <Klok label={t('grof.when.clock')} className="size-24 xl:size-28 print:size-24" />
+                <p className="m-0 font-heading text-[26px] leading-none font-bold whitespace-nowrap text-primary sm:text-[30px] xl:text-[34px] print:text-[30px]">{t('grof.when.big')}</p>
+              </div>
+              {/* De tijdbalk schaalt mee met de breedte; over de hele kaart wordt hij te groot. */}
+              <div className="w-full max-w-[640px]">
                 <Tijdvak
                   labels={{
                     zondag: t('grof.when.zondag'),
@@ -160,18 +119,18 @@ export async function InstructieKaart({ locale }: { locale: string }) {
                     label: t('grof.when.label') + ': ' + t('grof.when.text'),
                   }}
                 />
-                <p className="m-0 text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.when.text')}</p>
-                <p className="m-0 flex items-start gap-2 rounded-md border-2 border-accent bg-background p-2.5 text-[15px] leading-[1.4] font-semibold text-text print:text-[13px]">
-                  <Mark ok={false} />
-                  {t('grof.when.feestdag')}
-                </p>
               </div>
-              <div className="flex flex-col gap-2">
-                <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.how.label')}</h3>
-                <div aria-hidden className="flex flex-wrap items-center gap-2 text-text">
-                  <span className="relative inline-flex">
-                    <Icon name="kubus" className="size-20 text-primary print:size-16" />
-                  </span>
+              <p className="m-0 text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.when.text')}</p>
+              <p className="m-0 flex items-start gap-2 rounded-md border-2 border-accent bg-background p-2.5 text-[15px] leading-[1.4] font-semibold text-text print:text-[13px]">
+                <Mark ok={false} />
+                {t('grof.when.feestdag')}
+              </p>
+            </div>
+            <div className="flex flex-col gap-2 border-t border-border pt-4">
+              <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.how.label')}</h3>
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-3">
+                <div aria-hidden className="flex items-center gap-2 text-text">
+                  <Icon name="kubus" className="size-20 text-primary print:size-16" />
                   <span className="font-heading text-[40px] leading-none font-bold text-primary print:text-[32px]">
                     2 m<sup className="text-[22px]">3</sup>
                   </span>
@@ -182,15 +141,8 @@ export async function InstructieKaart({ locale }: { locale: string }) {
                   <span className="px-1 font-heading text-[15px] font-semibold text-muted">{t('grof.how.or')}</span>
                   <Icon name="bank" className="size-14" />
                 </div>
-                <p className="m-0 text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.how.text')}</p>
+                <p className="m-0 max-w-[420px] text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.how.text')}</p>
               </div>
-            </div>
-            <div className="grid items-center gap-5 border-t border-border pt-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] print:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)]">
-              <div className="flex flex-col gap-2">
-                <h3 className="m-0 text-[13px] font-semibold tracking-[0.1em] text-muted uppercase">{t('grof.where.label')}</h3>
-                <p className="m-0 text-[15px] leading-[1.45] text-text print:text-[13px]">{t('grof.where.text')}</p>
-              </div>
-              <WaarScene label={t('grof.where.label') + ': ' + t('grof.where.text')} plek={t('grof.where.plek')} afstand={t('grof.where.afstand')} />
             </div>
           </Panel>
 

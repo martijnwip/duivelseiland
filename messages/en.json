@@ -1339,12 +1339,6 @@
           "label": "How much",
           "or": "or",
           "text": "Up to 2 cubic metres at a time. For example 2 washing machines or a three-seater sofa."
-        },
-        "where": {
-          "label": "Where",
-          "text": "At the fixed spot for bulky waste. If there isn't one, at the edge of the pavement. Always a few metres from containers, trees and parking spaces, so the truck's grabber can reach it.",
-          "plek": "fixed spot",
-          "afstand": "a few metres"
         }
       },
       "welniet": {
