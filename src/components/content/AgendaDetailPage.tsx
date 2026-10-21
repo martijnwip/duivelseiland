@@ -12,6 +12,8 @@ import { buildWhatsAppLink } from '@/lib/whatsapp';
 import { getTranslations } from 'next-intl/server';
 import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
+import { WhatsappAanmeldLink } from '@/components/whatsapp/WhatsappAanmeldLink';
+import { SCHOONMAAK_SLUG } from './HomeDuivelseSchoonmaak';
 
 export async function AgendaDetailPage({
   slug,
@@ -50,6 +52,7 @@ export async function AgendaDetailPage({
   const buurtpas = await heeftBuurtpas();
   const terug = localizedHref(locale, `/agenda/${slug}`);
   const tb = await getTranslations({ locale, namespace: 'buurtpas' });
+  const tw = await getTranslations({ locale, namespace: 'pages.whatsapp.links' });
 
   // Buurtitem zonder buurtpas: alleen de titel en het slot.
   if (doc.alleenBuurt && !buurtpas) {
@@ -156,6 +159,13 @@ export async function AgendaDetailPage({
         >
           {richFields.ctaLabel}
         </a>
+      ) : null}
+
+      {/* Bij de Duivelse Schoonmaak: aanmelden voor de appgroep kan ook via het formulier. */}
+      {slug === SCHOONMAAK_SLUG ? (
+        <p className="mt-4">
+          <WhatsappAanmeldLink locale={locale} label={tw('schoonmaak')} />
+        </p>
       ) : null}
 
       {activiteit?.fase === 'goedgekeurd' && voorbehoudTekst ? (

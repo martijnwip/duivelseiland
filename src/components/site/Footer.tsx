@@ -8,6 +8,8 @@ import { NieuwsbriefFooterForm, type NieuwsbriefFooterStrings } from '@/componen
 
 export type NieuwsbriefFooter = NieuwsbriefFooterStrings & { title: string; text: string; afmelden: string };
 
+export type WhatsappFooter = { title: string; text: string; link: string };
+
 export type ContactInfo = { email?: string | null; telefoon?: string | null; adres?: string | null };
 
 export function Footer({
@@ -17,6 +19,7 @@ export function Footer({
   contactgegevens,
   footerTekst,
   nieuwsbrief,
+  whatsapp,
 }: {
   siteNaam: string;
   menu: MenuItem[];
@@ -24,6 +27,7 @@ export function Footer({
   contactgegevens?: ContactInfo;
   footerTekst?: ComponentProps<typeof RichText>['data'] | null;
   nieuwsbrief: NieuwsbriefFooter;
+  whatsapp: WhatsappFooter;
 }) {
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
@@ -72,6 +76,12 @@ export function Footer({
               className="text-sm text-[#a8a8a8] underline transition-colors hover:text-white"
             >
               {nieuwsbrief.afmelden}
+            </Link>
+
+            <h4 className="mt-8 mb-2 text-lg font-bold">{whatsapp.title}</h4>
+            <p className="mb-2 text-[#d1d1d1]">{whatsapp.text}</p>
+            <Link href={localizedHref(locale, '/whatsapp')} className="text-[#d1d1d1] underline transition-colors hover:text-white">
+              {whatsapp.link}
             </Link>
           </div>
         </div>

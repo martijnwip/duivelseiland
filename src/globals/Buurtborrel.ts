@@ -27,7 +27,7 @@ export const Buurtborrel: GlobalConfig = {
       name: 'burenAppNummer',
       type: 'text',
       access: { read: alleenIngelogdField },
-      admin: { description: 'Telefoonnummer van de beheerder van de Buren-app Duivelseiland (WhatsApp). Leeg = geen knop.' },
+      admin: { description: 'Telefoonnummer van de beheerder van de Buren-app Duivelseiland. Staat niet meer op de site: aanmelden voor de appgroep gaat via het formulier op /whatsapp.' },
     },
     {
       name: 'barryNummer',

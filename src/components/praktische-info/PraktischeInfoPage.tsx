@@ -166,6 +166,16 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
         </ul>
       </Section>
 
+      <Section id="praktisch-whatsapp">
+        <SectionHead id="praktisch-whatsapp" eyebrow={t('whatsapp.eyebrow')} title={t('whatsapp.title')} intro={t('whatsapp.intro')} />
+        <Link
+          href={localizedHref(locale, '/whatsapp')}
+          className="mt-6 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {t('whatsapp.knop')}
+        </Link>
+      </Section>
+
       <Section id="praktisch-parkeren">
         <SectionHead id="praktisch-parkeren" eyebrow={t('parkeren.eyebrow')} title={t('parkeren.title')} intro={t('parkeren.intro')} />
 

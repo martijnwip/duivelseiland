@@ -31,6 +31,7 @@ import { Slideshows } from './collections/Slideshows';
 import { Users } from './collections/Users';
 import { Vakken } from './collections/Vakken';
 import { Vaklui } from './collections/Vaklui';
+import { WhatsappAanmeldingen } from './collections/WhatsappAanmeldingen';
 import { Buurtborrel } from './globals/Buurtborrel';
 import { OverDeNaam } from './globals/OverDeNaam';
 import { GeschiedenisVerhaal } from './globals/GeschiedenisVerhaal';
@@ -97,6 +98,7 @@ export default buildConfig({
     Geschiedenis,
     DuivelseKunst,
     Vaklui,
+    WhatsappAanmeldingen,
     Vakken,
     PraktischeInfo,
     HeroSlides,

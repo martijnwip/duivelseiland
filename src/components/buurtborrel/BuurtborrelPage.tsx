@@ -5,16 +5,15 @@ import { buildWhatsAppLink } from '@/lib/whatsapp';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { BuurtpasNodig } from '@/components/buurtpas/BuurtpasSlot';
 import { localizedHref } from '@/i18n/localizedHref';
-import type { AgendaRichFields } from '@/lib/agenda/richFields';
 import { BuurtborrelForm } from './BuurtborrelForm';
 import { Icon, WhatsAppIcon, type BuurtborrelIconName } from './icons';
 import { PlantsoenKaart } from './PlantsoenKaart';
 import { IdeeLikes } from './IdeeLikes';
 import type { IdeeKey } from '@/collections/IdeeLikes';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
+import { WhatsappAanmeldLink } from '@/components/whatsapp/WhatsappAanmeldLink';
 
 // Het Schoonmaak-nummer staat al bij het agenda-item (zie HomeDuivelseSchoonmaak).
-const SCHOONMAAK_SLUG = 'duivelse-schoonmaak';
 
 const EDITIES = [
   { key: 'winter', icon: 'vuurkorf' },
@@ -53,19 +52,8 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
   const t = await getTranslations({ locale, namespace: 'buurtborrel' });
 
   const payload = await getPayload({ config });
-  const [instellingen, { docs: schoonmaakDocs }] = await Promise.all([
-    payload.findGlobal({ slug: 'buurtborrel', depth: 0 }),
-    payload.find({
-      collection: 'agenda',
-      where: { slug: { equals: SCHOONMAAK_SLUG }, status: { equals: 'published' } },
-      depth: 0,
-      limit: 1,
-    }),
-  ]);
-  const schoonmaak = schoonmaakDocs[0] as ((typeof schoonmaakDocs)[number] & AgendaRichFields) | undefined;
+  const instellingen = await payload.findGlobal({ slug: 'buurtborrel', depth: 0 });
 
-  const burenAppHref = buildWhatsAppLink(instellingen.burenAppNummer, t('doeMee.burenApp.bericht'));
-  const schoonmaakHref = buildWhatsAppLink(schoonmaak?.whatsappNumber, t('doeMee.schoonmaak.bericht'));
   const barryHref = buildWhatsAppLink(instellingen.barryNummer, t('dank.barry.bericht'));
   const nieuwVenster = t('nieuwVenster');
   // WhatsApp-knoppen zijn telefoonnummers: alleen met buurtpas.
@@ -73,9 +61,10 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
   const tb = await getTranslations({ locale, namespace: 'buurtpas' });
   const slot = <BuurtpasNodig locale={locale} terug={localizedHref(locale, '/buurtborrel')} label={tb('slot.whatsapp')} />;
 
+  // Aanmelden voor de appgroepen gaat via het formulier op /whatsapp; de redactie voegt je toe.
   const appgroepen = [
-    { key: 'burenApp', icon: 'appgroep', href: burenAppHref },
-    { key: 'schoonmaak', icon: 'bezem', href: schoonmaakHref },
+    { key: 'burenApp', icon: 'appgroep' },
+    { key: 'schoonmaak', icon: 'bezem' },
   ] as const;
 
   return (
@@ -164,7 +153,7 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
           </div>
 
           <div className="flex flex-col gap-4">
-            {appgroepen.map(({ key, icon, href }) => (
+            {appgroepen.map(({ key, icon }) => (
               <div key={key} className={boxCls}>
                 <div className="flex items-start gap-4">
                   <Icon name={icon} className="size-10 flex-none text-primary" />
@@ -173,10 +162,7 @@ export async function BuurtborrelPage({ locale }: { locale: 'nl' | 'en' }) {
                     <p className="mt-1 mb-0 leading-[1.5] text-muted">{t(`doeMee.${key}.text`)}</p>
                   </div>
                 </div>
-                {href && !buurtpas ? slot : null}
-                {href && buurtpas ? (
-                  <WhatsAppButton href={href} label={t(`doeMee.${key}.knop`)} context={t(`doeMee.${key}.title`)} note={nieuwVenster} />
-                ) : null}
+                <WhatsappAanmeldLink locale={locale} label={t(`doeMee.${key}.knop`)} className="self-start" />
               </div>
             ))}
           </div>
