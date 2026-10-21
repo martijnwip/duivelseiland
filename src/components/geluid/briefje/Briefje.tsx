@@ -45,6 +45,8 @@ const LEEG = {
   tot: '01:00',
   stil: hh(FEEST_ZACHTER_VANAF),
   welkom: false,
+  // beide
+  extra: '',
 };
 type Velden = typeof LEEG;
 
@@ -122,6 +124,7 @@ function Brief({ soort, taal, v, tekst, leeg }: { soort: Soort; taal: 'nl' | 'en
           {p}
         </p>
       ))}
+      {v.extra.trim() && <p className="m-0 whitespace-pre-line">{v.extra.trim()}</p>}
       <p className="m-0">{b.slot}</p>
       <p className="m-0">
         {b.groet}
@@ -249,6 +252,23 @@ export function Briefje({ locale, labels, teksten }: { locale: string; labels: B
             </label>
           </div>
         )}
+
+        <div className="flex flex-col gap-1.5 border-t border-border pt-5">
+          <Veld label={l.extra}>
+            <textarea
+              name="extra"
+              value={v.extra}
+              onChange={zet('extra')}
+              rows={4}
+              placeholder={l.extraPlaceholder}
+              aria-describedby={`${id}-extra`}
+              className={`${inputCls} py-2 leading-[1.45]`}
+            />
+          </Veld>
+          <p id={`${id}-extra`} className="m-0 text-sm leading-[1.45] text-muted">
+            {l.extraHint}
+          </p>
+        </div>
 
         <p id={`${id}-privacy`} className="m-0 border-t border-border pt-4 text-sm leading-[1.45] text-muted">
           {labels.privacy}

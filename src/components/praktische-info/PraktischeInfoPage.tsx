@@ -19,6 +19,8 @@ const AED_KAARTEN = [
 
 const IN_DE_BUURT = [
   { key: 'kerk', icon: 'kerk', url: 'https://amsterdam.oudkatholiek.nl/' },
+  { key: 'bibliotheek', icon: 'boek', url: 'https://oba.nl/nl/locaties/oba-roelof-hartplein' },
+  { key: 'lydia', icon: 'buurthuis', url: 'https://buurthuislydia.nl/' },
 ] as const satisfies readonly { key: string; icon: PraktischeInfoIconName; url: string }[];
 
 const PARKEER_SOORTEN = ['laadpaal', 'laden-lossen', 'deelauto', 'gehandicapt'] as const;
@@ -144,7 +146,7 @@ export async function PraktischeInfoPage({ locale }: { locale: 'nl' | 'en' }) {
           title={t('inDeBuurt.title')}
           intro={t('inDeBuurt.intro')}
         />
-        <ul className="mt-8 grid list-none gap-4 p-0 md:grid-cols-2">
+        <ul className="mt-8 grid list-none gap-4 p-0 md:grid-cols-2 lg:grid-cols-3">
           {IN_DE_BUURT.map(({ key, icon, url }) => (
             <li key={key} className={boxCls}>
               <div className="flex items-start gap-4">

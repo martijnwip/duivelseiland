@@ -1331,7 +1331,8 @@
           "buiten": "put it out",
           "teLaat": "too late",
           "text": "Only from Sunday 9 pm until Monday 7 am. It must be outside by 7 am.",
-          "clock": "Clock: put bulky rubbish out between 21:00 and 07:00"
+          "clock": "Clock: put bulky rubbish out between 21:00 and 07:00",
+          "feestdag": "Is the Monday a public holiday? Then no bulky rubbish is collected. Don’t put it out that week."
         },
         "how": {
           "label": "How much",
@@ -1463,7 +1464,7 @@
       "share": {
         "subtitle": "How we keep Duivelseiland clean together",
         "whenLabel": "Putting out bulky rubbish",
-        "whenNote": "Only from Sunday 9 pm until Monday 7 am.",
+        "whenNote": "Only from Sunday 9 pm until Monday 7 am. Monday a public holiday? No collection.",
         "tiles": {
           "rest": {
             "title": "Bag in the container",
@@ -1866,7 +1867,10 @@
         "stil": "Music down from",
         "aanleiding": "Occasion (optional)",
         "aanleidingPlaceholder": "for example my birthday",
-        "welkom": "Neighbours are welcome to drop by"
+        "welkom": "Neighbours are welcome to drop by",
+        "extra": "Your own text (optional)",
+        "extraPlaceholder": "Anything else you want your neighbours to know",
+        "extraHint": "Appears in the note above the closing line. If you choose both languages, your text appears in both versions."
       },
       "lawaaiTip": "Noisy work means drilling, demolishing, grinding and sanding. Preferably not before {advies}: the courtyards echo.",
       "voorbeeld": "Preview",
@@ -2085,6 +2089,16 @@
           "naam": "Old Catholic Church",
           "adres": "Ruysdaelstraat 39",
           "tekst": "Sunday service, open church on Saturday afternoons, a drop-in coffee morning and rooms for hire. See their website for times and activities."
+        },
+        "bibliotheek": {
+          "naam": "OBA Roelof Hartplein (public library)",
+          "adres": "Roelof Hartplein 430",
+          "tekst": "The oldest branch of the Amsterdam Public Library still in use, in a listed building. Borrow books, a large children’s section, study spaces, computers and a reading café."
+        },
+        "lydia": {
+          "naam": "Buurthuis Lydia (community centre)",
+          "adres": "Roelof Hartplein 2A",
+          "tekst": "Community centre in the listed Huize Lydia building, run by volunteers together with Combiwel. Courses, workshops, sports and meetings for young and old, and rooms for hire."
         }
       }
     },
@@ -2106,7 +2120,7 @@
         },
         "bezoek": {
           "titel": "Visiting a resident",
-          "tekst": "With the resident’s visitor permit, your visitors park at a 65 percent discount. The resident registers the visit, up to 150 hours per quarter. The permit is free, even if you don’t have a car yourself."
+          "tekst": "With the resident’s visitor permit, your visitors park at a 65 percent discount. The resident registers the visit, or the visitor can arrange it themselves, up to 150 hours per quarter. The permit is free, even if you don’t have a parking permit yourself."
         },
         "bewoner": {
           "titel": "Resident with a car",

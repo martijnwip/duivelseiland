@@ -1148,7 +1148,8 @@
           "buiten": "buitenzetten",
           "teLaat": "te laat",
           "text": "Alleen van zondagavond 21.00 tot maandagochtend 07.00 uur. Om 07.00 uur moet het buiten staan.",
-          "clock": "Klok: grof vuil buitenzetten tussen 21:00 en 07:00 uur"
+          "clock": "Klok: grof vuil buitenzetten tussen 21:00 en 07:00 uur",
+          "feestdag": "Valt de maandag op een feestdag? Dan wordt er géén grof vuil opgehaald. Zet het die week dus niet buiten."
         },
         "how": {
           "label": "Hoeveel",
@@ -1280,7 +1281,7 @@
       "share": {
         "subtitle": "Zo houden we Duivelseiland samen schoon",
         "whenLabel": "Grof vuil buitenzetten",
-        "whenNote": "Alleen van zondagavond 21:00 tot maandagochtend 07:00.",
+        "whenNote": "Alleen van zondagavond 21:00 tot maandagochtend 07:00. Maandag een feestdag? Dan geen ophaling.",
         "tiles": {
           "rest": {
             "title": "Zak in de container",
@@ -1683,7 +1684,10 @@
         "stil": "Muziek zachter vanaf",
         "aanleiding": "Aanleiding (mag leeg)",
         "aanleidingPlaceholder": "bijvoorbeeld mijn verjaardag",
-        "welkom": "Buren zijn welkom om langs te komen"
+        "welkom": "Buren zijn welkom om langs te komen",
+        "extra": "Eigen tekst (mag leeg)",
+        "extraPlaceholder": "Iets anders dat je de buren wilt laten weten",
+        "extraHint": "Komt in het briefje boven de afsluiting. Kies je beide talen, dan staat je tekst in beide versies."
       },
       "lawaaiTip": "Lawaaiig werk is boren, slopen, slijpen en schuren. Liever niet vóór {advies} uur: de binnenplaatsen galmen.",
       "voorbeeld": "Voorbeeld",
@@ -1902,6 +1906,16 @@
           "naam": "Oud-Katholieke Kerk",
           "adres": "Ruysdaelstraat 39",
           "tekst": "Zondagse viering, open kerk op zaterdagmiddag, koffie-inloop en zaalverhuur. Kijk voor tijden en activiteiten op hun website."
+        },
+        "bibliotheek": {
+          "naam": "OBA Roelof Hartplein",
+          "adres": "Roelof Hartplein 430",
+          "tekst": "De oudste nog open vestiging van de Openbare Bibliotheek Amsterdam, in een monumentaal pand. Boeken lenen, een ruime jeugdafdeling, studieplekken, computers en een leescafé."
+        },
+        "lydia": {
+          "naam": "Buurthuis Lydia",
+          "adres": "Roelof Hartplein 2A",
+          "tekst": "Buurthuis in het monumentale Huize Lydia, gerund door vrijwilligers samen met Combiwel. Cursussen, workshops, sport en bijeenkomsten voor jong en oud, en zalen te huur."
         }
       }
     },
@@ -1923,7 +1937,7 @@
         },
         "bezoek": {
           "titel": "Bezoek van een bewoner",
-          "tekst": "Met de bezoekersvergunning van de bewoner parkeert je bezoek met 65 procent korting. De bewoner meldt het bezoek aan, maximaal 150 uur per kwartaal. De vergunning is gratis, ook als je zelf geen auto hebt."
+          "tekst": "Met de bezoekersvergunning van de bewoner parkeert je bezoek met 65 procent korting. De bewoner meldt het bezoek aan of de bezoeker kan dit zelf regelen, maximaal 150 uur per kwartaal. De vergunning is gratis, ook als je zelf geen parkeervergunning hebt."
         },
         "bewoner": {
           "titel": "Bewoner met eigen auto",
