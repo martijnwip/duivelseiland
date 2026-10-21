@@ -3,9 +3,9 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { BuurtpasForm } from '@/components/buurtpas/BuurtpasForm';
 import { formStrings } from '@/components/buurtpas/BuurtpasSlot';
-import { beeindigBuurtpas, nieuwsbriefMetBuurtpas, zegBuurtpasOp } from '@/components/buurtpas/actions';
+import { beeindigBuurtpas, ideeenMetBuurtpas, nieuwsbriefMetBuurtpas, zegBuurtpasOp } from '@/components/buurtpas/actions';
 import { buurtpasAdres, veiligTerugpad } from '@/lib/buurtpas/toegang';
-import { krijgtNieuwsbrief } from '@/lib/buurtpas/nieuwsbrief';
+import { krijgtIdeeen, krijgtNieuwsbrief } from '@/lib/buurtpas/nieuwsbrief';
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import { localizedHref } from '@/i18n/localizedHref';
@@ -33,7 +33,9 @@ export default async function BuurtpasRoute({
   const terug = veiligTerugpad(zoek.terug, localizedHref(locale, '/buurtpas'));
   const hier = localizedHref(locale, '/buurtpas');
   const adres = await buurtpasAdres();
-  const nieuwsbrief = adres ? await krijgtNieuwsbrief(await getPayload({ config }), adres.email) : false;
+  const payload = adres ? await getPayload({ config }) : null;
+  const nieuwsbrief = adres && payload ? await krijgtNieuwsbrief(payload, adres.email) : false;
+  const ideeen = adres && payload && nieuwsbrief ? await krijgtIdeeen(payload, adres.email) : false;
   const knopCls =
     'inline-flex min-h-11 items-center justify-center self-start rounded-lg border border-border px-4 py-2 text-sm font-medium text-text transition-colors hover:border-primary hover:text-primary';
 
@@ -60,6 +62,17 @@ export default async function BuurtpasRoute({
                   {nieuwsbrief ? t('beheer.nieuwsbriefAfmelden') : t('beheer.nieuwsbriefAanmelden')}
                 </button>
               </form>
+
+              {nieuwsbrief ? (
+                <form action={ideeenMetBuurtpas} className="flex flex-col gap-2 border-t border-border pt-4">
+                  <input type="hidden" name="terug" value={hier} />
+                  <input type="hidden" name="aan" value={ideeen ? 'nee' : 'ja'} />
+                  <p className="m-0 text-text">{ideeen ? t('beheer.ideeenAan') : t('beheer.ideeenUit')}</p>
+                  <button type="submit" className={knopCls}>
+                    {ideeen ? t('beheer.ideeenAfmelden') : t('beheer.ideeenAanmelden')}
+                  </button>
+                </form>
+              ) : null}
 
               <form action={beeindigBuurtpas} className="flex flex-col gap-2 border-t border-border pt-4">
                 <input type="hidden" name="terug" value={hier} />

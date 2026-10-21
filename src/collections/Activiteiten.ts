@@ -214,6 +214,13 @@ export const Activiteiten: CollectionConfig = {
       defaultValue: true,
       admin: { position: 'sidebar', condition: naGoedkeuring },
     },
+    {
+      name: 'goedgekeurdOp',
+      label: 'Goedgekeurd op',
+      type: 'date',
+      index: true,
+      admin: { readOnly: true, position: 'sidebar', date: { pickerAppearance: 'dayAndTime' }, condition: naGoedkeuring },
+    },
     // Aanvrager = de organisator. Vóór goedkeuring is er nog geen account; dan tonen we de gegevens van het
     // formulier, daarna het gekoppelde account (veld eigenaar).
     {

@@ -27,6 +27,8 @@ export default async function NieuwsbriefRoute({ params }: { params: Promise<{ l
               afmelden: t('form.afmelden'),
               naamLabel: t('form.naamLabel'),
               naamPlaceholder: t('form.naamPlaceholder'),
+              ideeen: t('form.ideeen'),
+              ideeenHint: t('form.ideeenHint'),
               emailLabel: t('form.emailLabel'),
               emailPlaceholder: t('form.emailPlaceholder'),
               submitAanmelden: t('form.submitAanmelden'),

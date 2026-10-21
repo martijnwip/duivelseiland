@@ -9,6 +9,8 @@ export type NieuwsbriefFormStrings = {
   afmelden: string;
   naamLabel: string;
   naamPlaceholder: string;
+  ideeen: string;
+  ideeenHint: string;
   emailLabel: string;
   emailPlaceholder: string;
   submitAanmelden: string;
@@ -86,6 +88,18 @@ export function NieuwsbriefForm({ locale, strings }: { locale: string; strings: 
           className={inputCls}
         />
       </div>
+
+      {mode === 'aanmelden' ? (
+        <label className="flex items-start gap-3 text-text">
+          <input type="checkbox" name="ideeen" value="ja" aria-describedby="nieuwsbrief-ideeen-hint" className="mt-1 size-4 accent-primary" />
+          <span>
+            {strings.ideeen}
+            <span id="nieuwsbrief-ideeen-hint" className="mt-0.5 block text-sm text-muted">
+              {strings.ideeenHint}
+            </span>
+          </span>
+        </label>
+      ) : null}
 
       {/* Honeypot: onzichtbaar voor mensen, bots vullen het in. */}
       <div aria-hidden className="absolute -left-[9999px]">

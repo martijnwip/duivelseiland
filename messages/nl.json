@@ -2046,7 +2046,9 @@
       "submitting": "Bezig met versturen…",
       "successAanmelden": "Bijna klaar! Check je mailbox en klik op de link om je aanmelding te bevestigen.",
       "successAfmelden": "Als dit adres op de lijst staat, krijg je een mail met een link om je af te melden.",
-      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens."
+      "error": "Dat lukte niet. Controleer je e-mailadres en probeer het nog eens.",
+      "ideeen": "Stuur me ook een seintje als een buur een idee voor een activiteit heeft",
+      "ideeenHint": "Bijvoorbeeld een kookclub, leesclub of wandelgroep. Hooguit één mail per dag."
     },
     "footer": {
       "title": "Nieuwsbrief",
@@ -2069,7 +2071,14 @@
       "success": "Je bent afgemeld. Je kunt je altijd opnieuw aanmelden.",
       "invalid": "Deze link is niet (meer) geldig. Vraag een nieuwe afmeldlink aan via de nieuwsbriefpagina."
     },
-    "terug": "Naar de nieuwsbriefpagina"
+    "terug": "Naar de nieuwsbriefpagina",
+    "ideeenAfmelden": {
+      "heading": "Geen seintjes meer over ideeën",
+      "text": "Klik op de knop en je krijgt geen mail meer als een buur een idee heeft. De nieuwsbrief blijft gewoon komen.",
+      "submit": "Seintjes stoppen",
+      "success": "Gelukt: je krijgt geen seintjes meer over nieuwe ideeën. De nieuwsbrief blijft komen.",
+      "invalid": "Deze link werkt niet (meer)."
+    }
   },
   "activiteiten": {
     "eyebrow": "Activiteiten",
@@ -2206,7 +2215,12 @@
     },
     "agendaAanmelden": "Aanmelden voor deze activiteit",
     "voorbehoud": "Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn.",
-    "voorbehoudKort": "Nog niet definitief"
+    "voorbehoudKort": "Nog niet definitief",
+    "seintje": {
+      "titel": "Een seintje bij een nieuw idee?",
+      "tekst": "Meld je aan voor de nieuwsbrief en vink aan dat je een seintje wilt. Heeft een buur een idee voor een kookclub, leesclub of wandelgroep, dan krijg je een mail met een link, zodat je je meteen kunt aanmelden.",
+      "link": "Naar de nieuwsbrief"
+    }
   },
   "buurtpas": {
     "eyebrow": "Voor de buurt",
@@ -2254,7 +2268,11 @@
       "apparaatUitleg": "Gebruik je een gedeelde computer? Haal de buurtpas dan alleen van dit apparaat.",
       "opzeggen": "Buurtpas opzeggen",
       "opzeggenUitleg": "Opzeggen geldt meteen op al je apparaten. Gebruiken we je e-mailadres nergens anders voor, dan verwijderen we het ook.",
-      "opgezegd": "Je buurtpas is opgezegd."
+      "opgezegd": "Je buurtpas is opgezegd.",
+      "ideeenAan": "Je krijgt een seintje als een buur een idee voor een activiteit heeft.",
+      "ideeenUit": "Wil je een seintje als een buur een idee voor een activiteit heeft? Hooguit één mail per dag.",
+      "ideeenAanmelden": "Seintjes over ideeën aanzetten",
+      "ideeenAfmelden": "Seintjes over ideeën stoppen"
     }
   }
 }

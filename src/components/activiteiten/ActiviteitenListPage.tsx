@@ -80,6 +80,15 @@ export async function ActiviteitenListPage({ locale }: { locale: 'nl' | 'en' }) 
           <ul className="mt-8 grid gap-4 sm:grid-cols-2">{docs.map(kaart)}</ul>
         )}
 
+        {/* Seintje bij een nieuw idee: hoort bij de nieuwsbrief (src/lib/activiteiten/seintjes.ts). */}
+        <div className="mt-8 rounded-lg border border-border bg-card p-4 xl:p-6">
+          <h2 className="m-0 font-heading text-lg font-semibold text-text">{t('seintje.titel')}</h2>
+          <p className="mt-1 mb-0 text-text">{t('seintje.tekst')}</p>
+          <Link href={localizedHref(locale, '/nieuwsbrief')} className="mt-3 inline-flex min-h-11 items-center font-medium text-primary underline">
+            {t('seintje.link')}
+          </Link>
+        </div>
+
         {archief.length ? (
           <>
             <h2 className="mt-12 font-heading text-xl font-semibold text-text">{t('archiefTitel')}</h2>

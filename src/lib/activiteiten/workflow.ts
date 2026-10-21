@@ -114,6 +114,8 @@ export const activiteitBeforeChange: CollectionBeforeChangeHook = async ({ data,
   if (nieuw === 'goedgekeurd') data.afwijsReden = null;
 
   if (nieuw === 'goedgekeurd' && ['onbevestigd', 'ingediend', 'afgewezen'].includes(oud)) {
+    // Voor de seintjes aan buren die een mail willen bij een nieuw idee (src/lib/activiteiten/seintjes.ts).
+    data.goedgekeurdOp = new Date().toISOString();
     if (!(data.slug ?? originalDoc.slug)) throw fout('Geef de activiteit een slug voordat je hem goedkeurt.');
     if (!idVan(data.eigenaar ?? originalDoc.eigenaar)) {
       const email = String(data.aanvragerEmail ?? originalDoc.aanvragerEmail ?? '').trim().toLowerCase();

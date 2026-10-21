@@ -2229,7 +2229,9 @@
       "submitting": "Sending…",
       "successAanmelden": "Almost done! Check your inbox and click the link to confirm your subscription.",
       "successAfmelden": "If this address is on the list, you'll receive an email with a link to unsubscribe.",
-      "error": "That didn't work. Please check your email address and try again."
+      "error": "That didn't work. Please check your email address and try again.",
+      "ideeen": "Also let me know when a neighbour has an idea for an activity",
+      "ideeenHint": "For example a cooking club, book club or walking group. At most one email a day."
     },
     "footer": {
       "title": "Newsletter",
@@ -2252,7 +2254,14 @@
       "success": "You've been unsubscribed. You can subscribe again at any time.",
       "invalid": "This link is not (or no longer) valid. Request a new unsubscribe link on the newsletter page."
     },
-    "terug": "Go to the newsletter page"
+    "terug": "Go to the newsletter page",
+    "ideeenAfmelden": {
+      "heading": "No more heads-ups about ideas",
+      "text": "Click the button and you won't get an email any more when a neighbour has an idea. You'll still get the newsletter.",
+      "submit": "Stop heads-ups",
+      "success": "Done: no more heads-ups about new ideas. You'll still get the newsletter.",
+      "invalid": "This link no longer works."
+    }
   },
   "activiteiten": {
     "eyebrow": "Activities",
@@ -2389,7 +2398,12 @@
     },
     "agendaAanmelden": "Sign up for this activity",
     "voorbehoud": "Not yet final: this activity goes ahead if enough people sign up.",
-    "voorbehoudKort": "Not yet final"
+    "voorbehoudKort": "Not yet final",
+    "seintje": {
+      "titel": "A heads-up for new ideas?",
+      "tekst": "Sign up for the newsletter and tick the heads-up box. When a neighbour has an idea for a cooking club, book club or walking group, you'll get an email with a link so you can sign up straight away.",
+      "link": "Go to the newsletter"
+    }
   },
   "buurtpas": {
     "eyebrow": "For the neighbourhood",
@@ -2437,7 +2451,11 @@
       "apparaatUitleg": "On a shared computer? Remove the pass from this device only.",
       "opzeggen": "Cancel neighbourhood pass",
       "opzeggenUitleg": "Cancelling applies to all your devices right away. If we don't use your email address for anything else, we delete it too.",
-      "opgezegd": "Your neighbourhood pass has been cancelled."
+      "opgezegd": "Your neighbourhood pass has been cancelled.",
+      "ideeenAan": "You'll get a heads-up when a neighbour has an idea for an activity.",
+      "ideeenUit": "Want a heads-up when a neighbour has an idea for an activity? At most one email a day.",
+      "ideeenAanmelden": "Turn on heads-ups about ideas",
+      "ideeenAfmelden": "Stop heads-ups about ideas"
     }
   }
 }

@@ -7,7 +7,7 @@ import config from '@payload-config';
 import { normaliseerEmail, registreerAdres, regelsVoorAdres } from '@/lib/adresboek';
 import { COOKIE_MAX_AGE, COOKIE_NAAM, maakCookieWaarde } from '@/lib/buurtpas/cookie';
 import { TOKEN_GELDIG_MS, sendBuurtpasMail } from '@/lib/buurtpas/mail';
-import { zetNieuwsbrief } from '@/lib/buurtpas/nieuwsbrief';
+import { zetIdeeen, zetNieuwsbrief } from '@/lib/buurtpas/nieuwsbrief';
 import { buurtpasAdres, veiligTerugpad } from '@/lib/buurtpas/toegang';
 import { EMAIL_RE, TOKEN_RE, nieuwToken } from '@/lib/nieuwsbrief/token';
 
@@ -140,6 +140,14 @@ export async function nieuwsbriefMetBuurtpas(formData: FormData) {
       locale: formData.get('locale') === 'en' ? 'en' : 'nl',
     });
   }
+  redirect(terug);
+}
+
+/** Seintjes over nieuwe ideeën aan of uit vanaf /buurtpas (alleen met buurtpas, alleen voor wie de nieuwsbrief krijgt). */
+export async function ideeenMetBuurtpas(formData: FormData) {
+  const terug = veiligTerugpad(formData.get('terug'));
+  const adres = await buurtpasAdres();
+  if (adres) await zetIdeeen(await getPayload({ config }), adres.email, formData.get('aan') === 'ja');
   redirect(terug);
 }
 
