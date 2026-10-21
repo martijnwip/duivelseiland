@@ -11,7 +11,7 @@ const MODAL = 'nieuwsbrief-versturen';
 const UITGEZET = 'Versturen staat uit. Vraag Martijn om het aan te zetten.';
 
 /**
- * Knoppen bovenaan een nieuwsbrief-editie (redacteur of admin): voorbeeld, testmail, versturen en stoppen.
+ * Knoppen bovenaan een nieuwsbrief-editie (redacteur of admin): voorbeeld, deellink, testmail, versturen en stoppen.
  * Het werk gebeurt op de server (src/endpoints/nieuwsbriefEdities.ts); versturen vraagt eerst om bevestiging
  * met het aantal ontvangers.
  */
@@ -72,6 +72,19 @@ export default function EditieKnoppen() {
       window.open(`/api/nieuwsbrief-edities/${id}/voorbeeld?locale=${locale}`, '_blank', 'noopener');
     });
 
+  const deellink = () =>
+    actie(async () => {
+      const { url } = await api('deellink');
+      const uitleg = 'Hij werkt tot je verstuurt; een nieuwe deellink maakt de vorige ongeldig.';
+      try {
+        await navigator.clipboard.writeText(url);
+        toast.success(`Deellink gekopieerd. ${uitleg}`);
+      } catch {
+        // Safari staat kopiëren na een fetch niet altijd toe; dan de link zelf tonen.
+        toast.success(`Deellink: ${url} ${uitleg}`, { duration: Infinity });
+      }
+    });
+
   const testmail = () =>
     actie(async () => {
       toast.success((await api('testmail')).message);
@@ -123,6 +136,11 @@ export default function EditieKnoppen() {
       <Button onClick={() => voorbeeld('en')} disabled={bezig} buttonStyle="secondary" size="small">
         Voorbeeld EN
       </Button>
+      {status === 'concept' && (
+        <Button onClick={deellink} disabled={bezig} buttonStyle="secondary" size="small" tooltip="Voorbeeld delen met iemand zonder account">
+          Deellink
+        </Button>
+      )}
       <Button onClick={testmail} disabled={bezig} buttonStyle="secondary" size="small">
         {user?.email ? `Testmail naar ${user.email}` : 'Testmail'}
       </Button>
