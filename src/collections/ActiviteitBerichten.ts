@@ -5,7 +5,7 @@ import { hasRoleAtLeast } from '../access/roles';
 import { viaEigenActiviteit } from '../access/activiteiten';
 import { ACTIEVE_FASES, BERICHTEN_DAGLIMIET, MAX_BERICHTEN_PER_WEEK, voornaam } from '../lib/activiteiten/constants';
 import { berichtMail, verstuurBatch, type Locale } from '../lib/activiteiten/mail';
-import { bulkMailsLaatste24Uur } from '../lib/mailQuotum';
+import { bulkMailsVandaag } from '../lib/mailQuotum';
 import { titels } from '../lib/activiteiten/workflow';
 
 const DAG = 24 * 60 * 60 * 1000;
@@ -34,9 +34,9 @@ const controleer: CollectionBeforeChangeHook = async ({ data, operation, req }) 
     }
   }
 
-  // Rem op het mailquotum: berichten aan deelnemers en de nieuwsbrief van de afgelopen 24 uur samen.
+  // Rem op het mailquotum: berichten aan deelnemers en de nieuwsbrief van vandaag (UTC) samen.
   const [recent, { totalDocs: ontvangers }] = await Promise.all([
-    bulkMailsLaatste24Uur(req.payload, req),
+    bulkMailsVandaag(req.payload, req),
     req.payload.count({
       collection: 'activiteit-inschrijvingen',
       where: { and: [{ activiteit: { equals: activiteitId } }, { status: { equals: 'actief' } }] },

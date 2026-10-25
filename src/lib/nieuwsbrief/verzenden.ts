@@ -3,7 +3,7 @@ import { APIError } from 'payload';
 import { hasRoleAtLeast, type Role } from '../../access/roles';
 import type { Locale } from '../mail';
 import { bulkmailToegestaan, verstuurBatch } from '../mail';
-import { BULK_DAGLIMIET, NIEUWSBRIEF_DAGLIMIET, bulkMailsLaatste24Uur } from '../mailQuotum';
+import { BULK_DAGLIMIET, NIEUWSBRIEF_DAGLIMIET, bulkMailsVandaag } from '../mailQuotum';
 import { editieMail, renderEditie, type GerenderdeEditie } from './editieMail';
 
 /**
@@ -30,7 +30,7 @@ export async function magVersturen(payload: Payload, role: Role | undefined, req
 
 /** Hoeveel nieuwsbriefmails er nu nog uit mogen. */
 export async function beschikbaarBudget(payload: Payload, req?: PayloadRequest) {
-  const { nieuwsbrief, berichten } = await bulkMailsLaatste24Uur(payload, req);
+  const { nieuwsbrief, berichten } = await bulkMailsVandaag(payload, req);
   return Math.max(0, Math.min(NIEUWSBRIEF_DAGLIMIET - nieuwsbrief, BULK_DAGLIMIET - nieuwsbrief - berichten));
 }
 
