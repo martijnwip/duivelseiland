@@ -38,6 +38,7 @@ import * as migration_20261014_160000_vakken_hoofdletter from './20261014_160000
 import * as migration_20261021_121920_nieuwsbrief_deellink from './20261021_121920_nieuwsbrief_deellink';
 import * as migration_20261021_142202_whatsapp_aanmeldingen from './20261021_142202_whatsapp_aanmeldingen';
 import * as migration_20261021_144909_ideeen_seintjes from './20261021_144909_ideeen_seintjes';
+import * as migration_20261025_090321_vaklui_aanbeveling from './20261025_090321_vaklui_aanbeveling';
 
 export const migrations = [
   {
@@ -238,6 +239,11 @@ export const migrations = [
   {
     up: migration_20261021_144909_ideeen_seintjes.up,
     down: migration_20261021_144909_ideeen_seintjes.down,
-    name: '20261021_144909_ideeen_seintjes'
+    name: '20261021_144909_ideeen_seintjes',
+  },
+  {
+    up: migration_20261025_090321_vaklui_aanbeveling.up,
+    down: migration_20261025_090321_vaklui_aanbeveling.down,
+    name: '20261025_090321_vaklui_aanbeveling'
   },
 ];

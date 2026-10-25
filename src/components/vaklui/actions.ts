@@ -99,17 +99,19 @@ export async function submitVakman(_prev: VakmanFormState, formData: FormData): 
     const token = nieuwToken();
     const vakman = await payload.create({
       collection: 'vaklui',
+      // De aanbeveling komt in de standaardtaal (nl), ook van een Engelstalige aanmelder: alleen daarop valt
+      // de andere taal terug, dus zo staat hij in beide talen op de site.
       data: {
         naam: velden.naam,
         vakken: vakken.map((v) => v.id),
         anderVak: velden.anderVak || undefined,
         telefoon: velden.telefoon || undefined,
         website: velden.website || undefined,
+        aanbeveling: velden.toelichting || undefined,
         status: 'draft',
         moderatie: 'ingediend',
         aanmelderNaam: velden.aanmelderNaam,
         aanmelderEmail: email,
-        aanmelderToelichting: velden.toelichting || undefined,
         locale,
         token,
         laatsteMailOp: new Date().toISOString(),

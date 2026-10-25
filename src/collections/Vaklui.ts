@@ -16,7 +16,7 @@ const adresboek = adresboekHooks<{ aanmelderEmail?: string | null }>(
 const isAanmelding = (data: { moderatie?: string | null } | undefined) => Boolean(data?.moderatie);
 
 /**
- * Vaklui uit de buurt: naam, vak(ken), telefoon en website. Getoond als één overzicht op /vaklui.
+ * Vaklui uit de buurt: naam, vak(ken), telefoon, website en eventueel een aanbeveling van een buur. Getoond als één overzicht op /vaklui.
  * Buren met een buurtpas kunnen er een aanmelden via /vaklui/aanmelden; de redactie keurt die goed of af.
  */
 export const Vaklui: CollectionConfig = {
@@ -90,6 +90,16 @@ export const Vaklui: CollectionConfig = {
       validate: (value: string | null | undefined) =>
         !value || WEBSITE.test(value.trim()) || 'Begin het adres met http:// of https://, bv. https://www.voorbeeld.nl',
     },
+    {
+      name: 'aanbeveling',
+      type: 'textarea',
+      maxLength: 500,
+      localized: true,
+      admin: {
+        description:
+          'Uit het aanmeldformulier, zonder naam van de aanmelder. Staat op de site zodra de vakman gepubliceerd is; pas aan of maak leeg als het niet geschikt is.',
+      },
+    },
     statusField,
     authorField,
 
@@ -130,14 +140,6 @@ export const Vaklui: CollectionConfig = {
       type: 'email',
       access: { read: isRedacteurOrAdminField, update: isRedacteurOrAdminField },
       admin: { position: 'sidebar', description: 'Uit de buurtpas, nooit publiek.', condition: isAanmelding },
-    },
-    {
-      name: 'aanmelderToelichting',
-      label: 'Toelichting van de aanmelder',
-      type: 'textarea',
-      maxLength: 500,
-      access: { read: isRedacteurOrAdminField, update: isRedacteurOrAdminField },
-      admin: { position: 'sidebar', description: 'Alleen voor de redactie.', condition: isAanmelding },
     },
     {
       name: 'locale',

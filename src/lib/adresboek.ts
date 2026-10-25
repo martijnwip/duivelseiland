@@ -270,7 +270,7 @@ export async function verwijderAdresOveral(payload: Payload, email: string, req?
       await payload.update({
         collection: 'vaklui',
         id: v.id,
-        data: { aanmelderNaam: null, aanmelderEmail: null, aanmelderToelichting: null },
+        data: { aanmelderNaam: null, aanmelderEmail: null },
         overrideAccess: true,
         req,
       });

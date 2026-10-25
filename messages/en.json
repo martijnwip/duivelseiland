@@ -139,6 +139,7 @@
       "aantal": "{aantal, plural, one {# person} other {# people}}",
       "vakken": "Trades",
       "telefoonMetBuurtpas": "Phone with neighbourhood pass",
+      "aanbeveling": "Recommended by a neighbour",
       "aanmeldKnop": {
         "titel": "Know a good tradesperson?",
         "tekst": "With a neighbourhood pass you can submit a tradesperson. The editors review it before it goes on the site.",
@@ -161,8 +162,8 @@
           "contactHint": "Fill in a phone number, a website or both. Only neighbours with a neighbourhood pass see the phone number.",
           "aanmelderNaam": "Your own name",
           "aanmelderNaamHint": "Only for the editors, not shown on the site. We take your email address from your neighbourhood pass.",
-          "toelichting": "Note for the editors (optional)",
-          "toelichtingHint": "For example what the tradesperson did for you. Not shown on the site.",
+          "toelichting": "Why do you recommend them? (optional)",
+          "toelichtingHint": "For example what the tradesperson did for you. Once approved, this appears with the tradesperson on the site, without your name. The editors may shorten or edit it.",
           "akkoord": "The tradesperson agrees to having their name, trade and contact details on this site.",
           "submit": "Send submission",
           "submitting": "Sending…",

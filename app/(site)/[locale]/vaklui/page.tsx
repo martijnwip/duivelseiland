@@ -141,6 +141,15 @@ export default async function VakluiPage({ params }: { params: Promise<{ locale:
                         </div>
                       </div>
 
+                      {vakman.aanbeveling ? (
+                        <figure className="m-0">
+                          <figcaption className="text-xs font-medium tracking-wide text-muted uppercase">{t('aanbeveling')}</figcaption>
+                          <blockquote className="mt-1 mb-0 border-l-2 border-secondary pl-3 text-[15px] leading-[1.5] whitespace-pre-line text-text">
+                            {vakman.aanbeveling}
+                          </blockquote>
+                        </figure>
+                      ) : null}
+
                       {vakman.telefoon || vakman.website ? (
                         <div className="mt-auto flex flex-col items-start gap-2">
                           {vakman.telefoon && buurtpas ? (
