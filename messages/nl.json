@@ -1760,6 +1760,35 @@
         "text": "In de appgroep van de buurt of de Duivelse Schoonmaak? De redactie voegt je toe.",
         "link": "Aanmelden voor een appgroep"
       }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "heading": "Stuur de redactie een bericht",
+      "metaDescription": "Een idee, vraag of opmerking over Duivelseiland of deze site? Stuur de redactie een bericht.",
+      "intro": "Heb je een idee voor de buurt of de site, een vraag of een opmerking? Laat het ons weten. We lezen alles en antwoorden per e-mail.",
+      "soorten": {
+        "idee": "Idee",
+        "vraag": "Vraag",
+        "opmerking": "Opmerking"
+      },
+      "form": {
+        "soort": "Wat wil je sturen?",
+        "naam": "Je naam",
+        "email": "Je e-mailadres",
+        "emailHint": "Alleen om je te antwoorden. We bewaren je bericht niet op de site.",
+        "bericht": "Je bericht",
+        "submit": "Versturen",
+        "submitting": "Bezig met versturen…",
+        "success": "Bedankt voor je bericht! De redactie leest het en antwoordt zo snel mogelijk.",
+        "error": {
+          "velden": "Vul je naam en je bericht in.",
+          "email": "Controleer je e-mailadres.",
+          "server": "Er ging iets mis bij het versturen. Probeer het later opnieuw."
+        }
+      },
+      "footer": {
+        "link": "Stuur ons een bericht"
+      }
     }
   },
   "content": {

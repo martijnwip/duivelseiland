@@ -188,6 +188,7 @@ DATABASE_AUTH_TOKEN=<turso-token>
 PAYLOAD_SECRET=<lange-random-string>
 BLOB_READ_WRITE_TOKEN=<vercel-blob-token>
 NEXT_PUBLIC_SERVER_URL=https://<domein>
+CONTACT_EMAIL=duiveltjes@proton.me
 ```
 
 Lokaal: `DATABASE_URI=file:./dev.db`, token leeg laten.
@@ -218,6 +219,8 @@ Uitzondering: **Vaklui** heeft `naam`, `vakken` (één of meer tags uit de colle
 **Vakman aanmelden.** Buren met een buurtpas kunnen op `/vaklui/aanmelden` een vakman aanmelden: naam, vakken (vinkjes) en/of *Ander vak*, telefoon en/of website, de eigen naam en een toelichting voor de redactie. Het e-mailadres komt uit de buurtpas. De aanmelding komt binnen als concept met `moderatie = ingediend`. De redactie krijgt een mail; de aanmelder krijgt een ontvangstmail met een intrekken-link (`/vaklui/aanmelding/intrekken/<token>`, werkt tot goedkeuring). In `/admin` staan bovenaan de knoppen **Goedkeuren** (zet `status = published`; er moet een vak gekoppeld zijn, dus zet *Ander vak* eerst om met de +) en **Afkeuren** (reden verplicht, gaat naar de aanmelder; de vakman gaat terug naar concept). Een afgekeurde aanmelding kun je opnieuw goedkeuren. Handmatig publiceren telt ook als goedkeuren. De regels staan in `src/lib/vaklui/workflow.ts`; de gegevens van de aanmelder zijn alleen voor redacteur en admin. In het adresboek staat de aanmelder als "vakman aangemeld". Verwijder je het adres, dan verdwijnt een open of afgekeurde aanmelding; bij een goedgekeurde gaan alleen de gegevens van de aanmelder weg.
 
 **WhatsApp-groepen aanmelden.** Buren met een buurtpas melden zich op `/whatsapp` aan voor de Buren-app Duivelseiland en/of de groep van de Duivelse Schoonmaak: naam, telefoonnummer en de groep(en). Het e-mailadres komt uit de buurtpas. De redactie krijgt een mail (zonder telefoonnummer) en voegt het nummer zelf toe in WhatsApp. Zet de redactie de aanmelding in `/admin` op *Toegevoegd*, dan wordt het telefoonnummer gewist. Een tweede aanmelding van hetzelfde adres werkt de open aanmelding bij. In het adresboek staat het adres als "WhatsApp-groep"; verwijder je het adres, dan verdwijnt de aanmelding. Verwijzingen naar het formulier: homepage (bij de Duivelse Schoonmaak), het agenda-item Duivelse Schoonmaak, Praktische info, `/buurtborrel` en de footer. Code: `src/collections/WhatsappAanmeldingen.ts`, `src/components/whatsapp/`, `src/lib/whatsapp-groepen/`.
+
+**Contactformulier.** Op `/contact` kan iedereen (ook zonder buurtpas) de redactie een idee, vraag of opmerking sturen: soort, naam, e-mailadres en bericht. Er wordt niets opgeslagen: het bericht gaat als mail naar `CONTACT_EMAIL` (zonder die variabele naar alle redacteuren en admins), met het adres van de bezoeker als reply-to. De bezoeker krijgt geen ontvangstmail. Spamwering: een honeypot en een minimale invultijd van 3 seconden; beide geven stil "gelukt". Link in de footer, onder Contact. Code: `src/components/contact/`, `src/lib/contact/`.
 
 ## Data ophalen in de site
 
