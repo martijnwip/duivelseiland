@@ -139,6 +139,7 @@
       "aantal": "{aantal, plural, one {# vakman} other {# vaklui}}",
       "vakken": "Vakken",
       "telefoonMetBuurtpas": "Telefoon met buurtpas",
+      "aanbeveling": "Aanbeveling van een buur",
       "aanmeldKnop": {
         "titel": "Ken je een goede vakman?",
         "tekst": "Heb je een buurtpas, dan kun je een vakman aanmelden. De redactie kijkt mee voordat die op de site komt.",
@@ -161,8 +162,8 @@
           "contactHint": "Vul een telefoonnummer, een website of allebei in. Het telefoonnummer zien alleen buren met een buurtpas.",
           "aanmelderNaam": "Je eigen naam",
           "aanmelderNaamHint": "Alleen voor de redactie, niet op de site. Je e-mailadres nemen we over van je buurtpas.",
-          "toelichting": "Toelichting voor de redactie (optioneel)",
-          "toelichtingHint": "Bijvoorbeeld wat de vakman voor je heeft gedaan. Niet zichtbaar op de site.",
+          "toelichting": "Waarom raad je deze vakman aan? (optioneel)",
+          "toelichtingHint": "Bijvoorbeeld wat de vakman voor je heeft gedaan. Na goedkeuring staat dit bij de vakman op de site, zonder je naam. De redactie kan de tekst inkorten of aanpassen.",
           "akkoord": "De vakman vindt het goed dat naam, vak en contactgegevens op deze site staan.",
           "submit": "Aanmelding versturen",
           "submitting": "Bezig met versturen…",

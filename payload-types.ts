@@ -599,6 +599,10 @@ export interface Vaklui {
    * Met http:// of https://, bv. https://www.voorbeeld.nl
    */
   website?: string | null;
+  /**
+   * Uit het aanmeldformulier, zonder naam van de aanmelder. Staat op de site zodra de vakman gepubliceerd is; pas aan of maak leeg als het niet geschikt is.
+   */
+  aanbeveling?: string | null;
   status: 'draft' | 'published';
   author?: (number | null) | User;
   /**
@@ -614,10 +618,6 @@ export interface Vaklui {
    * Uit de buurtpas, nooit publiek.
    */
   aanmelderEmail?: string | null;
-  /**
-   * Alleen voor de redactie.
-   */
-  aanmelderToelichting?: string | null;
   locale?: ('nl' | 'en') | null;
   token?: string | null;
   laatsteMailOp?: string | null;
@@ -1372,13 +1372,13 @@ export interface VakluiSelect<T extends boolean = true> {
   anderVak?: T;
   telefoon?: T;
   website?: T;
+  aanbeveling?: T;
   status?: T;
   author?: T;
   moderatie?: T;
   afwijsReden?: T;
   aanmelderNaam?: T;
   aanmelderEmail?: T;
-  aanmelderToelichting?: T;
   locale?: T;
   token?: T;
   laatsteMailOp?: T;
@@ -1931,7 +1931,7 @@ export interface Buurtborrel {
    */
   aanmeldEmail: string;
   /**
-   * Telefoonnummer van de beheerder van de Buren-app Duivelseiland (WhatsApp). Leeg = geen knop.
+   * Telefoonnummer van de beheerder van de Buren-app Duivelseiland. Staat niet meer op de site: aanmelden voor de appgroep gaat via het formulier op /whatsapp.
    */
   burenAppNummer?: string | null;
   /**
