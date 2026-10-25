@@ -10,6 +10,8 @@ export type NieuwsbriefFooter = NieuwsbriefFooterStrings & { title: string; text
 
 export type WhatsappFooter = { title: string; text: string; link: string };
 
+export type ContactFooter = { link: string };
+
 export type ContactInfo = { email?: string | null; telefoon?: string | null; adres?: string | null };
 
 export function Footer({
@@ -20,6 +22,7 @@ export function Footer({
   footerTekst,
   nieuwsbrief,
   whatsapp,
+  contact,
 }: {
   siteNaam: string;
   menu: MenuItem[];
@@ -28,6 +31,7 @@ export function Footer({
   footerTekst?: ComponentProps<typeof RichText>['data'] | null;
   nieuwsbrief: NieuwsbriefFooter;
   whatsapp: WhatsappFooter;
+  contact: ContactFooter;
 }) {
   const contactLines = [contactgegevens?.adres, contactgegevens?.telefoon, contactgegevens?.email].filter(Boolean);
 
@@ -56,16 +60,19 @@ export function Footer({
             </div>
           ) : null}
 
-          {contactLines.length > 0 ? (
-            <div>
-              <h4 className="mb-4 text-lg font-bold">Contact</h4>
-              <ul className="space-y-2 text-[#d1d1d1]">
-                {contactLines.map((line) => (
-                  <li key={line}>{line}</li>
-                ))}
-              </ul>
-            </div>
-          ) : null}
+          <div>
+            <h4 className="mb-4 text-lg font-bold">Contact</h4>
+            <ul className="space-y-2 text-[#d1d1d1]">
+              {contactLines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
+              <li>
+                <Link href={localizedHref(locale, '/contact')} className="underline transition-colors hover:text-white">
+                  {contact.link}
+                </Link>
+              </li>
+            </ul>
+          </div>
 
           <div>
             <h4 className="mb-4 text-lg font-bold">{nieuwsbrief.title}</h4>

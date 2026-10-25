@@ -1943,6 +1943,35 @@
         "text": "Join the neighbourhood group or the Duivelse Schoonmaak clean-up group. The editors will add you.",
         "link": "Sign up for a group"
       }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "heading": "Send the editors a message",
+      "metaDescription": "An idea, question or comment about Duivelseiland or this site? Send the editors a message.",
+      "intro": "Do you have an idea for the neighbourhood or the site, a question or a comment? Let us know. We read everything and reply by email.",
+      "soorten": {
+        "idee": "Idea",
+        "vraag": "Question",
+        "opmerking": "Comment"
+      },
+      "form": {
+        "soort": "What would you like to send?",
+        "naam": "Your name",
+        "email": "Your email address",
+        "emailHint": "Only so we can reply. We don't store your message on the site.",
+        "bericht": "Your message",
+        "submit": "Send",
+        "submitting": "Sending…",
+        "success": "Thanks for your message! The editors will read it and reply as soon as possible.",
+        "error": {
+          "velden": "Please fill in your name and your message.",
+          "email": "Please check your email address.",
+          "server": "Something went wrong. Please try again later."
+        }
+      },
+      "footer": {
+        "link": "Send us a message"
+      }
     }
   },
   "content": {
