@@ -46,6 +46,7 @@ export default async function WhatsappRoute({ params }: { params: Promise<{ loca
                   error: {
                     velden: f('error.velden'),
                     groep: f('error.groep'),
+                    telefoon: f('error.telefoon'),
                     akkoord: f('error.akkoord'),
                     buurtpas: f('error.buurtpas'),
                     server: f('error.server'),

@@ -1913,7 +1913,7 @@
       "eyebrow": "Neighbourhood",
       "heading": "WhatsApp groups",
       "metaDescription": "Sign up for the Duivelseiland WhatsApp groups. The editors will send you an invitation.",
-      "intro": "Want to join the neighbourhood WhatsApp group, or the clean-up group? Leave your name and phone number. After a quick check by the editors you'll get an invitation to the Buren-app by email; for the clean-up group the editors add you.",
+      "intro": "Want to join the neighbourhood WhatsApp group, or the clean-up group? After a quick check by the editors you'll get an invitation to the Buren-app by email. For the clean-up group, also leave your phone number; the editors use it to add you.",
       "groepen": {
         "buurt": {
           "naam": "Buren-app Duivelseiland (neighbourhood group)",
@@ -1929,7 +1929,7 @@
         "groepenHint": "Choose one or both groups.",
         "naam": "Your name",
         "telefoon": "Your phone number (WhatsApp)",
-        "telefoonHint": "Only for the editors. Once you've been added, we delete the number from the site.",
+        "telefoonHint": "Only needed for the Duivelse Schoonmaak, and only for the editors. Once you've been added, we delete the number from the site.",
         "akkoord": "I agree that the editors invite me, or add me to the group with this number. Other members of the group will see my number.",
         "submit": "Sign up",
         "submitting": "Sending…",
@@ -1937,6 +1937,7 @@
         "error": {
           "velden": "Please check your name and phone number.",
           "groep": "Choose at least one group.",
+          "telefoon": "Please enter your phone number: the editors need it to add you to the Duivelse Schoonmaak group.",
           "akkoord": "Please agree to being added to the group.",
           "buurtpas": "Your neighbourhood pass is no longer valid. Request a new one and try again.",
           "server": "Something went wrong. Please try again later."

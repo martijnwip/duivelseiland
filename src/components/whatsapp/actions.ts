@@ -12,7 +12,7 @@ const str = (formData: FormData, key: string) => String(formData.get(key) ?? '')
 
 export type WhatsappVelden = { naam: string; telefoon: string; groepen: string[] };
 
-export type WhatsappFoutReden = 'velden' | 'groep' | 'akkoord' | 'buurtpas' | 'server';
+export type WhatsappFoutReden = 'velden' | 'groep' | 'telefoon' | 'akkoord' | 'buurtpas' | 'server';
 
 // Bij een fout gaan de ingevulde waarden mee terug: React leegt het formulier na elke actie.
 export type WhatsappFormState =
@@ -40,15 +40,17 @@ export async function submitWhatsapp(_prev: WhatsappFormState, formData: FormDat
   const adres = await buurtpasAdres();
   if (!adres) return fout('buurtpas');
 
-  if (!velden.naam || velden.naam.length > 80 || !TELEFOON.test(velden.telefoon)) return fout('velden');
+  if (!velden.naam || velden.naam.length > 80 || (velden.telefoon && !TELEFOON.test(velden.telefoon))) return fout('velden');
   const groepen = velden.groepen.filter((g): g is WhatsappGroep => GELDIG.has(g));
   if (!groepen.length) return fout('groep');
+  // Alleen de Schoonmaak voegt de redactie met het nummer toe; voor de Buren-app gaat de uitnodiging per mail.
+  if (groepen.includes('schoonmaak') && !velden.telefoon) return fout('telefoon');
   if (formData.get('akkoord') !== 'on') return fout('akkoord');
 
   try {
     const payload = await getPayload({ config });
     const email = normaliseerEmail(adres.email);
-    const data = { naam: velden.naam, telefoon: velden.telefoon, groepen, locale };
+    const data = { naam: velden.naam, telefoon: velden.telefoon || null, groepen, locale };
 
     const { docs: open } = await payload.find({
       collection: 'whatsapp-aanmeldingen',
