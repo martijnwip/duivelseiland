@@ -603,6 +603,10 @@ export interface Vaklui {
    * Uit het aanmeldformulier, zonder naam van de aanmelder. Staat op de site zodra de vakman gepubliceerd is; pas aan of maak leeg als het niet geschikt is.
    */
   aanbeveling?: string | null;
+  /**
+   * Adres van de pagina: /vaklui/<slug>. Wordt gemaakt uit de naam. Niet meer wijzigen als de link gedeeld is.
+   */
+  slug?: string | null;
   status: 'draft' | 'published';
   author?: (number | null) | User;
   /**
@@ -1373,6 +1377,7 @@ export interface VakluiSelect<T extends boolean = true> {
   telefoon?: T;
   website?: T;
   aanbeveling?: T;
+  slug?: T;
   status?: T;
   author?: T;
   moderatie?: T;

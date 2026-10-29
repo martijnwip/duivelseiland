@@ -140,6 +140,10 @@
       "vakken": "Vakken",
       "telefoonMetBuurtpas": "Telefoon met buurtpas",
       "aanbeveling": "Aanbeveling van een buur",
+      "delen": "Deel {naam}",
+      "gekopieerd": "Link gekopieerd",
+      "terug": "Alle vaklui",
+      "metaDescription": "{naam}, een vakman uit of rond Duivelseiland.",
       "aanmeldKnop": {
         "titel": "Ken je een goede vakman?",
         "tekst": "Heb je een buurtpas, dan kun je een vakman aanmelden. De redactie kijkt mee voordat die op de site komt.",

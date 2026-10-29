@@ -1,10 +1,11 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionBeforeValidateHook, CollectionConfig } from 'payload';
 import { editorOnlyContentAccess } from '../access/contentAccess';
 import { authorField, statusField } from './shared/contentFields';
 import { alleenIngelogdField, isRedacteurOrAdminField } from '../access/isAdmin';
 import { setAuthor } from './shared/setAuthor';
 import { adresboekHooks } from '../lib/adresboek';
-import { MODERATIE, MODERATIE_LABELS, TELEFOON, WEBSITE } from '../lib/vaklui/constants';
+import { GERESERVEERDE_SLUGS, MODERATIE, MODERATIE_LABELS, TELEFOON, WEBSITE } from '../lib/vaklui/constants';
+import { SLUG_PATROON, uniekeSlug } from '../lib/slug';
 import { vakmanAfterChange, vakmanBeforeChange } from '../lib/vaklui/workflow';
 
 // De aanmelder heeft een buurtpas, dus het adres is al bevestigd.
@@ -12,6 +13,14 @@ const adresboek = adresboekHooks<{ aanmelderEmail?: string | null }>(
   (d) => d.aanmelderEmail,
   () => true,
 );
+
+// Alleen als hij nog leeg is: een nieuwe naam verandert de slug niet, zodat gedeelde links blijven werken.
+const vulSlug: CollectionBeforeValidateHook = async ({ data, originalDoc, req }) => {
+  if (!data || ('slug' in data ? data.slug : originalDoc?.slug)) return data;
+  const naam = data.naam ?? originalDoc?.naam;
+  if (naam) data.slug = await uniekeSlug(req.payload, 'vaklui', naam, { gereserveerd: GERESERVEERDE_SLUGS, fallback: 'vakman' });
+  return data;
+};
 
 const isAanmelding = (data: { moderatie?: string | null } | undefined) => Boolean(data?.moderatie);
 
@@ -40,6 +49,7 @@ export const Vaklui: CollectionConfig = {
   defaultSort: 'naam',
   access: editorOnlyContentAccess,
   hooks: {
+    beforeValidate: [vulSlug],
     beforeChange: [setAuthor('author'), vakmanBeforeChange],
     afterChange: [vakmanAfterChange, adresboek.afterChange],
     afterDelete: [adresboek.afterDelete],
@@ -98,6 +108,23 @@ export const Vaklui: CollectionConfig = {
       admin: {
         description:
           'Uit het aanmeldformulier, zonder naam van de aanmelder. Staat op de site zodra de vakman gepubliceerd is; pas aan of maak leeg als het niet geschikt is.',
+      },
+    },
+    {
+      name: 'slug',
+      type: 'text',
+      unique: true,
+      index: true,
+      access: { update: isRedacteurOrAdminField },
+      admin: {
+        position: 'sidebar',
+        description: 'Adres van de pagina: /vaklui/<slug>. Wordt gemaakt uit de naam. Niet meer wijzigen als de link gedeeld is.',
+      },
+      validate: (value: string | null | undefined) => {
+        if (!value) return true; // vulSlug vult hem
+        if (!SLUG_PATROON.test(value)) return 'Alleen kleine letters, cijfers en streepjes.';
+        if (GERESERVEERDE_SLUGS.includes(value)) return `"${value}" is gereserveerd.`;
+        return true;
       },
     },
     statusField,
