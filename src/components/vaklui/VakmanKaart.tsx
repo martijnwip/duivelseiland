@@ -2,8 +2,10 @@ import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import type { Vakken, Vaklui } from '../../../payload-types';
 import { SlotIcoon } from '@/components/buurtpas/BuurtpasSlot';
+import { WhatsAppIcon } from '@/components/buurtborrel/icons';
 import { boxCls } from '@/components/site/Section';
 import { localizedHref } from '@/i18n/localizedHref';
+import { buildWhatsAppLink, isNlMobielNummer } from '@/lib/whatsapp';
 import { DeelLink } from './DeelLink';
 
 export const vakNamen = (vakman: Vaklui) =>
@@ -73,6 +75,8 @@ export async function VakmanKaart({ vakman, locale, kopId }: { vakman: KaartGege
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
   const { vakken } = vakman;
   const pad = vakman.slug ? vakmanPad(locale, vakman.slug) : null;
+  // Alleen bij een mobiel nummer; `telefoon` is er alleen met buurtpas, dus de link (met nummer) ook.
+  const whatsapp = isNlMobielNummer(vakman.telefoon) ? buildWhatsAppLink(vakman.telefoon, t('whatsappBericht')) : null;
   const naamCls = 'm-0 font-heading text-lg leading-[1.25] font-semibold break-words text-text';
 
   return (
@@ -130,11 +134,25 @@ export async function VakmanKaart({ vakman, locale, kopId }: { vakman: KaartGege
       {vakman.telefoon || vakman.telefoonAchterSlot || vakman.website ? (
         <div className="mt-auto flex flex-col items-start gap-2">
           {vakman.telefoon ? (
-            <a href={`tel:${vakman.telefoon.replace(/[^0-9+]/g, '')}`} className={`${knopCls} bg-primary text-on-primary hover:bg-primary-hover`}>
-              <TelefoonIcoon />
-              <span className="sr-only">{t('telefoon')}: </span>
-              {vakman.telefoon}
-            </a>
+            <div className="flex flex-wrap gap-2">
+              <a href={`tel:${vakman.telefoon.replace(/[^0-9+]/g, '')}`} className={`${knopCls} bg-primary text-on-primary hover:bg-primary-hover`}>
+                <TelefoonIcoon />
+                <span className="sr-only">{t('telefoon')}: </span>
+                {vakman.telefoon}
+              </a>
+              {whatsapp ? (
+                <a
+                  href={whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={t('whatsappLabel', { naam: vakman.naam })}
+                  className={`${knopCls} border border-border text-text hover:border-primary hover:text-primary`}
+                >
+                  <WhatsAppIcon className="size-4" />
+                  WhatsApp
+                </a>
+              ) : null}
+            </div>
           ) : null}
           {vakman.telefoonAchterSlot ? (
             <span className="inline-flex min-h-11 items-center gap-2 text-sm text-muted">
