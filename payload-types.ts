@@ -639,7 +639,7 @@ export interface Vakken {
   createdAt: string;
 }
 /**
- * Buren die in een WhatsApp-groep willen. Voeg het nummer toe aan de groep(en) en zet de status op "Toegevoegd": het telefoonnummer wordt dan gewist.
+ * Buren die in een WhatsApp-groep willen. Buren-app: klik op "Uitnodiging sturen" (de aanvrager krijgt de link per mail). Duivelse Schoonmaak: voeg het nummer toe in WhatsApp en zet de status op "Toegevoegd". Het telefoonnummer wordt dan gewist.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "whatsapp-aanmeldingen".
@@ -654,6 +654,7 @@ export interface WhatsappAanmelding {
   groepen: ('buurt' | 'schoonmaak')[];
   status: 'aangemeld' | 'toegevoegd';
   toegevoegdOp?: string | null;
+  uitgenodigdOp?: string | null;
   email: string;
   locale?: ('nl' | 'en') | null;
   updatedAt: string;
@@ -1400,6 +1401,7 @@ export interface WhatsappAanmeldingenSelect<T extends boolean = true> {
   groepen?: T;
   status?: T;
   toegevoegdOp?: T;
+  uitgenodigdOp?: T;
   email?: T;
   locale?: T;
   updatedAt?: T;
@@ -1757,6 +1759,12 @@ export interface SiteInstellingen {
      */
     redacteurMagVersturen?: boolean | null;
   };
+  whatsapp?: {
+    /**
+     * Wordt gemaild als de redactie bij een WhatsApp-aanmelding op "Uitnodiging sturen" klikt. Reset je de link in WhatsApp, plak hier dan de nieuwe.
+     */
+    buurtUitnodiging?: string | null;
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1973,6 +1981,11 @@ export interface SiteInstellingenSelect<T extends boolean = true> {
     | T
     | {
         redacteurMagVersturen?: T;
+      };
+  whatsapp?:
+    | T
+    | {
+        buurtUitnodiging?: T;
       };
   updatedAt?: T;
   createdAt?: T;
