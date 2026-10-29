@@ -140,6 +140,10 @@
       "vakken": "Trades",
       "telefoonMetBuurtpas": "Phone with neighbourhood pass",
       "aanbeveling": "Recommended by a neighbour",
+      "delen": "Share {naam}",
+      "gekopieerd": "Link copied",
+      "terug": "All tradespeople",
+      "metaDescription": "{naam}, a tradesperson from in or around Duivelseiland.",
       "aanmeldKnop": {
         "titel": "Know a good tradesperson?",
         "tekst": "With a neighbourhood pass you can submit a tradesperson. The editors review it before it goes on the site.",

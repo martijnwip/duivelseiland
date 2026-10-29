@@ -14,3 +14,6 @@ export const WEBSITE = /^https?:\/\/\S+\.\S+$/;
 
 /** Hooguit zoveel aanmeldingen per adres die nog op de redactie wachten. */
 export const MAX_OPEN_AANMELDINGEN_PER_ADRES = 3;
+
+/** Paden onder /vaklui die geen vakman zijn. */
+export const GERESERVEERDE_SLUGS = ['aanmelden', 'aanmelding'];
