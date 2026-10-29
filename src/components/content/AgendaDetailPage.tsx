@@ -14,6 +14,7 @@ import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { WhatsappAanmeldLink } from '@/components/whatsapp/WhatsappAanmeldLink';
 import { SCHOONMAAK_SLUG } from './HomeDuivelseSchoonmaak';
+import { hoeVaakVan } from '@/lib/agenda/hoeVaak';
 
 export async function AgendaDetailPage({
   slug,
@@ -86,6 +87,7 @@ export async function AgendaDetailPage({
   // Alleen agenda-items die bij een activiteit horen krijgen een aanmeldknop, en alleen zolang je je
   // daar nog kunt inschrijven (docs/brief-activiteiten.md, flow 7).
   const activiteit = typeof doc.activiteit === 'object' ? doc.activiteit : null;
+  const hoeVaak = hoeVaakVan(doc);
   const activiteitHref =
     activiteit && ['goedgekeurd', 'gaat-door'].includes(activiteit.fase) && activiteit.inschrijving === 'open'
       ? localizedHref(locale, `/activiteiten/${activiteit.slug}`)
@@ -109,6 +111,7 @@ export async function AgendaDetailPage({
             </p>
           ) : null}
           {recurring && recurringLabel ? <p className="mt-0.5 text-xs font-medium text-primary">{recurringLabel}</p> : null}
+          {hoeVaak ? <p className="mt-0.5 text-sm font-medium text-primary">{hoeVaak}</p> : null}
         </div>
       </div>
 
