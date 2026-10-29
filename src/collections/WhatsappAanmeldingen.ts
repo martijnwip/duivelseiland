@@ -60,8 +60,11 @@ export const WhatsappAanmeldingen: CollectionConfig = {
       name: 'telefoon',
       type: 'text',
       admin: { description: 'Wordt gewist zodra de status op "Toegevoegd" gaat.' },
-      validate: (value: string | null | undefined, { data }: { data: { status?: string } }) =>
-        data?.status === 'toegevoegd' || (typeof value === 'string' && TELEFOON.test(value)) || 'Vul een geldig telefoonnummer in.',
+      validate: (value: string | null | undefined, { data }: { data: { status?: string; groepen?: string[] } }) =>
+        // Verplicht voor de Schoonmaak (die voegt de redactie met het nummer toe); de Buren-app gaat met de uitnodigingslink.
+        data?.status === 'toegevoegd' ||
+        (value ? TELEFOON.test(value) : !data?.groepen?.includes('schoonmaak')) ||
+        'Vul een geldig telefoonnummer in (verplicht voor de Duivelse Schoonmaak).',
     },
     {
       name: 'groepen',

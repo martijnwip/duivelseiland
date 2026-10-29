@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { submitWhatsapp, type WhatsappFormState, type WhatsappFoutReden } from './actions';
 import { Honeypot } from '../activiteiten/Honeypot';
 import { buttonCls, hintCls, inputCls, labelCls } from '../activiteiten/styles';
@@ -32,6 +32,14 @@ export function WhatsappForm({
 }) {
   const [state, formAction, pending] = useActionState(submitWhatsapp, initialState);
   const vorige = state.status === 'error' ? state.velden : undefined;
+  // Het nummer is alleen nodig voor de Schoonmaak; voor de Buren-app gaat de uitnodiging per mail.
+  // Na een actie zet React de vinkjes terug op `vorige`; het telefoonveld volgt dan mee.
+  const [metSchoonmaak, setSchoonmaak] = useState(false);
+  const [gezienState, setGezienState] = useState(state);
+  if (state !== gezienState) {
+    setGezienState(state);
+    setSchoonmaak(Boolean(vorige?.groepen.includes('schoonmaak')));
+  }
 
   if (state.status === 'success') {
     return (
@@ -58,6 +66,7 @@ export function WhatsappForm({
                 name="groepen"
                 value={g.value}
                 defaultChecked={vorige ? vorige.groepen.includes(g.value) : g.value === 'buurt'}
+                onChange={g.value === 'schoonmaak' ? (e) => setSchoonmaak(e.currentTarget.checked) : undefined}
                 className="mt-1 size-4 accent-primary"
               />
               <span>
@@ -76,7 +85,7 @@ export function WhatsappForm({
         <input id="whatsapp-naam" name="naam" required maxLength={80} autoComplete="name" defaultValue={vorige?.naam} className={inputCls} />
       </div>
 
-      <div>
+      <div hidden={!metSchoonmaak}>
         <label htmlFor="whatsapp-telefoon" className={labelCls}>
           {strings.telefoon}
         </label>
@@ -84,7 +93,8 @@ export function WhatsappForm({
           id="whatsapp-telefoon"
           name="telefoon"
           type="tel"
-          required
+          required={metSchoonmaak}
+          disabled={!metSchoonmaak}
           maxLength={20}
           autoComplete="tel"
           defaultValue={vorige?.telefoon}
