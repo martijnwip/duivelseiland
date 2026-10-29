@@ -142,6 +142,8 @@
       "aanbeveling": "Recommended by a neighbour",
       "delen": "Share {naam}",
       "gekopieerd": "Link copied",
+      "whatsappLabel": "Send {naam} a WhatsApp message",
+      "whatsappBericht": "Hi, I found your number on the Duivelseiland neighbourhood website. ",
       "terug": "All tradespeople",
       "metaDescription": "{naam}, a tradesperson from in or around Duivelseiland.",
       "aanmeldKnop": {

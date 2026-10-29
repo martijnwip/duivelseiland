@@ -5,6 +5,18 @@
  * alvast een bericht klaar in de chat.
  */
 export function buildWhatsAppLink(number: string | null | undefined, text?: string): string | null {
+  const digits = whatsAppNummer(number);
+  if (!digits) return null;
+  return text ? `https://wa.me/${digits}?text=${encodeURIComponent(text)}` : `https://wa.me/${digits}`;
+}
+
+/** Een Nederlands mobiel nummer (06 / +316): die hebben bijna altijd WhatsApp, een vast nummer meestal niet. */
+export function isNlMobielNummer(number: string | null | undefined): boolean {
+  return /^316\d{8}$/.test(whatsAppNummer(number) ?? '');
+}
+
+/** Het nummer zoals wa.me het wil: internationaal, alleen cijfers. */
+function whatsAppNummer(number: string | null | undefined): string | null {
   if (!number) return null;
 
   // Alles behalve cijfers en een eventuele voorloop-'+' weg (spaties, haakjes,
@@ -24,6 +36,5 @@ export function buildWhatsAppLink(number: string | null | undefined, text?: stri
     digits = `31${digits.slice(1)}`;
   }
   // Anders: al internationaal zonder '+'/'00' (bijv. '31612345678') - ongewijzigd.
-
-  return text ? `https://wa.me/${digits}?text=${encodeURIComponent(text)}` : `https://wa.me/${digits}`;
+  return digits;
 }
