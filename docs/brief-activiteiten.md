@@ -241,7 +241,7 @@ Een goedgekeurde activiteit staat **meteen op de agenda**. Dat geeft extra beken
 - Zolang de fase **goedgekeurd** is, staat er op de agenda en op de activiteitpagina: *"Nog niet definitief: deze activiteit gaat door als er genoeg aanmeldingen zijn."* In de agendalijst staat het label "Nog niet definitief". Bij **gaat door** verdwijnt dat label.
 - Het agenda-item heeft een knop "Aanmelden voor deze activiteit", zolang de aanmelding open is. Gewone agenda-items hebben die knop niet.
 - Afkeuren, afgelast of terug naar "wacht op goedkeuring": het agenda-item gaat naar concept. Opnieuw goedkeuren publiceert hetzelfde item weer. Bij afgelopen verandert er niets, want de datum ligt dan in het verleden.
-- Zonder datum staat het item wel gepubliceerd klaar, maar het verschijnt pas in de agendalijst als er een datum is.
+- Zonder datum staat het item wel gepubliceerd klaar. Een eenmalige activiteit verschijnt pas in de agendalijst als er een datum is. Een terugkerende activiteit zonder (komende) datum staat in de agendalijst onder **Vaste activiteiten**, met de tekst bij *Hoe vaak* (bv. "Elke donderdag van 10:30-12:00 uur"); die tekst staat ook op de agendapagina van het item.
 
 ## 11. Privacy en bewaren
 

@@ -21,6 +21,7 @@ export default async function AgendaPage({ params }: { params: Promise<{ locale:
       recurringLabel={tc('recurringMonthly')}
       voorbehoudLabel={ta('voorbehoudKort')}
       upcomingLabel={tc('upcoming')}
+      vastHeading={t('vast')}
     />
   );
 }
