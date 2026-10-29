@@ -99,5 +99,25 @@ export const SiteInstellingen: GlobalConfig = {
         },
       ],
     },
+    {
+      name: 'whatsapp',
+      label: 'WhatsApp-groepen',
+      type: 'group',
+      // Niet voor de publieke site: de link is alleen voor buren die de redactie uitnodigt (src/lib/whatsapp-groepen).
+      access: { read: isAdminField },
+      fields: [
+        {
+          name: 'buurtUitnodiging',
+          label: 'Uitnodigingslink Buren-app',
+          type: 'text',
+          admin: {
+            description:
+              'Wordt gemaild als de redactie bij een WhatsApp-aanmelding op "Uitnodiging sturen" klikt. Reset je de link in WhatsApp, plak hier dan de nieuwe.',
+          },
+          validate: (value: string | null | undefined) =>
+            !value || /^https:\/\/chat\.whatsapp\.com\/\S+$/.test(value.trim()) || 'Plak een WhatsApp-uitnodigingslink, bv. https://chat.whatsapp.com/…',
+        },
+      ],
+    },
   ],
 };

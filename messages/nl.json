@@ -1729,8 +1729,8 @@
     "whatsapp": {
       "eyebrow": "Buurt",
       "heading": "WhatsApp-groepen",
-      "metaDescription": "Meld je aan voor de WhatsApp-groepen van Duivelseiland. De redactie voegt je toe.",
-      "intro": "Wil je in de WhatsApp-groep van de buurt, of meedoen met de schoonmaakgroep? Laat je naam en telefoonnummer achter. De redactie voegt je toe.",
+      "metaDescription": "Meld je aan voor de WhatsApp-groepen van Duivelseiland. Je krijgt een uitnodiging van de redactie.",
+      "intro": "Wil je in de WhatsApp-groep van de buurt, of meedoen met de schoonmaakgroep? Laat je naam en telefoonnummer achter. Voor de Buren-app krijg je na een blik van de redactie een uitnodiging per mail; aan de schoonmaakgroep voegt de redactie je toe.",
       "groepen": {
         "buurt": {
           "naam": "Buren-app Duivelseiland",
@@ -1747,10 +1747,10 @@
         "naam": "Je naam",
         "telefoon": "Je telefoonnummer (WhatsApp)",
         "telefoonHint": "Alleen voor de redactie. Na het toevoegen wissen we het nummer van de site.",
-        "akkoord": "Ik vind het goed dat de redactie mij met dit nummer aan de groep toevoegt. In de groep zien de andere leden mijn nummer.",
+        "akkoord": "Ik vind het goed dat de redactie mij uitnodigt of met dit nummer aan de groep toevoegt. In de groep zien de andere leden mijn nummer.",
         "submit": "Aanmelden",
         "submitting": "Bezig met versturen…",
-        "success": "Bedankt! De redactie voegt je zo snel mogelijk toe aan de groep.",
+        "success": "Bedankt! De redactie kijkt zo snel mogelijk naar je aanmelding. Voor de Buren-app krijg je dan een uitnodiging per mail; aan de Duivelse Schoonmaak voegt de redactie je toe.",
         "error": {
           "velden": "Controleer je naam en telefoonnummer.",
           "groep": "Kies minstens één groep.",
@@ -1764,7 +1764,7 @@
       },
       "footer": {
         "title": "WhatsApp",
-        "text": "In de appgroep van de buurt of de Duivelse Schoonmaak? De redactie voegt je toe.",
+        "text": "In de appgroep van de buurt of de Duivelse Schoonmaak? Meld je aan, dan nodigt de redactie je uit.",
         "link": "Aanmelden voor een appgroep"
       }
     },
@@ -2067,7 +2067,7 @@
     "whatsapp": {
       "eyebrow": "WhatsApp",
       "title": "WhatsApp-groepen van de buurt",
-      "intro": "In de Buren-app Duivelseiland delen buren aankondigingen, vragen en tips. In de groep van de Duivelse Schoonmaak spreken buren af om samen het zwerfafval op te ruimen. Meld je aan, dan voegt de redactie je toe.",
+      "intro": "In de Buren-app Duivelseiland delen buren aankondigingen, vragen en tips. In de groep van de Duivelse Schoonmaak spreken buren af om samen het zwerfafval op te ruimen. Meld je aan, dan nodigt de redactie je uit.",
       "knop": "Aanmelden voor een WhatsApp-groep"
     }
   },

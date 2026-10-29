@@ -1912,8 +1912,8 @@
     "whatsapp": {
       "eyebrow": "Neighbourhood",
       "heading": "WhatsApp groups",
-      "metaDescription": "Sign up for the Duivelseiland WhatsApp groups. The editors will add you.",
-      "intro": "Want to join the neighbourhood WhatsApp group, or the clean-up group? Leave your name and phone number. The editors will add you.",
+      "metaDescription": "Sign up for the Duivelseiland WhatsApp groups. The editors will send you an invitation.",
+      "intro": "Want to join the neighbourhood WhatsApp group, or the clean-up group? Leave your name and phone number. After a quick check by the editors you'll get an invitation to the Buren-app by email; for the clean-up group the editors add you.",
       "groepen": {
         "buurt": {
           "naam": "Buren-app Duivelseiland (neighbourhood group)",
@@ -1930,10 +1930,10 @@
         "naam": "Your name",
         "telefoon": "Your phone number (WhatsApp)",
         "telefoonHint": "Only for the editors. Once you've been added, we delete the number from the site.",
-        "akkoord": "I agree that the editors add me to the group with this number. Other members of the group will see my number.",
+        "akkoord": "I agree that the editors invite me, or add me to the group with this number. Other members of the group will see my number.",
         "submit": "Sign up",
         "submitting": "Sending…",
-        "success": "Thanks! The editors will add you to the group as soon as possible.",
+        "success": "Thanks! The editors will look at your request as soon as possible. For the Buren-app you'll then get an invitation by email; the editors will add you to the Duivelse Schoonmaak group.",
         "error": {
           "velden": "Please check your name and phone number.",
           "groep": "Choose at least one group.",
@@ -1947,7 +1947,7 @@
       },
       "footer": {
         "title": "WhatsApp",
-        "text": "Join the neighbourhood group or the Duivelse Schoonmaak clean-up group. The editors will add you.",
+        "text": "Join the neighbourhood group or the Duivelse Schoonmaak clean-up group. Sign up and the editors will invite you.",
         "link": "Sign up for a group"
       }
     },
@@ -2250,7 +2250,7 @@
     "whatsapp": {
       "eyebrow": "WhatsApp",
       "title": "Neighbourhood WhatsApp groups",
-      "intro": "In the Buren-app Duivelseiland, neighbours share announcements, questions and tips. In the Duivelse Schoonmaak group, neighbours arrange to pick up litter together. Sign up and the editors will add you.",
+      "intro": "In the Buren-app Duivelseiland, neighbours share announcements, questions and tips. In the Duivelse Schoonmaak group, neighbours arrange to pick up litter together. Sign up and the editors will invite you.",
       "knop": "Sign up for a WhatsApp group"
     }
   },

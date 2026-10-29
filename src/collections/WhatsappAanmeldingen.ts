@@ -3,6 +3,7 @@ import { isRedacteurOrAdmin } from '../access/isAdmin';
 import { adresboekHooks } from '../lib/adresboek';
 import { TELEFOON } from '../lib/vaklui/constants';
 import { WHATSAPP_GROEPEN, WHATSAPP_STATUS } from '../lib/whatsapp-groepen/constants';
+import { uitnodigenEndpoint } from '../lib/whatsapp-groepen/uitnodigen';
 
 // De aanmelder heeft een buurtpas, dus het adres is al bevestigd.
 const adresboek = adresboekHooks<{ email?: string | null }>(
@@ -19,8 +20,9 @@ const wisNummerNaToevoegen: CollectionBeforeChangeHook = ({ data, originalDoc })
 };
 
 /**
- * Aanmeldingen voor de WhatsApp-groepen van de buurt, via /whatsapp (alleen met buurtpas). De redactie voegt
- * het nummer toe aan de groep(en) en zet de aanmelding op "Toegevoegd"; het nummer wordt dan gewist.
+ * Aanmeldingen voor de WhatsApp-groepen van de buurt, via /whatsapp (alleen met buurtpas). Voor de Buren-app
+ * mailt de redactie de uitnodigingslink (knop "Uitnodiging sturen"); voor de Schoonmaak voegt ze het nummer
+ * met de hand toe en zet de aanmelding op "Toegevoegd". Het nummer wordt dan gewist.
  */
 export const WhatsappAanmeldingen: CollectionConfig = {
   slug: 'whatsapp-aanmeldingen',
@@ -31,7 +33,12 @@ export const WhatsappAanmeldingen: CollectionConfig = {
     group: 'Buurt',
     defaultColumns: ['naam', 'groepen', 'telefoon', 'status', 'createdAt'],
     description:
-      'Buren die in een WhatsApp-groep willen. Voeg het nummer toe aan de groep(en) en zet de status op "Toegevoegd": het telefoonnummer wordt dan gewist.',
+      'Buren die in een WhatsApp-groep willen. Buren-app: klik op "Uitnodiging sturen" (de aanvrager krijgt de link per mail). Duivelse Schoonmaak: voeg het nummer toe in WhatsApp en zet de status op "Toegevoegd". Het telefoonnummer wordt dan gewist.',
+    components: {
+      edit: {
+        beforeDocumentControls: ['/components/admin/WhatsappUitnodigenKnop#default'],
+      },
+    },
   },
   defaultSort: '-createdAt',
   access: {
@@ -41,6 +48,7 @@ export const WhatsappAanmeldingen: CollectionConfig = {
     update: isRedacteurOrAdmin,
     delete: isRedacteurOrAdmin,
   },
+  endpoints: [uitnodigenEndpoint],
   hooks: {
     beforeChange: [wisNummerNaToevoegen],
     afterChange: [adresboek.afterChange],
@@ -72,6 +80,12 @@ export const WhatsappAanmeldingen: CollectionConfig = {
       admin: { position: 'sidebar' },
     },
     { name: 'toegevoegdOp', type: 'date', admin: { readOnly: true, position: 'sidebar', date: { pickerAppearance: 'dayAndTime' } } },
+    {
+      name: 'uitgenodigdOp',
+      label: 'Uitnodiging Buren-app gemaild op',
+      type: 'date',
+      admin: { readOnly: true, position: 'sidebar', date: { pickerAppearance: 'dayAndTime' }, condition: (data) => Boolean(data?.uitgenodigdOp) },
+    },
     {
       name: 'email',
       label: 'E-mailadres (uit de buurtpas)',
