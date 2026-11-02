@@ -41,6 +41,7 @@ import * as migration_20261021_144909_ideeen_seintjes from './20261021_144909_id
 import * as migration_20261025_090321_vaklui_aanbeveling from './20261025_090321_vaklui_aanbeveling';
 import * as migration_20261029_150919_vaklui_slug from './20261029_150919_vaklui_slug';
 import * as migration_20261029_155049_whatsapp_uitnodiging from './20261029_155049_whatsapp_uitnodiging';
+import * as migration_20261102_161209_vaklui_telefoon_publiek from './20261102_161209_vaklui_telefoon_publiek';
 
 export const migrations = [
   {
@@ -256,6 +257,11 @@ export const migrations = [
   {
     up: migration_20261029_155049_whatsapp_uitnodiging.up,
     down: migration_20261029_155049_whatsapp_uitnodiging.down,
-    name: '20261029_155049_whatsapp_uitnodiging'
+    name: '20261029_155049_whatsapp_uitnodiging',
+  },
+  {
+    up: migration_20261102_161209_vaklui_telefoon_publiek.up,
+    down: migration_20261102_161209_vaklui_telefoon_publiek.down,
+    name: '20261102_161209_vaklui_telefoon_publiek'
   },
 ];

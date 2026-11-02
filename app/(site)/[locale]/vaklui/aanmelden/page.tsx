@@ -51,6 +51,7 @@ export default async function VakmanAanmeldenRoute({ params }: { params: Promise
                   telefoon: f('telefoon'),
                   website: f('website'),
                   contactHint: f('contactHint'),
+                  telefoonPubliek: f('telefoonPubliek'),
                   aanmelderNaam: f('aanmelderNaam'),
                   aanmelderNaamHint: f('aanmelderNaamHint'),
                   toelichting: f('toelichting'),

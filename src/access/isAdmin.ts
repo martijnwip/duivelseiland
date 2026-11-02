@@ -20,3 +20,9 @@ export const publiekOfAdmin: Access = ({ req }) => !req.user || hasRoleAtLeast(r
  * ingelogde gebruikers; de site leest ze via de Local API en toont ze pas na de buurtpascheck.
  */
 export const alleenIngelogdField: FieldAccess = ({ req }) => Boolean(req.user);
+
+/**
+ * Telefoonnummer van een vakman: via de API voor ingelogde gebruikers, en voor iedereen als het nummer openbaar is.
+ * Zonder `doc` (controle van where-queries) is het antwoord voor bezoekers nee: zoeken op nummers kan dus niet.
+ */
+export const telefoonLeesbaar: FieldAccess = ({ req, doc }) => Boolean(req.user) || doc?.telefoonPubliek === true;

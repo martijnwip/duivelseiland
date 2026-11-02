@@ -165,7 +165,8 @@
           "anderVakPlaceholder": "bv. glazenwasser",
           "telefoon": "Telefoon",
           "website": "Website",
-          "contactHint": "Vul een telefoonnummer, een website of allebei in. Het telefoonnummer zien alleen buren met een buurtpas.",
+          "contactHint": "Vul een telefoonnummer, een website of allebei in. Het telefoonnummer zien alleen buren met een buurtpas, tenzij je hieronder aanvinkt dat het openbaar mag.",
+          "telefoonPubliek": "Telefoonnummer openbaar tonen, ook zonder buurtpas. De vakman vindt dat goed.",
           "aanmelderNaam": "Je eigen naam",
           "aanmelderNaamHint": "Alleen voor de redactie, niet op de site. Je e-mailadres nemen we over van je buurtpas.",
           "toelichting": "Waarom raad je deze vakman aan? (optioneel)",
@@ -2271,7 +2272,7 @@
   "buurtpas": {
     "eyebrow": "Voor de buurt",
     "heading": "Buurtpas",
-    "intro": "Sommige dingen op deze site zijn alleen voor de buurt: telefoonnummers van vaklui, WhatsApp-groepen en berichten die niet op internet horen te zwerven. Met een buurtpas zie je ze wel.",
+    "intro": "Sommige dingen op deze site zijn alleen voor de buurt: sommige telefoonnummers van vaklui, WhatsApp-groepen en berichten die niet op internet horen te zwerven. Met een buurtpas zie je ze wel.",
     "punten": {
       "wat": "Vul je e-mailadres in. Je krijgt een mail met een link; één klik en je hebt de buurtpas.",
       "geenAccount": "Geen account, geen wachtwoord. Je e-mailadres is genoeg.",

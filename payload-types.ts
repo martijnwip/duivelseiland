@@ -592,9 +592,13 @@ export interface Vaklui {
    */
   anderVak?: string | null;
   /**
-   * Alleen zichtbaar voor bezoekers met een buurtpas.
+   * Zichtbaar met een buurtpas, of voor iedereen als het vinkje hieronder aanstaat.
    */
   telefoon?: string | null;
+  /**
+   * Aan: iedereen ziet het nummer. Uit: alleen bezoekers met een buurtpas.
+   */
+  telefoonPubliek?: boolean | null;
   /**
    * Met http:// of https://, bv. https://www.voorbeeld.nl
    */
@@ -1376,6 +1380,7 @@ export interface VakluiSelect<T extends boolean = true> {
   vakken?: T;
   anderVak?: T;
   telefoon?: T;
+  telefoonPubliek?: T;
   website?: T;
   aanbeveling?: T;
   slug?: T;

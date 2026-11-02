@@ -15,6 +15,7 @@ export type VakmanFormStrings = {
   telefoon: string;
   website: string;
   contactHint: string;
+  telefoonPubliek: string;
   aanmelderNaam: string;
   aanmelderNaamHint: string;
   toelichting: string;
@@ -134,6 +135,10 @@ export function VakmanForm({
             />
           </div>
         </div>
+        <label className="mt-3 flex items-start gap-3 text-text">
+          <input type="checkbox" name="telefoonPubliek" defaultChecked={vorige?.telefoonPubliek} className="mt-1 size-4 accent-primary" />
+          <span>{strings.telefoonPubliek}</span>
+        </label>
       </div>
 
       <div>

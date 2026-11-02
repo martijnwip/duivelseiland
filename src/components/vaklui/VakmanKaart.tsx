@@ -51,11 +51,15 @@ export type KaartGegevens = {
   vakken: string[];
   aanbeveling: string | null;
   website: string | null;
-  /** Alleen met buurtpas. */
+  /** Alleen als het nummer openbaar is of de bezoeker een buurtpas heeft. */
   telefoon: string | null;
-  /** Er is een nummer, maar de bezoeker heeft geen buurtpas. */
+  /** Er is een nummer, maar het is niet openbaar en de bezoeker heeft geen buurtpas. */
   telefoonAchterSlot: boolean;
 };
+
+/** Er is een nummer dat deze bezoeker niet mag zien. */
+export const telefoonAfgeschermd = (vakman: Vaklui, buurtpas: boolean) =>
+  Boolean(vakman.telefoon) && !vakman.telefoonPubliek && !buurtpas;
 
 export const kaartGegevens = (vakman: Vaklui, buurtpas: boolean): KaartGegevens => ({
   naam: vakman.naam,
@@ -63,19 +67,19 @@ export const kaartGegevens = (vakman: Vaklui, buurtpas: boolean): KaartGegevens 
   vakken: vakNamen(vakman),
   aanbeveling: vakman.aanbeveling ?? null,
   website: vakman.website ?? null,
-  telefoon: buurtpas ? (vakman.telefoon ?? null) : null,
-  telefoonAchterSlot: Boolean(vakman.telefoon) && !buurtpas,
+  telefoon: telefoonAfgeschermd(vakman, buurtpas) ? null : (vakman.telefoon ?? null),
+  telefoonAchterSlot: telefoonAfgeschermd(vakman, buurtpas),
 });
 
 /**
- * Eén vakman: naam, vakken, aanbeveling, telefoon (alleen met buurtpas) en website, met rechtsboven een deelknop.
+ * Eén vakman: naam, vakken, aanbeveling, telefoon (openbaar of met buurtpas) en website, met rechtsboven een deelknop.
  * In het overzicht linkt de naam naar de eigen pagina; op die pagina (`kopId`) is de naam de kop.
  */
 export async function VakmanKaart({ vakman, locale, kopId }: { vakman: KaartGegevens; locale: string; kopId?: string }) {
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
   const { vakken } = vakman;
   const pad = vakman.slug ? vakmanPad(locale, vakman.slug) : null;
-  // Alleen bij een mobiel nummer; `telefoon` is er alleen met buurtpas, dus de link (met nummer) ook.
+  // Alleen bij een mobiel nummer; `telefoon` is er alleen als de bezoeker het mag zien, dus de link (met nummer) ook.
   const whatsapp = isNlMobielNummer(vakman.telefoon) ? buildWhatsAppLink(vakman.telefoon, t('whatsappBericht')) : null;
   const naamCls = 'm-0 font-heading text-lg leading-[1.25] font-semibold break-words text-text';
 

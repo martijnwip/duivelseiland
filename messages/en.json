@@ -165,7 +165,8 @@
           "anderVakPlaceholder": "e.g. window cleaner",
           "telefoon": "Phone",
           "website": "Website",
-          "contactHint": "Fill in a phone number, a website or both. Only neighbours with a neighbourhood pass see the phone number.",
+          "contactHint": "Fill in a phone number, a website or both. Only neighbours with a neighbourhood pass see the phone number, unless you tick below that it may be public.",
+          "telefoonPubliek": "Show the phone number publicly, also without a neighbourhood pass. The tradesperson is fine with that.",
           "aanmelderNaam": "Your own name",
           "aanmelderNaamHint": "Only for the editors, not shown on the site. We take your email address from your neighbourhood pass.",
           "toelichting": "Why do you recommend them? (optional)",
@@ -2454,7 +2455,7 @@
   "buurtpas": {
     "eyebrow": "For the neighbourhood",
     "heading": "Neighbourhood pass",
-    "intro": "Some things on this site are only for the neighbourhood: phone numbers of local tradespeople, WhatsApp groups and posts that shouldn't drift around the internet. With a neighbourhood pass you can see them.",
+    "intro": "Some things on this site are only for the neighbourhood: some phone numbers of local tradespeople, WhatsApp groups and posts that shouldn't drift around the internet. With a neighbourhood pass you can see them.",
     "punten": {
       "wat": "Enter your email address. You'll get an email with a link; one click and you have the pass.",
       "geenAccount": "No account, no password. Your email address is enough.",
