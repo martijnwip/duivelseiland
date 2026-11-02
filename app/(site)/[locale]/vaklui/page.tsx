@@ -5,7 +5,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server';
 import type { Vaklui } from '../../../../payload-types';
 import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
 import { Section, SectionHead } from '@/components/site/Section';
-import { VakluiDisclaimer, VakmanKaart, kaartGegevens, vakNamen } from '@/components/vaklui/VakmanKaart';
+import { VakluiDisclaimer, VakmanKaart, kaartGegevens, telefoonAfgeschermd, vakNamen } from '@/components/vaklui/VakmanKaart';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { localizedHref } from '@/i18n/localizedHref';
 
@@ -32,8 +32,8 @@ export default async function VakluiPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
   const tb = await getTranslations({ locale, namespace: 'buurtpas' });
-  // Telefoonnummers alleen met buurtpas (leest cookies, dus per request gerenderd). Zonder buurtpas wordt het
-  // nummer niet eens aangemaakt; naam, vakken en website ziet iedereen.
+  // Niet-openbare telefoonnummers alleen met buurtpas (leest cookies, dus per request gerenderd). Zonder buurtpas
+  // wordt zo'n nummer niet eens aangemaakt; naam, vakken en website ziet iedereen.
   const buurtpas = await heeftBuurtpas();
 
   const payload = await getPayload({ config });
@@ -45,7 +45,7 @@ export default async function VakluiPage({ params }: { params: Promise<{ locale:
     pagination: false,
   });
   const groepen = groepeerPerVak(docs, t('overig'), locale);
-  const heeftNummers = docs.some((d) => d.telefoon);
+  const heeftAfgeschermdeNummers = docs.some((d) => telefoonAfgeschermd(d, buurtpas));
 
   return (
     <main className="pt-8 xl:pt-12">
@@ -68,7 +68,7 @@ export default async function VakluiPage({ params }: { params: Promise<{ locale:
           </Link>
         </div>
 
-        {heeftNummers && !buurtpas ? (
+        {heeftAfgeschermdeNummers ? (
           <div className="mt-6 max-w-3xl">
             <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={localizedHref(locale, '/vaklui')} titel={tb('slot.telefoon')} />
           </div>

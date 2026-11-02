@@ -1,7 +1,7 @@
 import type { CollectionBeforeValidateHook, CollectionConfig } from 'payload';
 import { editorOnlyContentAccess } from '../access/contentAccess';
 import { authorField, statusField } from './shared/contentFields';
-import { alleenIngelogdField, isRedacteurOrAdminField } from '../access/isAdmin';
+import { isRedacteurOrAdminField, telefoonLeesbaar } from '../access/isAdmin';
 import { setAuthor } from './shared/setAuthor';
 import { adresboekHooks } from '../lib/adresboek';
 import { GERESERVEERDE_SLUGS, MODERATIE, MODERATIE_LABELS, TELEFOON, WEBSITE } from '../lib/vaklui/constants';
@@ -85,11 +85,18 @@ export const Vaklui: CollectionConfig = {
     {
       name: 'telefoon',
       type: 'text',
-      // Alleen voor bezoekers met een buurtpas (src/lib/buurtpas); via de API alleen voor ingelogde gebruikers.
-      access: { read: alleenIngelogdField },
-      admin: { description: 'Alleen zichtbaar voor bezoekers met een buurtpas.' },
+      // Openbaar als telefoonPubliek aanstaat; anders alleen voor bezoekers met een buurtpas (src/lib/buurtpas).
+      access: { read: telefoonLeesbaar },
+      admin: { description: 'Zichtbaar met een buurtpas, of voor iedereen als het vinkje hieronder aanstaat.' },
       validate: (value: string | null | undefined) =>
         !value || TELEFOON.test(value.trim()) || 'Vul een geldig telefoonnummer in, bv. 06 12345678.',
+    },
+    {
+      name: 'telefoonPubliek',
+      label: 'Telefoonnummer openbaar tonen',
+      type: 'checkbox',
+      defaultValue: false,
+      admin: { description: 'Aan: iedereen ziet het nummer. Uit: alleen bezoekers met een buurtpas.' },
     },
     {
       name: 'website',

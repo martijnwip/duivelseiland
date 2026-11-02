@@ -18,6 +18,7 @@ export type VakmanVelden = {
   vakken: string[];
   anderVak: string;
   telefoon: string;
+  telefoonPubliek: boolean;
   website: string;
   aanmelderNaam: string;
   toelichting: string;
@@ -46,6 +47,7 @@ export async function submitVakman(_prev: VakmanFormState, formData: FormData): 
     vakken: formData.getAll('vakken').map(String),
     anderVak: str(formData, 'anderVak'),
     telefoon: str(formData, 'telefoon'),
+    telefoonPubliek: formData.get('telefoonPubliek') === 'on',
     website: metProtocol(str(formData, 'website')),
     aanmelderNaam: str(formData, 'aanmelderNaam'),
     toelichting: str(formData, 'toelichting'),
@@ -106,6 +108,7 @@ export async function submitVakman(_prev: VakmanFormState, formData: FormData): 
         vakken: vakken.map((v) => v.id),
         anderVak: velden.anderVak || undefined,
         telefoon: velden.telefoon || undefined,
+        telefoonPubliek: Boolean(velden.telefoon) && velden.telefoonPubliek,
         website: velden.website || undefined,
         aanbeveling: velden.toelichting || undefined,
         status: 'draft',

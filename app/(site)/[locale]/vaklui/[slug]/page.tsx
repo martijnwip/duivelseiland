@@ -7,7 +7,7 @@ import config from '@payload-config';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
 import { Section } from '@/components/site/Section';
-import { VakluiDisclaimer, VakmanKaart, kaartGegevens, vakNamen, vakmanPad } from '@/components/vaklui/VakmanKaart';
+import { VakluiDisclaimer, VakmanKaart, kaartGegevens, telefoonAfgeschermd, vakNamen, vakmanPad } from '@/components/vaklui/VakmanKaart';
 import { heeftBuurtpas } from '@/lib/buurtpas/toegang';
 import { localizedHref } from '@/i18n/localizedHref';
 
@@ -46,7 +46,7 @@ export default async function VakmanPage({ params }: Params) {
 
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
   const tb = await getTranslations({ locale, namespace: 'buurtpas' });
-  // Telefoonnummer alleen met buurtpas, net als op het overzicht.
+  // Niet-openbaar telefoonnummer alleen met buurtpas, net als op het overzicht.
   const buurtpas = await heeftBuurtpas();
 
   return (
@@ -60,7 +60,7 @@ export default async function VakmanPage({ params }: Params) {
           <VakmanKaart vakman={kaartGegevens(vakman, buurtpas)} locale={locale} kopId="vakman" />
         </div>
 
-        {vakman.telefoon && !buurtpas ? (
+        {telefoonAfgeschermd(vakman, buurtpas) ? (
           <div className="mt-6 max-w-3xl">
             <BuurtpasSlot locale={locale as 'nl' | 'en'} terug={vakmanPad(locale, slug)} titel={tb('slot.telefoon')} />
           </div>
