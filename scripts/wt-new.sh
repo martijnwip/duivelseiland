@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # Maakt een nieuwe git worktree + branch en zet de lokale (niet-in-git) bestanden
 # over die de agent-harness en de app nodig hebben: .agents, .claude, .env*, dev.db.
-# Binnen herdr opent het daarna een tab met links een shell en rechts Claude.
 set -euo pipefail
 
 if [ $# -ne 1 ]; then
@@ -78,21 +77,3 @@ fi
 
 echo
 echo "Klaar. Worktree: $WORKTREE_DIR (branch: $NAME)"
-
-# Binnen herdr: nieuwe tab in de huidige workspace, links een shell en rechts
-# Claude, beide in de nieuwe worktree. Buiten herdr wordt dit overgeslagen.
-open_herdr_tab() {
-  if [ "${HERDR_ENV:-}" != 1 ] || [ -z "${HERDR_WORKSPACE_ID:-}" ] \
-    || ! command -v herdr >/dev/null || ! command -v jq >/dev/null; then
-    echo "Niet binnen herdr (of herdr/jq ontbreekt): geen tab geopend."
-    return 0
-  fi
-  local left right
-  left="$(herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd "$WORKTREE_DIR" --label "$NAME" --focus \
-    | jq -er '.result.root_pane.pane_id')" || return 1
-  right="$(herdr pane split "$left" --direction right --cwd "$WORKTREE_DIR" --focus \
-    | jq -er '.result.pane.pane_id')" || return 1
-  herdr pane run "$right" claude >/dev/null || return 1
-  echo "herdr: tab '$NAME' geopend (links shell, rechts Claude)."
-}
-open_herdr_tab || echo "Waarschuwing: herdr-tab openen mislukt; de worktree zelf staat klaar." >&2
