@@ -232,7 +232,7 @@ Voor parallel werken aan meerdere branches (bv. losse agent-sessies) zonder stee
 
 `scripts/wt-new.sh <naam>` doet meer dan alleen `git worktree add`: het maakt de worktree + branch aan op `../duivelseiland-<naam>` én kopieert wat git zelf niet meeneemt omdat het niet in de repo zit — `.agents`, `.claude` (project-skills/agent-config), alle `.env*`-bestanden, en `dev.db` (+ eventuele `-wal`/`-shm`-sidecars, zodat de nieuwe worktree met dezelfde lokale content/testgebruikers start in plaats van een lege database). Draait daarna zelf `bun install`, en `bun run translate:setup` als dat script op die branch bestaat.
 
-Binnen herdr (`HERDR_ENV=1`) opent `wt-new.sh` daarna in de huidige herdr-workspace een nieuwe tab met de branchnaam als label: links een shell in de worktree, rechts Claude in dezelfde map. Buiten herdr (of zonder `herdr`/`jq`) wordt die stap overgeslagen.
+Binnen Herdr opent `wt-new.sh` daarna een nieuwe tab met de branchnaam als naam: links een shell in de worktree, rechts Claude in dezelfde map. In de Herdr-app (`HC_TERMINAL_ID`, via `herdr-app`) komt de tab in de huidige space, in de oude terminalversie (`HERDR_ENV=1`, via `herdr`) in de huidige workspace. Buiten Herdr (of zonder `jq`) wordt die stap overgeslagen.
 
 `scripts/wt-remove.sh <naam>` verwijdert een worktree weer volledig (map, git-worktree-registratie en branch), met een expliciete `yes`/`force`-bevestiging voor je iets kwijtraakt.
 

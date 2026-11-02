@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Maakt een nieuwe git worktree + branch en zet de lokale (niet-in-git) bestanden
 # over die de agent-harness en de app nodig hebben: .agents, .claude, .env*, dev.db.
-# Binnen herdr opent het daarna een tab met links een shell en rechts Claude.
+# Binnen Herdr (app of terminalversie) opent het daarna een tab met links een
+# shell en rechts Claude.
 set -euo pipefail
 
 if [ $# -ne 1 ]; then
@@ -79,14 +80,30 @@ fi
 echo
 echo "Klaar. Worktree: $WORKTREE_DIR (branch: $NAME)"
 
-# Binnen herdr: nieuwe tab in de huidige workspace, links een shell en rechts
-# Claude, beide in de nieuwe worktree. Buiten herdr wordt dit overgeslagen.
-open_herdr_tab() {
-  if [ "${HERDR_ENV:-}" != 1 ] || [ -z "${HERDR_WORKSPACE_ID:-}" ] \
-    || ! command -v herdr >/dev/null || ! command -v jq >/dev/null; then
-    echo "Niet binnen herdr (of herdr/jq ontbreekt): geen tab geopend."
+# Nieuwe tab met links een shell en rechts Claude, beide in de nieuwe worktree.
+# Werkt in de Herdr-app en in de oude terminalversie; die twee delen geen
+# workspaces, dus de tab komt in de versie waaruit dit script draait.
+open_app_tab() {
+  local space right_terminal
+  space="$(herdr-app ls 2>/dev/null | jq -er --arg t "$HC_TERMINAL_ID" \
+    'first(.spaces[] | select(any(.tabs[].terminals[]; .terminal == $t)) | .id)')" || {
+    echo "Deze terminal staat niet in het Herdr-venster: geen tab geopend."
     return 0
-  fi
+  }
+  herdr-app do tab.new --name "$NAME" --space "$space" --folder "$WORKTREE_DIR" \
+    | jq -e '.terminal' >/dev/null || return 1
+  # De nieuwe tab heeft nu de focus, dus de split komt daarin. Geef de map mee: een
+  # split neemt de map van een net gestarte pane niet betrouwbaar over. Claude
+  # typen in de shell in plaats van het als --argv te starten: herdr-core kent de
+  # PATH van de shell niet (claude via nvm vindt hij niet), en zo blijft de pane
+  # open als Claude stopt.
+  right_terminal="$(herdr-app do terminal.open --place right --folder "$WORKTREE_DIR" \
+    | jq -er '.terminal')" || return 1
+  hc send "$right_terminal" claude >/dev/null || return 1
+  echo "Herdr: tab '$NAME' geopend (links shell, rechts Claude)."
+}
+
+open_tui_tab() {
   local left right
   left="$(herdr tab create --workspace "$HERDR_WORKSPACE_ID" --cwd "$WORKTREE_DIR" --label "$NAME" --focus \
     | jq -er '.result.root_pane.pane_id')" || return 1
@@ -95,4 +112,17 @@ open_herdr_tab() {
   herdr pane run "$right" claude >/dev/null || return 1
   echo "herdr: tab '$NAME' geopend (links shell, rechts Claude)."
 }
-open_herdr_tab || echo "Waarschuwing: herdr-tab openen mislukt; de worktree zelf staat klaar." >&2
+
+open_herdr_tab() {
+  if ! command -v jq >/dev/null; then
+    echo "jq ontbreekt: geen tab geopend."
+  # Eerst de terminalversie: draait die in de app, dan is HC_TERMINAL_ID ook gezet.
+  elif [ "${HERDR_ENV:-}" = 1 ] && [ -n "${HERDR_WORKSPACE_ID:-}" ] && command -v herdr >/dev/null; then
+    open_tui_tab
+  elif [ -n "${HC_TERMINAL_ID:-}" ] && command -v herdr-app >/dev/null && command -v hc >/dev/null; then
+    open_app_tab
+  else
+    echo "Niet binnen Herdr: geen tab geopend."
+  fi
+}
+open_herdr_tab || echo "Waarschuwing: Herdr-tab openen mislukt; de worktree zelf staat klaar." >&2
