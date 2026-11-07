@@ -6,6 +6,13 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 const config = withNextIntl(
   withPayload({
     reactStrictMode: true,
+    // next/image (Vercel Image Optimization, beperkt op Hobby): de bronfoto's zijn hooguit ~1400 px breed, dus
+    // varianten van 2048/3840 px leveren niets op maar tellen wel als transformatie. Next 15 bewaart een variant
+    // standaard maar 60 seconden; de bronnen veranderen niet (statische imports met hash), dus 31 dagen.
+    images: {
+      deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+      minimumCacheTTL: 2678400,
+    },
     // The dev-mode indicator badge overlaps Payload admin UI controls
     // (e.g. the logout button), blocking clicks — disable it.
     devIndicators: false,
