@@ -98,7 +98,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         slides={slides}
         labels={{
           region: t('hero.region'),
-          loading: t('hero.loading'),
           previous: t('hero.previous'),
           next: t('hero.next'),
           pause: t('hero.pause'),

@@ -14,10 +14,12 @@ export type HeroSlide = {
   caption: string | null;
 };
 
-// Fade zet de breedte van de slides pas na hydration; tot de eerste afbeelding
-// geladen is tonen we die afbeelding los, in een vlak met dezelfde hoogte, zodat de
-// hero niet eerst kleiner verschijnt en dan naar volle breedte springt. Die losse
-// afbeelding staat al in de server-HTML: zo is de LCP niet afhankelijk van hydration.
+// Fade legt de slides pas na hydration over elkaar (met inline breedtes en left-offsets); daarvóór
+// staan ze onder elkaar. Deze CSS doet hetzelfde al in de server-HTML: alle slides in één gridcel,
+// zonder offsets. Zo is de eerste foto direct zichtbaar en hangt de LCP niet af van hydration.
+// `!` omdat Fade de breedtes en offsets inline zet.
+const fadeLayoutClassName =
+  '[&_.react-slideshow-fadezoom-images-wrap]:grid! [&_.react-slideshow-fadezoom-images-wrap]:w-full! [&_.react-slideshow-fadezoom-images-wrap>div]:[grid-area:1/1]! [&_.react-slideshow-fadezoom-images-wrap>div]:left-0! [&_.react-slideshow-fadezoom-images-wrap>div]:w-full!';
 
 // De hero loopt over de volle breedte van het scherm.
 const heroSizes = '100vw';
@@ -37,7 +39,6 @@ const arrowPositionClassName = { prev: 'left-4!', next: 'right-4!' } as const;
 export type HeroSlideshowLabels = {
   /** Naam van de regio (landmark) rond de slideshow. */
   region: string;
-  loading: string;
   previous: string;
   next: string;
   /** Knop-labels voor het stoppen en weer starten van het automatisch wisselen. */
@@ -98,48 +99,25 @@ function AutoplayToggle({ paused, labels, onToggle }: AutoplayToggleProps): Reac
   );
 }
 
-function HeroLoading({ slide, label }: { slide: HeroSlide; label: string }): ReactElement {
-  return (
-    <>
-      {/* pb-[37px]: hoogte van de indicator-strook onder de slides (margin-top 20 + stip 17,
-          zie react-slideshow-image/dist/styles.css), mee gereserveerd tegen verspringen. */}
-      <div aria-hidden className="w-full pb-[37px] noscript:hidden">
-        <div className="relative aspect-video w-full overflow-hidden bg-card">
-          <Image src={slide.imageUrl} alt="" fill priority sizes={heroSizes} className="object-cover" />
-        </div>
-      </div>
-      <output className="sr-only noscript:hidden">{label}</output>
-    </>
-  );
-}
-
 type HeroSlideFigureProps = {
   slide: HeroSlide;
-  /** De eerste slide staat al als losse afbeelding in beeld (HeroLoading): niet lazy laden. */
-  eager?: boolean;
-  /** Alleen voor de eerste slide: roept aan zodra de afbeelding klaar is (of mislukt). */
-  onImageSettled?: () => void;
+  /** De eerste slide is de LCP-afbeelding: preload en hoge prioriteit. */
+  priority?: boolean;
 };
 
-function HeroSlideFigure({ slide, eager, onImageSettled }: HeroSlideFigureProps): ReactElement {
-  // De afbeelding kan al klaar zijn vóór hydration; dan komt er geen load-event meer.
-  function handleImageRef(image: HTMLImageElement | null) {
-    if (image?.complete) onImageSettled?.();
-  }
-
+function HeroSlideFigure({ slide, priority }: HeroSlideFigureProps): ReactElement {
   return (
     <figure className="relative m-0 aspect-video w-full overflow-hidden">
-      {/* Via next/image: vanaf het eigen domein, als AVIF/WebP en op schermformaat (ook voor Beeldbank-foto's). */}
+      {/* Via next/image: vanaf het eigen domein, als AVIF/WebP en op schermformaat (ook voor Beeldbank-foto's).
+          Next 15 zet bij `priority` geen fetchpriority; die geven we zelf mee (geldt ook voor de preload). */}
       <Image
-        ref={handleImageRef}
         src={slide.imageUrl}
         alt={slide.alt}
         fill
         sizes={heroSizes}
-        loading={eager ? 'eager' : 'lazy'}
+        priority={priority}
+        fetchPriority={priority ? 'high' : undefined}
         className="object-cover"
-        onLoad={onImageSettled}
-        onError={onImageSettled}
       />
       {slide.caption ? (
         <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent px-4 py-6 text-lg text-white sm:px-8 sm:py-10 sm:text-2xl">
@@ -156,7 +134,6 @@ type HeroSlideshowProps = {
 };
 
 export function HeroSlideshow({ slides, labels }: HeroSlideshowProps): ReactElement | null {
-  const [ready, setReady] = useState(false);
   const [paused, setPaused] = useState(false);
   const prefersReducedMotion = usePrefersReducedMotion();
 
@@ -168,10 +145,6 @@ export function HeroSlideshow({ slides, labels }: HeroSlideshowProps): ReactElem
     setPaused((current) => !current);
   }
 
-  function handleFirstImageSettled() {
-    setReady(true);
-  }
-
   function renderIndicator(index = 0): ReactElement {
     return (
       <SlideIndicator className={indicatorClassName} label={labels.goToSlide.replace('{number}', String(index + 1))} />
@@ -179,41 +152,24 @@ export function HeroSlideshow({ slides, labels }: HeroSlideshowProps): ReactElem
   }
 
   return (
-    <section aria-label={labels.region} className="relative">
-      {!ready ? <HeroLoading slide={slides[0]} label={labels.loading} /> : null}
-
+    <section aria-label={labels.region} className={`relative ${fadeLayoutClassName}`}>
       {/* Vóór de slides in de DOM: eerste stop in de tab-volgorde. Bij "beweging verminderen" is er geen autoplay. */}
-      {ready && !prefersReducedMotion ? (
-        <AutoplayToggle paused={paused} labels={labels} onToggle={handleToggleAutoplay} />
-      ) : null}
+      {!prefersReducedMotion ? <AutoplayToggle paused={paused} labels={labels} onToggle={handleToggleAutoplay} /> : null}
 
-      {/* Tijdens het laden onzichtbaar (buiten tab-volgorde en schermlezer) maar wel gemeten door
-          Fade. Zonder JS wordt ready nooit waar; `noscript:` toont de slideshow dan toch. Geen
-          overgang bij het wisselen: de losse afbeelding eronder is dezelfde als de eerste slide. */}
-      <div
-        data-loading={ready ? undefined : ''}
-        className="data-loading:pointer-events-none data-loading:invisible data-loading:absolute data-loading:inset-x-0 data-loading:top-0 noscript:pointer-events-auto noscript:visible noscript:static"
+      <Fade
+        duration={5000}
+        autoplay={!prefersReducedMotion && !paused}
+        arrows
+        indicators={renderIndicator}
+        pauseOnHover
+        canSwipe
+        prevArrow={<SlideArrow direction="prev" label={labels.previous} className={controlClassName} />}
+        nextArrow={<SlideArrow direction="next" label={labels.next} className={controlClassName} />}
       >
-        <Fade
-          duration={5000}
-          autoplay={!prefersReducedMotion && !paused}
-          arrows
-          indicators={renderIndicator}
-          pauseOnHover
-          canSwipe
-          prevArrow={<SlideArrow direction="prev" label={labels.previous} className={controlClassName} />}
-          nextArrow={<SlideArrow direction="next" label={labels.next} className={controlClassName} />}
-        >
-          {slides.map((slide, index) => (
-            <HeroSlideFigure
-              key={slide.id}
-              slide={slide}
-              eager={index === 0}
-              onImageSettled={index === 0 ? handleFirstImageSettled : undefined}
-            />
-          ))}
-        </Fade>
-      </div>
+        {slides.map((slide, index) => (
+          <HeroSlideFigure key={slide.id} slide={slide} priority={index === 0} />
+        ))}
+      </Fade>
     </section>
   );
 }
