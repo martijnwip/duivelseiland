@@ -25,11 +25,22 @@ const config = withNextIntl(
         { source: '/:locale(nl|en)/vakmensen/:path*', destination: '/:locale/vaklui/:path*', permanent: true },
       ];
     },
+    // iOS vraagt deze paden direct op; stuur ze naar het gegenereerde apple-icon.
+    async rewrites() {
+      return [
+        { source: '/apple-touch-icon.png', destination: '/apple-icon' },
+        { source: '/apple-touch-icon-precomposed.png', destination: '/apple-icon' },
+      ];
+    },
     // The build tracer can't follow @libsql/isomorphic-ws's conditional ESM
     // export into 'ws'/'undici', so force those package files into the
     // deployed function output explicitly.
     outputFileTracingIncludes: {
       '/**': ['./node_modules/ws/**', './node_modules/undici/**', './node_modules/@libsql/**'],
+      // public/ staat op Vercel niet in de function (alleen op het CDN); routes die er met
+      // readFile uit lezen, moeten die bestanden expliciet meekrijgen.
+      '/apple-icon*': ['./public/logo/duivel-rood.svg'],
+      '/**/opengraph-image*': ['./public/mascotte/mimi-1.jpg'],
     },
   }),
 );
