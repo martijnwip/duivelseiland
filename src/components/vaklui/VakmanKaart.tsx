@@ -94,7 +94,7 @@ export async function VakmanKaart({ vakman, locale, kopId }: { vakman: KaartGege
       <div className="flex items-center gap-3 pr-10">
         <span
           aria-hidden
-          className="flex size-12 flex-none items-center justify-center rounded-full bg-primary-soft font-heading text-lg font-semibold text-primary"
+          className="flex size-12 flex-none items-center justify-center rounded-full bg-primary-soft font-heading text-lg font-semibold text-primary-hover"
         >
           {initialen(vakman.naam)}
         </span>

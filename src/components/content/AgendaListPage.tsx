@@ -1,6 +1,7 @@
 import { getPayload } from 'payload';
 import config from '@payload-config';
 import Link from 'next/link';
+import Image from 'next/image';
 import { localizedHref } from '@/i18n/localizedHref';
 import { getTranslations } from 'next-intl/server';
 import { SlotIcoon } from '@/components/buurtpas/BuurtpasSlot';
@@ -135,8 +136,8 @@ export async function AgendaListPage({
       </div>
 
       {item.imageUrl ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={item.imageUrl} alt={item.imageAlt} className="size-16 flex-none rounded-lg border border-border object-cover" />
+        // 64 px: via next/image op formaat, niet het originele bestand.
+        <Image src={item.imageUrl} alt={item.imageAlt} width={64} height={64} className="size-16 flex-none rounded-lg border border-border object-cover" />
       ) : null}
     </Link>
   );
