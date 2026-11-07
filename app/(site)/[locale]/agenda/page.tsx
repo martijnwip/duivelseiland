@@ -1,10 +1,9 @@
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { AgendaListPage } from '@/components/content/AgendaListPage';
 
-// Agenda-items kunnen maandelijks terugkeren (zie src/lib/agenda/nextOccurrence.ts):
-// de "eerstvolgende zondag" wordt bij elk bezoek opnieuw berekend, dus deze
-// pagina mag niet statisch bevriezen op het moment van de laatste deploy.
-export const dynamic = 'force-dynamic';
+// Agenda-items kunnen maandelijks terugkeren (zie src/lib/agenda/nextOccurrence.ts): elk uur opnieuw, zodat de
+// "eerstvolgende zondag" niet bevriest. Publicaties zijn direct zichtbaar via revalidateContent.
+export const revalidate = 3600;
 
 export default async function AgendaPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

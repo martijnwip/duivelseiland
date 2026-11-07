@@ -2,6 +2,7 @@ import type { CollectionConfig } from 'payload';
 import { editorOnlyContentAccess, zonderBuurtitems } from '../access/contentAccess';
 import { contentFields } from './shared/contentFields';
 import { setAuthor } from './shared/setAuthor';
+import { revalidateContentAfterChange, revalidateContentAfterDelete } from './shared/revalidateContent';
 
 export const PraktischeInfo: CollectionConfig = {
   slug: 'praktische-info',
@@ -20,6 +21,8 @@ export const PraktischeInfo: CollectionConfig = {
   access: zonderBuurtitems(editorOnlyContentAccess),
   hooks: {
     beforeChange: [setAuthor('author')],
+    afterChange: [revalidateContentAfterChange],
+    afterDelete: [revalidateContentAfterDelete],
   },
   fields: contentFields(),
 };

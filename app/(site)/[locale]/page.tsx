@@ -14,12 +14,10 @@ import { hasRichTextContent } from '@/lib/richtext';
 
 const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
 
-// De homepage toont de Duivelse Schoonmaak-uitlichting (zie
-// HomeDuivelseSchoonmaak, src/lib/agenda/nextOccurrence.ts): net als de
-// agenda-pagina's zelf mag die "eerstvolgende zondag" niet statisch
-// bevriezen op het moment van de laatste deploy, en een admin-wijziging
-// (bijv. publiceren) moet ook zonder herdeploy zichtbaar worden.
-export const dynamic = 'force-dynamic';
+// Statisch met revalidatie: elk uur opnieuw, zodat de "eerstvolgende zondag" van de Duivelse Schoonmaak
+// (src/lib/agenda/nextOccurrence.ts) niet bevriest; die verspringt hooguit één keer per dag. Publicaties zijn
+// direct zichtbaar via de afterChange-hooks (revalidateContent, revalidateHome, revalidateSite).
+export const revalidate = 3600;
 
 async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
   const payload = await getPayload({ config });
