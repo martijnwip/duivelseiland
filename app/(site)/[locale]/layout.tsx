@@ -46,6 +46,8 @@ export async function generateMetadata({
   return {
     title: t('title'),
     description: t('description'),
+    // Bing Webmaster Tools (naast public/BingSiteAuth.xml).
+    verification: { other: { 'msvalidate.01': '79A02A15E3E585215778B338213FE4DA' } },
   };
 }
 
