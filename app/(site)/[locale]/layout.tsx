@@ -6,6 +6,7 @@ import { Fraunces, Lexend, Source_Sans_3 } from 'next/font/google';
 import { getPayload } from 'payload';
 import { ThemeProvider } from 'next-themes';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import config from '@payload-config';
 import { routing } from '@/i18n/routing';
 import { Header } from '@/components/site/Header';
@@ -112,6 +113,7 @@ export default async function SiteLayout({
           />
         </ThemeProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
