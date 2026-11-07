@@ -25,11 +25,17 @@ const config = withNextIntl(
         { source: '/:locale(nl|en)/vakmensen/:path*', destination: '/:locale/vaklui/:path*', permanent: true },
       ];
     },
-    // iOS vraagt deze paden direct op; stuur ze naar het gegenereerde apple-icon.
+    // Browsers en iOS vragen deze paden direct op; stuur ze naar de echte iconen.
+    // Daarna: elk ander pad met een punt in het eerste deel (/robots.txt, /wp-login.php, ...).
+    // De middleware slaat die over, dus anders komen ze in [locale] met die naam als taal en
+    // crashen pagina's op toLocaleDateString. Rewrites gelden pas na bestaande bestanden en
+    // routes (/icon.svg, /apple-icon), dus die blijven werken.
     async rewrites() {
       return [
+        { source: '/favicon.ico', destination: '/icon.svg' },
         { source: '/apple-touch-icon.png', destination: '/apple-icon' },
         { source: '/apple-touch-icon-precomposed.png', destination: '/apple-icon' },
+        { source: '/:pad([^/]*\\.[^/]*)', destination: '/nl/niet-gevonden' },
       ];
     },
     // The build tracer can't follow @libsql/isomorphic-ws's conditional ESM
