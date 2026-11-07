@@ -15,6 +15,7 @@ Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer
 - Nieuws
 - Agenda
 - Activiteiten 👉 docs/brief-activiteiten.md
+- Buurtmascotte (Mimi) 👉 `/neighborhood-mascot`, zie "Buurtmascotte" hieronder
 
 ## Tweetalig
 Omdat er veel expats in de buurt wonen zal de public-facing site tweetalig worden gemaakt met een switch tussen Nederlands / Engels
@@ -407,6 +408,12 @@ Oorspronkelijk stond dit op Google Translate, maar dat endpoint gaf vanaf onze e
 - **Briefjes:** alles blijft in de browser (een concept in `localStorage`), er gaat niets naar de server en niets in de URL. Het briefje kan in het Nederlands, het Engels of allebei, los van de taal van de site.
 - **Homepagina:** `HomeGeluid` (onder de afvalsectie) haalt de inleiding en de weekbalk uit `pages.geluid`, zodat ze gelijk blijven met de pagina.
 - **Deelafbeelding** opnieuw maken na een tekstwijziging: `bun run geluid:deelkaart` (site moet draaien). Voor afval: `bun run afval:deelkaart`.
+
+## Buurtmascotte
+
+`/neighborhood-mascot` (in beide talen dezelfde slug) is een luchtige pagina over Mimi, de kat van Salvatore's pizzeria op de Hobbemakade, die in de buurtapp steeds als "verdwaald kitten" wordt gemeld. Geen CMS: de teksten staan in `messages/*.json` onder `pages.mascotte`, de foto's in `public/mascotte/` (verkleind, als statische import met blur-placeholder). Code: `src/components/mascotte/MascottePage.tsx`. Een link in het menu of de footer zet je in Site-instellingen. Citaten uit de buurtapp staan er zonder namen van buren.
+
+Deelafbeelding (WhatsApp, sociale media): `opengraph-image.tsx` naast de pagina maakt per taal Mimi's paspoort met stempel (1200×630, gebouwd met `next/og`, foto via `sharp` klein ingebed zodat de PNG onder de ~600 kB van WhatsApp blijft). `metadataBase` komt uit `NEXT_PUBLIC_SERVER_URL`, anders wijst de link naar localhost. De middleware slaat `opengraph-image` over, zodat `/nl/.../opengraph-image-…` direct een plaatje geeft en niet eerst doorverwijst (WhatsApp volgt dat niet altijd). Na een tekstwijziging in `pages.mascotte` verandert het plaatje vanzelf mee; WhatsApp bewaart oude voorbeelden wel een tijd.
 
 ## Kosten
 
