@@ -47,7 +47,7 @@ export function Footer({
 
           {menu.length > 0 ? (
             <div>
-              <h4 className="mb-4 text-lg font-bold">Snel naar</h4>
+              <h2 className="mb-4 text-lg font-bold">Snel naar</h2>
               <ul className="space-y-2 text-[#d1d1d1]">
                 {menu.map((item) => (
                   <li key={item.url}>
@@ -61,7 +61,7 @@ export function Footer({
           ) : null}
 
           <div>
-            <h4 className="mb-4 text-lg font-bold">Contact</h4>
+            <h2 className="mb-4 text-lg font-bold">Contact</h2>
             <ul className="space-y-2 text-[#d1d1d1]">
               {contactLines.map((line) => (
                 <li key={line}>{line}</li>
@@ -75,7 +75,7 @@ export function Footer({
           </div>
 
           <div>
-            <h4 className="mb-4 text-lg font-bold">{nieuwsbrief.title}</h4>
+            <h2 className="mb-4 text-lg font-bold">{nieuwsbrief.title}</h2>
             <p className="mb-3 text-[#d1d1d1]">{nieuwsbrief.text}</p>
             <NieuwsbriefFooterForm locale={locale} strings={nieuwsbrief} />
             <Link
@@ -85,7 +85,7 @@ export function Footer({
               {nieuwsbrief.afmelden}
             </Link>
 
-            <h4 className="mt-8 mb-2 text-lg font-bold">{whatsapp.title}</h4>
+            <h2 className="mt-8 mb-2 text-lg font-bold">{whatsapp.title}</h2>
             <p className="mb-2 text-[#d1d1d1]">{whatsapp.text}</p>
             <Link href={localizedHref(locale, '/whatsapp')} className="text-[#d1d1d1] underline transition-colors hover:text-white">
               {whatsapp.link}

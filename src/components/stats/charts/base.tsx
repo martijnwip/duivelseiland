@@ -66,6 +66,8 @@ export function tipProps(tip: string | undefined, first: boolean) {
   return {
     'data-tip': tip,
     tabIndex: first ? 0 : -1,
+    // aria-label mag alleen op een element met een rol; een kaal <rect> of <g> heeft die niet.
+    role: 'img',
     'aria-label': tip.replace('\n', ': '),
   };
 }
