@@ -11,6 +11,28 @@ const serverHost = serverUrl && URL.canParse(serverUrl) ? new URL(serverUrl).hos
 const config = withNextIntl(
   withPayload({
     reactStrictMode: true,
+    // Geen "X-Powered-By: Next.js, Payload"; withPayload voegt hem dan ook niet zelf toe.
+    poweredByHeader: false,
+    // Basisset security-headers op alle routes, ook /admin en /api. Een volledige CSP (script-src enz.) bewust
+    // nog niet: Next en de Payload-admin gebruiken inline scripts; dat vraagt nonces of eerst Report-Only.
+    async headers() {
+      return [
+        {
+          source: '/:path*',
+          headers: [
+            // Tegen clickjacking (vooral /admin): geen andere site mag de pagina's in een iframe laden.
+            // 'self' i.p.v. 'none', zodat framen binnen het eigen domein (bv. live preview in de admin) kan.
+            { key: 'Content-Security-Policy', value: "frame-ancestors 'self'" },
+            { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+            // Geüploade media niet als ander bestandstype laten uitvoeren.
+            { key: 'X-Content-Type-Options', value: 'nosniff' },
+            { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+            // De site gebruikt geen camera, microfoon of locatie (een bestandskiezer met camera valt hier niet onder).
+            { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(), browsing-topics=()' },
+          ],
+        },
+      ];
+    },
     // next/image (Vercel Image Optimization, beperkt op Hobby): de bronfoto's zijn hooguit ~1400 px breed, dus
     // varianten van 2048/3840 px leveren niets op maar tellen wel als transformatie. Next 15 bewaart een variant
     // standaard maar 60 seconden; de bronnen veranderen niet (statische imports met hash), dus 31 dagen.
