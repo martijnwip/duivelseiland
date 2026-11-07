@@ -3,15 +3,28 @@ import createNextIntlPlugin from 'next-intl/plugin';
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
+// Eigen domein: Payload-media kan als absolute URL (serverURL) binnenkomen. Een ongeldige waarde
+// (bv. "[SENSITIVE]" uit `vercel env pull`) mag de build niet breken.
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+const serverHost = serverUrl && URL.canParse(serverUrl) ? new URL(serverUrl).hostname : 'localhost';
+
 const config = withNextIntl(
   withPayload({
     reactStrictMode: true,
     // next/image (Vercel Image Optimization, beperkt op Hobby): de bronfoto's zijn hooguit ~1400 px breed, dus
     // varianten van 2048/3840 px leveren niets op maar tellen wel als transformatie. Next 15 bewaart een variant
     // standaard maar 60 seconden; de bronnen veranderen niet (statische imports met hash), dus 31 dagen.
+    // Beeldbank-foto's (images.memorix.nl) gaan ook via next/image: dan komen ze van het eigen domein
+    // (geen extra verbinding, langere cache dan de 7 dagen van Memorix) en als AVIF/WebP op schermformaat.
     images: {
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
       minimumCacheTTL: 2678400,
+      formats: ['image/avif', 'image/webp'],
+      remotePatterns: [
+        { protocol: 'https', hostname: 'images.memorix.nl' },
+        { protocol: 'https', hostname: serverHost },
+        { protocol: 'http', hostname: 'localhost' },
+      ],
     },
     // The dev-mode indicator badge overlaps Payload admin UI controls
     // (e.g. the logout button), blocking clicks — disable it.
@@ -20,6 +33,8 @@ const config = withNextIntl(
     // server action; de standaardlimiet is 1 MB. Vercel zelf staat max. 4,5 MB per request toe.
     experimental: {
       serverActions: { bodySizeLimit: '4.5mb' },
+      // CSS in de HTML in plaats van losse, render-blokkerende stylesheets (alleen in productie).
+      inlineCss: true,
     },
     // @libsql/client dynamically requires 'ws' and 'undici' for its transport;
     // Next's build tracer can't follow those, so keep the package external
