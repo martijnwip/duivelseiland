@@ -83,7 +83,7 @@ export async function HomeAfval({ locale }: { locale: string }) {
         <div className="flex flex-col gap-4 overflow-hidden rounded-xl border-2 border-text bg-card">
           <div className="flex items-center gap-4 bg-primary px-4 py-3 text-background">
             <div className="flex flex-col">
-              <span className="text-[12px] font-semibold tracking-[0.1em] uppercase opacity-85">{t('whenLabel')}</span>
+              <span className="text-[12px] font-semibold tracking-[0.1em] uppercase">{t('whenLabel')}</span>
               <span className="font-heading text-[22px] leading-tight font-bold whitespace-nowrap">{t('when')}</span>
             </div>
           </div>
