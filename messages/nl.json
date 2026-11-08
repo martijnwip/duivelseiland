@@ -1868,7 +1868,11 @@
     "empty": "Nog geen content beschikbaar.",
     "recurringMonthly": "Elke eerste zondag van de maand",
     "schedule": "Programma",
-    "upcoming": "Eerstvolgende"
+    "upcoming": "Eerstvolgende",
+    "deel": {
+      "nieuws": "Nieuws",
+      "agenda": "Agenda"
+    }
   },
   "invite": {
     "heading": "Je bent uitgenodigd",

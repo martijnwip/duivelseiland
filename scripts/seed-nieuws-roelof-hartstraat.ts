@@ -121,7 +121,7 @@ const TITEL: Tekst = {
 function inhoudNl(ids: BeeldIds) {
   return richText([
     p(
-      'De gemeente Amsterdam stuurde op 5 november 2026 een brief aan bewoners, ondernemers en organisaties rond de Roelof Hartstraat en het Roelof Hartplein. De straat en het plein worden opnieuw ingericht. Op donderdag 19 november is er een inloopavond, en tot en met 5 december kun je reageren op de plannen. Hieronder staat de brief, met het informatieblad dat erbij zat.',
+      'De Roelof Hartstraat en het Roelof Hartplein worden opnieuw ingericht. Inloopavond op donderdag 19 november, 20.00–22.00 uur, in Buurthuis De Coenen. Reageren op de plannen kan tot en met 5 december. Hieronder staat de brief die de gemeente op 5 november stuurde, met het informatieblad dat erbij zat.',
     ),
     lijst([
       [vet('Inloopavond: '), 'donderdag 19 november, 20.00–22.00 uur, Buurthuis De Coenen (tuinzaal), Johan M. Coenenstraat 4'],
@@ -263,7 +263,7 @@ function inhoudNl(ids: BeeldIds) {
 function inhoudEn(ids: BeeldIds) {
   return richText([
     p(
-      'On 5 November 2026 the City of Amsterdam sent a letter to residents, businesses and organisations around Roelof Hartstraat and Roelof Hartplein. The street and the square are going to be redesigned. There is a drop-in evening on Thursday 19 November, and you can respond to the plans until 5 December. Below is our English translation of the letter and the information sheet that came with it. The original is in Dutch.',
+      'Roelof Hartstraat and Roelof Hartplein are going to be redesigned. Drop-in evening on Thursday 19 November, 20:00–22:00, at Buurthuis De Coenen. You can respond to the plans until 5 December. Below is our English translation of the letter the city sent on 5 November, with the information sheet that came with it. The original is in Dutch.',
     ),
     lijst([
       [vet('Drop-in evening: '), 'Thursday 19 November, 20:00–22:00, Buurthuis De Coenen (garden room), Johan M. Coenenstraat 4'],
