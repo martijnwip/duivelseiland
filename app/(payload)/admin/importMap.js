@@ -37,9 +37,9 @@ import { LogoutButton as LogoutButton_aa8e4427b70b37c7820895ace344eb78 } from '@
 import { default as default_7be396d0766c6c490887ef074dd0ced4 } from '../../../src/components/admin/AdminIcon'
 import { default as default_c77bf85574dcd77791245a8c8f80bb19 } from '../../../src/components/admin/IngelogdAls'
 import { default as default_e39c6f04fbc3d800d62da1b240b44247 } from '../../../src/components/admin/EditorStyles'
-import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 import { default as default_aacf6d6dc94957d485c631f551d68c45 } from '../../../src/components/admin/LoginViewWithLogo'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
+import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 
 /** @type import('payload').ImportMap */
 export const importMap = {
@@ -82,7 +82,7 @@ export const importMap = {
   "/components/admin/AdminIcon#default": default_7be396d0766c6c490887ef074dd0ced4,
   "/components/admin/IngelogdAls#default": default_c77bf85574dcd77791245a8c8f80bb19,
   "/components/admin/EditorStyles#default": default_e39c6f04fbc3d800d62da1b240b44247,
-  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
   "/components/admin/LoginViewWithLogo#default": default_aacf6d6dc94957d485c631f551d68c45,
-  "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
+  "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1,
+  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e
 }

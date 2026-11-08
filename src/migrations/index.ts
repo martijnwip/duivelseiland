@@ -42,6 +42,7 @@ import * as migration_20261025_090321_vaklui_aanbeveling from './20261025_090321
 import * as migration_20261029_150919_vaklui_slug from './20261029_150919_vaklui_slug';
 import * as migration_20261029_155049_whatsapp_uitnodiging from './20261029_155049_whatsapp_uitnodiging';
 import * as migration_20261102_161209_vaklui_telefoon_publiek from './20261102_161209_vaklui_telefoon_publiek';
+import * as migration_20261108_124658_media_object_key from './20261108_124658_media_object_key';
 
 export const migrations = [
   {
@@ -262,6 +263,11 @@ export const migrations = [
   {
     up: migration_20261102_161209_vaklui_telefoon_publiek.up,
     down: migration_20261102_161209_vaklui_telefoon_publiek.down,
-    name: '20261102_161209_vaklui_telefoon_publiek'
+    name: '20261102_161209_vaklui_telefoon_publiek',
+  },
+  {
+    up: migration_20261108_124658_media_object_key.up,
+    down: migration_20261108_124658_media_object_key.down,
+    name: '20261108_124658_media_object_key'
   },
 ];
