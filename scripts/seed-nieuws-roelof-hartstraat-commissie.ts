@@ -20,6 +20,9 @@ const BRIEF_SLUG = 'herinrichting-roelof-hartstraat';
 const AFBEELDING = 'verkeerskaart.jpg';
 const NOTUBIZ = 'https://zuid.notubiz.nl';
 const ADVIESAANVRAGEN = 'https://zuid.notubiz.nl/modules/3';
+// Vergaderpagina's: daar komen de agenda, de stukken en de livestream.
+const VERGADERING_18_NOV = 'https://zuid.notubiz.nl/vergadering/1489153';
+const VERGADERING_2_DEC = 'https://zuid.notubiz.nl/vergadering/1489157';
 const MAIL = 'bestuursondersteuning.sdz@amsterdam.nl';
 
 type Locale = 'nl' | 'en';
@@ -76,9 +79,12 @@ function inhoudNl() {
     lijst([
       [
         vet('Vergadering: '),
-        'woensdag 18 november of woensdag 2 december, 19.30 uur, commissiezaal, President Kennedylaan 923. Op welke van de twee het onderwerp staat, is nog niet bekend: de agenda komt meestal een week van tevoren online.',
+        link(VERGADERING_18_NOV, 'woensdag 18 november', true),
+        ' of ',
+        link(VERGADERING_2_DEC, 'woensdag 2 december', true),
+        ', 19.30 uur, commissiezaal, President Kennedylaan 923. Op welke van de twee het onderwerp staat, is nog niet bekend: de agenda komt meestal een week van tevoren online, op de pagina van de vergadering.',
       ],
-      [vet('Live volgen en terugkijken: '), notubiz()],
+      [vet('Live volgen en terugkijken: '), 'via dezelfde pagina van de vergadering'],
       [vet('Inspreken: '), 'aanmelden uiterlijk 09.00 uur op de dag van de vergadering (zie hieronder)'],
     ]),
 
@@ -149,9 +155,12 @@ function inhoudEn() {
     lijst([
       [
         vet('Meeting: '),
-        'Wednesday 18 November or Wednesday 2 December, 19:30, committee room, President Kennedylaan 923. Which of the two will cover this is not yet known: the agenda usually goes online about a week beforehand.',
+        link(VERGADERING_18_NOV, 'Wednesday 18 November', true),
+        ' or ',
+        link(VERGADERING_2_DEC, 'Wednesday 2 December', true),
+        ', 19:30, committee room, President Kennedylaan 923. Which of the two will cover this is not yet known: the agenda usually goes online about a week beforehand, on the meeting page.',
       ],
-      [vet('Watch live or afterwards: '), notubiz()],
+      [vet('Watch live or afterwards: '), 'on the same meeting page (in Dutch)'],
       [vet('Speaking: '), 'register by 09:00 on the day of the meeting (see below)'],
     ]),
 
