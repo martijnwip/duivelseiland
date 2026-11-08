@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "bun --bun next dev",
-    "build": "bun --bun node_modules/.bin/payload migrate --disable-transpile && bun --bun next build",
+    "build": "bun run scripts/check-deellinks.ts && bun --bun node_modules/.bin/payload migrate --disable-transpile && bun --bun next build",
     "start": "bun --bun next start",
     "payload": "bun --bun node_modules/.bin/payload --disable-transpile",
+    "check:deellinks": "bun run scripts/check-deellinks.ts",
     "seed:admin": "bun run scripts/seed-admin.ts",
     "seed:geschiedenis": "bun run scripts/seed-geschiedenis.ts",
     "seed:intro": "bun run scripts/seed-intro.ts",

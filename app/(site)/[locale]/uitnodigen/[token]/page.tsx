@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { getPayload } from 'payload';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import config from '@payload-config';
@@ -17,6 +18,13 @@ async function getInviteState(token: string) {
   if (invite.status !== 'pending') return 'used' as const;
   if (invite.expiresAt && new Date(invite.expiresAt) < new Date()) return 'expired' as const;
   return 'pending' as const;
+}
+
+/** Uitnodigingslink met token: niet indexeren en niet bedoeld om te delen. */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'invite' });
+  return { title: t('heading'), robots: { index: false, follow: false } };
 }
 
 export default async function InvitePage({
