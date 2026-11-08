@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { IdeeForm } from '@/components/activiteiten/IdeeForm';
@@ -6,7 +7,7 @@ import { IdeeForm } from '@/components/activiteiten/IdeeForm';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'activiteiten.aanmelden' });
-  return { title: t('eyebrow'), description: t('metaDescription') };
+  return metDeelinfo(locale, { title: t('eyebrow'), description: t('metaDescription') });
 }
 
 export default async function IdeeAanmeldenRoute({ params }: { params: Promise<{ locale: string }> }) {

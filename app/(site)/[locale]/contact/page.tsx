@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { ContactForm } from '@/components/contact/ContactForm';
@@ -7,7 +8,7 @@ import { CONTACT_SOORTEN } from '@/lib/contact/constants';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.contact' });
-  return { title: t('heading'), description: t('metaDescription') };
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function ContactRoute({ params }: { params: Promise<{ locale: string }> }) {

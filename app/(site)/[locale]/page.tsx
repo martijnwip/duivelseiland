@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { Suspense } from 'react';
 import { getPayload } from 'payload';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -77,6 +79,13 @@ async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
   return [...heroSlides, ...historischeFotos]
     .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
     .map(({ id, imageUrl, alt, caption }) => ({ id, imageUrl, alt, caption }));
+}
+
+/** Titel en omschrijving, ook voor een gedeelde link (deelafbeelding: opengraph-image.tsx). */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription'), deelTitel: t('deelTitel') });
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {

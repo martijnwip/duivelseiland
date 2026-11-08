@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ContentListPage } from '@/components/content/ContentListPage';
 import { GeschiedenisPage as Verhaal } from '@/components/geschiedenis/GeschiedenisPage';
@@ -6,7 +7,7 @@ import { GeschiedenisPage as Verhaal } from '@/components/geschiedenis/Geschiede
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.geschiedenis' });
-  return { title: t('heading'), description: t('metaDescription') };
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function GeschiedenisPage({ params }: { params: Promise<{ locale: string }> }) {

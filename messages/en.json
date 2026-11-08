@@ -4,6 +4,8 @@
     "description": "Neighborhood website for Amsterdam"
   },
   "home": {
+    "deelTitel": "The neighbourhood site of Duivelseiland",
+    "metaDescription": "By and for the residents of Duivelseiland in the Museumkwartier: events, news, activities, local tradespeople, waste, noise and the history of the neighbourhood.",
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "This site is under construction.",
     "mapAlt": "Map of Duivelseiland, between Roelof Hartplein and Hobbemakade",
@@ -172,6 +174,7 @@
       }
     },
     "overDeNaam": {
+      "metaDescription": "Why is the neighbourhood called Duivelseiland? The story behind the name.",
       "heading": "Where does the name come from?",
       "verhaalLink": "Read the full story on the history page →"
     },
@@ -180,12 +183,15 @@
       "metaDescription": "Practical information for Duivelseiland: the nearest post boxes, where to find the neighbourhood AED and local amenities."
     },
     "fotos": {
+      "metaDescription": "Historic photos of Duivelseiland from the Amsterdam City Archives' image bank, with dates and photographers.",
       "heading": "Photos (Gallery)"
     },
     "duivelseKunst": {
+      "metaDescription": "Duivelse Kunst: art from and about the Duivelseiland neighbourhood.",
       "heading": "Duivelse Kunst"
     },
     "vaklui": {
+      "overzichtMetaDescription": "Plumbers, electricians, carpenters and other tradespeople from in and around Duivelseiland, recommended by neighbours.",
       "heading": "Local Craftspeople",
       "empty": "No craftspeople listed yet.",
       "telefoon": "Phone",
@@ -248,6 +254,7 @@
       }
     },
     "interviews": {
+      "metaDescription": "Neighbours of Duivelseiland tell their stories: who lives and works here, and what makes the neighbourhood special to them?",
       "heading": "Interviews"
     },
     "geschiedenis": {
@@ -1079,9 +1086,11 @@
       }
     },
     "nieuws": {
+      "metaDescription": "News from and about Duivelseiland: what's going on in the neighbourhood, updates from the city and from neighbours.",
       "heading": "News"
     },
     "agenda": {
+      "metaDescription": "What's on in Duivelseiland: the Duivelse Schoonmaak clean-up, neighbourhood drinks, activities run by residents and other events.",
       "heading": "Agenda",
       "vast": "Regular activities"
     },
@@ -2053,6 +2062,12 @@
     "schedule": "Schedule",
     "upcoming": "Next up",
     "deel": {
+      "interviews": "Interviews",
+      "geschiedenis": "History",
+      "duivelseKunst": "Duivelse Kunst",
+      "praktischeInfo": "Practical info",
+      "activiteit": "Activity",
+      "vaklui": "Tradespeople",
       "nieuws": "News",
       "agenda": "Events"
     }

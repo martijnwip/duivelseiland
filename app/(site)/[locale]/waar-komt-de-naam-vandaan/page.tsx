@@ -1,9 +1,18 @@
+import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { getPayload } from 'payload';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import config from '@payload-config';
 import Link from 'next/link';
 import { RichTextContent } from '@/components/site/RichTextContent';
 import { localizedHref } from '@/i18n/localizedHref';
+
+/** Titel en omschrijving, ook voor een gedeelde link (deelafbeelding: opengraph-image.tsx). */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pages.overDeNaam' });
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+}
 
 export default async function OverDeNaamPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

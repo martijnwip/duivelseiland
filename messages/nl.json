@@ -4,6 +4,8 @@
     "description": "Wijkwebsite voor Amsterdam"
   },
   "home": {
+    "deelTitel": "De buurtsite van Duivelseiland",
+    "metaDescription": "Voor en door bewoners van Duivelseiland in het Museumkwartier: agenda, nieuws, activiteiten, vaklui uit de buurt, afval, geluid en de geschiedenis van de buurt.",
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "Deze site is in ontwikkeling.",
     "mapAlt": "Kaart van Duivelseiland, tussen het Roelof Hartplein en de Hobbemakade",
@@ -172,6 +174,7 @@
       }
     },
     "overDeNaam": {
+      "metaDescription": "Waarom heet de buurt Duivelseiland? Het verhaal achter de naam.",
       "heading": "Waar komt de naam vandaan?",
       "verhaalLink": "Lees het hele verhaal op de geschiedenispagina →"
     },
@@ -180,12 +183,15 @@
       "metaDescription": "Praktische info voor Duivelseiland: de dichtstbijzijnde brievenbussen, waar de buurt-AED hangt en voorzieningen in de buurt."
     },
     "fotos": {
+      "metaDescription": "Historische foto's van Duivelseiland uit de Beeldbank van het Stadsarchief, met datering en maker.",
       "heading": "Foto's (Gallerij)"
     },
     "duivelseKunst": {
+      "metaDescription": "Duivelse Kunst: kunst uit en over de buurt Duivelseiland.",
       "heading": "Duivelse Kunst"
     },
     "vaklui": {
+      "overzichtMetaDescription": "Loodgieters, elektriciens, timmerlieden en andere vaklui uit en rond Duivelseiland, aangeraden door buren.",
       "heading": "Vaklui",
       "empty": "Er staan nog geen vaklui op de site.",
       "telefoon": "Telefoon",
@@ -248,6 +254,7 @@
       }
     },
     "interviews": {
+      "metaDescription": "Buren van Duivelseiland vertellen: wie wonen en werken er, en wat maakt de buurt voor hen bijzonder?",
       "heading": "Interviews"
     },
     "geschiedenis": {
@@ -896,9 +903,11 @@
       }
     },
     "nieuws": {
+      "metaDescription": "Nieuws uit en over Duivelseiland: wat er speelt in de buurt, berichten van de gemeente en van buren.",
       "heading": "Nieuws"
     },
     "agenda": {
+      "metaDescription": "Wat er te doen is op Duivelseiland: de Duivelse Schoonmaak, de buurtborrel, activiteiten van bewoners en andere afspraken in de buurt.",
       "heading": "Agenda",
       "vast": "Vaste activiteiten"
     },
@@ -1870,6 +1879,12 @@
     "schedule": "Programma",
     "upcoming": "Eerstvolgende",
     "deel": {
+      "interviews": "Interviews",
+      "geschiedenis": "Geschiedenis",
+      "duivelseKunst": "Duivelse Kunst",
+      "praktischeInfo": "Praktische info",
+      "activiteit": "Activiteit",
+      "vaklui": "Vaklui",
       "nieuws": "Nieuws",
       "agenda": "Agenda"
     }
