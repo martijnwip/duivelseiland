@@ -1,5 +1,17 @@
+import type { Metadata } from 'next';
+import { deelMetadata } from '@/lib/deelinfo';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { ContentDetailPage } from '@/components/content/ContentDetailPage';
+
+/** Titel, omschrijving en deelafbeelding voor een gedeelde link (zie src/lib/deelinfo.ts). */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  return deelMetadata('geschiedenis', slug, locale === 'en' ? 'en' : 'nl');
+}
 
 export default async function GeschiedenisDetailPage({
   params,

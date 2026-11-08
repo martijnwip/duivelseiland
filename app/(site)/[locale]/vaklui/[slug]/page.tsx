@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
@@ -32,10 +33,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!vakman) return {};
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
   const vakken = vakNamen(vakman).join(', ');
-  return {
+  return metDeelinfo(locale, {
     title: vakken ? `${vakman.naam} (${vakken})` : vakman.naam,
     description: vakman.aanbeveling?.trim().slice(0, 160) || t('metaDescription', { naam: vakman.naam }),
-  };
+    deelTitel: vakman.naam,
+  });
 }
 
 export default async function VakmanPage({ params }: Params) {
