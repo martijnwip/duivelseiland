@@ -12,3 +12,4 @@ Projectbeschrijving, rollen, rechtenmatrix, stack en deploy staan in PROJECT.md:
 - Rechten afdwingen in de Payload access-functies (`src/access/`), niet alleen in de UI. Publiceren (`status = published`) is voorbehouden aan redacteur en admin.
 - De publieke site is tweetalig (NL/EN): tekstvelden die bezoekers zien krijgen `localized: true`, UI-teksten gaan via next-intl (`messages/`).
 - Parallel werken aan een branch: `./scripts/wt-new.sh <naam>` in plaats van een kale `git worktree add`.
+- Elke openbare pagina heeft een mooi linkvoorbeeld: `metDeelinfo(...)` in `generateMetadata` en een eigen `opengraph-image.tsx` in dezelfde map (zie "Deellinks" in PROJECT.md). Niet bedoeld om te delen (tokenlink, hulppagina)? Dan `robots: { index: false }`. `bun run check:deellinks` controleert dit; de build stopt als het ontbreekt.
