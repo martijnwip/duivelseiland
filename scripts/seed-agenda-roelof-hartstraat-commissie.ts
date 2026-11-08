@@ -20,13 +20,14 @@ import { getClient } from './lib/payload-client';
 const BERICHT_SLUG = 'roelof-hartstraat-stadsdeelcommissie';
 const AFBEELDING = 'projectgebied.jpg';
 const TIJD = '19:30';
-const NOTUBIZ = 'https://zuid.notubiz.nl';
 
 type Locale = 'nl' | 'en';
 
 const VERGADERINGEN = [
   {
     slug: 'stadsdeelcommissie-roelof-hartstraat-18-november',
+    // Vergaderpagina: daar komen de agenda, de stukken en de livestream.
+    url: 'https://zuid.notubiz.nl/vergadering/1489153',
     // 19.30 uur Amsterdamse tijd (CET, UTC+1).
     date: '2026-11-18T18:30:00.000Z',
     datum: { nl: '18 november', en: '18 November' },
@@ -34,6 +35,7 @@ const VERGADERINGEN = [
   },
   {
     slug: 'stadsdeelcommissie-roelof-hartstraat-2-december',
+    url: 'https://zuid.notubiz.nl/vergadering/1489157',
     date: '2026-12-02T18:30:00.000Z',
     datum: { nl: '2 december', en: '2 December' },
     andere: { nl: '18 november', en: '18 November' },
@@ -69,6 +71,7 @@ const bericht = (locale: Locale) => (locale === 'nl' ? `/nieuws/${BERICHT_SLUG}`
 function inhoud(v: Vergadering, locale: Locale) {
   if (locale === 'nl') {
     return {
+      ctaLabel: 'Agenda en livestream',
       title: `Stadsdeelcommissie Zuid over de Roelof Hartstraat (${v.datum.nl})`,
       intro: `De stadsdeelcommissie geeft advies over de herinrichting van de Roelof Hartstraat en het Roelof Hartplein: geen linksaf meer naar de Hobbemakade en de Joh. M. Coenenstraat, ongeveer 45 parkeerplaatsen minder en bomen die gekapt worden. Het onderwerp staat op ${v.datum.nl} of op ${v.andere.nl} op de agenda; dat is nog niet bekend. Je kunt inspreken.`,
       stap: {
@@ -80,14 +83,15 @@ function inhoud(v: Vergadering, locale: Locale) {
         p(
           'Hoe je inspreekt en wat er in de stukken staat, lees je in ',
           link(bericht('nl'), 'ons bericht'),
-          '. De agenda en de livestream staan op ',
-          link(NOTUBIZ, 'zuid.notubiz.nl', true),
+          '. De agenda, de stukken en de livestream komen op ',
+          link(v.url, 'de pagina van de vergadering', true),
           '.',
         ),
       ]),
     };
   }
   return {
+    ctaLabel: 'Agenda and livestream',
     title: `District committee Zuid on Roelof Hartstraat (${v.datum.en})`,
     intro: `The district committee advises on the redesign of Roelof Hartstraat and Roelof Hartplein: no more left turns onto Hobbemakade and Joh. M. Coenenstraat, about 45 fewer parking spaces and trees to be felled. The topic is on the agenda on ${v.datum.en} or on ${v.andere.en}; which one is not yet known. You can speak at the meeting.`,
     stap: {
@@ -99,8 +103,8 @@ function inhoud(v: Vergadering, locale: Locale) {
       p(
         'How to speak and what the documents say: see ',
         link(bericht('en'), 'our article'),
-        '. The agenda and livestream are on ',
-        link(NOTUBIZ, 'zuid.notubiz.nl', true),
+        '. The agenda, documents and livestream will be on ',
+        link(v.url, 'the meeting page', true),
         ' (in Dutch).',
       ),
     ]),
@@ -110,9 +114,9 @@ function inhoud(v: Vergadering, locale: Locale) {
 // ---- Uitvoeren ----
 async function zetVergadering(payload: Payload, v: Vergadering, image: number | null) {
   const nl = inhoud(v, 'nl');
-  const gedeeld = { date: v.date, recurrence: 'none' as const, image };
+  const gedeeld = { date: v.date, recurrence: 'none' as const, image, ctaUrl: v.url };
   const stapNl = { time: TIJD, icon: 'meeting' as const, title: nl.stap.title, description: nl.stap.description };
-  const tekstNl = { title: nl.title, intro: nl.intro, content: nl.content };
+  const tekstNl = { title: nl.title, intro: nl.intro, content: nl.content, ctaLabel: nl.ctaLabel };
 
   const bestaand = await payload.find({
     collection: 'agenda',
@@ -156,6 +160,7 @@ async function zetVergadering(payload: Payload, v: Vergadering, image: number | 
       title: en.title,
       intro: en.intro,
       content: en.content,
+      ctaLabel: en.ctaLabel,
       schedule: [{ id: rijId, time: TIJD, icon: 'meeting', title: en.stap.title, description: en.stap.description }],
     },
   });
