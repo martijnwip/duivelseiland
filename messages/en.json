@@ -4,12 +4,13 @@
     "description": "Neighborhood website for Amsterdam"
   },
   "home": {
+    "deelTitel": "The neighbourhood site of Duivelseiland",
+    "metaDescription": "By and for the residents of Duivelseiland in the Museumkwartier: events, news, activities, local tradespeople, waste, noise and the history of the neighbourhood.",
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "This site is under construction.",
     "mapAlt": "Map of Duivelseiland, between Roelof Hartplein and Hobbemakade",
     "hero": {
       "region": "Featured photos",
-      "loading": "Loading images…",
       "previous": "Previous slide",
       "next": "Next slide",
       "pause": "Pause slideshow",
@@ -110,7 +111,70 @@
     }
   },
   "pages": {
+    "mascotte": {
+      "heading": "Neighborhood mascot",
+      "metaDescription": "Spotted a lost kitten near café Wildschut? That's Mimi from the pizzeria on Hobbemakade. She isn't lost. She's the neighborhood mascot.",
+      "eyebrow": "Neighborhood mascot",
+      "title": "No, she's not lost.",
+      "lead": "Meet Mimi, the neighborhood mascot of Duivelseiland. She looks like a tiny, lost kitten. That's the whole idea.",
+      "og": {
+        "stempelBoven": "Officially",
+        "stempelOnder": "not lost"
+      },
+      "alt": {
+        "hero": "Mimi, a grey-and-white cat, on the pavement next to a parked car at night",
+        "tweede": "Mimi walks past the car with her tail up, on her way to the next address",
+        "pizzeria": "Pizzalijn Salvatore on Hobbemakade, with a red scooter out front: Mimi's home"
+      },
+      "paspoort": {
+        "title": "Passport",
+        "stempel": "Officially not lost",
+        "rows": [
+          { "label": "Name", "value": "Mimi" },
+          { "label": "Lives with", "value": "Salvatore, at Pizzalijn Salvatore on Hobbemakade" },
+          { "label": "Working hours", "value": "Out on the street by day, in the pizzeria at night" },
+          { "label": "Territory", "value": "From café Wildschut to Rys Gym, and growing every week" },
+          { "label": "Specialty", "value": "Looking lost" },
+          { "label": "Times 'found'", "value": "At least 10, and counting" }
+        ]
+      },
+      "herken": {
+        "title": "How to recognise her",
+        "caption": "On patrol. Not lost.",
+        "text": [
+          "Grey with white socks, a white bib and her tail held high. Small, cute and apparently all alone. She paces up and down, looks at you and sighs. You think: this kitten has lost her way.",
+          "She hasn't. Mimi knows exactly where she is. She 'owns' the streets around Hobbemakade and enjoys a chat and a snack from a neighbor."
+        ]
+      },
+      "doen": {
+        "title": "You've spotted Mimi. Now what?",
+        "items": [
+          { "title": "Don't panic", "text": "She isn't lost, she's at work." },
+          { "title": "Petting is allowed", "text": "If she says so. She decides, you get to join in." },
+          { "title": "No need to feed her", "text": "She has a home and a full bowl. The sad face is an act." },
+          { "title": "A photo in the neighborhood app?", "text": "Go ahead, it's a tradition by now. Just mention that it's Mimi." },
+          { "title": "Really not sure?", "text": "Pop by the pizzeria on Hobbemakade. They'll know where she's hanging out." }
+        ]
+      },
+      "app": {
+        "title": "From the neighborhood app",
+        "intro": "A few highlights from the last time Mimi was 'found':",
+        "quotes": [
+          "Hey neighbors, there seems to be a lost kitten loose in the street. She's pacing between café Wildschut and Rys Gym… hope she finds her way home.",
+          "I think that's Mimi from the pizzeria around the corner. She sleeps in the pizzeria at night and roams around most of the day.",
+          "She seems to be expanding 'her' territory tonight and sweet-talked some other neighbors into feeding her by pretending to be lost.",
+          "One for the website! Is this the 10th time already? She looks like a lost kitten, but in fact she is the neighborhood mascot."
+        ]
+      },
+      "thuis": {
+        "title": "This is where she lives",
+        "text": "With Salvatore, at Pizzalijn Salvatore on Hobbemakade. That's where she sleeps and where she always comes back to. Feel free to drop by and check if she's home, and to pick up a pizza while you're there.",
+        "caption": "Mimi's headquarters.",
+        "bron": "Image: Google Street View"
+      }
+    },
     "overDeNaam": {
+      "metaDescription": "Why is the neighbourhood called Duivelseiland? The story behind the name.",
       "heading": "Where does the name come from?",
       "verhaalLink": "Read the full story on the history page →"
     },
@@ -119,12 +183,15 @@
       "metaDescription": "Practical information for Duivelseiland: the nearest post boxes, where to find the neighbourhood AED and local amenities."
     },
     "fotos": {
+      "metaDescription": "Historic photos of Duivelseiland from the Amsterdam City Archives' image bank, with dates and photographers.",
       "heading": "Photos (Gallery)"
     },
     "duivelseKunst": {
+      "metaDescription": "Duivelse Kunst: art from and about the Duivelseiland neighbourhood.",
       "heading": "Duivelse Kunst"
     },
     "vaklui": {
+      "overzichtMetaDescription": "Plumbers, electricians, carpenters and other tradespeople from in and around Duivelseiland, recommended by neighbours.",
       "heading": "Local Craftspeople",
       "empty": "No craftspeople listed yet.",
       "telefoon": "Phone",
@@ -187,6 +254,7 @@
       }
     },
     "interviews": {
+      "metaDescription": "Neighbours of Duivelseiland tell their stories: who lives and works here, and what makes the neighbourhood special to them?",
       "heading": "Interviews"
     },
     "geschiedenis": {
@@ -1018,9 +1086,11 @@
       }
     },
     "nieuws": {
+      "metaDescription": "News from and about Duivelseiland: what's going on in the neighbourhood, updates from the city and from neighbours.",
       "heading": "News"
     },
     "agenda": {
+      "metaDescription": "What's on in Duivelseiland: the Duivelse Schoonmaak clean-up, neighbourhood drinks, activities run by residents and other events.",
       "heading": "Agenda",
       "vast": "Regular activities"
     },
@@ -1990,7 +2060,17 @@
     "empty": "No content available yet.",
     "recurringMonthly": "Every first Sunday of the month",
     "schedule": "Schedule",
-    "upcoming": "Next up"
+    "upcoming": "Next up",
+    "deel": {
+      "interviews": "Interviews",
+      "geschiedenis": "History",
+      "duivelseKunst": "Duivelse Kunst",
+      "praktischeInfo": "Practical info",
+      "activiteit": "Activity",
+      "vaklui": "Tradespeople",
+      "nieuws": "News",
+      "agenda": "Events"
+    }
   },
   "invite": {
     "heading": "You've been invited",

@@ -91,7 +91,7 @@ export async function InstructieKaart({ locale }: { locale: string }) {
       <article className="instructie-kaart overflow-hidden rounded-2xl border-[3px] border-text bg-card">
         <header className="flex items-center justify-between gap-4 bg-primary px-5 py-5 text-background xl:px-6 print:py-4">
           <div className="flex min-w-0 flex-col gap-1">
-            <span className="text-[12px] font-semibold tracking-[0.12em] uppercase opacity-85">{t('eyebrow')}</span>
+            <span className="text-[12px] font-semibold tracking-[0.12em] uppercase">{t('eyebrow')}</span>
             <h1 className="m-0 text-[34px] leading-[1.02] font-bold xl:text-[48px] print:text-[36px]">{t('title')}</h1>
             <p className="m-0 text-[16px] leading-[1.35] opacity-90 xl:text-[18px] print:text-[14px]">{t('intro')}</p>
           </div>

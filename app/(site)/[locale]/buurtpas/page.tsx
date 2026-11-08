@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { BuurtpasForm } from '@/components/buurtpas/BuurtpasForm';
@@ -15,7 +16,7 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'buurtpas' });
-  return { title: t('heading'), description: t('intro') };
+  return metDeelinfo(locale, { title: t('heading'), description: t('intro') });
 }
 
 export default async function BuurtpasRoute({

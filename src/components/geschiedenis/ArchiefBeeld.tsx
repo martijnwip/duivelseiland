@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { HistorischeFoto } from '../../../payload-types';
 import { TijdlijnIcoon } from './icons';
 
@@ -31,13 +32,13 @@ export function ArchiefBeeld({
 
   return (
     <figure className={`m-0 ${className}`}>
-      {/* eslint-disable-next-line @next/next/no-img-element -- externe Beeldbank-URL, niet via next/image */}
-      <img
+      {/* Via next/image: eigen domein, AVIF/WebP en langere cache dan Memorix. Hooguit ~480 px breed op de pagina. */}
+      <Image
         src={foto.imageUrl}
         alt={foto.title}
         width={640}
         height={480}
-        loading="lazy"
+        sizes="(min-width: 1024px) 480px, (min-width: 640px) 50vw, 100vw"
         className={`h-auto w-full rounded bg-muted-soft grayscale ${vierkant ? 'aspect-[4/3] object-cover' : ''}`}
       />
       <figcaption className="mt-2 text-sm leading-snug text-muted">

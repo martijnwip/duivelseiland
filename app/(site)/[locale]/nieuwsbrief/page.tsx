@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { NieuwsbriefForm } from '@/components/nieuwsbrief/NieuwsbriefForm';
@@ -6,7 +7,7 @@ import { NieuwsbriefForm } from '@/components/nieuwsbrief/NieuwsbriefForm';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'nieuwsbrief' });
-  return { title: t('heading'), description: t('metaDescription') };
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function NieuwsbriefRoute({ params }: { params: Promise<{ locale: string }> }) {

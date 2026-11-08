@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { deelMetadata } from '@/lib/deelinfo';
 import { setRequestLocale, getTranslations } from 'next-intl/server';
 import { AgendaDetailPage } from '@/components/content/AgendaDetailPage';
 
@@ -5,6 +7,16 @@ import { AgendaDetailPage } from '@/components/content/AgendaDetailPage';
 // de "eerstvolgende zondag" wordt bij elk bezoek opnieuw berekend, dus deze
 // pagina mag niet statisch bevriezen op het moment van de laatste deploy.
 export const dynamic = 'force-dynamic';
+
+/** Titel, omschrijving en deelafbeelding voor een gedeelde link (zie src/lib/deelinfo.ts). */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  return deelMetadata('agenda', slug, locale === 'en' ? 'en' : 'nl');
+}
 
 export default async function AgendaDetailRoute({
   params,

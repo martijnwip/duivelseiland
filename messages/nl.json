@@ -4,12 +4,13 @@
     "description": "Wijkwebsite voor Amsterdam"
   },
   "home": {
+    "deelTitel": "De buurtsite van Duivelseiland",
+    "metaDescription": "Voor en door bewoners van Duivelseiland in het Museumkwartier: agenda, nieuws, activiteiten, vaklui uit de buurt, afval, geluid en de geschiedenis van de buurt.",
     "heading": "Duivelseiland - Amsterdam",
     "underConstruction": "Deze site is in ontwikkeling.",
     "mapAlt": "Kaart van Duivelseiland, tussen het Roelof Hartplein en de Hobbemakade",
     "hero": {
       "region": "Uitgelichte foto’s",
-      "loading": "Afbeeldingen laden…",
       "previous": "Vorige dia",
       "next": "Volgende dia",
       "pause": "Pauzeer slideshow",
@@ -110,7 +111,70 @@
     }
   },
   "pages": {
+    "mascotte": {
+      "heading": "Buurtmascotte",
+      "metaDescription": "Zie je een verdwaald katje bij café Wildschut? Dat is Mimi van de pizzeria op de Hobbemakade. Ze is niet verdwaald. Ze is de buurtmascotte.",
+      "eyebrow": "Buurtmascotte",
+      "title": "Nee, ze is niet verdwaald.",
+      "lead": "Maak kennis met Mimi, de buurtmascotte van Duivelseiland. Ze ziet eruit als een klein, verloren katje. Dat is precies de bedoeling.",
+      "og": {
+        "stempelBoven": "Officieel",
+        "stempelOnder": "niet verdwaald"
+      },
+      "alt": {
+        "hero": "Mimi, een grijs-witte kat, 's avonds op de stoep naast een geparkeerde auto",
+        "tweede": "Mimi loopt met haar staart omhoog langs de auto, op weg naar het volgende adres",
+        "pizzeria": "Pizzalijn Salvatore op de Hobbemakade, met een rode scooter voor de deur: het thuis van Mimi"
+      },
+      "paspoort": {
+        "title": "Paspoort",
+        "stempel": "Officieel niet verdwaald",
+        "rows": [
+          { "label": "Naam", "value": "Mimi" },
+          { "label": "Woont bij", "value": "Salvatore, in Pizzalijn Salvatore op de Hobbemakade" },
+          { "label": "Werktijden", "value": "Overdag op straat, 's nachts in de pizzeria" },
+          { "label": "Territorium", "value": "Van café Wildschut tot Rys Gym, en het wordt elke week groter" },
+          { "label": "Specialiteit", "value": "Verdwaald kijken" },
+          { "label": "Keer 'gevonden'", "value": "Minstens 10, de teller loopt nog" }
+        ]
+      },
+      "herken": {
+        "title": "Zo herken je haar",
+        "caption": "Op ronde. Niet verdwaald.",
+        "text": [
+          "Grijs met witte sokjes, een witte bef en de staart fier omhoog. Klein, schattig en schijnbaar helemaal alleen. Ze loopt een beetje heen en weer, kijkt je aan en zucht. Je denkt: dit katje is de weg kwijt.",
+          "Dat is ze niet. Mimi weet precies waar ze is. Ze 'beheert' de straten rond de Hobbemakade en houdt van een praatje en een snack van een buur."
+        ]
+      },
+      "doen": {
+        "title": "Je ziet Mimi. Wat nu?",
+        "items": [
+          { "title": "Geen paniek", "text": "Ze is niet verdwaald, ze is aan het werk." },
+          { "title": "Aaien mag", "text": "Als zij dat wil. Zij beslist, jij mag meedoen." },
+          { "title": "Voeren hoeft niet", "text": "Ze heeft een thuis en een vol bakje. Het zielige gezicht is toneel." },
+          { "title": "Een foto in de buurtapp?", "text": "Mag, het is inmiddels traditie. Zeg er wel bij dat het Mimi is." },
+          { "title": "Twijfel je echt?", "text": "Loop even langs bij de pizzeria op de Hobbemakade. Daar weten ze waar ze uithangt." }
+        ]
+      },
+      "app": {
+        "title": "Uit de buurtapp",
+        "intro": "Een greep uit de laatste keer dat Mimi 'gevonden' werd:",
+        "quotes": [
+          "Er loopt een verdwaald katje rond in de straat. Ze loopt heen en weer tussen café Wildschut en Rys Gym. Hopelijk vindt ze de weg naar huis.",
+          "Ik denk dat het Mimi is, van de pizzeria om de hoek. Ze slaapt daar 's nachts en zwerft overdag rond.",
+          "Ze breidt vanavond haar territorium uit en heeft wat buren zover gekregen haar te voeren door te doen alsof ze verdwaald is.",
+          "Eentje voor de website! Is dit al de tiende keer? Ze lijkt een verdwaald katje, maar eigenlijk is ze de buurtmascotte."
+        ]
+      },
+      "thuis": {
+        "title": "Hier woont ze",
+        "text": "Bij Salvatore, in Pizzalijn Salvatore op de Hobbemakade. Daar slaapt ze en daar komt ze altijd weer terug. Langsgaan om te kijken of ze thuis is mag, en een pizza halen ook.",
+        "caption": "Het hoofdkwartier van Mimi.",
+        "bron": "Beeld: Google Street View"
+      }
+    },
     "overDeNaam": {
+      "metaDescription": "Waarom heet de buurt Duivelseiland? Het verhaal achter de naam.",
       "heading": "Waar komt de naam vandaan?",
       "verhaalLink": "Lees het hele verhaal op de geschiedenispagina →"
     },
@@ -119,12 +183,15 @@
       "metaDescription": "Praktische info voor Duivelseiland: de dichtstbijzijnde brievenbussen, waar de buurt-AED hangt en voorzieningen in de buurt."
     },
     "fotos": {
+      "metaDescription": "Historische foto's van Duivelseiland uit de Beeldbank van het Stadsarchief, met datering en maker.",
       "heading": "Foto's (Gallerij)"
     },
     "duivelseKunst": {
+      "metaDescription": "Duivelse Kunst: kunst uit en over de buurt Duivelseiland.",
       "heading": "Duivelse Kunst"
     },
     "vaklui": {
+      "overzichtMetaDescription": "Loodgieters, elektriciens, timmerlieden en andere vaklui uit en rond Duivelseiland, aangeraden door buren.",
       "heading": "Vaklui",
       "empty": "Er staan nog geen vaklui op de site.",
       "telefoon": "Telefoon",
@@ -187,6 +254,7 @@
       }
     },
     "interviews": {
+      "metaDescription": "Buren van Duivelseiland vertellen: wie wonen en werken er, en wat maakt de buurt voor hen bijzonder?",
       "heading": "Interviews"
     },
     "geschiedenis": {
@@ -835,9 +903,11 @@
       }
     },
     "nieuws": {
+      "metaDescription": "Nieuws uit en over Duivelseiland: wat er speelt in de buurt, berichten van de gemeente en van buren.",
       "heading": "Nieuws"
     },
     "agenda": {
+      "metaDescription": "Wat er te doen is op Duivelseiland: de Duivelse Schoonmaak, de buurtborrel, activiteiten van bewoners en andere afspraken in de buurt.",
       "heading": "Agenda",
       "vast": "Vaste activiteiten"
     },
@@ -1807,7 +1877,17 @@
     "empty": "Nog geen content beschikbaar.",
     "recurringMonthly": "Elke eerste zondag van de maand",
     "schedule": "Programma",
-    "upcoming": "Eerstvolgende"
+    "upcoming": "Eerstvolgende",
+    "deel": {
+      "interviews": "Interviews",
+      "geschiedenis": "Geschiedenis",
+      "duivelseKunst": "Duivelse Kunst",
+      "praktischeInfo": "Praktische info",
+      "activiteit": "Activiteit",
+      "vaklui": "Vaklui",
+      "nieuws": "Nieuws",
+      "agenda": "Agenda"
+    }
   },
   "invite": {
     "heading": "Je bent uitgenodigd",

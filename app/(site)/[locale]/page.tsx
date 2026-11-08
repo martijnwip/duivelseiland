@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { Suspense } from 'react';
 import { getPayload } from 'payload';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -14,12 +16,10 @@ import { hasRichTextContent } from '@/lib/richtext';
 
 const HOMEPAGE_SLIDESHOW_SLUG = 'homepage-hero';
 
-// De homepage toont de Duivelse Schoonmaak-uitlichting (zie
-// HomeDuivelseSchoonmaak, src/lib/agenda/nextOccurrence.ts): net als de
-// agenda-pagina's zelf mag die "eerstvolgende zondag" niet statisch
-// bevriezen op het moment van de laatste deploy, en een admin-wijziging
-// (bijv. publiceren) moet ook zonder herdeploy zichtbaar worden.
-export const dynamic = 'force-dynamic';
+// Statisch met revalidatie: elk uur opnieuw, zodat de "eerstvolgende zondag" van de Duivelse Schoonmaak
+// (src/lib/agenda/nextOccurrence.ts) niet bevriest; die verspringt hooguit één keer per dag. Publicaties zijn
+// direct zichtbaar via de afterChange-hooks (revalidateContent, revalidateHome, revalidateSite).
+export const revalidate = 3600;
 
 async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
   const payload = await getPayload({ config });
@@ -81,6 +81,13 @@ async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
     .map(({ id, imageUrl, alt, caption }) => ({ id, imageUrl, alt, caption }));
 }
 
+/** Titel en omschrijving, ook voor een gedeelde link (deelafbeelding: opengraph-image.tsx). */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription'), deelTitel: t('deelTitel') });
+}
+
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -100,7 +107,6 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
         slides={slides}
         labels={{
           region: t('hero.region'),
-          loading: t('hero.loading'),
           previous: t('hero.previous'),
           next: t('hero.next'),
           pause: t('hero.pause'),

@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import Link from 'next/link';
 import { getPayload } from 'payload';
 import config from '@payload-config';
@@ -26,6 +28,13 @@ function groepeerPerVak(vaklui: Vaklui[], overig: string, locale: string): Groep
 }
 
 const knopCls = 'inline-flex min-h-11 items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors';
+
+/** Titel en omschrijving, ook voor een gedeelde link (deelafbeelding: opengraph-image.tsx). */
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
+  return metDeelinfo(locale, { title: t('heading'), description: t('overzichtMetaDescription') });
+}
 
 export default async function VakluiPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

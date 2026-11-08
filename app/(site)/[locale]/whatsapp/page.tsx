@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { metDeelinfo } from '@/lib/deelMetadata';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Section, SectionHead, boxCls } from '@/components/site/Section';
 import { BuurtpasSlot } from '@/components/buurtpas/BuurtpasSlot';
@@ -10,7 +11,7 @@ import { localizedHref } from '@/i18n/localizedHref';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.whatsapp' });
-  return { title: t('heading'), description: t('metaDescription') };
+  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function WhatsappRoute({ params }: { params: Promise<{ locale: string }> }) {
