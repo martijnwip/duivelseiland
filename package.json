@@ -13,6 +13,8 @@
     "seed:intro:prod": "bun --env-file=.env.production.local run scripts/seed-intro.ts",
     "seed:roelof-hartstraat": "bun run scripts/seed-nieuws-roelof-hartstraat.ts",
     "seed:roelof-hartstraat:prod": "bun --env-file=.env.production.local run scripts/seed-nieuws-roelof-hartstraat.ts",
+    "seed:agenda-roelof-hartstraat": "bun run scripts/seed-agenda-roelof-hartstraat.ts",
+    "seed:agenda-roelof-hartstraat:prod": "bun --env-file=.env.production.local run scripts/seed-agenda-roelof-hartstraat.ts",
     "foto:vervang": "bun run scripts/vervang-historische-foto.ts",
     "foto:vervang:prod": "bun --env-file=.env.production.local run scripts/vervang-historische-foto.ts",
     "dev:login": "bun run scripts/dev-login.ts",
