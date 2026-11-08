@@ -2051,7 +2051,11 @@
     "empty": "No content available yet.",
     "recurringMonthly": "Every first Sunday of the month",
     "schedule": "Schedule",
-    "upcoming": "Next up"
+    "upcoming": "Next up",
+    "deel": {
+      "nieuws": "News",
+      "agenda": "Events"
+    }
   },
   "invite": {
     "heading": "You've been invited",
