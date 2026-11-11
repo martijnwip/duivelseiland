@@ -88,9 +88,16 @@ const config = withNextIntl(
     outputFileTracingIncludes: {
       '/**': ['./node_modules/ws/**', './node_modules/undici/**', './node_modules/@libsql/**'],
       // public/ staat op Vercel niet in de function (alleen op het CDN); routes die er met
-      // readFile uit lezen, moeten die bestanden expliciet meekrijgen.
+      // readFile uit lezen, moeten die bestanden expliciet meekrijgen. `bun run check:deellinks`
+      // controleert dat elk bestand dat een deelafbeelding uit public/ leest hier staat.
       '/apple-icon*': ['./public/logo/duivel-rood.svg'],
-      '/**/opengraph-image*': ['./public/mascotte/mimi-1.jpg'],
+      '/**/opengraph-image*': [
+        './public/logo/mail-badge.png',
+        './public/kaart/duivelseiland.png',
+        './public/afval/instructiekaart-*.png',
+        './public/geluid/instructiekaart-*.png',
+        './public/mascotte/mimi-1.jpg',
+      ],
     },
   }),
 );

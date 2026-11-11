@@ -429,7 +429,7 @@ Een gedeelde link (WhatsApp, sociale media) toont op elke openbare pagina de tit
 
 Een nieuwe collectie met detailpagina's voeg je toe aan `src/lib/deelinfo.ts` en `src/components/deel/deelAfbeelding.tsx`.
 
-`bun run check:deellinks` (`scripts/check-deellinks.ts`) controleert stap 1 en 2 voor elke `page.tsx` onder `app/(site)` en slaat pagina's met `index: false` over. Het draait ook aan het begin van `bun run build`, dus Vercel bouwt niet als een openbare pagina het mist.
+`bun run check:deellinks` (`scripts/check-deellinks.ts`) controleert stap 1 en 2 voor elke `page.tsx` onder `app/(site)` en slaat pagina's met `index: false` over. Het controleert ook dat elk bestand dat een deelafbeelding met `readFile` uit `public/` leest (bv. `pad: 'kaart/…'` of de badge in `deelKaart.tsx`), in `next.config.ts` bij `outputFileTracingIncludes['/**/opengraph-image*']` staat: op Vercel zit `public/` niet in de function, en dan geeft de afbeelding daar een 500 terwijl hij lokaal werkt. Het draait ook aan het begin van `bun run build`, dus Vercel bouwt niet als een openbare pagina het mist.
 
 Code: `src/components/deel/deelKaart.tsx` (de kaart), `paginaAfbeelding.ts` (vaste pagina's), `deelAfbeelding.tsx` (items), `src/lib/deelinfo.ts` (gegevens van items).
 
