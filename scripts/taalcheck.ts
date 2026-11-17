@@ -187,7 +187,10 @@ async function run() {
   const teksten: Tekst[] = [];
   if (alleen !== 'cms') teksten.push(...uitMessages(JSON.parse(await readFile('messages/nl.json', 'utf8'))));
   if (alleen !== 'messages') teksten.push(...(await uitCms()));
-  const nakijken = teksten.filter((t) => /[a-zA-Z]{2}/.test(t.tekst.replace(/\{[^}]*\}|<[^>]*>/g, '')));
+  // Alleen teksten met echte woorden buiten {plaatshouders} en <tags> om; puur
+  // een filter, de tekst zelf gaat ongewijzigd naar Loes en nooit naar HTML.
+  const heeftWoorden = (t: string) => t.split(/\{[^}]*\}|<[^>]*>/).some((deel) => /[a-zA-Z]{2}/.test(deel));
+  const nakijken = teksten.filter((t) => heeftWoorden(t.tekst));
 
   await fetch(`${HOST}/api/version`).catch(() => {
     throw new Error(`Ollama is niet bereikbaar op ${HOST}. Start Ollama of zet OLLAMA_HOST.`);
