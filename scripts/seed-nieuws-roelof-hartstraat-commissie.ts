@@ -90,7 +90,7 @@ function inhoudNl() {
 
     kop('h2', 'Waar de adviesaanvraag over gaat'),
     p(
-      'De aanvraag heet "Adviesaanvraag concept nota van uitgangspunten herinrichting de Roelof Hartstraat en Roelof Hartplein". Het dagelijks bestuur stelde hem vast op 27 oktober 2026. De commissie geeft advies over de concept Nota van Uitgangspunten en het concept Voorlopig Ontwerp. De belangrijkste punten uit de stukken:',
+      'De aanvraag heet "Adviesaanvraag concept nota van uitgangspunten herinrichting de Roelof Hartstraat en Roelof Hartplein". Het dagelijks bestuur stelde hem vast op 27 oktober 2026. De commissie geeft advies over de concept-Nota van Uitgangspunten en het concept-Voorlopig Ontwerp. De belangrijkste punten uit de stukken:',
     ),
     lijst([
       [
@@ -118,7 +118,7 @@ function inhoudNl() {
       ],
     ]),
     p(
-      'Over het schrappen van de linksafslag is de buurt niet om een besluit gevraagd: volgens de gemeente zijn er "geen goede alternatieven". De concept Nota van Uitgangspunten en het Voorlopig Ontwerp worden in november nog aan de buurt voorgelegd, waarschijnlijk op de inloopavond van 19 november. De reacties uit die buurtraadpleging gaan als bijlage mee naar het bestuur.',
+      'Over het schrappen van de linksafslag is de buurt niet om een besluit gevraagd: volgens de gemeente zijn er "geen goede alternatieven". De concept-Nota van Uitgangspunten en het Voorlopig Ontwerp worden in november nog aan de buurt voorgelegd, waarschijnlijk op de inloopavond van 19 november. De reacties uit die buurtraadpleging gaan als bijlage mee naar het bestuur.',
     ),
 
     kop('h2', 'Inspreken'),
