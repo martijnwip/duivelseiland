@@ -29,6 +29,8 @@
     "dev:login": "bun run scripts/dev-login.ts",
     "export:local": "bun run scripts/export.ts local",
     "export:prod": "bun --env-file=.env.production.local run scripts/export.ts prod",
+    "taalcheck": "bun run scripts/taalcheck.ts",
+    "taalcheck:prod": "bun --env-file=.env.production.local run scripts/taalcheck.ts",
     "db:pull": "bun run scripts/pull-prod-db.ts",
     "reseed:local": "bun run scripts/reseed.ts",
     "reseed:prod": "bun --env-file=.env.production.local run scripts/reseed.ts",
