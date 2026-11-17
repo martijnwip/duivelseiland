@@ -23,6 +23,8 @@ const MODEL = process.env.TAALCHECK_MODEL ?? 'hf.co/mradermacher/loes-qwen3.8-27
 const HOST = (process.env.OLLAMA_HOST ?? 'localhost:11434').replace(/^(?!https?:\/\/)/, 'http://');
 const CACHE_PATH = 'data/taalcheck-cache.json';
 const PORTIE_TEKENS = 1200;
+const MAX_MINUTEN = 10;
+const MAX_TOKENS = 6000;
 
 const args = process.argv.slice(2);
 const vlag = (naam: string) => args.includes(`--${naam}`);
@@ -102,11 +104,15 @@ async function vraagLoes(teksten: string[]): Promise<string> {
   for (let poging = 1; poging <= 2; poging++) {
     const res = await fetch(`${HOST}/api/chat`, {
       method: 'POST',
+      // Bun breekt fetch standaard na 5 minuten af; een portie met denken kan langer duren.
+      ...({ timeout: false } as object),
+      signal: AbortSignal.timeout(MAX_MINUTEN * 60_000),
       body: JSON.stringify({
         model: MODEL,
         stream: false,
         think: !snel,
-        options: { temperature: 0.2 },
+        // Begrenst denken + antwoord, zodat een denklus niet eindeloos doorgaat.
+        options: { temperature: 0.2, num_predict: MAX_TOKENS },
         messages: [{ role: 'user', content: `${PROMPT}\n\n${lijst}` }],
       }),
     });
@@ -115,7 +121,7 @@ async function vraagLoes(teksten: string[]): Promise<string> {
     // Met denken aan blijft het antwoord soms leeg; dan één keer opnieuw.
     if (antwoord) return antwoord;
   }
-  return '';
+  throw new Error('twee keer een leeg antwoord');
 }
 
 const REGEL = /^\s*\[(\d+)\]\s*(.+?)\s*(?:→|->)\s*(.+?)\s*(?:\((.*)\))?\s*$/;
@@ -163,7 +169,7 @@ function rapport(teksten: Tekst[], cache: Cache, sleutel: (t: string) => string,
     '',
     `Model: \`${MODEL}\`, denken ${snel ? 'uit' : 'aan'}. ${teksten.length} teksten, ` +
       `${metFouten.length} met mogelijke fouten` +
-      (overgeslagen ? `, ${overgeslagen} nog niet nagekeken (--limiet)` : '') +
+      (overgeslagen ? `, ${overgeslagen} nog niet nagekeken (--limiet of overgeslagen)` : '') +
       '.',
     '',
     'Loes mist sommige fouten (vooral hun/hen) en kan zich vergissen. Controleer elke melding zelf.',
@@ -204,16 +210,25 @@ async function run() {
   );
 
   const start = Date.now();
+  let mislukt = 0;
   for (const [n, portie] of werk.entries()) {
     const lijst = portie.map((t) => t.tekst.replace(/\s*\n\s*/g, ' '));
-    const meldingen = leesMeldingen(await vraagLoes(lijst), lijst);
-    portie.forEach((t, i) => (cache[sleutel(t.tekst)] = meldingen[i]));
-    await writeFile(CACHE_PATH, JSON.stringify(cache));
-    const gevonden = meldingen.flat().length;
+    let status: string;
+    try {
+      const meldingen = leesMeldingen(await vraagLoes(lijst), lijst);
+      portie.forEach((t, i) => (cache[sleutel(t.tekst)] = meldingen[i]));
+      await writeFile(CACHE_PATH, JSON.stringify(cache));
+      status = `${meldingen.flat().length} meldingen`;
+    } catch (err) {
+      // Niet in de cache: de volgende ronde probeert deze portie opnieuw.
+      mislukt++;
+      status = `overgeslagen (${err instanceof Error ? err.message : err})`;
+    }
     const perPortie = (Date.now() - start) / (n + 1);
     const rest = Math.round(((werk.length - n - 1) * perPortie) / 60000);
-    console.log(`[taalcheck] ${n + 1}/${werk.length} · ${gevonden} meldingen · nog ~${rest} min`);
+    console.log(`[taalcheck] ${n + 1}/${werk.length} · ${status} · nog ~${rest} min`);
   }
+  if (mislukt) console.log(`[taalcheck] ${mislukt} porties overgeslagen; draai opnieuw om ze na te kijken`);
 
   const overgeslagen = nakijken.filter((t) => !(sleutel(t.tekst) in cache)).length;
   const pad = `data/taalcheck.${new Date().toISOString().replace(/[:.]/g, '-')}.md`;
