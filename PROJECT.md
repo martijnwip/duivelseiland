@@ -399,6 +399,25 @@ Oorspronkelijk stond dit op Google Translate, maar dat endpoint gaf vanaf onze e
 - **Google** (`GoogleTranslator`) — was de oorspronkelijke keuze, vanaf deze machine geblokkeerd; kan op een ander netwerk mogelijk wel werken.
 - **Handmatig** — de oorspronkelijke aanpak voor doorlopende redactie: zelf de Engelse tekst intypen per veld in `/admin`. Blijft altijd beschikbaar als terugvaloptie, ongeacht wat er met een vertaal-API gebeurt.
 
+## Taalcheck (Nederlandse teksten nakijken)
+
+`bun run taalcheck` laat alle Nederlandse teksten nakijken door Loes, een Nederlandse finetune van Qwen (`hf.co/mradermacher/loes-qwen3.8-27b-GGUF:Q4_K_M`), lokaal via Ollama. Het gaat om `messages/nl.json` en alle gelokaliseerde velden in het CMS. Het script past niets aan: het schrijft een rapport in `data/taalcheck.<tijdstip>.md` met per tekst de plek, de zin en de mogelijke fouten. Jij beslist wat je overneemt.
+
+```bash
+ollama pull hf.co/mradermacher/loes-qwen3.8-27b-GGUF:Q4_K_M   # eenmalig, 17 GB
+bun run taalcheck                    # lokale database
+bun run taalcheck:prod               # CMS-teksten van productie (alleen lezen; eerst vercel env pull)
+bun run taalcheck --alleen messages  # of: --alleen cms
+bun run taalcheck --limiet 5         # alleen de eerste 5 porties, om te proberen
+```
+
+- **Draait alleen op een eigen machine met Ollama**, niet op Vercel. `OLLAMA_HOST` wordt gebruikt als die gezet is; een ander model kan via `TAALCHECK_MODEL`.
+- **Cache:** nagekeken teksten staan in `data/taalcheck-cache.json`. Een volgende ronde kijkt alleen nieuwe of gewijzigde teksten na, en een afgebroken ronde gaat verder waar hij was. `--opnieuw` negeert de cache. Een volledige eerste ronde met denken aan duurt op een M1 Max ruim anderhalf uur (zo'n 70 porties van ruim een minuut).
+- **Denken staat standaard aan.** `--snel` zet het uit: ongeveer 10 keer sneller, maar in een proef waren alle meldingen in die stand onterecht ("van tevoren" → "van te voren"). Met denken aan vond Loes 6 van 7 ingebouwde fouten en meldde ze weinig onterecht.
+- **Wat Loes mist:** *hun*/*hen* (meewerkend voorwerp) gaat steeds fout, en Loes kijkt niet naar stijl. Lees elke melding dus zelf na.
+
+Code: `scripts/taalcheck.ts`.
+
 ## Geluid
 
 `/geluid` legt uit hoe laat verbouwen mag, hoe je de buren informeert, wat er voor feestjes geldt en wat je doet bij geluidsoverlast. Daarbij een instructiekaart (`/geluid/instructie`, te printen en als PNG te delen) en in te vullen briefjes voor de buren (`/geluid/briefje`). Geen CMS en geen live data: de openbare meldingenkaart heeft voor de buurt bijna geen geluidsmeldingen, en burenlawaai via het Meldpunt Zorg en Woonoverlast is niet openbaar.
