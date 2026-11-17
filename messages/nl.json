@@ -578,7 +578,7 @@
         },
         "wonen": {
           "name": "Wonen",
-          "message": "Bijna iedereen woont in een appartement uit vóór 1945",
+          "message": "Bijna iedereen woont in een appartement van vóór 1945",
           "factBig": "950",
           "factText": "van de 960 adressen dateert van vóór 1925.",
           "more": "Soort woningen · Bewoond en onbewoond · Gebruiksdoelen"
