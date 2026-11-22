@@ -16,6 +16,7 @@ Dit is een website voor de bewoners van DuivelsEiland. Op deze website komt meer
 - Agenda
 - Activiteiten 👉 docs/brief-activiteiten.md
 - Buurtmascotte (Mimi) 👉 `/neighborhood-mascot`, zie "Buurtmascotte" hieronder
+- In memoriam (bv. Kees Kroon, de melkhandelaar) 👉 `/in-memoriam/<slug>`, zie "In memoriam" hieronder
 
 ## Tweetalig
 Omdat er veel expats in de buurt wonen zal de public-facing site tweetalig worden gemaakt met een switch tussen Nederlands / Engels
@@ -89,6 +90,8 @@ Technisch beheerder.
 | Interviews             | lezen (published) | geen                             | geen                         | alles |
 | Geschiedenis           | lezen (published) | geen                             | geen                         | alles |
 | Duivelse Kunst         | lezen (published) | geen                             | geen                         | alles |
+| In memoriam            | lezen (published) | geen                             | geen                         | alles |
+| In-memoriam-reacties / -volgers | met buurtpas herinnering delen / bericht bij foto's | geen | alles + modereren | alles |
 | Vaklui              | lezen (published); met buurtpas aanmelden via formulier | geen | alles + modereren | alles |
 | Vakken (tags bij Vaklui) | lezen        | geen                             | alles                        | alles |
 | Praktische info        | lezen (published) | geen                             | alles                        | alles |
@@ -210,7 +213,7 @@ src/
 
 ## Collections
 
-`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vaklui`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`, `whatsapp-aanmeldingen`
+`users`, `media`, `nieuws`, `agenda`, `interviews`, `geschiedenis`, `duivelse-kunst`, `vaklui`, `vakken`, `praktische-info`, `activiteiten`, `activiteit-inschrijvingen`, `activiteit-berichten`, `email-adressen`, `nieuwsbrief-abonnees`, `nieuwsbrief-edities`, `nieuwsbrief-verzendingen`, `whatsapp-aanmeldingen`, `in-memoriam`, `in-memoriam-reacties`, `in-memoriam-volgers`
 
 Buurtstatistieken staan buiten Payload als JSON in de repo (zie `STATISTIEKEN.md`).
 
@@ -434,12 +437,30 @@ Code: `scripts/taalcheck.ts`.
 
 Deelafbeelding (WhatsApp, sociale media): `opengraph-image.tsx` naast de pagina maakt per taal Mimi's paspoort met stempel (1200×630, gebouwd met `next/og`, foto via `sharp` klein ingebed zodat de PNG onder de ~600 kB van WhatsApp blijft). `metadataBase` komt uit `NEXT_PUBLIC_SERVER_URL`, anders wijst de link naar localhost. De middleware slaat `opengraph-image` over, zodat `/nl/.../opengraph-image-…` direct een plaatje geeft en niet eerst doorverwijst (WhatsApp volgt dat niet altijd). Na een tekstwijziging in `pages.mascotte` verandert het plaatje vanzelf mee; WhatsApp bewaart oude voorbeelden wel een tijd.
 
+## In memoriam
+
+`/in-memoriam/<slug>` is een herdenkingspagina voor een buur die er niet meer is (de eerste: `/in-memoriam/kees-kroon`). De collectie `in-memoriam` beheert alleen de admin (zoals Interviews): naam, ondertitel, sterfdatum, hoofdfoto met onderschrift, een citaat dat groot op de pagina staat, de tekst, een bronregel en een album *Foto's*. Er is geen overzichtspagina; een link in menu of footer zet je in Site-instellingen.
+
+- **Herinneringen** (`in-memoriam-reacties`): buren met een buurtpas schrijven een herinnering, met een naam als ze willen. Die komt binnen als *Ingediend* en de redactie krijgt een mail (zonder e-mailadres). Redacteur of admin keurt goed of af met de knoppen bovenaan (de tekst mag je eerst aanpassen). Op de site staan alleen goedgekeurde herinneringen. Zonder buurtpas staat er "Een buurtbewoner"; de naam wordt dan niet eens opgehaald. Met buurtpas zie je de naam.
+- **Bericht bij nieuwe foto's** (`in-memoriam-volgers`): met buurtpas één klik op de pagina. Voeg je foto's toe onder *Foto's* en sla je op, dan verschijnt bovenaan de knop **Seintje: nieuwe foto's (n)**: die mailt iedereen die erom vroeg (alleen op productie echt, zie "Alleen op productie"). De mails tellen mee in `ACTIVITEITEN_MAIL_DAGLIMIET`; past het niet, dan gaat er niets uit en kan het de volgende dag. Elke mail heeft een afmeldlink (`/in-memoriam/afmelden/<token>`, noindex, afmelden pas na de klik).
+- **Adresboek:** herinneringen en aanmeldingen staan bij het adres. Verwijder je het adres (of zegt iemand de buurtpas op), dan verdwijnen ze allebei, ook goedgekeurde herinneringen.
+- **Deellink:** de hoofdfoto (staande strook; met *Uitsnede in het linkvoorbeeld* kies je welk deel, 0 = links), naam, ondertitel, datum en het citaat.
+
+De pagina van Kees Kroon zet je met het script (tekst uit het buurtblad met toestemming, foto van Marianne Plas; de foto staat niet in de repo). Het snijdt de foto bij tot de afdruk en maakt de pagina als concept: daarna bekijken en publiceren in `/admin`. Met `--force` komen tekst en foto opnieuw (er komt dan een nieuwe foto in Media).
+
+```bash
+bun run seed:in-memoriam ~/Downloads/kees-kroon.jpg
+bun run seed:in-memoriam:prod ~/Downloads/kees-kroon.jpg   # eerst vercel env pull
+```
+
+Code: `src/collections/InMemoriam*.ts`, `src/components/in-memoriam/`, `src/lib/in-memoriam/` (seintje: `seintje.ts`), knoppen `src/components/admin/FotoSeintjeKnop.tsx` en `ReactieModeratieKnoppen.tsx`.
+
 ## Deellinks
 
 Een gedeelde link (WhatsApp, sociale media) toont op elke openbare pagina de titel, een korte omschrijving en een deelafbeelding van 1200×630 met het belangrijkste. Links staat een beeld, rechts het logo met een label, de titel, de belangrijkste gegevens en een korte tekst. De afbeelding is een JPEG (35–100 kB, ruim onder de ~600 kB van WhatsApp).
 
 - **Vaste pagina's:** titel en tekst komen uit `messages/*.json` (standaard `heading` en `metaDescription`). Het beeld is de kaart van de buurt; bij afval en geluid is het de bovenkant van de instructiekaart.
-- **Items uit het CMS** (nieuws, agenda, interviews, geschiedenis, Duivelse Kunst, praktische info, activiteiten, vaklui): de foto van het item, de titel en de eerste zinnen. De agenda toont datum, tijd en plek, een activiteit wanneer, een vakman vakken en aanbeveling. Een vakman nooit met telefoonnummer. Items met *Alleen voor de buurt* tonen alleen de titel. Nieuwe items krijgen dit vanzelf.
+- **Items uit het CMS** (nieuws, agenda, interviews, geschiedenis, Duivelse Kunst, praktische info, activiteiten, vaklui, in memoriam): de foto van het item, de titel en de eerste zinnen. De agenda toont datum, tijd en plek, een activiteit wanneer, een vakman vakken en aanbeveling. Een vakman nooit met telefoonnummer. Items met *Alleen voor de buurt* tonen alleen de titel. Nieuwe items krijgen dit vanzelf.
 
 **Een nieuwe pagina:**
 1. In `generateMetadata`: `return metDeelinfo(locale, { title, description })` (`src/lib/deelMetadata.ts`).

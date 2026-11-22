@@ -73,10 +73,13 @@ export interface Config {
     nieuws: Nieuw;
     agenda: Agenda;
     interviews: Interview;
+    'in-memoriam': InMemoriam;
     geschiedenis: Geschiedeni;
     'duivelse-kunst': DuivelseKunst;
     vaklui: Vaklui;
     'whatsapp-aanmeldingen': WhatsappAanmelding;
+    'in-memoriam-reacties': InMemoriamReactie;
+    'in-memoriam-volgers': InMemoriamVolger;
     vakken: Vakken;
     'praktische-info': PraktischeInfo;
     'hero-slides': HeroSlide;
@@ -106,10 +109,13 @@ export interface Config {
     nieuws: NieuwsSelect<false> | NieuwsSelect<true>;
     agenda: AgendaSelect<false> | AgendaSelect<true>;
     interviews: InterviewsSelect<false> | InterviewsSelect<true>;
+    'in-memoriam': InMemoriamSelect<false> | InMemoriamSelect<true>;
     geschiedenis: GeschiedenisSelect<false> | GeschiedenisSelect<true>;
     'duivelse-kunst': DuivelseKunstSelect<false> | DuivelseKunstSelect<true>;
     vaklui: VakluiSelect<false> | VakluiSelect<true>;
     'whatsapp-aanmeldingen': WhatsappAanmeldingenSelect<false> | WhatsappAanmeldingenSelect<true>;
+    'in-memoriam-reacties': InMemoriamReactiesSelect<false> | InMemoriamReactiesSelect<true>;
+    'in-memoriam-volgers': InMemoriamVolgersSelect<false> | InMemoriamVolgersSelect<true>;
     vakken: VakkenSelect<false> | VakkenSelect<true>;
     'praktische-info': PraktischeInfoSelect<false> | PraktischeInfoSelect<true>;
     'hero-slides': HeroSlidesSelect<false> | HeroSlidesSelect<true>;
@@ -227,6 +233,7 @@ export interface Media {
   alt: string;
   caption?: string | null;
   uploadedBy?: (number | null) | User;
+  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -499,6 +506,77 @@ export interface Interview {
   createdAt: string;
 }
 /**
+ * Herdenkingspagina’s (/in-memoriam/<slug>). Herinneringen van buren staan bij In-memoriam-reacties.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "in-memoriam".
+ */
+export interface InMemoriam {
+  id: number;
+  /**
+   * Bv. "Kees Kroon".
+   */
+  naam: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  /**
+   * Adres: /in-memoriam/<slug>. Niet meer wijzigen als de link gedeeld is.
+   */
+  slug: string;
+  /**
+   * Korte typering onder de naam, bv. "de markante melkhandelaar".
+   */
+  ondertitel?: string | null;
+  overleden?: string | null;
+  status: 'draft' | 'published';
+  hero?: (number | null) | Media;
+  heroOnderschrift?: string | null;
+  /**
+   * Het linkvoorbeeld (WhatsApp) toont een staande strook van de foto. 0 = de linkerkant, 1 = de rechterkant, 0,5 = het midden.
+   */
+  deelUitsnede?: number | null;
+  /**
+   * Een zin die apart en groot op de pagina staat, bv. de tekst op de rouwkaart.
+   */
+  citaat?: string | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Onder de tekst, bv. "Met informatie van ...".
+   */
+  bron?: string | null;
+  /**
+   * Meer foto’s. Na het opslaan kun je de buren die dat willen een seintje sturen (knop bovenaan).
+   */
+  fotos?:
+    | {
+        foto: number | Media;
+        onderschrift?: string | null;
+        toegevoegdOp?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  laatsteSeintjeOp?: string | null;
+  author?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "geschiedenis".
  */
@@ -661,6 +739,48 @@ export interface WhatsappAanmelding {
   uitgenodigdOp?: string | null;
   email: string;
   locale?: ('nl' | 'en') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Herinneringen van buren op een In-memoriam-pagina. Pas na "Goedkeuren" staan ze op de site: openbaar als "Een buurtbewoner", met naam alleen voor buren met een buurtpas.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "in-memoriam-reacties".
+ */
+export interface InMemoriamReactie {
+  id: number;
+  /**
+   * Je kunt de tekst aanpassen voor je goedkeurt (bv. een achternaam of telefoonnummer weghalen).
+   */
+  tekst: string;
+  /**
+   * Optioneel. Alleen zichtbaar voor buren met een buurtpas; anders staat er "Een buurtbewoner".
+   */
+  naam?: string | null;
+  status: 'ingediend' | 'goedgekeurd' | 'afgekeurd';
+  goedgekeurdOp?: string | null;
+  herdenking?: (number | null) | InMemoriam;
+  herdenkingNaam?: string | null;
+  email: string;
+  locale?: ('nl' | 'en') | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Buren die een mail krijgen als er foto’s bij een In-memoriam-pagina komen.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "in-memoriam-volgers".
+ */
+export interface InMemoriamVolger {
+  id: number;
+  email: string;
+  herdenking?: (number | null) | InMemoriam;
+  herdenkingNaam?: string | null;
+  locale?: ('nl' | 'en') | null;
+  laatstGemaildOp?: string | null;
+  afmeldToken: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -1066,6 +1186,10 @@ export interface PayloadLockedDocument {
         value: number | Interview;
       } | null)
     | ({
+        relationTo: 'in-memoriam';
+        value: number | InMemoriam;
+      } | null)
+    | ({
         relationTo: 'geschiedenis';
         value: number | Geschiedeni;
       } | null)
@@ -1080,6 +1204,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'whatsapp-aanmeldingen';
         value: number | WhatsappAanmelding;
+      } | null)
+    | ({
+        relationTo: 'in-memoriam-reacties';
+        value: number | InMemoriamReactie;
+      } | null)
+    | ({
+        relationTo: 'in-memoriam-volgers';
+        value: number | InMemoriamVolger;
       } | null)
     | ({
         relationTo: 'vakken';
@@ -1224,6 +1356,7 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   caption?: T;
   uploadedBy?: T;
+  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1339,6 +1472,36 @@ export interface InterviewsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "in-memoriam_select".
+ */
+export interface InMemoriamSelect<T extends boolean = true> {
+  naam?: T;
+  generateSlug?: T;
+  slug?: T;
+  ondertitel?: T;
+  overleden?: T;
+  status?: T;
+  hero?: T;
+  heroOnderschrift?: T;
+  deelUitsnede?: T;
+  citaat?: T;
+  content?: T;
+  bron?: T;
+  fotos?:
+    | T
+    | {
+        foto?: T;
+        onderschrift?: T;
+        toegevoegdOp?: T;
+        id?: T;
+      };
+  laatsteSeintjeOp?: T;
+  author?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "geschiedenis_select".
  */
 export interface GeschiedenisSelect<T extends boolean = true> {
@@ -1409,6 +1572,36 @@ export interface WhatsappAanmeldingenSelect<T extends boolean = true> {
   uitgenodigdOp?: T;
   email?: T;
   locale?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "in-memoriam-reacties_select".
+ */
+export interface InMemoriamReactiesSelect<T extends boolean = true> {
+  tekst?: T;
+  naam?: T;
+  status?: T;
+  goedgekeurdOp?: T;
+  herdenking?: T;
+  herdenkingNaam?: T;
+  email?: T;
+  locale?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "in-memoriam-volgers_select".
+ */
+export interface InMemoriamVolgersSelect<T extends boolean = true> {
+  email?: T;
+  herdenking?: T;
+  herdenkingNaam?: T;
+  locale?: T;
+  laatstGemaildOp?: T;
+  afmeldToken?: T;
   updatedAt?: T;
   createdAt?: T;
 }

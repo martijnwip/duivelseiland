@@ -58,6 +58,7 @@ const BRONNEN = [
   { collection: 'duivelse-kunst', pad: '/duivelse-kunst', where: PUBLIEK_CONTENT },
   { collection: 'praktische-info', pad: '/praktische-info', where: PUBLIEK_CONTENT },
   { collection: 'vaklui', pad: '/vaklui', where: { status: { equals: 'published' } } },
+  { collection: 'in-memoriam', pad: '/in-memoriam', where: { status: { equals: 'published' } } },
   { collection: 'activiteiten', pad: '/activiteiten', where: { fase: { in: PUBLIEKE_FASES } } },
 ] as const satisfies ReadonlyArray<{ collection: string; pad: string; where: Where }>;
 

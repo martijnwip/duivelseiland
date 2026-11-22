@@ -29,13 +29,15 @@ export async function regelsVoorAdres(payload: Payload, email: string, req?: Pay
   const where = { email: { equals: email } };
   // Vaste taal: binnen een request met locale 'all' zou de titel anders een object per taal zijn.
   const opties = { depth: 1, pagination: false as const, overrideAccess: true, locale: 'nl' as const, req };
-  const [nieuwsbrief, deelnemer, aanvrager, vaklui, whatsapp, gebruiker] = await Promise.all([
+  const [nieuwsbrief, deelnemer, aanvrager, vaklui, whatsapp, gebruiker, herinneringen, volgers] = await Promise.all([
     payload.find({ collection: 'nieuwsbrief-abonnees', where, ...opties }),
     payload.find({ collection: 'activiteit-inschrijvingen', where, ...opties }),
     payload.find({ collection: 'activiteiten', where: { aanvragerEmail: { equals: email } }, ...opties, depth: 0 }),
     payload.find({ collection: 'vaklui', where: { aanmelderEmail: { equals: email } }, ...opties, depth: 0 }),
     payload.find({ collection: 'whatsapp-aanmeldingen', where, ...opties, depth: 0 }),
     payload.find({ collection: 'users', where, ...opties, depth: 0 }),
+    payload.find({ collection: 'in-memoriam-reacties', where, ...opties, depth: 0 }),
+    payload.find({ collection: 'in-memoriam-volgers', where, ...opties, depth: 0 }),
   ]);
   return [
     ...nieuwsbrief.docs.map((d) => ({
@@ -72,6 +74,20 @@ export async function regelsVoorAdres(payload: Payload, email: string, req?: Pay
       status: d.status,
       datum: d.createdAt,
       href: `/admin/collections/whatsapp-aanmeldingen/${d.id}`,
+    })),
+    ...herinneringen.docs.map((d) => ({
+      lijst: `In memoriam ${d.herdenkingNaam ?? ''} (herinnering)`,
+      naam: d.naam ?? '',
+      status: d.status,
+      datum: d.createdAt,
+      href: `/admin/collections/in-memoriam-reacties/${d.id}`,
+    })),
+    ...volgers.docs.map((d) => ({
+      lijst: `In memoriam ${d.herdenkingNaam ?? ''} (foto’s volgen)`,
+      naam: '',
+      status: 'aangemeld',
+      datum: d.createdAt,
+      href: `/admin/collections/in-memoriam-volgers/${d.id}`,
     })),
     ...gebruiker.docs.map((d) => ({
       lijst: 'Gebruiker',
@@ -221,13 +237,16 @@ export async function zetOpenstaandeDoor(payload: Payload, email: string, req?: 
  * (met hun anoniem geüploade afbeelding). Bij goedgekeurde activiteiten verdwijnen alleen naam en e-mail
  * van de aanvrager; de activiteit en de andere deelnemers blijven. Zo ook bij aangemelde vaklui: een
  * open of afgekeurde aanmelding verdwijnt, bij een goedgekeurde alleen de gegevens van de aanmelder.
- * Aanmeldingen voor de WhatsApp-groepen verdwijnen helemaal.
+ * Aanmeldingen voor de WhatsApp-groepen, herinneringen bij In memoriam (ook goedgekeurde: ze zijn van de
+ * schrijver) en aanmeldingen voor foto-seintjes verdwijnen helemaal.
  * Gebruikersaccounts blijven bestaan.
  */
 export async function verwijderAdresOveral(payload: Payload, email: string, req?: PayloadRequest) {
   await payload.delete({ collection: 'nieuwsbrief-abonnees', where: { email: { equals: email } }, overrideAccess: true, req });
   await payload.delete({ collection: 'activiteit-inschrijvingen', where: { email: { equals: email } }, overrideAccess: true, req });
   await payload.delete({ collection: 'whatsapp-aanmeldingen', where: { email: { equals: email } }, overrideAccess: true, req });
+  await payload.delete({ collection: 'in-memoriam-reacties', where: { email: { equals: email } }, overrideAccess: true, req });
+  await payload.delete({ collection: 'in-memoriam-volgers', where: { email: { equals: email } }, overrideAccess: true, req });
 
   const { docs: activiteiten } = await payload.find({
     collection: 'activiteiten',

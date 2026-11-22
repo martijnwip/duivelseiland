@@ -1981,6 +1981,55 @@
       "heading": "Neighbourhood drinks",
       "metaDescription": "Duivelseiland's neighbourhood drinks: raising a glass on the green and getting to know your neighbours. Join the mailing list or the neighbourhood app group."
     },
+    "inMemoriam": {
+      "eyebrow": "In memoriam",
+      "overleden": "† {datum}",
+      "deelLabel": "Share this page",
+      "gekopieerd": "Link copied",
+      "fotos": {
+        "title": "Photos",
+        "stuurIn": "Do you have photos of {naam} or the shop? Send them through the <link>contact form</link>."
+      },
+      "volgen": {
+        "title": "More photos?",
+        "uitleg": "More photos may be added later. Would you like an email when they are?",
+        "knop": "Email me when new photos are added",
+        "aan": "You will get an email when new photos are added.",
+        "uit": "Stop these emails",
+        "slot": "You can do this with a neighbourhood pass: <link>request one below</link>."
+      },
+      "herinneringen": {
+        "title": "Memories",
+        "intro": "What do you remember of {naam}? Share it here. The editors read every memory before it appears on this page.",
+        "leeg": "No memories have been shared yet.",
+        "anoniem": "A neighbour",
+        "namenMetBuurtpas": "Names are visible with a neighbourhood pass.",
+        "slot": "Share a memory, with a neighbourhood pass"
+      },
+      "form": {
+        "title": "Share a memory",
+        "tekst": "Your memory",
+        "naam": "Your name (optional)",
+        "naamHint": "Your name is only visible to neighbours with a neighbourhood pass. If you leave it empty, it will say ‘A neighbour’.",
+        "uitleg": "The editors read your memory first. After that it appears on this page.",
+        "submit": "Send memory",
+        "submitting": "Sending…",
+        "success": "Thank you. Your memory will appear on the page once the editors have read it.",
+        "error": {
+          "velden": "Write a memory of up to 2000 characters, and a name of up to 80.",
+          "buurtpas": "Your neighbourhood pass is not valid (any more). Request a new one and try again.",
+          "server": "Something went wrong. Please try again later."
+        }
+      },
+      "afmelden": {
+        "heading": "No more emails about photos",
+        "uitleg": "Click the button and you will no longer get emails about new photos for In memoriam {naam}.",
+        "knop": "Unsubscribe",
+        "klaar": "You have been unsubscribed. You will no longer get emails about new photos.",
+        "onbekend": "This link no longer works. Perhaps you have already unsubscribed.",
+        "terug": "Go to the page"
+      }
+    },
     "whatsapp": {
       "eyebrow": "Neighbourhood",
       "heading": "WhatsApp groups",
@@ -2068,6 +2117,7 @@
       "praktischeInfo": "Practical info",
       "activiteit": "Activity",
       "vaklui": "Tradespeople",
+      "inMemoriam": "In memoriam",
       "nieuws": "News",
       "agenda": "Events"
     }

@@ -44,6 +44,7 @@ import * as migration_20261029_155049_whatsapp_uitnodiging from './20261029_1550
 import * as migration_20261102_161209_vaklui_telefoon_publiek from './20261102_161209_vaklui_telefoon_publiek';
 import * as migration_20261108_124658_media_object_key from './20261108_124658_media_object_key';
 import * as migration_20261117_113232_payload_3_93_locales_index from './20261117_113232_payload_3_93_locales_index';
+import * as migration_20261122_102400_in_memoriam from './20261122_102400_in_memoriam';
 
 export const migrations = [
   {
@@ -274,6 +275,11 @@ export const migrations = [
   {
     up: migration_20261117_113232_payload_3_93_locales_index.up,
     down: migration_20261117_113232_payload_3_93_locales_index.down,
-    name: '20261117_113232_payload_3_93_locales_index'
+    name: '20261117_113232_payload_3_93_locales_index',
+  },
+  {
+    up: migration_20261122_102400_in_memoriam.up,
+    down: migration_20261122_102400_in_memoriam.down,
+    name: '20261122_102400_in_memoriam'
   },
 ];

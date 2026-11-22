@@ -182,3 +182,33 @@ export async function haalVakmanDeelinfo(slug: string, locale: Locale): Promise<
     imageUrl: null,
   };
 }
+
+/**
+ * In memoriam: naam, typering en sterfdatum, de eerste zinnen, het citaat en de hoofdfoto. `uitsnede` kiest welk deel
+ * van de (liggende) foto in het staande vak van de deelafbeelding valt.
+ */
+export async function haalInMemoriamDeelinfo(slug: string, locale: Locale): Promise<(Deelinfo & { uitsnede: number; citaat: string | null }) | null> {
+  const payload = await getPayload({ config });
+  const { docs } = await payload.find({
+    collection: 'in-memoriam',
+    where: { and: [{ slug: { equals: slug } }, { status: { equals: 'published' } }] },
+    locale,
+    depth: 1,
+    limit: 1,
+  });
+  const doc = docs[0];
+  if (!doc) return null;
+  const hero = typeof doc.hero === 'object' && doc.hero !== null ? doc.hero : null;
+  const datum = doc.overleden
+    ? `† ${new Date(doc.overleden).toLocaleDateString(locale === 'en' ? 'en-GB' : 'nl-NL', { day: 'numeric', month: 'long', year: 'numeric', timeZone: TIJDZONE })}`
+    : null;
+  const omschrijving = eersteAlinea(doc.content);
+  return {
+    title: doc.naam,
+    description: omschrijving ? inkorten(omschrijving) : null,
+    regels: [doc.ondertitel?.trim() || null, datum].filter((r): r is string => Boolean(r)),
+    imageUrl: absoluteUrl(hero?.url),
+    uitsnede: doc.deelUitsnede ?? 0.5,
+    citaat: doc.citaat?.trim() || null,
+  };
+}

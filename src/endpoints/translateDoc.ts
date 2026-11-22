@@ -12,6 +12,7 @@ const ADMIN_ONLY = new Set([
   'interviews',
   'geschiedenis',
   'duivelse-kunst',
+  'in-memoriam',
 ]);
 
 export const translateDocEndpoint: Endpoint = {

@@ -7,12 +7,12 @@ export const NIEUWSBRIEF_DAGLIMIET = Number(process.env.NIEUWSBRIEF_DAGLIMIET) |
 
 /**
  * Bulkmails van vandaag: nieuwsbrief-verzendingen plus seintjes over nieuwe ideeën (samen `nieuwsbrief`) en
- * ontvangers van berichten aan deelnemers. Vandaag is de UTC-dag, net als het dagquotum van Resend (reset om
+ * ontvangers van berichten aan deelnemers plus seintjes over nieuwe foto's bij In memoriam (samen `berichten`). Vandaag is de UTC-dag, net als het dagquotum van Resend (reset om
  * middernacht UTC). Een schuivend venster van 24 uur liet de dagelijkse cron soms een dag overslaan.
  */
 export async function bulkMailsVandaag(payload: Payload, req?: PayloadRequest) {
   const sinds = new Date(new Date().setUTCHours(0, 0, 0, 0)).toISOString();
-  const [{ totalDocs: edities }, { totalDocs: seintjes }, { docs: berichten }] = await Promise.all([
+  const [{ totalDocs: edities }, { totalDocs: seintjes }, { docs: berichten }, { totalDocs: fotoSeintjes }] = await Promise.all([
     payload.count({
       collection: 'nieuwsbrief-verzendingen',
       where: { and: [{ status: { equals: 'verzonden' } }, { verzondenOp: { greater_than_equal: sinds } }] },
@@ -29,6 +29,7 @@ export async function bulkMailsVandaag(payload: Payload, req?: PayloadRequest) {
       overrideAccess: true,
       req,
     }),
+    payload.count({ collection: 'in-memoriam-volgers', where: { laatstGemaildOp: { greater_than_equal: sinds } }, overrideAccess: true, req }),
   ]);
-  return { nieuwsbrief: edities + seintjes, berichten: berichten.reduce((som, b) => som + (b.aantalOntvangers ?? 0), 0) };
+  return { nieuwsbrief: edities + seintjes, berichten: berichten.reduce((som, b) => som + (b.aantalOntvangers ?? 0), 0) + fotoSeintjes };
 }
