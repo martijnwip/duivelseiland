@@ -14,7 +14,7 @@ import { inkorten } from '@/lib/deelinfo';
  */
 export type DeelFoto =
   /** Een afbeelding op een URL, bv. uit Media. */
-  | { url: string }
+  | { url: string; /** Horizontale uitsnede, 0 = links, 1 = rechts (standaard het midden). */ x?: number }
   /** Een bestand in public/, met bovenkant of midden in beeld. */
   | { pad: string; positie?: 'top' | 'centre'; /** Horizontale uitsnede, 0 = links, 1 = rechts (standaard het midden). */ x?: number };
 
@@ -52,7 +52,7 @@ async function fotoDataUrl(foto: DeelFoto): Promise<string | null> {
   const bytes = await fotoBytes(foto);
   if (!bytes) return null;
   const positie = 'pad' in foto && foto.positie === 'top' ? 'top' : 'centre';
-  const x = 'pad' in foto ? foto.x : undefined;
+  const x = foto.x;
   let beeld = sharp(bytes);
   if (x !== undefined) {
     // Eerst op hoogte schalen, dan zelf de uitsnede kiezen.

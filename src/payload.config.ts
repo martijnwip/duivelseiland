@@ -24,6 +24,9 @@ import { NieuwsbriefAbonnees } from './collections/NieuwsbriefAbonnees';
 import { NieuwsbriefEdities } from './collections/NieuwsbriefEdities';
 import { NieuwsbriefVerzendingen } from './collections/NieuwsbriefVerzendingen';
 import { Interviews } from './collections/Interviews';
+import { InMemoriam } from './collections/InMemoriam';
+import { InMemoriamReacties } from './collections/InMemoriamReacties';
+import { InMemoriamVolgers } from './collections/InMemoriamVolgers';
 import { Media } from './collections/Media';
 import { Nieuws } from './collections/Nieuws';
 import { PraktischeInfo } from './collections/PraktischeInfo';
@@ -95,10 +98,13 @@ export default buildConfig({
     Nieuws,
     Agenda,
     Interviews,
+    InMemoriam,
     Geschiedenis,
     DuivelseKunst,
     Vaklui,
     WhatsappAanmeldingen,
+    InMemoriamReacties,
+    InMemoriamVolgers,
     Vakken,
     PraktischeInfo,
     HeroSlides,

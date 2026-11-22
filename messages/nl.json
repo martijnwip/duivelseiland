@@ -1798,6 +1798,55 @@
       "heading": "Buurtborrel",
       "metaDescription": "De Buurtborrel van Duivelseiland: samen proosten op het plantsoen, buren leren kennen. Meld je aan voor de mailinglijst of kom in de buurt-appgroep."
     },
+    "inMemoriam": {
+      "eyebrow": "In memoriam",
+      "overleden": "† {datum}",
+      "deelLabel": "Deel deze pagina",
+      "gekopieerd": "Link gekopieerd",
+      "fotos": {
+        "title": "Foto’s",
+        "stuurIn": "Heb je zelf foto’s van {naam} of van de winkel? Stuur ze via het <link>contactformulier</link>."
+      },
+      "volgen": {
+        "title": "Meer foto’s?",
+        "uitleg": "Er komen misschien nog foto’s bij. Wil je een mail als ze er zijn?",
+        "knop": "Stuur mij een bericht bij nieuwe foto’s",
+        "aan": "Je krijgt een mail als er nieuwe foto’s zijn.",
+        "uit": "Geen bericht meer",
+        "slot": "Dat kan met een buurtpas: <link>vraag hem hieronder aan</link>."
+      },
+      "herinneringen": {
+        "title": "Herinneringen",
+        "intro": "Wat herinner jij je van {naam}? Deel het hier. De redactie leest elke herinnering voordat hij op de pagina komt.",
+        "leeg": "Er zijn nog geen herinneringen gedeeld.",
+        "anoniem": "Een buurtbewoner",
+        "namenMetBuurtpas": "Namen zie je met een buurtpas.",
+        "slot": "Een herinnering delen, met buurtpas"
+      },
+      "form": {
+        "title": "Deel een herinnering",
+        "tekst": "Je herinnering",
+        "naam": "Je naam (mag leeg blijven)",
+        "naamHint": "Je naam is alleen zichtbaar voor buren met een buurtpas. Laat je hem leeg, dan staat er ‘Een buurtbewoner’.",
+        "uitleg": "De redactie leest je herinnering eerst. Daarna staat hij op deze pagina.",
+        "submit": "Herinnering versturen",
+        "submitting": "Bezig met versturen…",
+        "success": "Dank je wel. Je herinnering staat op de pagina zodra de redactie hem heeft gelezen.",
+        "error": {
+          "velden": "Schrijf een herinnering van hooguit 2000 tekens, en een naam van hooguit 80.",
+          "buurtpas": "Je buurtpas is niet (meer) geldig. Vraag een nieuwe aan en probeer het opnieuw.",
+          "server": "Er ging iets mis. Probeer het later opnieuw."
+        }
+      },
+      "afmelden": {
+        "heading": "Geen berichten meer over foto’s",
+        "uitleg": "Klik op de knop, dan krijg je geen mail meer over nieuwe foto’s bij In memoriam {naam}.",
+        "knop": "Afmelden",
+        "klaar": "Je bent afgemeld. Je krijgt geen mail meer over nieuwe foto’s.",
+        "onbekend": "Deze link werkt niet (meer). Misschien ben je al afgemeld.",
+        "terug": "Naar de pagina"
+      }
+    },
     "whatsapp": {
       "eyebrow": "Buurt",
       "heading": "WhatsApp-groepen",
@@ -1885,6 +1934,7 @@
       "praktischeInfo": "Praktische info",
       "activiteit": "Activiteit",
       "vaklui": "Vaklui",
+      "inMemoriam": "In memoriam",
       "nieuws": "Nieuws",
       "agenda": "Agenda"
     }

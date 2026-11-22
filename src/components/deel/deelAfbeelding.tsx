@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { haalActiviteitDeelinfo, haalDeelinfo, haalVakmanDeelinfo, type DeelCollectie, type Deelinfo } from '@/lib/deelinfo';
+import { haalActiviteitDeelinfo, haalDeelinfo, haalInMemoriamDeelinfo, haalVakmanDeelinfo, type DeelCollectie, type Deelinfo } from '@/lib/deelinfo';
 import { deelKaart } from './deelKaart';
 
 const LABEL: Record<DeelCollectie, string> = {
@@ -43,4 +43,17 @@ export async function activiteitAfbeelding(slug: string, locale: 'nl' | 'en') {
 export async function vakmanAfbeelding(slug: string, locale: 'nl' | 'en') {
   const [info, t] = await Promise.all([haalVakmanDeelinfo(slug, locale), getTranslations({ locale, namespace: 'content.deel' })]);
   return kaartVan(info, t('vaklui'));
+}
+
+/** In memoriam: naam, typering, sterfdatum en het citaat (anders de eerste zinnen), met de hoofdfoto. */
+export async function inMemoriamAfbeelding(slug: string, locale: 'nl' | 'en') {
+  const [info, t] = await Promise.all([haalInMemoriamDeelinfo(slug, locale), getTranslations({ locale, namespace: 'content.deel' })]);
+  if (!info) return new Response('Niet gevonden', { status: 404 });
+  return deelKaart({
+    label: t('inMemoriam'),
+    title: info.title,
+    regels: info.regels,
+    tekst: info.citaat ? `“${info.citaat}”` : info.description,
+    foto: info.imageUrl ? { url: info.imageUrl, x: info.uitsnede } : null,
+  });
 }

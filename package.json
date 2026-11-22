@@ -11,6 +11,8 @@
     "seed:admin": "bun run scripts/seed-admin.ts",
     "seed:geschiedenis": "bun run scripts/seed-geschiedenis.ts",
     "seed:intro": "bun run scripts/seed-intro.ts",
+    "seed:in-memoriam": "bun run scripts/seed-in-memoriam.ts",
+    "seed:in-memoriam:prod": "bun --env-file=.env.production.local run scripts/seed-in-memoriam.ts",
     "seed:intro:prod": "bun --env-file=.env.production.local run scripts/seed-intro.ts",
     "seed:roelof-hartstraat": "bun run scripts/seed-nieuws-roelof-hartstraat.ts",
     "seed:roelof-hartstraat:prod": "bun --env-file=.env.production.local run scripts/seed-nieuws-roelof-hartstraat.ts",
