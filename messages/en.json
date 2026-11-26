@@ -112,6 +112,41 @@
     }
   },
   "pages": {
+    "toenEnNu": {
+      "heading": "Then and now",
+      "metaDescription": "Street by street through Duivelseiland, 1898-2004: photos of then and now from the same spot, from the Oud Zuid district booklet.",
+      "eyebrow": "Duivelseiland 1898 - 2004",
+      "title": "Then and now",
+      "lead": "What changed in a hundred years of Duivelseiland? Scroll street by street from then to now.",
+      "herkomst": "Based on the booklet \"Duivelseiland 1898 - 2004\", published by the Amsterdam Oud Zuid district in October 2004 at the end of the urban renewal. Texts by Fred van Kooij.",
+      "voorwoord": "Foreword",
+      "nawoord": "Afterword",
+      "leesHeleTekst": "Read the full text from the booklet",
+      "beeld": "image",
+      "bronnen": "Sources",
+      "bronTekst": "Source: Duivelseiland 1898 - 2004, Amsterdam Oud Zuid district (2004). Texts: Fred van Kooij. Historical photos: Amsterdam City Archives (Gemeentearchief, now Stadsarchief) and \"Amsterdam in fotokaarten\" (De Koning Gans, 2000). Postcards: private collection. Photos from 2004: Eric Oudeboon, Amsterdam Oud Zuid district.",
+      "vertaling": "The short texts with the photos are summarised from the booklet; the full text is included, translated from Dutch.",
+      "extraAlberto": "Not from the booklet: the explosion in the Alberto building (1987). Sources: reports in Het Parool, Het Vrije Volk, Nieuwsblad van het Noorden and other newspapers, 21 December 1987 to 9 January 1988 (via Delpher), and two photos by Frans Busselman in the Amsterdam City Archives image bank.",
+      "beeldbank": "Photos in the Amsterdam City Archives image bank",
+      "bron": {
+        "oudeboon": "photo Eric Oudeboon",
+        "archief": "Amsterdam City Archives",
+        "boekje": "from the booklet",
+        "prentbriefkaart": "postcard, private collection",
+        "fotokaart": "photo card",
+        "beeldnummer": "image number",
+        "foto": "photo"
+      },
+      "kaart": {
+        "buurt": "Map of Duivelseiland",
+        "straat": "Map of Duivelseiland, with the {straat} highlighted"
+      },
+      "nav": {
+        "nav": "Streets",
+        "contents": "Streets",
+        "chapterOf": "{n} of {total}"
+      }
+    },
     "mascotte": {
       "heading": "Neighborhood mascot",
       "metaDescription": "Spotted a lost kitten near café Wildschut? That's Mimi from the pizzeria on Hobbemakade. She isn't lost. She's the neighborhood mascot.",
