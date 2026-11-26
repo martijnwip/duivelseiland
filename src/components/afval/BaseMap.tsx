@@ -37,10 +37,23 @@ export function BaseMap({
   crop?: Crop;
   ondergrond?: Ondergrond;
 }) {
-  const outside = `M${crop.x},${crop.y}h${crop.w}v${crop.h}h${-crop.w}Z${basemap.buurt}`;
   return (
     <svg viewBox={`${crop.x} ${crop.y} ${crop.w} ${crop.h}`} role="img" aria-label={label} className="block h-auto w-full rounded-md">
       <title>{label}</title>
+      <BaseMapLagen labels={labels} crop={crop} ondergrond={ondergrond} />
+      {children}
+    </svg>
+  );
+}
+
+/**
+ * De lagen van de ondergrond zonder het `<svg>` eromheen. Zo kan een pagina met veel kaarten de
+ * ondergrond één keer in een `<defs>` zetten en met `<use>` hergebruiken (zie /toen-en-nu).
+ */
+export function BaseMapLagen({ labels = true, crop = CROP, ondergrond = basemap }: { labels?: boolean; crop?: Crop; ondergrond?: Ondergrond }) {
+  const outside = `M${crop.x},${crop.y}h${crop.w}v${crop.h}h${-crop.w}Z${basemap.buurt}`;
+  return (
+    <>
       <rect x={crop.x} y={crop.y} width={crop.w} height={crop.h} className="fill-card" />
       <path d={ondergrond.water} className="fill-water" />
       <path d={ondergrond.blokken} className="fill-border" />
@@ -70,7 +83,6 @@ export function BaseMap({
               {l.naam}
             </text>
           ))}
-      {children}
-    </svg>
+    </>
   );
 }
