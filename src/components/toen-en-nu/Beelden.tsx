@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { BaseMap } from '@/components/afval/BaseMap';
+import { BaseMapLagen, CROP } from '@/components/afval/BaseMap';
 import straten from '@/lib/toen-en-nu/straten.json';
 import type { Beeld, Foto, Straat, Taal } from '@/lib/toen-en-nu/hoofdstukken';
 
@@ -67,10 +67,10 @@ function ToenNuBeeld({ toen, nu, jaren, taal, labels }: { toen: Foto; nu: Foto; 
           <Onderschrift foto={nu} taal={taal} labels={labels} className="tn-als-nu" />
         </figcaption>
       </figure>
-      {/* Alleen zonder JS: toen en nu naast elkaar. */}
+      {/* Alleen zonder JS: toen en nu naast elkaar. Geen blur-placeholder: met JS is deze figuur nooit te zien. */}
       <figure className="tn-nu-figuur m-0 flex w-full flex-col items-center">
         <div className="tn-kader overflow-hidden rounded-md bg-card" style={vast}>
-          <Image src={nu.src} alt={nu.alt[taal]} fill placeholder="blur" sizes={SIZES} className="object-cover" />
+          <Image src={nu.src} alt={nu.alt[taal]} fill sizes={SIZES} className="object-cover" />
           <Jaar jaar={jaren[1]} />
         </div>
         <figcaption className="mt-2 max-w-[60ch] text-center text-[15px] leading-snug text-text">
@@ -81,12 +81,33 @@ function ToenNuBeeld({ toen, nu, jaren, taal, labels }: { toen: Foto; nu: Foto; 
   );
 }
 
-/** Buurtkaart met één straat opgelicht (lijnen uit OpenStreetMap, zie scripts/toen-en-nu-straten.ts). */
+const ONDERGROND_ID = 'tn-ondergrond';
+
+/**
+ * De ondergrond van de buurtkaart, één keer per pagina. Elke BuurtKaart verwijst ernaar met `<use>`,
+ * zodat de kaart (~12 kB) niet per hoofdstuk opnieuw in de HTML staat. Niet `display: none`, anders
+ * tekent `<use>` in sommige browsers niets.
+ */
+export function BuurtKaartOndergrond() {
+  return (
+    <svg aria-hidden width="0" height="0" className="pointer-events-none absolute overflow-hidden" focusable="false">
+      <defs>
+        <g id={ONDERGROND_ID}>
+          <BaseMapLagen />
+        </g>
+      </defs>
+    </svg>
+  );
+}
+
+/** Buurtkaart met één straat opgelicht (lijnen uit OpenStreetMap, zie scripts/toen-en-nu-straten.ts). Vraagt BuurtKaartOndergrond op de pagina. */
 export function BuurtKaart({ straat, label }: { straat?: Straat; label: string }) {
   const c = BUURT_CLIP;
   return (
     <div className="tn-kader" style={{ '--ar': '400 / 310', '--ar-getal': 400 / 310 } as React.CSSProperties}>
-      <BaseMap label={label}>
+      <svg viewBox={`${CROP.x} ${CROP.y} ${CROP.w} ${CROP.h}`} role="img" aria-label={label} className="block h-auto w-full rounded-md">
+        <title>{label}</title>
+        <use href={`#${ONDERGROND_ID}`} />
         {straat ? (
           <>
             <clipPath id={`tn-clip-${straat.replace(/\W/g, '')}`}>
@@ -105,7 +126,7 @@ export function BuurtKaart({ straat, label }: { straat?: Straat; label: string }
             />
           </>
         ) : null}
-      </BaseMap>
+      </svg>
     </div>
   );
 }

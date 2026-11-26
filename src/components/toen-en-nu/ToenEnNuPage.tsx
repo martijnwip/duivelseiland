@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { ChapterNav } from '@/components/stats/ChapterNav';
 import { HOOFDSTUKKEN, NAWOORD, OMSLAG, VOORWOORD, beeldbankLink, zichtbaar, type Foto, type Straat, type Taal, TOESTEMMING_BESCHERMDE_FOTOS } from '@/lib/toen-en-nu/hoofdstukken';
 import { TEKST } from '@/lib/toen-en-nu/tekst';
-import { BeeldLaag, Onderschrift, beeldOmschrijving, type BronLabels } from './Beelden';
+import { BeeldLaag, BuurtKaartOndergrond, Onderschrift, beeldOmschrijving, type BronLabels } from './Beelden';
 import { ScrollVerhaal } from './ScrollVerhaal';
 
 /** Voorwoord of nawoord: één zin als citaat, met foto en de volledige tekst om uit te klappen. */
@@ -65,8 +65,31 @@ export async function ToenEnNuPage({ locale }: { locale: Taal }) {
   );
   const archief = fotos.filter((f) => f.beeldnummer && (TOESTEMMING_BESCHERMDE_FOTOS || !f.beschermd));
 
+  /** Voor zoekmachines: een artikel over Duivelseiland, gebaseerd op het boekje uit 2004. */
+  const schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: t('metaTitle'),
+    description: t('metaDescription'),
+    inLanguage: locale,
+    about: {
+      '@type': 'Place',
+      name: 'Duivelseiland',
+      address: { '@type': 'PostalAddress', addressLocality: 'Amsterdam', addressCountry: 'NL' },
+    },
+    isBasedOn: {
+      '@type': 'Book',
+      name: 'Duivelseiland 1898 - 2004',
+      datePublished: '2004-10',
+      author: { '@type': 'Person', name: 'Fred van Kooij' },
+      publisher: { '@type': 'Organization', name: 'Stadsdeel Amsterdam Oud Zuid' },
+    },
+  };
+
   return (
     <main className="mx-auto max-w-[1280px] px-4 md:px-8">
+      <BuurtKaartOndergrond />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, '\\u003c') }} />
       <section aria-labelledby="tn-titel" className="pt-10 pb-6 lg:pt-16">
         <div className="text-[13px] font-semibold tracking-[0.08em] text-muted uppercase">{t('eyebrow')}</div>
         <h1 id="tn-titel" className="my-3 text-[clamp(40px,7vw,76px)] leading-[1.02] font-bold tracking-[-0.02em] text-primary">
@@ -82,6 +105,7 @@ export async function ToenEnNuPage({ locale }: { locale: Taal }) {
           alt={OMSLAG.alt[locale]}
           placeholder="blur"
           priority
+          fetchPriority="high"
           sizes="(min-width: 1280px) 1216px, 100vw"
           className="h-auto max-h-[75svh] w-full rounded-md object-cover"
         />
