@@ -108,11 +108,18 @@
       "factText": "het jaar waarin de stinkende fabriek verdween — en Dreyfus in ere werd hersteld",
       "tijdlijn": "Tijdlijn van de geschiedenis",
       "readMore": "Lees het verhaal",
-      "readMoreContext": "over de geschiedenis van Duivelseiland"
+      "readMoreContext": "over de geschiedenis van Duivelseiland",
+      "toenEnNu": "Toen en nu, straat voor straat"
     }
   },
   "pages": {
     "toenEnNu": {
+      "teaser": {
+        "eyebrow": "Toen en nu",
+        "titel": "Straat voor straat, van toen naar nu",
+        "tekst": "In 2004 maakte stadsdeel Oud Zuid een boekje over honderd jaar Duivelseiland. Scroll door de straten en zie dezelfde plek vroeger en in 2004.",
+        "link": "Bekijk toen en nu"
+      },
       "heading": "Toen en nu",
       "metaDescription": "Straat voor straat door Duivelseiland, 1898-2004: foto’s van toen en nu vanaf dezelfde plek, uit het boekje van stadsdeel Oud Zuid.",
       "eyebrow": "Duivelseiland 1898 - 2004",

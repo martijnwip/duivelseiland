@@ -4,6 +4,7 @@ import { getTranslations } from 'next-intl/server';
 import config from '@payload-config';
 import type { HistorischeFoto } from '../../../payload-types';
 import { RichTextContent } from '@/components/site/RichTextContent';
+import { ToenEnNuTeaser } from '@/components/toen-en-nu/ToenEnNuTeaser';
 import { ArchiefBeeld, alsFoto, type ArchiefLabels } from './ArchiefBeeld';
 import { JaarTeller } from './JaarTeller';
 import { ScrollRij } from './ScrollRij';
@@ -99,6 +100,8 @@ export async function GeschiedenisPage({ locale }: { locale: Locale }) {
           </Fragment>
         ))}
       </div>
+
+      <ToenEnNuTeaser locale={locale} />
 
       {archief.length > 0 ? (
         <section aria-labelledby="gs-archief" className="my-12 border-t-2 border-text pt-4">

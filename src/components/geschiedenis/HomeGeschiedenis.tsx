@@ -69,16 +69,25 @@ export async function HomeGeschiedenis({ locale }: { locale: 'nl' | 'en' }) {
         </nav>
       ) : null}
 
-      <Link
-        href={href()}
-        className="mt-8 inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-      >
-        {t('readMore')}
-        <span className="sr-only"> {t('readMoreContext')}</span>
-        <svg width="16" height="16" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-          <path d="M2 7.5h10M8 3.5l4 4-4 4" />
-        </svg>
-      </Link>
+      <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
+        <Link
+          href={href()}
+          className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-primary px-5 py-2 font-medium text-on-primary no-underline transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          {t('readMore')}
+          <span className="sr-only"> {t('readMoreContext')}</span>
+          <svg width="16" height="16" viewBox="0 0 15 15" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+            <path d="M2 7.5h10M8 3.5l4 4-4 4" />
+          </svg>
+        </Link>
+        <Link
+          href={localizedHref(locale, '/toen-en-nu')}
+          className="inline-flex min-h-11 items-center gap-2 font-semibold text-primary underline-offset-4 hover:underline"
+        >
+          {t('toenEnNu')}
+          <span aria-hidden>→</span>
+        </Link>
+      </div>
     </section>
   );
 }

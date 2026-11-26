@@ -108,11 +108,18 @@
       "factText": "the year the smelly factory disappeared — and Dreyfus was exonerated",
       "tijdlijn": "Timeline of the history",
       "readMore": "Read the story",
-      "readMoreContext": "about the history of Duivelseiland"
+      "readMoreContext": "about the history of Duivelseiland",
+      "toenEnNu": "Then and now, street by street"
     }
   },
   "pages": {
     "toenEnNu": {
+      "teaser": {
+        "eyebrow": "Then and now",
+        "titel": "Street by street, from then to now",
+        "tekst": "In 2004 the Oud Zuid district published a booklet on a hundred years of Duivelseiland. Scroll through the streets and see the same spot in the past and in 2004.",
+        "link": "See then and now"
+      },
       "heading": "Then and now",
       "metaDescription": "Street by street through Duivelseiland, 1898-2004: photos of then and now from the same spot, from the Oud Zuid district booklet.",
       "eyebrow": "Duivelseiland 1898 - 2004",
