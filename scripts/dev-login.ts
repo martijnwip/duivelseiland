@@ -5,6 +5,7 @@ import type { PayloadWithAuth } from '@delmaredigital/payload-better-auth';
 import type { Role } from '../src/access/roles';
 import type { betterAuthOptions } from '../src/lib/auth/config';
 import { getClient } from './lib/payload-client';
+import { INLOGGEN_PAD, VERIFY_PAD } from '../src/lib/auth/inlogLink';
 
 // Lokale snelkoppeling: zorgt dat een test-admin bestaat, maakt een magic link
 // aan en opent die in de standaardbrowser, zodat je meteen ingelogd bent op de
@@ -105,6 +106,9 @@ async function run() {
   const link = new URL(url);
   link.protocol = local.protocol;
   link.host = local.host;
+  // De mail wijst naar /inloggen (knop, tegen voorladen en scanners; src/lib/auth/inlogLink.ts). Lokaal
+  // meteen naar de verify-link, zodat je zonder klik ingelogd bent.
+  if (link.pathname === INLOGGEN_PAD) link.pathname = VERIFY_PAD;
   url = link.toString();
 
   console.log(`[dev-login] inloglink: ${url}`);

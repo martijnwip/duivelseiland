@@ -2428,6 +2428,16 @@
       "link": "Naar de nieuwsbrief"
     }
   },
+  "inloggen": {
+    "heading": "Inloggen bij Duivelseiland",
+    "text": "Klik op de knop om in te loggen in het beheerpaneel. De link werkt één keer en is 5 minuten geldig.",
+    "submit": "Inloggen",
+    "submitting": "Bezig met inloggen…",
+    "ongeldig": "Deze inloglink is verlopen of al gebruikt.",
+    "onvolledig": "Deze inloglink is niet compleet. Kopieer de hele link uit de e-mail.",
+    "mislukt": "Inloggen is niet gelukt.",
+    "opnieuw": "Vraag een nieuwe inloglink aan"
+  },
   "buurtpas": {
     "eyebrow": "Voor de buurt",
     "heading": "Buurtpas",

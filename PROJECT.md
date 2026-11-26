@@ -252,6 +252,10 @@ Voor parallel werken aan meerdere branches (bv. losse agent-sessies) zonder stee
 4. `vercel.json` met `bunVersion` committen; eerste deploy; migraties draaien via `bun payload migrate`.
 5. Eerste admin-account aanmaken op `/admin` (of lokaal via `bun run seed:admin`, zie hieronder).
 
+### Inloggen in `/admin`
+
+Inloggen gaat met een inloglink per mail (better-auth magic link, `src/lib/auth/config.ts`): 5 minuten geldig, één keer bruikbaar. De link in de mail wijst naar `/inloggen` met een knop **Inloggen**; pas die klik gebruikt het token. Zo verbruiken een mailscanner, Chrome dat een geplakte URL vooraf laadt, of een andere browser die de link eerst opent, de link niet meer. Is de link verlopen of al gebruikt, dan zegt `/inloggen` dat (in plaats van "invalid token"). `bun run dev:login` slaat de knop lokaal over. Code: `src/lib/auth/inlogLink.ts`, `app/(site)/[locale]/inloggen/`.
+
 ### Eerste admin-account lokaal aanmaken
 
 Payload toont automatisch een "eerste gebruiker aanmaken"-scherm op `/admin` zodra de `users`-collectie leeg is — een script is daar dus niet strikt voor nodig. Voor snel lokaal testen (bv. na een nieuwe worktree of een verse `dev.db`) is er wel `scripts/seed-admin.ts`:
