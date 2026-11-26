@@ -3,23 +3,26 @@ import { magicLink } from 'better-auth/plugins';
 import { Resend } from 'resend';
 import { writeFileSync } from 'fs';
 import path from 'path';
+import { bevestigingsLink } from './inlogLink';
 
 async function sendMagicLink({
   email,
-  url,
+  url: verifyUrl,
   metadata,
 }: {
   email: string;
   url: string;
   metadata?: Record<string, unknown>;
 }) {
+  // Naar /inloggen (met knop), niet direct naar de verify-link: zie src/lib/auth/inlogLink.ts.
+  const url = bevestigingsLink(verifyUrl);
   const isInvite = Boolean(metadata?.invite);
   const subject = isInvite
     ? 'Je bent uitgenodigd voor het Duivelseiland-beheerpaneel'
     : 'Inloglink voor Duivelseiland';
   const intro = isInvite
-    ? 'Je hebt toegang gekregen tot het Duivelseiland-beheerpaneel. Klik op onderstaande link om in te loggen:'
-    : 'Klik op onderstaande link om in te loggen op het Duivelseiland-beheerpaneel:';
+    ? 'Je hebt toegang gekregen tot het Duivelseiland-beheerpaneel. Klik op onderstaande link en daarna op Inloggen:'
+    : 'Klik op onderstaande link en daarna op Inloggen om in te loggen op het Duivelseiland-beheerpaneel:';
 
   if (!process.env.RESEND_API_KEY) {
     console.log(

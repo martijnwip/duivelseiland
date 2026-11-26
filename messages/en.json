@@ -2611,6 +2611,16 @@
       "link": "Go to the newsletter"
     }
   },
+  "inloggen": {
+    "heading": "Log in to Duivelseiland",
+    "text": "Click the button to log in to the admin panel. The link works once and is valid for 5 minutes.",
+    "submit": "Log in",
+    "submitting": "Logging in…",
+    "ongeldig": "This login link has expired or has already been used.",
+    "onvolledig": "This login link is incomplete. Copy the whole link from the email.",
+    "mislukt": "Logging in did not work.",
+    "opnieuw": "Request a new login link"
+  },
   "buurtpas": {
     "eyebrow": "For the neighbourhood",
     "heading": "Neighbourhood pass",
