@@ -453,3 +453,158 @@ h6 {
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* ---- Toen en nu (/toen-en-nu): scrollverhaal zoals een krant het doet ----
+   Een vast beeldvlak (.tn-paneel) met lagen; de stappen schuiven erlangs (desktop) of
+   eroverheen (mobiel). ScrollVerhaal.tsx zet data-js op de wrapper en data-aan/data-nu op
+   de laag van de actieve stap. Zonder JS staan alle beelden en teksten gewoon onder elkaar. */
+.tn-verhaal {
+  --tn-top: 8.25rem; /* header (5rem) + hoofdstukbalk */
+  --tn-h: calc(100svh - var(--tn-top) - 1rem);
+}
+@media (min-width: 80rem) {
+  .tn-verhaal {
+    --tn-top: 6rem;
+  }
+}
+.tn-paneel {
+  display: grid;
+  gap: 2rem;
+}
+.tn-laag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.tn-kader {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--ar, 3 / 2);
+}
+.tn-toennu {
+  display: grid;
+  gap: 1rem;
+}
+.tn-toennu .tn-kader {
+  --ar: 3 / 2;
+}
+
+.tn-verhaal[data-js] {
+  display: grid;
+}
+.tn-verhaal[data-js] .tn-paneel {
+  position: sticky;
+  top: var(--tn-top);
+  height: var(--tn-h);
+  display: block;
+  grid-area: 1 / 1;
+}
+.tn-verhaal[data-js] .tn-stappen {
+  grid-area: 1 / 1;
+  position: relative;
+  z-index: 10;
+}
+.tn-verhaal[data-js] .tn-laag {
+  position: absolute;
+  inset: 0;
+  justify-content: flex-start;
+  opacity: 0;
+  visibility: hidden;
+}
+.tn-verhaal[data-js] .tn-laag[data-aan] {
+  opacity: 1;
+  visibility: visible;
+}
+/* Mobiel: het beeld in de bovenste 55%, de kaartjes schuiven er onderlangs overheen. */
+.tn-verhaal[data-js] .tn-kader {
+  width: min(100%, calc(var(--tn-h) * 0.55 * var(--ar-getal, 1.5)));
+}
+.tn-verhaal[data-js] .tn-stap {
+  min-height: 85svh;
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 6svh;
+}
+.tn-verhaal[data-js] .tn-stap:first-child {
+  min-height: 100svh;
+}
+@media (min-width: 64rem) {
+  .tn-verhaal[data-js] {
+    grid-template-columns: minmax(0, 21rem) minmax(0, 1fr);
+    column-gap: 2.5rem;
+  }
+  .tn-verhaal[data-js] .tn-paneel {
+    grid-area: 1 / 2;
+  }
+  .tn-verhaal[data-js] .tn-stappen {
+    grid-area: 1 / 1;
+  }
+  .tn-verhaal[data-js] .tn-laag {
+    justify-content: center;
+  }
+  .tn-verhaal[data-js] .tn-kader {
+    width: min(100%, calc((var(--tn-h) - 5rem) * var(--ar-getal, 1.5)));
+  }
+  .tn-verhaal[data-js] .tn-stap,
+  .tn-verhaal[data-js] .tn-stap:first-child {
+    min-height: 80svh;
+    align-items: center;
+    padding-bottom: 0;
+  }
+}
+
+/* Toen en nu: de foto van nu ligt erboven en veegt van links naar rechts over die van toen. */
+.tn-verhaal[data-js] .tn-toennu {
+  display: block;
+  width: 100%;
+}
+.tn-verhaal[data-js] .tn-toennu > figure {
+  margin-inline: auto;
+}
+.tn-verhaal[data-js] .tn-toennu .tn-nu-foto {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 100% 0 0);
+}
+.tn-verhaal[data-js] .tn-laag[data-nu] .tn-nu-foto {
+  clip-path: inset(0 0 0 0);
+}
+.tn-verhaal[data-js] .tn-toennu .tn-nu-figuur {
+  display: none;
+}
+.tn-verhaal[data-js] .tn-laag:not([data-nu]) .tn-als-nu,
+.tn-verhaal[data-js] .tn-laag[data-nu] .tn-als-toen {
+  display: none;
+}
+.tn-verhaal:not([data-js]) .tn-toennu .tn-nu-foto,
+.tn-verhaal:not([data-js]) .tn-als-nu {
+  display: none;
+}
+.tn-verhaal:not([data-js]) .tn-toennu .tn-nu-figuur .tn-als-nu {
+  display: inline;
+}
+@media (min-width: 48rem) {
+  .tn-verhaal:not([data-js]) .tn-toennu {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tn-verhaal[data-js] .tn-laag {
+    transition:
+      opacity 500ms ease,
+      visibility 500ms;
+  }
+  .tn-verhaal[data-js] .tn-nu-foto {
+    transition: clip-path 1100ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+  .tn-straat {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1200ms ease-out 200ms;
+  }
+  .tn-laag[data-aan] .tn-straat,
+  .tn-verhaal:not([data-js]) .tn-straat {
+    stroke-dashoffset: 0;
+  }
+}

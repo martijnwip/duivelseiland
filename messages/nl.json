@@ -112,6 +112,41 @@
     }
   },
   "pages": {
+    "toenEnNu": {
+      "heading": "Toen en nu",
+      "metaDescription": "Straat voor straat door Duivelseiland, 1898-2004: foto’s van toen en nu vanaf dezelfde plek, uit het boekje van stadsdeel Oud Zuid.",
+      "eyebrow": "Duivelseiland 1898 - 2004",
+      "title": "Toen en nu",
+      "lead": "Wat veranderde er in honderd jaar Duivelseiland? Scroll straat voor straat van toen naar nu.",
+      "herkomst": "Naar het boekje \"Duivelseiland 1898 - 2004\", dat stadsdeel Amsterdam Oud Zuid in oktober 2004 uitgaf bij de afronding van de stadsvernieuwing. Teksten van Fred van Kooij.",
+      "voorwoord": "Voorwoord",
+      "nawoord": "Nawoord",
+      "leesHeleTekst": "Lees de hele tekst uit het boekje",
+      "beeld": "beeld",
+      "bronnen": "Bronnen",
+      "bronTekst": "Bron: Duivelseiland 1898 - 2004, stadsdeel Amsterdam Oud Zuid (2004). Teksten: Fred van Kooij. Historische foto’s: Gemeentearchief Amsterdam (nu Stadsarchief Amsterdam) en \"Amsterdam in fotokaarten\" (De Koning Gans, 2000). Prentbriefkaarten: privécollectie. Foto’s anno 2004: Eric Oudeboon, stadsdeel Amsterdam Oud Zuid.",
+      "vertaling": "De korte teksten bij de foto’s zijn samengevat uit het boekje; de hele tekst staat er letterlijk bij.",
+      "extraAlberto": "Niet uit het boekje: de explosie in het Alberto-pand (1987). Bronnen: berichten in Het Parool, Het Vrije Volk, Nieuwsblad van het Noorden en andere kranten, 21 december 1987 tot 9 januari 1988 (via Delpher), en twee foto’s van Frans Busselman in de Beeldbank van het Stadsarchief.",
+      "beeldbank": "Foto’s in de Beeldbank van het Stadsarchief",
+      "bron": {
+        "oudeboon": "foto Eric Oudeboon",
+        "archief": "Stadsarchief Amsterdam",
+        "boekje": "uit het boekje",
+        "prentbriefkaart": "prentbriefkaart, privécollectie",
+        "fotokaart": "fotokaart",
+        "beeldnummer": "beeldnummer",
+        "foto": "foto"
+      },
+      "kaart": {
+        "buurt": "Kaart van Duivelseiland",
+        "straat": "Kaart van Duivelseiland, met de {straat} gemarkeerd"
+      },
+      "nav": {
+        "nav": "Straten",
+        "contents": "Straten",
+        "chapterOf": "{n} van {total}"
+      }
+    },
     "mascotte": {
       "heading": "Buurtmascotte",
       "metaDescription": "Zie je een verdwaald katje bij café Wildschut? Dat is Mimi van de pizzeria op de Hobbemakade. Ze is niet verdwaald. Ze is de buurtmascotte.",

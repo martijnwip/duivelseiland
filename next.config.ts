@@ -97,6 +97,7 @@ const config = withNextIntl(
         './public/afval/instructiekaart-*.png',
         './public/geluid/instructiekaart-*.png',
         './public/mascotte/mimi-1.jpg',
+        './public/toen-en-nu/05-pieter-baststraat/05-oneven-zijde-1968.jpg',
       ],
     },
   }),

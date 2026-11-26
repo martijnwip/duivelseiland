@@ -23,6 +23,7 @@ const VASTE_PAGINAS = [
   '/activiteiten/aanmelden',
   '/interviews',
   '/geschiedenis',
+  '/toen-en-nu',
   '/duivelse-kunst',
   '/praktische-info',
   '/vaklui',
