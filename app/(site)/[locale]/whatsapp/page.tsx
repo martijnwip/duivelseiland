@@ -11,7 +11,7 @@ import { localizedHref } from '@/i18n/localizedHref';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.whatsapp' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/whatsapp', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function WhatsappRoute({ params }: { params: Promise<{ locale: string }> }) {
@@ -26,7 +26,7 @@ export default async function WhatsappRoute({ params }: { params: Promise<{ loca
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="whatsapp-aanmelden">
-        <SectionHead id="whatsapp-aanmelden" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="whatsapp-aanmelden" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
         <div className="mt-8 max-w-2xl">
           {buurtpas ? (

@@ -8,7 +8,7 @@ import { CONTACT_SOORTEN } from '@/lib/contact/constants';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.contact' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/contact', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function ContactRoute({ params }: { params: Promise<{ locale: string }> }) {
@@ -20,7 +20,7 @@ export default async function ContactRoute({ params }: { params: Promise<{ local
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="contact">
-        <SectionHead id="contact" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="contact" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
         <div className="mt-8 max-w-2xl">
           <div className={boxCls}>

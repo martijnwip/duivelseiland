@@ -428,6 +428,7 @@ Code: `scripts/taalcheck.ts`.
 - **Regels en getallen** staan op één plek: `src/lib/geluid/constants.ts` (bouwtijden, buurtfeest, geluidsgrenzen, ontheffing, telefoonnummers, links). De datum `GECONTROLEERD` staat op de pagina. Controleer de regels jaarlijks tegen het Besluit bouwwerken leefomgeving (art. 7.4, 7.17), de beleidsregels bouwlawaai Amsterdam (CVDR726068) en de APV (art. 2.18A, 2.41, 5.5), en pas daarna die datum aan.
 - **Advies, geen regel:** "lawaaiig werk liever niet vóór 9 uur" (`ADVIES_LAWAAI_VANAF`) en "na 23 uur zachter" (`FEEST_ZACHTER_VANAF`) zijn afspraken van de buurt. Voor zelf klussen staat er geen vaste tijd in de wet, alleen een zorgplicht; de pagina zegt dat ook.
 - **Briefjes:** alles blijft in de browser (een concept in `localStorage`), er gaat niets naar de server en niets in de URL. Het briefje kan in het Nederlands, het Engels of allebei, los van de taal van de site.
+- **Kort antwoord:** bovenaan staan de vragen waarop de pagina gevonden wordt ("Hoe laat mogen bouwvakkers beginnen?", "Mag je op zondag klussen?"), met een bron van de gemeente en FAQPage-schema. Teksten in `pages.geluid.faq`, bronnen in `FAQ_BRONNEN` (`GeluidPage.tsx`), getallen uit `constants.ts`.
 - **Homepagina:** `HomeGeluid` (onder de afvalsectie) haalt de inleiding en de weekbalk uit `pages.geluid`, zodat ze gelijk blijven met de pagina.
 - **Deelafbeelding** opnieuw maken na een tekstwijziging: `bun run geluid:deelkaart` (site moet draaien). Voor afval: `bun run afval:deelkaart`.
 
@@ -463,9 +464,11 @@ Een gedeelde link (WhatsApp, sociale media) toont op elke openbare pagina de tit
 - **Items uit het CMS** (nieuws, agenda, interviews, geschiedenis, Duivelse Kunst, praktische info, activiteiten, vaklui, in memoriam): de foto van het item, de titel en de eerste zinnen. De agenda toont datum, tijd en plek, een activiteit wanneer, een vakman vakken en aanbeveling. Een vakman nooit met telefoonnummer. Items met *Alleen voor de buurt* tonen alleen de titel. Nieuwe items krijgen dit vanzelf.
 
 **Een nieuwe pagina:**
-1. In `generateMetadata`: `return metDeelinfo(locale, { title, description })` (`src/lib/deelMetadata.ts`).
+1. In `generateMetadata`: `return metDeelinfo(locale, { pad, title, description })` (`src/lib/deelMetadata.ts`). `pad` is het pad zonder taal (bv. `/geluid`, `/vaklui/${slug}`, homepage `''`); daarmee krijgt de pagina een canonical en hreflang (nl, en, x-default). Achter de titel komt vanzelf " | Duivelseiland" (template in de layout); met `volledigeTitel: true` niet.
 2. Een `opengraph-image.tsx` in dezelfde map. Kopieer er een, bijvoorbeeld uit `app/(site)/[locale]/agenda/`, en pas de namespace aan. Zonder eigen bestand erft de pagina de afbeelding van de homepage.
 3. Niet bedoeld om te delen (tokenlink, hulppagina)? Zet dan `robots: { index: false }`, en sla 1 en 2 over.
+
+**Zoekmachines.** Elke openbare pagina heeft precies één `<h1>`; is de paginakop een `SectionHead`, geef die dan `kop="h1"`. Staat dezelfde inhoud op twee plekken, dan wijst de kopie met `canonicalPad` naar de hoofdversie (zonder hreflang): agenda-items van een activiteit wijzen naar `/activiteiten/<slug>` en staan niet in de sitemap. Lege overzichten (Interviews, Duivelse Kunst) staan op noindex en buiten de sitemap tot er iets gepubliceerd is (`src/lib/openbareItems.ts`). Titels langer dan ~60 tekens krijgen geen " | Duivelseiland" erachter.
 
 Een nieuwe collectie met detailpagina's voeg je toe aan `src/lib/deelinfo.ts` en `src/components/deel/deelAfbeelding.tsx`.
 

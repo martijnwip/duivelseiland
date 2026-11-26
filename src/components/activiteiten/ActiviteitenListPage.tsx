@@ -67,7 +67,7 @@ export async function ActiviteitenListPage({ locale }: { locale: 'nl' | 'en' }) 
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="activiteiten">
-        <SectionHead id="activiteiten" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="activiteiten" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
         <p className="mt-6">
           <Link href={localizedHref(locale, '/activiteiten/aanmelden')} className={buttonCls}>
             {t('ctaAanmelden')}

@@ -33,7 +33,7 @@ const knopCls = 'inline-flex min-h-11 items-center gap-2 rounded-lg px-4 py-2 te
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('overzichtMetaDescription') });
+  return metDeelinfo(locale, { pad: '/vaklui', title: t('heading'), description: t('overzichtMetaDescription') });
 }
 
 export default async function VakluiPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -59,7 +59,7 @@ export default async function VakluiPage({ params }: { params: Promise<{ locale:
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="vaklui">
-        <SectionHead id="vaklui" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="vaklui" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
         <div className="mt-8">
           <VakluiDisclaimer locale={locale} />

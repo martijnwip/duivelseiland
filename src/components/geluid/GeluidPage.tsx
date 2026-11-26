@@ -7,7 +7,7 @@ import { ChapterNav } from '@/components/stats/ChapterNav';
 import { Chapter, Pair, Stack } from '@/components/stats/Chapter';
 import { External, linkCls } from '@/components/site/External';
 import { Icon, type IconName } from '@/components/afval/instructie/icons';
-import { ADVIES_LAWAAI_VANAF, BOUW, BUURTFEEST, DAGWAARDEN, GECONTROLEERD, LINKS, ONTHEFFING, TELEFOON, uur } from '@/lib/geluid/constants';
+import { ADVIES_LAWAAI_VANAF, BOUW, BUURTFEEST, DAGWAARDEN, FEEST_ZACHTER_VANAF, GECONTROLEERD, LINKS, ONTHEFFING, TELEFOON, uur } from '@/lib/geluid/constants';
 import { WeekBalk, type WeekBalkLabels } from './WeekBalk';
 
 const boxCls = 'flex min-w-0 flex-col gap-4 rounded-lg border border-border bg-card p-4 xl:p-6';
@@ -46,6 +46,12 @@ const Para = ({ children }: { children: ReactNode }) => <p className="m-0 text-[
 /** Stappen bij overlast, met de actie die erbij hoort. */
 const STAPPEN = ['praten', 'verhuurder', 'beterBuren', 'meldpunt', 'bouw', 'horeca'] as const;
 
+/**
+ * Bron bij elke vraag in `faq.items` (zelfde volgorde). De vragen zijn de zoekvragen waarop de pagina
+ * gevonden wordt; het antwoord staat bovenaan, met FAQPage-schema voor zoekmachines.
+ */
+const FAQ_BRONNEN = [LINKS.burenVerbouwen, LINKS.burenVerbouwen, LINKS.ontheffing, LINKS.meldpunt, LINKS.meldpunt] as const;
+
 export async function GeluidPage({ locale }: { locale: string }) {
   const tr = await getTranslations({ locale, namespace: 'pages.geluid' });
   const t = tr as unknown as T;
@@ -73,6 +79,29 @@ export async function GeluidPage({ locale }: { locale: string }) {
       {children}
     </Chapter>
   );
+
+  const faqParams = {
+    ...tijd,
+    zachter: uur(FEEST_ZACHTER_VANAF, locale),
+    weken: ONTHEFFING.wekenVooraf,
+    beterBuren: TELEFOON.beterBuren.label,
+    meldpunt: TELEFOON.meldpunt.label,
+  };
+  const faq = (t.raw('faq.items') as unknown[]).map((_, i) => ({
+    vraag: t(`faq.items.${i}.vraag`),
+    antwoord: t(`faq.items.${i}.antwoord`, faqParams),
+    bron: FAQ_BRONNEN[i] ?? LINKS.burenVerbouwen,
+  }));
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    inLanguage: locale,
+    mainEntity: faq.map(({ vraag, antwoord }) => ({
+      '@type': 'Question',
+      name: vraag,
+      acceptedAnswer: { '@type': 'Answer', text: antwoord },
+    })),
+  };
 
   const week = t.raw('verbouwen.week') as Omit<WeekBalkLabels, 'summary'>;
   const weekLabels: WeekBalkLabels = { ...week, summary: t('verbouwen.week.summary', tijd) };
@@ -346,6 +375,25 @@ export async function GeluidPage({ locale }: { locale: string }) {
               </div>
             ))}
           </div>
+        </section>
+        <section aria-labelledby="faq-t" className="flex flex-col gap-6 pb-16 xl:pb-24">
+          <h2 id="faq-t" className="m-0 text-[26px] leading-[1.15] font-semibold text-text xl:text-[34px]">
+            {t('faq.title')}
+          </h2>
+          <ul className="m-0 grid list-none gap-6 p-0 md:grid-cols-2 xl:grid-cols-3">
+            {faq.map(({ vraag, antwoord, bron }) => (
+              <li key={vraag} className={boxCls}>
+                <h3 className="m-0 text-[17px] leading-[1.3] font-semibold text-text xl:text-lg">{vraag}</h3>
+                <Para>{antwoord}</Para>
+                <div className="mt-auto border-t border-border pt-3 text-sm">
+                  <External href={bron} note={note}>
+                    {t('faq.bron')}
+                  </External>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema).replace(/</g, '\\u003c') }} />
         </section>
         <div className="xl:grid xl:grid-cols-[216px_minmax(0,1fr)] xl:items-start xl:gap-x-12">
           <ChapterNav variant="rail" chapters={chapters} sources={sourcesNav} labels={navLabels} />

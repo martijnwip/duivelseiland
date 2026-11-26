@@ -9,6 +9,7 @@ import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import config from '@payload-config';
 import { routing } from '@/i18n/routing';
+import { TITEL_ACHTERVOEGSEL } from '@/lib/deelMetadata';
 import { Header } from '@/components/site/Header';
 import { Footer } from '@/components/site/Footer';
 import './globals.css';
@@ -42,10 +43,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'meta' });
+  const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
   return {
-    title: t('title'),
+    // Elke pagina krijgt " | Duivelseiland" achter de titel; metDeelinfo slaat dat over bij lange titels.
+    title: { default: t('title'), template: `%s${TITEL_ACHTERVOEGSEL}` },
     description: t('description'),
+    ...(serverUrl && URL.canParse(serverUrl) ? { metadataBase: new URL(serverUrl) } : {}),
     // Bing Webmaster Tools (naast public/BingSiteAuth.xml).
     verification: { other: { 'msvalidate.01': '79A02A15E3E585215778B338213FE4DA' } },
   };

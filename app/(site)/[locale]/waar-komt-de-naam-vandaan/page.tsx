@@ -11,7 +11,7 @@ import { localizedHref } from '@/i18n/localizedHref';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.overDeNaam' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/waar-komt-de-naam-vandaan', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function OverDeNaamPage({ params }: { params: Promise<{ locale: string }> }) {

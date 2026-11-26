@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const info = await haalActiviteitDeelinfo(slug, locale === 'en' ? 'en' : 'nl');
   if (!info) return {};
   const description = [info.regels.join(', '), info.description].filter(Boolean).join('. ');
-  return metDeelinfo(locale, { title: info.title, description, type: 'article' });
+  return metDeelinfo(locale, { pad: `/activiteiten/${slug}`, title: info.title, description, type: 'article' });
 }
 
 export default async function ActiviteitRoute({ params }: { params: Promise<{ locale: string; slug: string }> }) {

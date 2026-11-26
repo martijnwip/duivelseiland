@@ -7,7 +7,7 @@ import { IdeeForm } from '@/components/activiteiten/IdeeForm';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'activiteiten.aanmelden' });
-  return metDeelinfo(locale, { title: t('eyebrow'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/activiteiten/aanmelden', title: t('eyebrow'), description: t('metaDescription') });
 }
 
 export default async function IdeeAanmeldenRoute({ params }: { params: Promise<{ locale: string }> }) {
@@ -21,7 +21,7 @@ export default async function IdeeAanmeldenRoute({ params }: { params: Promise<{
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="idee-aanmelden">
-        <SectionHead id="idee-aanmelden" eyebrow={t('aanmelden.eyebrow')} title={t('aanmelden.heading')} intro={t('aanmelden.intro')} />
+        <SectionHead kop="h1" id="idee-aanmelden" eyebrow={t('aanmelden.eyebrow')} title={t('aanmelden.heading')} intro={t('aanmelden.intro')} />
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div className={boxCls}>
