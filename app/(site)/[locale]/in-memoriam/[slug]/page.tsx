@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!info) return {};
   // In het linkvoorbeeld eerst naam, typering en datum ("Kees Kroon, de markante melkhandelaar, † 9 april 2026"), dan de eerste zinnen.
   const description = [[info.title, ...info.regels].join(', '), info.description].filter(Boolean).join('. ');
-  return metDeelinfo(locale, { title: `In memoriam ${info.title} | Duivelseiland`, deelTitel: `In memoriam ${info.title}`, description, type: 'article' });
+  return metDeelinfo(locale, { pad: `/in-memoriam/${slug}`, title: `In memoriam ${info.title}`, description, type: 'article' });
 }
 
 export default async function InMemoriamRoute({ params }: Params) {

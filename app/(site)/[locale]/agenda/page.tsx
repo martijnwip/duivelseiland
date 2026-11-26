@@ -11,7 +11,7 @@ export const revalidate = 3600;
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.agenda' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/agenda', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function AgendaPage({ params }: { params: Promise<{ locale: string }> }) {

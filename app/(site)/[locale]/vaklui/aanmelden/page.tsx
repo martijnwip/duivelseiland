@@ -12,7 +12,7 @@ import { localizedHref } from '@/i18n/localizedHref';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.vaklui.aanmelden' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/vaklui/aanmelden', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function VakmanAanmeldenRoute({ params }: { params: Promise<{ locale: string }> }) {
@@ -34,7 +34,7 @@ export default async function VakmanAanmeldenRoute({ params }: { params: Promise
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="vakman-aanmelden">
-        <SectionHead id="vakman-aanmelden" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="vakman-aanmelden" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
 
         <div className="mt-8 max-w-2xl">
           {buurtpas ? (

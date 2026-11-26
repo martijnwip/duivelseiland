@@ -6,7 +6,7 @@ import { PraktischeInfoPage } from '@/components/praktische-info/PraktischeInfoP
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.praktischeInfo' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/praktische-info', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function PraktischeInfoRoute({ params }: { params: Promise<{ locale: string }> }) {

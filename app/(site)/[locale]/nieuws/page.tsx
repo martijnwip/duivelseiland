@@ -7,7 +7,7 @@ import { ContentListPage } from '@/components/content/ContentListPage';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.nieuws' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/nieuws', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function NieuwsPage({ params }: { params: Promise<{ locale: string }> }) {

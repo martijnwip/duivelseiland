@@ -9,7 +9,7 @@ import Image from 'next/image';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.fotos' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/fotos', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function FotosPage({ params }: { params: Promise<{ locale: string }> }) {

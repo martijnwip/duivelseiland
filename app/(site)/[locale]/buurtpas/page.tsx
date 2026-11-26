@@ -16,7 +16,7 @@ export const dynamic = 'force-dynamic';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'buurtpas' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('intro') });
+  return metDeelinfo(locale, { pad: '/buurtpas', title: t('heading'), description: t('intro') });
 }
 
 export default async function BuurtpasRoute({
@@ -43,7 +43,7 @@ export default async function BuurtpasRoute({
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="buurtpas">
-        <SectionHead id="buurtpas" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="buurtpas" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
         <ul className="mt-6 max-w-xl list-disc pl-5 leading-[1.6] text-text">
           <li>{t('punten.wat')}</li>
           <li>{t('punten.geenAccount')}</li>

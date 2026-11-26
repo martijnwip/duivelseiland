@@ -4,6 +4,7 @@
     "description": "Neighborhood website for Amsterdam"
   },
   "home": {
+    "metaTitle": "Duivelseiland, a neighbourhood in Amsterdam Museumkwartier",
     "deelTitel": "The neighbourhood site of Duivelseiland",
     "metaDescription": "By and for the residents of Duivelseiland in the Museumkwartier: events, news, activities, local tradespeople, waste, noise and the history of the neighbourhood.",
     "heading": "Duivelseiland - Amsterdam",
@@ -212,7 +213,7 @@
       "whatsappLabel": "Send {naam} a WhatsApp message",
       "whatsappBericht": "Hi, I found your number on the Duivelseiland neighbourhood website. ",
       "terug": "All tradespeople",
-      "metaDescription": "{naam}, a tradesperson from in or around Duivelseiland.",
+      "metaDescription": "{naam}: {vakken} in Amsterdam-Zuid, on the list of tradespeople recommended by neighbours in Duivelseiland.",
       "aanmeldKnop": {
         "titel": "Know a good tradesperson?",
         "tekst": "With a neighbourhood pass you can submit a tradesperson. The editors review it before it goes on the site.",
@@ -259,6 +260,7 @@
     },
     "geschiedenis": {
       "heading": "History",
+      "metaTitle": "History of Duivelseiland, Amsterdam",
       "metaDescription": "How a smelly corner by the Boerenwetering became Duivelseiland: the neighbourhood's history as a timeline.",
       "ui": {
         "eyebrow": "Duivelseiland · Museum Quarter · Amsterdam-Zuid",
@@ -1570,7 +1572,34 @@
     },
     "geluid": {
       "heading": "Noise",
+      "metaTitle": "Noise rules in Amsterdam: construction hours and Sundays",
       "metaDescription": "Renovations, DIY and parties in Duivelseiland: when noise is allowed, how to let the neighbours know and what to do about noise nuisance. With an instruction card and notes for the neighbours.",
+      "faq": {
+        "title": "Short answers",
+        "bron": "Source: City of Amsterdam (Dutch)",
+        "items": [
+          {
+            "vraag": "What time can construction work start in a residential area?",
+            "antwoord": "At {van}. A contractor or building company may build and demolish Monday to Saturday from {van} to {tot}. In Duivelseiland we do ask: preferably no drilling, grinding or sanding before {advies}."
+          },
+          {
+            "vraag": "Can you do DIY or construction work on Sundays?",
+            "antwoord": "A company may not make construction noise on Sundays and public holidays, unless the city grants an exemption. For DIY, the law sets no fixed hours, but you must avoid unnecessary noise. So it’s best to leave noisy jobs for another day."
+          },
+          {
+            "vraag": "Until what time can you renovate?",
+            "antwoord": "Until {tot}, Monday to Saturday. In the evening, at night or on Sundays, a company may only work with a noise exemption from the city, which must be applied for at least {weken} weeks ahead."
+          },
+          {
+            "vraag": "Until what time can you have a party at home?",
+            "antwoord": "There is no fixed time by which it must be quiet, and you don’t need a permit. You may not cause your neighbours serious nuisance that keeps coming back. The neighbourhood’s agreement: after {zachter}, turn the music down and close the windows."
+          },
+          {
+            "vraag": "What can you do about noisy neighbours?",
+            "antwoord": "First talk to your neighbours, at a calm moment. If that doesn’t work, BeterBuren offers free mediation ({beterBuren}). The city’s neighbour nuisance hotline (Meldpunt Zorg en Woonoverlast) is open day and night on {meldpunt}."
+          }
+        ]
+      },
       "hero": {
         "eyebrow": "Duivelseiland · being considerate",
         "lead": "People in this neighbourhood live close together. The inner courtyards act like sound boxes, and it is appreciated when you keep that in mind.",

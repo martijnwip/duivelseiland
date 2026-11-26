@@ -4,6 +4,7 @@
     "description": "Wijkwebsite voor Amsterdam"
   },
   "home": {
+    "metaTitle": "Duivelseiland, buurt in Amsterdam Museumkwartier",
     "deelTitel": "De buurtsite van Duivelseiland",
     "metaDescription": "Voor en door bewoners van Duivelseiland in het Museumkwartier: agenda, nieuws, activiteiten, vaklui uit de buurt, afval, geluid en de geschiedenis van de buurt.",
     "heading": "Duivelseiland - Amsterdam",
@@ -212,7 +213,7 @@
       "whatsappLabel": "Stuur {naam} een WhatsApp-bericht",
       "whatsappBericht": "Hallo, ik vond je nummer op de buurtsite van Duivelseiland. ",
       "terug": "Alle vaklui",
-      "metaDescription": "{naam}, een vakman uit of rond Duivelseiland.",
+      "metaDescription": "{naam}: {vakken} in Amsterdam-Zuid, op de lijst van vaklui die buren uit Duivelseiland aanraden.",
       "aanmeldKnop": {
         "titel": "Ken je een goede vakman?",
         "tekst": "Heb je een buurtpas, dan kun je een vakman aanmelden. De redactie kijkt mee voordat die op de site komt.",
@@ -259,6 +260,7 @@
     },
     "geschiedenis": {
       "heading": "Geschiedenis",
+      "metaTitle": "Geschiedenis van Duivelseiland, Amsterdam",
       "metaDescription": "Hoe een stinkende uithoek aan de Boerenwetering Duivelseiland werd: de geschiedenis van de buurt als tijdlijn.",
       "ui": {
         "eyebrow": "Duivelseiland · Museumkwartier · Amsterdam-Zuid",
@@ -1387,7 +1389,34 @@
     },
     "geluid": {
       "heading": "Geluid & lawaai",
+      "metaTitle": "Geluidsoverlast en verbouwen: hoe laat mag het?",
       "metaDescription": "Verbouwen, klussen en feestjes in Duivelseiland: hoe laat het mag, hoe je de buren informeert en wat je kunt doen bij geluidsoverlast. Met een instructiekaart en briefjes voor de buren.",
+      "faq": {
+        "title": "Kort antwoord",
+        "bron": "Bron: gemeente Amsterdam",
+        "items": [
+          {
+            "vraag": "Hoe laat mogen bouwvakkers beginnen?",
+            "antwoord": "Om {van} uur. Een aannemer of klusbedrijf mag van maandag tot en met zaterdag bouwen en slopen van {van} tot {tot} uur. In Duivelseiland vragen we wel: liever geen boren, slijpen of schuren vóór {advies} uur."
+          },
+          {
+            "vraag": "Mag je op zondag klussen?",
+            "antwoord": "Een bedrijf mag op zondag en op feestdagen geen bouwlawaai maken, tenzij de gemeente een ontheffing geeft. Voor wie zelf klust, staat er geen vaste tijd in de wet, maar je moet onnodige geluidshinder voorkomen. Laat lawaaiig werk op zondag dus liever liggen."
+          },
+          {
+            "vraag": "Tot hoe laat mag je verbouwen?",
+            "antwoord": "Tot {tot} uur, van maandag tot en met zaterdag. ’s Avonds, ’s nachts of op zondag mag een bedrijf alleen werken met een geluidsontheffing van de gemeente. Die moet minstens {weken} weken vooraf worden aangevraagd."
+          },
+          {
+            "vraag": "Tot hoe laat mag een feestje thuis?",
+            "antwoord": "Er is geen vaste tijd waarop het stil moet zijn, en je hebt geen vergunning nodig. Je mag de buren wel geen ernstige overlast bezorgen die steeds terugkomt. Afspraak in de buurt: na {zachter} uur de muziek zachter en de ramen dicht."
+          },
+          {
+            "vraag": "Wat kun je doen bij geluidsoverlast van de buren?",
+            "antwoord": "Praat eerst met je buren, op een rustig moment. Lukt dat niet, dan bemiddelt BeterBuren gratis ({beterBuren}). Het Meldpunt Zorg en Woonoverlast is dag en nacht bereikbaar op {meldpunt}."
+          }
+        ]
+      },
       "hero": {
         "eyebrow": "Duivelseiland · rekening houden met elkaar",
         "lead": "De mensen in deze buurt wonen dicht op elkaar. De binnenplaatsen werken als klankkasten, en het wordt gewaardeerd als je daar rekening mee houdt.",

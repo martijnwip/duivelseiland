@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { metDeelinfo } from '@/lib/deelMetadata';
+import { inkorten } from '@/lib/deelinfo';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { cache } from 'react';
@@ -32,12 +33,26 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const vakman = await vindVakman(slug, locale as 'nl' | 'en');
   if (!vakman) return {};
   const t = await getTranslations({ locale, namespace: 'pages.vaklui' });
-  const vakken = vakNamen(vakman).join(', ');
+  const standaard = t('metaDescription', { naam: vakman.naam, vakken: vakNamen(vakman).join(', ').toLowerCase() || (locale === 'en' ? 'tradesperson' : 'vakman') });
+  const aanbeveling = vakman.aanbeveling?.trim() ?? '';
   return metDeelinfo(locale, {
-    title: vakken ? `${vakman.naam} (${vakken})` : vakman.naam,
-    description: vakman.aanbeveling?.trim().slice(0, 160) || t('metaDescription', { naam: vakman.naam }),
+    pad: `/vaklui/${slug}`,
+    title: vakmanTitel(vakman.naam, vakNamen(vakman)),
+    // Een korte aanbeveling ("Top!") zegt Google te weinig: dan de standaardzin ervoor.
+    description: inkorten(aanbeveling.length >= 80 ? aanbeveling : [standaard, aanbeveling].filter(Boolean).join(' '), 160),
     deelTitel: vakman.naam,
   });
+}
+
+/**
+ * "Bouw Chickie, aannemer in Amsterdam". Vakken die al in de naam staan ("Elektricien Brins Amsterdam")
+ * en "Amsterdam" komen er niet nog eens achter.
+ */
+function vakmanTitel(naam: string, vakken: string[]): string {
+  const inNaam = (woord: string) => naam.toLowerCase().includes(woord.toLowerCase());
+  const extra = vakken.filter((vak) => !inNaam(vak)).map((vak) => vak.toLowerCase());
+  const titel = extra.length ? `${naam}, ${extra.join(', ')}` : naam;
+  return inNaam('amsterdam') ? titel : `${titel} in Amsterdam`;
 }
 
 export default async function VakmanPage({ params }: Params) {

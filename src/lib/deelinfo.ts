@@ -7,6 +7,7 @@ import type { Media } from '../../payload-types';
 import { metDeelinfo } from '@/lib/deelMetadata';
 import { vindActiviteit } from '@/components/activiteiten/ActiviteitDetailPage';
 import { vakNamen } from '@/components/vaklui/VakmanKaart';
+import { PUBLIEKE_FASES, type Fase } from '@/lib/activiteiten/constants';
 
 /**
  * Wat een gedeelde link (WhatsApp, sociale media) van een contentitem laat zien: titel, korte
@@ -28,6 +29,11 @@ export type Deelinfo = {
    */
   regels: string[];
   imageUrl: string | null;
+  /**
+   * Pad van de hoofdversie als hetzelfde onderwerp elders een eigen pagina heeft: een agenda-item dat bij
+   * een activiteit hoort (src/lib/activiteiten/agenda.ts) wijst met zijn canonical naar /activiteiten/<slug>.
+   */
+  canonicalPad?: string;
 };
 
 const MAX_DESCRIPTION = 200;
@@ -124,9 +130,16 @@ export async function haalDeelinfo(collectie: DeelCollectie, slug: string, local
     omschrijving = rich.intro?.trim() || omschrijving;
   }
 
+  const activiteit = collectie === 'agenda' ? (doc as { activiteit?: unknown }).activiteit : null;
+  const canonicalPad =
+    activiteit && typeof activiteit === 'object' && 'slug' in activiteit && 'fase' in activiteit && PUBLIEKE_FASES.includes(activiteit.fase as Fase) && activiteit.slug
+      ? `/activiteiten/${activiteit.slug}`
+      : undefined;
+
   return {
     title: doc.title,
     description: omschrijving ? inkorten(omschrijving) : null,
+    canonicalPad,
     regels: collectie === 'agenda' ? [datum ? datumTekst(datum, locale) : null, wanneerWaar].filter((r): r is string => Boolean(r)) : [],
     imageUrl,
   };
@@ -140,7 +153,7 @@ export async function deelMetadata(collectie: DeelCollectie, slug: string, local
   // De belangrijkste gegevens (bv. datum en tijd) staan vóór de omschrijving: dat is wat je in een chat het eerst wilt zien.
   const kop = info.regels.join(', ') || null;
   const description = [kop, info.description].filter(Boolean).join('. ') || undefined;
-  return metDeelinfo(locale, { title: `${info.title} | Duivelseiland`, deelTitel: info.title, description, type: 'article' });
+  return metDeelinfo(locale, { pad: `/${collectie}/${slug}`, canonicalPad: info.canonicalPad, title: info.title, description, type: 'article' });
 }
 
 /** Activiteit (fase goedgekeurd, gaat door of afgelopen): titel, wanneer, eerste zinnen en de headerafbeelding. */

@@ -4,6 +4,7 @@ import config from '@payload-config';
 import { routing } from '@/i18n/routing';
 import { localizedHref } from '@/i18n/localizedHref';
 import { PUBLIEKE_FASES } from '@/lib/activiteiten/constants';
+import { PUBLIEK_CONTENT, heeftOpenbareItems, type OverzichtCollectie } from '@/lib/openbareItems';
 
 /** /sitemap.xml: vaste pagina's en alle openbare items, elk in NL en EN (met hreflang-alternatieven). */
 
@@ -42,17 +43,12 @@ const VASTE_PAGINAS = [
   '/contact',
 ];
 
-// Items met "Alleen voor de buurt" tonen zonder buurtpas alleen titel en slot (noindex): niet opnemen.
-const PUBLIEK_CONTENT: Where = {
-  and: [
-    { status: { equals: 'published' } },
-    { or: [{ alleenBuurt: { equals: false } }, { alleenBuurt: { exists: false } }] },
-  ],
-};
+// Items met "Alleen voor de buurt" tonen zonder buurtpas alleen titel en slot (noindex): niet opnemen (PUBLIEK_CONTENT).
 
 const BRONNEN = [
   { collection: 'nieuws', pad: '/nieuws', where: PUBLIEK_CONTENT },
-  { collection: 'agenda', pad: '/agenda', where: PUBLIEK_CONTENT },
+  // Agenda-items van een activiteit niet: hun canonical wijst naar /activiteiten/<slug>, en die staat er al in.
+  { collection: 'agenda', pad: '/agenda', where: { and: [PUBLIEK_CONTENT, { activiteit: { exists: false } }] } },
   { collection: 'interviews', pad: '/interviews', where: PUBLIEK_CONTENT },
   { collection: 'geschiedenis', pad: '/geschiedenis', where: PUBLIEK_CONTENT },
   { collection: 'duivelse-kunst', pad: '/duivelse-kunst', where: PUBLIEK_CONTENT },
@@ -87,5 +83,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }),
   );
 
-  return [...VASTE_PAGINAS.flatMap((pad) => regels(pad)), ...items.flat()];
+  // Lege overzichten staan op noindex (zie de pagina's), dus ook niet in de sitemap.
+  const leeg = new Set<string>();
+  for (const collection of ['interviews', 'duivelse-kunst'] as const satisfies OverzichtCollectie[]) {
+    if (!(await heeftOpenbareItems(collection))) leeg.add(`/${collection}`);
+  }
+
+  return [...VASTE_PAGINAS.filter((pad) => !leeg.has(pad)).flatMap((pad) => regels(pad)), ...items.flat()];
 }

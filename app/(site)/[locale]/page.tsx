@@ -85,7 +85,7 @@ async function getHeroSlides(locale: string): Promise<HeroSlide[]> {
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription'), deelTitel: t('deelTitel') });
+  return metDeelinfo(locale, { pad: '', title: t('metaTitle'), volledigeTitel: true, description: t('metaDescription'), deelTitel: t('deelTitel') });
 }
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {

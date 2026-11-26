@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { StyleguideSection } from '@/components/styleguide/StyleguideSection';
 
 export const metadata: Metadata = {
-  title: 'Styleguide – Duivelseiland',
+  title: 'Styleguide',
   robots: { index: false, follow: false },
 };
 

@@ -7,7 +7,7 @@ import { GeschiedenisPage as Verhaal } from '@/components/geschiedenis/Geschiede
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'pages.geschiedenis' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/geschiedenis', title: t('metaTitle'), volledigeTitel: true, description: t('metaDescription') });
 }
 
 export default async function GeschiedenisPage({ params }: { params: Promise<{ locale: string }> }) {

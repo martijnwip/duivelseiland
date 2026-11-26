@@ -7,7 +7,7 @@ import { NieuwsbriefForm } from '@/components/nieuwsbrief/NieuwsbriefForm';
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'nieuwsbrief' });
-  return metDeelinfo(locale, { title: t('heading'), description: t('metaDescription') });
+  return metDeelinfo(locale, { pad: '/nieuwsbrief', title: t('heading'), description: t('metaDescription') });
 }
 
 export default async function NieuwsbriefRoute({ params }: { params: Promise<{ locale: string }> }) {
@@ -18,7 +18,7 @@ export default async function NieuwsbriefRoute({ params }: { params: Promise<{ l
   return (
     <main className="pt-8 xl:pt-12">
       <Section id="nieuwsbrief">
-        <SectionHead id="nieuwsbrief" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
+        <SectionHead kop="h1" id="nieuwsbrief" eyebrow={t('eyebrow')} title={t('heading')} intro={t('intro')} />
         <div className={`${boxCls} mt-8 max-w-xl`}>
           <NieuwsbriefForm
             locale={locale}
